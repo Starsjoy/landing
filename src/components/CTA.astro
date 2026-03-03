@@ -1,0 +1,80 @@
+---
+---
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box fade-in">
+      <h2 class="cta-title">Hoziroq boshlang!</h2>
+      <p class="cta-desc">Telegram Stars, Premium va Gifts — eng tez va arzon narxlarda faqat StarsJoy'da</p>
+      <a href="https://t.me/starsjoybot" class="btn-white" target="_blank">
+        &#11088; Botga o'tish
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    text-align: center;
+    background: var(--bg-alt);
+  }
+
+  .cta-box {
+    background: var(--gradient);
+    border-radius: 24px;
+    padding: 72px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1), transparent 50%);
+    pointer-events: none;
+  }
+
+  .cta-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    position: relative;
+    color: #fff;
+  }
+  .cta-desc {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    margin-bottom: 36px;
+    position: relative;
+    color: #fff;
+  }
+
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 42px;
+    background: #fff;
+    border: none;
+    border-radius: 50px;
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 640px) {
+    .cta-box { padding: 48px 24px; }
+    .cta-title { font-size: 1.8rem; }
+  }
+</style>

@@ -1,0 +1,166 @@
+---
+---
+
+<section class="referral" id="referral">
+  <div class="container">
+    <div class="referral-box fade-in">
+      <div class="referral-content">
+        <span class="section-label">Referral dastur</span>
+        <h2 class="referral-title">Do'stingizni taklif qiling<br>stars yutib oling!</h2>
+        <p class="referral-desc">Har bir do'stingiz xarid qilganda, siz xarid summasining 10% ini bonus sifatida olasiz</p>
+        <div class="referral-steps">
+          <div class="referral-step">
+            <div class="referral-step-num">1</div>
+            <span>Botdan o'zingizning referral havolangizni oling</span>
+          </div>
+          <div class="referral-step">
+            <div class="referral-step-num">2</div>
+            <span>Havolani do'stlaringiz bilan ulashing</span>
+          </div>
+          <div class="referral-step">
+            <div class="referral-step-num">3</div>
+            <span>Do'stingiz xarid qilganda 10% bonus oling</span>
+          </div>
+        </div>
+        <a href="https://t.me/starsjoybot" class="btn-primary" target="_blank">
+          Referral havolani olish
+        </a>
+      </div>
+      <div class="referral-visual">
+        <div class="referral-icon-wrap">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <!-- Asosiy odam -->
+            <circle cx="22" cy="18" r="7" fill="#7C3AED" opacity="0.15" stroke="#7C3AED" stroke-width="2"/>
+            <path d="M10 44c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" fill="#7C3AED" opacity="0.08"/>
+            <!-- Ikkinchi odam -->
+            <circle cx="38" cy="20" r="5.5" fill="#2563EB" opacity="0.12" stroke="#2563EB" stroke-width="2"/>
+            <path d="M30 44c0-5 3.582-9 8-9s8 4 8 9" stroke="#2563EB" stroke-width="2" stroke-linecap="round" fill="#2563EB" opacity="0.06"/>
+            <!-- Plus belgisi -->
+            <circle cx="44" cy="12" r="7" fill="#10B981" opacity="0.15" stroke="#10B981" stroke-width="1.5"/>
+            <path d="M44 9v6M41 12h6" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="referral-bonus">5%</div>
+        <div class="referral-bonus-label">har bir xariddan bonus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .referral {
+    background: var(--bg-alt);
+  }
+
+  .referral-box {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  .referral-box::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.06), transparent 70%);
+    pointer-events: none;
+  }
+
+  .referral-content { flex: 1; }
+  .referral-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .referral-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  .referral-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .referral-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 1rem;
+    color: var(--text);
+  }
+  .referral-step-num {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background: var(--gradient);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+  }
+
+  .referral-visual {
+    flex: 0 0 280px;
+    text-align: center;
+  }
+  .referral-icon-wrap {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, #EDE7F6, #D1C4E9);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .referral-bonus {
+    font-size: 2.4rem;
+    font-weight: 900;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .referral-bonus-label {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 1024px) {
+    .referral-box {
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 28px;
+    }
+    .referral-visual { flex: none; }
+  }
+  @media (max-width: 640px) {
+    .referral-box { gap: 24px; padding: 28px 18px; }
+    .referral-title { font-size: 1.5rem; margin-bottom: 12px; }
+    .referral-desc { font-size: 0.95rem; margin-bottom: 20px; }
+    .referral-steps { gap: 12px; margin-bottom: 24px; text-align: left; }
+    .referral-step { font-size: 0.9rem; gap: 10px; }
+    .referral-step-num { width: 30px; height: 30px; min-width: 30px; font-size: 0.8rem; border-radius: 8px; }
+    .referral-icon-wrap { width: 80px; height: 80px; border-radius: 20px; margin-bottom: 12px; }
+    .referral-icon-wrap svg { width: 44px; height: 44px; }
+    .referral-bonus { font-size: 2rem; }
+    .referral-bonus-label { font-size: 0.85rem; }
+  }
+</style>

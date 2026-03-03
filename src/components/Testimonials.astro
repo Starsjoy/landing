@@ -1,0 +1,119 @@
+---
+const testimonials = [
+  {
+    text: "2 daqiqada Stars keldi! Boshqa joylardan 30 daqiqa kutganman, bu yerda hamma narsa tez va qulay ekan. Tavsiya qilaman!",
+    name: 'Aziz',
+    handle: '@aziz_dev',
+    initial: 'A',
+  },
+  {
+    text: "Premium obunani sotib oldim, hamma narsa mukammal ishlaydi. Narxi ham boshqalarga qaraganda arzon. Rahmat, StarsJoy!",
+    name: 'Madina',
+    handle: '@madina_uix',
+    initial: 'M',
+  },
+  {
+    text: "Do'stimga Gift yubordim, juda qulay ekan. Referral tizimi ham ajoyib — har safar bonus tushib turadi.",
+    name: 'Jasur',
+    handle: '@jasur_tm',
+    initial: 'J',
+  },
+];
+---
+
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">Fikrlar</span>
+      <h2 class="section-title">Foydalanuvchilar nima deydi?</h2>
+      <p class="section-subtitle">Bizning xizmatimizdan foydalangan mijozlarning fikrlari</p>
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map((t) => (
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+          <p class="testimonial-text">"{t.text}"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">{t.initial}</div>
+            <div>
+              <div class="testimonial-name">{t.name}</div>
+              <div class="testimonial-handle">{t.handle}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    background: var(--bg-alt);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow-sm);
+  }
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .testimonial-stars {
+    color: var(--accent-light);
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+  .testimonial-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .testimonial-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+  }
+  .testimonial-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .testimonial-handle {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 1024px) {
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+</style>

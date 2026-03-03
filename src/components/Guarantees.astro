@@ -1,0 +1,96 @@
+---
+---
+
+<section id="guarantees">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">Kafolatlar</span>
+      <h2 class="section-title">Sizning ishonchingiz — bizning ustuvorligimiz</h2>
+      <p class="section-subtitle">Biz har bir buyurtmangiz uchun to'liq javobgarlikni o'z zimmamizga olamiz</p>
+    </div>
+    <div class="guarantees-grid">
+      <div class="guarantee-card fade-in">
+        <div class="guarantee-icon gi-speed">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M17.5 4L8 18h7l-2 10L24 14h-7l2-10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
+          </svg>
+        </div>
+        <h3 class="guarantee-title">5 daqiqalik yetkazish</h3>
+        <p class="guarantee-desc">To'lovdan so'ng 5 daqiqa ichida xizmat yetkazilishini kafolatlaymiz</p>
+      </div>
+      <div class="guarantee-card fade-in">
+        <div class="guarantee-icon gi-cashback">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M16 3l3.7 7.5 8.3 1.2-6 5.8 1.4 8.3L16 21.9l-7.4 3.9 1.4-8.3-6-5.8 8.3-1.2L16 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
+          </svg>
+        </div>
+        <h3 class="guarantee-title">10 Stars cashback</h3>
+        <p class="guarantee-desc">Agar yetkazish 5 daqiqadan oshsa, sizga 10 Stars cashback beramiz</p>
+      </div>
+      <div class="guarantee-card fade-in">
+        <div class="guarantee-icon gi-refund">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="7" y="13" width="18" height="13" rx="3" stroke="currentColor" stroke-width="2"/>
+            <path d="M11 13V10a5 5 0 1 1 10 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="20" r="2" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3 class="guarantee-title">To'liq pul qaytarish</h3>
+        <p class="guarantee-desc">Xizmat yetkazilmasa yoki muammo bo'lsa — pullaringiz to'liq qaytariladi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .guarantees-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .guarantee-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow-sm);
+  }
+  .guarantee-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .guarantee-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gi-speed { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #059669; }
+  .gi-cashback { background: linear-gradient(135deg, #FFF8E1, #FFE082); color: #D97706; }
+  .gi-refund { background: linear-gradient(135deg, #EDE7F6, #D1C4E9); color: #7C3AED; }
+  .guarantee-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .guarantee-desc {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) {
+    .guarantees-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .guarantees-grid { grid-template-columns: 1fr; }
+  }
+</style>

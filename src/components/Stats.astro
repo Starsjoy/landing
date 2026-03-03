@@ -1,0 +1,112 @@
+---
+const stats = [
+  { target: 5200, suffix: '+', label: 'Buyurtmalar soni', icon: '&#128230;' },
+  { target: 1800, suffix: '+', label: 'Faol foydalanuvchilar', icon: '&#128100;' },
+  { target: 3, suffix: ' daq', label: "O'rtacha yetkazish vaqti", icon: '&#9889;' },
+  { target: 99, suffix: '%', label: 'Mijozlar mamnuniyati', icon: '&#11088;' },
+];
+---
+
+<section id="stats">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">Raqamlar</span>
+      <h2 class="section-title">Bizga ishonch bildirganlar</h2>
+      <p class="section-subtitle">Har kuni o'sib borayotgan jamoamiz va xizmat sifatimiz</p>
+    </div>
+    <div class="stats-grid">
+      {stats.map((s) => (
+        <div class="stat-card fade-in">
+          <div class="stat-icon"><Fragment set:html={s.icon} /></div>
+          <div class="stat-number" data-target={s.target} data-suffix={s.suffix}>0</div>
+          <div class="stat-label">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function animateCounters() {
+    document.querySelectorAll('.stat-number[data-target]').forEach(counter => {
+      const el = counter as HTMLElement;
+      const target = parseInt(el.dataset.target || '0');
+      const suffix = el.dataset.suffix || '';
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        el.textContent = Math.floor(current).toLocaleString() + suffix;
+      }, 16);
+    });
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsSection = document.getElementById('stats');
+  if (statsSection) statsObserver.observe(statsSection);
+</script>
+
+<style>
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .stat-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 24px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow-sm);
+  }
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .stat-icon {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+  }
+
+  .stat-number {
+    font-size: 2.6rem;
+    font-weight: 900;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 1024px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .stat-card { padding: 24px 16px; }
+    .stat-number { font-size: 2rem; }
+  }
+</style>

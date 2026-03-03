@@ -1,0 +1,176 @@
+---
+---
+
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">Jarayon</span>
+      <h2 class="section-title">Qanday ishlaydi?</h2>
+      <p class="section-subtitle">Atigi 4 qadam — va siz xohlagan xizmatga ega bo'lasiz</p>
+    </div>
+    <div class="steps-grid">
+      <!-- Step 1: Botni oching -->
+      <div class="step-card fade-in">
+        <div class="step-top">
+          <div class="step-number">1</div>
+        </div>
+        <div class="step-icon step-icon-1">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect x="6" y="2" width="16" height="24" rx="3" stroke="currentColor" stroke-width="2"/>
+            <line x1="12" y1="22" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="14" cy="12" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M14 9v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Botni oching</h3>
+        <p class="step-desc">Telegramda @starsjoybot ni oching va /start bosing</p>
+      </div>
+
+      <!-- Step 2: Xizmat tanlang -->
+      <div class="step-card fade-in">
+        <div class="step-top">
+          <div class="step-number">2</div>
+        </div>
+        <div class="step-icon step-icon-2">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect x="3" y="3" width="9" height="9" rx="2.5" stroke="currentColor" stroke-width="2"/>
+            <rect x="16" y="3" width="9" height="9" rx="2.5" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="16" width="9" height="9" rx="2.5" stroke="currentColor" stroke-width="2"/>
+            <rect x="16" y="16" width="9" height="9" rx="2.5" fill="currentColor" opacity="0.2" stroke="currentColor" stroke-width="2"/>
+            <path d="M19 19l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Xizmat tanlang</h3>
+        <p class="step-desc">Stars, Premium yoki Gifts — o'zingizga keraklisini tanlang</p>
+      </div>
+
+      <!-- Step 3: To'lov qiling -->
+      <div class="step-card fade-in">
+        <div class="step-top">
+          <div class="step-number">3</div>
+        </div>
+        <div class="step-icon step-icon-3">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect x="2" y="6" width="24" height="16" rx="3" stroke="currentColor" stroke-width="2"/>
+            <line x1="2" y1="11" x2="26" y2="11" stroke="currentColor" stroke-width="2"/>
+            <line x1="6" y1="17" x2="12" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="21" cy="17" r="2" fill="currentColor" opacity="0.3"/>
+          </svg>
+        </div>
+        <h3 class="step-title">To'lov qiling</h3>
+        <p class="step-desc">Payme, Click yoki karta orqali qulay to'lov usulini tanlang</p>
+      </div>
+
+      <!-- Step 4: 5 daqiqada oling -->
+      <div class="step-card fade-in">
+        <div class="step-top">
+          <div class="step-number">4</div>
+        </div>
+        <div class="step-icon step-icon-4">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M15.5 3L7 16h6l-1.5 9L22 12h-6l1.5-9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
+          </svg>
+        </div>
+        <h3 class="step-title">5 daqiqada oling</h3>
+        <p class="step-desc">To'lovdan so'ng 5 daqiqa ichida xizmat yetkaziladi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-it-works {
+    background: var(--bg-alt);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .step-card {
+    text-align: center;
+    padding: 32px 24px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(124, 58, 237, 0.08);
+  }
+
+  .step-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    background: var(--gradient);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .step-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-icon-1 {
+    background: linear-gradient(135deg, #EDE7F6, #D1C4E9);
+    color: #7C3AED;
+  }
+  .step-icon-2 {
+    background: linear-gradient(135deg, #E0F2FE, #BAE6FD);
+    color: #2563EB;
+  }
+  .step-icon-3 {
+    background: linear-gradient(135deg, #FFF8E1, #FFE082);
+    color: #D97706;
+  }
+  .step-icon-4 {
+    background: linear-gradient(135deg, #D1FAE5, #A7F3D0);
+    color: #059669;
+  }
+
+  .step-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .step-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) {
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .step-line { display: none; }
+  }
+  @media (max-width: 640px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .step-card { padding: 28px 20px; }
+  }
+</style>
