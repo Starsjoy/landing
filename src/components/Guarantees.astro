@@ -5,7 +5,7 @@
   <div class="container">
     <div class="section-header fade-in">
       <span class="section-label">Kafolatlar</span>
-      <h2 class="section-title">Sizning ishonchingiz — bizning ustuvorligimiz</h2>
+      <h2 class="section-title">Sizning ishonchingiz —<br class="mobile-br"> bizning ustuvorligimiz</h2>
       <p class="section-subtitle">Biz har bir buyurtmangiz uchun to'liq javobgarlikni o'z zimmamizga olamiz</p>
     </div>
     <div class="guarantees-grid">
@@ -90,7 +90,10 @@
   @media (max-width: 1024px) {
     .guarantees-grid { grid-template-columns: repeat(2, 1fr); }
   }
+  .mobile-br { display: none; }
+
   @media (max-width: 640px) {
     .guarantees-grid { grid-template-columns: 1fr; }
+    .mobile-br { display: block; }
   }
 </style>
