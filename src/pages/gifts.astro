@@ -364,15 +364,45 @@ const faqs = [
     .why-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
-    .gift-hero { padding: 100px 16px 60px; }
-    .gift-title { font-size: 2rem; }
-    .gift-desc { font-size: 1rem; }
-    .gift-features { flex-direction: column; align-items: center; gap: 12px; }
-    .gift-icon-big { width: 120px; height: 120px; border-radius: 28px; }
-    .gift-icon-big svg { width: 60px; height: 60px; }
-    .why-grid { grid-template-columns: 1fr; }
-    .how-steps { grid-template-columns: 1fr; gap: 16px; }
-    .gift-cta-box { padding: 40px 24px; }
-    .gift-cta-box h2 { font-size: 1.5rem; }
+    .gift-hero { padding: 100px 16px 40px; }
+    .gift-hero-inner { gap: 28px; text-align: left; }
+    .gift-title { font-size: 1.75rem; line-height: 1.2; }
+    .gift-desc { font-size: 0.95rem; margin: 0 0 20px; line-height: 1.6; }
+    .gift-features { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 24px; }
+    .gift-feature { font-size: 0.85rem; }
+    .breadcrumb { margin-bottom: 20px; font-size: 0.8rem; }
+    .gift-hero-visual { display: none; }
+    .gift-hero-inner :global(.btn-primary) { width: 100%; justify-content: center; padding: 14px 24px; font-size: 0.95rem; }
+
+    .why-grid { grid-template-columns: 1fr; gap: 12px; }
+    .why-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+    }
+    .why-card:hover { transform: none; }
+    .why-icon { width: 48px; height: 48px; min-width: 48px; margin: 0; border-radius: 14px; }
+    .why-card h3 { font-size: 0.95rem; margin-bottom: 2px; }
+    .why-card p { font-size: 0.82rem; line-height: 1.5; }
+
+    .how-steps { grid-template-columns: 1fr; gap: 12px; }
+    .how-step {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+    }
+    .how-step-num { width: 36px; height: 36px; min-width: 36px; margin: 0; font-size: 0.95rem; border-radius: 10px; }
+    .how-step h3 { font-size: 0.95rem; margin-bottom: 2px; }
+    .how-step p { font-size: 0.82rem; line-height: 1.5; }
+
+    .gift-cta-box { padding: 40px 20px; }
+    .gift-cta-box h2 { font-size: 1.4rem; }
+    .gift-cta-box p { font-size: 0.95rem; }
   }
 </style>

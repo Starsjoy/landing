@@ -425,27 +425,29 @@
   }
 
   @media (max-width: 640px) {
-    .hero { padding: 140px 16px 67px; }
-    .hero-container { gap: 24px; }
-    .hero-title { font-size: 2rem; }
-    .hero-desc { font-size: 1.05rem; margin-bottom: 28px; }
-    .hero-buttons { flex-direction: column; align-items: center; margin-bottom: 24px; }
+    .hero { padding: 100px 16px 40px; min-height: auto; }
+    .hero-container { gap: 32px; }
+    .hero-title { font-size: 2rem; line-height: 1.15; }
+    .hero-desc { font-size: 1rem; margin-bottom: 24px; line-height: 1.6; }
+    .hero-buttons { flex-direction: column; align-items: stretch; margin-bottom: 0; gap: 12px; }
     .hero-buttons :global(.btn-primary),
-    .hero-buttons :global(.btn-secondary) { width: 70%; justify-content: center; padding: 10px 22px; font-size: 0.81rem; gap: 6px; }
+    .hero-buttons :global(.btn-secondary) { width: 100%; justify-content: center; padding: 14px 24px; font-size: 0.95rem; gap: 8px; }
     .hero-trust { flex-direction: column; gap: 8px; }
     .trust-divider { display: none; }
-    .hero-visual { min-height: 300px; }
-    .cube-stage { width: 195px; height: 195px; }
-    .cube-face { width: 195px; height: 195px; border-radius: 24px; }
-    .face-front  { transform: translateZ(98px); }
-    .face-right  { transform: rotateY(90deg) translateZ(98px); }
-    .face-back   { transform: rotateY(180deg) translateZ(98px); }
-    .face-left   { transform: rotateY(-90deg) translateZ(98px); }
-    .face-icon { width: 73px; height: 73px; border-radius: 20px; }
-    .face-title { font-size: 0.88rem; }
-    .face-sub { font-size: 0.7rem; }
-    .float-logo { width: 52px; height: 52px; border-radius: 14px; }
-    .logo-float { margin-bottom: -3px; }
-    .cube-shadow { width: 160px; height: 30px; margin-top: 14px; }
+    .hero-visual { min-height: 240px; }
+    .cube-stage { width: 170px; height: 170px; }
+    .cube-face { width: 170px; height: 170px; border-radius: 20px; }
+    .face-front  { transform: translateZ(85px); }
+    .face-right  { transform: rotateY(90deg) translateZ(85px); }
+    .face-back   { transform: rotateY(180deg) translateZ(85px); }
+    .face-left   { transform: rotateY(-90deg) translateZ(85px); }
+    .face-icon { width: 60px; height: 60px; border-radius: 16px; }
+    .face-icon svg { width: 36px; height: 36px; }
+    .face-title { font-size: 0.82rem; }
+    .face-sub { font-size: 0.68rem; }
+    .float-logo { width: 44px; height: 44px; border-radius: 12px; }
+    .logo-float { margin-bottom: 0; }
+    .cube-shadow { width: 130px; height: 24px; margin-top: 10px; }
+    .dot { display: none; }
   }
 </style>

@@ -532,15 +532,45 @@ const faqs = [
   }
 
   @media (max-width: 640px) {
-    .stars-hero { padding: 100px 16px 60px; }
-    .stars-title { font-size: 2rem; }
-    .stars-desc { font-size: 1rem; }
-    .stars-features { flex-direction: column; align-items: center; gap: 12px; }
-    .stars-icon-big { width: 120px; height: 120px; border-radius: 28px; }
-    .stars-icon-big svg { width: 60px; height: 60px; }
-    .why-grid { grid-template-columns: 1fr; }
-    .how-steps { grid-template-columns: 1fr; gap: 16px; }
-    .stars-cta-box { padding: 40px 24px; }
-    .stars-cta-box h2 { font-size: 1.5rem; }
+    .stars-hero { padding: 100px 16px 40px; }
+    .stars-hero-inner { gap: 28px; text-align: left; }
+    .stars-title { font-size: 1.75rem; line-height: 1.2; }
+    .stars-desc { font-size: 0.95rem; margin: 0 0 20px; line-height: 1.6; }
+    .stars-features { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 24px; }
+    .stars-feature { font-size: 0.85rem; }
+    .breadcrumb { margin-bottom: 20px; font-size: 0.8rem; }
+    .stars-hero-visual { display: none; }
+    .stars-hero-inner :global(.btn-primary) { width: 100%; justify-content: center; padding: 14px 24px; font-size: 0.95rem; }
+
+    .why-grid { grid-template-columns: 1fr; gap: 12px; }
+    .why-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+    }
+    .why-card:hover { transform: none; }
+    .why-icon { width: 48px; height: 48px; min-width: 48px; margin: 0; border-radius: 14px; }
+    .why-card h3 { font-size: 0.95rem; margin-bottom: 2px; }
+    .why-card p { font-size: 0.82rem; line-height: 1.5; }
+
+    .how-steps { grid-template-columns: 1fr; gap: 12px; }
+    .how-step {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+    }
+    .how-step-num { width: 36px; height: 36px; min-width: 36px; margin: 0; font-size: 0.95rem; border-radius: 10px; }
+    .how-step h3 { font-size: 0.95rem; margin-bottom: 2px; }
+    .how-step p { font-size: 0.82rem; line-height: 1.5; }
+
+    .stars-cta-box { padding: 40px 20px; }
+    .stars-cta-box h2 { font-size: 1.4rem; }
+    .stars-cta-box p { font-size: 0.95rem; }
   }
 </style>

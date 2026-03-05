@@ -125,6 +125,31 @@
     .services-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
-    .services-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; gap: 16px; }
+    .service-card {
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+    }
+    .service-card:hover { transform: none; }
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      margin: 0;
+      border-radius: 16px;
+    }
+    .service-title {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+    .service-desc {
+      font-size: 0.85rem;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
   }
 </style>

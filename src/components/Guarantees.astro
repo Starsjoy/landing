@@ -93,7 +93,25 @@
   .mobile-br { display: none; }
 
   @media (max-width: 640px) {
-    .guarantees-grid { grid-template-columns: 1fr; }
+    .guarantees-grid { grid-template-columns: 1fr; gap: 12px; }
+    .guarantee-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+    }
+    .guarantee-card:hover { transform: none; }
+    .guarantee-icon {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      margin: 0;
+      border-radius: 14px;
+    }
+    .guarantee-title { font-size: 1rem; margin-bottom: 2px; }
+    .guarantee-desc { font-size: 0.82rem; line-height: 1.5; }
     .mobile-br { display: block; }
   }
 </style>

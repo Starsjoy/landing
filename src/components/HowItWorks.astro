@@ -170,7 +170,27 @@
     .step-line { display: none; }
   }
   @media (max-width: 640px) {
-    .steps-grid { grid-template-columns: 1fr; }
-    .step-card { padding: 28px 20px; }
+    .steps-grid { grid-template-columns: 1fr; gap: 12px; }
+    .step-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+    }
+    .step-card:hover { transform: none; }
+    .step-top {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+    .step-number {
+      width: 32px;
+      height: 32px;
+      font-size: 0.82rem;
+    }
+    .step-icon { display: none; }
+    .step-title { font-size: 0.95rem; margin-bottom: 2px; }
+    .step-desc { font-size: 0.82rem; line-height: 1.5; }
   }
 </style>
