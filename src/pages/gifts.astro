@@ -1,0 +1,378 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Telegram Gift Sotib Olish — Premium Sovg'a Yuborish | StarsJoy";
+const description = "Telegram Premium gift sotib olish va do'stlarga sovg'a qilish. Telegram gift premium narxlari, tez yetkazish va 100% kafolat bilan sovg'a yuboring.";
+
+const faqs = [
+  {
+    q: "Telegram gift nima?",
+    a: "Telegram Gift — bu do'stlaringiz yoki yaqinlaringizga Telegram Premium obunasini sovg'a sifatida yuborish imkoniyati. Qabul qiluvchi to'lov qilmasdan Premium obunadan foydalana boshlaydi."
+  },
+  {
+    q: "Telegram Premium sovg'a qilish narxi qancha?",
+    a: "Gift narxi oddiy Premium obuna narxiga teng. 1 oylik, 3 oylik, 6 oylik va 1 yillik muddatlarda sovg'a qilish mumkin. Aniq narxlarni @starsjoybot da ko'ring."
+  },
+  {
+    q: "Telegramda gift yuborish qanday bo'ladi?",
+    a: "1) @starsjoybot ga kiring, 2) 'Sovg'a qilish' tugmasini bosing, 3) Qabul qiluvchining username ni kiriting, 4) Muddatni tanlang va to'lang. 5 daqiqada gift yetkaziladi!"
+  },
+  {
+    q: "Gift qabul qiluvchi haqida bilishi kerakmi?",
+    a: "Gift yetkazilganda qabul qiluvchi Telegram orqali xabar oladi. Siz ixtiyoriy ravishda maxsus xabar ham qo'shishingiz mumkin."
+  },
+  {
+    q: "Gift qaytarish yoki bekor qilish mumkinmi?",
+    a: "Gift yetkazilgunga qadar bekor qilish mumkin. Agar texnik muammo bo'lsa, to'langan summa 100% qaytariladi."
+  },
+  {
+    q: "Bir vaqtda bir nechta kishiga gift yuborish mumkinmi?",
+    a: "Ha! StarsJoy bot orqali bir nechta kishiga alohida-alohida gift yuborishingiz mumkin. Har bir gift alohida to'lanadi."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/gifts"
+  keywords="Telegram Premium gift sotib olish, Telegram premium sovg'a qilish, Telegram gift premium narxlari, Telegram premium sovg'a yuborish, telegramda gift yuborish"
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Telegram Premium Gift",
+    "description": description,
+    "brand": { "@type": "Brand", "name": "StarsJoy" },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "UZS",
+      "availability": "https://schema.org/InStock",
+      "offerCount": "4"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+    }))
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Telegram Gift Sotib Olish", "item": "https://starsjoy.uz/gifts" }
+    ]
+  })} />
+
+  <!-- Hero -->
+  <section class="gift-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Bosh sahifa</a>
+        <span>/</span>
+        <span>Telegram Gifts</span>
+      </nav>
+      <div class="gift-hero-inner fade-in">
+        <div class="gift-hero-content">
+          <h1 class="gift-title">Telegram Premium Sovg'a Qilish — Gift Yuborish</h1>
+          <p class="gift-desc">
+            Do'stlaringizga Telegram Premium gift sifatida yuboring. Tez, oson va arzon narxlarda sovg'a qiling — eng yaxshi hadya!
+          </p>
+          <div class="gift-features">
+            <div class="gift-feature">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="10" width="12" height="8" rx="2" stroke="#C850C0" stroke-width="1.5"/><rect x="5" y="7" width="10" height="4" rx="1.5" stroke="#C850C0" stroke-width="1.5"/><rect x="9" y="7" width="2" height="11" rx="0.5" fill="#C850C0" opacity="0.2"/></svg>
+              <span>5 daqiqada yetkazish</span>
+            </div>
+            <div class="gift-feature">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 4 4.4.6-3.2 3.1.8 4.4L10 12l-4 2.1.8-4.4L3.6 6.6 8 6l2-4z" fill="#FBBF24" stroke="#D97706" stroke-width="1"/></svg>
+              <span>Maxsus xabar qo'shish</span>
+            </div>
+            <div class="gift-feature">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#10B981" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>100% kafolat</span>
+            </div>
+          </div>
+          <a href="https://t.me/starsjoybot" class="btn-primary" target="_blank">
+            &#127873; Sovg'a Yuborish
+          </a>
+        </div>
+        <div class="gift-hero-visual">
+          <div class="gift-icon-big">
+            <svg width="80" height="80" viewBox="0 0 52 52" fill="none">
+              <defs>
+                <linearGradient id="gfG" x1="6" y1="10" x2="46" y2="48">
+                  <stop offset="0%" stop-color="#FF6B9D"/>
+                  <stop offset="50%" stop-color="#C850C0"/>
+                  <stop offset="100%" stop-color="#8B5CF6"/>
+                </linearGradient>
+              </defs>
+              <rect x="8" y="22" width="36" height="24" rx="4" fill="url(#gfG)"/>
+              <rect x="11" y="14" width="30" height="10" rx="4" fill="url(#gfG)" opacity="0.85"/>
+              <rect x="23" y="14" width="6" height="32" rx="1.5" fill="#fff" opacity="0.3"/>
+              <path d="M26 14c-3-7-12-7-12 0s12 8 12 8 12-1 12-8-9-7-12 0z" fill="#fff" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nega gift -->
+  <section class="gift-why">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Sovg'a</span>
+        <h2 class="section-title">Nega Telegram Premium sovg'a qilish kerak?</h2>
+        <p class="section-subtitle">Eng yaxshi digital sovg'a — foydali va esda qolarli</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card fade-in">
+          <div class="why-icon wi-unique">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4l3 6 6.6 1-4.8 4.6 1.1 6.6L14 19l-5.9 3.2 1.1-6.6L4.4 11l6.6-1L14 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Noyob sovg'a</h3>
+          <p>Oddiy sovg'alardan farqli — har kuni foydalanadigan premium imkoniyatlar</p>
+        </div>
+        <div class="why-card fade-in">
+          <div class="why-icon wi-instant">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M15 5L7 16h6l-2 7 8-11h-6l2-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Tez yetkazish</h3>
+          <p>5 daqiqada gift yetkaziladi — hech qanday kutish yo'q</p>
+        </div>
+        <div class="why-card fade-in">
+          <div class="why-icon wi-personal">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 22V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2"/><path d="M9 12h10M9 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Shaxsiy xabar</h3>
+          <p>Gift bilan birga maxsus tabrik xabari qo'shishingiz mumkin</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qanday yuborish -->
+  <section class="gift-how">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Qo'llanma</span>
+        <h2 class="section-title">Telegramda gift qanday yuboriladi?</h2>
+        <p class="section-subtitle">3 oddiy qadamda sovg'a yuboring</p>
+      </div>
+      <div class="how-steps">
+        <div class="how-step fade-in">
+          <div class="how-step-num">1</div>
+          <h3>Botga kiring</h3>
+          <p><strong>@starsjoybot</strong> da "Sovg'a qilish" tugmasini bosing</p>
+        </div>
+        <div class="how-step fade-in">
+          <div class="how-step-num">2</div>
+          <h3>Ma'lumotlarni kiriting</h3>
+          <p>Qabul qiluvchining username ni va obuna muddatini tanlang</p>
+        </div>
+        <div class="how-step fade-in">
+          <div class="how-step-num">3</div>
+          <h3>To'lang va yuboring</h3>
+          <p>To'lovdan so'ng 5 daqiqada gift yetkaziladi</p>
+        </div>
+      </div>
+      <div class="how-cta fade-in">
+        <a href="https://t.me/starsjoybot" class="btn-primary" target="_blank">&#127873; Hozir Sovg'a Yuborish</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="gift-faq">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Telegram Gift haqida savollar</h2>
+        <p class="section-subtitle">Sovg'a yuborish bo'yicha ko'p beriladigan savollar</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <div class="faq-item fade-in">
+            <button class="faq-question">
+              <span>{faq.q}</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.a}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="gift-cta">
+    <div class="container">
+      <div class="gift-cta-box fade-in">
+        <h2>Do'stingizga sovg'a qiling!</h2>
+        <p>Telegram Premium gift — eng yaxshi va foydali sovg'a</p>
+        <a href="https://t.me/starsjoybot" class="btn-white" target="_blank">&#127873; Gift Yuborish</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement!;
+      const answer = item.querySelector('.faq-answer') as HTMLElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+        (i.querySelector('.faq-answer') as HTMLElement).style.maxHeight = '';
+      });
+      if (!isActive) {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+<style>
+  .gift-hero {
+    padding: 120px 24px 80px;
+    background: linear-gradient(180deg, #FFF0F6 0%, #FFFFFF 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .gift-hero::before {
+    content: '';
+    position: absolute;
+    top: -150px; right: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200, 80, 192, 0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .gift-hero-inner { display: flex; align-items: center; gap: 60px; }
+  .gift-hero-content { flex: 1; }
+  .gift-hero-visual { flex: 0 0 280px; display: flex; align-items: center; justify-content: center; }
+
+  .gift-title { font-size: 3rem; font-weight: 900; line-height: 1.15; margin-bottom: 20px; color: var(--text); }
+  .gift-desc { font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; max-width: 540px; }
+
+  .gift-features { display: flex; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
+  .gift-feature { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 500; color: var(--text); }
+
+  .gift-icon-big {
+    width: 160px; height: 160px;
+    background: linear-gradient(135deg, #FCE4EC, #F8BBD0);
+    border-radius: 36px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 16px 48px rgba(200, 80, 192, 0.2);
+  }
+
+  .gift-why { background: var(--bg-alt); }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .why-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .why-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .why-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+  .why-icon {
+    width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .wi-unique { background: rgba(200, 80, 192, 0.08); color: #C850C0; }
+  .wi-instant { background: rgba(255, 174, 0, 0.1); color: #D97706; }
+  .wi-personal { background: rgba(37, 99, 235, 0.08); color: #2563EB; }
+
+  .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 40px; }
+  .how-step {
+    text-align: center; padding: 32px 24px; background: #fff;
+    border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  }
+  .how-step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .how-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+  .how-step-num {
+    width: 48px; height: 48px; margin: 0 auto 16px; background: var(--gradient);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1.2rem; color: #fff;
+  }
+  .how-cta { text-align: center; }
+
+  .gift-faq { background: var(--bg-alt); }
+  .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    overflow: hidden; box-shadow: var(--shadow-sm); transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .faq-item.active { border-color: rgba(124, 58, 237, 0.3); box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08); }
+  .faq-question {
+    width: 100%; padding: 20px 24px; background: none; border: none; color: var(--text);
+    font-size: 1rem; font-weight: 600; text-align: left; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: inherit;
+  }
+  .faq-question:hover { color: var(--primary); }
+  .faq-toggle {
+    width: 28px; height: 28px; min-width: 28px; border-radius: 8px;
+    background: rgba(124, 58, 237, 0.06); display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--primary); transition: transform 0.3s;
+  }
+  .faq-item.active .faq-toggle { transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-answer-inner { padding: 0 24px 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+  .gift-cta-box {
+    background: linear-gradient(135deg, #C850C0, #7C3AED);
+    border-radius: 24px; padding: 60px 40px; text-align: center; color: #fff;
+  }
+  .gift-cta-box h2 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+  .gift-cta-box p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 28px; }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px;
+    background: #fff; color: #5B21B6; border-radius: 50px; font-size: 1.05rem;
+    font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); }
+
+  @media (max-width: 1024px) {
+    .gift-hero-inner { flex-direction: column; text-align: center; }
+    .gift-hero-visual { flex: none; }
+    .gift-desc { margin: 0 auto 28px; }
+    .gift-features { justify-content: center; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .gift-hero { padding: 100px 16px 60px; }
+    .gift-title { font-size: 2rem; }
+    .gift-desc { font-size: 1rem; }
+    .gift-features { flex-direction: column; align-items: center; gap: 12px; }
+    .gift-icon-big { width: 120px; height: 120px; border-radius: 28px; }
+    .gift-icon-big svg { width: 60px; height: 60px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .how-steps { grid-template-columns: 1fr; gap: 16px; }
+    .gift-cta-box { padding: 40px 24px; }
+    .gift-cta-box h2 { font-size: 1.5rem; }
+  }
+</style>

@@ -1,9 +1,17 @@
 ---
 interface Props {
   title: string;
+  description?: string;
+  canonical?: string;
+  keywords?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "StarsJoy — Telegram Stars, Premium va Gifts xizmatlari. Tez, ishonchli va arzon narxlarda.",
+  canonical = "https://starsjoy.uz",
+  keywords = "Telegram Stars, Telegram Premium, Telegram Gifts, Stars sotib olish, Premium sotib olish, StarsJoy, Telegram Stars arzon, Telegram Premium O'zbekiston"
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -11,17 +19,17 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="StarsJoy — Telegram Stars, Premium va Gifts xizmatlari. Tez, ishonchli va arzon narxlarda." />
-    <meta name="keywords" content="Telegram Stars, Telegram Premium, Telegram Gifts, Stars sotib olish, Premium sotib olish, StarsJoy, Telegram Stars arzon, Telegram Premium O'zbekiston" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <meta name="author" content="StarsJoy" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#7C3AED" />
-    <link rel="canonical" href="https://starsjoy.uz" />
+    <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content="StarsJoy — Telegram Stars, Premium va Gifts xizmatlari. Tez, ishonchli va arzon narxlarda." />
+    <meta property="og:description" content={description} />
     <meta property="og:image" content="/logo.png" />
     <meta property="og:url" content="https://starsjoy.uz" />
     <meta property="og:site_name" content="StarsJoy" />
@@ -30,7 +38,7 @@ const { title } = Astro.props;
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content="StarsJoy — Telegram Stars, Premium va Gifts xizmatlari. Tez, ishonchli va arzon narxlarda." />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/logo.png" />
 
     <link rel="icon" type="image/png" href="/logo.png" />

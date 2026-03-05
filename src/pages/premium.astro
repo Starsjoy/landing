@@ -1,0 +1,400 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Telegram Premium Sotib Olish — Arzon Narxda O'zbekistonda | StarsJoy";
+const description = "Telegram Premium sotib olish eng arzon narxlarda. Uzcard, Click orqali to'lang. 1 oylik, 3 oylik, 6 oylik va 1 yillik obuna. Tez yetkazish va 100% kafolat.";
+
+const faqs = [
+  {
+    q: "Telegram Premium nima beradi?",
+    a: "Telegram Premium obunasi sizga cheksiz imkoniyatlar beradi: 4 GB gacha fayl yuklash, tezkor yuklab olish, reklama yo'qligi, eksklyuziv stikerlar va reaktsiyalar, profil uchun premium belgilar va boshqa ko'plab maxsus funksiyalar."
+  },
+  {
+    q: "Telegram Premium narxi O'zbekistonda qancha?",
+    a: "StarsJoy orqali Telegram Premium eng arzon narxlarda sotib olish mumkin. 1 oylik, 3 oylik, 6 oylik va 1 yillik obuna mavjud. Uzoqroq muddat tanlasangiz, narx sezilarli arzonroq bo'ladi. Aniq narxlarni botimizda ko'ring."
+  },
+  {
+    q: "Telegram Premium Uzcard orqali sotib olish mumkinmi?",
+    a: "Ha! StarsJoy orqali Telegram Premium ni Uzcard, Humo, Click yoki bank kartasi orqali sotib olishingiz mumkin. To'lov jarayoni juda oddiy va tez."
+  },
+  {
+    q: "Premium obuna qancha vaqtda aktivlashadi?",
+    a: "To'lov tasdiqlangandan so'ng 1-5 daqiqa ichida Premium obunangiz aktivlashadi. Agar 5 daqiqadan oshsa, 10 Stars cashback beramiz."
+  },
+  {
+    q: "Telegram Premium 1 yillik narxi qancha?",
+    a: "1 yillik Premium obuna eng foydali variant — har oylik narxdan ancha arzon. Aniq narxni @starsjoybot da ko'rishingiz mumkin. Uzoq muddatli obuna tanlash orqali 40% gacha tejash mumkin."
+  },
+  {
+    q: "Premium obunani boshqa kishiga sovg'a qilish mumkinmi?",
+    a: "Ha, albatta! StarsJoy orqali istalgan kishiga Telegram Premium sovg'a sifatida yuborishingiz mumkin. Buning uchun botda 'Sovg'a qilish' tugmasini bosing va qabul qiluvchining username ni kiriting."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/premium"
+  keywords="Telegram Premium sotib olish, Telegram Premium narxi O'zbekiston, arzon Telegram Premium, Telegram Premium 1 yillik narxi, Telegram Premium Uzcard, Telegram Premium bot orqali sotib olish"
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Telegram Premium Obuna",
+    "description": description,
+    "brand": { "@type": "Brand", "name": "StarsJoy" },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "UZS",
+      "availability": "https://schema.org/InStock",
+      "offerCount": "4"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+    }))
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Telegram Premium Sotib Olish", "item": "https://starsjoy.uz/premium" }
+    ]
+  })} />
+
+  <!-- Hero -->
+  <section class="prem-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Bosh sahifa</a>
+        <span>/</span>
+        <span>Telegram Premium</span>
+      </nav>
+      <div class="prem-hero-inner fade-in">
+        <div class="prem-hero-content">
+          <h1 class="prem-title">Telegram Premium Sotib Olish — O'zbekistonda Eng Arzon</h1>
+          <p class="prem-desc">
+            Telegram Premium obunasini Uzcard, Click yoki karta orqali sotib oling. Arzon narxlar, tez aktivlashtirish va 100% kafolat bilan.
+          </p>
+          <div class="prem-features">
+            <div class="prem-feature">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3L5 10l5 10 5-10L10 3z" stroke="#7C3AED" stroke-width="1.5" stroke-linejoin="round" fill="#7C3AED" opacity="0.15"/></svg>
+              <span>1-5 daqiqada aktivlashadi</span>
+            </div>
+            <div class="prem-feature">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="5" y="9" width="10" height="9" rx="2" stroke="#7C3AED" stroke-width="1.5"/><path d="M7.5 9V7a2.5 2.5 0 1 1 5 0v2" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Uzcard / Click / Karta</span>
+            </div>
+            <div class="prem-feature">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#10B981" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>100% kafolat</span>
+            </div>
+          </div>
+          <a href="https://t.me/starsjoybot" class="btn-primary" target="_blank">
+            &#9889; Premium Sotib Olish
+          </a>
+        </div>
+        <div class="prem-hero-visual">
+          <div class="prem-icon-big">
+            <svg width="80" height="80" viewBox="0 0 52 52" fill="none">
+              <defs>
+                <linearGradient id="prG" x1="8" y1="6" x2="44" y2="46">
+                  <stop offset="0%" stop-color="#6B93FF"/>
+                  <stop offset="50%" stop-color="#976FFF"/>
+                  <stop offset="100%" stop-color="#E46ACE"/>
+                </linearGradient>
+              </defs>
+              <path d="M26 5L9 21l17 26 17-26L26 5z" fill="url(#prG)"/>
+              <path d="M26 5l17 16L26 47V5z" fill="#A78BFA" opacity="0.3"/>
+              <path d="M15 21l11-11 11 11" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium afzalliklari -->
+  <section class="prem-benefits">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Afzalliklar</span>
+        <h2 class="section-title">Telegram Premium nima beradi?</h2>
+        <p class="section-subtitle">Premium obuna bilan ochiladigan barcha imkoniyatlar</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card fade-in">
+          <div class="benefit-icon bi-file">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M7 4h10l6 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="2"/><path d="M17 4v6h6" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3>4 GB fayllar</h3>
+          <p>4 GB gacha hajmdagi fayllarni yuklang va ulashing</p>
+        </div>
+        <div class="benefit-card fade-in">
+          <div class="benefit-icon bi-speed">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M15 5L7 16h6l-2 7 8-11h-6l2-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Tezkor yuklab olish</h3>
+          <p>Fayllarni maksimal tezlikda yuklab oling</p>
+        </div>
+        <div class="benefit-card fade-in">
+          <div class="benefit-icon bi-noads">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="2"/><path d="M7 21L21 7" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3>Reklama yo'q</h3>
+          <p>Kanallardagi barcha reklamalardan xalos bo'ling</p>
+        </div>
+        <div class="benefit-card fade-in">
+          <div class="benefit-icon bi-sticker">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="2"/><path d="M10 16c1.5 2 5.5 2 7 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10.5" cy="12" r="1.5" fill="currentColor"/><circle cx="17.5" cy="12" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <h3>Eksklyuziv stikerlar</h3>
+          <p>Faqat Premium foydalanuvchilar uchun maxsus stikerlar va reaktsiyalar</p>
+        </div>
+        <div class="benefit-card fade-in">
+          <div class="benefit-icon bi-profile">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="11" r="5" stroke="currentColor" stroke-width="2"/><path d="M6 24c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Premium profil</h3>
+          <p>Profil uchun premium belgi, animatsiyali avatar va bio</p>
+        </div>
+        <div class="benefit-card fade-in">
+          <div class="benefit-icon bi-translate">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 7h12M10 4v3M7 7c0 4 3 8 7 10M15 7c0 4-3 8-7 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 18l3-6 3 6M17 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Real-time tarjima</h3>
+          <p>Xabarlarni istalgan tilga bir bosish bilan tarjima qiling</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qanday sotib olish -->
+  <section class="prem-how">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Qo'llanma</span>
+        <h2 class="section-title">Telegram Premium qanday sotib olinadi?</h2>
+        <p class="section-subtitle">Bot orqali 3 qadamda Premium obuna bo'ling</p>
+      </div>
+      <div class="how-steps">
+        <div class="how-step fade-in">
+          <div class="how-step-num">1</div>
+          <h3>Botga kiring</h3>
+          <p><strong>@starsjoybot</strong> ga kiring va "Premium sotib olish" ni tanlang</p>
+        </div>
+        <div class="how-step fade-in">
+          <div class="how-step-num">2</div>
+          <h3>Muddatni tanlang</h3>
+          <p>1 oy, 3 oy, 6 oy yoki 1 yillik obuna muddatini tanlang</p>
+        </div>
+        <div class="how-step fade-in">
+          <div class="how-step-num">3</div>
+          <h3>To'lang va oling</h3>
+          <p>Uzcard, Click yoki karta orqali to'lang — 5 daqiqada Premium aktivlashadi</p>
+        </div>
+      </div>
+      <div class="how-cta fade-in">
+        <a href="https://t.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Hozir Boshlash</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="prem-faq">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Telegram Premium haqida savollar</h2>
+        <p class="section-subtitle">Premium obuna bo'yicha eng ko'p beriladigan savollar</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <div class="faq-item fade-in">
+            <button class="faq-question">
+              <span>{faq.q}</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.a}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="prem-cta">
+    <div class="container">
+      <div class="prem-cta-box fade-in">
+        <h2>Telegram Premium ga tayyor bo'ling!</h2>
+        <p>O'zbekistondagi eng arzon narxlar, Uzcard/Click orqali to'lov</p>
+        <a href="https://t.me/starsjoybot" class="btn-white" target="_blank">&#9889; Premium Sotib Olish</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement!;
+      const answer = item.querySelector('.faq-answer') as HTMLElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+        (i.querySelector('.faq-answer') as HTMLElement).style.maxHeight = '';
+      });
+      if (!isActive) {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+<style>
+  .prem-hero {
+    padding: 120px 24px 80px;
+    background: linear-gradient(180deg, #F0EBFF 0%, #FFFFFF 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .prem-hero::before {
+    content: '';
+    position: absolute;
+    top: -150px; right: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .prem-hero-inner { display: flex; align-items: center; gap: 60px; }
+  .prem-hero-content { flex: 1; }
+  .prem-hero-visual { flex: 0 0 280px; display: flex; align-items: center; justify-content: center; }
+
+  .prem-title { font-size: 3rem; font-weight: 900; line-height: 1.15; margin-bottom: 20px; color: var(--text); }
+  .prem-desc { font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; max-width: 540px; }
+
+  .prem-features { display: flex; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
+  .prem-feature { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 500; color: var(--text); }
+
+  .prem-icon-big {
+    width: 160px; height: 160px;
+    background: linear-gradient(135deg, #EDE7F6, #D1C4E9);
+    border-radius: 36px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 16px 48px rgba(124, 58, 237, 0.2);
+  }
+
+  .prem-benefits { background: var(--bg-alt); }
+  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .benefit-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .benefit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .benefit-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .benefit-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+  .benefit-icon {
+    width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .bi-file { background: rgba(124, 58, 237, 0.08); color: #7C3AED; }
+  .bi-speed { background: rgba(255, 174, 0, 0.1); color: #D97706; }
+  .bi-noads { background: rgba(239, 68, 68, 0.08); color: #EF4444; }
+  .bi-sticker { background: rgba(16, 185, 129, 0.08); color: #10B981; }
+  .bi-profile { background: rgba(37, 99, 235, 0.08); color: #2563EB; }
+  .bi-translate { background: rgba(124, 58, 237, 0.08); color: #7C3AED; }
+
+  .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 40px; }
+  .how-step {
+    text-align: center; padding: 32px 24px; background: #fff;
+    border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  }
+  .how-step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .how-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+  .how-step-num {
+    width: 48px; height: 48px; margin: 0 auto 16px; background: var(--gradient);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1.2rem; color: #fff;
+  }
+  .how-cta { text-align: center; }
+
+  .prem-faq { background: var(--bg-alt); }
+  .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    overflow: hidden; box-shadow: var(--shadow-sm); transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .faq-item.active { border-color: rgba(124, 58, 237, 0.3); box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08); }
+  .faq-question {
+    width: 100%; padding: 20px 24px; background: none; border: none; color: var(--text);
+    font-size: 1rem; font-weight: 600; text-align: left; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: inherit;
+  }
+  .faq-question:hover { color: var(--primary); }
+  .faq-toggle {
+    width: 28px; height: 28px; min-width: 28px; border-radius: 8px;
+    background: rgba(124, 58, 237, 0.06); display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--primary); transition: transform 0.3s;
+  }
+  .faq-item.active .faq-toggle { transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-answer-inner { padding: 0 24px 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+  .prem-cta-box {
+    background: var(--gradient); border-radius: 24px; padding: 60px 40px; text-align: center; color: #fff;
+  }
+  .prem-cta-box h2 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+  .prem-cta-box p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 28px; }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px;
+    background: #fff; color: #5B21B6; border-radius: 50px; font-size: 1.05rem;
+    font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); }
+
+  @media (max-width: 1024px) {
+    .prem-hero-inner { flex-direction: column; text-align: center; }
+    .prem-hero-visual { flex: none; }
+    .prem-desc { margin: 0 auto 28px; }
+    .prem-features { justify-content: center; }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .prem-hero { padding: 100px 16px 60px; }
+    .prem-title { font-size: 2rem; }
+    .prem-desc { font-size: 1rem; }
+    .prem-features { flex-direction: column; align-items: center; gap: 12px; }
+    .prem-icon-big { width: 120px; height: 120px; border-radius: 28px; }
+    .prem-icon-big svg { width: 60px; height: 60px; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .how-steps { grid-template-columns: 1fr; gap: 16px; }
+    .prem-cta-box { padding: 40px 24px; }
+    .prem-cta-box h2 { font-size: 1.5rem; }
+  }
+</style>
