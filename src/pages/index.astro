@@ -13,6 +13,19 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Telegram Stars, Premium va Gifts - StarsJoy">
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "StarsJoy",
+    "url": "https://starsjoy.uz",
+    "description": "StarsJoy — O'zbekistonda Telegram Stars, Premium va Gifts xizmatlarini taqdim etuvchi platforma. Tez, ishonchli va arzon narxlarda.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": "https://starsjoy.uz/logo.png"
+    }
+  })} />
   <Navbar />
   <Hero />
   <Services />

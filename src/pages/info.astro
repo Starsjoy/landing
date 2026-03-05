@@ -1,0 +1,208 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "StarsJoy Haqida — Rasmiy Ma'lumot | Telegram Stars, Premium, Gifts";
+const description = "StarsJoy — O'zbekistonda Telegram Stars, Premium va Gifts xizmatlarini taqdim etuvchi platforma. Xizmatlar, kafolatlar, to'lov usullari va aloqa haqida to'liq rasmiy ma'lumot.";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/info"
+  keywords="StarsJoy haqida, StarsJoy nima, StarsJoy rasmiy, Telegram Stars xizmati, StarsJoy aloqa, StarsJoy kafolatlar"
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "StarsJoy",
+    "url": "https://starsjoy.uz",
+    "logo": "https://starsjoy.uz/logo.png",
+    "description": description,
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://t.me/starsjot_bot",
+        "availableLanguage": "Uzbek"
+      }
+    ],
+    "sameAs": [
+      "https://t.me/starsjoy",
+      "https://t.me/starsjoybot"
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "StarsJoy Haqida", "item": "https://starsjoy.uz/info" }
+    ]
+  })} />
+
+  <section class="info-hero">
+    <div class="container">
+      <div class="info-content fade-in">
+        <nav class="breadcrumb">
+          <a href="/">Bosh sahifa</a>
+          <span>/</span>
+          <span>Ma'lumot</span>
+        </nav>
+        <h1 class="info-title">StarsJoy Haqida</h1>
+        <p class="info-meta">starsjoy.uz &middot; @starsjoybot</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content fade-in">
+        <p><strong>StarsJoy</strong> — O'zbekistondagi Telegram foydalanuvchilari uchun mo'ljallangan xizmat platformasi. Biz Telegram Stars, Telegram Premium obuna va Telegram Gifts xizmatlarini tez, ishonchli va arzon narxlarda taqdim etamiz.</p>
+        <p>Platformamiz <strong>@starsjoybot</strong> Telegram boti orqali ishlaydi. Foydalanuvchilar bot orqali xizmatni tanlaydi, to'lovni amalga oshiradi va 1-5 daqiqa ichida xizmatni qabul qiladi. StarsJoy jamoasi har bir buyurtma uchun to'liq javobgarlikni o'z zimmamizga olamiz.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content fade-in">
+        <h2>Xizmatlar</h2>
+        <p><strong>Telegram Stars</strong> — Telegramning ichki valyutasi bo'lib, kanallardagi premium kontentga kirish, botlardagi pullik xizmatlardan foydalanish va kontentmeykerlarni qo'llab-quvvatlash uchun ishlatiladi. StarsJoy orqali Stars xarid qilish juda oson — 50 Stars dan boshlab istalgan miqdorda sotib olish mumkin. Ko'proq Stars xarid qilsangiz, har bir yulduz narxi arzonroq bo'ladi.</p>
+        <p><strong>Telegram Premium</strong> obunasi foydalanuvchiga cheksiz imkoniyatlar ochib beradi: 4 GB gacha fayllarni yuklash, tezkor yuklab olish, kanallardagi reklamalardan xalos bo'lish, eksklyuziv stikerlar va reaktsiyalar, premium profil belgisi, animatsiyali avatar va real-time tarjima. StarsJoy orqali 1 oylik, 3 oylik, 6 oylik va 1 yillik muddatlarda obuna sotib olish mumkin.</p>
+        <p><strong>Telegram Gifts</strong> — do'stlarga yoki yaqinlarga Telegram Premium ni sovg'a sifatida yuborish imkoniyati. Qabul qiluvchi hech qanday to'lovsiz Premium obunadan foydalana boshlaydi. Gift bilan birga maxsus tabrik xabari ham qo'shish mumkin. 1 oylik, 3 oylik, 6 oylik va 1 yillik muddatlarda sovg'a qilish mumkin.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content fade-in">
+        <h2>Qanday ishlaydi?</h2>
+        <p><strong>1.</strong> Telegramda <strong>@starsjoybot</strong> ni oching va /start bosing.</p>
+        <p><strong>2.</strong> Stars, Premium yoki Gifts — o'zingizga kerakli xizmatni tanlang.</p>
+        <p><strong>3.</strong> Click yoki kartaga o'tkazish orqali qulay to'lov usulini tanlang.</p>
+        <p><strong>4.</strong> To'lovdan so'ng 1-5 daqiqa ichida xizmat yetkaziladi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content fade-in">
+        <h2>Kafolatlar</h2>
+        <p><strong>5 daqiqalik yetkazish.</strong> To'lovdan so'ng 5 daqiqa ichida xizmat yetkazilishini kafolatlaymiz.</p>
+        <p><strong>10 Stars cashback.</strong> Agar yetkazish 5 daqiqadan oshsa, sizga 10 Stars cashback beramiz.</p>
+        <p><strong>To'liq pul qaytarish.</strong> Xizmat yetkazilmasa yoki muammo bo'lsa, to'langan summa 100% qaytariladi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content fade-in">
+        <h2>To'lov usullari</h2>
+        <p>StarsJoy platformasida to'lov <strong>Click</strong> yoki <strong>kartaga o'tkazish</strong> orqali amalga oshiriladi. Bot foydalanuvchiga qulay to'lov usulini tanlash imkonini beradi. To'lov jarayoni xavfsiz va tez — bir necha daqiqa ichida yakunlanadi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content fade-in">
+        <h2>Referral dastur</h2>
+        <p>StarsJoy referral dasturi orqali qo'shimcha bonus olish mumkin. Botdan shaxsiy referral havolangizni oling va do'stlaringiz bilan ulashing. Har safar do'stingiz xarid qilganda, xarid summasining <strong>5%</strong> ini bonus sifatida olasiz.</p>
+        <p><strong>1.</strong> Botdan o'zingizning referral havolangizni oling.</p>
+        <p><strong>2.</strong> Havolani do'stlaringiz bilan ulashing.</p>
+        <p><strong>3.</strong> Do'stingiz xarid qilganda 5% bonus oling.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content fade-in">
+        <h2>Aloqa</h2>
+        <p>Bizga quyidagi kanallar orqali murojaat qilishingiz mumkin:</p>
+        <p><strong>@starsjoybot</strong> — Xarid qilish va xizmatlardan foydalanish</p>
+        <p><strong>@starsjoy</strong> — Rasmiy Telegram kanal — yangiliklar va e'lonlar</p>
+        <p><strong>@starsjot_bot</strong> — Qo'llab-quvvatlash xizmati — yordam va savollar</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content fade-in">
+        <h2>Veb-sayt</h2>
+        <p><strong>starsjoy.uz</strong> — StarsJoy ning rasmiy veb-sayti. Saytda barcha xizmatlar haqida batafsil ma'lumot, foydalanuvchi fikrlari, ko'p beriladigan savollar va botga yo'naltiruvchi havolalar mavjud. Sayt o'zbek tilida ishlaydi va mobil qurilmalar uchun to'liq optimallashtirilgan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-footer-line">
+    <div class="container">
+      <div class="info-content fade-in">
+        <p class="info-footer-text">StarsJoy &middot; starsjoy.uz &middot; @starsjoybot</p>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .info-hero {
+    padding: 120px 24px 60px;
+    background: #FFFFFF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .info-content { max-width: 760px; margin: 0 auto; }
+  .info-title {
+    font-size: 2.4rem; font-weight: 900; line-height: 1.15;
+    margin-bottom: 16px; color: var(--text);
+  }
+  .info-meta {
+    font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;
+  }
+
+  .info-section { padding: 60px 24px; }
+  .info-alt { background: #FFFFFF; }
+
+  .info-content h2 {
+    font-size: 1.4rem; font-weight: 800; margin-bottom: 20px; color: var(--text);
+  }
+  .info-content p {
+    font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 12px;
+  }
+  .info-content p:last-child { margin-bottom: 0; }
+
+  .info-footer-line {
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+  }
+  .info-footer-text {
+    text-align: center; font-size: 0.9rem; color: var(--text-muted); font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .info-hero { padding: 100px 16px 40px; }
+    .info-title { font-size: 1.6rem; }
+    .info-meta { font-size: 0.85rem; }
+    .info-section { padding: 40px 16px; }
+    .info-content h2 { font-size: 1.2rem; margin-bottom: 16px; }
+    .info-content p { font-size: 0.9rem; }
+    .breadcrumb { margin-bottom: 20px; font-size: 0.8rem; }
+  }
+</style>
