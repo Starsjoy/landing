@@ -1,10 +1,10 @@
 ---
 const testimonials = [
   {
-    text: "2 daqiqada Stars keldi! Boshqa joylardan 30 daqiqa kutganman, bu yerda hamma narsa tez va qulay ekan. Tavsiya qilaman!",
-    name: 'Aziz',
-    handle: '@aziz_dev',
-    initial: 'A',
+    text: "Togrisini etsam, boshida biroz ikkilandim. Lekin tekshirib ko'rdim va hammasi muammosiz o'tdi. Tez ishladi, ortiqcha ovora bo'lish yo'q.",
+    name: 'Samandar',
+    handle: '@Khxlimov',
+    initial: 'S',
   },
   {
     text: "Men birinchi marta stars olishim va qayerda arzon va ishonchli stars olishni bilmasdim. Oldimdan esa shu bot chiqib qoldi arzon va ishonchli bot ekan hammaga tafsiya beraman.",
@@ -64,6 +64,8 @@ const testimonials = [
     padding: 32px;
     transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
   }
   .testimonial-card:hover {
     transform: translateY(-4px);
@@ -81,6 +83,7 @@ const testimonials = [
     margin-bottom: 20px;
     font-style: italic;
     line-height: 1.7;
+    flex: 1;
   }
 
   .testimonial-author {
