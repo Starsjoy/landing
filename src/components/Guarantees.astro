@@ -39,6 +39,9 @@
         <p class="guarantee-desc">Xizmat yetkazilmasa yoki muammo bo'lsa — pullaringiz to'liq qaytariladi</p>
       </div>
     </div>
+    <div class="guarantees-footer fade-in">
+      <a href="/offerta" class="guarantees-link">Ommaviy oferta shartnomasi</a>
+    </div>
   </div>
 </section>
 
@@ -86,6 +89,22 @@
     font-size: 0.92rem;
     line-height: 1.6;
   }
+
+  .guarantees-footer {
+    text-align: center;
+    margin-top: 32px;
+  }
+  .guarantees-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .guarantees-link:hover { color: var(--primary); }
 
   @media (max-width: 1024px) {
     .guarantees-grid { grid-template-columns: repeat(2, 1fr); }
