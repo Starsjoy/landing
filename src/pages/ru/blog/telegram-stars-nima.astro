@@ -374,6 +374,15 @@ const publishDate = "2026-03-08";
     text-decoration: none;
   }
   .post-content a:hover { text-decoration: underline; }
+  .post-content a.post-cta-btn:not(.secondary) {
+    color: #fff;
+  }
+  .post-content a.post-cta-btn.secondary {
+    color: var(--primary);
+  }
+  .post-content a.post-cta-btn:hover {
+    text-decoration: none;
+  }
 
   .post-content ul,
   .post-content ol {
@@ -389,8 +398,9 @@ const publishDate = "2026-03-08";
   }
 
   .post-cta-box {
-    background: #F8F6FF;
+    background: #fff;
     border: 1px solid rgba(124, 58, 237, 0.15);
+    border-left: 4px solid var(--primary);
     border-radius: 16px;
     padding: 28px 32px;
     text-align: center;
@@ -407,10 +417,11 @@ const publishDate = "2026-03-08";
     border-radius: 50px;
     text-decoration: none;
     transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
   }
   .post-cta-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
   }
 
   .post-cta-btn.secondary {
