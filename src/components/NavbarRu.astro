@@ -16,12 +16,17 @@ const uzPath = currentPath.replace(/^\/ru/, '') || '/';
       <li><a href="/ru/gifts">Gifts</a></li>
       <li><a href="/ru#guarantees">Гарантии</a></li>
       <li><a href="/ru/blog">Блог</a></li>
-      <li><a href={uzPath} class="lang-switch">🇺🇿</a></li>
     </ul>
-    <a href="https://t.me/starsjoybot" class="nav-cta" target="_blank">Перейти в бот</a>
-    <button class="mobile-toggle" aria-label="Menu">
-      <span class="hamburger"></span>
-    </button>
+    <div class="nav-right">
+      <a href={uzPath} class="lang-switch desktop-lang">🇺🇿</a>
+      <a href="https://t.me/starsjoybot" class="nav-cta" target="_blank">Перейти в бот</a>
+    </div>
+    <div class="mobile-actions">
+      <a href={uzPath} class="lang-switch mobile-lang">🇺🇿</a>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span class="hamburger"></span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -97,12 +102,17 @@ const uzPath = currentPath.replace(/^\/ru/, '') || '/';
   .nav-links a:hover { color: var(--primary); }
 
   .lang-switch {
-    padding: 4px 12px;
-    background: rgba(124, 58, 237, 0.08);
-    border-radius: 6px;
-    font-weight: 700 !important;
-    color: var(--primary) !important;
-    font-size: 0.82rem !important;
+    padding: 0;
+    background: none;
+    font-size: 1.2rem !important;
+    line-height: 1;
+    text-decoration: none !important;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 
   .nav-cta {
@@ -120,6 +130,16 @@ const uzPath = currentPath.replace(/^\/ru/, '') || '/';
   .nav-cta:hover {
     transform: translateY(-1px);
     box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+  }
+
+  .mobile-actions {
+    display: none;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mobile-lang {
+    display: none;
   }
 
   .mobile-toggle {
@@ -168,7 +188,9 @@ const uzPath = currentPath.replace(/^\/ru/, '') || '/';
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     }
     .nav-links.show { display: flex; }
-    .nav-cta { display: none; }
+    .nav-right { display: none; }
+    .mobile-actions { display: flex; }
+    .mobile-lang { display: inline-block; }
     .mobile-toggle { display: block; }
   }
 </style>

@@ -16,12 +16,17 @@ const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
       <li><a href="/gifts">Gifts</a></li>
       <li><a href="/#guarantees">Kafolatlar</a></li>
       <li><a href="/blog">Blog</a></li>
-      <li><a href={ruPath} class="lang-switch">🇷🇺</a></li>
     </ul>
-    <a href="https://t.me/starsjoybot" class="nav-cta" target="_blank">Botga o'tish</a>
-    <button class="mobile-toggle" aria-label="Menu">
-      <span class="hamburger"></span>
-    </button>
+    <div class="nav-right">
+      <a href={ruPath} class="lang-switch desktop-lang">🇷🇺</a>
+      <a href="https://t.me/starsjoybot" class="nav-cta" target="_blank">Botga o'tish</a>
+    </div>
+    <div class="mobile-actions">
+      <a href={ruPath} class="lang-switch mobile-lang">🇷🇺</a>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span class="hamburger"></span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -97,12 +102,17 @@ const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
   .nav-links a:hover { color: var(--primary); }
 
   .lang-switch {
-    padding: 4px 12px;
-    background: rgba(124, 58, 237, 0.08);
-    border-radius: 6px;
-    font-weight: 700 !important;
-    color: var(--primary) !important;
-    font-size: 0.82rem !important;
+    padding: 0;
+    background: none;
+    font-size: 1.2rem !important;
+    line-height: 1;
+    text-decoration: none !important;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 
   .nav-cta {
@@ -120,6 +130,16 @@ const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
   .nav-cta:hover {
     transform: translateY(-1px);
     box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+  }
+
+  .mobile-actions {
+    display: none;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mobile-lang {
+    display: none;
   }
 
   .mobile-toggle {
@@ -168,7 +188,9 @@ const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     }
     .nav-links.show { display: flex; }
-    .nav-cta { display: none; }
+    .nav-right { display: none; }
+    .mobile-actions { display: flex; }
+    .mobile-lang { display: inline-block; }
     .mobile-toggle { display: block; }
   }
 </style>
