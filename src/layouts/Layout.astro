@@ -4,18 +4,22 @@ interface Props {
   description?: string;
   canonical?: string;
   keywords?: string;
+  lang?: string;
+  hreflangs?: { lang: string; href: string }[];
 }
 
 const {
   title,
   description = "StarsJoy — Telegram Stars, Premium va Gifts xizmatlari. Tez, ishonchli va arzon narxlarda.",
   canonical = "https://starsjoy.uz",
-  keywords = "Telegram Stars, Telegram Premium, Telegram Gifts, Stars sotib olish, Premium sotib olish, StarsJoy, Telegram Stars arzon, Telegram Premium O'zbekiston"
+  keywords = "Telegram Stars, Telegram Premium, Telegram Gifts, Stars sotib olish, Premium sotib olish, StarsJoy, Telegram Stars arzon, Telegram Premium O'zbekiston",
+  lang = "uz",
+  hreflangs = []
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="uz">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,6 +29,9 @@ const {
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#7C3AED" />
     <link rel="canonical" href={canonical} />
+    {hreflangs.map(hl => (
+      <link rel="alternate" hreflang={hl.lang} href={hl.href} />
+    ))}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -33,7 +40,7 @@ const {
     <meta property="og:image" content="https://starsjoy.uz/logo.png" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="StarsJoy" />
-    <meta property="og:locale" content="uz_UZ" />
+    <meta property="og:locale" content={lang === "ru" ? "ru_RU" : "uz_UZ"} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />

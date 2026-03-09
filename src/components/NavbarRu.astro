@@ -1,24 +1,24 @@
 ---
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
-const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
+const uzPath = currentPath.replace(/^\/ru/, '') || '/';
 ---
 
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="/" class="logo">
+    <a href="/ru" class="logo">
       <img src="/logo.png" alt="StarsJoy" class="logo-img" />
       <span>StarsJoy</span>
     </a>
     <ul class="nav-links">
-      <li><a href="/">Asosiy</a></li>
-      <li><a href="/stars">Stars</a></li>
-      <li><a href="/premium">Premium</a></li>
-      <li><a href="/gifts">Gifts</a></li>
-      <li><a href="/#guarantees">Kafolatlar</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href={ruPath} class="lang-switch">🇷🇺</a></li>
+      <li><a href="/ru">Главная</a></li>
+      <li><a href="/ru/stars">Stars</a></li>
+      <li><a href="/ru/premium">Premium</a></li>
+      <li><a href="/ru/gifts">Gifts</a></li>
+      <li><a href="/ru#guarantees">Гарантии</a></li>
+      <li><a href="/ru/blog">Блог</a></li>
+      <li><a href={uzPath} class="lang-switch">🇺🇿</a></li>
     </ul>
-    <a href="https://t.me/starsjoybot" class="nav-cta" target="_blank">Botga o'tish</a>
+    <a href="https://t.me/starsjoybot" class="nav-cta" target="_blank">Перейти в бот</a>
     <button class="mobile-toggle" aria-label="Menu">
       <span class="hamburger"></span>
     </button>

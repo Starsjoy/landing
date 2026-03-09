@@ -1,35 +1,35 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../../layouts/Layout.astro';
+import NavbarRu from '../../components/NavbarRu.astro';
+import Footer from '../../components/Footer.astro';
 
-const title = "Telegram Gift Sotib Olish — Premium Sovg'a Yuborish | StarsJoy";
-const description = "Telegram Premium gift sotib olish va do'stlarga sovg'a qilish. Telegram gift premium narxlari, tez yetkazish va 100% kafolat bilan sovg'a yuboring.";
+const title = "Подарить Telegram Premium — Купить Gift | StarsJoy";
+const description = "Подарите Telegram Premium друзьям и близким. Быстрая доставка, доступные цены, 100% гарантия. StarsJoy — лучший способ отправить подарок в Телеграм.";
 
 const faqs = [
   {
-    q: "Telegram gift nima?",
-    a: "Telegram Gift — bu do'stlaringiz yoki yaqinlaringizga Telegram Premium obunasini sovg'a sifatida yuborish imkoniyati. Qabul qiluvchi to'lov qilmasdan Premium obunadan foydalana boshlaydi."
+    q: "Что такое Telegram Gift?",
+    a: "Telegram Gift — это возможность подарить подписку Telegram Premium другу или близкому человеку. Получатель сможет пользоваться всеми преимуществами Premium без оплаты."
   },
   {
-    q: "Telegram Premium sovg'a qilish narxi qancha?",
-    a: "Gift narxi oddiy Premium obuna narxiga teng. 1 oylik, 3 oylik, 6 oylik va 1 yillik muddatlarda sovg'a qilish mumkin. Aniq narxlarni @starsjoybot da ko'ring."
+    q: "Сколько стоит подарить Telegram Premium?",
+    a: "Стоимость подарка равна цене обычной Premium-подписки. Доступны сроки: 1 месяц, 3 месяца, 6 месяцев и 1 год. Точные цены можно узнать в @starsjoybot."
   },
   {
-    q: "Telegramda gift yuborish qanday bo'ladi?",
-    a: "1) @starsjoybot ga kiring, 2) 'Sovg'a qilish' tugmasini bosing, 3) Qabul qiluvchining username ni kiriting, 4) Muddatni tanlang va to'lang. 5 daqiqada gift yetkaziladi!"
+    q: "Как отправить подарок в Telegram?",
+    a: "1) Откройте @starsjoybot, 2) Нажмите кнопку «Подарить», 3) Введите username получателя, 4) Выберите срок и оплатите. Подарок будет доставлен за 5 минут!"
   },
   {
-    q: "Gift qabul qiluvchi haqida bilishi kerakmi?",
-    a: "Gift yetkazilganda qabul qiluvchi Telegram orqali xabar oladi. Siz ixtiyoriy ravishda maxsus xabar ham qo'shishingiz mumkin."
+    q: "Узнает ли получатель, кто отправил подарок?",
+    a: "При доставке подарка получатель получит уведомление в Telegram. Вы также можете добавить персональное поздравительное сообщение к подарку."
   },
   {
-    q: "Gift qaytarish yoki bekor qilish mumkinmi?",
-    a: "Gift yetkazilgunga qadar bekor qilish mumkin. Agar texnik muammo bo'lsa, to'langan summa 100% qaytariladi."
+    q: "Можно ли вернуть или отменить подарок?",
+    a: "Подарок можно отменить до момента доставки. Если возникла техническая проблема, оплаченная сумма возвращается в полном объёме — 100% гарантия."
   },
   {
-    q: "Bir vaqtda bir nechta kishiga gift yuborish mumkinmi?",
-    a: "Ha! StarsJoy bot orqali bir nechta kishiga alohida-alohida gift yuborishingiz mumkin. Har bir gift alohida to'lanadi."
+    q: "Можно ли отправить подарок нескольким людям одновременно?",
+    a: "Да! Через бот StarsJoy вы можете отправить подарки нескольким людям по отдельности. Каждый подарок оплачивается отдельно."
   }
 ];
 ---
@@ -37,14 +37,15 @@ const faqs = [
 <Layout
   title={title}
   description={description}
-  canonical="https://starsjoy.uz/gifts"
-  keywords="Telegram Premium gift sotib olish, Telegram premium sovg'a qilish, Telegram gift premium narxlari, Telegram premium sovg'a yuborish, telegramda gift yuborish"
+  canonical="https://starsjoy.uz/ru/gifts"
+  keywords="подарить Telegram Premium, Telegram Gift купить, Telegram подарок, купить Telegram Premium в подарок, StarsJoy Gifts, подарок Телеграм"
+  lang="ru"
   hreflangs={[
     { lang: "uz", href: "https://starsjoy.uz/gifts" },
     { lang: "ru", href: "https://starsjoy.uz/ru/gifts" }
   ]}
 >
-  <Navbar />
+  <NavbarRu />
 
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -74,8 +75,8 @@ const faqs = [
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
-      { "@type": "ListItem", "position": 2, "name": "Telegram Gift Sotib Olish", "item": "https://starsjoy.uz/gifts" }
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Подарить Telegram Premium", "item": "https://starsjoy.uz/ru/gifts" }
     ]
   })} />
 
@@ -83,32 +84,32 @@ const faqs = [
   <section class="gift-hero">
     <div class="container">
       <nav class="breadcrumb">
-        <a href="/">Bosh sahifa</a>
+        <a href="/ru">Главная</a>
         <span>/</span>
         <span>Telegram Gifts</span>
       </nav>
       <div class="gift-hero-inner fade-in">
         <div class="gift-hero-content">
-          <h1 class="gift-title">Telegram Premium Sovg'a Qilish — Gift Yuborish</h1>
+          <h1 class="gift-title">Подарите Telegram Premium — Лучший Подарок</h1>
           <p class="gift-desc">
-            Do'stlaringizga Telegram Premium gift sifatida yuboring. Tez, oson va arzon narxlarda sovg'a qiling — eng yaxshi hadya!
+            Подарите друзьям и близким Telegram Premium. Быстро, удобно и по доступной цене — идеальный цифровой подарок!
           </p>
           <div class="gift-features">
             <div class="gift-feature">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="10" width="12" height="8" rx="2" stroke="#C850C0" stroke-width="1.5"/><rect x="5" y="7" width="10" height="4" rx="1.5" stroke="#C850C0" stroke-width="1.5"/><rect x="9" y="7" width="2" height="11" rx="0.5" fill="#C850C0" opacity="0.2"/></svg>
-              <span>5 daqiqada yetkazish</span>
+              <span>Доставка за 5 минут</span>
             </div>
             <div class="gift-feature">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 4 4.4.6-3.2 3.1.8 4.4L10 12l-4 2.1.8-4.4L3.6 6.6 8 6l2-4z" fill="#FBBF24" stroke="#D97706" stroke-width="1"/></svg>
-              <span>Maxsus xabar qo'shish</span>
+              <span>Персональное сообщение</span>
             </div>
             <div class="gift-feature">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#10B981" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>100% kafolat</span>
+              <span>100% гарантия</span>
             </div>
           </div>
           <a href="https://t.me/starsjoybot" class="btn-primary" target="_blank">
-            &#127873; Sovg'a Yuborish
+            &#127873; Отправить подарок
           </a>
         </div>
         <div class="gift-hero-visual">
@@ -132,67 +133,67 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Nega gift -->
+  <!-- Почему подарок -->
   <section class="gift-why">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Sovg'a</span>
-        <h2 class="section-title">Nega Telegram Premium sovg'a qilish kerak?</h2>
-        <p class="section-subtitle">Eng yaxshi digital sovg'a — foydali va esda qolarli</p>
+        <span class="section-label">Подарок</span>
+        <h2 class="section-title">Почему стоит подарить Telegram Premium?</h2>
+        <p class="section-subtitle">Лучший цифровой подарок — полезный и запоминающийся</p>
       </div>
       <div class="why-grid">
         <div class="why-card fade-in">
           <div class="why-icon wi-unique">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4l3 6 6.6 1-4.8 4.6 1.1 6.6L14 19l-5.9 3.2 1.1-6.6L4.4 11l6.6-1L14 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
           </div>
-          <h3>Noyob sovg'a</h3>
-          <p>Oddiy sovg'alardan farqli — har kuni foydalanadigan premium imkoniyatlar</p>
+          <h3>Уникальный подарок</h3>
+          <p>В отличие от обычных подарков — премиум-возможности, которыми пользуются каждый день</p>
         </div>
         <div class="why-card fade-in">
           <div class="why-icon wi-instant">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M15 5L7 16h6l-2 7 8-11h-6l2-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
           </div>
-          <h3>Tez yetkazish</h3>
-          <p>5 daqiqada gift yetkaziladi — hech qanday kutish yo'q</p>
+          <h3>Без хлопот</h3>
+          <p>Не нужно искать подарок в магазине — всё делается онлайн за пару минут</p>
         </div>
         <div class="why-card fade-in">
           <div class="why-icon wi-personal">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 22V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2"/><path d="M9 12h10M9 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
-          <h3>Shaxsiy xabar</h3>
-          <p>Gift bilan birga maxsus tabrik xabari qo'shishingiz mumkin</p>
+          <h3>Мгновенная доставка</h3>
+          <p>Подарок доставляется за 5 минут — никакого ожидания, всё моментально</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Qanday yuborish -->
+  <!-- Как отправить -->
   <section class="gift-how">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Qo'llanma</span>
-        <h2 class="section-title">Telegramda gift qanday yuboriladi?</h2>
-        <p class="section-subtitle">3 oddiy qadamda sovg'a yuboring</p>
+        <span class="section-label">Инструкция</span>
+        <h2 class="section-title">Как отправить подарок в Telegram?</h2>
+        <p class="section-subtitle">3 простых шага для отправки подарка</p>
       </div>
       <div class="how-steps">
         <div class="how-step fade-in">
           <div class="how-step-num">1</div>
-          <h3>Botga kiring</h3>
-          <p><strong>@starsjoybot</strong> da "Sovg'a qilish" tugmasini bosing</p>
+          <h3>Откройте бот</h3>
+          <p>Перейдите в <strong>@starsjoybot</strong> и нажмите кнопку «Подарить»</p>
         </div>
         <div class="how-step fade-in">
           <div class="how-step-num">2</div>
-          <h3>Ma'lumotlarni kiriting</h3>
-          <p>Qabul qiluvchining username ni va obuna muddatini tanlang</p>
+          <h3>Укажите получателя</h3>
+          <p>Введите username получателя и выберите срок подписки</p>
         </div>
         <div class="how-step fade-in">
           <div class="how-step-num">3</div>
-          <h3>To'lang va yuboring</h3>
-          <p>To'lovdan so'ng 5 daqiqada gift yetkaziladi</p>
+          <h3>Подарок отправлен</h3>
+          <p>Оплатите и подарок будет доставлен за 5 минут</p>
         </div>
       </div>
       <div class="how-cta fade-in">
-        <a href="https://t.me/starsjoybot" class="btn-primary" target="_blank">&#127873; Hozir Sovg'a Yuborish</a>
+        <a href="https://t.me/starsjoybot" class="btn-primary" target="_blank">&#127873; Подарить сейчас</a>
       </div>
     </div>
   </section>
@@ -202,8 +203,8 @@ const faqs = [
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">FAQ</span>
-        <h2 class="section-title">Telegram Gift haqida savollar</h2>
-        <p class="section-subtitle">Sovg'a yuborish bo'yicha ko'p beriladigan savollar</p>
+        <h2 class="section-title">Вопросы о Telegram Gift</h2>
+        <p class="section-subtitle">Часто задаваемые вопросы об отправке подарков</p>
       </div>
       <div class="faq-list">
         {faqs.map((faq) => (
@@ -225,9 +226,9 @@ const faqs = [
   <section class="gift-cta">
     <div class="container">
       <div class="gift-cta-box fade-in">
-        <h2>Do'stingizga sovg'a qiling!</h2>
-        <p>Telegram Premium gift — eng yaxshi va foydali sovg'a</p>
-        <a href="https://t.me/starsjoybot" class="btn-white" target="_blank">&#127873; Gift Yuborish</a>
+        <h2>Подарите другу Premium!</h2>
+        <p>Telegram Premium Gift — лучший и самый полезный подарок</p>
+        <a href="https://t.me/starsjoybot" class="btn-white" target="_blank">&#127873; Отправить Gift</a>
       </div>
     </div>
   </section>

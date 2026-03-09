@@ -1,0 +1,1389 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavbarRu from '../../components/NavbarRu.astro';
+import Footer from '../../components/Footer.astro';
+
+const faqs = [
+  {
+    q: "Как купить Telegram Stars?",
+    a: "Откройте нашего бота @starsjoybot в Telegram, выберите раздел Stars, укажите нужное количество и оплатите через Click, Uzcard или Humo. Звёзды поступят на ваш аккаунт в течение 5 минут.",
+  },
+  {
+    q: "Сколько стоит Telegram Premium?",
+    a: "Цена зависит от срока подписки: 1 месяц, 3 месяца, 6 месяцев или 1 год. Чем дольше период, тем выгоднее. Актуальные цены — в нашем боте.",
+  },
+  {
+    q: "Как отправить Telegram Gift другу?",
+    a: "Выберите раздел Gifts в боте, укажите username получателя, выберите подарок и оплатите. Подарок будет доставлен мгновенно прямо в Telegram.",
+  },
+  {
+    q: "Какие способы оплаты доступны?",
+    a: "Мы принимаем Click, Uzcard, Humo и банковские переводы. Все платежи проходят через защищённое соединение.",
+  },
+  {
+    q: "Что делать, если Stars не пришли?",
+    a: "Если доставка занимает больше 5 минут, мы начисляем 10 Stars в качестве компенсации. Если услуга не была оказана совсем — возвращаем 100% суммы. Обратитесь в поддержку через бота.",
+  },
+];
+
+const testimonials = [
+  {
+    text: "Честно говоря, сначала немного сомневался. Но проверил — всё прошло без проблем. Быстро, без лишней возни. Рекомендую.",
+    name: 'Samandar',
+    handle: '@Khxlimov',
+    initial: 'S',
+  },
+  {
+    text: "Первый раз покупал Stars и не знал, где дешевле и надёжнее. Наткнулся на этого бота — оказался недорогим и проверенным. Всем советую.",
+    name: 'Feruzbek',
+    handle: '@Fe_r_uzbek',
+    initial: 'F',
+  },
+  {
+    text: "Купил Stars — всё удобно и понятно. Главное — нет навязчивой рекламы, работает очень быстро. Остался доволен.",
+    name: 'Abdulaziz',
+    handle: '@lazyzxoja',
+    initial: 'A',
+  },
+];
+---
+
+<Layout
+  title="Telegram Stars, Premium и Gifts — Купить в StarsJoy"
+  description="StarsJoy — купить Telegram Stars, Premium и Gifts быстро и дёшево. Доставка за 5 минут, 100% гарантия возврата. Оплата через Click, Uzcard, Humo."
+  canonical="https://starsjoy.uz/ru"
+  keywords="купить Telegram Stars, Telegram Premium купить, Telegram Gifts, купить звёзды Телеграм, Telegram Premium Узбекистан, StarsJoy"
+  lang="ru"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz" },
+    { lang: "ru", href: "https://starsjoy.uz/ru" }
+  ]}
+>
+  <!-- WebSite Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "StarsJoy",
+    "url": "https://starsjoy.uz/ru",
+    "description": "StarsJoy — купить Telegram Stars, Premium и Gifts быстро и недорого. Доставка за 5 минут, 100% гарантия возврата денег.",
+    "inLanguage": "ru",
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": "https://starsjoy.uz/logo.png"
+    }
+  })} />
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  })} />
+
+  <NavbarRu />
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Telegram Stars,<br>
+          Premium и Gifts<br>
+          <span class="hero-highlight">за 5 минут!</span>
+        </h1>
+        <p class="hero-desc">
+          Покупайте Telegram Stars, оформляйте Premium или отправляйте Gifts друзьям через StarsJoy — быстро, надёжно и по лучшей цене.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://t.me/starsjoybot" class="btn-primary" target="_blank">
+            &#9889; Перейти в бот
+          </a>
+          <a href="#services" class="btn-secondary">
+            Наши услуги &#8595;
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="logo-float" id="logoFloat">
+          <img src="/logo.png" alt="StarsJoy" class="float-logo" />
+        </div>
+
+        <div class="cube-stage">
+          <div class="cube" id="cube3d">
+            <!-- Front: Stars -->
+            <div class="cube-face face-front">
+              <div class="face-icon face-icon-star">
+                <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+                  <defs>
+                    <linearGradient id="csG1" x1="6" y1="6" x2="46" y2="46">
+                      <stop offset="0%" stop-color="#FFD60A"/>
+                      <stop offset="50%" stop-color="#FFAE00"/>
+                      <stop offset="100%" stop-color="#FF9500"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M26 4l6.2 12.5L45 18.8l-9.5 9.3 2.2 13.1L26 34.8l-11.7 6.4 2.2-13.1L7 18.8l12.8-2.3L26 4z" fill="url(#csG1)"/>
+                  <path d="M26 4l6.2 12.5L45 18.8l-9.5 9.3 2.2 13.1L26 34.8V4z" fill="#FFE066" opacity="0.35"/>
+                </svg>
+              </div>
+              <span class="face-title">Stars</span>
+              <span class="face-sub">Купить звёзды</span>
+            </div>
+
+            <!-- Right: Premium -->
+            <div class="cube-face face-right">
+              <div class="face-icon face-icon-prem">
+                <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+                  <defs>
+                    <linearGradient id="csG2" x1="8" y1="6" x2="44" y2="46">
+                      <stop offset="0%" stop-color="#6B93FF"/>
+                      <stop offset="50%" stop-color="#976FFF"/>
+                      <stop offset="100%" stop-color="#E46ACE"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M26 5L9 21l17 26 17-26L26 5z" fill="url(#csG2)"/>
+                  <path d="M26 5l17 16L26 47V5z" fill="#A78BFA" opacity="0.3"/>
+                  <path d="M9 21L26 5v42L9 21z" fill="#fff" opacity="0.12"/>
+                  <path d="M15 21l11-11 11 11" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                </svg>
+              </div>
+              <span class="face-title">Premium</span>
+              <span class="face-sub">Оформить подписку</span>
+            </div>
+
+            <!-- Back: Gifts -->
+            <div class="cube-face face-back">
+              <div class="face-icon face-icon-gift">
+                <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+                  <defs>
+                    <linearGradient id="csG3" x1="6" y1="10" x2="46" y2="48">
+                      <stop offset="0%" stop-color="#FF6B9D"/>
+                      <stop offset="50%" stop-color="#C850C0"/>
+                      <stop offset="100%" stop-color="#8B5CF6"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="8" y="22" width="36" height="24" rx="4" fill="url(#csG3)"/>
+                  <rect x="11" y="14" width="30" height="10" rx="4" fill="url(#csG3)" opacity="0.85"/>
+                  <rect x="23" y="14" width="6" height="32" rx="1.5" fill="#fff" opacity="0.3"/>
+                  <rect x="8" y="26" width="36" height="4" rx="1" fill="#fff" opacity="0.15"/>
+                  <path d="M26 14c-3-7-12-7-12 0s12 8 12 8 12-1 12-8-9-7-12 0z" fill="#fff" opacity="0.3"/>
+                </svg>
+              </div>
+              <span class="face-title">Gifts</span>
+              <span class="face-sub">Отправить подарок</span>
+            </div>
+
+            <!-- Left: Cashback -->
+            <div class="cube-face face-left">
+              <div class="face-icon face-icon-cash">
+                <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+                  <defs>
+                    <linearGradient id="csG4" x1="6" y1="6" x2="46" y2="46">
+                      <stop offset="0%" stop-color="#34D399"/>
+                      <stop offset="50%" stop-color="#10B981"/>
+                      <stop offset="100%" stop-color="#059669"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="26" cy="26" r="20" fill="url(#csG4)"/>
+                  <path d="M26 14v24M32 20c0-3.3-2.7-6-6-6s-6 2.7-6 6c0 3.3 2.7 6 6 6s6 2.7 6 6c0 3.3-2.7 6-6 6s-6-2.7-6-6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
+              <span class="face-title">Кешбэк</span>
+              <span class="face-sub">Реферальный бонус</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cube-shadow" id="cubeShadow"></div>
+
+        <div class="dot d1" id="dot1"></div>
+        <div class="dot d2" id="dot2"></div>
+        <div class="dot d3" id="dot3"></div>
+        <div class="dot d4" id="dot4"></div>
+        <div class="dot d5" id="dot5"></div>
+        <div class="dot d6" id="dot6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Услуги</span>
+        <h2 class="section-title">Что вы хотите купить?</h2>
+        <p class="section-subtitle">Все премиум-услуги Telegram в одном месте — быстро и по лучшей цене</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card service-purple fade-in">
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 3l3.7 7.5 8.3 1.2-6 5.8 1.4 8.3L16 21.9l-7.4 3.9 1.4-8.3-6-5.8 8.3-1.2L16 3z" stroke="#7C3AED" stroke-width="2" stroke-linejoin="round" fill="#7C3AED" opacity="0.15"/>
+              <path d="M16 3l3.7 7.5 8.3 1.2-6 5.8 1.4 8.3L16 21.9V3z" fill="#7C3AED" opacity="0.1"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Telegram Stars</h3>
+          <p class="service-desc">Покупайте Stars для оплаты контента, поддержки каналов и покупок через ботов</p>
+        </div>
+
+        <div class="service-card service-blue fade-in">
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4L7 15l9 17 9-17L16 4z" stroke="#2563EB" stroke-width="2" stroke-linejoin="round" fill="#2563EB" opacity="0.12"/>
+              <path d="M16 4l9 11L16 32V4z" fill="#2563EB" opacity="0.08"/>
+              <path d="M10 15l6-6 6 6" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Telegram Premium</h3>
+          <p class="service-desc">Безлимитные возможности: большие файлы, быстрая загрузка, эксклюзивные стикеры и реакции</p>
+        </div>
+
+        <div class="service-card service-amber fade-in">
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="6" y="14" width="20" height="14" rx="3" stroke="#D97706" stroke-width="2" fill="#D97706" opacity="0.1"/>
+              <rect x="8" y="9" width="16" height="6" rx="2.5" stroke="#D97706" stroke-width="2" fill="#D97706" opacity="0.08"/>
+              <rect x="14" y="9" width="4" height="19" rx="1" fill="#D97706" opacity="0.15"/>
+              <path d="M16 9c-2-4.5-8-4.5-8 0s8 5 8 5 8-.5 8-5-6-4.5-8 0z" fill="#D97706" opacity="0.12"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Telegram Gifts</h3>
+          <p class="service-desc">Отправляйте уникальные подарки друзьям — с анимациями и премиум-эффектами</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Процесс</span>
+        <h2 class="section-title">Как это работает?</h2>
+        <p class="section-subtitle">Всего 4 шага — и нужная услуга у вас</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card fade-in">
+          <div class="step-top">
+            <div class="step-number">1</div>
+          </div>
+          <div class="step-icon step-icon-1">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="6" y="2" width="16" height="24" rx="3" stroke="currentColor" stroke-width="2"/>
+              <line x1="12" y1="22" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="14" cy="12" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <path d="M14 9v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Откройте бот</h3>
+          <p class="step-desc">Откройте @starsjoybot в Telegram и нажмите /start</p>
+        </div>
+
+        <div class="step-card fade-in">
+          <div class="step-top">
+            <div class="step-number">2</div>
+          </div>
+          <div class="step-icon step-icon-2">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="3" y="3" width="9" height="9" rx="2.5" stroke="currentColor" stroke-width="2"/>
+              <rect x="16" y="3" width="9" height="9" rx="2.5" stroke="currentColor" stroke-width="2"/>
+              <rect x="3" y="16" width="9" height="9" rx="2.5" stroke="currentColor" stroke-width="2"/>
+              <rect x="16" y="16" width="9" height="9" rx="2.5" fill="currentColor" opacity="0.2" stroke="currentColor" stroke-width="2"/>
+              <path d="M19 19l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Выберите услугу</h3>
+          <p class="step-desc">Stars, Premium или Gifts — выберите то, что вам нужно</p>
+        </div>
+
+        <div class="step-card fade-in">
+          <div class="step-top">
+            <div class="step-number">3</div>
+          </div>
+          <div class="step-icon step-icon-3">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="2" y="6" width="24" height="16" rx="3" stroke="currentColor" stroke-width="2"/>
+              <line x1="2" y1="11" x2="26" y2="11" stroke="currentColor" stroke-width="2"/>
+              <line x1="6" y1="17" x2="12" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="21" cy="17" r="2" fill="currentColor" opacity="0.3"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Оплатите</h3>
+          <p class="step-desc">Выберите удобный способ: Click, Uzcard или Humo</p>
+        </div>
+
+        <div class="step-card fade-in">
+          <div class="step-top">
+            <div class="step-number">4</div>
+          </div>
+          <div class="step-icon step-icon-4">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M15.5 3L7 16h6l-1.5 9L22 12h-6l1.5-9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Получите за 5 минут</h3>
+          <p class="step-desc">После оплаты услуга будет доставлена в течение 5 минут</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GUARANTEES ===== -->
+  <section id="guarantees">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Гарантии</span>
+        <h2 class="section-title">Ваше доверие —<br class="mobile-br"> наш приоритет</h2>
+        <p class="section-subtitle">Мы берём на себя полную ответственность за каждый заказ</p>
+      </div>
+      <div class="guarantees-grid">
+        <div class="guarantee-card fade-in">
+          <div class="guarantee-icon gi-speed">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M17.5 4L8 18h7l-2 10L24 14h-7l2-10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
+            </svg>
+          </div>
+          <h3 class="guarantee-title">Доставка за 5 минут</h3>
+          <p class="guarantee-desc">Гарантируем доставку услуги в течение 5 минут после оплаты</p>
+        </div>
+        <div class="guarantee-card fade-in">
+          <div class="guarantee-icon gi-cashback">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 3l3.7 7.5 8.3 1.2-6 5.8 1.4 8.3L16 21.9l-7.4 3.9 1.4-8.3-6-5.8 8.3-1.2L16 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
+            </svg>
+          </div>
+          <h3 class="guarantee-title">10 Stars кешбэк</h3>
+          <p class="guarantee-desc">Если доставка занимает больше 5 минут, вы получаете 10 Stars в подарок</p>
+        </div>
+        <div class="guarantee-card fade-in">
+          <div class="guarantee-icon gi-refund">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="7" y="13" width="18" height="13" rx="3" stroke="currentColor" stroke-width="2"/>
+              <path d="M11 13V10a5 5 0 1 1 10 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="16" cy="20" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="guarantee-title">Полный возврат денег</h3>
+          <p class="guarantee-desc">Если услуга не доставлена или возникла проблема — вернём 100% суммы</p>
+        </div>
+      </div>
+      <div class="guarantees-footer fade-in">
+        <a href="/oferta" class="guarantees-link">Договор публичной оферты</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Отзывы</span>
+        <h2 class="section-title">Что говорят клиенты?</h2>
+        <p class="section-subtitle">Реальные отзывы пользователей нашего сервиса</p>
+      </div>
+      <div class="testimonials-grid">
+        {testimonials.map((t) => (
+          <div class="testimonial-card fade-in">
+            <div class="testimonial-stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p class="testimonial-text">"{t.text}"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">{t.initial}</div>
+              <div>
+                <div class="testimonial-name">{t.name}</div>
+                <div class="testimonial-handle">{t.handle}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REFERRAL ===== -->
+  <section class="referral" id="referral">
+    <div class="container">
+      <div class="referral-box fade-in">
+        <div class="referral-content">
+          <span class="section-label">Реферальная программа</span>
+          <h2 class="referral-title">Пригласите друга —<br>получите 5% бонус!</h2>
+          <p class="referral-desc">Каждый раз, когда ваш друг совершает покупку, вы получаете 5% от суммы в виде бонуса</p>
+          <div class="referral-steps">
+            <div class="referral-step">
+              <div class="referral-step-num">1</div>
+              <span>Получите свою реферальную ссылку в боте</span>
+            </div>
+            <div class="referral-step">
+              <div class="referral-step-num">2</div>
+              <span>Поделитесь ссылкой с друзьями</span>
+            </div>
+            <div class="referral-step">
+              <div class="referral-step-num">3</div>
+              <span>Получайте 5% бонус с каждой покупки друга</span>
+            </div>
+          </div>
+          <a href="https://t.me/starsjoybot" class="btn-primary" target="_blank">
+            Получить реферальную ссылку
+          </a>
+        </div>
+        <div class="referral-visual">
+          <div class="referral-icon-wrap">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="22" cy="18" r="7" fill="#7C3AED" opacity="0.15" stroke="#7C3AED" stroke-width="2"/>
+              <path d="M10 44c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" fill="#7C3AED" opacity="0.08"/>
+              <circle cx="38" cy="20" r="5.5" fill="#2563EB" opacity="0.12" stroke="#2563EB" stroke-width="2"/>
+              <path d="M30 44c0-5 3.582-9 8-9s8 4 8 9" stroke="#2563EB" stroke-width="2" stroke-linecap="round" fill="#2563EB" opacity="0.06"/>
+              <circle cx="44" cy="12" r="7" fill="#10B981" opacity="0.15" stroke="#10B981" stroke-width="1.5"/>
+              <path d="M44 9v6M41 12h6" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="referral-bonus">5%</div>
+          <div class="referral-bonus-label">бонус с каждой покупки</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <p class="section-subtitle">Ответы на самые популярные вопросы о наших услугах</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <div class="faq-item fade-in">
+            <button class="faq-question">
+              <span>{faq.q}</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.a}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box fade-in">
+        <h2 class="cta-title">Начните прямо сейчас!</h2>
+        <p class="cta-desc">Telegram Stars, Premium и Gifts — быстро и по лучшей цене только в StarsJoy</p>
+        <a href="https://t.me/starsjoybot" class="btn-white" target="_blank">
+          &#11088; Перейти в бот
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<!-- 3D Cube & Animation Scripts -->
+<script>
+  // 3D Cube rotation
+  const cube = document.getElementById('cube3d');
+  if (cube) {
+    let angle = 0;
+    function rotateCube() {
+      angle += 0.3;
+      const tiltX = Math.sin(angle * 0.01) * 6;
+      cube!.style.transform = `rotateY(${angle}deg) rotateX(${tiltX}deg)`;
+      requestAnimationFrame(rotateCube);
+    }
+    rotateCube();
+  }
+
+  // Logo float
+  const logoEl = document.getElementById('logoFloat');
+  if (logoEl) {
+    let t = 0;
+    function floatLogo() {
+      t += 0.025;
+      const y = Math.sin(t) * 8;
+      logoEl!.style.transform = `translateY(${y}px)`;
+      requestAnimationFrame(floatLogo);
+    }
+    floatLogo();
+  }
+
+  // Shadow pulse
+  const shadow = document.getElementById('cubeShadow');
+  if (shadow) {
+    let st = 0;
+    function pulseShadow() {
+      st += 0.02;
+      const s = 0.85 + Math.sin(st) * 0.15;
+      const o = 0.4 + Math.sin(st) * 0.2;
+      shadow!.style.transform = `scaleX(${s})`;
+      shadow!.style.opacity = `${o}`;
+      requestAnimationFrame(pulseShadow);
+    }
+    pulseShadow();
+  }
+
+  // Sparkle dots
+  document.querySelectorAll('.dot').forEach((dot, i) => {
+    const el = dot as HTMLElement;
+    let dt = i * 1.2;
+    function animDot() {
+      dt += 0.025;
+      const val = (Math.sin(dt) + 1) / 2;
+      const opacity = val * 0.9;
+      const scale = 0.5 + val * 0.8;
+      const moveY = val * -10;
+      el.style.opacity = `${opacity}`;
+      el.style.transform = `scale(${scale}) translateY(${moveY}px)`;
+      requestAnimationFrame(animDot);
+    }
+    animDot();
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement!;
+      const answer = item.querySelector('.faq-answer') as HTMLElement;
+      const isActive = item.classList.contains('active');
+
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+        (i.querySelector('.faq-answer') as HTMLElement).style.maxHeight = '';
+      });
+
+      if (!isActive) {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 100px 24px 80px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #F8F6FF 0%, #FFFFFF 100%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.06), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: 100%;
+  }
+
+  .hero-content { flex: 1; position: relative; z-index: 1; }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .hero-highlight {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-desc {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+    max-width: 520px;
+    line-height: 1.7;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  /* ===== HERO VISUAL ===== */
+  .hero-visual {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    min-height: 450px;
+  }
+
+  .logo-float {
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    will-change: transform;
+    perspective: 500px;
+  }
+  .float-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    object-fit: cover;
+    transform: rotateY(-14deg) rotateX(-8deg);
+    box-shadow:
+      -2px 2px 0 rgba(124, 58, 237, 0.18),
+      -4px 4px 0 rgba(124, 58, 237, 0.13),
+      -6px 6px 0 rgba(124, 58, 237, 0.08),
+      -8px 8px 0 rgba(124, 58, 237, 0.04),
+      0 16px 48px rgba(124, 58, 237, 0.3);
+  }
+
+  .cube-stage {
+    width: 260px;
+    height: 260px;
+    perspective: 800px;
+    cursor: grab;
+    position: relative;
+    z-index: 2;
+  }
+  .cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .cube-face {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(232, 228, 240, 0.6);
+    border-radius: 24px;
+    backface-visibility: visible;
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.06);
+  }
+  .face-front  { transform: translateZ(130px); }
+  .face-right  { transform: rotateY(90deg) translateZ(130px); }
+  .face-back   { transform: rotateY(180deg) translateZ(130px); }
+  .face-left   { transform: rotateY(-90deg) translateZ(130px); }
+
+  .face-icon {
+    width: 104px;
+    height: 104px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .face-icon-star { background: linear-gradient(135deg, #FFF8E1, #FFE082); box-shadow: 0 8px 24px rgba(255, 174, 0, 0.15); }
+  .face-icon-prem { background: linear-gradient(135deg, #EDE7F6, #D1C4E9); box-shadow: 0 8px 24px rgba(151, 111, 255, 0.15); }
+  .face-icon-gift { background: linear-gradient(135deg, #FCE4EC, #F8BBD0); box-shadow: 0 8px 24px rgba(200, 80, 192, 0.15); }
+  .face-icon-cash { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15); }
+
+  .face-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text);
+    text-align: center;
+  }
+  .face-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .cube-shadow {
+    width: 208px;
+    height: 39px;
+    margin-top: 20px;
+    background: radial-gradient(ellipse, rgba(124, 58, 237, 0.12), transparent 70%);
+    border-radius: 50%;
+    will-change: transform, opacity;
+  }
+
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform, opacity;
+    opacity: 0;
+  }
+  .d1 { width: 8px; height: 8px; background: #FFD60A; top: 10%; left: 10%; }
+  .d2 { width: 6px; height: 6px; background: #976FFF; top: 15%; right: 5%; }
+  .d3 { width: 5px; height: 5px; background: #FF6B9D; top: 50%; right: 0; }
+  .d4 { width: 7px; height: 7px; background: #6B93FF; bottom: 15%; left: 8%; }
+  .d5 { width: 5px; height: 5px; background: #C850C0; bottom: 25%; right: 10%; }
+  .d6 { width: 6px; height: 6px; background: #FFAE00; top: 40%; left: 2%; }
+
+  /* ===== SERVICES ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(124, 58, 237, 0.2);
+    box-shadow: var(--shadow-lg);
+  }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .service-purple .service-icon { background: rgba(124, 58, 237, 0.08); }
+  .service-blue .service-icon { background: rgba(37, 99, 235, 0.08); }
+  .service-amber .service-icon { background: rgba(245, 158, 11, 0.08); }
+
+  .service-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .service-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  /* ===== HOW IT WORKS ===== */
+  .how-it-works {
+    background: var(--bg-alt);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .step-card {
+    text-align: center;
+    padding: 32px 24px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(124, 58, 237, 0.08);
+  }
+
+  .step-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    background: var(--gradient);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .step-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-icon-1 {
+    background: linear-gradient(135deg, #EDE7F6, #D1C4E9);
+    color: #7C3AED;
+  }
+  .step-icon-2 {
+    background: linear-gradient(135deg, #E0F2FE, #BAE6FD);
+    color: #2563EB;
+  }
+  .step-icon-3 {
+    background: linear-gradient(135deg, #FFF8E1, #FFE082);
+    color: #D97706;
+  }
+  .step-icon-4 {
+    background: linear-gradient(135deg, #D1FAE5, #A7F3D0);
+    color: #059669;
+  }
+
+  .step-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .step-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  /* ===== GUARANTEES ===== */
+  .guarantees-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .guarantee-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow-sm);
+  }
+  .guarantee-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .guarantee-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gi-speed { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #059669; }
+  .gi-cashback { background: linear-gradient(135deg, #FFF8E1, #FFE082); color: #D97706; }
+  .gi-refund { background: linear-gradient(135deg, #EDE7F6, #D1C4E9); color: #7C3AED; }
+
+  .guarantee-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .guarantee-desc {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .guarantees-footer {
+    text-align: center;
+    margin-top: 32px;
+  }
+  .guarantees-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .guarantees-link:hover { color: var(--primary); }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials {
+    background: var(--bg-alt);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .testimonial-stars {
+    color: var(--accent-light);
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+  .testimonial-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    font-style: italic;
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .testimonial-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+  }
+  .testimonial-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .testimonial-handle {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+  }
+
+  /* ===== REFERRAL ===== */
+  .referral {
+    background: var(--bg-alt);
+  }
+
+  .referral-box {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  .referral-box::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.06), transparent 70%);
+    pointer-events: none;
+  }
+
+  .referral-content { flex: 1; }
+  .referral-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .referral-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  .referral-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .referral-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 1rem;
+    color: var(--text);
+  }
+  .referral-step-num {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background: var(--gradient);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+  }
+
+  .referral-visual {
+    flex: 0 0 280px;
+    text-align: center;
+  }
+  .referral-icon-wrap {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, #EDE7F6, #D1C4E9);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .referral-bonus {
+    font-size: 2.4rem;
+    font-weight: 900;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .referral-bonus-label {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow-sm);
+  }
+  .faq-item.active {
+    border-color: rgba(124, 58, 237, 0.3);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08);
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: 20px 24px;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-family: inherit;
+  }
+  .faq-question:hover { color: var(--primary); }
+
+  .faq-toggle {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 8px;
+    background: rgba(124, 58, 237, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--primary);
+    transition: transform 0.3s;
+  }
+  .faq-item.active .faq-toggle { transform: rotate(45deg); }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .faq-answer-inner {
+    padding: 0 24px 20px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    text-align: center;
+    background: var(--bg-alt);
+  }
+
+  .cta-box {
+    background: var(--gradient);
+    border-radius: 24px;
+    padding: 72px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1), transparent 50%);
+    pointer-events: none;
+  }
+
+  .cta-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    position: relative;
+    color: #fff;
+  }
+  .cta-desc {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    margin-bottom: 36px;
+    position: relative;
+    color: #fff;
+  }
+
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 42px;
+    background: #fff;
+    border: none;
+    border-radius: 50px;
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ===== MOBILE BR ===== */
+  .mobile-br { display: none; }
+
+  /* ===== RESPONSIVE — TABLET (1024px) ===== */
+  @media (max-width: 1024px) {
+    .hero { min-height: auto; }
+    .hero-container { flex-direction: column; text-align: center; gap: 36px; }
+    .hero-title { font-size: 2.6rem; }
+    .hero-desc { margin: 0 auto 36px; }
+    .hero-buttons { justify-content: center; }
+    .cube-stage { width: 234px; height: 234px; }
+    .cube-face { width: 234px; height: 234px; }
+    .face-front  { transform: translateZ(117px); }
+    .face-right  { transform: rotateY(90deg) translateZ(117px); }
+    .face-back   { transform: rotateY(180deg) translateZ(117px); }
+    .face-left   { transform: rotateY(-90deg) translateZ(117px); }
+    .face-icon { width: 88px; height: 88px; border-radius: 24px; }
+    .float-logo { width: 60px; height: 60px; }
+    .logo-float { margin-bottom: -4px; }
+
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .guarantees-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .referral-box {
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 28px;
+    }
+    .referral-visual { flex: none; }
+  }
+
+  /* ===== RESPONSIVE — MOBILE (640px) ===== */
+  @media (max-width: 640px) {
+    .hero { padding: 100px 16px 40px; min-height: auto; }
+    .hero-container { gap: 32px; }
+    .hero-title { font-size: 2rem; line-height: 1.15; }
+    .hero-desc { font-size: 1rem; margin-bottom: 24px; line-height: 1.6; }
+    .hero-buttons { flex-direction: column; align-items: stretch; margin-bottom: 0; gap: 12px; }
+    .hero-buttons :global(.btn-primary),
+    .hero-buttons :global(.btn-secondary) { width: 100%; justify-content: center; padding: 14px 24px; font-size: 0.95rem; gap: 8px; }
+    .hero-visual { min-height: 240px; }
+    .cube-stage { width: 170px; height: 170px; }
+    .cube-face { width: 170px; height: 170px; border-radius: 20px; }
+    .face-front  { transform: translateZ(85px); }
+    .face-right  { transform: rotateY(90deg) translateZ(85px); }
+    .face-back   { transform: rotateY(180deg) translateZ(85px); }
+    .face-left   { transform: rotateY(-90deg) translateZ(85px); }
+    .face-icon { width: 60px; height: 60px; border-radius: 16px; }
+    .face-icon svg { width: 36px; height: 36px; }
+    .face-title { font-size: 0.82rem; }
+    .face-sub { font-size: 0.68rem; }
+    .float-logo { width: 44px; height: 44px; border-radius: 12px; }
+    .logo-float { margin-bottom: 0; }
+    .cube-shadow { width: 130px; height: 24px; margin-top: 10px; }
+    .dot { display: none; }
+
+    .services-grid { grid-template-columns: 1fr; gap: 16px; }
+    .service-card {
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+    }
+    .service-card:hover { transform: none; }
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      margin: 0;
+      border-radius: 16px;
+    }
+    .service-title { font-size: 1.1rem; margin-bottom: 4px; }
+    .service-desc { font-size: 0.85rem; margin-bottom: 0; line-height: 1.5; }
+
+    .steps-grid { grid-template-columns: 1fr; gap: 12px; }
+    .step-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+    }
+    .step-card:hover { transform: none; }
+    .step-top { margin-bottom: 0; flex-shrink: 0; }
+    .step-number { width: 32px; height: 32px; font-size: 0.82rem; }
+    .step-icon { display: none; }
+    .step-title { font-size: 0.95rem; margin-bottom: 2px; }
+    .step-desc { font-size: 0.82rem; line-height: 1.5; }
+
+    .guarantees-grid { grid-template-columns: 1fr; gap: 12px; }
+    .guarantee-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+    }
+    .guarantee-card:hover { transform: none; }
+    .guarantee-icon {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      margin: 0;
+      border-radius: 14px;
+    }
+    .guarantee-title { font-size: 1rem; margin-bottom: 2px; }
+    .guarantee-desc { font-size: 0.82rem; line-height: 1.5; }
+    .mobile-br { display: block; }
+
+    .testimonials-grid { grid-template-columns: 1fr; }
+
+    .referral-box { gap: 24px; padding: 28px 18px; }
+    .referral-title { font-size: 1.5rem; margin-bottom: 12px; }
+    .referral-desc { font-size: 0.95rem; margin-bottom: 20px; }
+    .referral-steps { gap: 12px; margin-bottom: 24px; text-align: left; }
+    .referral-step { font-size: 0.9rem; gap: 10px; }
+    .referral-step-num { width: 30px; height: 30px; min-width: 30px; font-size: 0.8rem; border-radius: 8px; }
+    .referral-icon-wrap { width: 80px; height: 80px; border-radius: 20px; margin-bottom: 12px; }
+    .referral-icon-wrap svg { width: 44px; height: 44px; }
+    .referral-bonus { font-size: 2rem; }
+    .referral-bonus-label { font-size: 0.85rem; }
+
+    .cta-box { padding: 48px 24px; }
+    .cta-title { font-size: 1.8rem; }
+  }
+</style>

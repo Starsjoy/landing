@@ -1,0 +1,213 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavbarRu from '../../components/NavbarRu.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "О StarsJoy — Официальная Информация | Telegram Stars, Premium, Gifts";
+const description = "StarsJoy — платформа для покупки Telegram Stars, Premium и Gifts в Узбекистане. Услуги, гарантии, способы оплаты и контакты — полная официальная информация.";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/ru/info"
+  keywords="о StarsJoy, что такое StarsJoy, StarsJoy официальный, Telegram Stars сервис, StarsJoy контакты, StarsJoy гарантии, купить Telegram Stars"
+  lang="ru"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/info" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/info" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "StarsJoy",
+    "url": "https://starsjoy.uz",
+    "logo": "https://starsjoy.uz/logo.png",
+    "description": description,
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://t.me/starsjoy_bot",
+        "availableLanguage": ["Uzbek", "Russian"]
+      }
+    ],
+    "sameAs": [
+      "https://t.me/starsjoy",
+      "https://t.me/starsjoybot"
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "О StarsJoy", "item": "https://starsjoy.uz/ru/info" }
+    ]
+  })} />
+
+  <section class="info-hero">
+    <div class="container">
+      <div class="info-content">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <span>Информация</span>
+        </nav>
+        <h1 class="info-title">О StarsJoy</h1>
+        <p class="info-meta">starsjoy.uz &middot; @starsjoybot</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content">
+        <p><strong>StarsJoy</strong> — это сервисная платформа для пользователей Telegram в Узбекистане. Мы предоставляем услуги покупки Telegram Stars, подписки Telegram Premium и отправки Telegram Gifts — быстро, надёжно и по выгодным ценам.</p>
+        <p>Наша платформа работает через Telegram-бот <strong>@starsjoybot</strong>. Пользователи выбирают услугу в боте, оплачивают и получают её в течение 1–5 минут. Команда StarsJoy несёт полную ответственность за каждый заказ.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content">
+        <h2>Услуги</h2>
+        <p><strong>Telegram Stars</strong> — внутренняя валюта Telegram, которая используется для доступа к премиум-контенту каналов, оплаты услуг ботов и поддержки авторов контента. Через StarsJoy можно купить Stars начиная от 50 штук в любом количестве. Чем больше Stars вы покупаете, тем дешевле обходится каждая звезда.</p>
+        <p><strong>Telegram Premium</strong> открывает безграничные возможности: загрузка файлов до 4 ГБ, ускоренная загрузка, отсутствие рекламы в каналах, эксклюзивные стикеры и реакции, значок Premium, анимированный аватар и перевод в реальном времени. Через StarsJoy можно оформить подписку на 1, 3, 6 месяцев или 1 год.</p>
+        <p><strong>Telegram Gifts</strong> — возможность подарить Telegram Premium друзьям или близким. Получатель начинает пользоваться Premium без какой-либо оплаты. К подарку можно добавить поздравительное сообщение. Доступны сроки: 1, 3, 6 месяцев и 1 год.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content">
+        <h2>Как это работает?</h2>
+        <p><strong>1.</strong> Откройте <strong>@starsjoybot</strong> в Telegram и нажмите /start.</p>
+        <p><strong>2.</strong> Выберите нужную услугу — Stars, Premium или Gifts.</p>
+        <p><strong>3.</strong> Оплатите через Click или банковскую карту.</p>
+        <p><strong>4.</strong> В течение 1–5 минут после оплаты услуга будет доставлена.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content">
+        <h2>Гарантии</h2>
+        <p><strong>Доставка за 5 минут.</strong> Мы гарантируем доставку услуги в течение 5 минут после оплаты.</p>
+        <p><strong>10 Stars кэшбэк.</strong> Если доставка занимает более 5 минут, мы начисляем 10 Stars в качестве компенсации.</p>
+        <p><strong>Полный возврат средств.</strong> Если услуга не была доставлена или возникла проблема, 100% оплаченной суммы возвращается.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content">
+        <h2>Способы оплаты</h2>
+        <p>На платформе StarsJoy оплата осуществляется через <strong>Click</strong> или <strong>банковскую карту</strong>. Бот предоставляет удобный выбор способа оплаты. Процесс оплаты безопасен и занимает несколько минут.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content">
+        <h2>Реферальная программа</h2>
+        <p>С реферальной программой StarsJoy можно получать дополнительные бонусы. Получите свою реферальную ссылку в боте и поделитесь с друзьями. Каждый раз, когда друг совершает покупку, вы получаете <strong>5%</strong> от суммы в виде бонуса.</p>
+        <p><strong>1.</strong> Получите свою реферальную ссылку в боте.</p>
+        <p><strong>2.</strong> Поделитесь ссылкой с друзьями.</p>
+        <p><strong>3.</strong> Получайте 5% бонус с каждой покупки друга.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content">
+        <h2>Контакты</h2>
+        <p>Вы можете связаться с нами через следующие каналы:</p>
+        <p><strong>@starsjoybot</strong> — Покупка и использование услуг</p>
+        <p><strong>@starsjoy</strong> — Официальный Telegram-канал — новости и объявления</p>
+        <p><strong>@starsjoy_bot</strong> — Служба поддержки — помощь и вопросы</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content">
+        <h2>Веб-сайт</h2>
+        <p><strong>starsjoy.uz</strong> — официальный сайт StarsJoy. На сайте представлена подробная информация обо всех услугах, отзывы пользователей, часто задаваемые вопросы и ссылки на бот. Сайт работает на узбекском и русском языках и полностью оптимизирован для мобильных устройств.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-footer-line">
+    <div class="container">
+      <div class="info-content">
+        <p class="info-footer-text">StarsJoy &middot; starsjoy.uz &middot; @starsjoybot</p>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .info-hero {
+    padding: 120px 24px 32px;
+    background: #FFFFFF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .info-content { max-width: 760px; margin: 0 auto; }
+  .info-title {
+    font-size: 2.4rem; font-weight: 900; line-height: 1.15;
+    margin-bottom: 16px; color: var(--text);
+  }
+  .info-meta {
+    font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;
+  }
+
+  .info-section { padding: 32px 24px; }
+  .info-alt { background: #FFFFFF; }
+
+  .info-content h2 {
+    font-size: 1.4rem; font-weight: 800; margin-bottom: 20px; color: var(--text);
+  }
+  .info-content p {
+    font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 12px;
+  }
+  .info-content p:last-child { margin-bottom: 0; }
+
+  .info-footer-line {
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+  }
+  .info-footer-text {
+    text-align: center; font-size: 0.9rem; color: var(--text-muted); font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .info-hero { padding: 100px 16px 40px; }
+    .info-title { font-size: 1.6rem; }
+    .info-meta { font-size: 0.85rem; }
+    .info-section { padding: 24px 16px; }
+    .info-content h2 { font-size: 1.2rem; margin-bottom: 16px; }
+    .info-content p { font-size: 0.9rem; }
+    .breadcrumb { margin-bottom: 20px; font-size: 0.8rem; }
+  }
+</style>

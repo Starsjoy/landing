@@ -1,0 +1,181 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import Footer from '../../../components/Footer.astro';
+
+const posts = [
+  {
+    slug: "telegram-stars-nima",
+    title: "Что такое Telegram Stars? Полное руководство",
+    excerpt: "Что такое Telegram Stars, зачем нужны, где используются и как купить в Узбекистане — полное руководство.",
+    date: "2026-03-08",
+    tag: "Stars"
+  },
+];
+
+const title = "Блог — StarsJoy";
+const description = "Блог StarsJoy — полезные статьи о Telegram Stars, Premium и Gifts. Новости, руководства и советы по использованию Telegram.";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/ru/blog"
+  keywords="StarsJoy блог, Telegram Stars статьи, Telegram Premium блог, Telegram новости, купить Telegram Stars"
+  lang="ru"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" }
+    ]
+  })} />
+
+  <section class="blog-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/ru">Главная</a>
+        <span>/</span>
+        <span>Блог</span>
+      </nav>
+      <h1 class="blog-title">Блог</h1>
+      <p class="blog-subtitle">Полезные статьи о Telegram Stars, Premium и Gifts</p>
+    </div>
+  </section>
+
+  <section class="blog-content">
+    <div class="container">
+      {posts.length > 0 ? (
+        <div class="blog-grid">
+          {posts.map((post) => (
+            <a href={`/ru/blog/${post.slug}`} class="blog-card">
+              <div class="blog-card-tag">{post.tag}</div>
+              <h2 class="blog-card-title">{post.title}</h2>
+              <p class="blog-card-excerpt">{post.excerpt}</p>
+              <div class="blog-card-meta">
+                <span class="blog-card-date">{post.date}</span>
+                <span class="blog-card-read">Читать &rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="blog-empty">
+          <p>Скоро здесь появятся статьи. Следите за обновлениями!</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .blog-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .blog-title {
+    font-size: 2.4rem; font-weight: 900; color: var(--text); margin-bottom: 12px;
+  }
+  .blog-subtitle {
+    font-size: 1.1rem; color: var(--text-muted);
+  }
+
+  .blog-content {
+    padding: 60px 24px;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .blog-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.06);
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(124, 58, 237, 0.12);
+  }
+
+  .blog-card-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+
+  .blog-card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .blog-card-excerpt {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .blog-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+  .blog-card-date { color: var(--text-muted); }
+  .blog-card-read { color: var(--primary); font-weight: 600; }
+
+  .blog-empty {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 640px) {
+    .blog-hero { padding: 100px 16px 36px; }
+    .blog-title { font-size: 1.6rem; }
+    .blog-subtitle { font-size: 0.95rem; }
+    .blog-content { padding: 40px 16px; }
+    .blog-grid { grid-template-columns: 1fr; gap: 16px; }
+    .blog-card { padding: 24px; }
+    .blog-card-title { font-size: 1.1rem; }
+    .breadcrumb { font-size: 0.8rem; margin-bottom: 16px; }
+  }
+</style>
