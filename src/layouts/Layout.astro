@@ -5,6 +5,7 @@ interface Props {
   canonical?: string;
   keywords?: string;
   lang?: string;
+  ogType?: string;
   hreflangs?: { lang: string; href: string }[];
 }
 
@@ -14,6 +15,7 @@ const {
   canonical = "https://starsjoy.uz",
   keywords = "Telegram Stars, Telegram Premium, Telegram Gifts, Stars sotib olish, Premium sotib olish, StarsJoy, Telegram Stars arzon, Telegram Premium O'zbekiston",
   lang = "uz",
+  ogType = "website",
   hreflangs = []
 } = Astro.props;
 ---
@@ -34,7 +36,7 @@ const {
     ))}
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://starsjoy.uz/logo.png" />
