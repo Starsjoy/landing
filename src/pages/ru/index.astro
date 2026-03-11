@@ -225,38 +225,44 @@ const testimonials = [
       </div>
       <div class="services-grid">
         <div class="service-card service-purple fade-in">
-          <div class="service-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M16 3l3.7 7.5 8.3 1.2-6 5.8 1.4 8.3L16 21.9l-7.4 3.9 1.4-8.3-6-5.8 8.3-1.2L16 3z" stroke="#7C3AED" stroke-width="2" stroke-linejoin="round" fill="#7C3AED" opacity="0.15"/>
-              <path d="M16 3l3.7 7.5 8.3 1.2-6 5.8 1.4 8.3L16 21.9V3z" fill="#7C3AED" opacity="0.1"/>
-            </svg>
+          <div class="service-top">
+            <h3 class="service-title">Telegram Stars</h3>
+            <div class="service-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 3l3.7 7.5 8.3 1.2-6 5.8 1.4 8.3L16 21.9l-7.4 3.9 1.4-8.3-6-5.8 8.3-1.2L16 3z" stroke="#7C3AED" stroke-width="2" stroke-linejoin="round" fill="#7C3AED" opacity="0.15"/>
+                <path d="M16 3l3.7 7.5 8.3 1.2-6 5.8 1.4 8.3L16 21.9V3z" fill="#7C3AED" opacity="0.1"/>
+              </svg>
+            </div>
           </div>
-          <h3 class="service-title">Telegram Stars</h3>
           <p class="service-desc">Покупайте Stars для оплаты контента, поддержки каналов и покупок через ботов</p>
         </div>
 
         <div class="service-card service-blue fade-in">
-          <div class="service-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M16 4L7 15l9 17 9-17L16 4z" stroke="#2563EB" stroke-width="2" stroke-linejoin="round" fill="#2563EB" opacity="0.12"/>
-              <path d="M16 4l9 11L16 32V4z" fill="#2563EB" opacity="0.08"/>
-              <path d="M10 15l6-6 6 6" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-            </svg>
+          <div class="service-top">
+            <h3 class="service-title">Telegram Premium</h3>
+            <div class="service-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 4L7 15l9 17 9-17L16 4z" stroke="#2563EB" stroke-width="2" stroke-linejoin="round" fill="#2563EB" opacity="0.12"/>
+                <path d="M16 4l9 11L16 32V4z" fill="#2563EB" opacity="0.08"/>
+                <path d="M10 15l6-6 6 6" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              </svg>
+            </div>
           </div>
-          <h3 class="service-title">Telegram Premium</h3>
           <p class="service-desc">Безлимитные возможности: большие файлы, быстрая загрузка, эксклюзивные стикеры и реакции</p>
         </div>
 
         <div class="service-card service-amber fade-in">
-          <div class="service-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect x="6" y="14" width="20" height="14" rx="3" stroke="#D97706" stroke-width="2" fill="#D97706" opacity="0.1"/>
-              <rect x="8" y="9" width="16" height="6" rx="2.5" stroke="#D97706" stroke-width="2" fill="#D97706" opacity="0.08"/>
-              <rect x="14" y="9" width="4" height="19" rx="1" fill="#D97706" opacity="0.15"/>
-              <path d="M16 9c-2-4.5-8-4.5-8 0s8 5 8 5 8-.5 8-5-6-4.5-8 0z" fill="#D97706" opacity="0.12"/>
-            </svg>
+          <div class="service-top">
+            <h3 class="service-title">Telegram Gifts</h3>
+            <div class="service-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect x="6" y="14" width="20" height="14" rx="3" stroke="#D97706" stroke-width="2" fill="#D97706" opacity="0.1"/>
+                <rect x="8" y="9" width="16" height="6" rx="2.5" stroke="#D97706" stroke-width="2" fill="#D97706" opacity="0.08"/>
+                <rect x="14" y="9" width="4" height="19" rx="1" fill="#D97706" opacity="0.15"/>
+                <path d="M16 9c-2-4.5-8-4.5-8 0s8 5 8 5 8-.5 8-5-6-4.5-8 0z" fill="#D97706" opacity="0.12"/>
+              </svg>
+            </div>
           </div>
-          <h3 class="service-title">Telegram Gifts</h3>
           <p class="service-desc">Отправляйте уникальные подарки друзьям — с анимациями и премиум-эффектами</p>
         </div>
       </div>
@@ -768,11 +774,18 @@ const testimonials = [
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 36px 28px;
-    text-align: center;
+    text-align: left;
     transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-sm);
+  }
+
+  .service-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
   }
   .service-card::before {
     content: '';
@@ -791,10 +804,10 @@ const testimonials = [
   .service-card:hover::before { opacity: 1; }
 
   .service-icon {
-    width: 72px;
-    height: 72px;
-    margin: 0 auto 20px;
-    border-radius: 20px;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1316,21 +1329,14 @@ const testimonials = [
     .services-grid { grid-template-columns: 1fr; gap: 16px; }
     .service-card {
       padding: 24px 20px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      text-align: left;
-      gap: 16px;
     }
     .service-card:hover { transform: none; }
     .service-icon {
-      width: 56px;
-      height: 56px;
-      min-width: 56px;
-      margin: 0;
-      border-radius: 16px;
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
     }
-    .service-title { font-size: 1.1rem; margin-bottom: 4px; }
+    .service-title { font-size: 1.1rem; }
     .service-desc { font-size: 0.85rem; margin-bottom: 0; line-height: 1.5; }
 
     .steps-grid { grid-template-columns: 1fr; gap: 12px; }
