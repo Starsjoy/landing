@@ -38,8 +38,10 @@ export const BOT_PATTERNS: { name: string; pattern: RegExp }[] = [
   { name: 'MJ12bot', pattern: /MJ12bot/i },
   { name: 'DataForSeoBot', pattern: /DataForSeoBot/i },
 
-  // Tools
+  // Tools & internal
   { name: 'Lighthouse', pattern: /Lighthouse|PageSpeed/i },
+  { name: 'HeadlessChrome', pattern: /HeadlessChrome/i },
+  { name: 'Vercel', pattern: /vercel-screenshot|vercel-og/i },
 ];
 
 export function detectBot(ua: string): { isBot: boolean; botName: string } {
