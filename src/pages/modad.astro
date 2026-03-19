@@ -19,8 +19,9 @@ if (Astro.request.method === 'POST') {
   }
 }
 
-if (authenticated) {
-  try { await initDB(); } catch (e) { console.error('DB init error:', e); }
+let dbReady = false;
+if (authenticated && !dbReady) {
+  try { await initDB(); dbReady = true; } catch (e) { console.error('DB init error:', e); }
 }
 ---
 
@@ -121,6 +122,9 @@ if (authenticated) {
             <button data-period="today" class="active" onclick="setPeriod('today')">Bugun</button>
             <button data-period="week" onclick="setPeriod('week')">Hafta</button>
             <button data-period="month" onclick="setPeriod('month')">Oy</button>
+            <button data-period="3months" onclick="setPeriod('3months')">3 oy</button>
+            <button data-period="6months" onclick="setPeriod('6months')">6 oy</button>
+            <button data-period="12months" onclick="setPeriod('12months')">1 yil</button>
           </div>
 
           <div class="tb-right">
@@ -212,7 +216,7 @@ if (authenticated) {
     </div>
   )}
 
-  <style>
+  <style is:global>
     :root {
       --bg-0: #06060e;
       --bg-1: #0b0b19;
@@ -378,78 +382,72 @@ if (authenticated) {
       background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
       overflow: hidden; margin-bottom: 24px;
     }
-    .panel-header {
-      padding: 18px 22px; border-bottom: 1px solid var(--border);
-    }
-    .panel-header h2 { font-size: 0.88rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.2px; }
-    .panel-body { overflow-x: auto; }
-    .panel-pad { padding: 20px 22px; }
+    .panel-header { padding: 16px 20px; }
+    .panel-header h2 { font-size: 0.82rem; font-weight: 600; color: var(--text-2); letter-spacing: -0.1px; }
+    .panel-body { overflow-x: auto; padding: 14px 0 6px; }
+    .panel-pad { padding: 16px 20px !important; }
 
-    /* ───── TABLES ───── */
-    table { width: 100%; border-collapse: separate; border-spacing: 0; }
-    thead { position: sticky; top: 0; z-index: 2; }
+    /* ───── TABLES (Notion/Linear style) ───── */
+    table { width: 100%; border-collapse: collapse; }
     th {
-      background: var(--bg-1); color: var(--text-3); font-weight: 600; font-size: 0.68rem;
-      text-transform: uppercase; letter-spacing: 1px; text-align: left;
-      padding: 14px 18px; white-space: nowrap; border-bottom: 1px solid var(--border-light);
+      background: transparent; color: var(--text-3); font-weight: 500; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.6px; text-align: left;
+      padding: 0 14px 10px; white-space: nowrap;
     }
-    th:first-child { padding-left: 24px; }
-    th:last-child { padding-right: 24px; }
+    th:first-child { padding-left: 20px; }
+    th:last-child { padding-right: 20px; }
+    thead tr { border-bottom: 1px solid var(--border); }
     td {
-      padding: 16px 18px; color: var(--text-1); white-space: nowrap;
-      font-size: 0.84rem; vertical-align: middle; line-height: 1.5;
+      padding: 0 14px; color: var(--text-1); white-space: nowrap;
+      font-size: 0.82rem; vertical-align: middle; height: 44px;
+      border-bottom: 1px solid rgba(26, 26, 58, 0.4);
     }
-    td:first-child { padding-left: 24px; }
-    td:last-child { padding-right: 24px; }
-    tbody tr:nth-child(odd) { background: transparent; }
-    tbody tr:nth-child(even) { background: rgba(16, 16, 45, 0.25); }
-    tbody tr { transition: all 0.15s ease; cursor: default; }
-    tbody tr:hover { background: rgba(124, 58, 237, 0.06); }
-    tbody tr:hover td { color: var(--text-0); }
-    .td-num { font-weight: 800; color: var(--text-0); font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+    td:first-child { padding-left: 20px; }
+    td:last-child { padding-right: 20px; }
+    tr:last-child td { border-bottom: none; }
+    tbody tr { transition: background 0.1s; }
+    tbody tr:nth-child(even) { background: rgba(12, 12, 30, 0.3); }
+    tbody tr:hover { background: rgba(124, 58, 237, 0.05); }
+    .td-num { font-weight: 700; color: var(--text-0); font-variant-numeric: tabular-nums; }
 
-    /* Path chip */
+    /* Path chip — monospace, subtle bg */
     .path-chip {
-      display: inline-block; padding: 4px 10px; background: rgba(16, 16, 45, 0.5);
-      border-radius: 6px; font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
-      font-size: 0.78rem; color: var(--text-1); max-width: 280px; overflow: hidden;
+      display: inline-block; padding: 3px 8px;
+      background: rgba(20, 20, 50, 0.6); border: 1px solid rgba(30, 30, 65, 0.6);
+      border-radius: 5px; font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 0.76rem; color: var(--text-2); max-width: 260px; overflow: hidden;
       text-overflow: ellipsis; white-space: nowrap; vertical-align: middle;
-      border: 1px solid rgba(30, 30, 60, 0.5);
     }
 
-    /* Country cell */
-    .country-cell { display: inline-flex; align-items: center; gap: 7px; }
-    .country-cell .flag { font-size: 1.05rem; line-height: 1; }
-    .country-cell .name { font-size: 0.82rem; font-weight: 600; color: var(--accent-light); }
+    /* Country */
+    .country-cell { display: inline-flex; align-items: center; gap: 6px; }
+    .country-cell .flag { font-size: 0.95rem; line-height: 1; }
+    .country-cell .name { font-size: 0.8rem; font-weight: 600; color: var(--text-1); }
 
     /* Duration */
-    .dur { font-variant-numeric: tabular-nums; font-weight: 500; color: var(--text-1); }
-
-    /* Muted placeholder */
-    .na { color: var(--text-4); font-size: 0.78rem; }
+    .dur { font-variant-numeric: tabular-nums; font-weight: 500; color: var(--text-2); font-size: 0.8rem; }
 
     /* Session mono */
-    .sess-id { font-family: 'SF Mono', 'Cascadia Code', monospace; font-size: 0.72rem; color: var(--text-4); letter-spacing: 0.3px; }
+    .sess-id { font-family: 'SF Mono', 'Cascadia Code', monospace; font-size: 0.7rem; color: var(--text-4); letter-spacing: 0.3px; }
 
     /* ───── PILL BADGES ───── */
     .pill {
-      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
-      padding: 5px 12px; border-radius: var(--radius-pill); font-size: 0.72rem; font-weight: 600;
-      line-height: 1; white-space: nowrap; letter-spacing: 0.2px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+      padding: 4px 10px; border-radius: var(--radius-pill); font-size: 0.7rem; font-weight: 600;
+      line-height: 1; white-space: nowrap;
     }
-    .pill-human { background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.2); }
-    .pill-rank { background: var(--accent-bg); color: var(--accent-light); font-weight: 800; min-width: 28px; }
+    .pill-human { background: rgba(16, 185, 129, 0.1); color: #34d399; }
+    .pill-rank { background: var(--accent-bg); color: var(--accent-light); font-weight: 800; min-width: 26px; }
 
-    /* Bot pills — each bot gets a unique color */
-    .pill-bot { border: 1px solid rgba(245, 158, 11, 0.2); }
-    .pill-bot-orange { background: rgba(245, 158, 11, 0.1); color: #fbbf24; border-color: rgba(245, 158, 11, 0.2); }
-    .pill-bot-red { background: rgba(239, 68, 68, 0.1); color: #f87171; border-color: rgba(239, 68, 68, 0.2); }
-    .pill-bot-blue { background: rgba(59, 130, 246, 0.1); color: #60a5fa; border-color: rgba(59, 130, 246, 0.2); }
-    .pill-bot-cyan { background: rgba(6, 182, 212, 0.1); color: #22d3ee; border-color: rgba(6, 182, 212, 0.2); }
-    .pill-bot-purple { background: rgba(168, 85, 247, 0.1); color: #c084fc; border-color: rgba(168, 85, 247, 0.2); }
-    .pill-bot-pink { background: rgba(236, 72, 153, 0.1); color: #f472b6; border-color: rgba(236, 72, 153, 0.2); }
-    .pill-bot-teal { background: rgba(20, 184, 166, 0.1); color: #2dd4bf; border-color: rgba(20, 184, 166, 0.2); }
-    .pill-bot-lime { background: rgba(132, 204, 22, 0.1); color: #a3e635; border-color: rgba(132, 204, 22, 0.2); }
+    /* Bot pills — unique color per bot */
+    .pill-bot-orange { background: rgba(245, 158, 11, 0.1); color: #fbbf24; }
+    .pill-bot-red { background: rgba(239, 68, 68, 0.1); color: #f87171; }
+    .pill-bot-blue { background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
+    .pill-bot-cyan { background: rgba(6, 182, 212, 0.1); color: #22d3ee; }
+    .pill-bot-purple { background: rgba(168, 85, 247, 0.1); color: #c084fc; }
+    .pill-bot-pink { background: rgba(236, 72, 153, 0.1); color: #f472b6; }
+    .pill-bot-teal { background: rgba(20, 184, 166, 0.1); color: #2dd4bf; }
+    .pill-bot-lime { background: rgba(132, 204, 22, 0.1); color: #a3e635; }
 
     .empty { text-align: center; padding: 48px 24px; color: var(--text-4); font-size: 0.85rem; }
 
@@ -623,26 +621,37 @@ if (authenticated) {
         renderPages();
       }
 
+      var periodLabels = {
+        today: 'Bugun', week: 'Hafta', month: 'Oy',
+        '3months': '3 oy', '6months': '6 oy', '12months': '1 yil'
+      };
+
       function renderStatCards() {
-        const d = statsData;
-        const cards = [
-          { label: 'Bugun', data: d.today, active: currentPeriod === 'today' },
-          { label: 'Hafta (7 kun)', data: d.week, active: currentPeriod === 'week' },
-          { label: 'Oy (30 kun)', data: d.month, active: currentPeriod === 'month' },
-        ];
-        document.getElementById('statCards').innerHTML = cards.map(c => `
-          <div class="stat-card${c.active ? ' highlighted' : ''}">
-            <div class="sc-label">${c.label}</div>
-            <div class="sc-value">${c.data.sessions}</div>
+        var o = statsData.overview;
+        var label = periodLabels[currentPeriod] || currentPeriod;
+        document.getElementById('statCards').innerHTML = `
+          <div class="stat-card highlighted">
+            <div class="sc-label">${label} — jami</div>
+            <div class="sc-value">${o.sessions}</div>
             <div class="sc-sub">
-              <span class="sc-green">${c.data.humanSessions} sessiya</span>
-              <span class="sc-divider"></span>
-              <span class="sc-orange">${c.data.botViews} bot</span>
-              <span class="sc-divider"></span>
-              <span>${c.data.views} ko'rish</span>
+              <span>${o.views} ko'rish</span>
             </div>
           </div>
-        `).join('');
+          <div class="stat-card">
+            <div class="sc-label">Odamlar</div>
+            <div class="sc-value">${o.humanSessions}</div>
+            <div class="sc-sub">
+              <span class="sc-green">${o.humanViews} ko'rish</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-label">Botlar</div>
+            <div class="sc-value">${o.botSessions}</div>
+            <div class="sc-sub">
+              <span class="sc-orange">${o.botViews} ko'rish</span>
+            </div>
+          </div>
+        `;
       }
 
       function renderRecent() {
@@ -653,13 +662,18 @@ if (authenticated) {
         }
         document.getElementById('recentTable').innerHTML = `<table>
           <thead><tr><th>Turi</th><th>Sahifa</th><th>Mamlakat</th><th>Vaqt</th><th>Davomiylik</th></tr></thead>
-          <tbody>${rows.map(v => `<tr>
-            <td>${v.isBot ? '<span class="' + botPillClass(v.botName) + '">' + v.botName + '</span>' : '<span class="pill pill-human">Odam</span>'}</td>
-            <td><span class="path-chip">${v.path}</span></td>
-            <td>${v.country && v.country !== 'Local' && v.country !== '—' ? '<span class="country-cell"><span class="flag">' + countryFlag(v.country) + '</span><span class="name">' + v.country + '</span></span>' : '<span class="na"></span>'}</td>
-            <td style="color:var(--text-3)">${timeAgo(v.timestamp)}</td>
-            <td>${fmtDur(v.duration) ? '<span class="dur">' + fmtDur(v.duration) + '</span>' : '<span class="na"></span>'}</td>
-          </tr>`).join('')}</tbody>
+          <tbody>${rows.map(v => {
+            var type = v.isBot
+              ? '<span class="' + botPillClass(v.botName) + '">' + v.botName + '</span>'
+              : '<span class="pill pill-human">Odam</span>';
+            var path = '<span class="path-chip">' + v.path + '</span>';
+            var country = (v.country && v.country !== 'Local' && v.country !== '—')
+              ? '<span class="country-cell"><span class="flag">' + countryFlag(v.country) + '</span><span class="name">' + v.country + '</span></span>'
+              : '';
+            var time = '<span style="color:var(--text-3)">' + timeAgo(v.timestamp) + '</span>';
+            var dur = fmtDur(v.duration) ? '<span class="dur">' + fmtDur(v.duration) + '</span>' : '';
+            return '<tr><td>' + type + '</td><td>' + path + '</td><td>' + country + '</td><td>' + time + '</td><td>' + dur + '</td></tr>';
+          }).join('')}</tbody>
         </table>`;
       }
 
@@ -735,20 +749,24 @@ if (authenticated) {
         </table>`;
       }
 
-      function exportCSV() {
-        if (!statsData) return;
-        const all = [...statsData.recent, ...statsData.realUsers];
-        const seen = new Set();
-        const unique = all.filter(v => { if (seen.has(v.id)) return false; seen.add(v.id); return true; });
-        const header = 'Turi,Sahifa,Mamlakat,IP,Vaqt,Davomiylik,Sessiya,Bot nomi\n';
-        const rows = unique.map(v =>
-          [v.isBot ? 'Bot' : 'Odam', v.path, v.country, v.ip, v.timestamp, v.duration + 's', v.sessionId || '', v.botName || ''].map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')
-        ).join('\n');
-        const blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'starsjoy-analytics-' + currentPeriod + '.csv';
-        a.click();
+      async function exportCSV() {
+        var btn = document.querySelector('.tb-btn');
+        if (btn) { btn.disabled = true; btn.style.opacity = '0.5'; }
+        try {
+          var res = await fetch('/api/stats?period=' + currentPeriod + '&export=csv');
+          if (res.status === 401) { location.reload(); return; }
+          var visits = await res.json();
+          var header = 'Turi,Sahifa,Mamlakat,IP,Vaqt,Davomiylik,Sessiya,Bot nomi\n';
+          var rows = visits.map(function(v) {
+            return [v.isBot ? 'Bot' : 'Odam', v.path, v.country, v.ip, v.timestamp, v.duration + 's', v.sessionId || '', v.botName || ''].map(function(c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(',');
+          }).join('\n');
+          var blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'starsjoy-analytics-' + currentPeriod + '.csv';
+          a.click();
+        } catch (e) { console.error('Export error:', e); }
+        if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
       }
 
       async function changePassword() {

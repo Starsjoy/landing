@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { verifyToken, getFilteredStats, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
+import { verifyToken, getFilteredStats, getAllVisits, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
 
 let dbReady = false;
 
@@ -18,8 +18,16 @@ export const GET: APIRoute = async ({ request, cookies }) => {
   await ensureDB();
   const url = new URL(request.url);
   const period = url.searchParams.get('period') || 'today';
-  const stats = await getFilteredStats(period);
 
+  // CSV export — returns all visits for the period
+  if (url.searchParams.get('export') === 'csv') {
+    const visits = await getAllVisits(period);
+    return new Response(JSON.stringify(visits), {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const stats = await getFilteredStats(period);
   return new Response(JSON.stringify(stats), {
     headers: { 'Content-Type': 'application/json' },
   });

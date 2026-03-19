@@ -1,4 +1,5 @@
 import { neon } from '@neondatabase/serverless';
+import { createHmac, timingSafeEqual } from 'node:crypto';
 import { detectBot } from './bots';
 
 function getSQL() {
@@ -28,8 +29,6 @@ export async function initDB() {
   await sql`CREATE INDEX IF NOT EXISTS idx_visits_is_bot ON visits(is_bot)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_visits_path ON visits(path)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_visits_session ON visits(session_id)`;
-  // Add session_id column if missing (migration for existing tables)
-  await sql`ALTER TABLE visits ADD COLUMN IF NOT EXISTS session_id TEXT DEFAULT ''`;
   await sql`
     CREATE TABLE IF NOT EXISTS settings (
       key TEXT PRIMARY KEY,
@@ -86,7 +85,10 @@ async function updateCountry(vid: string, country: string) {
 
 function getSince(period: string): string {
   const d = new Date();
-  if (period === 'month') d.setDate(d.getDate() - 30);
+  if (period === '12months') d.setDate(d.getDate() - 365);
+  else if (period === '6months') d.setDate(d.getDate() - 180);
+  else if (period === '3months') d.setDate(d.getDate() - 90);
+  else if (period === 'month') d.setDate(d.getDate() - 30);
   else if (period === 'week') d.setDate(d.getDate() - 7);
   else d.setHours(0, 0, 0, 0);
   return d.toISOString();
@@ -96,33 +98,22 @@ export async function getFilteredStats(period: string = 'today') {
   const sql = getSQL();
   const since = getSince(period);
 
-  // Overview: sessions = distinct session_id, pageviews = count
-  const [todayStats] = await sql`
+  // Overview for selected period
+  const [overview] = await sql`
     SELECT COUNT(*) as views,
       COUNT(DISTINCT NULLIF(session_id, '')) as sessions,
       COUNT(*) FILTER (WHERE is_bot) as bot_views,
+      COUNT(*) FILTER (WHERE NOT is_bot) as human_views,
+      COUNT(DISTINCT NULLIF(session_id, '')) FILTER (WHERE is_bot) as bot_sessions,
       COUNT(DISTINCT NULLIF(session_id, '')) FILTER (WHERE NOT is_bot) as human_sessions
-    FROM visits WHERE timestamp >= CURRENT_DATE
-  `;
-  const [weekStats] = await sql`
-    SELECT COUNT(*) as views,
-      COUNT(DISTINCT NULLIF(session_id, '')) as sessions,
-      COUNT(*) FILTER (WHERE is_bot) as bot_views,
-      COUNT(DISTINCT NULLIF(session_id, '')) FILTER (WHERE NOT is_bot) as human_sessions
-    FROM visits WHERE timestamp >= NOW() - INTERVAL '7 days'
-  `;
-  const [monthStats] = await sql`
-    SELECT COUNT(*) as views,
-      COUNT(DISTINCT NULLIF(session_id, '')) as sessions,
-      COUNT(*) FILTER (WHERE is_bot) as bot_views,
-      COUNT(DISTINCT NULLIF(session_id, '')) FILTER (WHERE NOT is_bot) as human_sessions
-    FROM visits WHERE timestamp >= NOW() - INTERVAL '30 days'
+    FROM visits WHERE timestamp >= ${since}
   `;
 
   const botTraffic = await sql`
     SELECT bot_name as name,
       COUNT(*) as pages_crawled,
-      COUNT(DISTINCT (ip || '-' || TO_CHAR(timestamp - (EXTRACT(MINUTE FROM timestamp)::int % 15 || ' min')::interval, 'YYYY-MM-DD HH24:MI'))) as sessions,
+      -- Bot sessions: unique IP per 15-min window
+      COUNT(DISTINCT (ip || '-' || FLOOR(EXTRACT(EPOCH FROM timestamp) / 900)::text)) as sessions,
       MAX(timestamp) as last_seen,
       ARRAY_AGG(DISTINCT path) as pages
     FROM visits
@@ -168,14 +159,15 @@ export async function getFilteredStats(period: string = 'today') {
     LIMIT 15
   `;
 
-  const fmt = (r: any) => ({
-    views: +r.views, sessions: +r.sessions, botViews: +r.bot_views, humanSessions: +r.human_sessions,
-  });
-
   return {
-    today: fmt(todayStats),
-    week: fmt(weekStats),
-    month: fmt(monthStats),
+    overview: {
+      views: +overview.views,
+      sessions: +overview.sessions,
+      botViews: +overview.bot_views,
+      humanViews: +overview.human_views,
+      botSessions: +overview.bot_sessions,
+      humanSessions: +overview.human_sessions,
+    },
     botTraffic: botTraffic.map(b => ({ name: b.name, pagesCrawled: +b.pages_crawled, sessions: +b.sessions, lastSeen: b.last_seen, pages: b.pages })),
     realUsers: realUsers.map(r => ({
       id: r.id, path: r.path, ip: r.ip, country: r.country, sessionId: r.session_id,
@@ -196,6 +188,7 @@ export async function getFilteredStats(period: string = 'today') {
 
 // Auth
 const ENV_PASS = import.meta.env.ANALYTICS_PASSWORD || 'starsjoy2026';
+const HMAC_SECRET = import.meta.env.HMAC_SECRET || 'starsjoy-hmac-key-2026';
 
 export async function getPassword(): Promise<string> {
   try {
@@ -220,16 +213,36 @@ export async function verifyPassword(password: string): Promise<boolean> {
 }
 
 export function generateToken(password: string): string {
-  return Buffer.from(password + ':starsjoy-moda-2026').toString('base64');
+  return createHmac('sha256', HMAC_SECRET).update(password).digest('hex');
 }
 
 export async function verifyToken(token: string): Promise<boolean> {
   try {
-    const decoded = Buffer.from(token, 'base64').toString();
-    const pass = decoded.replace(':starsjoy-moda-2026', '');
+    if (!token || token.length !== 64) return false;
     const current = await getPassword();
-    return pass === current;
+    const expected = generateToken(current);
+    const a = Buffer.from(token);
+    const b = Buffer.from(expected);
+    return a.length === b.length && timingSafeEqual(a, b);
   } catch {
     return false;
   }
+}
+
+// Export all visits for CSV
+export async function getAllVisits(period: string) {
+  const sql = getSQL();
+  const since = getSince(period);
+  const rows = await sql`
+    SELECT id, path, ip, country, is_bot, bot_name, timestamp, referrer, duration, session_id
+    FROM visits
+    WHERE timestamp >= ${since}
+    ORDER BY timestamp DESC
+    LIMIT 10000
+  `;
+  return rows.map(r => ({
+    id: r.id, path: r.path, ip: r.ip, country: r.country,
+    isBot: r.is_bot, botName: r.bot_name, timestamp: r.timestamp,
+    referrer: r.referrer, duration: +r.duration, sessionId: r.session_id,
+  }));
 }
