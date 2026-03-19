@@ -7,4 +7,5 @@ export default defineConfig({
   output: 'static',
   adapter: vercel(),
   integrations: [sitemap()],
+  security: { checkOrigin: false },
 });
