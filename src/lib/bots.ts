@@ -2,7 +2,7 @@ export const BOT_PATTERNS: { name: string; pattern: RegExp }[] = [
   { name: 'GPTBot', pattern: /GPTBot/i },
   { name: 'ChatGPT-User', pattern: /ChatGPT-User/i },
   { name: 'ClaudeBot', pattern: /ClaudeBot|anthropic-ai/i },
-  { name: 'PerplexityBot', pattern: /PerplexityBot/i },
+  { name: 'PerplexityBot', pattern: /PerplexityBot|Perplexity-User|perplexity/i },
   { name: 'Google-Extended', pattern: /Google-Extended/i },
   { name: 'Googlebot', pattern: /Googlebot/i },
   { name: 'Bingbot', pattern: /bingbot/i },
@@ -19,6 +19,9 @@ export const BOT_PATTERNS: { name: string; pattern: RegExp }[] = [
   { name: 'CCBot', pattern: /CCBot/i },
   { name: 'DataForSeoBot', pattern: /DataForSeoBot/i },
   { name: 'Baiduspider', pattern: /Baiduspider/i },
+  { name: 'HeadlessChrome', pattern: /HeadlessChrome/i },
+  { name: 'Vercel', pattern: /vercel-screenshot|vercel-og/i },
+  { name: 'Lighthouse', pattern: /Lighthouse|PageSpeed/i },
 ];
 
 export function detectBot(ua: string): { isBot: boolean; botName: string } {
