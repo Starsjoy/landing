@@ -386,34 +386,43 @@ if (authenticated) {
     .panel-pad { padding: 20px 22px; }
 
     /* ───── TABLES ───── */
-    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.82rem; }
+    thead { position: sticky; top: 0; z-index: 2; }
     th {
-      background: var(--bg-3); color: var(--text-3); font-weight: 700; font-size: 0.72rem;
-      text-transform: uppercase; letter-spacing: 0.6px; text-align: left;
-      padding: 11px 18px; white-space: nowrap;
+      background: var(--bg-1); color: var(--text-2); font-weight: 700; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.8px; text-align: left;
+      padding: 13px 16px; white-space: nowrap; border-bottom: 2px solid var(--border-light);
     }
-    th:first-child { padding-left: 22px; }
-    th:last-child { padding-right: 22px; }
+    th:first-child { padding-left: 24px; }
+    th:last-child { padding-right: 24px; }
     td {
-      padding: 12px 18px; color: var(--text-1); white-space: nowrap;
-      border-bottom: 1px solid var(--border); font-size: 0.82rem;
+      padding: 14px 16px; color: var(--text-1); white-space: nowrap; font-size: 0.83rem;
+      border-bottom: 1px solid rgba(26, 26, 58, 0.6); vertical-align: middle;
     }
-    td:first-child { padding-left: 22px; }
-    td:last-child { padding-right: 22px; }
+    td:first-child { padding-left: 24px; }
+    td:last-child { padding-right: 24px; }
     tr:last-child td { border-bottom: none; }
-    tr:nth-child(even) td { background: rgba(16, 16, 40, 0.35); }
-    tr:hover td { background: var(--accent-bg); }
+    tbody tr:nth-child(odd) td { background: rgba(11, 11, 25, 0.4); }
+    tbody tr:nth-child(even) td { background: rgba(22, 22, 53, 0.3); }
+    tbody tr { transition: background 0.15s; }
+    tbody tr:hover td { background: rgba(124, 58, 237, 0.08); }
+    .td-bold { font-weight: 700; color: var(--text-0); }
+    .td-muted { color: var(--text-3); font-size: 0.78rem; }
+    .td-mono { font-family: 'SF Mono', 'Cascadia Code', monospace; font-size: 0.72rem; color: var(--text-4); }
+    .td-path { font-weight: 600; color: var(--text-0); max-width: 260px; overflow: hidden; text-overflow: ellipsis; }
 
     /* ───── BADGES ───── */
     .pill {
       display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 10px; border-radius: var(--radius-pill); font-size: 0.72rem; font-weight: 600;
+      padding: 4px 12px; border-radius: var(--radius-pill); font-size: 0.72rem; font-weight: 600;
+      line-height: 1; white-space: nowrap;
     }
-    .pill-bot { background: var(--orange-bg); color: var(--orange); }
-    .pill-human { background: var(--green-bg); color: var(--green); }
-    .pill-country { background: var(--accent-bg); color: var(--accent-light); }
+    .pill-bot { background: rgba(245, 158, 11, 0.1); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.15); }
+    .pill-human { background: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.15); }
+    .pill-country { background: rgba(124, 58, 237, 0.1); color: var(--accent-light); border: 1px solid rgba(124, 58, 237, 0.15); }
+    .pill-rank { background: var(--accent-bg); color: var(--accent); font-weight: 800; min-width: 28px; justify-content: center; }
 
-    .empty { text-align: center; padding: 40px 20px; color: var(--text-4); font-size: 0.85rem; }
+    .empty { text-align: center; padding: 48px 20px; color: var(--text-4); font-size: 0.85rem; }
 
     /* ───── COUNTRY CHART ───── */
     .c-row { display: flex; align-items: center; gap: 12px; padding: 7px 0; }
@@ -540,20 +549,21 @@ if (authenticated) {
       async function fetchStats() {
         var dot = document.querySelector('.live-dot');
         var txt = document.querySelector('.live-text');
-        if (dot) dot.style.background = 'var(--orange)';
+        if (dot) { dot.style.background = 'var(--orange)'; dot.style.boxShadow = '0 0 8px rgba(245,158,11,0.5)'; }
         if (txt) txt.style.color = 'var(--orange)';
         try {
           const res = await fetch('/api/stats?period=' + currentPeriod);
           if (res.status === 401) { location.reload(); return; }
           statsData = await res.json();
           renderAll();
-          if (dot) dot.style.background = 'var(--green)';
+          if (dot) { dot.style.background = 'var(--green)'; dot.style.boxShadow = '0 0 8px rgba(16,185,129,0.5)'; }
           if (txt) txt.style.color = 'var(--green)';
         } catch (e) {
-          if (dot) dot.style.background = 'var(--red)';
+          if (dot) { dot.style.background = 'var(--red)'; dot.style.boxShadow = '0 0 8px rgba(239,68,68,0.5)'; }
           if (txt) txt.style.color = 'var(--red)';
         }
-        document.getElementById('loading').hidden = true;
+        var loader = document.getElementById('loading');
+        if (loader) loader.style.display = 'none';
       }
 
       function renderAll() {
@@ -598,10 +608,10 @@ if (authenticated) {
           <thead><tr><th>Turi</th><th>Sahifa</th><th>Mamlakat</th><th>Vaqt</th><th>Davomiylik</th></tr></thead>
           <tbody>${rows.map(v => `<tr>
             <td>${v.isBot ? '<span class="pill pill-bot">' + v.botName + '</span>' : '<span class="pill pill-human">Odam</span>'}</td>
-            <td style="font-weight:600">${v.path || '—'}</td>
-            <td>${v.country ? countryFlag(v.country) + ' <span class="pill pill-country">' + v.country + '</span>' : '—'}</td>
-            <td>${timeAgo(v.timestamp)}</td>
-            <td>${v.duration > 0 ? v.duration + 's' : '—'}</td>
+            <td class="td-path">${v.path || '—'}</td>
+            <td>${v.country ? countryFlag(v.country) + ' <span class="pill pill-country">' + v.country + '</span>' : '<span class="td-muted">—</span>'}</td>
+            <td class="td-muted">${timeAgo(v.timestamp)}</td>
+            <td>${v.duration > 0 ? '<span class="td-bold">' + v.duration + 's</span>' : '<span class="td-muted">—</span>'}</td>
           </tr>`).join('')}</tbody>
         </table>`;
       }
@@ -613,13 +623,13 @@ if (authenticated) {
           return;
         }
         document.getElementById('botTable').innerHTML = `<table>
-          <thead><tr><th>Bot nomi</th><th>Sahifalar crawl</th><th>Sessiyalar</th><th>Oxirgi tashrif</th><th>Ko'rgan sahifalar</th></tr></thead>
+          <thead><tr><th>Bot nomi</th><th>Sahifalar</th><th>Sessiyalar</th><th>Oxirgi</th><th>Ko'rgan sahifalar</th></tr></thead>
           <tbody>${rows.map(b => `<tr>
             <td><span class="pill pill-bot">${b.name}</span></td>
-            <td style="font-weight:700;color:var(--text-0)">${b.pagesCrawled}</td>
+            <td class="td-bold">${b.pagesCrawled}</td>
             <td>${b.sessions}</td>
-            <td>${timeAgo(b.lastSeen)}</td>
-            <td style="max-width:240px;overflow:hidden;text-overflow:ellipsis">${b.pages.slice(0, 3).join(', ')}${b.pages.length > 3 ? ' <span style="color:var(--text-3)">+' + (b.pages.length - 3) + '</span>' : ''}</td>
+            <td class="td-muted">${timeAgo(b.lastSeen)}</td>
+            <td class="td-path">${b.pages.slice(0, 3).join(', ')}${b.pages.length > 3 ? ' <span class="td-muted">+' + (b.pages.length - 3) + '</span>' : ''}</td>
           </tr>`).join('')}</tbody>
         </table>`;
       }
@@ -633,11 +643,11 @@ if (authenticated) {
         document.getElementById('usersTable').innerHTML = `<table>
           <thead><tr><th>Sahifa</th><th>Mamlakat</th><th>Vaqt</th><th>Davomiylik</th><th>Sessiya</th></tr></thead>
           <tbody>${rows.map(u => `<tr>
-            <td style="font-weight:600">${u.path || '—'}</td>
-            <td>${u.country ? countryFlag(u.country) + ' <span class="pill pill-country">' + u.country + '</span>' : '—'}</td>
-            <td>${timeAgo(u.timestamp)}</td>
-            <td>${u.duration > 0 ? u.duration + 's' : '—'}</td>
-            <td><span style="font-size:0.7rem;color:var(--text-4);font-family:monospace">${(u.sessionId || '').slice(0, 8)}</span></td>
+            <td class="td-path">${u.path || '—'}</td>
+            <td>${u.country ? countryFlag(u.country) + ' <span class="pill pill-country">' + u.country + '</span>' : '<span class="td-muted">—</span>'}</td>
+            <td class="td-muted">${timeAgo(u.timestamp)}</td>
+            <td>${u.duration > 0 ? '<span class="td-bold">' + u.duration + 's</span>' : '<span class="td-muted">—</span>'}</td>
+            <td class="td-mono">${(u.sessionId || '').slice(0, 8)}</td>
           </tr>`).join('')}</tbody>
         </table>`;
       }
@@ -668,9 +678,9 @@ if (authenticated) {
         document.getElementById('pagesTable').innerHTML = `<table>
           <thead><tr><th>#</th><th>Sahifa</th><th>Sessiyalar</th><th>Ko'rishlar</th><th>Odam</th><th>Bot</th></tr></thead>
           <tbody>${rows.map((p, i) => `<tr>
-            <td style="color:var(--accent);font-weight:800">${i + 1}</td>
-            <td style="font-weight:600">${p.path}</td>
-            <td style="font-weight:700;color:var(--text-0)">${p.sessions}</td>
+            <td><span class="pill pill-rank">${i + 1}</span></td>
+            <td class="td-path">${p.path}</td>
+            <td class="td-bold">${p.sessions}</td>
             <td>${p.views}</td>
             <td><span class="pill pill-human">${p.humanViews}</span></td>
             <td><span class="pill pill-bot">${p.botViews}</span></td>
