@@ -7,10 +7,7 @@ let dbReady = false;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    if (!dbReady) {
-      await initDB();
-      dbReady = true;
-    }
+    if (!dbReady) { await initDB(); dbReady = true; }
 
     const body = await request.json();
     const ua = request.headers.get('user-agent') || '';
@@ -29,7 +26,7 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response('bad request', { status: 400 });
     }
 
-    // Skip tracking for dashboard and API routes
+    // Skip dashboard and API routes
     if (body.path.startsWith('/modad') || body.path.startsWith('/api')) {
       return new Response('skip', { status: 200 });
     }
@@ -40,6 +37,7 @@ export const POST: APIRoute = async ({ request }) => {
       ip,
       referrer: body.ref || '',
       vid: body.vid,
+      sessionId: body.sid || '',
     });
 
     return new Response('ok', { status: 200 });

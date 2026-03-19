@@ -1,0 +1,53 @@
+export const prerender = false;
+
+import type { APIRoute } from 'astro';
+import { verifyToken, getFilteredStats, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
+
+let dbReady = false;
+
+async function ensureDB() {
+  if (!dbReady) { await initDB(); dbReady = true; }
+}
+
+export const GET: APIRoute = async ({ request, cookies }) => {
+  const token = cookies.get('moda_token')?.value || '';
+  if (!await verifyToken(token)) {
+    return new Response('unauthorized', { status: 401 });
+  }
+
+  await ensureDB();
+  const url = new URL(request.url);
+  const period = url.searchParams.get('period') || 'today';
+  const stats = await getFilteredStats(period);
+
+  return new Response(JSON.stringify(stats), {
+    headers: { 'Content-Type': 'application/json' },
+  });
+};
+
+export const POST: APIRoute = async ({ request, cookies }) => {
+  const token = cookies.get('moda_token')?.value || '';
+  if (!await verifyToken(token)) {
+    return new Response('unauthorized', { status: 401 });
+  }
+
+  await ensureDB();
+  const body = await request.json();
+
+  if (body.action === 'change_password') {
+    const { current, newPass } = body;
+    const currentPass = await getPassword();
+    if (current !== currentPass) {
+      return new Response(JSON.stringify({ error: 'Joriy parol noto\'g\'ri' }), { status: 400 });
+    }
+    if (!newPass || newPass.length < 4) {
+      return new Response(JSON.stringify({ error: 'Yangi parol kamida 4 belgi bo\'lishi kerak' }), { status: 400 });
+    }
+    await setPassword(newPass);
+    const newToken = generateToken(newPass);
+    cookies.set('moda_token', newToken, { path: '/', httpOnly: true, secure: true, sameSite: 'lax', maxAge: 60 * 60 * 24 * 7 });
+    return new Response(JSON.stringify({ ok: true }), { headers: { 'Content-Type': 'application/json' } });
+  }
+
+  return new Response('unknown action', { status: 400 });
+};

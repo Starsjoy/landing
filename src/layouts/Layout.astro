@@ -101,15 +101,18 @@ const {
       };
       fImg.src = '/logo.png';
 
-      // Analytics tracking
+      // Analytics tracking with session
       (function(){
         if (/^\/(modad|api)/.test(location.pathname)) return;
         var vid = Math.random().toString(36).slice(2) + Date.now().toString(36);
+        var sid = (document.cookie.match(/sj_sid=([^;]+)/)||[])[1];
+        if (!sid) sid = Math.random().toString(36).slice(2) + Date.now().toString(36);
+        document.cookie = 'sj_sid=' + sid + ';path=/;max-age=1800;SameSite=Lax';
         var start = Date.now();
         fetch('/api/track', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ vid: vid, path: location.pathname, ref: document.referrer })
+          body: JSON.stringify({ vid: vid, sid: sid, path: location.pathname, ref: document.referrer })
         }).catch(function(){});
         document.addEventListener('visibilitychange', function() {
           if (document.visibilityState === 'hidden') {
