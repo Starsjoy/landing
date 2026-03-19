@@ -18,8 +18,6 @@ const {
   ogType = "website",
   hreflangs = []
 } = Astro.props;
-
-const pagePath = canonical ? new URL(canonical).pathname : '/';
 ---
 
 <!doctype html>
@@ -69,7 +67,6 @@ const pagePath = canonical ? new URL(canonical).pathname : '/';
     </script>
   </head>
   <body>
-    <noscript><img src={`/api/pixel?p=${encodeURIComponent(pagePath)}`} width="1" height="1" alt="" style="position:absolute;left:-9999px" /></noscript>
     <slot />
     <script>
       // Scroll animations

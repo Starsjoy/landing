@@ -4,7 +4,7 @@ import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://starsjoy.uz',
-  output: 'static',
+  output: 'server',
   adapter: vercel(),
   integrations: [sitemap()],
   security: { checkOrigin: false },
