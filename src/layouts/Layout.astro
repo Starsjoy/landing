@@ -39,16 +39,18 @@ const {
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://starsjoy.uz/logo.png" />
+    <meta property="og:image" content="https://starsjoy.uz/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="StarsJoy" />
     <meta property="og:locale" content={lang === "ru" ? "ru_RU" : "uz_UZ"} />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://starsjoy.uz/logo.png" />
+    <meta name="twitter:image" content="https://starsjoy.uz/og-image.png" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/logo.png" />
@@ -98,6 +100,25 @@ const {
         if (link) link.href = c.toDataURL('image/png');
       };
       fImg.src = '/logo.png';
+
+      // Analytics tracking
+      (function(){
+        if (/^\/(modad|api)/.test(location.pathname)) return;
+        var vid = Math.random().toString(36).slice(2) + Date.now().toString(36);
+        var start = Date.now();
+        fetch('/api/track', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ vid: vid, path: location.pathname, ref: document.referrer })
+        }).catch(function(){});
+        document.addEventListener('visibilitychange', function() {
+          if (document.visibilityState === 'hidden') {
+            navigator.sendBeacon('/api/track', JSON.stringify({
+              vid: vid, dur: Math.round((Date.now() - start) / 1000)
+            }));
+          }
+        });
+      })();
 
       // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
