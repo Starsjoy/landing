@@ -583,6 +583,11 @@ if (authenticated && !dbReady) {
         return String.fromCodePoint(...[...code.toUpperCase()].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
       }
 
+      function fmtPath(p) {
+        if (!p || p === '/') return 'Asosiy sahifa';
+        return p;
+      }
+
       var botColors = {};
       var colorPool = ['orange','blue','purple','cyan','red','pink','teal','lime'];
       var colorIdx = 0;
@@ -666,7 +671,7 @@ if (authenticated && !dbReady) {
             var type = v.isBot
               ? '<span class="' + botPillClass(v.botName) + '">' + v.botName + '</span>'
               : '<span class="pill pill-human">Odam</span>';
-            var path = '<span class="path-chip">' + v.path + '</span>';
+            var path = '<span class="path-chip">' + fmtPath(v.path) + '</span>';
             var country = (v.country && v.country !== 'Local' && v.country !== '—')
               ? '<span class="country-cell"><span class="flag">' + countryFlag(v.country) + '</span><span class="name">' + v.country + '</span></span>'
               : '';
@@ -690,7 +695,7 @@ if (authenticated && !dbReady) {
             <td class="td-num">${b.pagesCrawled}</td>
             <td class="td-num">${b.sessions}</td>
             <td style="color:var(--text-3)">${timeAgo(b.lastSeen)}</td>
-            <td>${b.pages.slice(0, 3).map(p => '<span class="path-chip">' + p + '</span> ').join('')}${b.pages.length > 3 ? '<span class="na">+' + (b.pages.length - 3) + '</span>' : ''}</td>
+            <td>${b.pages.slice(0, 3).map(p => '<span class="path-chip">' + fmtPath(p) + '</span> ').join('')}${b.pages.length > 3 ? '<span class="na">+' + (b.pages.length - 3) + '</span>' : ''}</td>
           </tr>`).join('')}</tbody>
         </table>`;
       }
@@ -704,7 +709,7 @@ if (authenticated && !dbReady) {
         document.getElementById('usersTable').innerHTML = `<table>
           <thead><tr><th>Sahifa</th><th>Mamlakat</th><th>Vaqt</th><th>Davomiylik</th><th>Sessiya</th></tr></thead>
           <tbody>${rows.map(u => `<tr>
-            <td><span class="path-chip">${u.path}</span></td>
+            <td><span class="path-chip">${fmtPath(u.path)}</span></td>
             <td>${u.country && u.country !== 'Local' && u.country !== '—' ? '<span class="country-cell"><span class="flag">' + countryFlag(u.country) + '</span><span class="name">' + u.country + '</span></span>' : '<span class="na"></span>'}</td>
             <td style="color:var(--text-3)">${timeAgo(u.timestamp)}</td>
             <td>${fmtDur(u.duration) ? '<span class="dur">' + fmtDur(u.duration) + '</span>' : '<span class="na"></span>'}</td>
@@ -740,7 +745,7 @@ if (authenticated && !dbReady) {
           <thead><tr><th>#</th><th>Sahifa</th><th>Sessiyalar</th><th>Ko'rishlar</th><th>Odam</th><th>Bot</th></tr></thead>
           <tbody>${rows.map((p, i) => `<tr>
             <td><span class="pill pill-rank">${i + 1}</span></td>
-            <td><span class="path-chip">${p.path}</span></td>
+            <td><span class="path-chip">${fmtPath(p.path)}</span></td>
             <td class="td-num">${p.sessions}</td>
             <td style="color:var(--text-2)">${p.views}</td>
             <td><span class="pill pill-human">${p.humanViews}</span></td>
