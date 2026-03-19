@@ -430,6 +430,14 @@ if (authenticated && !dbReady) {
     /* Session mono */
     .sess-id { font-family: 'SF Mono', 'Cascadia Code', monospace; font-size: 0.7rem; color: var(--text-4); letter-spacing: 0.3px; }
 
+    /* User-Agent chip */
+    .ua-chip {
+      display: inline-block; padding: 2px 7px; background: rgba(16, 16, 40, 0.4);
+      border-radius: 4px; font-family: 'SF Mono', 'Cascadia Code', monospace;
+      font-size: 0.68rem; color: var(--text-3); max-width: 220px; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap; cursor: help;
+    }
+
     /* ───── PILL BADGES ───── */
     .pill {
       display: inline-flex; align-items: center; justify-content: center; gap: 4px;
@@ -666,7 +674,7 @@ if (authenticated && !dbReady) {
           return;
         }
         document.getElementById('recentTable').innerHTML = `<table>
-          <thead><tr><th>Turi</th><th>Sahifa</th><th>Mamlakat</th><th>Vaqt</th><th>Davomiylik</th></tr></thead>
+          <thead><tr><th>Turi</th><th>Sahifa</th><th>Mamlakat</th><th>Vaqt</th><th>Davomiylik</th><th>User-Agent</th></tr></thead>
           <tbody>${rows.map(v => {
             var type = v.isBot
               ? '<span class="' + botPillClass(v.botName) + '">' + v.botName + '</span>'
@@ -677,7 +685,8 @@ if (authenticated && !dbReady) {
               : '';
             var time = '<span style="color:var(--text-3)">' + timeAgo(v.timestamp) + '</span>';
             var dur = fmtDur(v.duration) ? '<span class="dur">' + fmtDur(v.duration) + '</span>' : '';
-            return '<tr><td>' + type + '</td><td>' + path + '</td><td>' + country + '</td><td>' + time + '</td><td>' + dur + '</td></tr>';
+            var ua = v.userAgent ? '<span class="ua-chip" title="' + v.userAgent.replace(/"/g, '&quot;') + '">' + v.userAgent.slice(0, 40) + (v.userAgent.length > 40 ? '...' : '') + '</span>' : '';
+            return '<tr><td>' + type + '</td><td>' + path + '</td><td>' + country + '</td><td>' + time + '</td><td>' + dur + '</td><td>' + ua + '</td></tr>';
           }).join('')}</tbody>
         </table>`;
       }
@@ -689,12 +698,13 @@ if (authenticated && !dbReady) {
           return;
         }
         document.getElementById('botTable').innerHTML = `<table>
-          <thead><tr><th>Bot</th><th>Sahifalar crawl</th><th>Sessiyalar</th><th>Oxirgi tashrif</th><th>Ko'rgan sahifalar</th></tr></thead>
+          <thead><tr><th>Bot</th><th>Sahifalar</th><th>Sessiyalar</th><th>Oxirgi</th><th>User-Agent</th><th>Sahifalar</th></tr></thead>
           <tbody>${rows.map(b => `<tr>
             <td><span class="${botPillClass(b.name)}">${b.name}</span></td>
             <td class="td-num">${b.pagesCrawled}</td>
             <td class="td-num">${b.sessions}</td>
             <td style="color:var(--text-3)">${timeAgo(b.lastSeen)}</td>
+            <td><span class="ua-chip" title="${(b.sampleUA || '').replace(/"/g, '&quot;')}">${(b.sampleUA || '').slice(0, 50)}${b.sampleUA && b.sampleUA.length > 50 ? '...' : ''}</span></td>
             <td>${b.pages.slice(0, 3).map(p => '<span class="path-chip">' + fmtPath(p) + '</span> ').join('')}${b.pages.length > 3 ? '<span class="na">+' + (b.pages.length - 3) + '</span>' : ''}</td>
           </tr>`).join('')}</tbody>
         </table>`;

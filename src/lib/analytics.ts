@@ -115,7 +115,8 @@ export async function getFilteredStats(period: string = 'today') {
       -- Bot sessions: unique IP per 15-min window
       COUNT(DISTINCT (ip || '-' || FLOOR(EXTRACT(EPOCH FROM timestamp) / 900)::text)) as sessions,
       MAX(timestamp) as last_seen,
-      ARRAY_AGG(DISTINCT path) as pages
+      ARRAY_AGG(DISTINCT path) as pages,
+      (ARRAY_AGG(user_agent ORDER BY timestamp DESC))[1] as sample_ua
     FROM visits
     WHERE is_bot = true AND bot_name != '' AND timestamp >= ${since}
     GROUP BY bot_name
@@ -168,7 +169,7 @@ export async function getFilteredStats(period: string = 'today') {
       botSessions: +overview.bot_sessions,
       humanSessions: +overview.human_sessions,
     },
-    botTraffic: botTraffic.map(b => ({ name: b.name, pagesCrawled: +b.pages_crawled, sessions: +b.sessions, lastSeen: b.last_seen, pages: b.pages })),
+    botTraffic: botTraffic.map(b => ({ name: b.name, pagesCrawled: +b.pages_crawled, sessions: +b.sessions, lastSeen: b.last_seen, pages: b.pages, sampleUA: b.sample_ua || '' })),
     realUsers: realUsers.map(r => ({
       id: r.id, path: r.path, ip: r.ip, country: r.country, sessionId: r.session_id,
       timestamp: r.timestamp, referrer: r.referrer, duration: +r.duration, userAgent: r.user_agent,
