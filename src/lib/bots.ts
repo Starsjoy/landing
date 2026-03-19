@@ -1,11 +1,11 @@
-export const BOT_PATTERNS: { name: string; pattern: RegExp }[] = [
-  // AI chatbot crawlers
+// AI botlar — faqat shularni track qilamiz
+export const AI_BOT_PATTERNS: { name: string; pattern: RegExp }[] = [
   { name: 'GPTBot', pattern: /GPTBot/i },
   { name: 'ChatGPT-User', pattern: /ChatGPT-User/i },
   { name: 'ClaudeBot', pattern: /ClaudeBot|anthropic-ai/i },
   { name: 'PerplexityBot', pattern: /PerplexityBot|Perplexity-User|perplexity/i },
   { name: 'CohereBot', pattern: /Cohere-ai|cohere/i },
-  { name: 'Meta AI', pattern: /Meta-ExternalAgent|FacebookBot|meta-externalagent/i },
+  { name: 'Meta AI', pattern: /Meta-ExternalAgent|meta-externalagent/i },
   { name: 'BraveSearch', pattern: /BraveSearch/i },
   { name: 'YouBot', pattern: /YouBot/i },
   { name: 'AI2Bot', pattern: /AI2Bot|Ai2Bot/i },
@@ -20,40 +20,45 @@ export const BOT_PATTERNS: { name: string; pattern: RegExp }[] = [
   { name: 'Timpibot', pattern: /Timpibot/i },
   { name: 'ImagesiftBot', pattern: /ImagesiftBot/i },
   { name: 'Kangaroo Bot', pattern: /Kangaroo Bot/i },
-
-  // Search engine bots
-  { name: 'Googlebot', pattern: /Googlebot/i },
-  { name: 'Bingbot', pattern: /bingbot/i },
-  { name: 'YandexBot', pattern: /YandexBot/i },
-  { name: 'Baiduspider', pattern: /Baiduspider/i },
-  { name: 'Applebot', pattern: /Applebot/i },
-
-  // Social media
-  { name: 'Twitterbot', pattern: /Twitterbot/i },
-
-  // SEO bots
-  { name: 'SemrushBot', pattern: /SemrushBot/i },
-  { name: 'AhrefsBot', pattern: /AhrefsBot/i },
-  { name: 'DotBot', pattern: /DotBot/i },
-  { name: 'MJ12bot', pattern: /MJ12bot/i },
-  { name: 'DataForSeoBot', pattern: /DataForSeoBot/i },
-
-  // Tools & internal
-  { name: 'Lighthouse', pattern: /Lighthouse|PageSpeed/i },
-  { name: 'HeadlessChrome', pattern: /HeadlessChrome/i },
-  { name: 'Vercel', pattern: /vercel-screenshot|vercel-og/i },
 ];
 
-export function detectBot(ua: string): { isBot: boolean; botName: string } {
-  if (!ua) return { isBot: false, botName: '' };
-  for (const bot of BOT_PATTERNS) {
-    if (bot.pattern.test(ua)) {
-      return { isBot: true, botName: bot.name };
-    }
+// Ignore — umuman track qilinmaydi (internal tools, SEO, social)
+const IGNORE_PATTERNS = [
+  /HeadlessChrome/i,
+  /vercel-screenshot|vercel-og/i,
+  /Lighthouse|PageSpeed/i,
+  /Googlebot/i,
+  /bingbot/i,
+  /YandexBot/i,
+  /Baiduspider/i,
+  /Applebot/i,
+  /facebookexternalhit|Facebot/i,
+  /Twitterbot/i,
+  /SemrushBot/i,
+  /AhrefsBot/i,
+  /DotBot/i,
+  /MJ12bot/i,
+  /DataForSeoBot/i,
+];
+
+export function detectBot(ua: string): { isBot: boolean; isIgnored: boolean; botName: string } {
+  if (!ua) return { isBot: false, isIgnored: false, botName: '' };
+
+  // Ignore list — skip completely
+  for (const pattern of IGNORE_PATTERNS) {
+    if (pattern.test(ua)) return { isBot: true, isIgnored: true, botName: '' };
   }
-  // Generic bot detection
+
+  // AI bot — track
+  for (const bot of AI_BOT_PATTERNS) {
+    if (bot.pattern.test(ua)) return { isBot: true, isIgnored: false, botName: bot.name };
+  }
+
+  // Generic bot keywords — ignore
   if (/bot|crawl|spider|scrape|fetch|http|curl|wget/i.test(ua)) {
-    return { isBot: true, botName: 'Boshqa bot' };
+    return { isBot: true, isIgnored: true, botName: '' };
   }
-  return { isBot: false, botName: '' };
+
+  // Odam
+  return { isBot: false, isIgnored: false, botName: '' };
 }
