@@ -1,5 +1,3 @@
-import { next } from '@vercel/edge';
-
 const BOT_PATTERNS = [
   { name: 'GPTBot', pattern: /GPTBot/i },
   { name: 'ChatGPT-User', pattern: /ChatGPT-User/i },
@@ -49,32 +47,28 @@ export default async function middleware(request: Request) {
     path.includes('.') ||
     path.startsWith('/favicon')
   ) {
-    return next();
+    return;
   }
 
   const ua = request.headers.get('user-agent') || '';
   const { isBot, botName } = detectBot(ua);
 
   if (isBot) {
-    const dbUrl = process.env.DATABASE_URL;
-    if (dbUrl) {
-      const ip = request.headers.get('x-vercel-forwarded-for')?.split(',')[0]?.trim()
-        || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-        || request.headers.get('x-real-ip')
-        || '127.0.0.1';
-      const vid = 'bot-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
-      const sid = 'bot-' + botName.toLowerCase().replace(/[^a-z0-9]/g, '') + '-' + ip.replace(/\./g, '-');
+    const ip = request.headers.get('x-vercel-forwarded-for')?.split(',')[0]?.trim()
+      || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+      || request.headers.get('x-real-ip')
+      || '127.0.0.1';
+    const vid = 'bot-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+    const sid = 'bot-' + botName.toLowerCase().replace(/[^a-z0-9]/g, '') + '-' + ip.replace(/\./g, '-');
 
-      // Fire and forget — don't block the response
-      fetch(new URL('/api/track', request.url), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'User-Agent': ua, 'X-Real-IP': ip },
-        body: JSON.stringify({ vid, sid, path, ref: '' }),
-      }).catch(() => {});
-    }
+    // Fire and forget — don't block the response
+    const origin = url.origin;
+    fetch(origin + '/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'User-Agent': ua, 'X-Real-IP': ip },
+      body: JSON.stringify({ vid, sid, path, ref: '' }),
+    }).catch(() => {});
   }
-
-  return next();
 }
 
 export const config = {
