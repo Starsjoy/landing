@@ -11,7 +11,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     const body = await request.json();
     const ua = request.headers.get('user-agent') || '';
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    const ip = request.headers.get('x-vercel-forwarded-for')?.split(',')[0]?.trim()
+      || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
       || request.headers.get('x-real-ip')
       || '127.0.0.1';
 
