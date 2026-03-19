@@ -149,8 +149,15 @@ if (authenticated && !dbReady) {
           <div id="section-overview" class="section-content" hidden>
             <div class="stat-cards" id="statCards"></div>
             <div class="panel">
-              <div class="panel-header">
-                <h2>So'nggi tashriflar</h2>
+              <div class="panel-header" style="display:flex;align-items:center;justify-content:space-between">
+                <h2>Barcha tashriflar</h2>
+                <div class="row-filters" id="rowFilters">
+                  <button class="rf-btn active" onclick="setRowLimit(10)">10</button>
+                  <button class="rf-btn" onclick="setRowLimit(20)">20</button>
+                  <button class="rf-btn" onclick="setRowLimit(50)">50</button>
+                  <button class="rf-btn" onclick="setRowLimit(100)">100</button>
+                  <button class="rf-btn" onclick="setRowLimit(0)">Barchasi</button>
+                </div>
               </div>
               <div class="panel-body" id="recentTable"></div>
             </div>
@@ -459,6 +466,16 @@ if (authenticated && !dbReady) {
 
     .empty { text-align: center; padding: 48px 24px; color: var(--text-4); font-size: 0.85rem; }
 
+    /* Row filters */
+    .row-filters { display: flex; gap: 2px; background: var(--bg-3); border-radius: 6px; padding: 2px; }
+    .rf-btn {
+      padding: 4px 10px; border: none; border-radius: 4px; background: transparent;
+      color: var(--text-3); font-size: 0.72rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .rf-btn.active { background: var(--accent); color: #fff; }
+    .rf-btn:hover:not(.active) { color: var(--text-1); }
+
     /* ───── COUNTRY CHART ───── */
     .c-row { display: flex; align-items: center; gap: 12px; padding: 7px 0; }
     .c-flag { font-size: 1rem; width: 24px; text-align: center; }
@@ -532,6 +549,15 @@ if (authenticated && !dbReady) {
       let currentSection = 'overview';
       let currentPeriod = 'today';
       let statsData = null;
+      let rowLimit = 10;
+
+      function setRowLimit(n) {
+        rowLimit = n;
+        document.querySelectorAll('.rf-btn').forEach(b => {
+          b.classList.toggle('active', (n === 0 && b.textContent === 'Barchasi') || (n > 0 && b.textContent === String(n)));
+        });
+        renderRecent();
+      }
 
       function showSection(name) {
         currentSection = name;
@@ -668,12 +694,14 @@ if (authenticated && !dbReady) {
       }
 
       function renderRecent() {
-        const rows = statsData.recent;
-        if (!rows.length) {
+        const allRows = statsData.recent;
+        if (!allRows.length) {
           document.getElementById('recentTable').innerHTML = '<div class="empty">Tashriflar hali yo\'q</div>';
           return;
         }
-        document.getElementById('recentTable').innerHTML = `<table>
+        const rows = rowLimit > 0 ? allRows.slice(0, rowLimit) : allRows;
+        var countText = rowLimit > 0 ? rows.length + ' / ' + allRows.length : allRows.length + ' ta';
+        document.getElementById('recentTable').innerHTML = `<div style="padding:8px 20px 0;font-size:0.72rem;color:var(--text-3)">${countText} tashrif</div><table>
           <thead><tr><th>Turi</th><th>Sahifa</th><th>Mamlakat</th><th>Vaqt</th><th>Davomiylik</th><th>User-Agent</th></tr></thead>
           <tbody>${rows.map(v => {
             var type = v.isBot

@@ -136,7 +136,7 @@ export async function getFilteredStats(period: string = 'today') {
     FROM visits
     WHERE timestamp >= ${since}
     ORDER BY timestamp DESC
-    LIMIT 10
+    LIMIT 500
   `;
 
   const topPages = await sql`
