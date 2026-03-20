@@ -532,15 +532,103 @@ if (authenticated && !dbReady) {
       .grid-2 { grid-template-columns: 1fr; }
       .settings-grid { grid-template-columns: 1fr; }
     }
-    @media (max-width: 540px) {
-      .content { padding: 16px; }
-      .topbar { padding: 14px 16px; gap: 10px; }
-      .tb-filters button { padding: 6px 12px; font-size: 0.75rem; }
+
+    @media (max-width: 640px) {
+      .content { padding: 14px; }
+
+      /* ── Topbar ── */
+      .topbar {
+        padding: 12px 14px; gap: 8px;
+        flex-wrap: wrap;
+      }
+      .menu-btn { padding: 10px 12px; }
+
+      /* Filter buttons — horizontal scroll */
+      .tb-filters {
+        order: 3; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; gap: 1px; padding: 3px;
+      }
+      .tb-filters::-webkit-scrollbar { display: none; }
+      .tb-filters button {
+        padding: 8px 16px; font-size: 0.78rem; flex-shrink: 0; white-space: nowrap;
+      }
+      .tb-right { gap: 10px; }
+      .tb-btn { padding: 10px 14px; }
       .tb-btn span { display: none; }
-      .stat-card .sc-value { font-size: 1.8rem; }
+
+      /* ── Stat cards — 2 col grid, 3rd full width ── */
+      .stat-cards { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+      .stat-cards .stat-card:last-child { grid-column: 1 / -1; }
+      .stat-card { padding: 16px; border-radius: 10px; }
+      .stat-card .sc-value { font-size: 1.6rem; margin-bottom: 6px; }
+      .stat-card .sc-label { font-size: 0.65rem; margin-bottom: 6px; }
+      .stat-card .sc-sub { font-size: 0.72rem; gap: 8px; }
+
+      /* ── Panels ── */
+      .panel { border-radius: 10px; margin-bottom: 14px; }
       .panel-header { padding: 14px 16px; }
-      th, td { padding: 10px 12px; }
-      th:first-child, td:first-child { padding-left: 16px; }
+      .panel-header h2 { font-size: 0.78rem; }
+
+      /* Panel header flex — stack on mobile */
+      .panel-header[style] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+      }
+
+      /* Row filters — scrollable */
+      .row-filters {
+        overflow-x: auto; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; width: 100%;
+      }
+      .row-filters::-webkit-scrollbar { display: none; }
+      .rf-btn { padding: 6px 12px; flex-shrink: 0; }
+
+      /* ── Tables — horizontal scroll with fade hint ── */
+      .panel-body { position: relative; padding: 10px 0 4px; }
+      .panel-body::after {
+        content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 24px;
+        background: linear-gradient(to right, transparent, var(--bg-2));
+        pointer-events: none; opacity: 0; transition: opacity 0.2s;
+      }
+      .panel-body.has-scroll::after { opacity: 1; }
+
+      table { min-width: 560px; }
+      th, td { padding: 8px 10px; font-size: 0.78rem; height: auto; min-height: 40px; }
+      th:first-child, td:first-child { padding-left: 14px; }
+      th:last-child, td:last-child { padding-right: 14px; }
+      th { font-size: 0.68rem; padding-bottom: 8px; }
+
+      .path-chip { max-width: 160px; font-size: 0.72rem; }
+      .ua-chip { max-width: 140px; font-size: 0.65rem; }
+      .pill { padding: 3px 8px; font-size: 0.66rem; }
+
+      /* ── Country chart ── */
+      .c-row { gap: 8px; padding: 6px 0; }
+      .c-bar-bg { height: 22px; }
+      .c-code { font-size: 0.72rem; }
+      .c-val { font-size: 0.72rem; }
+
+      /* ── Settings ── */
+      .form-stack input { padding: 12px 14px; font-size: 0.85rem; }
+      .form-btn { padding: 12px 20px; font-size: 0.85rem; width: 100%; text-align: center; }
+      .info-item { font-size: 0.78rem; padding: 8px 0; }
+
+      /* ── Login ── */
+      .login-box { padding: 36px 24px; border-radius: 16px; }
+      .login-box h1 { font-size: 1.15rem; }
+      .login-box input { padding: 14px 16px; font-size: 0.92rem; }
+      .login-box button { padding: 14px; font-size: 0.92rem; }
+    }
+
+    /* Extra small — phones under 380px */
+    @media (max-width: 380px) {
+      .content { padding: 10px; }
+      .topbar { padding: 10px 12px; }
+      .stat-cards { grid-template-columns: 1fr; gap: 8px; }
+      .stat-cards .stat-card:last-child { grid-column: auto; }
+      .stat-card .sc-value { font-size: 1.4rem; }
+      .tb-filters button { padding: 7px 12px; font-size: 0.72rem; }
     }
   </style>
 
@@ -839,6 +927,19 @@ if (authenticated && !dbReady) {
           msg.className = 'form-msg err'; msg.textContent = 'Server xatoligi';
         }
       }
+
+      // Detect horizontal scroll on panel-body elements for fade hint
+      function checkScrollHints() {
+        document.querySelectorAll('.panel-body').forEach(el => {
+          el.classList.toggle('has-scroll', el.scrollWidth > el.clientWidth + 4);
+          el.addEventListener('scroll', function() {
+            this.classList.toggle('has-scroll', this.scrollLeft < this.scrollWidth - this.clientWidth - 4);
+          }, { passive: true });
+        });
+      }
+
+      var _origRenderAll = renderAll;
+      renderAll = function() { _origRenderAll(); setTimeout(checkScrollHints, 50); };
 
       showSection('overview');
       fetchStats();
