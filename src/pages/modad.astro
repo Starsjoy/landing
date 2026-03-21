@@ -201,15 +201,36 @@ if (authenticated && !dbReady) {
 
           <!-- Sales -->
           <div id="section-sales" class="section-content" hidden>
-            <div class="stat-cards sales-cards" id="salesCards"></div>
-            <div class="grid-2">
-              <div class="panel">
-                <div class="panel-header"><h2>Oxirgi sotuvlar</h2></div>
-                <div class="panel-body" id="salesTable"></div>
+            <div class="sales-filter">
+              <div class="sf-tabs">
+                <button class="sf-tab active" data-speriod="today" onclick="setSalesPeriod('today')">Bugun</button>
+                <button class="sf-tab" data-speriod="week" onclick="setSalesPeriod('week')">Hafta</button>
+                <button class="sf-tab" data-speriod="month" onclick="setSalesPeriod('month')">Oy</button>
+                <button class="sf-tab" data-speriod="all" onclick="setSalesPeriod('all')">Barchasi</button>
               </div>
+              <div class="sf-date">
+                <input type="date" id="salesDateFrom" onchange="setSalesCustomDate()" />
+                <span class="sf-dash">—</span>
+                <input type="date" id="salesDateTo" onchange="setSalesCustomDate()" />
+              </div>
+            </div>
+            <div class="stat-cards sales-cards" id="salesCards"></div>
+            <div class="panel">
+              <div class="panel-header"><h2>Oxirgi sotuvlar</h2></div>
+              <div class="panel-body" id="salesTable"></div>
+            </div>
+            <div class="grid-3">
               <div class="panel">
                 <div class="panel-header"><h2>Kunlik daromad</h2></div>
                 <div class="panel-body panel-pad" id="dailyRevenue"></div>
+              </div>
+              <div class="panel">
+                <div class="panel-header"><h2>Top xaridorlar</h2></div>
+                <div class="panel-body" id="topBuyers"></div>
+              </div>
+              <div class="panel">
+                <div class="panel-header"><h2>Kunlik stars miqdori</h2></div>
+                <div class="panel-body panel-pad" id="dailyStars"></div>
               </div>
             </div>
           </div>
@@ -488,6 +509,31 @@ if (authenticated && !dbReady) {
     .empty { text-align: center; padding: 48px 24px; color: var(--text-4); font-size: 0.85rem; }
 
     /* ───── SALES ───── */
+    .sales-filter {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap;
+    }
+    .sf-tabs {
+      display: flex; gap: 2px; background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 3px;
+    }
+    .sf-tab {
+      padding: 7px 16px; border: none; border-radius: 6px; background: transparent;
+      color: var(--text-3); font-size: 0.8rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .sf-tab.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(124,58,237,0.3); }
+    .sf-tab:hover:not(.active) { color: var(--text-1); }
+    .sf-date {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sf-dash { color: var(--text-4); font-size: 0.8rem; }
+    .sf-date input[type="date"] {
+      padding: 7px 12px; background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text-1); font-size: 0.8rem;
+      font-family: inherit; outline: none; transition: border-color 0.2s;
+      color-scheme: dark;
+    }
+    .sf-date input[type="date"]:focus { border-color: var(--accent); }
     .sales-cards { grid-template-columns: repeat(4, 1fr); }
     .pill-stars { background: rgba(250, 204, 21, 0.1); color: #facc15; }
     .pill-gift { background: rgba(52, 211, 153, 0.1); color: #34d399; }
@@ -529,9 +575,11 @@ if (authenticated && !dbReady) {
     }
     .c-val { width: 40px; text-align: right; font-size: 0.78rem; font-weight: 700; color: var(--text-1); }
 
-    /* ───── TWO-COL GRID ───── */
+    /* ───── GRIDS ───── */
     .grid-2 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
     .grid-2 .panel { margin-bottom: 0; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .grid-3 .panel { margin-bottom: 0; }
 
     /* ───── SETTINGS ───── */
     .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 720px; }
@@ -572,6 +620,7 @@ if (authenticated && !dbReady) {
       .stat-cards { grid-template-columns: 1fr; }
       .sales-cards { grid-template-columns: 1fr 1fr; }
       .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
       .settings-grid { grid-template-columns: 1fr; }
     }
 
@@ -655,6 +704,15 @@ if (authenticated && !dbReady) {
       .form-stack input { padding: 12px 14px; font-size: 0.85rem; }
       .form-btn { padding: 12px 20px; font-size: 0.85rem; width: 100%; text-align: center; }
       .info-item { font-size: 0.78rem; padding: 8px 0; }
+
+      /* ── Sales filter ── */
+      .sales-filter { flex-direction: column; align-items: stretch; gap: 10px; }
+      .sf-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .sf-tabs::-webkit-scrollbar { display: none; }
+      .sf-tab { flex-shrink: 0; padding: 8px 14px; }
+      .sf-date { width: 100%; }
+      .sf-date input[type="date"] { flex: 1; min-width: 0; }
+      .sales-cards { grid-template-columns: 1fr 1fr !important; }
 
       /* ── Login ── */
       .login-box { padding: 36px 24px; border-radius: 16px; }
@@ -780,6 +838,50 @@ if (authenticated && !dbReady) {
         if (loader) loader.style.display = 'none';
       }
 
+      var salesPeriod = 'today';
+      var salesFrom = '';
+      var salesTo = '';
+
+      function setSalesPeriod(p) {
+        salesPeriod = p;
+        salesFrom = '';
+        salesTo = '';
+        document.getElementById('salesDateFrom').value = '';
+        document.getElementById('salesDateTo').value = '';
+        document.querySelectorAll('.sf-tab').forEach(b => b.classList.toggle('active', b.dataset.speriod === p));
+        fetchSales();
+      }
+
+      function setSalesCustomDate() {
+        salesFrom = document.getElementById('salesDateFrom').value;
+        salesTo = document.getElementById('salesDateTo').value;
+        if (salesFrom) {
+          salesPeriod = '';
+          document.querySelectorAll('.sf-tab').forEach(b => b.classList.remove('active'));
+          fetchSales();
+        }
+      }
+
+      async function fetchSales() {
+        var params = salesFrom
+          ? 'salesFrom=' + salesFrom + (salesTo ? '&salesTo=' + salesTo : '')
+          : 'period=' + (salesPeriod === 'all' ? '12months' : salesPeriod);
+        try {
+          var res = await fetch('/api/stats?' + params + '&period=' + currentPeriod);
+          if (res.status === 401) { location.reload(); return; }
+          var data = await res.json();
+          statsData.orders = data.orders;
+          renderSalesAll();
+        } catch (e) { console.error('Sales fetch error:', e); }
+      }
+
+      function renderSalesAll() {
+        renderSales();
+        renderDailyRevenue();
+        renderTopBuyers();
+        renderDailyStars();
+      }
+
       function renderAll() {
         if (!statsData) return;
         renderStatCards();
@@ -788,8 +890,7 @@ if (authenticated && !dbReady) {
         renderUsers();
         renderCountries();
         renderPages();
-        renderSales();
-        renderDailyRevenue();
+        renderSalesAll();
       }
 
       var periodLabels = {
@@ -936,20 +1037,20 @@ if (authenticated && !dbReady) {
           <div class="stat-card highlighted">
             <div class="sc-label">Jami daromad</div>
             <div class="sc-value">${fmtMoney(ov.totalRevenue)}</div>
-            <div class="sc-sub"><span>${ov.totalOrders} ta buyurtma</span></div>
+            <div class="sc-sub"><span>${ov.totalOrders} ta buyurtma</span><span class="sc-divider"></span><span>⭐ ${fmtMoney(ov.totalStars || 0)} stars</span></div>
           </div>
           <div class="stat-card">
-            <div class="sc-label">Stars</div>
+            <div class="sc-label">⭐ Stars</div>
             <div class="sc-value">${ov.starsCount}</div>
             <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.starsRevenue)} so'm</span></div>
           </div>
           <div class="stat-card">
-            <div class="sc-label">Gift</div>
+            <div class="sc-label">🎁 Gift</div>
             <div class="sc-value">${ov.giftCount}</div>
             <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.giftRevenue)} so'm</span></div>
           </div>
           <div class="stat-card">
-            <div class="sc-label">Premium</div>
+            <div class="sc-label">👑 Premium</div>
             <div class="sc-value">${ov.premiumCount}</div>
             <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.premiumRevenue)} so'm</span></div>
           </div>
@@ -975,6 +1076,47 @@ if (authenticated && !dbReady) {
             '</tr>';
           }).join('')}</tbody>
         </table>`;
+      }
+
+      function renderTopBuyers() {
+        var o = statsData.orders;
+        if (!o || !o.topBuyers || !o.topBuyers.length) {
+          document.getElementById('topBuyers').innerHTML = '<div class="empty">Ma\'lumot yo\'q</div>';
+          return;
+        }
+        document.getElementById('topBuyers').innerHTML = `<table>
+          <thead><tr><th>#</th><th>Foydalanuvchi</th><th>Buyurtmalar</th><th>Jami</th></tr></thead>
+          <tbody>${o.topBuyers.map((b, i) => {
+            var details = [];
+            if (b.starsOrders) details.push('⭐' + b.starsOrders);
+            if (b.giftOrders) details.push('🎁' + b.giftOrders);
+            if (b.premiumOrders) details.push('👑' + b.premiumOrders);
+            return '<tr>' +
+              '<td><span class="pill pill-rank">' + (i + 1) + '</span></td>' +
+              '<td>@' + b.username + '</td>' +
+              '<td class="td-num">' + b.orders + ' <span style="color:var(--text-4);font-size:0.7rem">' + details.join(' ') + '</span></td>' +
+              '<td class="td-num sc-revenue">' + fmtMoney(b.totalSpent) + '</td>' +
+            '</tr>';
+          }).join('')}</tbody>
+        </table>`;
+      }
+
+      function renderDailyStars() {
+        var o = statsData.orders;
+        if (!o || !o.dailyStars || !o.dailyStars.length) {
+          document.getElementById('dailyStars').innerHTML = '<div class="empty">Ma\'lumot yo\'q</div>';
+          return;
+        }
+        var max = Math.max(...o.dailyStars.map(d => d.totalStars));
+        document.getElementById('dailyStars').innerHTML = o.dailyStars.map(d => {
+          var pct = max > 0 ? Math.max((d.totalStars / max) * 100, 4) : 4;
+          var dateStr = new Date(d.date).toLocaleDateString('uz', { day: '2-digit', month: '2-digit' });
+          return '<div class="dr-row">' +
+            '<div class="dr-date">' + dateStr + '</div>' +
+            '<div class="dr-bar-bg"><div class="dr-bar" style="width:' + pct + '%;background:linear-gradient(90deg,#facc15,#f59e0b)"></div></div>' +
+            '<div class="dr-info"><span class="dr-amount">⭐ ' + fmtMoney(d.totalStars) + '</span><span class="dr-orders"> (' + d.orders + ')</span></div>' +
+          '</div>';
+        }).join('');
       }
 
       function renderDailyRevenue() {

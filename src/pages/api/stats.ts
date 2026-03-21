@@ -27,9 +27,12 @@ export const GET: APIRoute = async ({ request, cookies }) => {
     });
   }
 
+  const salesFrom = url.searchParams.get('salesFrom') || undefined;
+  const salesTo = url.searchParams.get('salesTo') || undefined;
+
   const [stats, orders] = await Promise.all([
     getFilteredStats(period),
-    getOrderStats(period),
+    getOrderStats(period, salesFrom, salesTo),
   ]);
   return new Response(JSON.stringify({ ...stats, orders }), {
     headers: { 'Content-Type': 'application/json' },

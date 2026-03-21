@@ -264,9 +264,19 @@ export async function addOrder(params: {
   `;
 }
 
-export async function getOrderStats(period: string) {
+export async function getOrderStats(period: string, from?: string, to?: string) {
   const sql = getSQL();
-  const since = getSince(period);
+
+  let since: string;
+  let until: string;
+
+  if (from) {
+    since = new Date(from + 'T00:00:00').toISOString();
+    until = to ? new Date(to + 'T23:59:59.999').toISOString() : new Date('2099-01-01').toISOString();
+  } else {
+    since = getSince(period);
+    until = new Date('2099-01-01').toISOString();
+  }
 
   const [overview] = await sql`
     SELECT
@@ -278,13 +288,13 @@ export async function getOrderStats(period: string) {
       COALESCE(SUM(price) FILTER (WHERE type = 'gift'), 0) as gift_revenue,
       COUNT(*) FILTER (WHERE type = 'premium') as premium_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'premium'), 0) as premium_revenue
-    FROM orders WHERE timestamp >= ${since}
+    FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until}
   `;
 
   const recent = await sql`
     SELECT order_number, type, username, amount, price, transaction_id, status, timestamp
     FROM orders
-    WHERE timestamp >= ${since}
+    WHERE timestamp >= ${since} AND timestamp <= ${until}
     ORDER BY timestamp DESC
     LIMIT 100
   `;
@@ -294,10 +304,48 @@ export async function getOrderStats(period: string) {
       COUNT(*) as orders,
       COALESCE(SUM(price), 0) as revenue
     FROM orders
-    WHERE timestamp >= ${since}
+    WHERE timestamp >= ${since} AND timestamp <= ${until}
     GROUP BY DATE(timestamp)
     ORDER BY date DESC
     LIMIT 30
+  `;
+
+  // Top buyers by total spend
+  const topBuyers = await sql`
+    SELECT username,
+      COUNT(*) as orders,
+      COALESCE(SUM(price), 0) as total_spent,
+      COUNT(*) FILTER (WHERE type = 'stars') as stars_orders,
+      COUNT(*) FILTER (WHERE type = 'gift') as gift_orders,
+      COUNT(*) FILTER (WHERE type = 'premium') as premium_orders
+    FROM orders
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != ''
+    GROUP BY username
+    ORDER BY total_spent DESC
+    LIMIT 15
+  `;
+
+  // Daily stars amounts (actual star count, not money)
+  const dailyStars = await sql`
+    SELECT DATE(timestamp) as date,
+      COUNT(*) as orders,
+      COALESCE(SUM(
+        CASE WHEN amount ~ '^\d+' THEN CAST(SUBSTRING(amount FROM '^\d+') AS INTEGER) ELSE 0 END
+      ), 0) as total_stars
+    FROM orders
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND (type = 'stars' OR type = 'gift')
+    GROUP BY DATE(timestamp)
+    ORDER BY date DESC
+    LIMIT 30
+  `;
+
+  // Total stars amount
+  const [starsTotal] = await sql`
+    SELECT COALESCE(SUM(
+      CASE WHEN amount ~ '^\d+' THEN CAST(SUBSTRING(amount FROM '^\d+') AS INTEGER) ELSE 0 END
+    ), 0) as total_stars
+    FROM orders
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND (type = 'stars' OR type = 'gift')
   `;
 
   return {
@@ -310,6 +358,7 @@ export async function getOrderStats(period: string) {
       giftRevenue: +overview.gift_revenue,
       premiumCount: +overview.premium_count,
       premiumRevenue: +overview.premium_revenue,
+      totalStars: +starsTotal.total_stars,
     },
     recent: recent.map(r => ({
       orderNumber: r.order_number,
@@ -325,6 +374,19 @@ export async function getOrderStats(period: string) {
       date: d.date,
       orders: +d.orders,
       revenue: +d.revenue,
+    })),
+    topBuyers: topBuyers.map(b => ({
+      username: b.username,
+      orders: +b.orders,
+      totalSpent: +b.total_spent,
+      starsOrders: +b.stars_orders,
+      giftOrders: +b.gift_orders,
+      premiumOrders: +b.premium_orders,
+    })),
+    dailyStars: dailyStars.map(d => ({
+      date: d.date,
+      orders: +d.orders,
+      totalStars: +d.total_stars,
     })),
   };
 }
