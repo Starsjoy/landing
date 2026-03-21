@@ -99,6 +99,12 @@ if (authenticated && !dbReady) {
             </span>
             <span>Sotuvlar</span>
           </a>
+          <a data-section="analytics" onclick="showSection('analytics')">
+            <span class="sb-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </span>
+            <span>Analitika</span>
+          </a>
           <a data-section="settings" onclick="showSection('settings')">
             <span class="sb-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -231,6 +237,46 @@ if (authenticated && !dbReady) {
               <div class="panel">
                 <div class="panel-header"><h2>Kunlik stars miqdori</h2></div>
                 <div class="panel-body panel-pad" id="dailyStars"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analytics -->
+          <div id="section-analytics" class="section-content" hidden>
+            <div class="chart-panel">
+              <div class="chart-header">
+                <h2>Sotuvlar dinamikasi</h2>
+                <div class="chart-filters" id="salesChartFilters">
+                  <button class="cf-btn" data-cp="today" onclick="setChartPeriod('today')">1 kun</button>
+                  <button class="cf-btn active" data-cp="week" onclick="setChartPeriod('week')">1 hafta</button>
+                  <button class="cf-btn" data-cp="month" onclick="setChartPeriod('month')">1 oy</button>
+                  <button class="cf-btn" data-cp="3months" onclick="setChartPeriod('3months')">3 oy</button>
+                  <button class="cf-btn" data-cp="6months" onclick="setChartPeriod('6months')">6 oy</button>
+                  <button class="cf-btn" data-cp="12months" onclick="setChartPeriod('12months')">12 oy</button>
+                </div>
+              </div>
+              <div class="chart-body" id="salesChart"></div>
+            </div>
+
+            <div class="chart-panel">
+              <div class="chart-header">
+                <h2>Sayt tashriflari</h2>
+              </div>
+              <div class="chart-body" id="visitsChart"></div>
+              <div class="chart-legend">
+                <span class="cl-item"><span class="cl-dot" style="background:var(--green)"></span> Real userlar</span>
+                <span class="cl-item"><span class="cl-dot" style="background:var(--orange)"></span> Botlar</span>
+              </div>
+            </div>
+
+            <div class="chart-panel">
+              <div class="chart-header">
+                <h2>Tashriflar va sotuvlar</h2>
+              </div>
+              <div class="chart-body" id="conversionChart"></div>
+              <div class="chart-legend">
+                <span class="cl-item"><span class="cl-dot" style="background:var(--accent-light)"></span> Tashriflar</span>
+                <span class="cl-item"><span class="cl-dot" style="background:var(--green)"></span> Sotuvlar</span>
               </div>
             </div>
           </div>
@@ -580,6 +626,46 @@ if (authenticated && !dbReady) {
     }
     .c-val { width: 40px; text-align: right; font-size: 0.78rem; font-weight: 700; color: var(--text-1); }
 
+    /* ───── CHARTS ───── */
+    .chart-panel {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+      margin-bottom: 20px; overflow: hidden;
+    }
+    .chart-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 22px; flex-wrap: wrap; gap: 10px;
+    }
+    .chart-header h2 { font-size: 0.88rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.2px; }
+    .chart-filters {
+      display: flex; gap: 2px; background: var(--bg-3); border-radius: 6px; padding: 2px;
+    }
+    .cf-btn {
+      padding: 5px 12px; border: none; border-radius: 4px; background: transparent;
+      color: var(--text-3); font-size: 0.72rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    }
+    .cf-btn.active { background: var(--accent); color: #fff; }
+    .cf-btn:hover:not(.active) { color: var(--text-1); }
+    .chart-body { padding: 8px 22px 18px; min-height: 220px; }
+    .chart-body svg { width: 100%; height: 200px; overflow: visible; }
+    .chart-legend {
+      display: flex; gap: 18px; padding: 0 22px 16px; flex-wrap: wrap;
+    }
+    .cl-item { display: flex; align-items: center; gap: 6px; font-size: 0.74rem; color: var(--text-2); font-weight: 500; }
+    .cl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Tooltip */
+    .chart-tooltip {
+      position: absolute; background: var(--bg-1); border: 1px solid var(--border-light);
+      border-radius: 8px; padding: 10px 14px; font-size: 0.76rem; color: var(--text-1);
+      pointer-events: none; z-index: 10; white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.15s;
+    }
+    .chart-tooltip.visible { opacity: 1; }
+    .ct-date { font-weight: 700; color: var(--text-0); margin-bottom: 4px; }
+    .ct-row { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+    .ct-dot { width: 6px; height: 6px; border-radius: 50%; }
+
     /* ───── GRIDS ───── */
     .grid-2 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
     .grid-2 .panel { margin-bottom: 0; }
@@ -709,6 +795,14 @@ if (authenticated && !dbReady) {
       .form-stack input { padding: 12px 14px; font-size: 0.85rem; }
       .form-btn { padding: 12px 20px; font-size: 0.85rem; width: 100%; text-align: center; }
       .info-item { font-size: 0.78rem; padding: 8px 0; }
+
+      /* ── Charts ── */
+      .chart-header { flex-direction: column; align-items: flex-start; padding: 14px 16px; }
+      .chart-filters { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; width: 100%; }
+      .chart-filters::-webkit-scrollbar { display: none; }
+      .cf-btn { flex-shrink: 0; }
+      .chart-body { padding: 8px 14px 14px; min-height: 180px; }
+      .chart-legend { padding: 0 16px 12px; }
 
       /* ── Sales filter ── */
       .sales-filter { flex-direction: column; align-items: stretch; gap: 10px; }
@@ -896,6 +990,7 @@ if (authenticated && !dbReady) {
         renderCountries();
         renderPages();
         renderSalesAll();
+        renderCharts();
       }
 
       var periodLabels = {
@@ -1140,6 +1235,167 @@ if (authenticated && !dbReady) {
             '<div class="dr-info"><span class="dr-amount">' + fmtMoney(d.revenue) + '</span><span class="dr-orders"> (' + d.orders + ')</span></div>' +
           '</div>';
         }).join('');
+      }
+
+      // ───── ANALYTICS CHARTS ─────
+      var chartPeriod = 'week';
+
+      function setChartPeriod(p) {
+        chartPeriod = p;
+        document.querySelectorAll('.cf-btn').forEach(b => b.classList.toggle('active', b.dataset.cp === p));
+        fetchAnalytics();
+      }
+
+      async function fetchAnalytics() {
+        try {
+          var res = await fetch('/api/stats?period=' + currentPeriod + '&ap=' + chartPeriod);
+          if (res.status === 401) { location.reload(); return; }
+          var data = await res.json();
+          statsData.analytics = data.analytics;
+          renderCharts();
+        } catch (e) { console.error('Analytics fetch error:', e); }
+      }
+
+      function renderCharts() {
+        var a = statsData.analytics;
+        if (!a) return;
+        renderSalesChart(a.dailySales);
+        renderVisitsChart(a.dailyVisits);
+        renderConversionChart(a.dailyCombined);
+      }
+
+      function fmtDate(d) {
+        return new Date(d).toLocaleDateString('uz', { day: '2-digit', month: 'short' });
+      }
+
+      function buildLineChart(container, datasets, opts) {
+        var el = document.getElementById(container);
+        if (!el) return;
+
+        var allDates = datasets[0].data.map(d => d.date);
+        if (!allDates.length) { el.innerHTML = '<div class="empty">Ma\'lumot yo\'q</div>'; return; }
+
+        var allValues = [];
+        datasets.forEach(ds => ds.data.forEach(d => allValues.push(d.value)));
+        var maxVal = Math.max(...allValues, 1);
+
+        var W = 100, H = 100;
+        var padL = 0, padR = 2, padT = 8, padB = 20;
+        var chartW = W - padL - padR;
+        var chartH = H - padT - padB;
+
+        var points = datasets.map(ds => {
+          return ds.data.map((d, i) => {
+            var x = padL + (allDates.length === 1 ? chartW / 2 : (i / (allDates.length - 1)) * chartW);
+            var y = padT + chartH - (d.value / maxVal) * chartH;
+            return { x, y, date: d.date, value: d.value, label: ds.label };
+          });
+        });
+
+        // Grid lines
+        var gridLines = '';
+        var gridCount = 4;
+        for (var g = 0; g <= gridCount; g++) {
+          var gy = padT + (g / gridCount) * chartH;
+          var gv = Math.round(maxVal - (g / gridCount) * maxVal);
+          gridLines += '<line x1="' + padL + '" y1="' + gy + '" x2="' + (W - padR) + '" y2="' + gy + '" stroke="rgba(26,26,58,0.5)" stroke-width="0.3"/>';
+          gridLines += '<text x="' + padL + '" y="' + (gy - 1.5) + '" fill="rgba(90,90,120,0.6)" font-size="3.2">' + (opts.formatValue ? opts.formatValue(gv) : gv) + '</text>';
+        }
+
+        // Date labels
+        var dateLabels = '';
+        var step = Math.max(1, Math.floor(allDates.length / 7));
+        for (var di = 0; di < allDates.length; di += step) {
+          var dx = padL + (allDates.length === 1 ? chartW / 2 : (di / (allDates.length - 1)) * chartW);
+          dateLabels += '<text x="' + dx + '" y="' + (H - 2) + '" text-anchor="middle" fill="rgba(90,90,120,0.6)" font-size="3">' + fmtDate(allDates[di]) + '</text>';
+        }
+
+        // Lines + areas + dots
+        var paths = '';
+        points.forEach((pts, si) => {
+          var ds = datasets[si];
+          if (pts.length < 2) {
+            paths += '<circle cx="' + pts[0].x + '" cy="' + pts[0].y + '" r="1.5" fill="' + ds.color + '"/>';
+            return;
+          }
+          // Smooth line
+          var pathD = 'M' + pts.map(p => p.x + ',' + p.y).join(' L');
+
+          // Area
+          var areaD = pathD + ' L' + pts[pts.length - 1].x + ',' + (padT + chartH) + ' L' + pts[0].x + ',' + (padT + chartH) + ' Z';
+          paths += '<path d="' + areaD + '" fill="' + ds.color + '" opacity="0.08"/>';
+          paths += '<path d="' + pathD + '" fill="none" stroke="' + ds.color + '" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>';
+
+          // Dots
+          pts.forEach(p => {
+            paths += '<circle cx="' + p.x + '" cy="' + p.y + '" r="1" fill="' + ds.color + '" stroke="var(--bg-2)" stroke-width="0.5"/>';
+          });
+        });
+
+        // Hover columns
+        var hoverCols = '';
+        allDates.forEach((date, i) => {
+          var cx = padL + (allDates.length === 1 ? chartW / 2 : (i / (allDates.length - 1)) * chartW);
+          var colW = allDates.length === 1 ? chartW : chartW / allDates.length;
+          var vals = datasets.map((ds, si) => ({
+            label: ds.label, color: ds.color, value: ds.data[i].value,
+          }));
+          hoverCols += '<rect x="' + (cx - colW / 2) + '" y="' + padT + '" width="' + colW + '" height="' + chartH + '" fill="transparent" class="chart-hover-col" data-idx="' + i + '" data-date="' + date + '" data-vals=\'' + JSON.stringify(vals) + '\'/>';
+        });
+
+        el.innerHTML = '<div style="position:relative"><svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none">' +
+          gridLines + dateLabels + paths + hoverCols +
+          '</svg><div class="chart-tooltip" id="tooltip-' + container + '"></div></div>';
+
+        // Tooltip events
+        el.querySelectorAll('.chart-hover-col').forEach(col => {
+          col.addEventListener('mouseenter', function(e) {
+            var tt = document.getElementById('tooltip-' + container);
+            var vals = JSON.parse(this.dataset.vals);
+            var html = '<div class="ct-date">' + fmtDate(this.dataset.date) + '</div>';
+            vals.forEach(v => {
+              html += '<div class="ct-row"><span class="ct-dot" style="background:' + v.color + '"></span>' + v.label + ': <b>' + (opts.formatValue ? opts.formatValue(v.value) : v.value) + '</b></div>';
+            });
+            tt.innerHTML = html;
+            tt.classList.add('visible');
+          });
+          col.addEventListener('mousemove', function(e) {
+            var tt = document.getElementById('tooltip-' + container);
+            var rect = el.getBoundingClientRect();
+            var x = e.clientX - rect.left + 12;
+            var y = e.clientY - rect.top - 10;
+            if (x + 150 > rect.width) x = x - 170;
+            tt.style.left = x + 'px';
+            tt.style.top = y + 'px';
+          });
+          col.addEventListener('mouseleave', function() {
+            document.getElementById('tooltip-' + container).classList.remove('visible');
+          });
+        });
+      }
+
+      function renderSalesChart(data) {
+        if (!data) return;
+        buildLineChart('salesChart', [
+          { label: 'Daromad', color: '#10b981', data: data.map(d => ({ date: d.date, value: d.revenue })) },
+          { label: 'Buyurtmalar', color: '#a78bfa', data: data.map(d => ({ date: d.date, value: d.orders })) },
+        ], { formatValue: v => fmtMoney(v) });
+      }
+
+      function renderVisitsChart(data) {
+        if (!data) return;
+        buildLineChart('visitsChart', [
+          { label: 'Real userlar', color: '#10b981', data: data.map(d => ({ date: d.date, value: d.humans })) },
+          { label: 'Botlar', color: '#f59e0b', data: data.map(d => ({ date: d.date, value: d.bots })) },
+        ], {});
+      }
+
+      function renderConversionChart(data) {
+        if (!data) return;
+        buildLineChart('conversionChart', [
+          { label: 'Tashriflar', color: '#a78bfa', data: data.map(d => ({ date: d.date, value: d.visits })) },
+          { label: 'Sotuvlar', color: '#10b981', data: data.map(d => ({ date: d.date, value: d.orders })) },
+        ], {});
       }
 
       async function deleteOrder(id) {

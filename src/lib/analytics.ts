@@ -264,6 +264,80 @@ export async function addOrder(params: {
   `;
 }
 
+export async function getAnalyticsData(period: string) {
+  const sql = getSQL();
+  const since = getSince(period === 'today' ? 'week' : period);
+
+  // Daily visits: bot vs human
+  const dailyVisits = await sql`
+    SELECT DATE(timestamp) as date,
+      COUNT(*) FILTER (WHERE NOT is_bot) as humans,
+      COUNT(*) FILTER (WHERE is_bot) as bots,
+      COUNT(*) as total
+    FROM visits
+    WHERE timestamp >= ${since}
+    GROUP BY DATE(timestamp)
+    ORDER BY date ASC
+  `;
+
+  // Daily sales revenue
+  const dailySales = await sql`
+    SELECT DATE(timestamp) as date,
+      COUNT(*) as orders,
+      COALESCE(SUM(price), 0) as revenue
+    FROM orders
+    WHERE timestamp >= ${since}
+    GROUP BY DATE(timestamp)
+    ORDER BY date ASC
+  `;
+
+  // Combined: visits + conversions per day
+  const dailyCombined = await sql`
+    SELECT d.date,
+      COALESCE(v.humans, 0) as humans,
+      COALESCE(v.bots, 0) as bots,
+      COALESCE(v.total, 0) as visits,
+      COALESCE(o.orders, 0) as orders,
+      COALESCE(o.revenue, 0) as revenue
+    FROM (
+      SELECT DISTINCT date FROM (
+        SELECT DATE(timestamp) as date FROM visits WHERE timestamp >= ${since}
+        UNION
+        SELECT DATE(timestamp) as date FROM orders WHERE timestamp >= ${since}
+      ) dates
+    ) d
+    LEFT JOIN (
+      SELECT DATE(timestamp) as date,
+        COUNT(*) FILTER (WHERE NOT is_bot) as humans,
+        COUNT(*) FILTER (WHERE is_bot) as bots,
+        COUNT(*) as total
+      FROM visits WHERE timestamp >= ${since}
+      GROUP BY DATE(timestamp)
+    ) v ON v.date = d.date
+    LEFT JOIN (
+      SELECT DATE(timestamp) as date,
+        COUNT(*) as orders,
+        COALESCE(SUM(price), 0) as revenue
+      FROM orders WHERE timestamp >= ${since}
+      GROUP BY DATE(timestamp)
+    ) o ON o.date = d.date
+    ORDER BY d.date ASC
+  `;
+
+  return {
+    dailyVisits: dailyVisits.map(d => ({
+      date: d.date, humans: +d.humans, bots: +d.bots, total: +d.total,
+    })),
+    dailySales: dailySales.map(d => ({
+      date: d.date, orders: +d.orders, revenue: +d.revenue,
+    })),
+    dailyCombined: dailyCombined.map(d => ({
+      date: d.date, humans: +d.humans, bots: +d.bots, visits: +d.visits,
+      orders: +d.orders, revenue: +d.revenue,
+    })),
+  };
+}
+
 export async function deleteOrder(id: number) {
   const sql = getSQL();
   await sql`DELETE FROM orders WHERE id = ${id}`;
