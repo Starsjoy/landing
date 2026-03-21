@@ -98,15 +98,27 @@ async function updateCountry(vid: string, country: string) {
   await sql`UPDATE visits SET country = ${country} WHERE id = ${vid}`;
 }
 
+const TZ = 'Asia/Tashkent';
+const TZ_OFFSET = 5; // UTC+5
+
+function nowTashkent(): Date {
+  const utc = new Date();
+  return new Date(utc.getTime() + TZ_OFFSET * 60 * 60 * 1000);
+}
+
 function getSince(period: string): string {
-  const d = new Date();
-  if (period === '12months') d.setDate(d.getDate() - 365);
-  else if (period === '6months') d.setDate(d.getDate() - 180);
-  else if (period === '3months') d.setDate(d.getDate() - 90);
-  else if (period === 'month') d.setDate(d.getDate() - 30);
-  else if (period === 'week') d.setDate(d.getDate() - 7);
-  else d.setHours(0, 0, 0, 0);
-  return d.toISOString();
+  const now = nowTashkent();
+  // Start of today in Tashkent
+  const todayStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - TZ_OFFSET * 60 * 60 * 1000);
+
+  if (period === '12months') { todayStart.setUTCDate(todayStart.getUTCDate() - 365); }
+  else if (period === '6months') { todayStart.setUTCDate(todayStart.getUTCDate() - 180); }
+  else if (period === '3months') { todayStart.setUTCDate(todayStart.getUTCDate() - 90); }
+  else if (period === 'month') { todayStart.setUTCDate(todayStart.getUTCDate() - 30); }
+  else if (period === 'week') { todayStart.setUTCDate(todayStart.getUTCDate() - 7); }
+  // 'today' = todayStart as-is (Tashkent 00:00)
+
+  return todayStart.toISOString();
 }
 
 export async function getFilteredStats(period: string = 'today') {
@@ -274,7 +286,7 @@ export async function getAnalyticsData(period: string) {
   if (period === 'today') {
     // Hourly
     const rows = await sql`
-      SELECT EXTRACT(HOUR FROM timestamp)::INTEGER as hour,
+      SELECT EXTRACT(HOUR FROM timestamp AT TIME ZONE 'Asia/Tashkent')::INTEGER as hour,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
       FROM orders WHERE timestamp >= ${since}
@@ -287,8 +299,8 @@ export async function getAnalyticsData(period: string) {
   } else if (period === '12months') {
     // Monthly
     const rows = await sql`
-      SELECT TO_CHAR(timestamp, 'YYYY-MM') as month,
-        TO_CHAR(timestamp, 'Mon') as month_name,
+      SELECT TO_CHAR(timestamp AT TIME ZONE 'Asia/Tashkent', 'YYYY-MM') as month,
+        TO_CHAR(timestamp AT TIME ZONE 'Asia/Tashkent', 'Mon') as month_name,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
       FROM orders WHERE timestamp >= ${since}
@@ -300,7 +312,7 @@ export async function getAnalyticsData(period: string) {
   } else if (period === '3months' || period === '6months') {
     // Weekly
     const rows = await sql`
-      SELECT DATE_TRUNC('week', timestamp)::DATE as week_start,
+      SELECT DATE_TRUNC('week', timestamp AT TIME ZONE 'Asia/Tashkent')::DATE as week_start,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
       FROM orders WHERE timestamp >= ${since}
@@ -313,11 +325,11 @@ export async function getAnalyticsData(period: string) {
   } else {
     // Daily (week, month)
     const rows = await sql`
-      SELECT DATE(timestamp) as date,
+      SELECT DATE(timestamp AT TIME ZONE 'Asia/Tashkent') as date,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
       FROM orders WHERE timestamp >= ${since}
-      GROUP BY DATE(timestamp) ORDER BY date ASC
+      GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent') ORDER BY date ASC
     `;
     salesByPeriod = rows.map(r => ({
       label: new Date(r.date).toLocaleDateString('uz', { day: '2-digit', month: '2-digit' }),
@@ -330,7 +342,7 @@ export async function getAnalyticsData(period: string) {
 
   if (period === 'today') {
     const rows = await sql`
-      SELECT EXTRACT(HOUR FROM timestamp)::INTEGER as hour,
+      SELECT EXTRACT(HOUR FROM timestamp AT TIME ZONE 'Asia/Tashkent')::INTEGER as hour,
         COUNT(*) FILTER (WHERE NOT is_bot) as humans,
         COUNT(*) FILTER (WHERE is_bot) as bots,
         COUNT(*) as total
@@ -343,8 +355,8 @@ export async function getAnalyticsData(period: string) {
     }));
   } else if (period === '12months') {
     const rows = await sql`
-      SELECT TO_CHAR(timestamp, 'YYYY-MM') as month,
-        TO_CHAR(timestamp, 'Mon') as month_name,
+      SELECT TO_CHAR(timestamp AT TIME ZONE 'Asia/Tashkent', 'YYYY-MM') as month,
+        TO_CHAR(timestamp AT TIME ZONE 'Asia/Tashkent', 'Mon') as month_name,
         COUNT(*) FILTER (WHERE NOT is_bot) as humans,
         COUNT(*) FILTER (WHERE is_bot) as bots,
         COUNT(*) as total
@@ -356,7 +368,7 @@ export async function getAnalyticsData(period: string) {
     }));
   } else if (period === '3months' || period === '6months') {
     const rows = await sql`
-      SELECT DATE_TRUNC('week', timestamp)::DATE as week_start,
+      SELECT DATE_TRUNC('week', timestamp AT TIME ZONE 'Asia/Tashkent')::DATE as week_start,
         COUNT(*) FILTER (WHERE NOT is_bot) as humans,
         COUNT(*) FILTER (WHERE is_bot) as bots,
         COUNT(*) as total
@@ -369,12 +381,12 @@ export async function getAnalyticsData(period: string) {
     }));
   } else {
     const rows = await sql`
-      SELECT DATE(timestamp) as date,
+      SELECT DATE(timestamp AT TIME ZONE 'Asia/Tashkent') as date,
         COUNT(*) FILTER (WHERE NOT is_bot) as humans,
         COUNT(*) FILTER (WHERE is_bot) as bots,
         COUNT(*) as total
       FROM visits WHERE timestamp >= ${since}
-      GROUP BY DATE(timestamp) ORDER BY date ASC
+      GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent') ORDER BY date ASC
     `;
     visitsByPeriod = rows.map(r => ({
       label: new Date(r.date).toLocaleDateString('uz', { day: '2-digit', month: '2-digit' }),
@@ -417,8 +429,9 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
   let until: string;
 
   if (from) {
-    since = new Date(from + 'T00:00:00').toISOString();
-    until = to ? new Date(to + 'T23:59:59.999').toISOString() : new Date('2099-01-01').toISOString();
+    // Tashkent 00:00 = UTC-5 hours
+    since = new Date(from + 'T00:00:00+05:00').toISOString();
+    until = to ? new Date(to + 'T23:59:59.999+05:00').toISOString() : new Date('2099-01-01').toISOString();
   } else {
     since = getSince(period);
     until = new Date('2099-01-01').toISOString();
@@ -449,12 +462,12 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
   `;
 
   const daily = await sql`
-    SELECT DATE(timestamp) as date,
+    SELECT DATE(timestamp AT TIME ZONE 'Asia/Tashkent') as date,
       COUNT(*) as orders,
       COALESCE(SUM(price), 0) as revenue
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until}
-    GROUP BY DATE(timestamp)
+    GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
   `;
@@ -476,14 +489,14 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
 
   // Daily stars amounts (actual star count, not money)
   const dailyStars = await sql`
-    SELECT DATE(timestamp) as date,
+    SELECT DATE(timestamp AT TIME ZONE 'Asia/Tashkent') as date,
       COUNT(*) as orders,
       COALESCE(SUM(
         NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
       ), 0) as total_stars
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND (type = 'stars' OR type = 'gift')
-    GROUP BY DATE(timestamp)
+    GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
   `;
