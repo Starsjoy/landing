@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { verifyToken, getFilteredStats, getAllVisits, getOrderStats, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
+import { verifyToken, getFilteredStats, getAllVisits, getOrderStats, deleteOrder, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
 
 let dbReady = false;
 
@@ -60,6 +60,13 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     await setPassword(newPass);
     const newToken = generateToken(newPass);
     cookies.set('moda_token', newToken, { path: '/', httpOnly: true, secure: true, sameSite: 'lax', maxAge: 60 * 60 * 24 * 7 });
+    return new Response(JSON.stringify({ ok: true }), { headers: { 'Content-Type': 'application/json' } });
+  }
+
+  if (body.action === 'delete_order') {
+    const { id } = body;
+    if (!id) return new Response(JSON.stringify({ error: 'ID kerak' }), { status: 400 });
+    await deleteOrder(id);
     return new Response(JSON.stringify({ ok: true }), { headers: { 'Content-Type': 'application/json' } });
   }
 

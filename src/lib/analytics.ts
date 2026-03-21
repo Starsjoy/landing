@@ -264,6 +264,11 @@ export async function addOrder(params: {
   `;
 }
 
+export async function deleteOrder(id: number) {
+  const sql = getSQL();
+  await sql`DELETE FROM orders WHERE id = ${id}`;
+}
+
 export async function getOrderStats(period: string, from?: string, to?: string) {
   const sql = getSQL();
 
@@ -292,7 +297,7 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
   `;
 
   const recent = await sql`
-    SELECT order_number, type, username, amount, price, transaction_id, status, timestamp
+    SELECT id, order_number, type, username, amount, price, transaction_id, status, timestamp
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until}
     ORDER BY timestamp DESC
@@ -361,6 +366,7 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
       totalStars: +starsTotal.total_stars,
     },
     recent: recent.map(r => ({
+      id: +r.id,
       orderNumber: r.order_number,
       type: r.type,
       username: r.username,

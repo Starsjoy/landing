@@ -550,6 +550,11 @@ if (authenticated && !dbReady) {
       transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .dr-info { width: 100px; text-align: right; font-size: 0.74rem; flex-shrink: 0; }
+    .del-btn {
+      background: none; border: 1px solid transparent; color: var(--text-4); font-size: 1.1rem;
+      cursor: pointer; padding: 2px 8px; border-radius: 4px; line-height: 1; transition: all 0.15s;
+    }
+    .del-btn:hover { color: var(--red); background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.2); }
     .dr-amount { font-weight: 700; color: var(--text-0); }
     .dr-orders { color: var(--text-3); margin-left: 4px; }
 
@@ -1062,17 +1067,18 @@ if (authenticated && !dbReady) {
           return;
         }
         document.getElementById('salesTable').innerHTML = `<table>
-          <thead><tr><th>#</th><th>Turi</th><th>Foydalanuvchi</th><th>Miqdor</th><th>Summa</th><th>Vaqt</th></tr></thead>
+          <thead><tr><th>#</th><th>Turi</th><th>Foydalanuvchi</th><th>Miqdor</th><th>Summa</th><th>Vaqt</th><th></th></tr></thead>
           <tbody>${rows.map(r => {
             var typePill = r.type === 'stars' ? 'pill-stars' : r.type === 'gift' ? 'pill-gift' : 'pill-premium';
             var typeLabel = r.type === 'stars' ? 'Stars' : r.type === 'gift' ? 'Gift' : 'Premium';
-            return '<tr>' +
+            return '<tr id="order-row-' + r.id + '">' +
               '<td class="td-num">' + (r.orderNumber ? '#' + r.orderNumber : '') + '</td>' +
               '<td><span class="pill ' + typePill + '">' + typeLabel + '</span></td>' +
               '<td>@' + r.username + '</td>' +
               '<td>' + r.amount + '</td>' +
               '<td class="td-num">' + fmtMoney(r.price) + ' so\'m</td>' +
               '<td style="color:var(--text-3)">' + timeAgo(r.timestamp) + '</td>' +
+              '<td><button class="del-btn" onclick="deleteOrder(' + r.id + ')" title="O\'chirish">&times;</button></td>' +
             '</tr>';
           }).join('')}</tbody>
         </table>`;
@@ -1135,6 +1141,29 @@ if (authenticated && !dbReady) {
             '<div class="dr-info"><span class="dr-amount">' + fmtMoney(d.revenue) + '</span><span class="dr-orders"> (' + d.orders + ')</span></div>' +
           '</div>';
         }).join('');
+      }
+
+      async function deleteOrder(id) {
+        if (!confirm("Bu buyurtmani o'chirishni xohlaysizmi?")) return;
+        var row = document.getElementById('order-row-' + id);
+        if (row) row.style.opacity = '0.3';
+        try {
+          var res = await fetch('/api/stats', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'delete_order', id: id }),
+          });
+          if (res.ok) {
+            if (row) row.remove();
+            fetchSales();
+          } else {
+            if (row) row.style.opacity = '1';
+            alert("O'chirishda xatolik");
+          }
+        } catch {
+          if (row) row.style.opacity = '1';
+          alert("Server xatoligi");
+        }
       }
 
       async function exportCSV() {
