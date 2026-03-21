@@ -363,13 +363,13 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
       COALESCE(SUM(price), 0) as total_revenue,
       COUNT(*) FILTER (WHERE type = 'stars') as stars_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'stars'), 0) as stars_revenue,
-      COALESCE(SUM(CASE WHEN type = 'stars' AND amount ~ '^\d+' THEN CAST(SUBSTRING(amount FROM '^\d+') AS INTEGER) ELSE 0 END), 0) as stars_total_amount,
+      COALESCE(SUM(CASE WHEN type = 'stars' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as stars_total_amount,
       COUNT(*) FILTER (WHERE type = 'gift') as gift_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'gift'), 0) as gift_revenue,
-      COALESCE(SUM(CASE WHEN type = 'gift' AND amount ~ '^\d+' THEN CAST(SUBSTRING(amount FROM '^\d+') AS INTEGER) ELSE 0 END), 0) as gift_total_stars,
+      COALESCE(SUM(CASE WHEN type = 'gift' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as gift_total_stars,
       COUNT(*) FILTER (WHERE type = 'premium') as premium_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'premium'), 0) as premium_revenue,
-      COALESCE(SUM(CASE WHEN type = 'premium' AND amount ~ '^\d+' THEN CAST(SUBSTRING(amount FROM '^\d+') AS INTEGER) ELSE 0 END), 0) as premium_total_months
+      COALESCE(SUM(CASE WHEN type = 'premium' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as premium_total_months
     FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until}
   `;
 
@@ -412,7 +412,7 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
     SELECT DATE(timestamp) as date,
       COUNT(*) as orders,
       COALESCE(SUM(
-        CASE WHEN amount ~ '^\d+' THEN CAST(SUBSTRING(amount FROM '^\d+') AS INTEGER) ELSE 0 END
+        NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
       ), 0) as total_stars
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND (type = 'stars' OR type = 'gift')
@@ -424,7 +424,7 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
   // Total stars amount
   const [starsTotal] = await sql`
     SELECT COALESCE(SUM(
-      CASE WHEN amount ~ '^\d+' THEN CAST(SUBSTRING(amount FROM '^\d+') AS INTEGER) ELSE 0 END
+      NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
     ), 0) as total_stars
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND (type = 'stars' OR type = 'gift')
