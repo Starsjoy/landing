@@ -291,38 +291,26 @@ export async function getAnalyticsData(period: string) {
     ORDER BY date ASC
   `;
 
-  // Combined: visits + conversions per day
-  const dailyCombined = await sql`
-    SELECT d.date,
-      COALESCE(v.humans, 0) as humans,
-      COALESCE(v.bots, 0) as bots,
-      COALESCE(v.total, 0) as visits,
-      COALESCE(o.orders, 0) as orders,
-      COALESCE(o.revenue, 0) as revenue
-    FROM (
-      SELECT DISTINCT date FROM (
-        SELECT DATE(timestamp) as date FROM visits WHERE timestamp >= ${since}
-        UNION
-        SELECT DATE(timestamp) as date FROM orders WHERE timestamp >= ${since}
-      ) dates
-    ) d
-    LEFT JOIN (
-      SELECT DATE(timestamp) as date,
-        COUNT(*) FILTER (WHERE NOT is_bot) as humans,
-        COUNT(*) FILTER (WHERE is_bot) as bots,
-        COUNT(*) as total
-      FROM visits WHERE timestamp >= ${since}
-      GROUP BY DATE(timestamp)
-    ) v ON v.date = d.date
-    LEFT JOIN (
-      SELECT DATE(timestamp) as date,
-        COUNT(*) as orders,
-        COALESCE(SUM(price), 0) as revenue
-      FROM orders WHERE timestamp >= ${since}
-      GROUP BY DATE(timestamp)
-    ) o ON o.date = d.date
-    ORDER BY d.date ASC
-  `;
+  // Combine visits + sales in JS (more reliable than complex SQL joins)
+  const visitsMap: Record<string, { humans: number; bots: number; total: number }> = {};
+  dailyVisits.forEach(d => {
+    const key = String(d.date).slice(0, 10);
+    visitsMap[key] = { humans: +d.humans, bots: +d.bots, total: +d.total };
+  });
+  const salesMap: Record<string, { orders: number; revenue: number }> = {};
+  dailySales.forEach(d => {
+    const key = String(d.date).slice(0, 10);
+    salesMap[key] = { orders: +d.orders, revenue: +d.revenue };
+  });
+  const allDates = new Set([...Object.keys(visitsMap), ...Object.keys(salesMap)]);
+  const dailyCombined = [...allDates].sort().map(date => ({
+    date,
+    humans: visitsMap[date]?.humans || 0,
+    bots: visitsMap[date]?.bots || 0,
+    visits: visitsMap[date]?.total || 0,
+    orders: salesMap[date]?.orders || 0,
+    revenue: salesMap[date]?.revenue || 0,
+  }));
 
   return {
     dailyVisits: dailyVisits.map(d => ({
@@ -331,10 +319,7 @@ export async function getAnalyticsData(period: string) {
     dailySales: dailySales.map(d => ({
       date: d.date, orders: +d.orders, revenue: +d.revenue,
     })),
-    dailyCombined: dailyCombined.map(d => ({
-      date: d.date, humans: +d.humans, bots: +d.bots, visits: +d.visits,
-      orders: +d.orders, revenue: +d.revenue,
-    })),
+    dailyCombined,
   };
 }
 

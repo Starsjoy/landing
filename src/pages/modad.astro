@@ -687,8 +687,8 @@ if (authenticated && !dbReady) {
       padding: 18px 24px; flex-wrap: wrap; gap: 10px;
     }
     .chart-header h2 { font-size: 0.9rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.2px; }
-    .chart-body-lg { padding: 12px 24px 24px; min-height: 320px; }
-    .chart-body-lg svg { width: 100%; height: 300px; overflow: visible; }
+    .chart-body-lg { padding: 12px 24px 24px; height: 340px; overflow-x: auto; overflow-y: hidden; }
+    .chart-body-lg svg { display: block; overflow: visible; }
     .chart-legend {
       display: flex; gap: 16px; flex-wrap: wrap;
     }
@@ -848,8 +848,7 @@ if (authenticated && !dbReady) {
       .an-period::-webkit-scrollbar { display: none; }
       .cf-btn { flex-shrink: 0; padding: 7px 14px; }
       .chart-header { padding: 14px 16px; }
-      .chart-body-lg { padding: 8px 14px 16px; min-height: 240px; }
-      .chart-body-lg svg { height: 220px; }
+      .chart-body-lg { padding: 8px 12px 16px; height: 280px; }
 
       /* ── Sales filter ── */
       .sales-filter { flex-direction: column; align-items: stretch; gap: 10px; }
@@ -1336,8 +1335,11 @@ if (authenticated && !dbReady) {
         datasets.forEach(ds => ds.data.forEach(d => allValues.push(d.value)));
         var maxVal = Math.max(...allValues, 1);
 
-        var W = 100, H = 100;
-        var padL = 0, padR = 2, padT = 8, padB = 20;
+        // Use actual pixel dimensions
+        var rect = el.getBoundingClientRect();
+        var W = Math.max(rect.width - 48, 300);
+        var H = Math.max(rect.height - 20, 260);
+        var padL = 52, padR = 16, padT = 16, padB = 36;
         var chartW = W - padL - padR;
         var chartH = H - padT - padB;
 
@@ -1345,88 +1347,113 @@ if (authenticated && !dbReady) {
           return ds.data.map((d, i) => {
             var x = padL + (allDates.length === 1 ? chartW / 2 : (i / (allDates.length - 1)) * chartW);
             var y = padT + chartH - (d.value / maxVal) * chartH;
-            return { x, y, date: d.date, value: d.value, label: ds.label };
+            return { x: x, y: y, value: d.value };
           });
         });
 
-        // Grid lines
-        var gridLines = '';
-        var gridCount = 4;
+        var svg = '';
+
+        // Grid lines + Y labels
+        var gridCount = 5;
         for (var g = 0; g <= gridCount; g++) {
           var gy = padT + (g / gridCount) * chartH;
           var gv = Math.round(maxVal - (g / gridCount) * maxVal);
-          gridLines += '<line x1="' + padL + '" y1="' + gy + '" x2="' + (W - padR) + '" y2="' + gy + '" stroke="rgba(26,26,58,0.5)" stroke-width="0.3"/>';
-          gridLines += '<text x="' + padL + '" y="' + (gy - 1.5) + '" fill="rgba(90,90,120,0.6)" font-size="3.2">' + (opts.formatValue ? opts.formatValue(gv) : gv) + '</text>';
+          svg += '<line x1="' + padL + '" y1="' + gy + '" x2="' + (W - padR) + '" y2="' + gy + '" stroke="rgba(30,30,65,0.4)" stroke-dasharray="4,4"/>';
+          var label = opts.formatValue ? opts.formatValue(gv) : gv;
+          svg += '<text x="' + (padL - 8) + '" y="' + (gy + 4) + '" text-anchor="end" fill="#5a5a78" font-size="11" font-family="Inter,sans-serif">' + label + '</text>';
         }
 
-        // Date labels
-        var dateLabels = '';
-        var step = Math.max(1, Math.floor(allDates.length / 7));
+        // X date labels
+        var maxLabels = Math.min(allDates.length, Math.floor(chartW / 60));
+        var step = Math.max(1, Math.ceil(allDates.length / maxLabels));
         for (var di = 0; di < allDates.length; di += step) {
           var dx = padL + (allDates.length === 1 ? chartW / 2 : (di / (allDates.length - 1)) * chartW);
-          dateLabels += '<text x="' + dx + '" y="' + (H - 2) + '" text-anchor="middle" fill="rgba(90,90,120,0.6)" font-size="3">' + fmtDate(allDates[di]) + '</text>';
+          svg += '<text x="' + dx + '" y="' + (H - 8) + '" text-anchor="middle" fill="#5a5a78" font-size="11" font-family="Inter,sans-serif">' + fmtDate(allDates[di]) + '</text>';
         }
 
-        // Lines + areas + dots
-        var paths = '';
+        // Area fills + lines + dots
         points.forEach((pts, si) => {
           var ds = datasets[si];
           if (pts.length < 2) {
-            paths += '<circle cx="' + pts[0].x + '" cy="' + pts[0].y + '" r="1.5" fill="' + ds.color + '"/>';
+            svg += '<circle cx="' + pts[0].x + '" cy="' + pts[0].y + '" r="5" fill="' + ds.color + '"/>';
             return;
           }
-          // Smooth line
-          var pathD = 'M' + pts.map(p => p.x + ',' + p.y).join(' L');
 
-          // Area
-          var areaD = pathD + ' L' + pts[pts.length - 1].x + ',' + (padT + chartH) + ' L' + pts[0].x + ',' + (padT + chartH) + ' Z';
-          paths += '<path d="' + areaD + '" fill="' + ds.color + '" opacity="0.08"/>';
-          paths += '<path d="' + pathD + '" fill="none" stroke="' + ds.color + '" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>';
+          // Smooth curve (catmull-rom to bezier)
+          var lineD = 'M' + pts[0].x + ',' + pts[0].y;
+          for (var k = 0; k < pts.length - 1; k++) {
+            var p0 = pts[Math.max(k - 1, 0)];
+            var p1 = pts[k];
+            var p2 = pts[k + 1];
+            var p3 = pts[Math.min(k + 2, pts.length - 1)];
+            var cp1x = p1.x + (p2.x - p0.x) / 6;
+            var cp1y = p1.y + (p2.y - p0.y) / 6;
+            var cp2x = p2.x - (p3.x - p1.x) / 6;
+            var cp2y = p2.y - (p3.y - p1.y) / 6;
+            lineD += ' C' + cp1x + ',' + cp1y + ' ' + cp2x + ',' + cp2y + ' ' + p2.x + ',' + p2.y;
+          }
+
+          // Gradient area
+          var gradId = container + '-grad-' + si;
+          svg += '<defs><linearGradient id="' + gradId + '" x1="0" y1="0" x2="0" y2="1">';
+          svg += '<stop offset="0%" stop-color="' + ds.color + '" stop-opacity="0.2"/>';
+          svg += '<stop offset="100%" stop-color="' + ds.color + '" stop-opacity="0.01"/>';
+          svg += '</linearGradient></defs>';
+
+          var areaD = lineD + ' L' + pts[pts.length - 1].x + ',' + (padT + chartH) + ' L' + pts[0].x + ',' + (padT + chartH) + ' Z';
+          svg += '<path d="' + areaD + '" fill="url(#' + gradId + ')"/>';
+          svg += '<path d="' + lineD + '" fill="none" stroke="' + ds.color + '" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
 
           // Dots
           pts.forEach(p => {
-            paths += '<circle cx="' + p.x + '" cy="' + p.y + '" r="1" fill="' + ds.color + '" stroke="var(--bg-2)" stroke-width="0.5"/>';
+            svg += '<circle cx="' + p.x + '" cy="' + p.y + '" r="3.5" fill="' + ds.color + '" stroke="#101025" stroke-width="2"/>';
           });
         });
 
-        // Hover columns
-        var hoverCols = '';
+        // Hover columns (invisible, for tooltip)
         allDates.forEach((date, i) => {
           var cx = padL + (allDates.length === 1 ? chartW / 2 : (i / (allDates.length - 1)) * chartW);
-          var colW = allDates.length === 1 ? chartW : chartW / allDates.length;
-          var vals = datasets.map((ds, si) => ({
-            label: ds.label, color: ds.color, value: ds.data[i].value,
-          }));
-          hoverCols += '<rect x="' + (cx - colW / 2) + '" y="' + padT + '" width="' + colW + '" height="' + chartH + '" fill="transparent" class="chart-hover-col" data-idx="' + i + '" data-date="' + date + '" data-vals=\'' + JSON.stringify(vals) + '\'/>';
+          var colW = allDates.length === 1 ? chartW : chartW / Math.max(allDates.length - 1, 1);
+          var vals = datasets.map(function(ds) {
+            return { label: ds.label, color: ds.color, value: ds.data[i].value };
+          });
+          // Vertical hover line
+          svg += '<line x1="' + cx + '" y1="' + padT + '" x2="' + cx + '" y2="' + (padT + chartH) + '" stroke="rgba(124,58,237,0.3)" stroke-width="1" opacity="0" class="hover-line" data-idx="' + i + '"/>';
+          svg += '<rect x="' + (cx - colW / 2) + '" y="0" width="' + colW + '" height="' + H + '" fill="transparent" class="chart-hover-col" data-idx="' + i + '" data-date="' + date + '" data-vals=\'' + JSON.stringify(vals).replace(/'/g, '&#39;') + '\' style="cursor:crosshair"/>';
         });
 
-        el.innerHTML = '<div style="position:relative"><svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none">' +
-          gridLines + dateLabels + paths + hoverCols +
-          '</svg><div class="chart-tooltip" id="tooltip-' + container + '"></div></div>';
+        el.innerHTML = '<div style="position:relative"><svg width="' + W + '" height="' + H + '" style="display:block">' +
+          svg + '</svg><div class="chart-tooltip" id="tooltip-' + container + '"></div></div>';
 
-        // Tooltip events
+        // Tooltip + hover line events
         el.querySelectorAll('.chart-hover-col').forEach(col => {
-          col.addEventListener('mouseenter', function(e) {
+          col.addEventListener('mouseenter', function() {
             var tt = document.getElementById('tooltip-' + container);
-            var vals = JSON.parse(this.dataset.vals);
+            var vals = JSON.parse(this.dataset.vals.replace(/&#39;/g, "'"));
             var html = '<div class="ct-date">' + fmtDate(this.dataset.date) + '</div>';
             vals.forEach(v => {
               html += '<div class="ct-row"><span class="ct-dot" style="background:' + v.color + '"></span>' + v.label + ': <b>' + (opts.formatValue ? opts.formatValue(v.value) : v.value) + '</b></div>';
             });
             tt.innerHTML = html;
             tt.classList.add('visible');
+            // Show hover line
+            var line = el.querySelector('.hover-line[data-idx="' + this.dataset.idx + '"]');
+            if (line) line.setAttribute('opacity', '1');
           });
           col.addEventListener('mousemove', function(e) {
             var tt = document.getElementById('tooltip-' + container);
-            var rect = el.getBoundingClientRect();
-            var x = e.clientX - rect.left + 12;
-            var y = e.clientY - rect.top - 10;
-            if (x + 150 > rect.width) x = x - 170;
+            var r = el.getBoundingClientRect();
+            var x = e.clientX - r.left + 16;
+            var y = e.clientY - r.top - 16;
+            if (x + 160 > r.width) x = e.clientX - r.left - 170;
+            if (y < 0) y = 10;
             tt.style.left = x + 'px';
             tt.style.top = y + 'px';
           });
           col.addEventListener('mouseleave', function() {
             document.getElementById('tooltip-' + container).classList.remove('visible');
+            var line = el.querySelector('.hover-line[data-idx="' + this.dataset.idx + '"]');
+            if (line) line.setAttribute('opacity', '0');
           });
         });
       }
