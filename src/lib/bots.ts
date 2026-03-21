@@ -45,9 +45,8 @@ export const BOT_PATTERNS: { name: string; pattern: RegExp }[] = [
 
 // Ignore — bazaga yozilmaydi
 const IGNORE_PATTERNS = [
-  /vercel-screenshot|vercel-og|vercel\/1|Vercel/i,
-  /HeadlessChrome/i,
-  /Chrome-Lighthouse/i,
+  /vercel-screenshot|vercel-og/i,
+  /HeadlessChrome(?!.*bot)/i,
 ];
 
 export function detectBot(ua: string): { isBot: boolean; isIgnored: boolean; botName: string } {
