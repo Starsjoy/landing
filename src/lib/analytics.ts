@@ -289,10 +289,13 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
       COALESCE(SUM(price), 0) as total_revenue,
       COUNT(*) FILTER (WHERE type = 'stars') as stars_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'stars'), 0) as stars_revenue,
+      COALESCE(SUM(CASE WHEN type = 'stars' AND amount ~ '^\d+' THEN CAST(SUBSTRING(amount FROM '^\d+') AS INTEGER) ELSE 0 END), 0) as stars_total_amount,
       COUNT(*) FILTER (WHERE type = 'gift') as gift_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'gift'), 0) as gift_revenue,
+      COALESCE(SUM(CASE WHEN type = 'gift' AND amount ~ '^\d+' THEN CAST(SUBSTRING(amount FROM '^\d+') AS INTEGER) ELSE 0 END), 0) as gift_total_stars,
       COUNT(*) FILTER (WHERE type = 'premium') as premium_count,
-      COALESCE(SUM(price) FILTER (WHERE type = 'premium'), 0) as premium_revenue
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium'), 0) as premium_revenue,
+      COALESCE(SUM(CASE WHEN type = 'premium' AND amount ~ '^\d+' THEN CAST(SUBSTRING(amount FROM '^\d+') AS INTEGER) ELSE 0 END), 0) as premium_total_months
     FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until}
   `;
 
@@ -359,10 +362,13 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
       totalRevenue: +overview.total_revenue,
       starsCount: +overview.stars_count,
       starsRevenue: +overview.stars_revenue,
+      starsTotalAmount: +overview.stars_total_amount,
       giftCount: +overview.gift_count,
       giftRevenue: +overview.gift_revenue,
+      giftTotalStars: +overview.gift_total_stars,
       premiumCount: +overview.premium_count,
       premiumRevenue: +overview.premium_revenue,
+      premiumTotalMonths: +overview.premium_total_months,
       totalStars: +starsTotal.total_stars,
     },
     recent: recent.map(r => ({

@@ -1046,18 +1046,18 @@ if (authenticated && !dbReady) {
           </div>
           <div class="stat-card">
             <div class="sc-label">⭐ Stars</div>
-            <div class="sc-value">${ov.starsCount}</div>
-            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.starsRevenue)} so'm</span></div>
+            <div class="sc-value">${fmtMoney(ov.starsTotalAmount)}</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.starsRevenue)} so'm</span><span class="sc-divider"></span><span>${ov.starsCount} ta sotildi</span></div>
           </div>
           <div class="stat-card">
             <div class="sc-label">🎁 Gift</div>
-            <div class="sc-value">${ov.giftCount}</div>
-            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.giftRevenue)} so'm</span></div>
+            <div class="sc-value">${fmtMoney(ov.giftTotalStars)}</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.giftRevenue)} so'm</span><span class="sc-divider"></span><span>${ov.giftCount} ta sotildi</span></div>
           </div>
           <div class="stat-card">
             <div class="sc-label">👑 Premium</div>
-            <div class="sc-value">${ov.premiumCount}</div>
-            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.premiumRevenue)} so'm</span></div>
+            <div class="sc-value">${ov.premiumTotalMonths} oy</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.premiumRevenue)} so'm</span><span class="sc-divider"></span><span>${ov.premiumCount} ta sotildi</span></div>
           </div>
         `;
 
