@@ -274,8 +274,7 @@ if (authenticated && !dbReady) {
               <div class="chart-header">
                 <h2>Sotuvlar dinamikasi</h2>
                 <div class="chart-legend">
-                  <span class="cl-item"><span class="cl-dot" style="background:#10b981"></span> Daromad</span>
-                  <span class="cl-item"><span class="cl-dot" style="background:#a78bfa"></span> Buyurtmalar</span>
+                  <span class="cl-item"><span class="cl-dot" style="background:#10b981"></span> Daromad (so'm)</span>
                 </div>
               </div>
               <div class="chart-body chart-body-lg" id="salesChart"></div>
@@ -1315,12 +1314,14 @@ if (authenticated && !dbReady) {
       function renderCharts() {
         var a = statsData.analytics;
         if (!a) return;
-        renderSalesChart(a.dailySales);
-        renderVisitsChart(a.dailyVisits);
-        renderConversionChart(a.dailyCombined);
+        renderSalesChart(a.salesByPeriod);
+        renderVisitsChart(a.visitsByPeriod);
+        renderConversionChart(a.combined);
       }
 
       function fmtDate(d) {
+        // Labels already formatted from server, just return
+        if (typeof d === 'string' && (d.includes(':') || d.includes('.') || d.includes('-') || d.length <= 6)) return d;
         return new Date(d).toLocaleDateString('uz', { day: '2-digit', month: 'short' });
       }
 
@@ -1461,24 +1462,23 @@ if (authenticated && !dbReady) {
       function renderSalesChart(data) {
         if (!data) return;
         buildLineChart('salesChart', [
-          { label: 'Daromad', color: '#10b981', data: data.map(d => ({ date: d.date, value: d.revenue })) },
-          { label: 'Buyurtmalar', color: '#a78bfa', data: data.map(d => ({ date: d.date, value: d.orders })) },
-        ], { formatValue: v => fmtMoney(v) });
+          { label: 'Daromad', color: '#10b981', data: data.map(d => ({ date: d.label, value: d.revenue })) },
+        ], { formatValue: v => fmtMoney(v) + " so'm" });
       }
 
       function renderVisitsChart(data) {
         if (!data) return;
         buildLineChart('visitsChart', [
-          { label: 'Real userlar', color: '#10b981', data: data.map(d => ({ date: d.date, value: d.humans })) },
-          { label: 'Botlar', color: '#f59e0b', data: data.map(d => ({ date: d.date, value: d.bots })) },
+          { label: 'Real userlar', color: '#10b981', data: data.map(d => ({ date: d.label, value: d.humans })) },
+          { label: 'Botlar', color: '#f59e0b', data: data.map(d => ({ date: d.label, value: d.bots })) },
         ], {});
       }
 
       function renderConversionChart(data) {
         if (!data) return;
         buildLineChart('conversionChart', [
-          { label: 'Tashriflar', color: '#a78bfa', data: data.map(d => ({ date: d.date, value: d.visits })) },
-          { label: 'Sotuvlar', color: '#10b981', data: data.map(d => ({ date: d.date, value: d.orders })) },
+          { label: 'Tashriflar', color: '#a78bfa', data: data.map(d => ({ date: d.label, value: d.visits })) },
+          { label: 'Sotuvlar', color: '#10b981', data: data.map(d => ({ date: d.label, value: d.orders })) },
         ], {});
       }
 

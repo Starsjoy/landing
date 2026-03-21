@@ -266,60 +266,142 @@ export async function addOrder(params: {
 
 export async function getAnalyticsData(period: string) {
   const sql = getSQL();
-  const since = getSince(period === 'today' ? 'week' : period);
+  const since = getSince(period);
 
-  // Daily visits: bot vs human
-  const dailyVisits = await sql`
-    SELECT DATE(timestamp) as date,
-      COUNT(*) FILTER (WHERE NOT is_bot) as humans,
-      COUNT(*) FILTER (WHERE is_bot) as bots,
-      COUNT(*) as total
-    FROM visits
-    WHERE timestamp >= ${since}
-    GROUP BY DATE(timestamp)
-    ORDER BY date ASC
-  `;
+  // ── Sales revenue grouped by period ──
+  let salesByPeriod: Array<{ label: string; revenue: number; orders: number }>;
 
-  // Daily sales revenue
-  const dailySales = await sql`
-    SELECT DATE(timestamp) as date,
-      COUNT(*) as orders,
-      COALESCE(SUM(price), 0) as revenue
-    FROM orders
-    WHERE timestamp >= ${since}
-    GROUP BY DATE(timestamp)
-    ORDER BY date ASC
-  `;
+  if (period === 'today') {
+    // Hourly
+    const rows = await sql`
+      SELECT EXTRACT(HOUR FROM timestamp)::INTEGER as hour,
+        COUNT(*) as orders,
+        COALESCE(SUM(price), 0) as revenue
+      FROM orders WHERE timestamp >= ${since}
+      GROUP BY hour ORDER BY hour ASC
+    `;
+    salesByPeriod = rows.map(r => ({
+      label: String(+r.hour).padStart(2, '0') + ':00',
+      revenue: +r.revenue, orders: +r.orders,
+    }));
+  } else if (period === '12months') {
+    // Monthly
+    const rows = await sql`
+      SELECT TO_CHAR(timestamp, 'YYYY-MM') as month,
+        TO_CHAR(timestamp, 'Mon') as month_name,
+        COUNT(*) as orders,
+        COALESCE(SUM(price), 0) as revenue
+      FROM orders WHERE timestamp >= ${since}
+      GROUP BY month, month_name ORDER BY month ASC
+    `;
+    salesByPeriod = rows.map(r => ({
+      label: r.month_name, revenue: +r.revenue, orders: +r.orders,
+    }));
+  } else if (period === '3months' || period === '6months') {
+    // Weekly
+    const rows = await sql`
+      SELECT DATE_TRUNC('week', timestamp)::DATE as week_start,
+        COUNT(*) as orders,
+        COALESCE(SUM(price), 0) as revenue
+      FROM orders WHERE timestamp >= ${since}
+      GROUP BY week_start ORDER BY week_start ASC
+    `;
+    salesByPeriod = rows.map(r => ({
+      label: new Date(r.week_start).toLocaleDateString('uz', { day: '2-digit', month: '2-digit' }),
+      revenue: +r.revenue, orders: +r.orders,
+    }));
+  } else {
+    // Daily (week, month)
+    const rows = await sql`
+      SELECT DATE(timestamp) as date,
+        COUNT(*) as orders,
+        COALESCE(SUM(price), 0) as revenue
+      FROM orders WHERE timestamp >= ${since}
+      GROUP BY DATE(timestamp) ORDER BY date ASC
+    `;
+    salesByPeriod = rows.map(r => ({
+      label: new Date(r.date).toLocaleDateString('uz', { day: '2-digit', month: '2-digit' }),
+      revenue: +r.revenue, orders: +r.orders,
+    }));
+  }
 
-  // Combine visits + sales in JS (more reliable than complex SQL joins)
+  // ── Visits grouped same way ──
+  let visitsByPeriod: Array<{ label: string; humans: number; bots: number; total: number }>;
+
+  if (period === 'today') {
+    const rows = await sql`
+      SELECT EXTRACT(HOUR FROM timestamp)::INTEGER as hour,
+        COUNT(*) FILTER (WHERE NOT is_bot) as humans,
+        COUNT(*) FILTER (WHERE is_bot) as bots,
+        COUNT(*) as total
+      FROM visits WHERE timestamp >= ${since}
+      GROUP BY hour ORDER BY hour ASC
+    `;
+    visitsByPeriod = rows.map(r => ({
+      label: String(+r.hour).padStart(2, '0') + ':00',
+      humans: +r.humans, bots: +r.bots, total: +r.total,
+    }));
+  } else if (period === '12months') {
+    const rows = await sql`
+      SELECT TO_CHAR(timestamp, 'YYYY-MM') as month,
+        TO_CHAR(timestamp, 'Mon') as month_name,
+        COUNT(*) FILTER (WHERE NOT is_bot) as humans,
+        COUNT(*) FILTER (WHERE is_bot) as bots,
+        COUNT(*) as total
+      FROM visits WHERE timestamp >= ${since}
+      GROUP BY month, month_name ORDER BY month ASC
+    `;
+    visitsByPeriod = rows.map(r => ({
+      label: r.month_name, humans: +r.humans, bots: +r.bots, total: +r.total,
+    }));
+  } else if (period === '3months' || period === '6months') {
+    const rows = await sql`
+      SELECT DATE_TRUNC('week', timestamp)::DATE as week_start,
+        COUNT(*) FILTER (WHERE NOT is_bot) as humans,
+        COUNT(*) FILTER (WHERE is_bot) as bots,
+        COUNT(*) as total
+      FROM visits WHERE timestamp >= ${since}
+      GROUP BY week_start ORDER BY week_start ASC
+    `;
+    visitsByPeriod = rows.map(r => ({
+      label: new Date(r.week_start).toLocaleDateString('uz', { day: '2-digit', month: '2-digit' }),
+      humans: +r.humans, bots: +r.bots, total: +r.total,
+    }));
+  } else {
+    const rows = await sql`
+      SELECT DATE(timestamp) as date,
+        COUNT(*) FILTER (WHERE NOT is_bot) as humans,
+        COUNT(*) FILTER (WHERE is_bot) as bots,
+        COUNT(*) as total
+      FROM visits WHERE timestamp >= ${since}
+      GROUP BY DATE(timestamp) ORDER BY date ASC
+    `;
+    visitsByPeriod = rows.map(r => ({
+      label: new Date(r.date).toLocaleDateString('uz', { day: '2-digit', month: '2-digit' }),
+      humans: +r.humans, bots: +r.bots, total: +r.total,
+    }));
+  }
+
+  // ── Combined: merge by label ──
+  const allLabels = new Set([
+    ...salesByPeriod.map(s => s.label),
+    ...visitsByPeriod.map(v => v.label),
+  ]);
+  const salesMap: Record<string, { revenue: number; orders: number }> = {};
+  salesByPeriod.forEach(s => { salesMap[s.label] = { revenue: s.revenue, orders: s.orders }; });
   const visitsMap: Record<string, { humans: number; bots: number; total: number }> = {};
-  dailyVisits.forEach(d => {
-    const key = String(d.date).slice(0, 10);
-    visitsMap[key] = { humans: +d.humans, bots: +d.bots, total: +d.total };
-  });
-  const salesMap: Record<string, { orders: number; revenue: number }> = {};
-  dailySales.forEach(d => {
-    const key = String(d.date).slice(0, 10);
-    salesMap[key] = { orders: +d.orders, revenue: +d.revenue };
-  });
-  const allDates = new Set([...Object.keys(visitsMap), ...Object.keys(salesMap)]);
-  const dailyCombined = [...allDates].sort().map(date => ({
-    date,
-    humans: visitsMap[date]?.humans || 0,
-    bots: visitsMap[date]?.bots || 0,
-    visits: visitsMap[date]?.total || 0,
-    orders: salesMap[date]?.orders || 0,
-    revenue: salesMap[date]?.revenue || 0,
+  visitsByPeriod.forEach(v => { visitsMap[v.label] = { humans: v.humans, bots: v.bots, total: v.total }; });
+
+  const combined = [...allLabels].sort().map(label => ({
+    label,
+    visits: visitsMap[label]?.total || 0,
+    orders: salesMap[label]?.orders || 0,
   }));
 
   return {
-    dailyVisits: dailyVisits.map(d => ({
-      date: d.date, humans: +d.humans, bots: +d.bots, total: +d.total,
-    })),
-    dailySales: dailySales.map(d => ({
-      date: d.date, orders: +d.orders, revenue: +d.revenue,
-    })),
-    dailyCombined,
+    salesByPeriod,
+    visitsByPeriod,
+    combined,
   };
 }
 
