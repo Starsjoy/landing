@@ -2,6 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { addVisit, updateDuration, initDB } from '../../lib/analytics';
+import { detectBot } from '../../lib/bots';
 
 let dbReady = false;
 
@@ -29,6 +30,12 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Skip dashboard and API routes
     if (body.path.startsWith('/modad') || body.path.startsWith('/api')) {
+      return new Response('skip', { status: 200 });
+    }
+
+    // Skip ignored bots (Vercel screenshot, HeadlessChrome, etc.)
+    const { isIgnored } = detectBot(ua);
+    if (isIgnored) {
       return new Response('skip', { status: 200 });
     }
 
