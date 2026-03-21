@@ -250,9 +250,9 @@ if (authenticated && !dbReady) {
           <!-- Profit -->
           <div id="section-profit" class="section-content" hidden>
             <div class="profit-filter">
-              <button class="pf-btn active" data-pp="today" onclick="setProfitPeriod('today')">1 kun</button>
+              <button class="pf-btn" data-pp="today" onclick="setProfitPeriod('today')">1 kun</button>
               <button class="pf-btn" data-pp="week" onclick="setProfitPeriod('week')">1 hafta</button>
-              <button class="pf-btn" data-pp="month" onclick="setProfitPeriod('month')">1 oy</button>
+              <button class="pf-btn active" data-pp="month" onclick="setProfitPeriod('month')">1 oy</button>
               <button class="pf-btn" data-pp="3months" onclick="setProfitPeriod('3months')">3 oy</button>
               <button class="pf-btn" data-pp="6months" onclick="setProfitPeriod('6months')">6 oy</button>
               <button class="pf-btn" data-pp="12months" onclick="setProfitPeriod('12months')">12 oy</button>
@@ -1396,7 +1396,7 @@ if (authenticated && !dbReady) {
       }
 
       // ───── PROFIT ─────
-      var profitPeriod = 'today';
+      var profitPeriod = 'month';
 
       function setProfitPeriod(p) {
         profitPeriod = p;
@@ -1417,18 +1417,21 @@ if (authenticated && !dbReady) {
         if (!orders) return;
         var ov = orders.overview;
         var revenue = ov.totalRevenue;
-        var profit = Math.round(revenue * 0.10);
+        var starsProfit = Math.round(ov.starsRevenue * 0.10);
+        var giftProfit = Math.round(ov.giftRevenue * 0.10);
+        var premiumProfit = Math.round(ov.premiumRevenue * 0.05);
+        var profit = starsProfit + giftProfit + premiumProfit;
 
         document.getElementById('profitValue').textContent = fmtMoney(profit);
         document.getElementById('profitRevenue').textContent = fmtMoney(revenue);
         document.getElementById('profitOrders').textContent = ov.totalOrders;
 
         document.getElementById('profitStars').textContent = fmtMoney(ov.starsRevenue) + " so'm";
-        document.getElementById('profitStarsP').textContent = fmtMoney(Math.round(ov.starsRevenue * 0.10)) + " so'm";
+        document.getElementById('profitStarsP').textContent = fmtMoney(starsProfit) + " so'm (10%)";
         document.getElementById('profitGift').textContent = fmtMoney(ov.giftRevenue) + " so'm";
-        document.getElementById('profitGiftP').textContent = fmtMoney(Math.round(ov.giftRevenue * 0.10)) + " so'm";
+        document.getElementById('profitGiftP').textContent = fmtMoney(giftProfit) + " so'm (10%)";
         document.getElementById('profitPremium').textContent = fmtMoney(ov.premiumRevenue) + " so'm";
-        document.getElementById('profitPremiumP').textContent = fmtMoney(Math.round(ov.premiumRevenue * 0.10)) + " so'm";
+        document.getElementById('profitPremiumP').textContent = fmtMoney(premiumProfit) + " so'm (5%)";
       }
 
       // ───── ANALYTICS CHARTS ─────
