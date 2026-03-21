@@ -99,6 +99,12 @@ if (authenticated && !dbReady) {
             </span>
             <span>Sotuvlar</span>
           </a>
+          <a data-section="profit" onclick="showSection('profit')">
+            <span class="sb-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </span>
+            <span>Foyda</span>
+          </a>
           <a data-section="analytics" onclick="showSection('analytics')">
             <span class="sb-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -237,6 +243,61 @@ if (authenticated && !dbReady) {
               <div class="panel">
                 <div class="panel-header"><h2>Kunlik stars miqdori</h2></div>
                 <div class="panel-body panel-pad" id="dailyStars"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profit -->
+          <div id="section-profit" class="section-content" hidden>
+            <div class="profit-filter">
+              <button class="pf-btn active" data-pp="today" onclick="setProfitPeriod('today')">1 kun</button>
+              <button class="pf-btn" data-pp="week" onclick="setProfitPeriod('week')">1 hafta</button>
+              <button class="pf-btn" data-pp="month" onclick="setProfitPeriod('month')">1 oy</button>
+              <button class="pf-btn" data-pp="3months" onclick="setProfitPeriod('3months')">3 oy</button>
+              <button class="pf-btn" data-pp="6months" onclick="setProfitPeriod('6months')">6 oy</button>
+              <button class="pf-btn" data-pp="12months" onclick="setProfitPeriod('12months')">12 oy</button>
+            </div>
+
+            <div class="profit-cards">
+              <div class="profit-card profit-main">
+                <div class="pc-label">Sof foyda (10%)</div>
+                <div class="pc-value" id="profitValue">0</div>
+                <div class="pc-sub">so'm</div>
+              </div>
+              <div class="profit-card">
+                <div class="pc-label">Umumiy daromad</div>
+                <div class="pc-value pc-dim" id="profitRevenue">0</div>
+                <div class="pc-sub">so'm</div>
+              </div>
+              <div class="profit-card">
+                <div class="pc-label">Buyurtmalar</div>
+                <div class="pc-value pc-dim" id="profitOrders">0</div>
+                <div class="pc-sub">ta</div>
+              </div>
+            </div>
+
+            <div class="profit-breakdown">
+              <div class="pb-header">Tafsilot</div>
+              <div class="pb-row">
+                <span class="pb-dot" style="background:#facc15"></span>
+                <span class="pb-name">Stars</span>
+                <span class="pb-revenue" id="profitStars">0 so'm</span>
+                <span class="pb-arrow">→</span>
+                <span class="pb-profit" id="profitStarsP">0 so'm</span>
+              </div>
+              <div class="pb-row">
+                <span class="pb-dot" style="background:#34d399"></span>
+                <span class="pb-name">Gift</span>
+                <span class="pb-revenue" id="profitGift">0 so'm</span>
+                <span class="pb-arrow">→</span>
+                <span class="pb-profit" id="profitGiftP">0 so'm</span>
+              </div>
+              <div class="pb-row">
+                <span class="pb-dot" style="background:#c084fc"></span>
+                <span class="pb-name">Premium</span>
+                <span class="pb-revenue" id="profitPremium">0 so'm</span>
+                <span class="pb-arrow">→</span>
+                <span class="pb-profit" id="profitPremiumP">0 so'm</span>
               </div>
             </div>
           </div>
@@ -648,6 +709,46 @@ if (authenticated && !dbReady) {
     }
     .c-val { width: 40px; text-align: right; font-size: 0.78rem; font-weight: 700; color: var(--text-1); }
 
+    /* ───── PROFIT ───── */
+    .profit-filter {
+      display: flex; gap: 2px; background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 3px; margin-bottom: 20px; width: fit-content;
+    }
+    .pf-btn {
+      padding: 7px 16px; border: none; border-radius: 6px; background: transparent;
+      color: var(--text-3); font-size: 0.78rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    }
+    .pf-btn.active { background: var(--green); color: #fff; box-shadow: 0 2px 8px rgba(16,185,129,0.3); }
+    .pf-btn:hover:not(.active) { color: var(--text-1); }
+
+    .profit-cards { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .profit-card {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px 24px; text-align: center;
+    }
+    .profit-main { border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.04); }
+    .pc-label { font-size: 0.72rem; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+    .pc-value { font-size: 2.6rem; font-weight: 900; color: var(--green); letter-spacing: -1.5px; line-height: 1; }
+    .pc-dim { color: var(--text-0); }
+    .pc-sub { font-size: 0.78rem; color: var(--text-3); margin-top: 8px; font-weight: 500; }
+
+    .profit-breakdown {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px 24px; max-width: 500px;
+    }
+    .pb-header { font-size: 0.72rem; font-weight: 600; color: var(--text-4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .pb-row {
+      display: flex; align-items: center; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--border); font-size: 0.85rem;
+    }
+    .pb-row:last-child { border-bottom: none; }
+    .pb-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .pb-name { font-weight: 600; color: var(--text-1); width: 70px; }
+    .pb-revenue { color: var(--text-2); font-weight: 500; }
+    .pb-arrow { color: var(--text-4); font-size: 0.75rem; }
+    .pb-profit { color: var(--green); font-weight: 700; }
+
     /* ───── ANALYTICS TABS ───── */
     .an-tabs {
       display: flex; gap: 8px; margin-bottom: 16px;
@@ -835,6 +936,17 @@ if (authenticated && !dbReady) {
       .form-stack input { padding: 12px 14px; font-size: 0.85rem; }
       .form-btn { padding: 12px 20px; font-size: 0.85rem; width: 100%; text-align: center; }
       .info-item { font-size: 0.78rem; padding: 8px 0; }
+
+      /* ── Profit ── */
+      .profit-filter {
+        overflow-x: auto; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; width: 100%;
+      }
+      .profit-filter::-webkit-scrollbar { display: none; }
+      .pf-btn { flex-shrink: 0; }
+      .profit-cards { grid-template-columns: 1fr; gap: 10px; }
+      .pc-value { font-size: 2rem; }
+      .profit-breakdown { max-width: 100%; }
 
       /* ── Analytics ── */
       .an-tabs { gap: 6px; }
@@ -1035,6 +1147,7 @@ if (authenticated && !dbReady) {
         renderCountries();
         renderPages();
         renderSalesAll();
+        renderProfit(statsData.orders);
         renderCharts();
       }
 
@@ -1280,6 +1393,42 @@ if (authenticated && !dbReady) {
             '<div class="dr-info"><span class="dr-amount">' + fmtMoney(d.revenue) + '</span><span class="dr-orders"> (' + d.orders + ')</span></div>' +
           '</div>';
         }).join('');
+      }
+
+      // ───── PROFIT ─────
+      var profitPeriod = 'today';
+
+      function setProfitPeriod(p) {
+        profitPeriod = p;
+        document.querySelectorAll('.pf-btn').forEach(b => b.classList.toggle('active', b.dataset.pp === p));
+        fetchProfit();
+      }
+
+      async function fetchProfit() {
+        try {
+          var res = await fetch('/api/stats?period=' + profitPeriod + '&ap=' + chartPeriod);
+          if (res.status === 401) { location.reload(); return; }
+          var data = await res.json();
+          renderProfit(data.orders);
+        } catch (e) { console.error('Profit fetch error:', e); }
+      }
+
+      function renderProfit(orders) {
+        if (!orders) return;
+        var ov = orders.overview;
+        var revenue = ov.totalRevenue;
+        var profit = Math.round(revenue * 0.10);
+
+        document.getElementById('profitValue').textContent = fmtMoney(profit);
+        document.getElementById('profitRevenue').textContent = fmtMoney(revenue);
+        document.getElementById('profitOrders').textContent = ov.totalOrders;
+
+        document.getElementById('profitStars').textContent = fmtMoney(ov.starsRevenue) + " so'm";
+        document.getElementById('profitStarsP').textContent = fmtMoney(Math.round(ov.starsRevenue * 0.10)) + " so'm";
+        document.getElementById('profitGift').textContent = fmtMoney(ov.giftRevenue) + " so'm";
+        document.getElementById('profitGiftP').textContent = fmtMoney(Math.round(ov.giftRevenue * 0.10)) + " so'm";
+        document.getElementById('profitPremium').textContent = fmtMoney(ov.premiumRevenue) + " so'm";
+        document.getElementById('profitPremiumP').textContent = fmtMoney(Math.round(ov.premiumRevenue * 0.10)) + " so'm";
       }
 
       // ───── ANALYTICS CHARTS ─────
