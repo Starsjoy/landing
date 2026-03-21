@@ -243,41 +243,64 @@ if (authenticated && !dbReady) {
 
           <!-- Analytics -->
           <div id="section-analytics" class="section-content" hidden>
-            <div class="chart-panel">
+            <!-- Chart selector tabs -->
+            <div class="an-tabs">
+              <button class="an-tab active" data-chart="sales" onclick="setActiveChart('sales')">
+                <span class="an-tab-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+                Sotuvlar
+              </button>
+              <button class="an-tab" data-chart="visits" onclick="setActiveChart('visits')">
+                <span class="an-tab-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                Tashriflar
+              </button>
+              <button class="an-tab" data-chart="conversion" onclick="setActiveChart('conversion')">
+                <span class="an-tab-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+                Konversiya
+              </button>
+            </div>
+
+            <!-- Period filter -->
+            <div class="an-period">
+              <button class="cf-btn" data-cp="today" onclick="setChartPeriod('today')">1 kun</button>
+              <button class="cf-btn active" data-cp="week" onclick="setChartPeriod('week')">1 hafta</button>
+              <button class="cf-btn" data-cp="month" onclick="setChartPeriod('month')">1 oy</button>
+              <button class="cf-btn" data-cp="3months" onclick="setChartPeriod('3months')">3 oy</button>
+              <button class="cf-btn" data-cp="6months" onclick="setChartPeriod('6months')">6 oy</button>
+              <button class="cf-btn" data-cp="12months" onclick="setChartPeriod('12months')">12 oy</button>
+            </div>
+
+            <!-- Charts (only active one visible) -->
+            <div class="chart-panel" id="chart-sales">
               <div class="chart-header">
                 <h2>Sotuvlar dinamikasi</h2>
-                <div class="chart-filters" id="salesChartFilters">
-                  <button class="cf-btn" data-cp="today" onclick="setChartPeriod('today')">1 kun</button>
-                  <button class="cf-btn active" data-cp="week" onclick="setChartPeriod('week')">1 hafta</button>
-                  <button class="cf-btn" data-cp="month" onclick="setChartPeriod('month')">1 oy</button>
-                  <button class="cf-btn" data-cp="3months" onclick="setChartPeriod('3months')">3 oy</button>
-                  <button class="cf-btn" data-cp="6months" onclick="setChartPeriod('6months')">6 oy</button>
-                  <button class="cf-btn" data-cp="12months" onclick="setChartPeriod('12months')">12 oy</button>
+                <div class="chart-legend">
+                  <span class="cl-item"><span class="cl-dot" style="background:#10b981"></span> Daromad</span>
+                  <span class="cl-item"><span class="cl-dot" style="background:#a78bfa"></span> Buyurtmalar</span>
                 </div>
               </div>
-              <div class="chart-body" id="salesChart"></div>
+              <div class="chart-body chart-body-lg" id="salesChart"></div>
             </div>
 
-            <div class="chart-panel">
+            <div class="chart-panel" id="chart-visits" hidden>
               <div class="chart-header">
                 <h2>Sayt tashriflari</h2>
+                <div class="chart-legend">
+                  <span class="cl-item"><span class="cl-dot" style="background:#10b981"></span> Real userlar</span>
+                  <span class="cl-item"><span class="cl-dot" style="background:#f59e0b"></span> Botlar</span>
+                </div>
               </div>
-              <div class="chart-body" id="visitsChart"></div>
-              <div class="chart-legend">
-                <span class="cl-item"><span class="cl-dot" style="background:var(--green)"></span> Real userlar</span>
-                <span class="cl-item"><span class="cl-dot" style="background:var(--orange)"></span> Botlar</span>
-              </div>
+              <div class="chart-body chart-body-lg" id="visitsChart"></div>
             </div>
 
-            <div class="chart-panel">
+            <div class="chart-panel" id="chart-conversion" hidden>
               <div class="chart-header">
                 <h2>Tashriflar va sotuvlar</h2>
+                <div class="chart-legend">
+                  <span class="cl-item"><span class="cl-dot" style="background:#a78bfa"></span> Tashriflar</span>
+                  <span class="cl-item"><span class="cl-dot" style="background:#10b981"></span> Sotuvlar</span>
+                </div>
               </div>
-              <div class="chart-body" id="conversionChart"></div>
-              <div class="chart-legend">
-                <span class="cl-item"><span class="cl-dot" style="background:var(--accent-light)"></span> Tashriflar</span>
-                <span class="cl-item"><span class="cl-dot" style="background:var(--green)"></span> Sotuvlar</span>
-              </div>
+              <div class="chart-body chart-body-lg" id="conversionChart"></div>
             </div>
           </div>
 
@@ -626,45 +649,63 @@ if (authenticated && !dbReady) {
     }
     .c-val { width: 40px; text-align: right; font-size: 0.78rem; font-weight: 700; color: var(--text-1); }
 
+    /* ───── ANALYTICS TABS ───── */
+    .an-tabs {
+      display: flex; gap: 8px; margin-bottom: 16px;
+    }
+    .an-tab {
+      display: flex; align-items: center; gap: 8px; padding: 12px 20px;
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--text-2); font-size: 0.85rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.2s; flex: 1; justify-content: center;
+    }
+    .an-tab:hover { border-color: var(--border-light); color: var(--text-1); }
+    .an-tab.active {
+      background: var(--accent-bg-strong); border-color: var(--accent);
+      color: var(--accent-light); box-shadow: 0 0 0 1px rgba(124,58,237,0.15);
+    }
+    .an-tab-icon { display: flex; align-items: center; }
+    .an-period {
+      display: flex; gap: 2px; background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 3px; margin-bottom: 16px; width: fit-content;
+    }
+    .cf-btn {
+      padding: 7px 16px; border: none; border-radius: 6px; background: transparent;
+      color: var(--text-3); font-size: 0.78rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    }
+    .cf-btn.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(124,58,237,0.3); }
+    .cf-btn:hover:not(.active) { color: var(--text-1); }
+
     /* ───── CHARTS ───── */
     .chart-panel {
       background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
-      margin-bottom: 20px; overflow: hidden;
+      overflow: hidden;
     }
     .chart-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 22px; flex-wrap: wrap; gap: 10px;
+      padding: 18px 24px; flex-wrap: wrap; gap: 10px;
     }
-    .chart-header h2 { font-size: 0.88rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.2px; }
-    .chart-filters {
-      display: flex; gap: 2px; background: var(--bg-3); border-radius: 6px; padding: 2px;
-    }
-    .cf-btn {
-      padding: 5px 12px; border: none; border-radius: 4px; background: transparent;
-      color: var(--text-3); font-size: 0.72rem; font-weight: 600; font-family: inherit;
-      cursor: pointer; transition: all 0.15s; white-space: nowrap;
-    }
-    .cf-btn.active { background: var(--accent); color: #fff; }
-    .cf-btn:hover:not(.active) { color: var(--text-1); }
-    .chart-body { padding: 8px 22px 18px; min-height: 220px; }
-    .chart-body svg { width: 100%; height: 200px; overflow: visible; }
+    .chart-header h2 { font-size: 0.9rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.2px; }
+    .chart-body-lg { padding: 12px 24px 24px; min-height: 320px; }
+    .chart-body-lg svg { width: 100%; height: 300px; overflow: visible; }
     .chart-legend {
-      display: flex; gap: 18px; padding: 0 22px 16px; flex-wrap: wrap;
+      display: flex; gap: 16px; flex-wrap: wrap;
     }
-    .cl-item { display: flex; align-items: center; gap: 6px; font-size: 0.74rem; color: var(--text-2); font-weight: 500; }
+    .cl-item { display: flex; align-items: center; gap: 6px; font-size: 0.76rem; color: var(--text-2); font-weight: 500; }
     .cl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
     /* Tooltip */
     .chart-tooltip {
       position: absolute; background: var(--bg-1); border: 1px solid var(--border-light);
-      border-radius: 8px; padding: 10px 14px; font-size: 0.76rem; color: var(--text-1);
+      border-radius: 10px; padding: 12px 16px; font-size: 0.8rem; color: var(--text-1);
       pointer-events: none; z-index: 10; white-space: nowrap;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.15s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.15s;
     }
     .chart-tooltip.visible { opacity: 1; }
-    .ct-date { font-weight: 700; color: var(--text-0); margin-bottom: 4px; }
-    .ct-row { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
-    .ct-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .ct-date { font-weight: 700; color: var(--text-0); margin-bottom: 6px; font-size: 0.82rem; }
+    .ct-row { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
+    .ct-dot { width: 7px; height: 7px; border-radius: 50%; }
 
     /* ───── GRIDS ───── */
     .grid-2 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
@@ -796,13 +837,19 @@ if (authenticated && !dbReady) {
       .form-btn { padding: 12px 20px; font-size: 0.85rem; width: 100%; text-align: center; }
       .info-item { font-size: 0.78rem; padding: 8px 0; }
 
-      /* ── Charts ── */
-      .chart-header { flex-direction: column; align-items: flex-start; padding: 14px 16px; }
-      .chart-filters { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; width: 100%; }
-      .chart-filters::-webkit-scrollbar { display: none; }
-      .cf-btn { flex-shrink: 0; }
-      .chart-body { padding: 8px 14px 14px; min-height: 180px; }
-      .chart-legend { padding: 0 16px 12px; }
+      /* ── Analytics ── */
+      .an-tabs { gap: 6px; }
+      .an-tab { padding: 10px 12px; font-size: 0.78rem; gap: 6px; }
+      .an-tab-icon svg { width: 14px; height: 14px; }
+      .an-period {
+        overflow-x: auto; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; width: 100%;
+      }
+      .an-period::-webkit-scrollbar { display: none; }
+      .cf-btn { flex-shrink: 0; padding: 7px 14px; }
+      .chart-header { padding: 14px 16px; }
+      .chart-body-lg { padding: 8px 14px 16px; min-height: 240px; }
+      .chart-body-lg svg { height: 220px; }
 
       /* ── Sales filter ── */
       .sales-filter { flex-direction: column; align-items: stretch; gap: 10px; }
@@ -1239,6 +1286,16 @@ if (authenticated && !dbReady) {
 
       // ───── ANALYTICS CHARTS ─────
       var chartPeriod = 'week';
+      var activeChart = 'sales';
+
+      function setActiveChart(name) {
+        activeChart = name;
+        document.querySelectorAll('.an-tab').forEach(b => b.classList.toggle('active', b.dataset.chart === name));
+        document.querySelectorAll('[id^="chart-"]').forEach(el => {
+          el.hidden = el.id !== 'chart-' + name;
+        });
+        renderCharts();
+      }
 
       function setChartPeriod(p) {
         chartPeriod = p;
