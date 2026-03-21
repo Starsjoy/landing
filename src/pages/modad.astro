@@ -1067,18 +1067,17 @@ if (authenticated && !dbReady) {
           return;
         }
         document.getElementById('salesTable').innerHTML = `<table>
-          <thead><tr><th>#</th><th>Turi</th><th>Foydalanuvchi</th><th>Miqdor</th><th>Summa</th><th>Vaqt</th><th></th></tr></thead>
+          <thead><tr><th>#</th><th>Turi</th><th>Foydalanuvchi</th><th>Miqdor</th><th>Summa</th><th>Vaqt</th></tr></thead>
           <tbody>${rows.map(r => {
             var typePill = r.type === 'stars' ? 'pill-stars' : r.type === 'gift' ? 'pill-gift' : 'pill-premium';
             var typeLabel = r.type === 'stars' ? 'Stars' : r.type === 'gift' ? 'Gift' : 'Premium';
-            return '<tr id="order-row-' + r.id + '">' +
+            return '<tr>' +
               '<td class="td-num">' + (r.orderNumber ? '#' + r.orderNumber : '') + '</td>' +
               '<td><span class="pill ' + typePill + '">' + typeLabel + '</span></td>' +
               '<td>@' + r.username + '</td>' +
               '<td>' + r.amount + '</td>' +
               '<td class="td-num">' + fmtMoney(r.price) + ' so\'m</td>' +
               '<td style="color:var(--text-3)">' + timeAgo(r.timestamp) + '</td>' +
-              '<td><button class="del-btn" onclick="deleteOrder(' + r.id + ')" title="O\'chirish">&times;</button></td>' +
             '</tr>';
           }).join('')}</tbody>
         </table>`;
