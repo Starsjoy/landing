@@ -214,12 +214,6 @@ if (authenticated && !dbReady) {
           <!-- Sales -->
           <div id="section-sales" class="section-content" hidden>
             <div class="sales-filter">
-              <div class="sf-tabs">
-                <button class="sf-tab active" data-speriod="today" onclick="setSalesPeriod('today')">Bugun</button>
-                <button class="sf-tab" data-speriod="week" onclick="setSalesPeriod('week')">Hafta</button>
-                <button class="sf-tab" data-speriod="month" onclick="setSalesPeriod('month')">Oy</button>
-                <button class="sf-tab" data-speriod="all" onclick="setSalesPeriod('all')">Barchasi</button>
-              </div>
               <div class="sf-date">
                 <input type="date" id="salesDateFrom" onchange="setSalesCustomDate()" />
                 <span class="sf-dash">—</span>
@@ -249,14 +243,6 @@ if (authenticated && !dbReady) {
 
           <!-- Profit -->
           <div id="section-profit" class="section-content" hidden>
-            <div class="profit-filter">
-              <button class="pf-btn" data-pp="today" onclick="setProfitPeriod('today')">Bugun</button>
-              <button class="pf-btn" data-pp="week" onclick="setProfitPeriod('week')">Hafta</button>
-              <button class="pf-btn active" data-pp="month" onclick="setProfitPeriod('month')">Oy</button>
-              <button class="pf-btn" data-pp="3months" onclick="setProfitPeriod('3months')">3 oy</button>
-              <button class="pf-btn" data-pp="6months" onclick="setProfitPeriod('6months')">6 oy</button>
-              <button class="pf-btn" data-pp="12months" onclick="setProfitPeriod('12months')">1 yil</button>
-            </div>
 
             <div class="profit-cards">
               <div class="profit-card profit-main">
@@ -1016,6 +1002,12 @@ if (authenticated && !dbReady) {
 
       function setPeriod(p) {
         currentPeriod = p;
+        salesFrom = '';
+        salesTo = '';
+        var dfrom = document.getElementById('salesDateFrom');
+        var dto = document.getElementById('salesDateTo');
+        if (dfrom) dfrom.value = '';
+        if (dto) dto.value = '';
         document.querySelectorAll('#filters button').forEach(b => {
           b.classList.toggle('active', b.dataset.period === p);
         });
@@ -1094,26 +1086,13 @@ if (authenticated && !dbReady) {
         if (loader) loader.style.display = 'none';
       }
 
-      var salesPeriod = 'today';
       var salesFrom = '';
       var salesTo = '';
-
-      function setSalesPeriod(p) {
-        salesPeriod = p;
-        salesFrom = '';
-        salesTo = '';
-        document.getElementById('salesDateFrom').value = '';
-        document.getElementById('salesDateTo').value = '';
-        document.querySelectorAll('.sf-tab').forEach(b => b.classList.toggle('active', b.dataset.speriod === p));
-        fetchSales();
-      }
 
       function setSalesCustomDate() {
         salesFrom = document.getElementById('salesDateFrom').value;
         salesTo = document.getElementById('salesDateTo').value;
         if (salesFrom) {
-          salesPeriod = '';
-          document.querySelectorAll('.sf-tab').forEach(b => b.classList.remove('active'));
           fetchSales();
         }
       }
@@ -1121,7 +1100,7 @@ if (authenticated && !dbReady) {
       async function fetchSales() {
         var params = salesFrom
           ? 'salesFrom=' + salesFrom + (salesTo ? '&salesTo=' + salesTo : '')
-          : 'period=' + (salesPeriod === 'all' ? '12months' : salesPeriod);
+          : 'period=' + currentPeriod;
         try {
           var res = await fetch('/api/stats?' + params + '&period=' + currentPeriod);
           if (res.status === 401) { location.reload(); return; }
@@ -1396,17 +1375,9 @@ if (authenticated && !dbReady) {
       }
 
       // ───── PROFIT ─────
-      var profitPeriod = 'month';
-
-      function setProfitPeriod(p) {
-        profitPeriod = p;
-        document.querySelectorAll('.pf-btn').forEach(b => b.classList.toggle('active', b.dataset.pp === p));
-        fetchProfit();
-      }
-
       async function fetchProfit() {
         try {
-          var res = await fetch('/api/stats?period=' + profitPeriod + '&ap=' + chartPeriod);
+          var res = await fetch('/api/stats?period=' + currentPeriod + '&ap=' + chartPeriod);
           if (res.status === 401) { location.reload(); return; }
           var data = await res.json();
           renderProfit(data.orders);
