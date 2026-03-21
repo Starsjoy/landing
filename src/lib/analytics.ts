@@ -35,6 +35,21 @@ export async function initDB() {
       value TEXT NOT NULL
     )
   `;
+  await sql`
+    CREATE TABLE IF NOT EXISTS orders (
+      id SERIAL PRIMARY KEY,
+      order_number TEXT DEFAULT '',
+      type TEXT NOT NULL,
+      username TEXT DEFAULT '',
+      amount TEXT DEFAULT '',
+      price INTEGER DEFAULT 0,
+      transaction_id TEXT DEFAULT '',
+      status TEXT DEFAULT '',
+      timestamp TIMESTAMPTZ DEFAULT NOW()
+    )
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS idx_orders_timestamp ON orders(timestamp)`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_orders_type ON orders(type)`;
 }
 
 export async function addVisit(params: {
@@ -228,6 +243,90 @@ export async function verifyToken(token: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+// ───── ORDERS ─────
+
+export async function addOrder(params: {
+  orderNumber: string;
+  type: string;
+  username: string;
+  amount: string;
+  price: number;
+  transactionId: string;
+  status: string;
+  timestamp: Date;
+}) {
+  const sql = getSQL();
+  await sql`
+    INSERT INTO orders (order_number, type, username, amount, price, transaction_id, status, timestamp)
+    VALUES (${params.orderNumber}, ${params.type}, ${params.username}, ${params.amount}, ${params.price}, ${params.transactionId}, ${params.status}, ${params.timestamp})
+  `;
+}
+
+export async function getOrderStats(period: string) {
+  const sql = getSQL();
+  const since = getSince(period);
+
+  const [overview] = await sql`
+    SELECT
+      COUNT(*) as total_orders,
+      COALESCE(SUM(price), 0) as total_revenue,
+      COUNT(*) FILTER (WHERE type = 'stars') as stars_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'stars'), 0) as stars_revenue,
+      COUNT(*) FILTER (WHERE type = 'gift') as gift_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'gift'), 0) as gift_revenue,
+      COUNT(*) FILTER (WHERE type = 'premium') as premium_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium'), 0) as premium_revenue
+    FROM orders WHERE timestamp >= ${since}
+  `;
+
+  const recent = await sql`
+    SELECT order_number, type, username, amount, price, transaction_id, status, timestamp
+    FROM orders
+    WHERE timestamp >= ${since}
+    ORDER BY timestamp DESC
+    LIMIT 100
+  `;
+
+  const daily = await sql`
+    SELECT DATE(timestamp) as date,
+      COUNT(*) as orders,
+      COALESCE(SUM(price), 0) as revenue
+    FROM orders
+    WHERE timestamp >= ${since}
+    GROUP BY DATE(timestamp)
+    ORDER BY date DESC
+    LIMIT 30
+  `;
+
+  return {
+    overview: {
+      totalOrders: +overview.total_orders,
+      totalRevenue: +overview.total_revenue,
+      starsCount: +overview.stars_count,
+      starsRevenue: +overview.stars_revenue,
+      giftCount: +overview.gift_count,
+      giftRevenue: +overview.gift_revenue,
+      premiumCount: +overview.premium_count,
+      premiumRevenue: +overview.premium_revenue,
+    },
+    recent: recent.map(r => ({
+      orderNumber: r.order_number,
+      type: r.type,
+      username: r.username,
+      amount: r.amount,
+      price: +r.price,
+      transactionId: r.transaction_id,
+      status: r.status,
+      timestamp: r.timestamp,
+    })),
+    daily: daily.map(d => ({
+      date: d.date,
+      orders: +d.orders,
+      revenue: +d.revenue,
+    })),
+  };
 }
 
 // Export all visits for CSV
