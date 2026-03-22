@@ -1390,7 +1390,7 @@ if (authenticated && !dbReady) {
         var revenue = ov.totalRevenue;
         var starsProfit = Math.round(ov.starsRevenue * 0.10);
         var giftProfit = Math.round(ov.giftRevenue * 0.10);
-        var premiumProfit = Math.round(ov.premiumRevenue * 0.05);
+        var premiumProfit = Math.round(ov.premiumRevenue * 0.10);
         var profit = starsProfit + giftProfit + premiumProfit;
 
         document.getElementById('profitValue').textContent = fmtMoney(profit);
@@ -1402,7 +1402,7 @@ if (authenticated && !dbReady) {
         document.getElementById('profitGift').textContent = fmtMoney(ov.giftRevenue) + " so'm";
         document.getElementById('profitGiftP').textContent = fmtMoney(giftProfit) + " so'm (10%)";
         document.getElementById('profitPremium').textContent = fmtMoney(ov.premiumRevenue) + " so'm";
-        document.getElementById('profitPremiumP').textContent = fmtMoney(premiumProfit) + " so'm (5%)";
+        document.getElementById('profitPremiumP').textContent = fmtMoney(premiumProfit) + " so'm (10%)";
       }
 
       // ───── ANALYTICS CHARTS ─────
