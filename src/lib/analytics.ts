@@ -562,44 +562,57 @@ export async function getBuyerInsights(period: string) {
   const sql = getSQL();
   const since = getSince(period);
 
-  // All unique buyers in this period
+  // All unique buyers in this period with their order count IN THIS PERIOD
   const periodBuyers = await sql`
-    SELECT username, COUNT(*) as order_count,
-      MIN(timestamp) as first_order, MAX(timestamp) as last_order
+    SELECT username, COUNT(*) as period_orders,
+      MIN(timestamp) as first_in_period, MAX(timestamp) as last_in_period
     FROM orders
     WHERE timestamp >= ${since} AND username != ''
     GROUP BY username
   `;
 
   if (periodBuyers.length === 0) {
-    return { totalBuyers: 0, newBuyers: 0, returningBuyers: 0, newPercent: 0, returningPercent: 0, avgDaysBetween: null };
+    return { totalBuyers: 0, newBuyers: 0, returningBuyers: 0, newPercent: 0, returningPercent: 0, repeatInPeriod: 0, repeatPercent: 0, avgDaysBetween: null };
   }
 
-  // Find which of these buyers had orders BEFORE this period
+  // Get TOTAL order count for each buyer (all time)
   const usernames = periodBuyers.map(b => b.username);
-  const previousBuyers = await sql`
-    SELECT DISTINCT username FROM orders
-    WHERE timestamp < ${since} AND username = ANY(${usernames})
+  const allTimeOrders = await sql`
+    SELECT username, COUNT(*) as total_orders,
+      MIN(timestamp) as first_ever, MAX(timestamp) as last_ever
+    FROM orders
+    WHERE username = ANY(${usernames})
+    GROUP BY username
   `;
-  const previousSet = new Set(previousBuyers.map(b => b.username));
+  const allTimeMap = new Map(allTimeOrders.map(r => [r.username, r]));
 
   const totalBuyers = periodBuyers.length;
-  const returningBuyers = periodBuyers.filter(b => previousSet.has(b.username)).length;
+
+  // "Qaytib kelgan" = umuman 2+ xaridi bor (barcha vaqt uchun)
+  const returningBuyers = periodBuyers.filter(b => {
+    const allTime = allTimeMap.get(b.username);
+    return allTime && +allTime.total_orders >= 2;
+  }).length;
   const newBuyers = totalBuyers - returningBuyers;
 
-  // Repeat buyers within this period (2+ orders in period)
-  const repeatInPeriod = periodBuyers.filter(b => +b.order_count >= 2);
+  // Repeat in period = shu davr ichida 2+ xarid
+  const repeatInPeriod = periodBuyers.filter(b => +b.period_orders >= 2).length;
 
-  // Average days between first and last purchase for repeat buyers
+  // Average days between first and last purchase (all time) for returning buyers
   let avgDaysBetween: number | null = null;
-  if (repeatInPeriod.length > 0) {
+  const returningList = periodBuyers.filter(b => {
+    const allTime = allTimeMap.get(b.username);
+    return allTime && +allTime.total_orders >= 2;
+  });
+  if (returningList.length > 0) {
     let totalDays = 0;
-    repeatInPeriod.forEach(b => {
-      const first = new Date(b.first_order).getTime();
-      const last = new Date(b.last_order).getTime();
+    returningList.forEach(b => {
+      const allTime = allTimeMap.get(b.username)!;
+      const first = new Date(allTime.first_ever).getTime();
+      const last = new Date(allTime.last_ever).getTime();
       totalDays += (last - first) / (1000 * 60 * 60 * 24);
     });
-    avgDaysBetween = Math.round((totalDays / repeatInPeriod.length) * 10) / 10;
+    avgDaysBetween = Math.round((totalDays / returningList.length) * 10) / 10;
   }
 
   return {
@@ -608,8 +621,8 @@ export async function getBuyerInsights(period: string) {
     returningBuyers,
     newPercent: Math.round((newBuyers / totalBuyers) * 100),
     returningPercent: Math.round((returningBuyers / totalBuyers) * 100),
-    repeatInPeriod: repeatInPeriod.length,
-    repeatPercent: Math.round((repeatInPeriod.length / totalBuyers) * 100),
+    repeatInPeriod,
+    repeatPercent: Math.round((repeatInPeriod / totalBuyers) * 100),
     avgDaysBetween,
   };
 }
