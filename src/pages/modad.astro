@@ -105,6 +105,12 @@ if (authenticated && !dbReady) {
             </span>
             <span>Foyda</span>
           </a>
+          <a data-section="buyers" onclick="showSection('buyers')">
+            <span class="sb-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <span>Xaridorlar</span>
+          </a>
           <a data-section="analytics" onclick="showSection('analytics')">
             <span class="sb-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -237,6 +243,78 @@ if (authenticated && !dbReady) {
               <div class="panel">
                 <div class="panel-header"><h2>Kunlik stars miqdori</h2></div>
                 <div class="panel-body panel-pad" id="dailyStars"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buyers -->
+          <div id="section-buyers" class="section-content" hidden>
+            <div class="buyers-hero" id="buyersHero">
+              <div class="bh-ring">
+                <svg viewBox="0 0 120 120" class="bh-svg">
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="var(--border)" stroke-width="10"/>
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="var(--green)" stroke-width="10"
+                    stroke-dasharray="326.73" stroke-dashoffset="326.73" stroke-linecap="round"
+                    class="bh-arc-new" transform="rotate(-90 60 60)"/>
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="var(--accent)" stroke-width="10"
+                    stroke-dasharray="326.73" stroke-dashoffset="326.73" stroke-linecap="round"
+                    class="bh-arc-ret" transform="rotate(-90 60 60)"/>
+                </svg>
+                <div class="bh-center">
+                  <span class="bh-total" id="buyersTotal">0</span>
+                  <span class="bh-label">xaridor</span>
+                </div>
+              </div>
+              <div class="bh-legend">
+                <div class="bh-legend-item">
+                  <span class="bh-dot" style="background:var(--green)"></span>
+                  <div class="bh-legend-info">
+                    <span class="bh-legend-title">Yangi xaridorlar</span>
+                    <span class="bh-legend-val" id="buyersNew">0</span>
+                    <span class="bh-legend-pct" id="buyersNewPct">0%</span>
+                  </div>
+                </div>
+                <div class="bh-legend-item">
+                  <span class="bh-dot" style="background:var(--accent)"></span>
+                  <div class="bh-legend-info">
+                    <span class="bh-legend-title">Qaytib kelgan</span>
+                    <span class="bh-legend-val" id="buyersRet">0</span>
+                    <span class="bh-legend-pct" id="buyersRetPct">0%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="buyers-cards">
+              <div class="buyer-card">
+                <div class="bc-icon" style="background:rgba(16,185,129,0.1);color:var(--green)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                </div>
+                <div class="bc-info">
+                  <span class="bc-label">Yangi xaridorlar</span>
+                  <span class="bc-value" id="bcNew">0 <small id="bcNewPct">0%</small></span>
+                  <span class="bc-desc">Birinchi marta xarid qilganlar</span>
+                </div>
+              </div>
+              <div class="buyer-card">
+                <div class="bc-icon" style="background:rgba(124,58,237,0.1);color:var(--accent)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </div>
+                <div class="bc-info">
+                  <span class="bc-label">Qayta xarid</span>
+                  <span class="bc-value" id="bcRepeat">0 <small id="bcRepeatPct">0%</small></span>
+                  <span class="bc-desc">Davrda 2+ marta xarid qilganlar</span>
+                </div>
+              </div>
+              <div class="buyer-card">
+                <div class="bc-icon" style="background:rgba(245,158,11,0.1);color:var(--orange)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div class="bc-info">
+                  <span class="bc-label">O'rtacha qayta xarid</span>
+                  <span class="bc-value" id="bcAvgDays">—</span>
+                  <span class="bc-desc">Birinchi va oxirgi xarid oralig'i</span>
+                </div>
               </div>
             </div>
           </div>
@@ -686,6 +764,46 @@ if (authenticated && !dbReady) {
     }
     .c-val { width: 40px; text-align: right; font-size: 0.78rem; font-weight: 700; color: var(--text-1); }
 
+    /* ───── BUYERS ───── */
+    .buyers-hero {
+      display: flex; align-items: center; gap: 40px;
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 32px 36px; margin-bottom: 20px;
+    }
+    .bh-ring { position: relative; width: 160px; height: 160px; flex-shrink: 0; }
+    .bh-svg { width: 100%; height: 100%; }
+    .bh-arc-new, .bh-arc-ret { transition: stroke-dashoffset 0.8s ease; }
+    .bh-center {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .bh-total { font-size: 2.2rem; font-weight: 900; color: var(--text-0); letter-spacing: -1px; line-height: 1; }
+    .bh-label { font-size: 0.72rem; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+    .bh-legend { display: flex; flex-direction: column; gap: 20px; }
+    .bh-legend-item { display: flex; align-items: center; gap: 14px; }
+    .bh-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .bh-legend-info { display: flex; flex-direction: column; }
+    .bh-legend-title { font-size: 0.75rem; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .bh-legend-val { font-size: 1.6rem; font-weight: 800; color: var(--text-0); letter-spacing: -0.5px; line-height: 1.2; }
+    .bh-legend-pct { font-size: 0.85rem; color: var(--text-2); font-weight: 600; }
+
+    .buyers-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .buyer-card {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; display: flex; align-items: flex-start; gap: 16px;
+    }
+    .bc-icon {
+      width: 48px; height: 48px; border-radius: 14px; display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .bc-info { display: flex; flex-direction: column; }
+    .bc-label { font-size: 0.72rem; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .bc-value { font-size: 1.5rem; font-weight: 800; color: var(--text-0); letter-spacing: -0.5px; line-height: 1.2; }
+    .bc-value small { font-size: 0.8rem; font-weight: 600; color: var(--text-2); margin-left: 4px; }
+    .bc-desc { font-size: 0.72rem; color: var(--text-4); margin-top: 6px; }
+
     /* ───── PROFIT ───── */
     .profit-filter {
       display: flex; gap: 2px; background: var(--bg-2); border: 1px solid var(--border);
@@ -914,6 +1032,16 @@ if (authenticated && !dbReady) {
       .form-btn { padding: 12px 20px; font-size: 0.85rem; width: 100%; text-align: center; }
       .info-item { font-size: 0.78rem; padding: 8px 0; }
 
+      /* ── Buyers ── */
+      .buyers-hero { flex-direction: column; gap: 24px; padding: 24px 20px; text-align: center; }
+      .bh-ring { width: 130px; height: 130px; }
+      .bh-total { font-size: 1.8rem; }
+      .bh-legend { flex-direction: row; gap: 24px; }
+      .bh-legend-val { font-size: 1.3rem; }
+      .buyers-cards { grid-template-columns: 1fr; gap: 10px; }
+      .buyer-card { padding: 18px; }
+      .bc-value { font-size: 1.2rem; }
+
       /* ── Profit ── */
       .profit-filter {
         overflow-x: auto; -webkit-overflow-scrolling: touch;
@@ -1119,6 +1247,7 @@ if (authenticated && !dbReady) {
         renderCountries();
         renderPages();
         renderSalesAll();
+        renderBuyerInsights();
         renderProfit(statsData.orders);
         renderCharts();
       }
@@ -1375,6 +1504,35 @@ if (authenticated && !dbReady) {
           var data = await res.json();
           renderProfit(data.orders);
         } catch (e) { console.error('Profit fetch error:', e); }
+      }
+
+      function renderBuyerInsights() {
+        var b = statsData.buyerInsights;
+        if (!b) return;
+        var circ = 2 * Math.PI * 52; // 326.73
+
+        // Donut chart
+        document.getElementById('buyersTotal').textContent = b.totalBuyers;
+        document.getElementById('buyersNew').textContent = b.newBuyers;
+        document.getElementById('buyersNewPct').textContent = b.newPercent + '%';
+        document.getElementById('buyersRet').textContent = b.returningBuyers;
+        document.getElementById('buyersRetPct').textContent = b.returningPercent + '%';
+
+        // Animate arcs
+        var newArc = document.querySelector('.bh-arc-new');
+        var retArc = document.querySelector('.bh-arc-ret');
+        var newLen = (b.newPercent / 100) * circ;
+        var retLen = (b.returningPercent / 100) * circ;
+        newArc.style.strokeDashoffset = circ - newLen;
+        // Returning arc starts where new ends
+        retArc.style.strokeDasharray = circ;
+        retArc.style.strokeDashoffset = circ - retLen;
+        retArc.setAttribute('transform', 'rotate(' + ((-90) + (b.newPercent / 100) * 360) + ' 60 60)');
+
+        // Cards
+        document.getElementById('bcNew').innerHTML = b.newBuyers + ' <small>' + b.newPercent + '%</small>';
+        document.getElementById('bcRepeat').innerHTML = b.repeatInPeriod + ' <small>' + b.repeatPercent + '%</small>';
+        document.getElementById('bcAvgDays').textContent = b.avgDaysBetween !== null ? b.avgDaysBetween + ' kun' : '—';
       }
 
       function renderProfit(orders) {

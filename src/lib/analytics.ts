@@ -557,6 +557,63 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
   };
 }
 
+// Buyer insights: new vs returning customers
+export async function getBuyerInsights(period: string) {
+  const sql = getSQL();
+  const since = getSince(period);
+
+  // All unique buyers in this period
+  const periodBuyers = await sql`
+    SELECT username, COUNT(*) as order_count,
+      MIN(timestamp) as first_order, MAX(timestamp) as last_order
+    FROM orders
+    WHERE timestamp >= ${since} AND username != ''
+    GROUP BY username
+  `;
+
+  if (periodBuyers.length === 0) {
+    return { totalBuyers: 0, newBuyers: 0, returningBuyers: 0, newPercent: 0, returningPercent: 0, avgDaysBetween: null };
+  }
+
+  // Find which of these buyers had orders BEFORE this period
+  const usernames = periodBuyers.map(b => b.username);
+  const previousBuyers = await sql`
+    SELECT DISTINCT username FROM orders
+    WHERE timestamp < ${since} AND username = ANY(${usernames})
+  `;
+  const previousSet = new Set(previousBuyers.map(b => b.username));
+
+  const totalBuyers = periodBuyers.length;
+  const returningBuyers = periodBuyers.filter(b => previousSet.has(b.username)).length;
+  const newBuyers = totalBuyers - returningBuyers;
+
+  // Repeat buyers within this period (2+ orders in period)
+  const repeatInPeriod = periodBuyers.filter(b => +b.order_count >= 2);
+
+  // Average days between first and last purchase for repeat buyers
+  let avgDaysBetween: number | null = null;
+  if (repeatInPeriod.length > 0) {
+    let totalDays = 0;
+    repeatInPeriod.forEach(b => {
+      const first = new Date(b.first_order).getTime();
+      const last = new Date(b.last_order).getTime();
+      totalDays += (last - first) / (1000 * 60 * 60 * 24);
+    });
+    avgDaysBetween = Math.round((totalDays / repeatInPeriod.length) * 10) / 10;
+  }
+
+  return {
+    totalBuyers,
+    newBuyers,
+    returningBuyers,
+    newPercent: Math.round((newBuyers / totalBuyers) * 100),
+    returningPercent: Math.round((returningBuyers / totalBuyers) * 100),
+    repeatInPeriod: repeatInPeriod.length,
+    repeatPercent: Math.round((repeatInPeriod.length / totalBuyers) * 100),
+    avgDaysBetween,
+  };
+}
+
 // Export all visits for CSV
 export async function getAllVisits(period: string) {
   const sql = getSQL();

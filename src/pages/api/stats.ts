@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { verifyToken, getFilteredStats, getAllVisits, getOrderStats, getAnalyticsData, deleteOrder, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
+import { verifyToken, getFilteredStats, getAllVisits, getOrderStats, getAnalyticsData, getBuyerInsights, deleteOrder, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
 
 let dbReady = false;
 
@@ -31,12 +31,13 @@ export const GET: APIRoute = async ({ request, cookies }) => {
   const salesTo = url.searchParams.get('salesTo') || undefined;
   const analyticsPeriod = url.searchParams.get('ap') || 'week';
 
-  const [stats, orders, analytics] = await Promise.all([
+  const [stats, orders, analytics, buyerInsights] = await Promise.all([
     getFilteredStats(period),
     getOrderStats(period, salesFrom, salesTo),
     getAnalyticsData(analyticsPeriod),
+    getBuyerInsights(period),
   ]);
-  return new Response(JSON.stringify({ ...stats, orders, analytics }), {
+  return new Response(JSON.stringify({ ...stats, orders, analytics, buyerInsights }), {
     headers: { 'Content-Type': 'application/json' },
   });
 };
