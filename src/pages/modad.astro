@@ -306,15 +306,6 @@ if (authenticated && !dbReady) {
               </button>
             </div>
 
-            <!-- Period filter -->
-            <div class="an-period">
-              <button class="cf-btn" data-cp="today" onclick="setChartPeriod('today')">Bugun</button>
-              <button class="cf-btn active" data-cp="week" onclick="setChartPeriod('week')">Hafta</button>
-              <button class="cf-btn" data-cp="month" onclick="setChartPeriod('month')">Oy</button>
-              <button class="cf-btn" data-cp="3months" onclick="setChartPeriod('3months')">3 oy</button>
-              <button class="cf-btn" data-cp="6months" onclick="setChartPeriod('6months')">6 oy</button>
-              <button class="cf-btn" data-cp="12months" onclick="setChartPeriod('12months')">1 yil</button>
-            </div>
 
             <!-- Charts (only active one visible) -->
             <div class="chart-panel" id="chart-sales">
@@ -1011,7 +1002,9 @@ if (authenticated && !dbReady) {
         document.querySelectorAll('#filters button').forEach(b => {
           b.classList.toggle('active', b.dataset.period === p);
         });
+        chartPeriod = p;
         fetchStats();
+        fetchAnalytics();
       }
 
       function toggleSidebar() {
@@ -1406,7 +1399,7 @@ if (authenticated && !dbReady) {
       }
 
       // ───── ANALYTICS CHARTS ─────
-      var chartPeriod = 'week';
+      var chartPeriod = currentPeriod;
       var activeChart = 'sales';
 
       function setActiveChart(name) {
