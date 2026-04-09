@@ -5,8 +5,11 @@ import { addOrder, initDB } from '../../lib/analytics';
 
 let dbReady = false;
 
+const PREMIUM_SEND_CHAT_ID = import.meta.env.PREMIUM_SEND_CHAT_ID || '-1003606510579';
+
 interface TelegramUpdate {
   channel_post?: {
+    chat?: { id?: number };
     text?: string;
     date?: number;
   };
@@ -131,12 +134,19 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
+    const chatId = String(update.channel_post?.chat?.id || '');
+    const isPremiumSend = chatId === PREMIUM_SEND_CHAT_ID;
     const order = parseOrderMessage(text);
 
     if (!order) {
       return new Response(JSON.stringify({ ok: true, skipped: true, reason: 'no match' }), {
         headers: { 'Content-Type': 'application/json' },
       });
+    }
+
+    // Premium Send kanalidan kelgan buyurtmalar — type ni premium_send ga o'zgartirish
+    if (isPremiumSend) {
+      order.type = 'premium_send' as any;
     }
 
     const timestamp = update.channel_post?.date

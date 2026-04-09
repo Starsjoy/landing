@@ -276,9 +276,10 @@ export async function addOrder(params: {
   `;
 }
 
-export async function getAnalyticsData(period: string) {
+export async function getAnalyticsData(period: string, source: string = 'all') {
   const sql = getSQL();
   const since = getSince(period);
+  const types = sourceFilter(source);
 
   // ── Sales revenue grouped by period ──
   let salesByPeriod: Array<{ label: string; revenue: number; orders: number }>;
@@ -289,7 +290,7 @@ export async function getAnalyticsData(period: string) {
       SELECT EXTRACT(HOUR FROM timestamp AT TIME ZONE 'Asia/Tashkent')::INTEGER as hour,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
-      FROM orders WHERE timestamp >= ${since}
+      FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
       GROUP BY hour ORDER BY hour ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -303,7 +304,7 @@ export async function getAnalyticsData(period: string) {
         TO_CHAR(timestamp AT TIME ZONE 'Asia/Tashkent', 'Mon') as month_name,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
-      FROM orders WHERE timestamp >= ${since}
+      FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
       GROUP BY month, month_name ORDER BY month ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -315,7 +316,7 @@ export async function getAnalyticsData(period: string) {
       SELECT DATE_TRUNC('week', timestamp AT TIME ZONE 'Asia/Tashkent')::DATE as week_start,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
-      FROM orders WHERE timestamp >= ${since}
+      FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
       GROUP BY week_start ORDER BY week_start ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -328,7 +329,7 @@ export async function getAnalyticsData(period: string) {
       SELECT DATE(timestamp AT TIME ZONE 'Asia/Tashkent') as date,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
-      FROM orders WHERE timestamp >= ${since}
+      FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
       GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent') ORDER BY date ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -422,14 +423,21 @@ export async function deleteOrder(id: number) {
   await sql`DELETE FROM orders WHERE id = ${id}`;
 }
 
-export async function getOrderStats(period: string, from?: string, to?: string) {
+// source: 'starsjoy' = stars,gift,premium | 'premium_send' | 'all'
+function sourceFilter(source: string): string[] {
+  if (source === 'starsjoy') return ['stars', 'gift', 'premium'];
+  if (source === 'premium_send') return ['premium_send'];
+  return ['stars', 'gift', 'premium', 'premium_send']; // all
+}
+
+export async function getOrderStats(period: string, from?: string, to?: string, source: string = 'all') {
   const sql = getSQL();
+  const types = sourceFilter(source);
 
   let since: string;
   let until: string;
 
   if (from) {
-    // Tashkent 00:00 = UTC-5 hours
     since = new Date(from + 'T00:00:00+05:00').toISOString();
     until = to ? new Date(to + 'T23:59:59.999+05:00').toISOString() : new Date('2099-01-01').toISOString();
   } else {
@@ -449,14 +457,17 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
       COALESCE(SUM(CASE WHEN type = 'gift' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as gift_total_stars,
       COUNT(*) FILTER (WHERE type = 'premium') as premium_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'premium'), 0) as premium_revenue,
-      COALESCE(SUM(CASE WHEN type = 'premium' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as premium_total_months
-    FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until}
+      COALESCE(SUM(CASE WHEN type = 'premium' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as premium_total_months,
+      COUNT(*) FILTER (WHERE type = 'premium_send') as ps_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_send'), 0) as ps_revenue,
+      COALESCE(SUM(CASE WHEN type = 'premium_send' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as ps_total_months
+    FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
   `;
 
   const recent = await sql`
     SELECT id, order_number, type, username, amount, price, transaction_id, status, timestamp
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until}
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
     ORDER BY timestamp DESC
     LIMIT 100
   `;
@@ -466,28 +477,27 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
       COUNT(*) as orders,
       COALESCE(SUM(price), 0) as revenue
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until}
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
   `;
 
-  // Top buyers by total spend
   const topBuyers = await sql`
     SELECT username,
       COUNT(*) as orders,
       COALESCE(SUM(price), 0) as total_spent,
       COUNT(*) FILTER (WHERE type = 'stars') as stars_orders,
       COUNT(*) FILTER (WHERE type = 'gift') as gift_orders,
-      COUNT(*) FILTER (WHERE type = 'premium') as premium_orders
+      COUNT(*) FILTER (WHERE type = 'premium') as premium_orders,
+      COUNT(*) FILTER (WHERE type = 'premium_send') as ps_orders
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != ''
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != '' AND type = ANY(${types})
     GROUP BY username
     ORDER BY total_spent DESC
     LIMIT 15
   `;
 
-  // Daily stars amounts (actual star count, not money)
   const dailyStars = await sql`
     SELECT DATE(timestamp AT TIME ZONE 'Asia/Tashkent') as date,
       COUNT(*) as orders,
@@ -495,7 +505,7 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
         NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
       ), 0) as total_stars
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND (type = 'stars' OR type = 'gift')
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'stars' OR type = 'gift')
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
@@ -507,7 +517,21 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
       NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
     ), 0) as total_stars
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND (type = 'stars' OR type = 'gift')
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'stars' OR type = 'gift')
+  `;
+
+  // Daily premium months (for premium_send view)
+  const dailyMonths = await sql`
+    SELECT DATE(timestamp AT TIME ZONE 'Asia/Tashkent') as date,
+      COUNT(*) as orders,
+      COALESCE(SUM(
+        NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
+      ), 0) as total_months
+    FROM orders
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'premium' OR type = 'premium_send')
+    GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
+    ORDER BY date DESC
+    LIMIT 30
   `;
 
   return {
@@ -523,6 +547,9 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
       premiumCount: +overview.premium_count,
       premiumRevenue: +overview.premium_revenue,
       premiumTotalMonths: +overview.premium_total_months,
+      psCount: +overview.ps_count,
+      psRevenue: +overview.ps_revenue,
+      psTotalMonths: +overview.ps_total_months,
       totalStars: +starsTotal.total_stars,
     },
     recent: recent.map(r => ({
@@ -548,26 +575,33 @@ export async function getOrderStats(period: string, from?: string, to?: string) 
       starsOrders: +b.stars_orders,
       giftOrders: +b.gift_orders,
       premiumOrders: +b.premium_orders,
+      psOrders: +b.ps_orders,
     })),
     dailyStars: dailyStars.map(d => ({
       date: d.date,
       orders: +d.orders,
       totalStars: +d.total_stars,
     })),
+    dailyMonths: dailyMonths.map(d => ({
+      date: d.date,
+      orders: +d.orders,
+      totalMonths: +d.total_months,
+    })),
   };
 }
 
 // Buyer insights: new vs returning customers
-export async function getBuyerInsights(period: string) {
+export async function getBuyerInsights(period: string, source: string = 'all') {
   const sql = getSQL();
   const since = getSince(period);
+  const types = sourceFilter(source);
 
   // All unique buyers in this period with their order count IN THIS PERIOD
   const periodBuyers = await sql`
     SELECT username, COUNT(*) as period_orders,
       MIN(timestamp) as first_in_period, MAX(timestamp) as last_in_period
     FROM orders
-    WHERE timestamp >= ${since} AND username != ''
+    WHERE timestamp >= ${since} AND username != '' AND type = ANY(${types})
     GROUP BY username
   `;
 
@@ -581,7 +615,7 @@ export async function getBuyerInsights(period: string) {
     SELECT username, COUNT(*) as total_orders,
       MIN(timestamp) as first_ever, MAX(timestamp) as last_ever
     FROM orders
-    WHERE username = ANY(${usernames})
+    WHERE username = ANY(${usernames}) AND type = ANY(${types})
     GROUP BY username
   `;
   const allTimeMap = new Map(allTimeOrders.map(r => [r.username, r]));

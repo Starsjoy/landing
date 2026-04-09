@@ -93,30 +93,62 @@ if (authenticated && !dbReady) {
             </span>
             <span>Sahifalar</span>
           </a>
-          <a data-section="sales" onclick="showSection('sales')">
-            <span class="sb-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </span>
-            <span>Sotuvlar</span>
-          </a>
-          <a data-section="profit" onclick="showSection('profit')">
-            <span class="sb-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-            </span>
-            <span>Foyda</span>
-          </a>
-          <a data-section="buyers" onclick="showSection('buyers')">
-            <span class="sb-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </span>
-            <span>Xaridorlar</span>
-          </a>
-          <a data-section="analytics" onclick="showSection('analytics')">
-            <span class="sb-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </span>
-            <span>Analitika</span>
-          </a>
+          <div class="sb-dropdown">
+            <a class="sb-dropdown-toggle" data-section="sales" onclick="toggleDropdown('sales')">
+              <span class="sb-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </span>
+              <span>Sotuvlar</span>
+              <svg class="sb-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="sb-dropdown-menu" id="dd-sales">
+              <a data-section="sales" data-source="starsjoy" onclick="showSection('sales','starsjoy')"><span class="dd-label">starsjoy</span></a>
+              <a data-section="sales" data-source="premium_send" onclick="showSection('sales','premium_send')"><span class="dd-label">Premium Send</span></a>
+              <a data-section="sales" data-source="all" onclick="showSection('sales','all')"><span class="dd-label">Umumiy</span></a>
+            </div>
+          </div>
+          <div class="sb-dropdown">
+            <a class="sb-dropdown-toggle" data-section="profit" onclick="toggleDropdown('profit')">
+              <span class="sb-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              </span>
+              <span>Foyda</span>
+              <svg class="sb-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="sb-dropdown-menu" id="dd-profit">
+              <a data-section="profit" data-source="starsjoy" onclick="showSection('profit','starsjoy')"><span class="dd-label">starsjoy</span></a>
+              <a data-section="profit" data-source="premium_send" onclick="showSection('profit','premium_send')"><span class="dd-label">Premium Send</span></a>
+              <a data-section="profit" data-source="all" onclick="showSection('profit','all')"><span class="dd-label">Umumiy</span></a>
+            </div>
+          </div>
+          <div class="sb-dropdown">
+            <a class="sb-dropdown-toggle" data-section="buyers" onclick="toggleDropdown('buyers')">
+              <span class="sb-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </span>
+              <span>Xaridorlar</span>
+              <svg class="sb-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="sb-dropdown-menu" id="dd-buyers">
+              <a data-section="buyers" data-source="starsjoy" onclick="showSection('buyers','starsjoy')"><span class="dd-label">starsjoy</span></a>
+              <a data-section="buyers" data-source="premium_send" onclick="showSection('buyers','premium_send')"><span class="dd-label">Premium Send</span></a>
+              <a data-section="buyers" data-source="all" onclick="showSection('buyers','all')"><span class="dd-label">Umumiy</span></a>
+            </div>
+          </div>
+          <div class="sb-dropdown">
+            <a class="sb-dropdown-toggle" data-section="analytics" onclick="toggleDropdown('analytics')">
+              <span class="sb-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </span>
+              <span>Analitika</span>
+              <svg class="sb-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="sb-dropdown-menu" id="dd-analytics">
+              <a data-section="analytics" data-source="starsjoy" onclick="showSection('analytics','starsjoy')"><span class="dd-label">starsjoy</span></a>
+              <a data-section="analytics" data-source="premium_send" onclick="showSection('analytics','premium_send')"><span class="dd-label">Premium Send</span></a>
+              <a data-section="analytics" data-source="all" onclick="showSection('analytics','all')"><span class="dd-label">Umumiy</span></a>
+            </div>
+          </div>
           <a data-section="settings" onclick="showSection('settings')">
             <span class="sb-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -241,7 +273,7 @@ if (authenticated && !dbReady) {
                 <div class="panel-body" id="topBuyers"></div>
               </div>
               <div class="panel">
-                <div class="panel-header"><h2>Kunlik stars miqdori</h2></div>
+                <div class="panel-header"><h2 id="dailyStarsTitle">Kunlik stars miqdori</h2></div>
                 <div class="panel-body panel-pad" id="dailyStars"></div>
               </div>
             </div>
@@ -540,6 +572,47 @@ if (authenticated && !dbReady) {
       width: 4px; height: 24px; background: var(--accent); border-radius: 0 4px 4px 0;
     }
 
+    /* ───── SIDEBAR DROPDOWNS ───── */
+    .sb-dropdown { position: relative; }
+    .sb-dropdown-toggle {
+      display: flex; align-items: center; gap: 12px; padding: 11px 14px; margin-bottom: 2px;
+      border-radius: var(--radius-sm); color: var(--text-2); font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; text-decoration: none; transition: all 0.2s; position: relative;
+    }
+    .sb-dropdown-toggle:hover { background: var(--bg-3); color: var(--text-1); }
+    .sb-dropdown-toggle .sb-icon {
+      width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; background: var(--bg-3); transition: all 0.2s; flex-shrink: 0;
+    }
+    .sb-dropdown-toggle:hover .sb-icon { background: var(--bg-4); }
+    .sb-dropdown-toggle.active {
+      background: var(--accent-bg-strong); color: var(--accent-light);
+    }
+    .sb-dropdown-toggle.active .sb-icon {
+      background: var(--accent); color: #fff; box-shadow: 0 4px 12px rgba(124,58,237,0.35);
+    }
+    .sb-dropdown-toggle.active::before {
+      content: ''; position: absolute; left: -10px; top: 50%; transform: translateY(-50%);
+      width: 4px; height: 24px; background: var(--accent); border-radius: 0 4px 4px 0;
+    }
+    .sb-arrow {
+      margin-left: auto; transition: transform 0.2s; opacity: 0.4;
+    }
+    .sb-dropdown.open .sb-arrow { transform: rotate(180deg); opacity: 0.7; }
+    .sb-dropdown-menu {
+      max-height: 0; overflow: hidden; transition: max-height 0.25s ease;
+      padding-left: 46px;
+    }
+    .sb-dropdown.open .sb-dropdown-menu { max-height: 200px; }
+    .sb-dropdown-menu a {
+      display: block; padding: 8px 14px; margin-bottom: 1px;
+      border-radius: 6px; color: var(--text-3); font-size: 0.78rem; font-weight: 500;
+      cursor: pointer; text-decoration: none; transition: all 0.15s;
+    }
+    .sb-dropdown-menu a:hover { background: var(--bg-3); color: var(--text-1); }
+    .sb-dropdown-menu a.active { background: var(--accent-bg); color: var(--accent-light); font-weight: 600; }
+    .dd-label { }
+
     .sb-bottom { padding: 16px 22px; border-top: 1px solid var(--border); }
     .sb-logout {
       display: flex; align-items: center; gap: 10px; color: var(--text-3); font-size: 0.82rem;
@@ -719,9 +792,11 @@ if (authenticated && !dbReady) {
     }
     .sf-date input[type="date"]:focus { border-color: var(--accent); }
     .sales-cards { grid-template-columns: repeat(4, 1fr); }
+    .sales-cards.cols-2 { grid-template-columns: repeat(2, 1fr); }
     .pill-stars { background: rgba(250, 204, 21, 0.1); color: #facc15; }
     .pill-gift { background: rgba(52, 211, 153, 0.1); color: #34d399; }
     .pill-premium { background: rgba(168, 85, 247, 0.1); color: #c084fc; }
+    .pill-premium_send { background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
     .sc-revenue { font-size: 0.82rem; font-weight: 700; color: var(--green); }
 
     /* Daily revenue bars */
@@ -1098,6 +1173,8 @@ if (authenticated && !dbReady) {
       let currentSection = 'overview';
       let currentPeriod = 'today';
       let statsData = null;
+      let sourceData = {}; // cached per source: { starsjoy: {...}, premium_send: {...}, all: {...} }
+      let currentSource = 'all';
       let rowLimit = 10;
 
       function setRowLimit(n) {
@@ -1108,15 +1185,42 @@ if (authenticated && !dbReady) {
         renderRecent();
       }
 
-      function showSection(name) {
+      function toggleDropdown(section) {
+        var dd = document.querySelector('.sb-dropdown:has([data-section="' + section + '"].sb-dropdown-toggle)');
+        if (!dd) return;
+        var wasOpen = dd.classList.contains('open');
+        // Close all dropdowns
+        document.querySelectorAll('.sb-dropdown').forEach(d => d.classList.remove('open'));
+        if (!wasOpen) dd.classList.add('open');
+      }
+
+      function showSection(name, source) {
         currentSection = name;
+        if (source) currentSource = source;
+
         document.querySelectorAll('.section-content').forEach(el => el.hidden = true);
         const sec = document.getElementById('section-' + name);
         if (sec) sec.hidden = false;
-        document.querySelectorAll('#sidebar-nav a').forEach(a => {
+
+        // Highlight top-level nav items (non-dropdown)
+        document.querySelectorAll('#sidebar-nav > a').forEach(a => {
           a.classList.toggle('active', a.dataset.section === name);
         });
+        // Highlight dropdown toggles
+        document.querySelectorAll('.sb-dropdown-toggle').forEach(a => {
+          a.classList.toggle('active', a.dataset.section === name);
+        });
+        // Highlight dropdown sub-items
+        document.querySelectorAll('.sb-dropdown-menu a').forEach(a => {
+          a.classList.toggle('active', a.dataset.section === name && a.dataset.source === currentSource);
+        });
+
         closeSidebar();
+
+        // Fetch source-specific data for sales/profit/buyers/analytics sections
+        if (['sales', 'profit', 'buyers', 'analytics'].includes(name) && source) {
+          fetchSourceData(currentSource);
+        }
       }
 
       function setPeriod(p) {
@@ -1193,9 +1297,10 @@ if (authenticated && !dbReady) {
         if (dot) { dot.style.background = 'var(--orange)'; dot.style.boxShadow = '0 0 8px rgba(245,158,11,0.5)'; }
         if (txt) txt.style.color = 'var(--orange)';
         try {
-          const res = await fetch('/api/stats?period=' + currentPeriod);
+          const res = await fetch('/api/stats?period=' + currentPeriod + '&source=' + currentSource);
           if (res.status === 401) { location.reload(); return; }
           statsData = await res.json();
+          sourceData[currentSource] = { orders: statsData.orders, analytics: statsData.analytics, buyerInsights: statsData.buyerInsights };
           renderAll();
           if (dot) { dot.style.background = 'var(--green)'; dot.style.boxShadow = '0 0 8px rgba(16,185,129,0.5)'; }
           if (txt) txt.style.color = 'var(--green)';
@@ -1205,6 +1310,25 @@ if (authenticated && !dbReady) {
         }
         var loader = document.getElementById('loading');
         if (loader) loader.style.display = 'none';
+      }
+
+      async function fetchSourceData(source) {
+        try {
+          var params = 'period=' + currentPeriod + '&source=' + source + '&ap=' + chartPeriod;
+          if (salesFrom) params += '&salesFrom=' + salesFrom;
+          if (salesTo) params += '&salesTo=' + salesTo;
+          var res = await fetch('/api/stats?' + params);
+          if (res.status === 401) { location.reload(); return; }
+          var data = await res.json();
+          sourceData[source] = { orders: data.orders, analytics: data.analytics, buyerInsights: data.buyerInsights };
+          statsData.orders = data.orders;
+          statsData.analytics = data.analytics;
+          statsData.buyerInsights = data.buyerInsights;
+          renderSalesAll();
+          renderBuyerInsights();
+          renderProfit(statsData.orders);
+          renderCharts();
+        } catch (e) { console.error('Source fetch error:', e); }
       }
 
       var salesFrom = '';
@@ -1223,7 +1347,7 @@ if (authenticated && !dbReady) {
           ? 'salesFrom=' + salesFrom + (salesTo ? '&salesTo=' + salesTo : '')
           : 'period=' + currentPeriod;
         try {
-          var res = await fetch('/api/stats?' + params + '&period=' + currentPeriod);
+          var res = await fetch('/api/stats?' + params + '&period=' + currentPeriod + '&source=' + currentSource);
           if (res.status === 401) { location.reload(); return; }
           var data = await res.json();
           statsData.orders = data.orders;
@@ -1235,6 +1359,9 @@ if (authenticated && !dbReady) {
         renderSales();
         renderDailyRevenue();
         renderTopBuyers();
+        // Update daily chart title based on source
+        var dsTitle = document.getElementById('dailyStarsTitle');
+        if (dsTitle) dsTitle.textContent = currentSource === 'premium_send' ? 'Kunlik premium miqdori' : 'Kunlik stars miqdori';
         renderDailyStars();
       }
 
@@ -1388,16 +1515,37 @@ if (authenticated && !dbReady) {
         return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
       }
 
+      function getTypePill(type) {
+        if (type === 'stars') return { pill: 'pill-stars', label: 'Stars' };
+        if (type === 'gift') return { pill: 'pill-gift', label: 'Gift' };
+        if (type === 'premium_send') return { pill: 'pill-premium_send', label: 'PS Premium' };
+        return { pill: 'pill-premium', label: 'Premium' };
+      }
+
+      var sourceLabels = { starsjoy: 'Starsjoy', premium_send: 'Premium Send', all: 'Umumiy' };
+
       function renderSales() {
         var o = statsData.orders;
         if (!o) return;
         var ov = o.overview;
-        document.getElementById('salesCards').innerHTML = `
+        var cards = '';
+
+        cards += `
           <div class="stat-card highlighted">
-            <div class="sc-label">Jami daromad</div>
+            <div class="sc-label">${sourceLabels[currentSource] || 'Umumiy'} — jami daromad</div>
             <div class="sc-value">${fmtMoney(ov.totalRevenue)}</div>
-            <div class="sc-sub"><span>${ov.totalOrders} ta buyurtma</span><span class="sc-divider"></span><span>⭐ ${fmtMoney(ov.totalStars || 0)} stars</span></div>
-          </div>
+            <div class="sc-sub"><span>${ov.totalOrders} ta buyurtma</span></div>
+          </div>`;
+
+        if (currentSource === 'premium_send') {
+          cards += `
+          <div class="stat-card">
+            <div class="sc-label">📤 Premium Send</div>
+            <div class="sc-value">${ov.psTotalMonths} oy</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.psRevenue)} so'm</span><span class="sc-divider"></span><span>${ov.psCount} ta sotildi</span></div>
+          </div>`;
+        } else if (currentSource === 'starsjoy') {
+          cards += `
           <div class="stat-card">
             <div class="sc-label">⭐ Stars</div>
             <div class="sc-value">${fmtMoney(ov.starsTotalAmount)}</div>
@@ -1412,8 +1560,29 @@ if (authenticated && !dbReady) {
             <div class="sc-label">👑 Premium</div>
             <div class="sc-value">${ov.premiumTotalMonths} oy</div>
             <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.premiumRevenue)} so'm</span><span class="sc-divider"></span><span>${ov.premiumCount} ta sotildi</span></div>
+          </div>`;
+        } else {
+          // all — show everything
+          cards += `
+          <div class="stat-card">
+            <div class="sc-label">⭐ Stars + Gift</div>
+            <div class="sc-value">${fmtMoney(ov.totalStars || 0)}</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.starsRevenue + ov.giftRevenue)} so'm</span><span class="sc-divider"></span><span>${ov.starsCount + ov.giftCount} ta</span></div>
           </div>
-        `;
+          <div class="stat-card">
+            <div class="sc-label">👑 Premium (SJ)</div>
+            <div class="sc-value">${ov.premiumTotalMonths} oy</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.premiumRevenue)} so'm</span><span class="sc-divider"></span><span>${ov.premiumCount} ta</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-label">📤 Premium Send</div>
+            <div class="sc-value">${ov.psTotalMonths} oy</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.psRevenue)} so'm</span><span class="sc-divider"></span><span>${ov.psCount} ta</span></div>
+          </div>`;
+        }
+        var salesCardsEl = document.getElementById('salesCards');
+        salesCardsEl.className = 'stat-cards sales-cards' + (currentSource === 'premium_send' ? ' cols-2' : '');
+        salesCardsEl.innerHTML = cards;
 
         var rows = o.recent;
         if (!rows.length) {
@@ -1423,11 +1592,10 @@ if (authenticated && !dbReady) {
         document.getElementById('salesTable').innerHTML = `<table>
           <thead><tr><th>#</th><th>Turi</th><th>Foydalanuvchi</th><th>Miqdor</th><th>Summa</th><th>Vaqt</th></tr></thead>
           <tbody>${rows.map(r => {
-            var typePill = r.type === 'stars' ? 'pill-stars' : r.type === 'gift' ? 'pill-gift' : 'pill-premium';
-            var typeLabel = r.type === 'stars' ? 'Stars' : r.type === 'gift' ? 'Gift' : 'Premium';
+            var tp = getTypePill(r.type);
             return '<tr>' +
               '<td class="td-num">' + (r.orderNumber ? '#' + r.orderNumber : '') + '</td>' +
-              '<td><span class="pill ' + typePill + '">' + typeLabel + '</span></td>' +
+              '<td><span class="pill ' + tp.pill + '">' + tp.label + '</span></td>' +
               '<td>@' + r.username + '</td>' +
               '<td>' + r.amount + '</td>' +
               '<td class="td-num">' + fmtMoney(r.price) + ' so\'m</td>' +
@@ -1450,6 +1618,7 @@ if (authenticated && !dbReady) {
             if (b.starsOrders) details.push('⭐' + b.starsOrders);
             if (b.giftOrders) details.push('🎁' + b.giftOrders);
             if (b.premiumOrders) details.push('👑' + b.premiumOrders);
+            if (b.psOrders) details.push('📤' + b.psOrders);
             return '<tr>' +
               '<td><span class="pill pill-rank">' + (i + 1) + '</span></td>' +
               '<td>@' + b.username + '</td>' +
@@ -1462,6 +1631,24 @@ if (authenticated && !dbReady) {
 
       function renderDailyStars() {
         var o = statsData.orders;
+        // For premium_send, show daily months instead of stars
+        if (currentSource === 'premium_send') {
+          if (!o || !o.dailyMonths || !o.dailyMonths.length) {
+            document.getElementById('dailyStars').innerHTML = '<div class="empty">Ma\'lumot yo\'q</div>';
+            return;
+          }
+          var max = Math.max(...o.dailyMonths.map(d => d.totalMonths));
+          document.getElementById('dailyStars').innerHTML = o.dailyMonths.map(d => {
+            var pct = max > 0 ? Math.max((d.totalMonths / max) * 100, 4) : 4;
+            var dateStr = new Date(d.date).toLocaleDateString('uz', { day: '2-digit', month: '2-digit' });
+            return '<div class="dr-row">' +
+              '<div class="dr-date">' + dateStr + '</div>' +
+              '<div class="dr-bar-bg"><div class="dr-bar" style="width:' + pct + '%;background:linear-gradient(90deg,#3b82f6,#60a5fa)"></div></div>' +
+              '<div class="dr-info"><span class="dr-amount">📤 ' + d.totalMonths + ' oy</span><span class="dr-orders"> (' + d.orders + ')</span></div>' +
+            '</div>';
+          }).join('');
+          return;
+        }
         if (!o || !o.dailyStars || !o.dailyStars.length) {
           document.getElementById('dailyStars').innerHTML = '<div class="empty">Ma\'lumot yo\'q</div>';
           return;
@@ -1499,7 +1686,7 @@ if (authenticated && !dbReady) {
       // ───── PROFIT ─────
       async function fetchProfit() {
         try {
-          var res = await fetch('/api/stats?period=' + currentPeriod + '&ap=' + chartPeriod);
+          var res = await fetch('/api/stats?period=' + currentPeriod + '&ap=' + chartPeriod + '&source=' + currentSource);
           if (res.status === 401) { location.reload(); return; }
           var data = await res.json();
           renderProfit(data.orders);
@@ -1542,18 +1729,31 @@ if (authenticated && !dbReady) {
         var starsProfit = Math.round(ov.starsRevenue * 0.12);
         var giftProfit = Math.round(ov.giftRevenue * 0.12);
         var premiumProfit = Math.round(ov.premiumRevenue * 0.10);
-        var profit = starsProfit + giftProfit + premiumProfit;
+        var psProfit = Math.round(ov.psRevenue * 0.10);
+        var profit = starsProfit + giftProfit + premiumProfit + psProfit;
+
+        // Update profit label based on source
+        var profitLabel = currentSource === 'premium_send' ? 'Sof foyda (10%)' :
+          currentSource === 'starsjoy' ? 'Sof foyda (12%/10%)' : 'Sof foyda';
+        document.querySelector('.profit-main .pc-label').textContent = profitLabel;
 
         document.getElementById('profitValue').textContent = fmtMoney(profit);
         document.getElementById('profitRevenue').textContent = fmtMoney(revenue);
         document.getElementById('profitOrders').textContent = ov.totalOrders;
 
-        document.getElementById('profitStars').textContent = fmtMoney(ov.starsRevenue) + " so'm";
-        document.getElementById('profitStarsP').textContent = fmtMoney(starsProfit) + " so'm (12%)";
-        document.getElementById('profitGift').textContent = fmtMoney(ov.giftRevenue) + " so'm";
-        document.getElementById('profitGiftP').textContent = fmtMoney(giftProfit) + " so'm (12%)";
-        document.getElementById('profitPremium').textContent = fmtMoney(ov.premiumRevenue) + " so'm";
-        document.getElementById('profitPremiumP').textContent = fmtMoney(premiumProfit) + " so'm (10%)";
+        // Dynamic breakdown
+        var breakdownHTML = '<div class="pb-header">Tafsilot</div>';
+        if (currentSource !== 'premium_send') {
+          breakdownHTML += `
+            <div class="pb-row"><span class="pb-dot" style="background:#facc15"></span><span class="pb-name">Stars</span><span class="pb-revenue">${fmtMoney(ov.starsRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(starsProfit)} so'm (12%)</span></div>
+            <div class="pb-row"><span class="pb-dot" style="background:#34d399"></span><span class="pb-name">Gift</span><span class="pb-revenue">${fmtMoney(ov.giftRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(giftProfit)} so'm (12%)</span></div>
+            <div class="pb-row"><span class="pb-dot" style="background:#c084fc"></span><span class="pb-name">Premium</span><span class="pb-revenue">${fmtMoney(ov.premiumRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(premiumProfit)} so'm (10%)</span></div>`;
+        }
+        if (currentSource !== 'starsjoy') {
+          breakdownHTML += `
+            <div class="pb-row"><span class="pb-dot" style="background:#60a5fa"></span><span class="pb-name">PS Premium</span><span class="pb-revenue">${fmtMoney(ov.psRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(psProfit)} so'm (10%)</span></div>`;
+        }
+        document.querySelector('.profit-breakdown').innerHTML = breakdownHTML;
       }
 
       // ───── ANALYTICS CHARTS ─────
@@ -1577,7 +1777,7 @@ if (authenticated && !dbReady) {
 
       async function fetchAnalytics() {
         try {
-          var res = await fetch('/api/stats?period=' + currentPeriod + '&ap=' + chartPeriod);
+          var res = await fetch('/api/stats?period=' + currentPeriod + '&ap=' + chartPeriod + '&source=' + currentSource);
           if (res.status === 401) { location.reload(); return; }
           var data = await res.json();
           statsData.analytics = data.analytics;

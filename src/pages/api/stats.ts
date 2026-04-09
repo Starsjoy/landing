@@ -30,12 +30,13 @@ export const GET: APIRoute = async ({ request, cookies }) => {
   const salesFrom = url.searchParams.get('salesFrom') || undefined;
   const salesTo = url.searchParams.get('salesTo') || undefined;
   const analyticsPeriod = url.searchParams.get('ap') || 'week';
+  const source = url.searchParams.get('source') || 'all';
 
   const [stats, orders, analytics, buyerInsights] = await Promise.all([
     getFilteredStats(period),
-    getOrderStats(period, salesFrom, salesTo),
-    getAnalyticsData(analyticsPeriod),
-    getBuyerInsights(period),
+    getOrderStats(period, salesFrom, salesTo, source),
+    getAnalyticsData(analyticsPeriod, source),
+    getBuyerInsights(period, source),
   ]);
   return new Response(JSON.stringify({ ...stats, orders, analytics, buyerInsights }), {
     headers: { 'Content-Type': 'application/json' },
