@@ -16,42 +16,51 @@ interface TelegramUpdate {
   };
 }
 
-function parseStarsMessage(text: string) {
-  // ✨ STARS YUBORILDI
-  // #684
-  // 👤 Username: @k0milov_cs
-  // ⭐ Yuborilgan: 50
-  // 💰 To'lov summasi: 12000 so'm
-  // 📦 Transaction ID: xxx
-  // 🕒 3/21/2026, 6:10:17 PM
-  const orderMatch = text.match(/#(\d+)/);
-  const usernameMatch = text.match(/👤\s*Username:\s*@?(\S+)/);
-  const amountMatch = text.match(/⭐\s*Yuborilgan:\s*(\d+)/);
-  const priceMatch = text.match(/💰\s*To['']lov summasi:\s*([\d\s,.]+)\s*so['']m/i);
-  const txMatch = text.match(/📦\s*Transaction ID:\s*(\S+)/);
-
-  if (!amountMatch || !priceMatch) return null;
-
-  return {
-    orderNumber: orderMatch?.[1] || '',
-    type: 'stars' as const,
-    username: usernameMatch?.[1] || '',
-    amount: amountMatch[1] + ' stars',
-    price: parseInt(priceMatch[1].replace(/[\s,.]/g, ''), 10),
-    transactionId: txMatch?.[1] || '',
-    status: 'Yuborildi',
-  };
+function extractUsername(raw: string): string {
+  if (!raw) return '';
+  // https://t.me/username  yoki  t.me/username
+  const linkMatch = raw.match(/(?:https?:\/\/)?t\.me\/([A-Za-z0-9_]+)/);
+  if (linkMatch) return linkMatch[1];
+  // @username  yoki  username
+  return raw.replace(/^@/, '').trim();
 }
 
-function parseGiftMessage(text: string) {
-  // 🎁 Yangi Gift sotildi!
-  // 📦 Order: #651
-  // 👤 Oluvchi: k0milov_cs
+function parseStarsMessage(text: string) {
+  // Yangi format:
+  // 🌟 Yangi Stars sotildi!
+  // 📦 Order: #1797
+  // 👤 Oluvchi: https://t.me/user
   // 💫 Miqdor: 50 stars
   // 💰 Summa: 12,000 so'm
   // ✅ Status: Yetkazildi
   const orderMatch = text.match(/#(\d+)/);
-  const usernameMatch = text.match(/👤\s*Oluvchi:\s*@?(\S+)/);
+  const usernameMatch = text.match(/👤\s*Oluvchi:\s*(\S+)/) || text.match(/👤\s*Username:\s*(\S+)/);
+  const amountMatch = text.match(/💫\s*Miqdor:\s*(.+)/) || text.match(/⭐\s*Yuborilgan:\s*(\d+)/);
+  const priceMatch = text.match(/💰\s*Summa:\s*([\d\s,.]+)\s*so['']m/i)
+    || text.match(/💰\s*To['']lov summasi:\s*([\d\s,.]+)\s*so['']m/i);
+  const txMatch = text.match(/📦\s*Transaction ID:\s*(\S+)/);
+  const statusMatch = text.match(/✅\s*Status:\s*(.+)/);
+
+  if (!priceMatch) return null;
+
+  // amount: agar "50 stars" formatida bo'lsa shunday qoldiramiz, agar faqat raqam bo'lsa "X stars" qo'shamiz
+  let amount = amountMatch?.[1]?.trim() || '';
+  if (amount && /^\d+$/.test(amount)) amount = amount + ' stars';
+
+  return {
+    orderNumber: orderMatch?.[1] || '',
+    type: 'stars' as const,
+    username: extractUsername(usernameMatch?.[1] || ''),
+    amount,
+    price: parseInt(priceMatch[1].replace(/[\s,.]/g, ''), 10),
+    transactionId: txMatch?.[1] || '',
+    status: statusMatch?.[1]?.trim() || 'Yetkazildi',
+  };
+}
+
+function parseGiftMessage(text: string) {
+  const orderMatch = text.match(/#(\d+)/);
+  const usernameMatch = text.match(/👤\s*Oluvchi:\s*(\S+)/);
   const amountMatch = text.match(/💫\s*Miqdor:\s*(.+)/);
   const priceMatch = text.match(/💰\s*Summa:\s*([\d\s,.]+)\s*so['']m/i);
   const statusMatch = text.match(/✅\s*Status:\s*(.+)/);
@@ -61,7 +70,7 @@ function parseGiftMessage(text: string) {
   return {
     orderNumber: orderMatch?.[1] || '',
     type: 'gift' as const,
-    username: usernameMatch?.[1] || '',
+    username: extractUsername(usernameMatch?.[1] || ''),
     amount: amountMatch?.[1]?.trim() || '',
     price: parseInt(priceMatch[1].replace(/[\s,.]/g, ''), 10),
     transactionId: '',
@@ -70,14 +79,8 @@ function parseGiftMessage(text: string) {
 }
 
 function parsePremiumMessage(text: string) {
-  // 👑 Yangi Premium sotildi!
-  // 📦 Order: #617
-  // 👤 Oluvchi: Suxa_1517
-  // 💫 Miqdor: 3 oy
-  // 💰 Summa: 172,000 so'm
-  // ✅ Status: Yetkazildi
   const orderMatch = text.match(/#(\d+)/);
-  const usernameMatch = text.match(/👤\s*Oluvchi:\s*@?(\S+)/);
+  const usernameMatch = text.match(/👤\s*Oluvchi:\s*(\S+)/);
   const amountMatch = text.match(/💫\s*Miqdor:\s*(.+)/);
   const priceMatch = text.match(/💰\s*Summa:\s*([\d\s,.]+)\s*so['']m/i);
   const statusMatch = text.match(/✅\s*Status:\s*(.+)/);
@@ -87,7 +90,7 @@ function parsePremiumMessage(text: string) {
   return {
     orderNumber: orderMatch?.[1] || '',
     type: 'premium' as const,
-    username: usernameMatch?.[1] || '',
+    username: extractUsername(usernameMatch?.[1] || ''),
     amount: amountMatch?.[1]?.trim() || '',
     price: parseInt(priceMatch[1].replace(/[\s,.]/g, ''), 10),
     transactionId: '',
@@ -121,12 +124,15 @@ function parseOrderMessage(text: string, isPremium112: boolean = false) {
   if (isPremium112) {
     return parsePremium112Message(text);
   }
-  if (text.includes('STARS YUBORILDI') || text.includes('✨')) {
+  // Stars: 🌟 Yangi Stars sotildi!  yoki  ✨ STARS YUBORILDI
+  if (text.includes('Stars sotildi') || text.includes('STARS YUBORILDI') || text.includes('🌟') || text.includes('✨')) {
     return parseStarsMessage(text);
   }
+  // Gift: 🎁 Yangi Gift sotildi!
   if (text.includes('Gift sotildi') || text.includes('🎁')) {
     return parseGiftMessage(text);
   }
+  // Premium: 👑 Yangi Premium sotildi!
   if (text.includes('Premium sotildi') || text.includes('👑')) {
     return parsePremiumMessage(text);
   }
@@ -163,13 +169,21 @@ export const POST: APIRoute = async ({ request }) => {
     const chatId = String(update.channel_post?.chat?.id || '');
     const isPremiumSend = chatId === PREMIUM_SEND_CHAT_ID;
     const isPremium112 = chatId === PREMIUM_1_12_CHAT_ID;
+
+    // DEBUG: log incoming chat_id va text
+    console.log('[WEBHOOK] chat_id=' + chatId + ' | premium_send=' + isPremiumSend + ' | premium_1_12=' + isPremium112);
+    console.log('[WEBHOOK] text:', JSON.stringify(text));
+
     const order = parseOrderMessage(text, isPremium112);
 
     if (!order) {
-      return new Response(JSON.stringify({ ok: true, skipped: true, reason: 'no match' }), {
+      console.log('[WEBHOOK] PARSE FAILED for chat_id=' + chatId);
+      return new Response(JSON.stringify({ ok: true, skipped: true, reason: 'no match', chatId }), {
         headers: { 'Content-Type': 'application/json' },
       });
     }
+
+    console.log('[WEBHOOK] parsed:', JSON.stringify(order));
 
     // Premium Send kanalidan kelgan buyurtmalar — type ni premium_send ga o'zgartirish
     if (isPremiumSend) {
