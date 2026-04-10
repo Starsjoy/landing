@@ -6,6 +6,7 @@ import { addOrder, initDB } from '../../lib/analytics';
 let dbReady = false;
 
 const PREMIUM_SEND_CHAT_ID = import.meta.env.PREMIUM_SEND_CHAT_ID || '-1003606510579';
+const PREMIUM_1_12_CHAT_ID = import.meta.env.PREMIUM_1_12_CHAT_ID || '-1003951417706';
 
 interface TelegramUpdate {
   channel_post?: {
@@ -94,7 +95,32 @@ function parsePremiumMessage(text: string) {
   };
 }
 
-function parseOrderMessage(text: string) {
+function parsePremium112Message(text: string) {
+  // Premium: 12 oy
+  // Narxi: 320,000
+  // Username: @Shavkatov_ff
+  const monthMatch = text.match(/Premium:\s*(\d+)\s*oy/i);
+  const priceMatch = text.match(/Narxi:\s*([\d\s,.]+)/i);
+  const usernameMatch = text.match(/Username:\s*@?(\S+)/i);
+
+  if (!monthMatch || !priceMatch) return null;
+
+  return {
+    orderNumber: '',
+    type: 'premium_1_12' as const,
+    username: usernameMatch?.[1] || '',
+    amount: monthMatch[1] + ' oy',
+    price: parseInt(priceMatch[1].replace(/[\s,.]/g, ''), 10),
+    transactionId: '',
+    status: 'Yetkazildi',
+  };
+}
+
+function parseOrderMessage(text: string, isPremium112: boolean = false) {
+  // Premium 1/12 kanal — boshqa format (no emojis)
+  if (isPremium112) {
+    return parsePremium112Message(text);
+  }
   if (text.includes('STARS YUBORILDI') || text.includes('✨')) {
     return parseStarsMessage(text);
   }
@@ -136,7 +162,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     const chatId = String(update.channel_post?.chat?.id || '');
     const isPremiumSend = chatId === PREMIUM_SEND_CHAT_ID;
-    const order = parseOrderMessage(text);
+    const isPremium112 = chatId === PREMIUM_1_12_CHAT_ID;
+    const order = parseOrderMessage(text, isPremium112);
 
     if (!order) {
       return new Response(JSON.stringify({ ok: true, skipped: true, reason: 'no match' }), {

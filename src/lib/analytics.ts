@@ -423,11 +423,12 @@ export async function deleteOrder(id: number) {
   await sql`DELETE FROM orders WHERE id = ${id}`;
 }
 
-// source: 'starsjoy' = stars,gift,premium | 'premium_send' | 'all'
+// source: 'starsjoy' = stars,gift,premium | 'premium_send' | 'premium_1_12' | 'all'
 function sourceFilter(source: string): string[] {
   if (source === 'starsjoy') return ['stars', 'gift', 'premium'];
   if (source === 'premium_send') return ['premium_send'];
-  return ['stars', 'gift', 'premium', 'premium_send']; // all
+  if (source === 'premium_1_12') return ['premium_1_12'];
+  return ['stars', 'gift', 'premium', 'premium_send', 'premium_1_12']; // all
 }
 
 export async function getOrderStats(period: string, from?: string, to?: string, source: string = 'all') {
@@ -460,7 +461,12 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COALESCE(SUM(CASE WHEN type = 'premium' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as premium_total_months,
       COUNT(*) FILTER (WHERE type = 'premium_send') as ps_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'premium_send'), 0) as ps_revenue,
-      COALESCE(SUM(CASE WHEN type = 'premium_send' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as ps_total_months
+      COALESCE(SUM(CASE WHEN type = 'premium_send' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as ps_total_months,
+      COUNT(*) FILTER (WHERE type = 'premium_1_12') as p112_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_1_12'), 0) as p112_revenue,
+      COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount LIKE '1 oy%') as p112_one_count,
+      COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount LIKE '12 oy%') as p112_twelve_count,
+      COALESCE(SUM(CASE WHEN type = 'premium_1_12' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as p112_total_months
     FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
   `;
 
@@ -490,7 +496,8 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COUNT(*) FILTER (WHERE type = 'stars') as stars_orders,
       COUNT(*) FILTER (WHERE type = 'gift') as gift_orders,
       COUNT(*) FILTER (WHERE type = 'premium') as premium_orders,
-      COUNT(*) FILTER (WHERE type = 'premium_send') as ps_orders
+      COUNT(*) FILTER (WHERE type = 'premium_send') as ps_orders,
+      COUNT(*) FILTER (WHERE type = 'premium_1_12') as p112_orders
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != '' AND type = ANY(${types})
     GROUP BY username
@@ -528,7 +535,7 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
         NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
       ), 0) as total_months
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'premium' OR type = 'premium_send')
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'premium' OR type = 'premium_send' OR type = 'premium_1_12')
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
@@ -550,6 +557,11 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       psCount: +overview.ps_count,
       psRevenue: +overview.ps_revenue,
       psTotalMonths: +overview.ps_total_months,
+      p112Count: +overview.p112_count,
+      p112Revenue: +overview.p112_revenue,
+      p112OneCount: +overview.p112_one_count,
+      p112TwelveCount: +overview.p112_twelve_count,
+      p112TotalMonths: +overview.p112_total_months,
       totalStars: +starsTotal.total_stars,
     },
     recent: recent.map(r => ({
@@ -576,6 +588,7 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       giftOrders: +b.gift_orders,
       premiumOrders: +b.premium_orders,
       psOrders: +b.ps_orders,
+      p112Orders: +b.p112_orders,
     })),
     dailyStars: dailyStars.map(d => ({
       date: d.date,
