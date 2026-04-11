@@ -18,11 +18,16 @@ interface TelegramUpdate {
 
 function extractUsername(raw: string): string {
   if (!raw) return '';
+  // "Oluvchi:" yoki "Username:" prefiksini olib tashlash
+  let s = raw.replace(/^(?:Oluvchi|Username)\s*:\s*/i, '').trim();
+  // Agar "->" bo'lsa, faqat birinchi qismini olish
+  s = s.split('->')[0].trim();
   // https://t.me/username  yoki  t.me/username
-  const linkMatch = raw.match(/(?:https?:\/\/)?t\.me\/([A-Za-z0-9_]+)/);
+  const linkMatch = s.match(/(?:https?:\/\/)?t\.me\/([A-Za-z0-9_]+)/);
   if (linkMatch) return linkMatch[1];
-  // @username  yoki  username
-  return raw.replace(/^@/, '').trim();
+  // @username  yoki  bare username
+  const m = s.match(/@?([A-Za-z0-9_]+)/);
+  return m ? m[1] : '';
 }
 
 function parseStarsMessage(text: string) {
@@ -34,7 +39,7 @@ function parseStarsMessage(text: string) {
   // 💰 Summa: 12,000 so'm
   // ✅ Status: Yetkazildi
   const orderMatch = text.match(/#(\d+)/);
-  const usernameMatch = text.match(/👤\s*Oluvchi:\s*(\S+)/) || text.match(/👤\s*Username:\s*(\S+)/);
+  const usernameMatch = text.match(/👤\s*([^\n]+)/);
   const amountMatch = text.match(/💫\s*Miqdor:\s*(.+)/) || text.match(/⭐\s*Yuborilgan:\s*(\d+)/);
   const priceMatch = text.match(/💰\s*Summa:\s*([\d\s,.]+)\s*so['']m/i)
     || text.match(/💰\s*To['']lov summasi:\s*([\d\s,.]+)\s*so['']m/i);
@@ -60,7 +65,7 @@ function parseStarsMessage(text: string) {
 
 function parseGiftMessage(text: string) {
   const orderMatch = text.match(/#(\d+)/);
-  const usernameMatch = text.match(/👤\s*Oluvchi:\s*(\S+)/);
+  const usernameMatch = text.match(/👤\s*([^\n]+)/);
   const amountMatch = text.match(/💫\s*Miqdor:\s*(.+)/);
   const priceMatch = text.match(/💰\s*Summa:\s*([\d\s,.]+)\s*so['']m/i);
   const statusMatch = text.match(/✅\s*Status:\s*(.+)/);
@@ -80,7 +85,7 @@ function parseGiftMessage(text: string) {
 
 function parsePremiumMessage(text: string) {
   const orderMatch = text.match(/#(\d+)/);
-  const usernameMatch = text.match(/👤\s*Oluvchi:\s*(\S+)/);
+  const usernameMatch = text.match(/👤\s*([^\n]+)/);
   const amountMatch = text.match(/💫\s*Miqdor:\s*(.+)/);
   const priceMatch = text.match(/💰\s*Summa:\s*([\d\s,.]+)\s*so['']m/i);
   const statusMatch = text.match(/✅\s*Status:\s*(.+)/);

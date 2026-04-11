@@ -66,6 +66,7 @@ export async function addVisit(params: {
   await sql`
     INSERT INTO visits (id, session_id, path, user_agent, ip, is_bot, bot_name, referrer)
     VALUES (${params.vid}, ${params.sessionId}, ${params.path}, ${params.userAgent}, ${params.ip}, ${isBot}, ${botName}, ${params.referrer})
+    ON CONFLICT (id) DO NOTHING
   `;
 
   resolveCountry(params.ip, params.vid).catch(() => {});
