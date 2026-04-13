@@ -1,0 +1,546 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+
+const title = "Почему Telegram не отправляет SMS-код? Решение для пользователей Узбекистана | StarsJoy Блог";
+const description = "Telegram не присылает SMS-код для входа? Почему это происходит в Узбекистане, что делать и как получать коды без SMS через Telegram Premium.";
+const publishDate = "2026-04-11";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/ru/blog/telegram-sms-kod-kelmayapti"
+  keywords="Telegram не отправляет SMS код, Telegram код не приходит, проблема Telegram Узбекистан, код входа не приходит, код подтверждения Telegram, Telegram Premium, двухфакторная аутентификация, восстановление профиля, вход в аккаунт Telegram"
+  lang="ru"
+  ogType="article"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-sms-kod-kelmayapti" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-sms-kod-kelmayapti" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Почему Telegram не отправляет SMS-код? Решение для пользователей Узбекистана",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": publishDate,
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": "https://starsjoy.uz/ru/blog/telegram-sms-kod-kelmayapti",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://starsjoy.uz/og-image.png",
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "SMS-код не приходит", "item": "https://starsjoy.uz/ru/blog/telegram-sms-kod-kelmayapti" }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Почему Telegram не отправляет SMS-код?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "С 2024 года Telegram сокращает расходы на SMS и переходит на коды внутри приложения. В Узбекистане ограничения операторов и высокая стоимость международных SMS усиливают эту проблему."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как войти в Telegram если код не приходит?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Проверьте другое устройство — код приходит внутри Telegram. Если нигде не авторизованы — подождите несколько часов и попробуйте снова. Подписчикам Premium Telegram продолжает отправлять SMS-код."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Telegram Premium решает проблему SMS-кода?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Подписчикам Premium Telegram продолжает отправлять SMS-коды, поскольку они — платящие пользователи. Бесплатным пользователям SMS чаще всего не отправляется."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Почему в Узбекистане эта проблема встречается чаще?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Операторы Узбекистана могут ограничивать приём международных SMS. Кроме того, Telegram сократил отправку SMS на узбекские номера из-за высокой стоимости."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно ли использовать виртуальный номер для получения кода Telegram?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Технически возможно, но рискованно. Виртуальные номера могут быть заблокированы Telegram, а потеря номера означает потерю аккаунта. Лучше использовать реальный номер и Premium."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "После покупки Premium проблема SMS-кода решается?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. После активации Premium Telegram отправляет SMS-код на ваш номер. Дополнительная настройка не нужна — пока Premium активен, код приходит."
+        }
+      }
+    ]
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <a href="/ru/blog">Блог</a>
+          <span>/</span>
+          <span>SMS-код не приходит</span>
+        </nav>
+        <div class="post-tag">Telegram</div>
+        <h1 class="post-title">Почему Telegram не отправляет SMS-код? Решение для пользователей Узбекистана</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <section>
+            <p>Купили новый телефон. Установили Telegram. Ввели номер — и ждёте. 1 минута, 5 минут, 15 минут. <strong>SMS-код не приходит.</strong> Повторная отправка — снова тишина. Знакомая ситуация? В Узбекистане эта проблема резко усилилась с 2024 года и продолжает затрагивать тысячи пользователей в 2026-м.</p>
+
+            <p><strong>Почему Telegram не отправляет SMS-код?</strong> Этот вопрос — один из самых частых запросов пользователей Узбекистана в Google. Ответ кажется простым, но на самом деле несколько причин действуют одновременно, и решение — не просто «подождать».</p>
+
+            <p>В этой статье разберём все причины, по которым не приходит SMS-код, что делать прямо сейчас и как вообще избавиться от зависимости от SMS.</p>
+          </section>
+
+          <section>
+            <h2>Краткий ответ</h2>
+
+            <p>С 2024 года Telegram сокращает расходы на SMS и во многих регионах — включая Узбекистан — <strong>перестал отправлять SMS-коды</strong> бесплатным пользователям. Если на другом устройстве Telegram открыт — код придёт туда. Но если нигде не авторизованы — нужен SMS, а он не приходит. Решение: <strong>подписчикам Telegram Premium</strong> Telegram продолжает отправлять SMS-коды, поскольку они — платящие пользователи.</p>
+          </section>
+
+          <section>
+            <h2>Основные причины, почему Telegram не отправляет SMS-код</h2>
+
+            <p>Многие думают: «Telegram сломался» или «проблема с моим номером». На самом деле чаще всего проблема не техническая — это осознанное стратегическое решение Telegram. Разберём все причины отдельно.</p>
+
+            <h3>1. Telegram сокращает расходы на SMS</h3>
+            <p>CEO Telegram Павел Дуров неоднократно говорил о расходах на SMS — компания тратит <strong>огромные суммы</strong> на отправку SMS. Каждое SMS отправляется через международную сеть — и это прямые расходы для Telegram. Поэтому в ряде регионов количество SMS-кодов резко сокращено — вместо них используются коды внутри приложения.</p>
+
+            <p>Это напрямую затрагивает Узбекистан. Стоимость международных SMS на узбекские номера относительно высока — поэтому Telegram в первую очередь сокращает SMS именно в таких регионах.</p>
+
+            <h3>2. Ограничения мобильных операторов</h3>
+            <p>Операторы Узбекистана (Beeline, Ucell, Mobiuz, Uztelecom) имеют различные ограничения на приём международных SMS. В некоторых случаях системы фильтрации могут блокировать или задерживать SMS от Telegram. Это не вина Telegram — это ограничение на стороне операторов.</p>
+
+            <h3>3. Слишком много попыток за короткое время</h3>
+            <p>Если вы видите, что SMS не приходит, и нажимаете «Отправить повторно» несколько раз — Telegram временно блокирует ваш номер. Это защита от спама — Telegram предотвращает массовую отправку SMS на один номер. В результате время ожидания растёт: от 1 минуты до 1 часа, иногда до 24 часов.</p>
+
+            <h3>4. Новый или давно неиспользуемый номер</h3>
+            <p>Если у вас новая SIM-карта или номер долго не использовался — Telegram проявляет осторожность при отправке SMS. Новые номера могут попадать в спам-фильтры. Кроме того, если номер был переназначен другому человеку — возможны конфликты со старым аккаунтом.</p>
+
+            <h3>5. Серверы Telegram перегружены</h3>
+            <p>Иногда проблема глобальная — при высокой нагрузке на серверы Telegram отправка SMS задерживается. Обычно это решается быстро (от 30 минут до 2 часов), но для пользователя момент неприятный.</p>
+          </section>
+
+          <section>
+            <h2>Почему в Узбекистане эта проблема встречается чаще?</h2>
+
+            <p>Проблема с SMS-кодами Telegram существует по всему миру, но <strong>в Узбекистане она встречается заметно чаще</strong> — и этому есть конкретные причины.</p>
+
+            <p><strong>Во-первых — стоимость международных SMS.</strong> Telegram использует международных SMS-провайдеров. Отправка SMS на узбекские номера стоит дороже, чем на европейские или американские. Telegram оптимизирует расходы — и в первую очередь сокращает SMS в более дорогих регионах.</p>
+
+            <p><strong>Во-вторых — инфраструктура операторов.</strong> У некоторых операторов Узбекистана система доставки международных SMS работает не идеально. SMS может потеряться, задержаться или попасть в фильтры. Многие пользователи замечают разницу в зависимости от оператора.</p>
+
+            <p><strong>В-третьих — количество пользователей Telegram.</strong> В Узбекистане Telegram — самый популярный мессенджер, им пользуется практически каждый владелец смартфона. Это означает огромный поток запросов на SMS одновременно. Telegram предпочитает обрабатывать эту нагрузку через коды внутри приложения.</p>
+
+            <p><strong>В-четвёртых — настройки двухфакторной аутентификации.</strong> Большинство пользователей не включили двухфакторную аутентификацию (2FA). В результате единственный способ входа — SMS-код. Если SMS не приходит — войти в аккаунт невозможно. Самый надёжный способ решить эту проблему — полностью устранить зависимость от SMS.</p>
+          </section>
+
+          <section>
+            <h2>SMS-код не приходит — что делать прямо сейчас</h2>
+
+            <p>Когда SMS не приходит, многие паникуют и совершают ошибки. Вот правильная последовательность действий:</p>
+
+            <h3>Шаг 1: Проверьте другое устройство</h3>
+            <p>Если на другом телефоне, планшете или компьютере Telegram открыт — код приходит не по SMS, а <strong>внутри приложения Telegram</strong>. Telegram сначала пытается отправить код внутри приложения — SMS отправляется только если нигде нет активных сессий. Многие не знают об этом и не проверяют Telegram на других устройствах.</p>
+
+            <h3>Шаг 2: Подождите 10–15 минут</h3>
+            <p>Не нажимайте «Отправить повторно» сразу. Иногда SMS задерживается на 5–10 минут. Частые нажатия приводят к временной блокировке номера и увеличению времени ожидания.</p>
+
+            <h3>Шаг 3: Проверьте настройки телефона</h3>
+            <ul>
+              <li>Не включён ли режим полёта (Airplane mode)?</li>
+              <li>Есть ли сигнал сети?</li>
+              <li>Не переполнена ли память SMS?</li>
+              <li>Не блокирует ли спам-фильтр SMS от Telegram?</li>
+            </ul>
+
+            <h3>Шаг 4: Переставьте SIM-карту</h3>
+            <p>Извлеките SIM-карту, подождите 30 секунд и вставьте обратно. Затем перезагрузите телефон. Иногда SIM-карта не подключается к сети корректно — этот простой шаг может помочь.</p>
+
+            <h3>Шаг 5: Подождите несколько часов</h3>
+            <p>Если ничего не помогает — подождите 2–4 часа и попробуйте снова. Временное ограничение Telegram пройдёт, и SMS может прийти. В некоторых случаях нужно ждать до 24 часов — особенно если кнопка «Повторно» нажималась много раз.</p>
+
+            <h3>Шаг 6: Обратитесь к оператору</h3>
+            <p>Если после всех шагов SMS так и не пришло — позвоните оператору и уточните, включён ли приём международных SMS. На некоторых тарифах международные SMS могут быть отключены.</p>
+
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead>
+                  <tr>
+                    <th>Шаг</th>
+                    <th>Что делаете</th>
+                    <th>Время ожидания</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1. Другое устройство</td>
+                    <td>Проверьте Telegram на других устройствах</td>
+                    <td>Сразу</td>
+                  </tr>
+                  <tr>
+                    <td>2. Ожидание</td>
+                    <td>Подождите 10–15 минут, не нажимайте повторно</td>
+                    <td>15 минут</td>
+                  </tr>
+                  <tr>
+                    <td>3. Настройки</td>
+                    <td>Режим полёта, сигнал, спам-фильтр</td>
+                    <td>2 минуты</td>
+                  </tr>
+                  <tr>
+                    <td>4. SIM-карта</td>
+                    <td>Извлечь и вставить обратно</td>
+                    <td>1 минута</td>
+                  </tr>
+                  <tr>
+                    <td>5. Долгое ожидание</td>
+                    <td>Подождите 2–24 часа и повторите</td>
+                    <td>2–24 часа</td>
+                  </tr>
+                  <tr>
+                    <td>6. Оператор</td>
+                    <td>Уточните приём международных SMS</td>
+                    <td>10 минут</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section>
+            <h2>Telegram Premium — постоянное решение проблемы SMS-кода</h2>
+
+            <p>Все перечисленные выше шаги — временное решение. Каждый раз при смене устройства или переустановке Telegram вы снова столкнётесь с проблемой SMS. Но есть <strong>постоянное решение</strong>.</p>
+
+            <p>Почему Telegram не отправляет SMS бесплатным пользователям? Потому что каждое международное SMS — это прямые расходы для Telegram. Но <strong>подписчики Premium — платящие пользователи</strong>. Telegram продолжает отправлять им SMS-коды. Логика проста: вы платите за Premium — Telegram готов покрывать расходы на SMS для вас.</p>
+
+            <p>Как это работает на практике: при входе с нового устройства Telegram сначала отправляет код на другие ваши устройства, где Telegram открыт (это работает для всех пользователей). Но если нигде не авторизованы — <strong>Premium-пользователям SMS-код отправляется</strong>, а бесплатным чаще всего нет.</p>
+
+            <p>Для пользователей Узбекистана это особенно важно:</p>
+            <ul>
+              <li><strong>Проблема с SMS постоянная</strong> — каждый раз при смене устройства, телефона или переустановке снова нужен SMS</li>
+              <li><strong>Ограничения операторов не решатся</strong> — это проблема инфраструктуры, она не исчезнет быстро</li>
+              <li><strong>Telegram будет ещё больше сокращать SMS</strong> — в будущем бесплатным пользователям SMS будут отправляться ещё реже</li>
+            </ul>
+
+            <p>Сколько стоит Premium в Узбекистане? Подробно написано в статье <a href="/ru/blog/telegram-premium-sotib-olish">как купить Telegram Premium</a>, но кратко: самый популярный вариант — 3-месячный пакет. Купить можно через <a href="https://t.me/starsjoybot" target="_blank">@starsjoybot</a> с помощью Uzcard и Humo.</p>
+
+            <p>Premium решает не только проблему SMS — открывается <a href="/ru/blog/telegram-premium-uzcard">более 20 дополнительных функций</a>: загрузка больших файлов, быстрая транскрипция, Premium-стикеры, значок в профиле и многое другое.</p>
+          </section>
+
+          <section>
+            <h2>Как купить Premium и решить проблему SMS-кода: пошагово</h2>
+
+            <p>После покупки Premium Telegram продолжит отправлять SMS-коды на ваш номер. Вот шаги для покупки и настройки в Узбекистане:</p>
+
+            <h3>1. Купите подписку Premium</h3>
+            <p>В Узбекистане Telegram Premium можно купить с помощью Uzcard или Humo через <a href="https://t.me/starsjoybot" target="_blank">@starsjoybot</a> — 3-месячный пакет. Международная карта не нужна — у нас есть отдельная статья <a href="/ru/blog/telegram-premium-vizasiz">Premium без Visa</a>. После оплаты Premium активируется в течение нескольких минут.</p>
+
+            <h3>2. Проблема SMS-кода решена</h3>
+            <p>После активации Premium при следующем входе с нового устройства Telegram отправит SMS-код на ваш номер. Там, где бесплатные пользователи не получали SMS, подписчики Premium его получают. Также, если на другом устройстве Telegram открыт — код придёт и туда (это работает для всех пользователей).</p>
+
+            <h3>3. Включите также двухфакторную аутентификацию</h3>
+            <p>Для дополнительной безопасности включите <strong>двухфакторную аутентификацию (2FA)</strong>: Telegram → Settings → Privacy and Security → Two-Step Verification. Это добавит пароль — даже если кто-то увидит код, без пароля войти не сможет. Premium + 2FA — самая надёжная защита вашего аккаунта.</p>
+
+            <h3>Совет</h3>
+            <p>Регулярно проверяйте, активна ли ваша подписка: Telegram → Settings → «My Premium». Если подписка истекла — проблема с SMS вернётся. <a href="/ru/blog/telegram-premium-3-oy-6-oy">6-месячный пакет</a> обеспечит спокойствие на более долгий срок.</p>
+          </section>
+
+          <section>
+            <h2>Виртуальный номер — решение? Почему не рекомендуем</h2>
+
+            <p>Некоторые пользователи пытаются решить проблему SMS через виртуальные номера — Google Voice, TextNow или другие сервисы. Выглядит как решение, но несёт серьёзные риски.</p>
+
+            <h3>Риски виртуальных номеров</h3>
+            <ul>
+              <li><strong>Telegram блокирует виртуальные номера.</strong> Telegram борется с фейковыми аккаунтами и определяет известных провайдеров виртуальных номеров. Ваш аккаунт может исчезнуть в один день</li>
+              <li><strong>Легко потерять номер.</strong> Сервисы виртуальных номеров могут отменить номер или передать его другому пользователю. После этого восстановить аккаунт будет невозможно</li>
+              <li><strong>Противоречит условиям использования.</strong> Telegram не запрещает виртуальные номера напрямую, но аккаунты с ними чаще подвергаются ограничениям</li>
+            </ul>
+
+            <p><strong>Правильное решение</strong> — использовать свой реальный узбекский номер и решить проблему SMS через Premium. Подписчикам Premium Telegram продолжает отправлять SMS-коды — это безопасное и постоянное решение.</p>
+
+            <p>Если прямо сейчас SMS не приходит и вы не можете войти — сначала выполните 6 шагов выше. Если проблема повторяется регулярно — подписка Premium — самое надёжное долгосрочное решение.</p>
+          </section>
+
+          <section>
+            <h2>Заключение</h2>
+
+            <p>Главная причина, по которой Telegram не отправляет SMS-код — сам Telegram переходит на коды внутри приложения для экономии расходов. В Узбекистане ограничения операторов и высокая стоимость международных SMS усиливают проблему.</p>
+
+            <p>Если прямо сейчас SMS не приходит:</p>
+            <ol>
+              <li>Проверьте Telegram на другом устройстве — код мог прийти туда</li>
+              <li>Не нажимайте «Повторно» много раз — это усугубляет проблему</li>
+              <li>Подождите 10–15 минут, переставьте SIM-карту</li>
+              <li>Уточните у оператора, включены ли международные SMS</li>
+            </ol>
+
+            <p>Постоянное решение — <strong>Telegram Premium</strong>. Подписчикам Premium Telegram продолжает отправлять SMS-коды, потому что они — платящие пользователи. В Узбекистане можно купить через <a href="https://t.me/starsjoybot" target="_blank">@starsjoybot</a> с помощью Uzcard и Humo — <a href="/ru/blog/telegram-premium-sotib-olish">подробнее о покупке 3-месячного Premium</a>.</p>
+
+            <p>Полезные статьи: <a href="/ru/blog/telegram-premium-vizasiz">Premium без Visa</a>, <a href="/ru/blog/telegram-premium-3-oy-6-oy">Premium на 3 и 6 месяцев</a> и <a href="/ru/blog/telegram-premium-1-oylik">Premium на 1 месяц</a>.</p>
+          </section>
+
+          <section>
+            <h2>Часто задаваемые вопросы</h2>
+
+            <div class="post-faq">
+              <div class="post-faq-item">
+                <h3>Почему Telegram не отправляет SMS-код?</h3>
+                <p>С 2024 года Telegram сокращает расходы на SMS и переходит на коды внутри приложения. В Узбекистане ограничения операторов усиливают проблему.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Как войти в Telegram если код не приходит?</h3>
+                <p>Проверьте другое устройство — код приходит внутри Telegram. Если нигде не авторизованы — подождите несколько часов. Подписчикам Premium Telegram продолжает отправлять SMS-код.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Telegram Premium решает проблему SMS-кода?</h3>
+                <p>Да. Подписчикам Premium Telegram продолжает отправлять SMS-коды, поскольку они — платящие пользователи. Бесплатным пользователям SMS чаще всего не отправляется.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Почему в Узбекистане эта проблема встречается чаще?</h3>
+                <p>Операторы Узбекистана могут ограничивать приём международных SMS. Telegram также сократил отправку SMS на узбекские номера из-за высокой стоимости.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Можно ли использовать виртуальный номер для получения кода?</h3>
+                <p>Технически возможно, но рискованно. Виртуальные номера могут быть заблокированы, а потеря номера означает потерю аккаунта. Лучше реальный номер и Premium.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>После покупки Premium проблема SMS-кода решается?</h3>
+                <p>Да. После активации Premium Telegram отправляет SMS-код на ваш номер. Дополнительная настройка не нужна — пока Premium активен, код приходит.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 760px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .post-body {
+    padding: 60px 24px;
+  }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 28px 0 12px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 14px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .post-table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+  }
+
+  .post-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .post-table th {
+    background: rgba(124, 58, 237, 0.06);
+    color: var(--text);
+    font-weight: 700;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+  }
+
+  .post-table td {
+    padding: 12px 18px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+  }
+
+  .post-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .post-faq {
+    margin: 24px 0;
+  }
+
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+
+  .post-faq-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+
+  .post-faq-item p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.6rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.05rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .post-table th { padding: 10px 12px; font-size: 0.85rem; }
+    .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+  }
+</style>
