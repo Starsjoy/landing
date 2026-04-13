@@ -122,9 +122,10 @@ function getSince(period: string): string {
   return todayStart.toISOString();
 }
 
-export async function getFilteredStats(period: string = 'today') {
+export async function getFilteredStats(period: string = 'today', from?: string, to?: string) {
   const sql = getSQL();
-  const since = getSince(period);
+  const since = from ? new Date(from + 'T00:00:00+05:00').toISOString() : getSince(period);
+  const until = to ? new Date(to + 'T23:59:59.999+05:00').toISOString() : new Date('2099-01-01').toISOString();
 
   // Overview for selected period
   const [overview] = await sql`
@@ -134,19 +135,18 @@ export async function getFilteredStats(period: string = 'today') {
       COUNT(*) FILTER (WHERE NOT is_bot) as human_views,
       COUNT(DISTINCT NULLIF(session_id, '')) FILTER (WHERE is_bot) as bot_sessions,
       COUNT(DISTINCT NULLIF(session_id, '')) FILTER (WHERE NOT is_bot) as human_sessions
-    FROM visits WHERE timestamp >= ${since}
+    FROM visits WHERE timestamp >= ${since} AND timestamp <= ${until}
   `;
 
   const botTraffic = await sql`
     SELECT bot_name as name,
       COUNT(*) as pages_crawled,
-      -- Bot sessions: unique IP per 15-min window
       COUNT(DISTINCT (ip || '-' || FLOOR(EXTRACT(EPOCH FROM timestamp) / 900)::text)) as sessions,
       MAX(timestamp) as last_seen,
       ARRAY_AGG(DISTINCT path) as pages,
       (ARRAY_AGG(user_agent ORDER BY timestamp DESC))[1] as sample_ua
     FROM visits
-    WHERE is_bot = true AND bot_name != '' AND timestamp >= ${since}
+    WHERE is_bot = true AND bot_name != '' AND timestamp >= ${since} AND timestamp <= ${until}
     GROUP BY bot_name
     ORDER BY pages_crawled DESC
   `;
@@ -154,7 +154,7 @@ export async function getFilteredStats(period: string = 'today') {
   const realUsers = await sql`
     SELECT id, path, ip, country, timestamp, referrer, duration, user_agent, session_id
     FROM visits
-    WHERE is_bot = false AND timestamp >= ${since}
+    WHERE is_bot = false AND timestamp >= ${since} AND timestamp <= ${until}
     ORDER BY timestamp DESC
     LIMIT 50
   `;
@@ -162,7 +162,7 @@ export async function getFilteredStats(period: string = 'today') {
   const recent = await sql`
     SELECT id, path, ip, country, is_bot, bot_name, timestamp, referrer, duration, user_agent, session_id
     FROM visits
-    WHERE timestamp >= ${since}
+    WHERE timestamp >= ${since} AND timestamp <= ${until}
     ORDER BY timestamp DESC
     LIMIT 500
   `;
@@ -173,7 +173,7 @@ export async function getFilteredStats(period: string = 'today') {
       COUNT(*) FILTER (WHERE is_bot) as bot_views,
       COUNT(*) FILTER (WHERE NOT is_bot) as human_views
     FROM visits
-    WHERE timestamp >= ${since}
+    WHERE timestamp >= ${since} AND timestamp <= ${until}
     GROUP BY path
     ORDER BY views DESC
     LIMIT 20
@@ -182,7 +182,7 @@ export async function getFilteredStats(period: string = 'today') {
   const countries = await sql`
     SELECT country, COUNT(DISTINCT NULLIF(session_id, '')) as sessions, COUNT(*) as views
     FROM visits
-    WHERE NOT is_bot AND country != '' AND country != 'Local' AND country != '—' AND timestamp >= ${since}
+    WHERE NOT is_bot AND country != '' AND country != 'Local' AND country != '—' AND timestamp >= ${since} AND timestamp <= ${until}
     GROUP BY country
     ORDER BY sessions DESC
     LIMIT 15
@@ -277,9 +277,9 @@ export async function addOrder(params: {
   `;
 }
 
-export async function getAnalyticsData(period: string, source: string = 'all') {
+export async function getAnalyticsData(period: string, source: string = 'all', from?: string, to?: string) {
   const sql = getSQL();
-  const since = getSince(period);
+  const since = from ? new Date(from + 'T00:00:00+05:00').toISOString() : getSince(period);
   const types = sourceFilter(source);
 
   // ── Sales revenue grouped by period ──
@@ -465,8 +465,10 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COALESCE(SUM(CASE WHEN type = 'premium_send' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as ps_total_months,
       COUNT(*) FILTER (WHERE type = 'premium_1_12') as p112_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'premium_1_12'), 0) as p112_revenue,
-      COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount LIKE '1 oy%') as p112_one_count,
-      COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount LIKE '12 oy%') as p112_twelve_count,
+      COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount = '1 oy') as p112_one_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_1_12' AND amount = '1 oy'), 0) as p112_one_revenue,
+      COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount = '12 oy') as p112_twelve_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_1_12' AND amount = '12 oy'), 0) as p112_twelve_revenue,
       COALESCE(SUM(CASE WHEN type = 'premium_1_12' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as p112_total_months
     FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
   `;
@@ -561,7 +563,9 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       p112Count: +overview.p112_count,
       p112Revenue: +overview.p112_revenue,
       p112OneCount: +overview.p112_one_count,
+      p112OneRevenue: +overview.p112_one_revenue,
       p112TwelveCount: +overview.p112_twelve_count,
+      p112TwelveRevenue: +overview.p112_twelve_revenue,
       p112TotalMonths: +overview.p112_total_months,
       totalStars: +starsTotal.total_stars,
     },
@@ -605,17 +609,17 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
 }
 
 // Buyer insights: new vs returning customers
-export async function getBuyerInsights(period: string, source: string = 'all') {
+export async function getBuyerInsights(period: string, source: string = 'all', from?: string, to?: string) {
   const sql = getSQL();
-  const since = getSince(period);
+  const since = from ? new Date(from + 'T00:00:00+05:00').toISOString() : getSince(period);
+  const until = to ? new Date(to + 'T23:59:59.999+05:00').toISOString() : new Date('2099-01-01').toISOString();
   const types = sourceFilter(source);
 
-  // All unique buyers in this period with their order count IN THIS PERIOD
   const periodBuyers = await sql`
     SELECT username, COUNT(*) as period_orders,
       MIN(timestamp) as first_in_period, MAX(timestamp) as last_in_period
     FROM orders
-    WHERE timestamp >= ${since} AND username != '' AND type = ANY(${types})
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != '' AND type = ANY(${types})
     GROUP BY username
   `;
 

@@ -32,11 +32,13 @@ export const GET: APIRoute = async ({ request, cookies }) => {
   const analyticsPeriod = url.searchParams.get('ap') || 'week';
   const source = url.searchParams.get('source') || 'all';
 
+  // Agar salesFrom bor bo'lsa, visits va buyers ham shu diapazon bo'yicha filter qilinadi
+  const effectivePeriod = salesFrom ? 'custom' : period;
   const [stats, orders, analytics, buyerInsights] = await Promise.all([
-    getFilteredStats(period),
+    getFilteredStats(effectivePeriod, salesFrom, salesTo),
     getOrderStats(period, salesFrom, salesTo, source),
-    getAnalyticsData(analyticsPeriod, source),
-    getBuyerInsights(period, source),
+    getAnalyticsData(salesFrom ? 'month' : analyticsPeriod, source, salesFrom, salesTo),
+    getBuyerInsights(effectivePeriod, source, salesFrom, salesTo),
   ]);
   return new Response(JSON.stringify({ ...stats, orders, analytics, buyerInsights }), {
     headers: { 'Content-Type': 'application/json' },

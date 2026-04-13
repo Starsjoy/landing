@@ -187,6 +187,9 @@ if (authenticated && !dbReady) {
             <button data-period="12months" onclick="setPeriod('12months')">1 yil</button>
           </div>
 
+          <div class="tb-months" id="monthFilters">
+          </div>
+
           <div class="tb-right">
             <button class="tb-btn" onclick="exportCSV()" title="CSV yuklab olish">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -647,6 +650,45 @@ if (authenticated && !dbReady) {
     .tb-filters button.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(124,58,237,0.3); }
     .tb-filters button:hover:not(.active) { color: var(--text-1); }
 
+    /* ── Month filters ── */
+    .tb-months {
+      display: flex; gap: 2px; background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 3px; position: relative;
+    }
+    .tb-months:empty { display: none; }
+    .tb-months button {
+      padding: 7px 14px; border: none; border-radius: 6px; background: transparent;
+      color: var(--text-3); font-size: 0.78rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .tb-months button.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(124,58,237,0.3); }
+    .tb-months button:hover:not(.active) { color: var(--text-1); }
+    .month-picker-wrap { position: relative; }
+    .month-picker-dropdown {
+      display: none; position: absolute; top: calc(100% + 6px); right: 0; z-index: 60;
+      background: var(--bg-2); border: 1px solid var(--border-light); border-radius: var(--radius);
+      padding: 8px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); min-width: 200px;
+    }
+    .month-picker-dropdown.open { display: block; }
+    .mp-year { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; margin-bottom: 4px; }
+    .mp-year span { font-size: 0.82rem; font-weight: 700; color: var(--text-0); }
+    .mp-year button {
+      background: none; border: none; color: var(--text-2); cursor: pointer; font-size: 1rem;
+      padding: 2px 8px; border-radius: 4px; transition: all 0.15s;
+    }
+    .mp-year button:hover { background: var(--bg-3); color: var(--text-0); }
+    .mp-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+    }
+    .mp-grid button {
+      padding: 8px 4px; border: none; border-radius: 6px; background: transparent;
+      color: var(--text-2); font-size: 0.78rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.15s; text-align: center;
+    }
+    .mp-grid button:hover { background: var(--bg-3); color: var(--text-1); }
+    .mp-grid button.active { background: var(--accent); color: #fff; }
+    .mp-grid button.disabled { color: var(--text-4); pointer-events: none; }
+
     .tb-right { display: flex; align-items: center; gap: 14px; margin-left: auto; }
     .tb-btn {
       display: flex; align-items: center; gap: 7px; padding: 8px 16px; border: 1px solid var(--border);
@@ -799,6 +841,9 @@ if (authenticated && !dbReady) {
     .sales-cards.cols-2 { grid-template-columns: repeat(2, 1fr); }
     .sales-cards.cols-3 { grid-template-columns: repeat(3, 1fr); }
     .sales-cards.cols-5 { grid-template-columns: repeat(5, 1fr); }
+    .sales-cards.cols-5 .sc-value { font-size: 1.6rem; }
+    .sales-cards.cols-5 .sc-sub { font-size: 0.68rem; gap: 6px; }
+    .sales-cards.cols-5 .stat-card { padding: 18px 14px; }
     .pill-stars { background: rgba(250, 204, 21, 0.1); color: #facc15; }
     .pill-gift { background: rgba(52, 211, 153, 0.1); color: #34d399; }
     .pill-premium { background: rgba(168, 85, 247, 0.1); color: #c084fc; }
@@ -1232,6 +1277,7 @@ if (authenticated && !dbReady) {
 
       function setPeriod(p) {
         currentPeriod = p;
+        currentMonth = null;
         salesFrom = '';
         salesTo = '';
         var dfrom = document.getElementById('salesDateFrom');
@@ -1241,10 +1287,110 @@ if (authenticated && !dbReady) {
         document.querySelectorAll('#filters button').forEach(b => {
           b.classList.toggle('active', b.dataset.period === p);
         });
+        // Deactivate month buttons
+        document.querySelectorAll('.tb-months button').forEach(b => b.classList.remove('active'));
         chartPeriod = p;
         fetchStats();
         fetchAnalytics();
       }
+
+      // ───── MONTH FILTER ─────
+      var currentMonth = null; // { year: 2026, month: 3 } (0-indexed)
+      var monthNames = ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun', 'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'];
+      var monthNamesFull = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentabr', 'Oktyabr', 'Noyabr', 'Dekabr'];
+      var pickerYear = new Date().getFullYear();
+
+      function initMonthFilters() {
+        var now = new Date();
+        var el = document.getElementById('monthFilters');
+        var html = '';
+        // Oxirgi 3 oy
+        for (var i = 2; i >= 0; i--) {
+          var d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+          var y = d.getFullYear();
+          var m = d.getMonth();
+          html += '<button onclick="setMonth(' + y + ',' + m + ')">' + monthNamesFull[m] + '</button>';
+        }
+        // Tanlash dropdown
+        html += '<div class="month-picker-wrap">';
+        html += '<button onclick="toggleMonthPicker(event)">Tanlash ▾</button>';
+        html += '<div class="month-picker-dropdown" id="monthPicker">';
+        html += '<div class="mp-year"><button onclick="changePickerYear(-1)">‹</button><span id="pickerYearLabel">' + pickerYear + '</span><button onclick="changePickerYear(1)">›</button></div>';
+        html += '<div class="mp-grid" id="pickerGrid"></div>';
+        html += '</div></div>';
+        el.innerHTML = html;
+        renderPickerGrid();
+      }
+
+      function toggleMonthPicker(e) {
+        e.stopPropagation();
+        var dd = document.getElementById('monthPicker');
+        dd.classList.toggle('open');
+      }
+
+      function changePickerYear(delta) {
+        pickerYear += delta;
+        document.getElementById('pickerYearLabel').textContent = pickerYear;
+        renderPickerGrid();
+      }
+
+      function renderPickerGrid() {
+        var now = new Date();
+        var grid = document.getElementById('pickerGrid');
+        if (!grid) return;
+        var html = '';
+        for (var m = 0; m < 12; m++) {
+          var isFuture = (pickerYear > now.getFullYear()) || (pickerYear === now.getFullYear() && m > now.getMonth());
+          var isActive = currentMonth && currentMonth.year === pickerYear && currentMonth.month === m;
+          var cls = isFuture ? 'disabled' : (isActive ? 'active' : '');
+          html += '<button class="' + cls + '" onclick="setMonth(' + pickerYear + ',' + m + ')">' + monthNames[m] + '</button>';
+        }
+        grid.innerHTML = html;
+      }
+
+      function setMonth(year, month) {
+        currentMonth = { year: year, month: month };
+        // Period filter deaktiv
+        currentPeriod = 'custom_month';
+        document.querySelectorAll('#filters button').forEach(b => b.classList.remove('active'));
+
+        // Month buttons highlight
+        document.querySelectorAll('.tb-months > button').forEach(b => b.classList.remove('active'));
+        var label = monthNamesFull[month];
+        document.querySelectorAll('.tb-months > button').forEach(b => {
+          if (b.textContent === label) b.classList.add('active');
+        });
+
+        // Picker grid highlight
+        renderPickerGrid();
+
+        // Close picker
+        var dd = document.getElementById('monthPicker');
+        if (dd) dd.classList.remove('open');
+
+        // Set salesFrom/salesTo for the month
+        var from = year + '-' + String(month + 1).padStart(2, '0') + '-01';
+        var lastDay = new Date(year, month + 1, 0).getDate();
+        var to = year + '-' + String(month + 1).padStart(2, '0') + '-' + String(lastDay).padStart(2, '0');
+        salesFrom = from;
+        salesTo = to;
+        var dfrom = document.getElementById('salesDateFrom');
+        var dto = document.getElementById('salesDateTo');
+        if (dfrom) dfrom.value = from;
+        if (dto) dto.value = to;
+
+        chartPeriod = 'month';
+        fetchStats();
+        fetchAnalytics();
+      }
+
+      // Close picker when clicking outside
+      document.addEventListener('click', function(e) {
+        var dd = document.getElementById('monthPicker');
+        if (dd && !dd.contains(e.target) && !e.target.closest('.month-picker-wrap')) {
+          dd.classList.remove('open');
+        }
+      });
 
       function toggleSidebar() {
         document.getElementById('sidebar').classList.toggle('open');
@@ -1304,7 +1450,10 @@ if (authenticated && !dbReady) {
         if (dot) { dot.style.background = 'var(--orange)'; dot.style.boxShadow = '0 0 8px rgba(245,158,11,0.5)'; }
         if (txt) txt.style.color = 'var(--orange)';
         try {
-          const res = await fetch('/api/stats?period=' + currentPeriod + '&source=' + currentSource);
+          var statsUrl = '/api/stats?period=' + currentPeriod + '&source=' + currentSource;
+          if (salesFrom) statsUrl += '&salesFrom=' + salesFrom;
+          if (salesTo) statsUrl += '&salesTo=' + salesTo;
+          const res = await fetch(statsUrl);
           if (res.status === 401) { location.reload(); return; }
           statsData = await res.json();
           sourceData[currentSource] = { orders: statsData.orders, analytics: statsData.analytics, buyerInsights: statsData.buyerInsights };
@@ -1557,12 +1706,12 @@ if (authenticated && !dbReady) {
           <div class="stat-card">
             <div class="sc-label">💎 1 oy</div>
             <div class="sc-value">${ov.p112OneCount}</div>
-            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.p112OneCount * 57000)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney(ov.p112OneCount * 18000)}</span></div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.p112OneRevenue)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney(ov.p112OneCount * 18000)}</span></div>
           </div>
           <div class="stat-card">
             <div class="sc-label">💎 12 oy</div>
             <div class="sc-value">${ov.p112TwelveCount}</div>
-            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.p112TwelveCount * 320000)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney(ov.p112TwelveCount * 48000)}</span></div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.p112TwelveRevenue)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney(ov.p112TwelveCount * 48000)}</span></div>
           </div>`;
         } else if (currentSource === 'starsjoy') {
           cards += `
@@ -2083,6 +2232,7 @@ if (authenticated && !dbReady) {
       var _origRenderAll = renderAll;
       renderAll = function() { _origRenderAll(); setTimeout(checkScrollHints, 50); };
 
+      initMonthFilters();
       showSection('overview');
       fetchStats();
       setInterval(fetchStats, 30000);
