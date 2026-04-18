@@ -179,6 +179,7 @@ if (authenticated && !dbReady) {
           </button>
 
           <div class="tb-filters" id="filters">
+            <button data-period="yesterday" onclick="setYesterday()">Kecha</button>
             <button data-period="today" class="active" onclick="setPeriod('today')">Bugun</button>
             <button data-period="week" onclick="setPeriod('week')">Hafta</button>
             <button data-period="month" onclick="setPeriod('month')">Oy</button>
@@ -1294,6 +1295,40 @@ if (authenticated && !dbReady) {
         fetchAnalytics();
       }
 
+      function setYesterday() {
+        // Tashkent vaqtida kechagi sanani hisoblash (UTC+5)
+        var now = new Date();
+        var tashkentNow = new Date(now.getTime() + 5 * 60 * 60 * 1000);
+        var yesterday = new Date(Date.UTC(
+          tashkentNow.getUTCFullYear(),
+          tashkentNow.getUTCMonth(),
+          tashkentNow.getUTCDate() - 1
+        ));
+        var y = yesterday.getUTCFullYear();
+        var m = String(yesterday.getUTCMonth() + 1).padStart(2, '0');
+        var d = String(yesterday.getUTCDate()).padStart(2, '0');
+        var dateStr = y + '-' + m + '-' + d;
+
+        currentPeriod = 'yesterday';
+        currentMonth = null;
+        salesFrom = dateStr;
+        salesTo = dateStr;
+
+        var dfrom = document.getElementById('salesDateFrom');
+        var dto = document.getElementById('salesDateTo');
+        if (dfrom) dfrom.value = dateStr;
+        if (dto) dto.value = dateStr;
+
+        document.querySelectorAll('#filters button').forEach(b => {
+          b.classList.toggle('active', b.dataset.period === 'yesterday');
+        });
+        document.querySelectorAll('.tb-months button').forEach(b => b.classList.remove('active'));
+
+        chartPeriod = 'yesterday';
+        fetchStats();
+        fetchAnalytics();
+      }
+
       // ───── MONTH FILTER ─────
       var currentMonth = null; // { year: 2026, month: 3 } (0-indexed)
       var monthNames = ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun', 'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'];
@@ -1536,7 +1571,7 @@ if (authenticated && !dbReady) {
       }
 
       var periodLabels = {
-        today: 'Bugun', week: 'Hafta', month: 'Oy',
+        yesterday: 'Kecha', today: 'Bugun', week: 'Hafta', month: 'Oy',
         '3months': '3 oy', '6months': '6 oy', '12months': '1 yil'
       };
 
