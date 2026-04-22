@@ -209,6 +209,23 @@ if (authenticated && !dbReady) {
             <span>Yuklanmoqda...</span>
           </div>
 
+          <!-- Mobile quick stats (mobile-only) -->
+          <div class="mqs" id="mobileQuickStats" hidden>
+            <div class="mqs-yesterday">
+              <div class="mqs-label">Kechagi foyda</div>
+              <div class="mqs-value" id="mqsYdayProfit">0</div>
+            </div>
+            <div class="mqs-today">
+              <div class="mqs-label">Bugungi foyda</div>
+              <div class="mqs-value" id="mqsTodayProfit">0</div>
+              <div class="mqs-sub">so'm</div>
+            </div>
+            <div class="mqs-orders">
+              <div class="mqs-label">Bugungi buyurtmalar</div>
+              <div class="mqs-value" id="mqsTodayOrders">0</div>
+            </div>
+          </div>
+
           <!-- Overview -->
           <div id="section-overview" class="section-content" hidden>
             <div class="stat-cards" id="statCards"></div>
@@ -945,6 +962,9 @@ if (authenticated && !dbReady) {
     .pf-btn.active { background: var(--green); color: #fff; box-shadow: 0 2px 8px rgba(16,185,129,0.3); }
     .pf-btn:hover:not(.active) { color: var(--text-1); }
 
+    /* ───── MOBILE QUICK STATS (mobile-only, hidden on desktop) ───── */
+    .mqs { display: none; }
+
     .profit-cards { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
     .profit-card {
       background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
@@ -1208,6 +1228,52 @@ if (authenticated && !dbReady) {
       .login-box h1 { font-size: 1.15rem; }
       .login-box input { padding: 14px 16px; font-size: 0.92rem; }
       .login-box button { padding: 14px; font-size: 0.92rem; }
+
+      /* ── Mobile quick stats ── */
+      .mqs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .mqs-yesterday, .mqs-today, .mqs-orders {
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px 18px;
+        text-align: center;
+      }
+      .mqs-yesterday { padding: 12px 16px; }
+      .mqs-today {
+        border-color: rgba(16,185,129,0.35);
+        background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.02));
+        padding: 22px 18px;
+        box-shadow: 0 4px 20px rgba(16,185,129,0.08);
+      }
+      .mqs-label {
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: var(--text-3);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 6px;
+      }
+      .mqs-today .mqs-label { color: var(--green); font-size: 0.72rem; }
+      .mqs-value {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--text-0);
+        letter-spacing: -0.8px;
+        line-height: 1.1;
+      }
+      .mqs-yesterday .mqs-value { font-size: 1.3rem; color: var(--text-1); }
+      .mqs-today .mqs-value { font-size: 2.3rem; color: var(--green); letter-spacing: -1.2px; }
+      .mqs-sub {
+        font-size: 0.72rem;
+        color: var(--text-3);
+        margin-top: 6px;
+        font-weight: 500;
+      }
     }
 
     /* Extra small — phones under 380px */
@@ -2267,10 +2333,60 @@ if (authenticated && !dbReady) {
       var _origRenderAll = renderAll;
       renderAll = function() { _origRenderAll(); setTimeout(checkScrollHints, 50); };
 
+      // ───── MOBILE QUICK STATS (mobile-only hero) ─────
+      function isMobileView() { return window.innerWidth <= 640; }
+
+      function mqsCalcProfit(ov) {
+        if (!ov) return 0;
+        var starsProfit = Math.round((ov.starsRevenue || 0) * 0.12);
+        var giftProfit = Math.round((ov.giftRevenue || 0) * 0.12);
+        var premiumProfit = Math.round((ov.premiumRevenue || 0) * 0.10);
+        var psProfit = Math.round((ov.psRevenue || 0) * 0.10);
+        var p112Profit = ((ov.p112OneCount || 0) * 18000) + ((ov.p112TwelveCount || 0) * 48000);
+        return starsProfit + giftProfit + premiumProfit + psProfit + p112Profit;
+      }
+
+      async function fetchMobileQuickStats() {
+        var box = document.getElementById('mobileQuickStats');
+        if (!box) return;
+        if (!isMobileView()) { box.hidden = true; return; }
+        box.hidden = false;
+
+        // Kechagi sana (Tashkent TZ)
+        var now = new Date();
+        var tz = new Date(now.getTime() + 5 * 60 * 60 * 1000);
+        var yest = new Date(Date.UTC(tz.getUTCFullYear(), tz.getUTCMonth(), tz.getUTCDate() - 1));
+        var ys = yest.getUTCFullYear() + '-' + String(yest.getUTCMonth() + 1).padStart(2, '0') + '-' + String(yest.getUTCDate()).padStart(2, '0');
+
+        try {
+          var results = await Promise.all([
+            fetch('/api/stats?period=today&source=all'),
+            fetch('/api/stats?salesFrom=' + ys + '&salesTo=' + ys + '&source=all')
+          ]);
+          if (results[0].status === 401) { location.reload(); return; }
+          var todayData = await results[0].json();
+          var ydayData = await results[1].json();
+
+          var ovT = todayData.orders && todayData.orders.overview;
+          var ovY = ydayData.orders && ydayData.orders.overview;
+
+          document.getElementById('mqsTodayProfit').textContent = fmtMoney(mqsCalcProfit(ovT)) + " so'm";
+          document.getElementById('mqsYdayProfit').textContent = fmtMoney(mqsCalcProfit(ovY)) + " so'm";
+          document.getElementById('mqsTodayOrders').textContent = (ovT ? ovT.totalOrders : 0) + ' ta';
+        } catch (e) { console.error('Mobile quick stats error:', e); }
+      }
+
+      window.addEventListener('resize', function() {
+        var box = document.getElementById('mobileQuickStats');
+        if (box) box.hidden = !isMobileView();
+      });
+
       initMonthFilters();
       showSection('overview');
       fetchStats();
+      fetchMobileQuickStats();
       setInterval(fetchStats, 30000);
+      setInterval(fetchMobileQuickStats, 30000);
     </script>
   )}
 </body>
