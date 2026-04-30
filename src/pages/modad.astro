@@ -212,7 +212,7 @@ if (authenticated && !dbReady) {
           <!-- Mobile quick stats (mobile-only) -->
           <div class="mqs" id="mobileQuickStats" hidden>
             <div class="mqs-today">
-              <div class="mqs-label">Bugungi foyda</div>
+              <div class="mqs-label" id="mqsTodayLabel">Bugungi foyda</div>
               <div class="mqs-value" id="mqsTodayProfit">0</div>
             </div>
             <div class="mqs-row">
@@ -221,7 +221,7 @@ if (authenticated && !dbReady) {
                 <div class="mqs-value" id="mqsYdayProfit">0</div>
               </div>
               <div class="mqs-orders">
-                <div class="mqs-label">Bugungi buyurtmalar</div>
+                <div class="mqs-label" id="mqsOrdersLabel">Bugungi buyurtmalar</div>
                 <div class="mqs-value" id="mqsTodayOrders">0</div>
               </div>
             </div>
@@ -1661,6 +1661,7 @@ if (authenticated && !dbReady) {
         renderBuyerInsights();
         renderProfit(statsData.orders);
         renderCharts();
+        renderMobileQuickStats();
       }
 
       var periodLabels = {
@@ -2363,6 +2364,11 @@ if (authenticated && !dbReady) {
       // ───── MOBILE QUICK STATS (mobile-only hero) ─────
       function isMobileView() { return window.innerWidth <= 640; }
 
+      var mqsPeriodLabels = {
+        yesterday: 'Kechagi', today: 'Bugungi', week: 'Haftalik', month: 'Oylik',
+        '3months': '3 oylik', '6months': '6 oylik', '12months': 'Yillik'
+      };
+
       function mqsCalcProfit(ov) {
         if (!ov) return 0;
         var starsProfit = Math.round((ov.starsRevenue || 0) * 0.12);
@@ -2373,47 +2379,53 @@ if (authenticated && !dbReady) {
         return starsProfit + giftProfit + premiumProfit + psProfit + p112Profit;
       }
 
-      async function fetchMobileQuickStats() {
+      function renderMobileQuickStats() {
         var box = document.getElementById('mobileQuickStats');
         if (!box) return;
         if (!isMobileView()) { box.hidden = true; return; }
         box.hidden = false;
 
-        // Kechagi sana (Tashkent TZ)
+        var label = mqsPeriodLabels[currentPeriod] || (currentMonth ? 'Oylik' : 'Bugungi');
+        var ov = statsData && statsData.orders && statsData.orders.overview;
+        var profit = mqsCalcProfit(ov);
+        var orders = ov ? (ov.totalOrders || 0) : 0;
+
+        var todayLabel = document.getElementById('mqsTodayLabel');
+        var ordersLabel = document.getElementById('mqsOrdersLabel');
+        if (todayLabel) todayLabel.textContent = label + ' foyda';
+        if (ordersLabel) ordersLabel.textContent = label + ' buyurtmalar';
+        document.getElementById('mqsTodayProfit').textContent = fmtMoney(profit) + " so'm";
+        document.getElementById('mqsTodayOrders').textContent = orders + ' ta';
+      }
+
+      async function fetchMqsYesterday() {
+        if (!isMobileView()) return;
         var now = new Date();
         var tz = new Date(now.getTime() + 5 * 60 * 60 * 1000);
         var yest = new Date(Date.UTC(tz.getUTCFullYear(), tz.getUTCMonth(), tz.getUTCDate() - 1));
         var ys = yest.getUTCFullYear() + '-' + String(yest.getUTCMonth() + 1).padStart(2, '0') + '-' + String(yest.getUTCDate()).padStart(2, '0');
-
         try {
-          var results = await Promise.all([
-            fetch('/api/stats?period=today&source=all'),
-            fetch('/api/stats?salesFrom=' + ys + '&salesTo=' + ys + '&source=all')
-          ]);
-          if (results[0].status === 401) { location.reload(); return; }
-          var todayData = await results[0].json();
-          var ydayData = await results[1].json();
-
-          var ovT = todayData.orders && todayData.orders.overview;
-          var ovY = ydayData.orders && ydayData.orders.overview;
-
-          document.getElementById('mqsTodayProfit').textContent = fmtMoney(mqsCalcProfit(ovT)) + " so'm";
-          document.getElementById('mqsYdayProfit').textContent = fmtMoney(mqsCalcProfit(ovY)) + " so'm";
-          document.getElementById('mqsTodayOrders').textContent = (ovT ? ovT.totalOrders : 0) + ' ta';
-        } catch (e) { console.error('Mobile quick stats error:', e); }
+          var res = await fetch('/api/stats?salesFrom=' + ys + '&salesTo=' + ys + '&source=all');
+          if (res.status === 401) { location.reload(); return; }
+          var data = await res.json();
+          var ov = data.orders && data.orders.overview;
+          var el = document.getElementById('mqsYdayProfit');
+          if (el) el.textContent = fmtMoney(mqsCalcProfit(ov)) + " so'm";
+        } catch (e) { console.error('MQS yesterday error:', e); }
       }
 
       window.addEventListener('resize', function() {
         var box = document.getElementById('mobileQuickStats');
         if (box) box.hidden = !isMobileView();
+        if (isMobileView()) renderMobileQuickStats();
       });
 
       initMonthFilters();
       showSection('overview');
       fetchStats();
-      fetchMobileQuickStats();
+      fetchMqsYesterday();
       setInterval(fetchStats, 30000);
-      setInterval(fetchMobileQuickStats, 30000);
+      setInterval(fetchMqsYesterday, 60000);
     </script>
   )}
 </body>
