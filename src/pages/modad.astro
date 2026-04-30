@@ -211,18 +211,19 @@ if (authenticated && !dbReady) {
 
           <!-- Mobile quick stats (mobile-only) -->
           <div class="mqs" id="mobileQuickStats" hidden>
-            <div class="mqs-yesterday">
-              <div class="mqs-label">Kechagi foyda</div>
-              <div class="mqs-value" id="mqsYdayProfit">0</div>
-            </div>
             <div class="mqs-today">
               <div class="mqs-label">Bugungi foyda</div>
               <div class="mqs-value" id="mqsTodayProfit">0</div>
-              <div class="mqs-sub">so'm</div>
             </div>
-            <div class="mqs-orders">
-              <div class="mqs-label">Bugungi buyurtmalar</div>
-              <div class="mqs-value" id="mqsTodayOrders">0</div>
+            <div class="mqs-row">
+              <div class="mqs-yesterday">
+                <div class="mqs-label">Kechagi foyda</div>
+                <div class="mqs-value" id="mqsYdayProfit">0</div>
+              </div>
+              <div class="mqs-orders">
+                <div class="mqs-label">Bugungi buyurtmalar</div>
+                <div class="mqs-value" id="mqsTodayOrders">0</div>
+              </div>
             </div>
           </div>
 
@@ -1234,45 +1235,62 @@ if (authenticated && !dbReady) {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        margin-bottom: 18px;
+        margin-bottom: 16px;
       }
-      .mqs-yesterday, .mqs-today, .mqs-orders {
+      .mqs-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .mqs-today, .mqs-yesterday, .mqs-orders {
         background: var(--bg-2);
         border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 16px 18px;
+        border-radius: 12px;
         text-align: center;
+        min-width: 0;
       }
-      .mqs-yesterday { padding: 12px 16px; }
       .mqs-today {
         border-color: rgba(16,185,129,0.35);
-        background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.02));
-        padding: 22px 18px;
-        box-shadow: 0 4px 20px rgba(16,185,129,0.08);
+        background: linear-gradient(135deg, rgba(16,185,129,0.10), rgba(16,185,129,0.02));
+        padding: 18px 14px;
+        box-shadow: 0 4px 18px rgba(16,185,129,0.08);
+      }
+      .mqs-yesterday, .mqs-orders {
+        padding: 12px 10px;
       }
       .mqs-label {
-        font-size: 0.68rem;
+        font-size: 0.62rem;
         font-weight: 600;
         color: var(--text-3);
         text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .mqs-today .mqs-label {
+        color: var(--green);
+        font-size: 0.66rem;
         letter-spacing: 0.8px;
-        margin-bottom: 6px;
+        margin-bottom: 7px;
       }
-      .mqs-today .mqs-label { color: var(--green); font-size: 0.72rem; }
       .mqs-value {
-        font-size: 1.5rem;
-        font-weight: 900;
-        color: var(--text-0);
-        letter-spacing: -0.8px;
-        line-height: 1.1;
+        font-weight: 800;
+        line-height: 1.15;
+        word-break: break-word;
+        overflow-wrap: anywhere;
       }
-      .mqs-yesterday .mqs-value { font-size: 1.3rem; color: var(--text-1); }
-      .mqs-today .mqs-value { font-size: 2.3rem; color: var(--green); letter-spacing: -1.2px; }
-      .mqs-sub {
-        font-size: 0.72rem;
-        color: var(--text-3);
-        margin-top: 6px;
-        font-weight: 500;
+      .mqs-today .mqs-value {
+        font-size: clamp(1.5rem, 7vw, 2rem);
+        color: var(--green);
+        font-weight: 900;
+        letter-spacing: -1px;
+      }
+      .mqs-yesterday .mqs-value, .mqs-orders .mqs-value {
+        font-size: clamp(0.95rem, 4.2vw, 1.15rem);
+        color: var(--text-1);
+        letter-spacing: -0.3px;
       }
     }
 
@@ -1284,6 +1302,14 @@ if (authenticated && !dbReady) {
       .stat-cards .stat-card:last-child { grid-column: auto; }
       .stat-card .sc-value { font-size: 1.4rem; }
       .tb-filters button { padding: 7px 12px; font-size: 0.72rem; }
+
+      /* Mobile quick stats — tighter on small screens */
+      .mqs { gap: 8px; margin-bottom: 14px; }
+      .mqs-row { gap: 8px; }
+      .mqs-today { padding: 16px 12px; }
+      .mqs-yesterday, .mqs-orders { padding: 10px 8px; }
+      .mqs-label { font-size: 0.58rem; letter-spacing: 0.3px; }
+      .mqs-today .mqs-label { font-size: 0.62rem; }
     }
   </style>
 
