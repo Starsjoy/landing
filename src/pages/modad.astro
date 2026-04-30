@@ -538,6 +538,7 @@ if (authenticated && !dbReady) {
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { overflow-x: hidden; width: 100%; }
     body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-0); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
     /* ───── LOGIN ───── */
@@ -649,7 +650,7 @@ if (authenticated && !dbReady) {
     .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 90; backdrop-filter: blur(4px); }
 
     /* ───── MAIN ───── */
-    .main { flex: 1; margin-left: 252px; display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-0); }
+    .main { flex: 1; min-width: 0; max-width: 100%; margin-left: 252px; display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-0); }
 
     /* ───── TOPBAR ───── */
     .topbar {
