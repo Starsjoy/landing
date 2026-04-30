@@ -1578,7 +1578,7 @@ if (authenticated && !dbReady) {
         if (dot) { dot.style.background = 'var(--orange)'; dot.style.boxShadow = '0 0 8px rgba(245,158,11,0.5)'; }
         if (txt) txt.style.color = 'var(--orange)';
         try {
-          var statsUrl = '/api/stats?period=' + currentPeriod + '&source=' + currentSource;
+          var statsUrl = '/api/stats?period=' + currentPeriod + '&ap=' + chartPeriod + '&source=' + currentSource;
           if (salesFrom) statsUrl += '&salesFrom=' + salesFrom;
           if (salesTo) statsUrl += '&salesTo=' + salesTo;
           const res = await fetch(statsUrl);
