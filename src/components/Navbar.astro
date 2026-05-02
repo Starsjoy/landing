@@ -14,6 +14,7 @@ const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
       <li><a href="/stars">Stars</a></li>
       <li><a href="/premium">Premium</a></li>
       <li><a href="/gifts">Gifts</a></li>
+      <li><a href="/biznes" class="nav-link-biz">Biznes</a></li>
       <li><a href="/#guarantees">Kafolatlar</a></li>
       <li><a href="/blog">Blog</a></li>
       <li class="mobile-menu-cta"><a href="https://t.me/starsjoybot" class="nav-cta" target="_blank">Botga o'tish</a></li>
@@ -111,6 +112,12 @@ const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--primary); }
+
+  .nav-link-biz {
+    color: #B45309 !important;
+    font-weight: 600 !important;
+  }
+  .nav-link-biz:hover { color: #92400E !important; }
 
   .lang-switch {
     padding: 0;

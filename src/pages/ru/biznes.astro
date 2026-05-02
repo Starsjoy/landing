@@ -1,0 +1,335 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavbarRu from '../../components/NavbarRu.astro';
+import FooterRu from '../../components/FooterRu.astro';
+
+const title = "Starsjoy Бизнес — готовый бот для продажи Telegram Stars, Premium и Gifts | Запустите свой бизнес";
+const description = "Запустите собственный Telegram-бот для продажи Stars, Premium и Gifts за 7-14 дней. Mini App + сайт + 12 месяцев тех. поддержки. Basic $500, Pro $800.";
+const canonical = "https://starsjoy.uz/ru/biznes";
+const ogImage = "https://starsjoy.uz/og-image.png";
+
+const features = [
+  { icon: "🤖", title: "Telegram-бот", desc: "Полностью рабочий бот — заказы, оплаты, статистика. Под вашим брендом." },
+  { icon: "📱", title: "Mini App интерфейс", desc: "Современный Mini App внутри Telegram — пакеты, цены, оплата." },
+  { icon: "⭐", title: "Продажа Stars", desc: "Доставка через официальную инфраструктуру Telegram Fragment — 1–3 минуты." },
+  { icon: "🎁", title: "Продажа Gifts", desc: "Клиенты отправляют Telegram Gifts друзьям — бот доставит автоматически." },
+  { icon: "💎", title: "Продажа Premium (Pro)", desc: "Подписки на 3, 6, 12 месяцев. Бот автоматически активирует подписку.", pro: true },
+  { icon: "🌐", title: "Профессиональный сайт (Pro)", desc: "SEO-оптимизированный лендинг — цены, FAQ, инфраструктура для блога.", pro: true },
+  { icon: "💳", title: "Платёжная интеграция", desc: "Click, Payme, Uzcard, Humo — стандартный набор для рынка Узбекистана." },
+  { icon: "🛡️", title: "12 месяцев тех. поддержки", desc: "Техпроблемы, баги, downtime — первый год решаем бесплатно." },
+];
+
+const basicFeatures = [
+  "Полностью рабочий Telegram-бот",
+  "Mini App интерфейс",
+  "Продажа Telegram Stars",
+  "Продажа Telegram Gifts",
+  "Click, Payme, Uzcard, Humo",
+  "Сдача за 7–14 дней",
+  "12 месяцев тех. поддержки",
+  "Сервер и хостинг",
+  "Официальный договор",
+];
+
+const proFeatures = [
+  "Продажа Telegram Premium",
+  "Профессиональный сайт (с SEO)",
+  "Активация Premium за 1–5 минут",
+  "Подписки на 3, 6, 12 месяцев",
+];
+
+const faqs = [
+  { q: "Что такое Starsjoy Бизнес?", a: "Услуга, которая создаёт для вас полностью готовый Telegram-бот и Mini App. Настроен на продажу Stars, Gifts (в пакете Pro — также Premium). Сервер, API, платёжные системы устанавливаются нами — вам остаётся только начать вести бизнес." },
+  { q: "Сколько времени уходит на разработку?", a: "7–14 дней. Настройка 1–3 дня, тестирование 4–10 дней, сдача 11–14 дней. При нестандартных доработках срок согласовывается заранее." },
+  { q: "В чём разница между Basic и Pro?", a: "Basic ($500) — Stars + Gifts. Pro ($800) — дополнительно продажа Telegram Premium и профессиональный сайт. Если бизнес охватит и Premium, выбирайте Pro." },
+  { q: "Что входит в 12 месяцев поддержки?", a: "Решение технических проблем, исправление багов, поддержание uptime, сервер и хостинг — бесплатно. Добавление новых функций, изменение дизайна, дополнительные интеграции — оплачиваются отдельно." },
+  { q: "Должен ли я платить за сервер и хостинг?", a: "Нет. Первые 12 месяцев расходы на сервер и хостинг включены в стоимость пакета. По истечении 12 месяцев устанавливается отдельный годовой тариф (небольшая сумма)." },
+  { q: "Какие платёжные системы поддерживает бот?", a: "Click, Payme, Uzcard, Humo — стандартный набор для рынка Узбекистана. Stars доставляются через официальную инфраструктуру Telegram Fragment." },
+  { q: "Заключается ли официальный договор?", a: "Да. В договоре прописаны детали пакета, сроки, условия поддержки, права собственности. По законодательству Узбекистана." },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="разработка Telegram бота, бот для продажи Stars, готовый Telegram бот, Telegram бот бизнес, заказать Telegram Mini App, открыть Stars бот, бот для Premium, white-label Telegram бот, Starsjoy Бизнес, цена Telegram бота"
+  lang="ru"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/biznes" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/biznes" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "Service",
+    "serviceType": "Разработка Telegram-бота и Mini App (white-label)",
+    "name": "Starsjoy Бизнес", "description": description,
+    "provider": {
+      "@type": "Organization", "name": "Starsjoy", "url": "https://starsjoy.uz", "logo": "https://starsjoy.uz/logo.png",
+      "sameAs": ["https://t.me/starsjoy", "https://t.me/starsjoybot", "https://t.me/starsjoy_bot"]
+    },
+    "areaServed": { "@type": "Country", "name": "Uzbekistan" },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog", "name": "Пакеты Starsjoy Бизнес",
+      "itemListElement": [
+        { "@type": "Offer", "name": "Basic", "price": "500", "priceCurrency": "USD", "description": "Telegram-бот, Mini App, продажа Stars, Gifts, 12 месяцев поддержки", "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Pro", "price": "800", "priceCurrency": "USD", "description": "Basic + продажа Premium + профессиональный сайт", "availability": "https://schema.org/InStock" }
+      ]
+    }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Starsjoy Бизнес", "item": canonical }
+    ]
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebPage", "url": canonical, "name": title,
+    "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".gw-hero-inner", ".gw-faq-list"] }
+  })} />
+
+  <div class="gw">
+    <div class="gw-bg">
+      <div class="gw-blob gw-blob-1"></div>
+      <div class="gw-blob gw-blob-2"></div>
+      <div class="gw-blob gw-blob-3"></div>
+
+      <section class="gw-hero">
+        <div class="container gw-hero-inner">
+          <div class="gw-pill"><span class="gw-pill-dot"></span> White-label платформа Telegram-ботов</div>
+          <h1 class="gw-h1">Со Starsjoy Бизнес <span class="gw-h1-grad">запустите свой доходный бизнес</span></h1>
+          <p class="gw-sub">Бот для продажи Stars, Premium, Gifts + Mini App + сайт — под вашим брендом. Мы делаем — вы принимаете клиентов.</p>
+          <div class="gw-cta">
+            <a href="#paketlar" class="gw-btn gw-btn-grad">Посмотреть пакеты</a>
+            <a href="https://t.me/starsjoy_bot" target="_blank" rel="noopener" class="gw-btn gw-btn-glass">Связаться</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="gw-features">
+        <div class="container">
+          <h2 class="gw-h2">Что вы получаете</h2>
+          <p class="gw-h2-sub">Полностью готовая бизнес-инфраструктура — вы ведёте бренд и бизнес</p>
+          <div class="gw-fgrid">
+            {features.map(f => (
+              <div class={`gw-fcard${f.pro ? ' gw-fcard-pro' : ''}`}>
+                {f.pro && <span class="gw-pro">Pro</span>}
+                <div class="gw-ficon">{f.icon}</div>
+                <h3>{f.title}</h3>
+                <p>{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="gw-pricing" id="paketlar">
+        <div class="container">
+          <h2 class="gw-h2">Простые и прозрачные цены</h2>
+          <p class="gw-h2-sub">Разовая оплата, никаких скрытых расходов</p>
+          <div class="gw-pgrid">
+            <div class="gw-pcard">
+              <div class="gw-tier">Basic</div>
+              <div class="gw-price">$500</div>
+              <p class="gw-pdesc">Достаточно для Stars + Gifts</p>
+              <ul>{basicFeatures.map(b => <li>✓ {b}</li>)}</ul>
+              <a href="https://t.me/starsjoy_bot" target="_blank" rel="noopener" class="gw-pbtn">Выбрать Basic</a>
+            </div>
+            <div class="gw-pcard gw-pcard-pro">
+              <div class="gw-pop">Самый популярный</div>
+              <div class="gw-tier">Pro</div>
+              <div class="gw-price gw-price-grad">$800</div>
+              <p class="gw-pdesc">Полный бизнес — Premium + сайт</p>
+              <ul>
+                <li>✦ <strong>Все возможности Basic</strong></li>
+                {proFeatures.map(p => <li>✦ <strong>{p}</strong></li>)}
+              </ul>
+              <a href="https://t.me/starsjoy_bot" target="_blank" rel="noopener" class="gw-pbtn gw-pbtn-grad">Выбрать Pro</a>
+            </div>
+          </div>
+          <p class="gw-pnote">Для качества мы принимаем ограниченное число новых проектов в месяц</p>
+        </div>
+      </section>
+
+      <section class="gw-faq">
+        <div class="container">
+          <h2 class="gw-h2">Часто задаваемые вопросы</h2>
+          <div class="gw-faq-list">
+            {faqs.map((f, i) => (
+              <div class="gw-faq-item" data-faq>
+                <button type="button" class="gw-faq-summary" aria-expanded="false" aria-controls={`gw-faq-${i}`}>
+                  <span>{f.q}</span>
+                  <span class="gw-faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="gw-faq-body" id={`gw-faq-${i}`}>
+                  <div class="gw-faq-body-inner"><p>{f.a}</p></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="gw-final">
+        <div class="container">
+          <div class="gw-final-card">
+            <h2 class="gw-h2">Готовы начать? Напишите нам</h2>
+            <p>Консультация бесплатная. Подберём пакет под ваши задачи и составим точный график работ.</p>
+            <a href="https://t.me/starsjoy_bot" target="_blank" rel="noopener" class="gw-btn gw-btn-grad gw-btn-lg">Написать в @starsjoy_bot</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <FooterRu />
+
+  <script>
+    document.querySelectorAll('[data-faq]').forEach(item => {
+      const btn = item.querySelector('.gw-faq-summary');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('[data-faq].is-open').forEach(other => {
+          if (other !== item) {
+            other.classList.remove('is-open');
+            const otherBtn = other.querySelector('.gw-faq-summary');
+            if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+        if (isOpen) {
+          item.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</Layout>
+
+<style>
+  .gw {
+    --gp-bg-from: #FAFAFA;
+    --gp-bg-mid: #F4F4F8;
+    --gp-bg-to: #ECEEF5;
+    --gp-blob-1: #E4E4E7;
+    --gp-blob-2: #D4D4D8;
+    --gp-blob-3: #93C5FD;
+    --gp-accent-1: #18181B;
+    --gp-accent-2: #2563EB;
+    --gp-text: #09090B;
+    --gp-text-mute: #3F3F46;
+    --gp-tier-mute: #71717A;
+    --gp-card-bg: rgba(255,255,255,0.7);
+    --gp-card-bg-hi: rgba(255,255,255,0.95);
+    --gp-card-border: rgba(0,0,0,0.06);
+    --gp-pro-bg: linear-gradient(135deg, rgba(0,0,0,0.04), rgba(37,99,235,0.06));
+    --gp-pro-tag: linear-gradient(135deg, #18181B, #3F3F46);
+    --gp-pro-tag-text: #fff;
+    --gp-grad: linear-gradient(135deg, #18181B, #2563EB);
+    --gp-shadow-grad: 0 10px 28px rgba(0,0,0,0.25);
+    --gp-shadow-grad-hi: 0 14px 36px rgba(37,99,235,0.35);
+    --gp-shadow-card: 0 16px 40px rgba(0,0,0,0.08);
+    --gp-shadow-pop: 0 8px 20px rgba(0,0,0,0.25);
+
+    margin-top: 80px;
+  }
+
+  .gw-bg { position: relative; background: linear-gradient(135deg, var(--gp-bg-from) 0%, var(--gp-bg-mid) 50%, var(--gp-bg-to) 100%); overflow: hidden; }
+  .gw-blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; pointer-events: none; }
+  .gw-blob-1 { width: 500px; height: 500px; background: var(--gp-blob-1); top: 8%; left: -100px; }
+  .gw-blob-2 { width: 600px; height: 600px; background: var(--gp-blob-2); top: 38%; right: -150px; }
+  .gw-blob-3 { width: 400px; height: 400px; background: var(--gp-blob-3); bottom: 8%; left: 30%; }
+  .gw section { padding: 100px 24px; position: relative; z-index: 2; }
+
+  .gw-hero-inner { max-width: 880px; margin: 0 auto; text-align: center; }
+  .gw-pill { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; margin-bottom: 28px; background: var(--gp-card-bg); border: 1px solid var(--gp-card-border); border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--gp-accent-1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .gw-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gp-accent-2); box-shadow: 0 0 12px var(--gp-accent-2); animation: gw-pulse 2s infinite; }
+  @keyframes gw-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .gw-h1 { font-size: 3.6rem; font-weight: 900; line-height: 1.15; color: var(--gp-text); margin: 0 auto 24px; letter-spacing: -0.02em; max-width: 18ch; text-wrap: balance; }
+  .gw-h1-grad { background: var(--gp-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .gw-sub { font-size: 1.2rem; line-height: 1.7; color: var(--gp-text-mute); margin: 0 auto 40px; max-width: 720px; opacity: 0.85; }
+  .gw-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+  .gw-cta .gw-btn { min-width: 200px; justify-content: center; }
+
+  .gw-btn { padding: 14px 30px; border-radius: 50px; font-weight: 600; font-size: 0.98rem; text-decoration: none; transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px; }
+  .gw-btn-grad { background: var(--gp-grad); color: #fff; border: 1px solid transparent; box-shadow: var(--gp-shadow-grad); }
+  .gw-btn-grad:hover { transform: translateY(-2px); box-shadow: var(--gp-shadow-grad-hi); }
+  .gw-btn-glass { background: var(--gp-card-bg); color: var(--gp-accent-1); border: 1px solid var(--gp-card-border); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .gw-btn-glass:hover { background: #fff; border-color: var(--gp-accent-1); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+  .gw-btn-lg { padding: 16px 36px; font-size: 1.02rem; }
+
+  .gw-trust { display: inline-flex; gap: 32px; padding: 18px 32px; background: var(--gp-card-bg); border: 1px solid var(--gp-card-border); border-radius: 16px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .gw-trust-c b { display: block; font-size: 1.4rem; font-weight: 800; color: var(--gp-accent-1); }
+  .gw-trust-c span { font-size: 0.78rem; color: var(--gp-tier-mute); }
+
+  .gw-h2 { font-size: 2.4rem; font-weight: 800; color: var(--gp-text); text-align: center; margin: 0 auto 12px; line-height: 1.2; letter-spacing: -0.01em; max-width: 22ch; text-wrap: balance; }
+  .gw-h2-sub { font-size: 1.05rem; color: var(--gp-text-mute); opacity: 0.75; text-align: center; margin-bottom: 56px; }
+
+  .gw-fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .gw-fcard { position: relative; padding: 28px; background: var(--gp-card-bg); border: 1px solid var(--gp-card-border); border-radius: 20px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: all 0.25s; }
+  .gw-fcard:hover { transform: translateY(-4px); background: var(--gp-card-bg-hi); box-shadow: var(--gp-shadow-card); }
+  .gw-fcard-pro { background: var(--gp-pro-bg); }
+  .gw-pro { position: absolute; top: 16px; right: 16px; padding: 3px 10px; background: var(--gp-pro-tag); color: var(--gp-pro-tag-text); font-size: 0.68rem; font-weight: 700; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .gw-ficon { font-size: 2rem; margin-bottom: 14px; }
+  .gw-fcard h3 { font-size: 1.1rem; font-weight: 700; color: var(--gp-text); margin-bottom: 8px; }
+  .gw-fcard p { font-size: 0.93rem; line-height: 1.65; color: var(--gp-text-mute); opacity: 0.8; }
+
+  .gw-pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 880px; margin: 0 auto; align-items: stretch; }
+  .gw-pcard { position: relative; padding: 36px 32px; background: var(--gp-card-bg-hi); border: 1px solid var(--gp-card-border); border-radius: 22px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; flex-direction: column; }
+  .gw-pcard-pro { background: var(--gp-pro-bg); border-color: var(--gp-accent-1); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+  .gw-pop { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); padding: 6px 18px; background: var(--gp-grad); color: #fff; font-size: 0.78rem; font-weight: 700; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.8px; box-shadow: var(--gp-shadow-pop); }
+  .gw-tier { font-size: 0.85rem; font-weight: 600; color: var(--gp-tier-mute); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 8px; }
+  .gw-price { font-size: 3.4rem; font-weight: 900; color: var(--gp-text); line-height: 1; margin-bottom: 8px; }
+  .gw-price-grad { background: var(--gp-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .gw-pdesc { font-size: 0.93rem; color: var(--gp-tier-mute); margin-bottom: 24px; }
+  .gw-pcard ul { list-style: none; padding: 0; margin-bottom: 28px; flex: 1; }
+  .gw-pcard li { padding: 8px 0; font-size: 0.92rem; color: var(--gp-text); }
+  .gw-incl { color: var(--gp-tier-mute) !important; font-style: italic; border-bottom: 1px dashed currentColor; padding-bottom: 12px !important; margin-bottom: 4px; opacity: 0.7; }
+  .gw-pbtn { display: block; text-align: center; padding: 14px 24px; background: #fff; border: 1px solid var(--gp-card-border); border-radius: 50px; color: var(--gp-accent-1); font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.25s; margin-top: auto; }
+  .gw-pbtn:hover { background: #fff; border-color: var(--gp-accent-1); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+  .gw-pbtn-grad { background: var(--gp-grad); border-color: transparent; color: #fff; box-shadow: var(--gp-shadow-grad); }
+  .gw-pbtn-grad:hover { background: var(--gp-grad); color: #fff; border-color: transparent; transform: translateY(-2px); box-shadow: var(--gp-shadow-grad-hi); }
+  .gw-pnote { text-align: center; margin-top: 32px; font-size: 0.92rem; color: var(--gp-tier-mute); opacity: 0.8; }
+
+  .gw-faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .gw-faq-item { background: var(--gp-card-bg); border: 1px solid var(--gp-card-border); border-radius: 16px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); overflow: hidden; transition: background 0.25s ease, border-color 0.25s ease; }
+  .gw-faq-item.is-open { background: var(--gp-card-bg-hi); border-color: var(--gp-accent-1); }
+  .gw-faq-summary { width: 100%; padding: 20px 24px; cursor: pointer; font-weight: 600; color: var(--gp-text); font-size: 1rem; background: none; border: none; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: inherit; line-height: 1.4; }
+  .gw-faq-icon { font-size: 1.6rem; font-weight: 300; color: var(--gp-accent-1); transition: transform 0.3s ease, color 0.3s ease; flex-shrink: 0; line-height: 1; }
+  .gw-faq-item.is-open .gw-faq-icon { transform: rotate(45deg); color: var(--gp-accent-2); }
+  .gw-faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+  .gw-faq-item.is-open .gw-faq-body { grid-template-rows: 1fr; }
+  .gw-faq-body-inner { overflow: hidden; min-height: 0; }
+  .gw-faq-body-inner p { padding: 0 24px 20px; font-size: 0.95rem; line-height: 1.7; color: var(--gp-text-mute); opacity: 0.9; margin: 0; }
+
+  .gw-final-card { max-width: 720px; margin: 0 auto; padding: 48px; text-align: center; background: var(--gp-card-bg-hi); border: 1px solid var(--gp-card-border); border-radius: 24px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+  .gw-final-card .gw-h2 { margin-bottom: 16px; }
+  .gw-final-card p { font-size: 1.05rem; line-height: 1.7; color: var(--gp-text-mute); opacity: 0.85; margin: 0 auto 32px; max-width: 480px; text-wrap: balance; }
+
+  @media (max-width: 768px) {
+    .gw { margin-top: 64px; }
+    .gw section { padding: 70px 20px; }
+    .gw-h1 { font-size: 2.2rem; }
+    .gw-h2 { font-size: 1.7rem; margin-bottom: 36px; }
+    .gw-sub { font-size: 1rem; }
+    .gw-cta { flex-wrap: nowrap; gap: 10px; max-width: 100%; }
+    .gw-cta .gw-btn { flex: 1 1 0; min-width: 0; padding: 12px 14px; font-size: 0.9rem; white-space: nowrap; }
+    .gw-trust { flex-direction: column; gap: 16px; padding: 20px; }
+    .gw-pcard { padding: 28px 24px; }
+    .gw-price { font-size: 2.8rem; }
+    .gw-final-card { padding: 32px 24px; }
+  }
+</style>
+</content>
+</invoke>
