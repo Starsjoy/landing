@@ -4,7 +4,7 @@ import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
 
 const title = "Как проверить и посмотреть баланс Telegram Stars — гайд 2026 | Блог StarsJoy";
-const description = "Как посмотреть баланс Telegram Stars? Точные шаги для iOS, Android, Desktop, Web и через @PremiumBot — баланс и история транзакций.";
+const description = "Как посмотреть баланс Telegram Stars? Точные шаги для iOS, Android, Desktop и Web через Settings → My Stars — баланс и история транзакций.";
 const publishDate = "2026-05-02";
 const modifiedDate = "2026-05-02";
 const wordCount = 1780;
@@ -103,7 +103,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Где посмотреть баланс Telegram Stars?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "В приложении Telegram перейдите в Settings (Настройки) → My Stars. Этот путь работает на iOS, Android и Desktop. Сверху текущий баланс, ниже — список всех транзакций. Альтернативный универсальный способ — отправить /start официальному боту @PremiumBot, он также покажет баланс."
+          "text": "В приложении Telegram перейдите в Settings (Настройки) → My Stars. Этот путь работает на iOS, Android и Desktop, открывается из Узбекистана и любого региона. Сверху текущий баланс, ниже — список транзакций. @PremiumBot тоже умеет показывать баланс, но из Узбекистана часто отвечает региональным ограничением — поэтому Settings надёжнее."
         }
       },
       {
@@ -111,7 +111,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Можно ли посмотреть баланс Stars в Telegram Web?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Новая K-версия Telegram Web (web.telegram.org/k) добавила раздел 'My Stars' в Settings. В старой A-версии этого может ещё не быть. Если в Web не находите — используйте @PremiumBot прямо из браузера."
+          "text": "Да, в новой K-версии Telegram Web (web.telegram.org/k) есть раздел 'My Stars' в Settings. В старой A-версии раздел может отсутствовать. В этом случае удобнее зайти через мобильное или Desktop-приложение — потому что @PremiumBot из Узбекистана часто не работает."
         }
       },
       {
@@ -140,10 +140,10 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       },
       {
         "@type": "Question",
-        "name": "Безопасно ли проверять баланс через @PremiumBot?",
+        "name": "Работает ли @PremiumBot из Узбекистана?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Да, @PremiumBot — официальный бот Telegram, ведётся командой Telegram, имеет синюю отметку 'verified'. Он никогда не запрашивает пароль, SMS-код или данные карты — только показывает баланс и меню покупки Stars. Остерегайтесь похожих по имени ботов: всегда проверяйте синюю галочку verified."
+          "text": "В большинстве случаев нет. @PremiumBot — официальный бот Telegram (с синей отметкой 'verified'), но пользователи из Узбекистана часто получают сообщение 'service is not available in your region'. Поэтому надёжный путь — Settings → My Stars в приложении Telegram: он показывает тот же баланс и работает без региональных ограничений."
         }
       }
     ]
@@ -184,7 +184,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> Чтобы посмотреть баланс Telegram Stars, откройте в приложении <strong>Settings → My Stars</strong> (iOS, Android, Desktop). Там отображается текущий баланс и полная история транзакций. Универсальная альтернатива — официальный <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a>: отправьте <code>/start</code>, и бот покажет баланс. Всё это занимает 30 секунд.
+            <strong>Краткий ответ:</strong> Чтобы посмотреть баланс Telegram Stars, откройте в приложении <strong>Settings → My Stars</strong> (iOS, Android, Desktop, Telegram Web K-версия). Там отображается текущий баланс и полная история транзакций. Этот путь работает из Узбекистана и любого региона без ограничений и занимает 30 секунд.
           </div>
 
           <p>После покупки Stars первый вопрос — «Всё ли пришло?». А после оплаты стикеров или подписки в боте хочется проверить «Сколько осталось?». Telegram Stars — виртуальный счёт, не пластиковая карта, поэтому важно знать точное место, где смотреть баланс.</p>
@@ -199,12 +199,12 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Где отображается баланс:</p>
           <ul>
-            <li><strong>Приложение Telegram (mobile/desktop)</strong> — раздел «My Stars» в Settings</li>
-            <li><strong>@PremiumBot</strong> — официальный бот Telegram, показывает баланс в виде сообщения</li>
+            <li><strong>Приложение Telegram (mobile/desktop)</strong> — раздел «My Stars» в Settings (основной и самый надёжный способ)</li>
             <li><strong>Платёжный диалог</strong> — при оплате в mini-app или боте текущий баланс показывается сверху окна</li>
+            <li><strong>@PremiumBot</strong> — официальный бот Telegram (есть региональные ограничения — подробнее ниже)</li>
           </ul>
 
-          <p>Все три источника показывают одни и те же данные, потому что Telegram запрашивает баланс из единого места в реальном времени. Различается только формат отображения.</p>
+          <p>Источники показывают одни и те же данные, потому что Telegram запрашивает баланс из единого места в реальном времени. Различается только формат, а @PremiumBot из Узбекистана работает не всегда.</p>
 
           <h2>Как посмотреть баланс — самый быстрый способ (iOS и Android)</h2>
 
@@ -233,24 +233,21 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <h3>Telegram macOS (отдельное приложение)</h3>
           <p>Официальное приложение Telegram для macOS (есть в App Store) работает так же, как Desktop: Settings → My Stars. В очень старых версиях macOS-приложения раздела может ещё не быть — обновите.</p>
 
-          <h2>Проверка баланса через @PremiumBot — универсальный способ</h2>
+          <h2>Проверка баланса через @PremiumBot — дополнительный способ (с региональным ограничением)</h2>
 
-          <p>Если в Settings нет «My Stars» или хочется проверить ещё быстрее — самый надёжный путь это официальный бот Telegram <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a>. Этот бот ведёт команда Telegram, у него есть синяя отметка «verified».</p>
+          <p>Официальный бот Telegram <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a> (ведётся командой Telegram, имеет синюю отметку «verified») тоже умеет показывать баланс. Но <strong>пользователи из Узбекистана в большинстве случаев получают сообщение «service is not available in your region»</strong> — у бота много функций (покупка Premium, иногда меню) ограничены по региону.</p>
 
-          <p>Как использовать:</p>
+          <p>Поэтому для пользователей из Узбекистана <strong>основной и надёжный способ — это Settings → My Stars в приложении Telegram</strong>. Он работает независимо от региона.</p>
+
+          <p>Если хотите всё же попробовать @PremiumBot:</p>
           <ol>
-            <li>Найдите в Telegram <strong>@PremiumBot</strong> через поиск (выберите вариант с синей галочкой verified)</li>
-            <li>Отправьте команду <code>/start</code> или нажмите кнопку «Start»</li>
-            <li>Бот пришлёт меню с кнопками: «Buy Stars», «My Balance», «Gift Stars» и др.</li>
-            <li>Нажмите «My Balance» (или похожую) — бот покажет текущее количество Stars</li>
+            <li>Найдите в Telegram <strong>@PremiumBot</strong> через поиск (вариант с синей галочкой verified)</li>
+            <li>Отправьте команду <code>/start</code></li>
+            <li>Если появляется региональное ограничение — возвращайтесь к Settings → My Stars</li>
+            <li>Если меню открылось, нажмите «My Balance» (или похожую кнопку)</li>
           </ol>
 
-          <p>Этот способ работает на любой платформе (mobile, desktop, web) и не требует входа в меню настроек. Особенно удобно в случаях:</p>
-          <ul>
-            <li>Зашли с нового устройства и не знаете, где что лежит</li>
-            <li>Используете A-версию Telegram Web</li>
-            <li>Нужно отправить кому-то скриншот баланса (сообщение бота имеет аккуратный формат)</li>
-          </ul>
+          <p>Главный вывод: <strong>Settings → My Stars — правильный путь</strong>. @PremiumBot можно попробовать, только если ничего другого не остаётся, но из Узбекистана он часто заблокирован по региону.</p>
 
           <p class="natural-cta"><strong>На заметку:</strong> если планируете покупать Stars, цены и способы оплаты можно посмотреть в статье <a href="/ru/blog/telegram-stars-narxi">Цена Telegram Stars 2026</a> — каждый пакет указан с реальной ценой в сумах.</p>
 
@@ -317,9 +314,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Просмотр баланса Stars — безопасное действие, не требует пароля или SMS-кода. Но мошенники иногда обманывают пользователей под предлогом «увеличения баланса». Основные правила безопасности:</p>
 
           <ul>
-            <li>Используйте только официальный <strong>@PremiumBot</strong> — другие боты с похожими именами («Premium», «Stars») могут быть мошенническими</li>
-            <li>У официального бота всегда есть синяя отметка <strong>«verified»</strong> — без неё доверять боту нельзя</li>
-            <li>Официальный бот никогда не запрашивает пароль, SMS-код или номер карты — если запрашивает, это мошенник</li>
+            <li>Основной путь — <strong>Settings → My Stars</strong> в самом приложении Telegram. Это меню Telegram, никакой сторонний бот не нужен</li>
+            <li>Если хотите проверить через бота, выбирайте только бот с синей отметкой <strong>«verified»</strong> — другие «Premium», «Stars» по имени могут быть мошенническими</li>
+            <li>Никакой официальный Telegram-бот не запрашивает пароль, SMS-код или номер карты — если запрашивает, это мошенник</li>
             <li>Игнорируйте предложения вроде «удвоим ваш баланс» — таких официальных акций у Telegram нет</li>
             <li>Не отправляйте скриншот баланса посторонним — ID транзакций это персональная информация</li>
           </ul>
@@ -331,11 +328,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <div class="post-faq">
             <div class="post-faq-item">
               <h3>Где посмотреть баланс Telegram Stars?</h3>
-              <p>В Telegram перейдите в Settings → My Stars. Этот путь работает на iOS, Android и Desktop. Сверху текущий баланс, ниже — список транзакций. Альтернатива — отправить /start официальному @PremiumBot.</p>
+              <p>В Telegram перейдите в Settings → My Stars. Этот путь работает на iOS, Android и Desktop, открывается из Узбекистана и любого региона. Сверху баланс, ниже — список транзакций. @PremiumBot тоже умеет, но из Узбекистана часто отвечает региональным ограничением.</p>
             </div>
             <div class="post-faq-item">
               <h3>Можно ли посмотреть баланс Stars в Telegram Web?</h3>
-              <p>Да, но только в K-версии (web.telegram.org/k). В старой A-версии раздел ограничен. Если в Web не находите — используйте @PremiumBot прямо из браузера.</p>
+              <p>Да, но только в K-версии (web.telegram.org/k). В старой A-версии раздел ограничен. В этом случае удобнее зайти через мобильное или Desktop-приложение — @PremiumBot из Узбекистана часто не открывается.</p>
             </div>
             <div class="post-faq-item">
               <h3>Купил Stars, но в балансе их нет — что делать?</h3>
@@ -350,14 +347,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <p>Покупка, подарок от друга, refund (входящие); оплата mini-app, стикеры, подписка на канал, отправка подарка (исходящие). У каждой записи — дата, сумма, отправитель/получатель и ID транзакции.</p>
             </div>
             <div class="post-faq-item">
-              <h3>Безопасно ли проверять баланс через @PremiumBot?</h3>
-              <p>Да, @PremiumBot — официальный бот Telegram с синей отметкой «verified». Он никогда не запрашивает пароль, SMS или данные карты. Остерегайтесь похожих по имени ботов — всегда проверяйте verified-галочку.</p>
+              <h3>Работает ли @PremiumBot из Узбекистана?</h3>
+              <p>В большинстве случаев нет. @PremiumBot — официальный бот Telegram (с синей отметкой «verified»), но из Узбекистана часто приходит «service is not available in your region». Надёжный путь — Settings → My Stars в приложении: он показывает тот же баланс и работает без региональных ограничений.</p>
             </div>
           </div>
 
           <h2>Заключение</h2>
 
-          <p>Просмотр баланса Telegram Stars — действие максимум на 30 секунд. Основной путь: <strong>Settings → My Stars</strong> (iOS, Android, Desktop). Универсальная альтернатива: официальный <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a> с командой <code>/start</code>. Оба источника показывают одинаковые данные в реальном времени, потому что Telegram берёт баланс из единого места.</p>
+          <p>Просмотр баланса Telegram Stars — действие максимум на 30 секунд. Для пользователей из Узбекистана основной и надёжный путь: <strong>Settings → My Stars</strong> (iOS, Android, Desktop). Этот путь открывается без региональных ограничений. @PremiumBot тоже умеет показывать баланс, но из Узбекистана часто отвечает сообщением «service not available in your region» — поэтому полагаться на него не стоит.</p>
 
           <p>История транзакций — дополнительное удобство. Каждая покупка Stars, каждая оплата в боте и каждый подарок записываются с детальным ID. Это позволяет жаловаться и подтверждать оплату при возникновении проблем. Никакого дополнительного приложения не нужно — всё внутри Telegram.</p>
 

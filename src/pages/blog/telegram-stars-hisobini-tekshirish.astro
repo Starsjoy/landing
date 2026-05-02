@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 
 const title = "Telegram Stars hisobini qanday tekshirish va ko'rish — 2026 qo'llanma | StarsJoy Blog";
-const description = "Telegram Stars balansini qanday ko'rish mumkin? iOS, Android, Desktop, Web va @PremiumBot orqali balans hamda tranzaksiya tarixini tekshirishning aniq bosqichlari.";
+const description = "Telegram Stars balansini qanday ko'rish mumkin? iOS, Android, Desktop va Web ilovada Settings → My Stars orqali balans hamda tranzaksiya tarixini tekshirishning aniq bosqichlari.";
 const publishDate = "2026-05-02";
 const modifiedDate = "2026-05-02";
 const wordCount = 1780;
@@ -102,7 +102,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Telegram Stars balansimni qayerdan ko'raman?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Telegram ilovasida Settings (Sozlamalar) → My Stars bo'limiga kiring. iOS, Android va Desktop versiyalarda bu yo'l ishlaydi. Sahifaning yuqorisida joriy balans, pastida esa barcha tranzaksiyalar ro'yxati ko'rinadi. Muqobil yo'l — Telegram'ning rasmiy @PremiumBot botiga /start yuborish: u ham balansni ko'rsatadi."
+          "text": "Telegram ilovasida Settings (Sozlamalar) → My Stars bo'limiga kiring. iOS, Android va Desktop versiyalarda bu yo'l ishlaydi va O'zbekistondan ham har doim ochiladi. Sahifaning yuqorisida joriy balans, pastida barcha tranzaksiyalar ro'yxati ko'rinadi. @PremiumBot ham balansni ko'rsata oladi, lekin O'zbekistondan ko'p hollarda mintaqaviy cheklov xabarini beradi — shuning uchun Settings yo'li ishonchliroq."
         }
       },
       {
@@ -110,7 +110,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Telegram Web'da Stars balansini ko'rish mumkinmi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Telegram Web'ning eng so'nggi K-versiyasi (web.telegram.org/k) Settings ichida 'My Stars' bo'limini qo'shgan. Eski A-versiyada bu hali yo'q bo'lishi mumkin. Agar Web'da topa olmasangiz, @PremiumBot orqali brauzerdan ham balansni ko'rasiz."
+          "text": "Telegram Web'ning eng so'nggi K-versiyasi (web.telegram.org/k) Settings ichida 'My Stars' bo'limini qo'shgan. Eski A-versiyada bu hali yo'q bo'lishi mumkin. Bunday holatda mobile yoki Desktop ilovasidan kirish kerak — chunki @PremiumBot O'zbekistondan ko'pincha ishlamaydi."
         }
       },
       {
@@ -139,10 +139,10 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       },
       {
         "@type": "Question",
-        "name": "Stars balansini @PremiumBot orqali tekshirish xavfsizmi?",
+        "name": "@PremiumBot O'zbekistondan ishlaydimi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ha, @PremiumBot — Telegram'ning rasmiy boti, uni Telegram jamoasi yuritadi va 'verified' (tasdiqlangan) belgisi bor. Bot hech qachon parol, SMS-kod yoki karta ma'lumotlarini so'ramaydi — faqat balansni va Stars sotib olish menyusini ko'rsatadi. Boshqa @PremiumBot ga o'xshash nomli botlardan ehtiyot bo'ling, ko'k 'verified' belgisini har doim tekshiring."
+          "text": "Ko'pincha yo'q. @PremiumBot — Telegram'ning rasmiy boti (ko'k 'verified' belgisi bor), lekin O'zbekistondan kirgan foydalanuvchilar ko'pincha 'service is not available in your region' xabarini oladi. Shuning uchun O'zbekiston foydalanuvchilari uchun ishonchli yo'l — Telegram ilovasidagi Settings → My Stars. U mintaqaviy cheklovsiz har doim ishlaydi va xuddi shu balansni ko'rsatadi."
         }
       }
     ]
@@ -183,7 +183,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Telegram Stars balansini ko'rish uchun ilovada <strong>Settings → My Stars</strong> bo'limiga kiring (iOS, Android, Desktop). U yerda joriy balans va to'liq tranzaksiya tarixi ko'rinadi. Muqobil universal yo'l — rasmiy <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a> ga <code>/start</code> yuboring, u ham balansni ko'rsatadi. Hammasi 30 soniyada.
+            <strong>Qisqacha javob:</strong> Telegram Stars balansini ko'rish uchun ilovada <strong>Settings → My Stars</strong> bo'limiga kiring (iOS, Android, Desktop, Telegram Web K-versiya). U yerda joriy balans va to'liq tranzaksiya tarixi ko'rinadi. Bu yo'l O'zbekistondan ham, har qanday mintaqadan ham har doim ishlaydi va 30 soniyada tugaydi.
           </div>
 
           <p>Stars sotib olganingizdan keyin birinchi savol — "Hammasi joyiga tushdimi?". Yoki bot ichida sticker olganingizdan so'ng "Qancha qoldi?" deb qarashga to'g'ri keladi. Telegram Stars — virtual hisob, fizik karta emas, shuning uchun balansni ko'rishning aniq joyini bilish kerak.</p>
@@ -198,12 +198,12 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Balans qayerda ko'rinadi:</p>
           <ul>
-            <li><strong>Telegram ilovasi (mobile/desktop)</strong> — Settings ichidagi "My Stars" bo'limi</li>
-            <li><strong>@PremiumBot</strong> — Telegram'ning rasmiy boti, balansni xabar shaklida ko'rsatadi</li>
+            <li><strong>Telegram ilovasi (mobile/desktop)</strong> — Settings ichidagi "My Stars" bo'limi (asosiy va eng ishonchli usul)</li>
             <li><strong>To'lov dialogi</strong> — mini-app yoki bot ichida Stars to'lov oynasi ochilganda joriy balans yuqorida ko'rinadi</li>
+            <li><strong>@PremiumBot</strong> — Telegram'ning rasmiy boti (mintaqaviy cheklovlar bor — pastda batafsil)</li>
           </ul>
 
-          <p>Uchchala manba bir xil ma'lumotni ko'rsatadi — chunki Telegram balansni real vaqtda yagona joydan oladi. Faqat ko'rinish formati farq qiladi.</p>
+          <p>Manbalar bir xil ma'lumotni ko'rsatadi — Telegram balansni real vaqtda yagona joydan oladi. Faqat ko'rinish formati farq qiladi va @PremiumBot O'zbekistondan har doim ham ishlamasligi mumkin.</p>
 
           <h2>Stars balansini ko'rish — eng tez yo'l (iOS va Android)</h2>
 
@@ -232,24 +232,21 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <h3>Telegram macOS (alohida ilova)</h3>
           <p>macOS uchun rasmiy Telegram ilovasi (App Store'da bor) ham xuddi Desktop kabi Settings → My Stars yo'lidan ishlaydi. Eski macOS Telegram versiyalarida bu bo'lim hali bo'lmasligi mumkin — yangilang.</p>
 
-          <h2>@PremiumBot orqali balans tekshirish — universal usul</h2>
+          <h2>@PremiumBot orqali balans tekshirish — qo'shimcha usul (mintaqaviy cheklov bilan)</h2>
 
-          <p>Settings'da "My Stars" topa olmagan yoki tezroq tekshirmoqchi bo'lsangiz, eng ishonchli yo'l — Telegram'ning rasmiy <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a> botidan foydalanish. Bu bot Telegram jamoasi tomonidan yuritiladi va ko'k "verified" belgisi bor.</p>
+          <p>Telegram'ning rasmiy <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a> boti (Telegram jamoasi tomonidan yuritiladi, ko'k "verified" belgisi bor) ham balansni ko'rsata oladi. Lekin <strong>O'zbekistondan kirgan foydalanuvchilarning ko'pchiligi "service is not available in your region" turidagi mintaqaviy cheklov xabarini oladi</strong> — bot ko'p funksiyalari (Premium sotib olish, ba'zan menyu) mintaqaviy bloklangan.</p>
 
-          <p>Qanday ishlatish:</p>
+          <p>Shuning uchun O'zbekiston foydalanuvchilari uchun <strong>asosiy va ishonchli yo'l — Telegram ilovasidagi Settings → My Stars</strong>. U mintaqadan qat'iy nazar har doim ishlaydi.</p>
+
+          <p>Agar shunday bo'lsa, @PremiumBot ni shunday ishlating:</p>
           <ol>
             <li>Telegram'da <strong>@PremiumBot</strong> ni qidiring (qidiruv natijasida ko'k tasdiqlangan belgili botni tanlang)</li>
-            <li><code>/start</code> buyrug'ini yuboring yoki "Start" tugmasini bosing</li>
-            <li>Bot bir necha tugmali menyu yuboradi: "Buy Stars", "My Balance", "Gift Stars" va boshqalar</li>
-            <li>"My Balance" yoki shunga o'xshash tugmani bosing — bot joriy Stars miqdorini ko'rsatadi</li>
+            <li><code>/start</code> buyrug'ini yuboring</li>
+            <li>Agar mintaqa cheklovi paydo bo'lsa — Settings → My Stars yo'liga qayting</li>
+            <li>Bot menyu yuborsa, "My Balance" yoki shunga o'xshash tugmani bosing</li>
           </ol>
 
-          <p>Bu usul har qanday platformada (mobile, desktop, web) ishlaydi va Settings menyusiga kirishni talab qilmaydi. Ayniqsa, qulay vaziyatlar:</p>
-          <ul>
-            <li>Yangi qurilmadan kirib hech narsa qayerdaligini bilmaganda</li>
-            <li>Telegram Web A-versiyasida ishlaganingizda</li>
-            <li>Boshqa birovga balans skrinshotini yuborish kerak bo'lganda (bot xabari aniq formatda)</li>
-          </ul>
+          <p>Asosiy xulosa: <strong>Settings → My Stars eng to'g'ri yo'l</strong>. @PremiumBot ni faqat boshqa hech narsa ishlamaganda sinab ko'rish mumkin, lekin O'zbekistondan ko'pincha mintaqaviy bloklangan.</p>
 
           <p class="natural-cta"><strong>Eslatma:</strong> Stars sotib olishni rejalashtirayotgan bo'lsangiz, narxlar va to'lov usullarini <a href="/blog/telegram-stars-narxi">Telegram Stars narxi 2026</a> maqolasida ko'rib chiqishingiz mumkin — har bir paket so'mda real narxlar bilan keltirilgan.</p>
 
@@ -316,9 +313,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Stars balansini ko'rish — xavfsiz harakat, parol yoki SMS-kod talab qilmaydi. Lekin firibgarlar foydalanuvchilarni "balansni ko'paytirish" bahonasi bilan aldashga uringan holatlar bor. Asosiy xavfsizlik qoidalari:</p>
 
           <ul>
-            <li>Faqat Telegram'ning rasmiy <strong>@PremiumBot</strong> ini ishlating — boshqa "Premium", "Stars" so'zlari bilan boshlanadigan botlar firibgar bo'lishi mumkin</li>
-            <li>Rasmiy botda har doim ko'k <strong>"verified"</strong> tasdiqlangan belgisi bor — bu belgisiz botlardan ehtiyot bo'ling</li>
-            <li>Rasmiy bot hech qachon parol, SMS-kod, karta raqamini so'ramaydi — agar so'rasa, demak bu firibgar</li>
+            <li>Asosiy yo'l — Telegram ilovasidagi <strong>Settings → My Stars</strong>. Bu Telegram'ning o'z menyusi, hech qanday begona bot kerak emas</li>
+            <li>Telegram bot orqali balans ko'rmoqchi bo'lsangiz, faqat ko'k <strong>"verified"</strong> tasdiqlangan belgili rasmiy bot bo'lsin — boshqa "Premium", "Stars" nomli botlar firibgar bo'lishi mumkin</li>
+            <li>Hech bir rasmiy Telegram boti parol, SMS-kod yoki karta raqamini so'ramaydi — agar so'rasa, demak bu firibgar</li>
             <li>"Balansingizni 2 barobarga ko'paytiramiz" turidagi takliflarni e'tiborsiz qoldiring — Telegram'da bunday rasmiy aksiya yo'q</li>
             <li>Balans skrinshotini begonalarga yubormang — tranzaksiya ID lari shaxsiy axborot</li>
           </ul>
@@ -330,11 +327,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <div class="post-faq">
             <div class="post-faq-item">
               <h3>Telegram Stars balansimni qayerdan ko'raman?</h3>
-              <p>Telegram ilovasida Settings → My Stars bo'limiga kiring. iOS, Android va Desktop versiyalarda bu yo'l ishlaydi. Yuqorida joriy balans, pastida tranzaksiya ro'yxati. Muqobil — rasmiy @PremiumBot ga /start yuboring.</p>
+              <p>Telegram ilovasida Settings → My Stars bo'limiga kiring. iOS, Android va Desktop versiyalarda bu yo'l ishlaydi va O'zbekistondan ham har doim ochiladi. Yuqorida joriy balans, pastida tranzaksiya ro'yxati. @PremiumBot ham balansni ko'rsata oladi, lekin O'zbekistondan ko'pincha mintaqaviy cheklov beradi.</p>
             </div>
             <div class="post-faq-item">
               <h3>Telegram Web'da Stars balansini ko'rish mumkinmi?</h3>
-              <p>Ha, lekin K-versiyada (web.telegram.org/k). Eski A-versiyada bo'lim cheklangan. Agar Web'da topa olmasangiz, @PremiumBot orqali brauzerdan ham ko'rasiz.</p>
+              <p>Ha, lekin K-versiyada (web.telegram.org/k). Eski A-versiyada bo'lim cheklangan. Bunday holatda mobile yoki Desktop ilovasidan kirish kerak — @PremiumBot O'zbekistondan ko'pincha ishlamaydi.</p>
             </div>
             <div class="post-faq-item">
               <h3>Stars sotib oldim lekin balansda ko'rinmayapti — nima qilish kerak?</h3>
@@ -349,14 +346,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <p>Sotib olish, do'stdan kelgan sovg'a, refund (kelgan); mini-app to'lovi, sticker, channel obunasi, sovg'a yuborish (sarflangan). Har bir yozuvda sana, miqdor, qabul qiluvchi/yuboruvchi va tranzaksiya ID si.</p>
             </div>
             <div class="post-faq-item">
-              <h3>Stars balansini @PremiumBot orqali tekshirish xavfsizmi?</h3>
-              <p>Ha, @PremiumBot — Telegram'ning rasmiy boti, ko'k "verified" belgisi bor. U hech qachon parol, SMS-kod yoki karta ma'lumotlarini so'ramaydi. O'xshash nomli botlardan ehtiyot bo'ling — verified belgisini har doim tekshiring.</p>
+              <h3>@PremiumBot O'zbekistondan ishlaydimi?</h3>
+              <p>Ko'pincha yo'q. @PremiumBot — Telegram'ning rasmiy boti (ko'k "verified" belgisi bor), lekin O'zbekistondan kirgan foydalanuvchilar ko'pincha "service is not available in your region" xabarini oladi. Ishonchli yo'l — Telegram ilovasidagi Settings → My Stars: u xuddi shu balansni ko'rsatadi va mintaqaviy cheklovsiz ochiladi.</p>
             </div>
           </div>
 
           <h2>Xulosa</h2>
 
-          <p>Telegram Stars balansini ko'rish — eng ko'pi bilan 30 soniyalik harakat. Asosiy yo'l: <strong>Settings → My Stars</strong> (iOS, Android, Desktop). Universal muqobil: rasmiy <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a> ga <code>/start</code>. Ikkalasi ham bir xil ma'lumotni real vaqtda ko'rsatadi — chunki Telegram balansni yagona joydan oladi.</p>
+          <p>Telegram Stars balansini ko'rish — eng ko'pi bilan 30 soniyalik harakat. O'zbekiston foydalanuvchilari uchun asosiy va ishonchli yo'l: <strong>Settings → My Stars</strong> (iOS, Android, Desktop). Bu yo'l mintaqaviy cheklovsiz har doim ochiladi. @PremiumBot ham balansni ko'rsata oladi, lekin O'zbekistondan ko'pincha "service not available in your region" xabarini berishi mumkin — shuning uchun unga tayanmang.</p>
 
           <p>Tranzaksiya tarixi — qo'shimcha qulaylik. Har bir Stars sotib olish, har bir bot to'lovi va har bir sovg'a yozib boriladi, batafsil ID bilan birga. Bu sizga muammo yuz berganida shikoyat qilish va to'lovni isbotlash imkonini beradi. Hech qanday qo'shimcha ilova kerak emas — hammasi Telegram ichida.</p>
 
