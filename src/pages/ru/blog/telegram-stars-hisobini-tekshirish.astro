@@ -1,0 +1,591 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+
+const title = "Как проверить и посмотреть баланс Telegram Stars — гайд 2026 | Блог StarsJoy";
+const description = "Как посмотреть баланс Telegram Stars? Точные шаги для iOS, Android, Desktop, Web и через @PremiumBot — баланс и история транзакций.";
+const publishDate = "2026-05-02";
+const modifiedDate = "2026-05-02";
+const wordCount = 1780;
+const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-hisobini-tekshirish";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="баланс Telegram Stars, посмотреть Stars, сколько Stars осталось, история Stars, PremiumBot баланс, настройки Stars, проверить Stars, StarsJoy"
+  lang="ru"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-stars-hisobini-tekshirish" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-stars-hisobini-tekshirish" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Как проверить и посмотреть баланс Telegram Stars — гайд 2026",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "баланс Telegram Stars, история Stars, PremiumBot, настройки Telegram, Stars Узбекистан",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": canonical,
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Проверить баланс Telegram Stars", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Как посмотреть баланс Telegram Stars",
+    "description": "Точные шаги для проверки баланса и истории транзакций Telegram Stars в мобильном приложении (iOS и Android).",
+    "totalTime": "PT1M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram (iOS или Android, последняя версия)" },
+      { "@type": "HowToTool", "name": "Telegram-аккаунт (с переведёнными Stars)" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Открыть Telegram", "text": "Откройте приложение Telegram на телефоне и перейдите на главный экран чатов." },
+      { "@type": "HowToStep", "position": 2, "name": "Войти в Settings (Настройки)", "text": "Нажмите 'Settings' (Настройки): на iOS это шестерёнка в нижней панели, на Android — в боковом меню слева." },
+      { "@type": "HowToStep", "position": 3, "name": "Открыть 'My Stars'", "text": "В настройках выберите раздел 'My Stars' или 'Telegram Stars'. В некоторых версиях он внутри подраздела 'Premium and Stars'." },
+      { "@type": "HowToStep", "position": 4, "name": "Посмотреть текущий баланс", "text": "В верхней части экрана отображается текущий баланс Stars (например, 250 Stars) — это сумма, которую вы можете потратить." },
+      { "@type": "HowToStep", "position": 5, "name": "Посмотреть историю транзакций", "text": "Ниже расположен 'Transaction history' (История транзакций): входящие (покупки, подарки) и исходящие (mini-app, стикеры, подарки). Нажмите на запись, чтобы увидеть детали и чек." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Где посмотреть баланс Telegram Stars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "В приложении Telegram перейдите в Settings (Настройки) → My Stars. Этот путь работает на iOS, Android и Desktop. Сверху текущий баланс, ниже — список всех транзакций. Альтернативный универсальный способ — отправить /start официальному боту @PremiumBot, он также покажет баланс."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно ли посмотреть баланс Stars в Telegram Web?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Новая K-версия Telegram Web (web.telegram.org/k) добавила раздел 'My Stars' в Settings. В старой A-версии этого может ещё не быть. Если в Web не находите — используйте @PremiumBot прямо из браузера."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Купил Stars, но в балансе их нет — что делать?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Сначала закройте Telegram полностью и откройте снова — приложение может обновляться с задержкой. Если баланс всё ещё не виден, обратитесь в поддержку бота, через который покупали, передав номер заказа и время оплаты. Stars приходят через официальную инфраструктуру Telegram Fragment, обычно за 1–3 минуты, реже — до 10–15 минут."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "У меня несколько Telegram-аккаунтов — на каком хранятся Stars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Stars считаются для каждого аккаунта отдельно. При покупке Stars поступают на тот аккаунт, который активен в момент оплаты. Чтобы посмотреть баланс другого аккаунта, переключитесь (Settings → Add Account). Прямо переводить Stars с одного аккаунта на другой нельзя, но можно отправить как подарок."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Что отображается в истории транзакций Stars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Входящие транзакции (покупка, подарок от друга, refund) и исходящие (оплата mini-app, стикеры, подписка на канал, отправка подарка). У каждой записи есть дата, сумма, отправитель/получатель и ID транзакции. Эти данные нужны для бухгалтерии или жалоб в поддержку."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Безопасно ли проверять баланс через @PremiumBot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да, @PremiumBot — официальный бот Telegram, ведётся командой Telegram, имеет синюю отметку 'verified'. Он никогда не запрашивает пароль, SMS-код или данные карты — только показывает баланс и меню покупки Stars. Остерегайтесь похожих по имени ботов: всегда проверяйте синюю галочку verified."
+        }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <a href="/ru/blog">Блог</a>
+          <span>/</span>
+          <span>Проверить баланс Stars</span>
+        </nav>
+        <div class="post-tag">Stars</div>
+        <h1 class="post-title">Как проверить и посмотреть баланс Telegram Stars — гайд 2026</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Чтобы посмотреть баланс Telegram Stars, откройте в приложении <strong>Settings → My Stars</strong> (iOS, Android, Desktop). Там отображается текущий баланс и полная история транзакций. Универсальная альтернатива — официальный <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a>: отправьте <code>/start</code>, и бот покажет баланс. Всё это занимает 30 секунд.
+          </div>
+
+          <p>После покупки Stars первый вопрос — «Всё ли пришло?». А после оплаты стикеров или подписки в боте хочется проверить «Сколько осталось?». Telegram Stars — виртуальный счёт, не пластиковая карта, поэтому важно знать точное место, где смотреть баланс.</p>
+
+          <p>Хорошая новость: Telegram отображает эти данные очень просто. В Settings есть отдельный раздел, плюс работает официальный бот. Ниже — точные шаги для каждой платформы, как читать историю транзакций и что делать, если Stars не отобразились на балансе.</p>
+
+          <h2>Где хранится баланс Telegram Stars?</h2>
+
+          <p>Stars — это внутренняя виртуальная валюта Telegram. Она привязана к вашему Telegram-аккаунту и хранится на официальных серверах Telegram. Баланс считается отдельно для каждого аккаунта — на один номер телефона приходится один баланс Stars.</p>
+
+          <p>Как указано в <a href="https://core.telegram.org/bots/payments-stars" target="_blank" rel="noopener nofollow">официальной документации Telegram Stars Payments</a>, Stars работают как единое платёжное средство внутри экосистемы Telegram — для mini-app, стикеров, подписок на каналы и подарков. То есть вы один раз пополняете Stars, а потом тратите их в любых сервисах внутри Telegram, не подключая карту повторно.</p>
+
+          <p>Где отображается баланс:</p>
+          <ul>
+            <li><strong>Приложение Telegram (mobile/desktop)</strong> — раздел «My Stars» в Settings</li>
+            <li><strong>@PremiumBot</strong> — официальный бот Telegram, показывает баланс в виде сообщения</li>
+            <li><strong>Платёжный диалог</strong> — при оплате в mini-app или боте текущий баланс показывается сверху окна</li>
+          </ul>
+
+          <p>Все три источника показывают одни и те же данные, потому что Telegram запрашивает баланс из единого места в реальном времени. Различается только формат отображения.</p>
+
+          <h2>Как посмотреть баланс — самый быстрый способ (iOS и Android)</h2>
+
+          <p>Большинство пользователей работают со Stars через телефон, поэтому это основной путь. Пошагово:</p>
+
+          <ol>
+            <li><strong>Откройте Telegram.</strong> Рекомендуется последняя версия (iOS 11.0+ или Android 11.0+) — в старых версиях раздел Stars может отображаться не полностью.</li>
+            <li><strong>Перейдите в Settings (Настройки).</strong> На iOS — шестерёнка в нижней панели. На Android — боковое меню (три полоски сверху слева) → Settings.</li>
+            <li><strong>Найдите «My Stars» или «Telegram Stars».</strong> Раздел расположен в средней части списка настроек, со значком жёлтой звезды. В новых версиях может находиться внутри подраздела «Premium and Stars».</li>
+            <li><strong>Посмотрите баланс.</strong> Сверху страницы крупная цифра — ваш текущий баланс Stars. Например, «250 Stars».</li>
+            <li><strong>Посмотрите историю.</strong> Ниже — «Transaction history», список всех ваших транзакций.</li>
+          </ol>
+
+          <p>Всё занимает около 30 секунд. Если раздел «My Stars» не видите, значит версия Telegram устарела — обновитесь через App Store или Google Play.</p>
+
+          <h2>Как посмотреть Stars в Telegram Desktop и Web</h2>
+
+          <p>Для тех, кто пользуется Telegram через компьютер, путь немного другой:</p>
+
+          <h3>Telegram Desktop (Windows, macOS, Linux)</h3>
+          <p>Главное меню (три горизонтальные полоски в левом верхнем углу) → Settings → My Stars. Как и в мобильном приложении, баланс и история на одной странице.</p>
+
+          <h3>Telegram Web (web.telegram.org)</h3>
+          <p>У Telegram Web две версии: <strong>K-версия</strong> (web.telegram.org/k) и <strong>A-версия</strong> (web.telegram.org/a). K-версия новее и полностью поддерживает Stars в Settings. В A-версии эта функция пока ограничена. Если работаете через Web, переходите на K-версию.</p>
+
+          <h3>Telegram macOS (отдельное приложение)</h3>
+          <p>Официальное приложение Telegram для macOS (есть в App Store) работает так же, как Desktop: Settings → My Stars. В очень старых версиях macOS-приложения раздела может ещё не быть — обновите.</p>
+
+          <h2>Проверка баланса через @PremiumBot — универсальный способ</h2>
+
+          <p>Если в Settings нет «My Stars» или хочется проверить ещё быстрее — самый надёжный путь это официальный бот Telegram <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a>. Этот бот ведёт команда Telegram, у него есть синяя отметка «verified».</p>
+
+          <p>Как использовать:</p>
+          <ol>
+            <li>Найдите в Telegram <strong>@PremiumBot</strong> через поиск (выберите вариант с синей галочкой verified)</li>
+            <li>Отправьте команду <code>/start</code> или нажмите кнопку «Start»</li>
+            <li>Бот пришлёт меню с кнопками: «Buy Stars», «My Balance», «Gift Stars» и др.</li>
+            <li>Нажмите «My Balance» (или похожую) — бот покажет текущее количество Stars</li>
+          </ol>
+
+          <p>Этот способ работает на любой платформе (mobile, desktop, web) и не требует входа в меню настроек. Особенно удобно в случаях:</p>
+          <ul>
+            <li>Зашли с нового устройства и не знаете, где что лежит</li>
+            <li>Используете A-версию Telegram Web</li>
+            <li>Нужно отправить кому-то скриншот баланса (сообщение бота имеет аккуратный формат)</li>
+          </ul>
+
+          <p class="natural-cta"><strong>На заметку:</strong> если планируете покупать Stars, цены и способы оплаты можно посмотреть в статье <a href="/ru/blog/telegram-stars-narxi">Цена Telegram Stars 2026</a> — каждый пакет указан с реальной ценой в сумах.</p>
+
+          <h2>Как читать историю транзакций</h2>
+
+          <p>История транзакций — полная запись каждого действия со Stars. Полезна для бухгалтерии, проверки или жалобы в поддержку.</p>
+
+          <p>В истории отображаются такие типы транзакций:</p>
+
+          <table class="price-table">
+            <thead>
+              <tr><th>Тип транзакции</th><th>Знак</th><th>Пример</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Покупка Stars</td><td>+ (зелёный)</td><td>+100 Stars — оплата через Click</td></tr>
+              <tr><td>Получение в подарок</td><td>+ (зелёный)</td><td>+50 Stars — подарок от @user</td></tr>
+              <tr><td>Refund (возврат)</td><td>+ (зелёный)</td><td>+25 Stars — отменённая транзакция</td></tr>
+              <tr><td>Оплата mini-app или бота</td><td>− (красный)</td><td>−10 Stars — услуга внутри бота</td></tr>
+              <tr><td>Стикеры или отправка подарка</td><td>− (красный)</td><td>−15 Stars — куплен набор стикеров</td></tr>
+              <tr><td>Подписка на канал</td><td>− (красный)</td><td>−50 Stars/мес — подписка</td></tr>
+            </tbody>
+          </table>
+
+          <p>Любую запись можно открыть и увидеть детали:</p>
+          <ul>
+            <li>Точная дата и время (с точностью до секунды)</li>
+            <li>ID транзакции (нужен при обращении в поддержку)</li>
+            <li>Получатель или отправитель (имя бота/пользователя)</li>
+            <li>Количество Stars и эквивалент в сумах (для покупок)</li>
+            <li>Источник оплаты (Click, Payme, подписка Premium и т. д.)</li>
+          </ul>
+
+          <p>Эти данные особенно важны, если вы используете Stars в бизнес-целях или хотите подать жалобу по транзакции. При обращении в Telegram support всегда прикладывайте ID транзакции.</p>
+
+          <h2>Купил Stars, но в балансе их нет — что делать?</h2>
+
+          <p>Самая частая ситуация: оплата прошла, но баланс ещё на старой цифре. В большинстве случаев это не проблема, а просто небольшая задержка. Пошаговая проверка:</p>
+
+          <ol>
+            <li><strong>Подождите 1–3 минуты.</strong> Stars приходят через официальную инфраструктуру Telegram <a href="https://fragment.com" target="_blank" rel="noopener nofollow">Fragment</a> и обычно появляются за 1–3 минуты. Если в первую минуту баланс не обновился — это нормально.</li>
+            <li><strong>Перезапустите Telegram.</strong> Полностью закройте приложение (включая многозадачность) и откройте снова. Иногда приложение обновляется с задержкой.</li>
+            <li><strong>Проверьте интернет.</strong> Медленный интернет может задерживать синхронизацию баланса. Попробуйте переключиться с Wi-Fi на мобильный (или наоборот).</li>
+            <li><strong>Проверьте через @PremiumBot.</strong> Если в Settings баланс не виден, @PremiumBot покажет — это прямой запрос на официальный сервер.</li>
+            <li><strong>Обратитесь в бот, где покупали.</strong> Если ждёте более 10–15 минут, отправьте номер заказа и чек оплаты в поддержку бота, через который покупали (например, <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>).</li>
+            <li><strong>Посмотрите историю транзакций.</strong> Если в истории запись появилась, а в балансе — нет, это задержка синхронизации на стороне Telegram. Если она длится более 30 минут, обращайтесь в Telegram support.</li>
+          </ol>
+
+          <p>В большинстве случаев проблема решается на первых двух шагах. Если оплата не прошла, Stars не придут вообще, а платёжная система (Click, Payme, банк) вернёт сумму автоматически за 1–3 рабочих дня.</p>
+
+          <h2>Как управлять Stars в нескольких аккаунтах</h2>
+
+          <p>Telegram поддерживает несколько аккаунтов на одном устройстве (Settings → Add Account). Но Stars считаются отдельно для каждого аккаунта. То есть:</p>
+
+          <ul>
+            <li>Если на аккаунте A — 100 Stars, на аккаунте B — 50 Stars, это разные балансы, они не складываются</li>
+            <li>При покупке Stars поступают на тот аккаунт, который активен в момент оплаты, — поэтому перед покупкой проверьте, в каком вы аккаунте</li>
+            <li>Прямо переводить Stars с одного аккаунта на другой нельзя, но можно отправить как «подарок»</li>
+          </ul>
+
+          <p>Практический совет: если у вас личный и рабочий аккаунты разделены, держите Stars в основном — на котором их чаще тратите. Через подарок можно «переместить», но Telegram может удержать системную комиссию.</p>
+
+          <h2>Безопасность: на что обращать внимание при проверке баланса</h2>
+
+          <p>Просмотр баланса Stars — безопасное действие, не требует пароля или SMS-кода. Но мошенники иногда обманывают пользователей под предлогом «увеличения баланса». Основные правила безопасности:</p>
+
+          <ul>
+            <li>Используйте только официальный <strong>@PremiumBot</strong> — другие боты с похожими именами («Premium», «Stars») могут быть мошенническими</li>
+            <li>У официального бота всегда есть синяя отметка <strong>«verified»</strong> — без неё доверять боту нельзя</li>
+            <li>Официальный бот никогда не запрашивает пароль, SMS-код или номер карты — если запрашивает, это мошенник</li>
+            <li>Игнорируйте предложения вроде «удвоим ваш баланс» — таких официальных акций у Telegram нет</li>
+            <li>Не отправляйте скриншот баланса посторонним — ID транзакций это персональная информация</li>
+          </ul>
+
+          <p>Полный гайд по способам мошенничества и защите от них — в статье <a href="/ru/blog/telegram-stars-firibgarlik-himoya">Защита от мошенников в Telegram</a>.</p>
+
+          <h2>Часто задаваемые вопросы</h2>
+
+          <div class="post-faq">
+            <div class="post-faq-item">
+              <h3>Где посмотреть баланс Telegram Stars?</h3>
+              <p>В Telegram перейдите в Settings → My Stars. Этот путь работает на iOS, Android и Desktop. Сверху текущий баланс, ниже — список транзакций. Альтернатива — отправить /start официальному @PremiumBot.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Можно ли посмотреть баланс Stars в Telegram Web?</h3>
+              <p>Да, но только в K-версии (web.telegram.org/k). В старой A-версии раздел ограничен. Если в Web не находите — используйте @PremiumBot прямо из браузера.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Купил Stars, но в балансе их нет — что делать?</h3>
+              <p>Сначала перезапустите Telegram. Если баланс всё ещё не виден, обратитесь в поддержку бота с номером заказа и временем оплаты. Stars обычно приходят за 1–3 минуты, реже — до 10–15 минут.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>У меня несколько Telegram-аккаунтов — на каком хранятся Stars?</h3>
+              <p>Stars считаются для каждого аккаунта отдельно. При покупке Stars поступают на активный в момент оплаты аккаунт. Прямо перевести с одного на другой нельзя, но можно отправить как подарок.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Что отображается в истории транзакций Stars?</h3>
+              <p>Покупка, подарок от друга, refund (входящие); оплата mini-app, стикеры, подписка на канал, отправка подарка (исходящие). У каждой записи — дата, сумма, отправитель/получатель и ID транзакции.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Безопасно ли проверять баланс через @PremiumBot?</h3>
+              <p>Да, @PremiumBot — официальный бот Telegram с синей отметкой «verified». Он никогда не запрашивает пароль, SMS или данные карты. Остерегайтесь похожих по имени ботов — всегда проверяйте verified-галочку.</p>
+            </div>
+          </div>
+
+          <h2>Заключение</h2>
+
+          <p>Просмотр баланса Telegram Stars — действие максимум на 30 секунд. Основной путь: <strong>Settings → My Stars</strong> (iOS, Android, Desktop). Универсальная альтернатива: официальный <a href="https://t.me/PremiumBot" target="_blank" rel="noopener nofollow">@PremiumBot</a> с командой <code>/start</code>. Оба источника показывают одинаковые данные в реальном времени, потому что Telegram берёт баланс из единого места.</p>
+
+          <p>История транзакций — дополнительное удобство. Каждая покупка Stars, каждая оплата в боте и каждый подарок записываются с детальным ID. Это позволяет жаловаться и подтверждать оплату при возникновении проблем. Никакого дополнительного приложения не нужно — всё внутри Telegram.</p>
+
+          <div class="end-cta">
+            <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">Купить Stars — @starsjoybot &rarr;</a>
+          </div>
+
+          <h2>Читайте также</h2>
+
+          <ul class="related-list">
+            <li><a href="/ru/blog/telegram-stars-sotib-olish">Как купить Telegram Stars (гайд 2026)</a></li>
+            <li><a href="/ru/blog/telegram-stars-tez-toldirish">Как пополнить Telegram Stars за 5 минут</a></li>
+            <li><a href="/ru/blog/telegram-stars-narxi">Цена Telegram Stars 2026: где купить дешевле</a></li>
+            <li><a href="/ru/blog/telegram-stars-firibgarlik-himoya">Защита от мошенников в Telegram</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 820px;
+  }
+
+  .post-meta {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 0.9rem; color: var(--text-muted);
+  }
+
+  .post-body { padding: 60px 24px; }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 48px 0 20px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 10px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content code {
+    background: rgba(124, 58, 237, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.92em;
+    color: var(--primary);
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .tldr-box {
+    background: #FFF8E6;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-left: 4px solid #F59E0B;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 0 0 28px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box strong { color: #B45309; }
+  .tldr-box a { color: var(--primary); font-weight: 600; }
+
+  .natural-cta {
+    background: #F8F6FF;
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 24px 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+  .natural-cta strong { color: var(--primary); }
+
+  .end-cta {
+    margin: 32px 0 24px;
+    padding: 14px 18px;
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .end-cta a {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 24px;
+    font-size: 0.95rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .price-table th,
+  .price-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-table th {
+    background: #F8F6FF;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .price-table tr:last-child td { border-bottom: none; }
+
+  .post-faq { margin: 24px 0; }
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 12px;
+  }
+  .post-faq-item h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+  .post-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+  .related-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 16px 0 32px;
+  }
+  .related-list li {
+    padding: 12px 16px;
+    background: #F8F6FF;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  .related-list a {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 0.96rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.55rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.02rem; }
+    .post-content p, .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 18px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .price-table { font-size: 0.88rem; }
+    .price-table th, .price-table td { padding: 10px 12px; }
+  }
+</style>
+</content>
+</invoke>
