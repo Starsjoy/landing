@@ -195,7 +195,11 @@ const faqs = [
   <script>
     document.querySelectorAll('[data-faq]').forEach(item => {
       const btn = item.querySelector('.gw-faq-summary');
-      if (!btn) return;
+      const body = item.querySelector('.gw-faq-body');
+      if (!btn || !body) return;
+      const setHeight = () => {
+        body.style.setProperty('--faq-h', body.scrollHeight + 'px');
+      };
       btn.addEventListener('click', () => {
         const isOpen = item.classList.contains('is-open');
         document.querySelectorAll('[data-faq].is-open').forEach(other => {
@@ -209,9 +213,15 @@ const faqs = [
           item.classList.remove('is-open');
           btn.setAttribute('aria-expanded', 'false');
         } else {
+          setHeight();
           item.classList.add('is-open');
           btn.setAttribute('aria-expanded', 'true');
         }
+      });
+    });
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('[data-faq].is-open .gw-faq-body').forEach(body => {
+        body.style.setProperty('--faq-h', body.scrollHeight + 'px');
       });
     });
   </script>
@@ -303,15 +313,14 @@ const faqs = [
   .gw-pnote { text-align: center; margin-top: 32px; font-size: 0.92rem; color: var(--gp-tier-mute); opacity: 0.8; }
 
   .gw-faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-  .gw-faq-item { background: var(--gp-card-bg); border: 1px solid var(--gp-card-border); border-radius: 16px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); overflow: hidden; transition: background 0.25s ease, border-color 0.25s ease; }
-  .gw-faq-item.is-open { background: var(--gp-card-bg-hi); border-color: var(--gp-accent-1); }
+  .gw-faq-item { background: rgba(255,255,255,0.78); border: 1px solid var(--gp-card-border); border-radius: 16px; overflow: hidden; transition: background 0.25s ease, border-color 0.25s ease; }
+  .gw-faq-item.is-open { background: rgba(255,255,255,0.96); border-color: var(--gp-accent-1); }
   .gw-faq-summary { width: 100%; padding: 20px 24px; cursor: pointer; font-weight: 600; color: var(--gp-text); font-size: 1rem; background: none; border: none; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: inherit; line-height: 1.4; }
   .gw-faq-icon { font-size: 1.6rem; font-weight: 300; color: var(--gp-accent-1); transition: transform 0.3s ease, color 0.3s ease; flex-shrink: 0; line-height: 1; }
   .gw-faq-item.is-open .gw-faq-icon { transform: rotate(45deg); color: var(--gp-accent-2); }
-  .gw-faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
-  .gw-faq-item.is-open .gw-faq-body { grid-template-rows: 1fr; }
-  .gw-faq-body-inner { overflow: hidden; min-height: 0; }
-  .gw-faq-body-inner p { padding: 0 24px 20px; font-size: 0.95rem; line-height: 1.7; color: var(--gp-text-mute); opacity: 0.9; margin: 0; }
+  .gw-faq-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease; will-change: max-height, opacity; }
+  .gw-faq-item.is-open .gw-faq-body { max-height: var(--faq-h, 600px); opacity: 1; }
+  .gw-faq-body p { padding: 0 24px 20px; font-size: 0.95rem; line-height: 1.7; color: var(--gp-text-mute); opacity: 0.9; margin: 0; }
 
   .gw-final-card { max-width: 720px; margin: 0 auto; padding: 48px; text-align: center; background: var(--gp-card-bg-hi); border: 1px solid var(--gp-card-border); border-radius: 24px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
   .gw-final-card .gw-h2 { margin-bottom: 16px; }
