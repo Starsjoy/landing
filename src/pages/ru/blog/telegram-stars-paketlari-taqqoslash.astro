@@ -1,0 +1,548 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+
+const title = "Пакеты Telegram Stars: 50, 100, 500, 1000 — какой пакет дешевле и когда подходит? (2026) | Блог StarsJoy";
+const description = "Сравнение пакетов Telegram Stars: цены 50, 100, 500, 1000 Stars в сумах, цена за единицу, какой пакет подходит под какую задачу и самый дешёвый способ в Узбекистане.";
+const publishDate = "2026-05-04";
+const modifiedDate = "2026-05-04";
+const wordCount = 1810;
+const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-paketlari-taqqoslash";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="пакеты Telegram Stars, цена 50 Stars, цена 100 Stars, цена 500 Stars, цена 1000 Stars, какой пакет Stars дешевле, сравнение пакетов Stars, Telegram Stars 2026, Stars в сумах"
+  lang="ru"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-stars-paketlari-taqqoslash" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-stars-paketlari-taqqoslash" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Пакеты Telegram Stars: 50, 100, 500, 1000 — какой пакет дешевле и когда подходит? (2026)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "пакеты Telegram Stars, 50 Stars, 100 Stars, 500 Stars, 1000 Stars, сравнение пакетов, Telegram Stars 2026",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": canonical,
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Сравнение пакетов Stars", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Какой пакет Telegram Stars самый дешёвый?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "По локальному реселлерскому курсу (1 Star = 240 сум) цена за единицу одинаковая в каждом пакете — 50 Stars 12 000 сум, 100 Stars 24 000 сум, 500 Stars 120 000 сум, 1000 Stars 240 000 сум. На официальной внутренней цене Telegram (App Store, Google Play) в больших пакетах цена за единицу немного дешевле, но добавляется комиссия платформы 15-30% и требуется иностранная карта. Через локальный бот в сумах эффективная цена ровная независимо от размера пакета."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "На что хватает 50, 100, 500 и 1000 Stars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "50 Stars — один маленький Gift (Cake, Bouquet) или paid post. 100 Stars — один-два Regular Gift (Trophy, Diamond) или несколько paid reaction. 500 Stars — несколько средних Gift или Premium-аксессуары. 1000 Stars — коллекционный Limited Gift, несколько недель paid подписки на канал или Premium на 1 месяц (примерно)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "В чём разница между официальным пакетом Telegram и локальным ботом?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Официальный пакет Telegram (App Store, Google Play) требует иностранную карту (Visa/MasterCard) и добавляет 15-30% комиссии платформы. Локальный реселлер-бот даёт оплатить через Click, Payme, Uzcard или Humo в сумах, без комиссии платформы. Stars поставляются через официальную инфраструктуру Telegram (Bot Payments API или Fragment) — обходных путей нет."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно купить произвольное количество (например 250 или 750 Stars)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Официальные пакеты Telegram идут в стандартных размерах (50, 100, 150, 250, 500, 1000, 2500). Локальный реселлер-бот часто поддерживает произвольное количество (например 250, 750, 1200 Stars) — вы указываете точную сумму, и сумы рассчитываются автоматически. В @starsjoybot эта функция доступна."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Какой пакет Stars подходит для активации Premium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Telegram Premium на 1 месяц через Stars стоит примерно 800-1000 Stars. На 12 месяцев — 7 500-9 000 Stars. Но прямая покупка Premium в сумах часто удобнее, потому что Premium-пакеты есть отдельно, а покупать Stars и потом конвертировать — лишний шаг. Подробные цены — в статье про Premium."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько лишней комиссии при покупке Stars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "На официальной внутренней цене Telegram (App Store, Google Play) комиссия 15-30%. У локального реселлер-бота эффективная комиссия ~10-15% (заранее заложена в сумовую цену), но нет дополнительных расходов на иностранную или виртуальную карту. Платёжные системы (Click, Payme) свою комиссию не берут отдельно — её покрывает бот."
+        }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <a href="/ru/blog">Блог</a>
+          <span>/</span>
+          <span>Сравнение пакетов Stars</span>
+        </nav>
+        <div class="post-tag">Stars</div>
+        <h1 class="post-title">Пакеты Telegram Stars: 50, 100, 500, 1000 — какой пакет дешевле и когда подходит? (2026)</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> По локальному реселлерскому курсу (1 Star = 240 сум) цены пакетов Stars ровные: <strong>50 Stars = 12 000 сум, 100 Stars = 24 000 сум, 500 Stars = 120 000 сум, 1000 Stars = 240 000 сум</strong>. В официальном пакете Telegram (App Store, Google Play) у больших пакетов цена за единицу немного дешевле, но добавляется 15–30% комиссии платформы и нужна иностранная карта. Логичнее выбирать по задаче: 50 Stars для одного маленького Gift, 100 Stars для двух Regular Gift, 500 Stars для Limited Gift, 1000 Stars для Premium на 1 месяц или большого подарка.
+          </div>
+
+          <p>При покупке Telegram Stars первый вопрос — какой пакет выбрать. Telegram и локальные реселлер-боты предлагают несколько готовых вариантов: 50, 100, 500 и 1000 Stars — самые часто запрашиваемые пакеты. Какой из них дешевле? Какой пакет подходит под какую задачу? В этой статье разбираются цены всех четырёх пакетов, цена за единицу и подходящий выбор по ситуации.</p>
+
+          <p>Если нужен быстрый ориентир — смотрите TL;DR выше. Подробное объяснение и конкретные сценарии — ниже.</p>
+
+          <h2>Что такое пакеты Stars и где они появляются?</h2>
+
+          <p>Telegram Stars — внутренняя валюта экосистемы Telegram. Подробнее в статье <a href="/ru/blog/telegram-stars-nima">Что такое Telegram Stars</a>. Покупка Stars в пакетах происходит одним из четырёх способов:</p>
+
+          <ul>
+            <li><strong>App Store / Google Play</strong> — официальный внутренний платёж в приложении Telegram, требуется иностранная карта</li>
+            <li><strong>Telegram Web App</strong> — с компьютера через каталог Stars, оплата банковской картой</li>
+            <li><strong>Fragment</strong> — официальная onchain-платформа Telegram (через TON wallet)</li>
+            <li><strong>Локальный реселлер-бот</strong> — через Click, Payme, Uzcard, Humo в сумах</li>
+          </ul>
+
+          <p>Официальные пакеты Telegram идут в стандартных размерах: 50, 100, 150, 250, 500, 1000, 2500, 5000, 10000 Stars. Локальные реселлер-боты (например @starsjoybot) поддерживают те же стандартные пакеты и часто произвольные размеры (например 75, 250, 750 Stars) — это даёт пользователю гибкость.</p>
+
+          <h2>Четыре основных пакета — цены и стоимость в сумах</h2>
+
+          <p>50, 100, 500 и 1000 Stars — самые запрашиваемые пакеты. Цены по двум основным путям:</p>
+
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th>Пакет</th>
+                <th>Локальный бот (в сумах)</th>
+                <th>Официальный Telegram (App Store/Google Play)</th>
+                <th>Цена за единицу (сум/Star)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>50 Stars</td><td>12 000 сум</td><td>~$0.99 (около 12 400 сум)</td><td>240 сум</td></tr>
+              <tr><td>100 Stars</td><td>24 000 сум</td><td>~$1.99 (около 24 900 сум)</td><td>240 сум</td></tr>
+              <tr><td>500 Stars</td><td>120 000 сум</td><td>~$9.99 (около 124 900 сум)</td><td>240 сум</td></tr>
+              <tr><td>1000 Stars</td><td>240 000 сум</td><td>~$19.99 (около 250 000 сум)</td><td>240 сум</td></tr>
+            </tbody>
+          </table>
+
+          <p>В локальном реселлер-боте цена за единицу одинаковая во всех пакетах — 240 сум/Star. Это простой расчёт: умножьте размер пакета на 240, получите сумму в сумах (50 × 240 = 12 000, 100 × 240 = 24 000 и т.д.). Текущий точный курс отображается в <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> в реальном времени — пересчитывается раз-два в неделю в зависимости от валютного рынка и внутренней цены Telegram.</p>
+
+          <p>На официальной внутренней цене Telegram цена за единицу в больших пакетах может быть немного ниже (например, 1000 Stars за $19.99 — 1 Star ≈ $0.0199, 50 Stars за $0.99 — 1 Star ≈ $0.0198). Но после комиссии платформы App Store или Google Play (15–30%) разница с локальным ботом почти исчезает или даже локальный бот выходит дешевле — потому что отсутствует комиссия платформы.</p>
+
+          <h2>Цена за единицу — какой пакет дешевле?</h2>
+
+          <p>Точный ответ <strong>зависит от того, где покупать</strong>:</p>
+
+          <h3>Через локальный реселлер-бот</h3>
+          <p>Цена за единицу ровная — 240 сум/Star. 50 Stars или 1000 Stars — за каждый Star одинаково. Причина: локальный бот добавляет к внутренней цене Telegram фиксированный процент, и этот процент одинаков в каждом пакете. Значит, экономии за счёт большого пакета нет.</p>
+
+          <h3>Через официальный внутренний платёж Telegram</h3>
+          <p>Цена за единицу в большом пакете немного дешевле (потому что внутренняя цена Telegram и комиссия платформы немного зависят от размера пакета). Но комиссия платформы и требование иностранной карты сводят эту разницу на нет — эффективная цена обычно сравнивается с локальным ботом или даже выходит дороже.</p>
+
+          <p>Вывод: если цель только сэкономить, увеличивать размер пакета бессмысленно. Логично выбирать по задаче — что именно вам нужно и в каком количестве.</p>
+
+          <h2>Какой пакет под какую задачу?</h2>
+
+          <p>Выбор по ситуации. Реальные сценарии для каждого пакета:</p>
+
+          <h3>50 Stars (12 000 сум) — небольшие поздравления</h3>
+          <p>50 Stars хватает: на один небольшой Gift (Heart 15 Stars × 3 = 45, Cake 50, Bouquet 50, Rocket 50), несколько paid reaction (1 Star = 1 reaction), на несколько постов в авторском канале (paid post). Для нового пользователя Stars — "пробная" сумма, разумна на первой покупке.</p>
+          <p><strong>Примеры:</strong> отправить другу Cake (день рождения), читать paid post в любимом канале месяц, добавить 5–10 paid reaction любимому автору.</p>
+
+          <h3>100 Stars (24 000 сум) — два Regular Gift</h3>
+          <p>100 Stars — универсальный средний пакет. Хватает: на два Regular Gift (Trophy 100, Diamond 100, Crown 100, Ring 100), несколько средних Gift в комбинации (Cake 50 + Bouquet 50), 50–80 paid reaction, на одну-две недели paid подписки на канал.</p>
+          <p><strong>Примеры:</strong> подарок-напоминание (Trophy или Diamond), два подарка другу к дню рождения, поддержать любимого автора в paid канале на 1 месяц.</p>
+
+          <p class="natural-cta">Если нужно пополнить баланс Stars за 5 минут, в <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> работает быстрая схема через Click или Payme — полное руководство в статье <a href="/ru/blog/telegram-stars-tez-toldirish">Пополнить Stars за 5 минут</a>.</p>
+
+          <h3>500 Stars (120 000 сум) — Limited Gift или несколько подарков</h3>
+          <p>500 Stars — для большого подарка или комбинации нескольких маленьких. Хватает: на нижний Limited Gift (сезонные выпуски), 5 средних Regular Gift (5 × 100 Stars), несколько месяцев paid подписки на канал, много paid reaction.</p>
+          <p><strong>Примеры:</strong> подарок к юбилею (Limited Gift), большой подарок к свадьбе, проявление уважения к бизнес-клиенту. 500 Stars передают сигнал "я выбрал для вас что-то особенное".</p>
+
+          <h3>1000 Stars (240 000 сум) — Premium 1 месяц или большой подарок</h3>
+          <p>1000 Stars — крупная сумма. Хватает: на активацию Telegram Premium на 1 месяц (примерно 800–1000 Stars), средний Limited Gift (нижняя часть диапазона 1 000–2 500 Stars), несколько крупных Regular Gift в комбинации.</p>
+          <p><strong>Примеры:</strong> быстрая активация Premium (через Stars), личный большой подарок (Limited Gift), запас для отправки разных подарков другу на длительное время.</p>
+
+          <p>Замечание: если активируете Telegram Premium через Stars — это лишний шаг (купить Stars и потом конвертировать в Premium). Прямая покупка Premium-пакета часто удобнее. Цены и пакеты Premium — в статье <a href="/ru/blog/telegram-premium-sotib-olish">Покупка Telegram Premium</a>.</p>
+
+          <h2>Произвольное количество — когда нет подходящего пакета</h2>
+
+          <p>Что делать, если вам нужно конкретное количество (например 250 или 750 Stars), которого нет в стандартных пакетах?</p>
+
+          <p>Официальные пакеты Telegram охватывают несколько стандартных значений (50, 100, 150, 250, 500, 1000, 2500, 5000, 10000), но не все промежуточные. Локальные реселлер-боты (например @starsjoybot) обычно поддерживают произвольное количество — вы указываете точное число Stars в боте, и сумма в сумах рассчитывается автоматически.</p>
+
+          <p>В произвольном количестве цена за единицу та же, что и в пакете — 240 сум/Star. Так, 250 Stars × 240 = 60 000 сум, 750 Stars × 240 = 180 000 сум. Это не пакет — вы получаете ровно нужное количество без остатка.</p>
+
+          <p>Произвольное количество поддерживается не только реселлер-ботами, но и в Telegram Web App и некоторых официальных интерфейсах — но там по-прежнему требуется иностранная карта.</p>
+
+          <h2>Разница между официальной и реселлерской ценой Telegram</h2>
+
+          <p>Что эта разница даёт в конкретных цифрах? Реальный пример для 100 Stars:</p>
+
+          <table class="price-table">
+            <thead>
+              <tr><th>Путь</th><th>Цена</th><th>Карта</th><th>Доп. шаги</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>App Store / Google Play</td><td>~$1.99 (~24 900 сум)</td><td>Visa/MasterCard (иностранная)</td><td>Привязка к приложению, конвертация валюты</td></tr>
+              <tr><td>Telegram Web (Stars)</td><td>~$1.99 (~24 900 сум)</td><td>Visa/MasterCard</td><td>Оплата через сайт, конвертация валюты</td></tr>
+              <tr><td>Fragment + TON Wallet</td><td>~$1.69 (~21 000 сум)</td><td>TON wallet</td><td>Настройка кошелька, покупка TON</td></tr>
+              <tr><td>Локальный реселлер-бот</td><td>24 000 сум</td><td>Uzcard/Humo/Click/Payme</td><td>Нет — напрямую в сумах</td></tr>
+            </tbody>
+          </table>
+
+          <p>Цена через Fragment ближе всего к чистой внутренней цене Telegram (нет комиссии платформы), но настройка TON-кошелька и покупка TON для пользователя из Узбекистана практически сложна — этот путь больше для пользователей с криптоопытом. Локальный реселлер-бот — самое практичное решение для большинства пользователей в Узбекистане: у вас уже есть Click или Payme, и вы платите напрямую в сумах.</p>
+
+          <p>При выборе локального бота важно — бот доставляет Stars через официальную <a href="https://core.telegram.org/api/payments" target="_blank" rel="noopener nofollow">платёжную инфраструктуру</a> Telegram. Обходные пути, "бесплатные Stars" или "хак" нарушают правила Telegram и создают риск блокировки аккаунта. Полное руководство по выбору безопасного бота — в статье <a href="/ru/blog/telegram-stars-firibgarlik-himoya">защита от мошенников</a>.</p>
+
+          <h2>Шаги покупки (через локальный бот)</h2>
+
+          <p>Получить выбранный пакет за 5 минут — пошагово:</p>
+
+          <ol>
+            <li><strong>Откройте бот:</strong> зайдите в @starsjoybot и нажмите /start</li>
+            <li><strong>Выберите пакет:</strong> 50, 100, 500, 1000 или произвольное количество</li>
+            <li><strong>Введите Telegram username:</strong> на какой аккаунт зачислить Stars (свой или друга)</li>
+            <li><strong>Выберите платёжную систему:</strong> Click, Payme, Uzcard или Humo</li>
+            <li><strong>Подтвердите оплату:</strong> SMS-код или кнопка в банковском приложении</li>
+            <li><strong>Stars на аккаунте:</strong> зачисляются автоматически за 1–3 минуты</li>
+          </ol>
+
+          <p>Подробная схема быстрой покупки — в статье <a href="/ru/blog/telegram-stars-tez-toldirish">Пополнить Stars за 5 минут</a>. Точные шаги через Click и Payme — в руководстве <a href="/ru/blog/telegram-stars-click-payme">Покупка Stars через Click и Payme</a>.</p>
+
+          <h2>Часто задаваемые вопросы</h2>
+
+          <div class="post-faq">
+            <div class="post-faq-item">
+              <h3>Какой пакет Telegram Stars самый дешёвый?</h3>
+              <p>На локальном реселлерском курсе (1 Star = 240 сум) цена за единицу одинаковая в каждом пакете — размер пакета не меняет цену. На официальной внутренней цене Telegram у больших пакетов цена за единицу немного дешевле, но комиссия платформы 15–30% и требование иностранной карты сводят эту разницу на нет.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>На что хватает 50, 100, 500 и 1000 Stars?</h3>
+              <p>50 Stars — один маленький Gift или paid post. 100 Stars — один-два Regular Gift или несколько paid reaction. 500 Stars — Limited Gift или комбинация нескольких подарков. 1000 Stars — Premium на 1 месяц (примерно), Limited Gift или много разных подарков.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>В чём разница между официальным пакетом и локальным ботом?</h3>
+              <p>Официальный путь требует иностранную карту (Visa/MasterCard) и добавляет 15–30% комиссии платформы. Локальный бот даёт оплатить через Click, Payme, Uzcard или Humo в сумах, без комиссии платформы. Stars поставляются через официальную инфраструктуру Telegram — обходных путей нет.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Можно купить произвольное количество (250 или 750 Stars)?</h3>
+              <p>Через локальный реселлер-бот часто можно купить произвольное количество (например 250, 750, 1200 Stars) — вы указываете точное число, сумма в сумах рассчитывается автоматически. Цена за единицу та же, что и в пакете — 240 сум/Star.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Какой пакет Stars подходит для активации Premium?</h3>
+              <p>Telegram Premium на 1 месяц через Stars стоит примерно 800–1000 Stars, на 12 месяцев — 7 500–9 000 Stars. Но прямая покупка Premium в сумах часто удобнее, потому что Premium-пакеты доступны отдельно, а покупать Stars и потом конвертировать — лишний шаг.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Сколько лишней комиссии при покупке Stars?</h3>
+              <p>На официальной внутренней цене Telegram комиссия 15–30%. У локального реселлер-бота эффективная комиссия ~10–15% (заранее заложена в сумовую цену). Платёжные системы (Click, Payme) дополнительной комиссии не берут — её покрывает бот.</p>
+            </div>
+          </div>
+
+          <h2>Вывод</h2>
+
+          <p>Основная логика выбора пакета Telegram Stars — не экономия на цене, а соответствие задаче. В локальном реселлер-боте цена за единицу одинаковая в каждом пакете (240 сум/Star), поэтому подход "куплю большой пакет, чтобы сэкономить" неэффективен. Правильный подход — что вам именно нужно: 50 Stars для одного маленького Gift, 100 Stars для двух Regular Gift, 500 Stars для Limited Gift, 1000 Stars для Premium или большого подарка.</p>
+
+          <p>Официальный внутренний платёж Telegram (App Store, Google Play) требует иностранную карту и добавляет 15–30% комиссии платформы — этот путь практически закрыт для пользователя из Узбекистана. Локальный реселлер-бот напрямую работает через Click/Payme/Uzcard/Humo в сумах, а Stars доставляются через официальную инфраструктуру Telegram.</p>
+
+          <div class="end-cta">
+            <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">Купить Stars — @starsjoybot &rarr;</a>
+          </div>
+
+          <h2>Читайте также</h2>
+
+          <ul class="related-list">
+            <li><a href="/ru/blog/telegram-stars-narxi">Цена Telegram Stars 2026: как купить дешевле в Узбекистане</a></li>
+            <li><a href="/ru/blog/telegram-stars-tez-toldirish">Как пополнить Telegram Stars за 5 минут</a></li>
+            <li><a href="/ru/blog/telegram-stars-click-payme">Покупка Telegram Stars через Click и Payme</a></li>
+            <li><a href="/ru/blog/telegram-gifts-narxi-royxati">Цены Telegram Gifts 2026: полный список подарков</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 820px;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    word-wrap: break-word;
+  }
+
+  .post-meta {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 0.9rem; color: var(--text-muted);
+  }
+
+  .post-body { padding: 60px 24px; }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 48px 0 20px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 10px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .tldr-box {
+    background: #FFF8E6;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-left: 4px solid #F59E0B;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 0 0 28px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box strong { color: #B45309; }
+  .tldr-box a { color: var(--primary); font-weight: 600; }
+
+  .natural-cta {
+    background: #F8F6FF;
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 24px 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+  .natural-cta strong { color: var(--primary); }
+
+  .end-cta {
+    margin: 32px 0 24px;
+    padding: 14px 18px;
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .end-cta a {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 24px;
+    font-size: 0.95rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .price-table th,
+  .price-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-table th {
+    background: #F8F6FF;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .price-table tr:last-child td { border-bottom: none; }
+
+  .post-faq { margin: 24px 0; }
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 12px;
+  }
+  .post-faq-item h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+  .post-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+  .related-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 16px 0 32px;
+  }
+  .related-list li {
+    padding: 12px 16px;
+    background: #F8F6FF;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  .related-list a {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 0.96rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.55rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.02rem; }
+    .post-content p, .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 18px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .price-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .price-table th, .price-table td { padding: 10px 12px; white-space: nowrap; }
+  }
+</style>
