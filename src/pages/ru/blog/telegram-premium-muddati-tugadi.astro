@@ -1,0 +1,590 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+
+const title = "Закончился Telegram Premium: способы продления и что делать (2026) | Блог StarsJoy";
+const description = "Что происходит, когда заканчивается срок Telegram Premium, как проверить дату окончания и быстро продлить через Uzcard/Humo — полное руководство.";
+const publishDate = "2026-05-05";
+const modifiedDate = "2026-05-05";
+const wordCount = 1720;
+const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-muddati-tugadi";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="закончился Telegram Premium, продление Premium, Premium закончился что делать, сколько осталось Premium, Telegram Premium renew, проверить срок Premium, Premium 2026"
+  lang="ru"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-premium-muddati-tugadi" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-premium-muddati-tugadi" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Закончился Telegram Premium: способы продления и что делать (2026)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "Telegram Premium срок, продление Premium, Premium закончился, Premium renew, StarsJoy",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": canonical,
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Закончился Premium", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Продление срока Telegram Premium",
+    "description": "Проверка срока Premium и быстрое продление через @starsjoybot с помощью Uzcard или Humo.",
+    "totalTime": "PT5M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Приложение Telegram" },
+      { "@type": "HowToTool", "name": "Uzcard, Humo, Click или Payme" }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Проверьте срок Premium",
+        "text": "В Settings → Telegram Premium видна текущая дата окончания. Если включён auto-renew, Telegram попытался продлить автоматически."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Откройте @starsjoybot",
+        "text": "В меню бота выберите нужный пакет (1, 3, 6 или 12 месяцев)."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Введите username",
+        "text": "Укажите аккаунт, на который активировать Premium (свой или другой контакт)."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Выберите платёжную систему",
+        "text": "Click, Payme, Uzcard или Humo — подтвердите оплату в банковском приложении."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Дождитесь активации",
+        "text": "За 5–15 минут Premium активируется, новая дата окончания появится в Settings → Telegram Premium."
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Что происходит, когда заканчивается срок Telegram Premium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Premium-функции автоматически отключаются: лимит загрузки файлов возвращается к 2 ГБ, premium emoji и стикеры становятся невидимыми (но не теряются), анимированная аватарка отключается, исчезают faster download и voice-to-text. Аккаунт и сообщения сохраняются — выключаются только Premium-функции. После покупки нового пакета функции возвращаются сразу."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как посмотреть, когда заканчивается Premium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Откройте Telegram → Settings → Telegram Premium. Сверху отображается название текущего пакета и точная дата окончания (DD.MM.YYYY). На мобильной и Desktop версии информация одинаковая. За 7 дней до окончания Telegram отправляет уведомление."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Auto-renew (авто-продление) не сработал — что делать?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Auto-renew работает только в подписках через App Store и Google Play. Premium, купленный через локальный реселлер-бот (Click/Payme/Uzcard/Humo), не продлевается автоматически — нужно продлевать вручную в конце каждого срока. Это особенность бизнес-модели, не недостаток: с вас не снимаются неожиданные платежи и можно в любой момент перейти на другой пакет."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно продлить Premium заранее?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Если купить новый пакет до окончания текущего, новый срок добавляется к текущему. Пример: 12 месяцев заканчиваются 2026-12-01. Если сегодня (2026-05-05) купить ещё 6 месяцев, новая дата окончания будет 2027-06-01 (6 месяцев добавляются после окончания 12-месячного)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Сообщения и настройки не теряются после окончания Premium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Нет, ничего не теряется. Аккаунт, сообщения, подписки на каналы, контакты и настройки сохраняются полностью. Отключаются только Premium-функции: большие файлы (более 2 ГБ) недоступны для загрузки, premium emoji в контенте превращаются в обычные, анимированная аватарка переходит в статичную. После нового пакета всё автоматически возвращается."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Какой самый быстрый способ продления Premium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Через локальный реселлер-бот — 5–15 минут. Откройте @starsjoybot, выберите пакет (1/3/6/12 мес), укажите username и оплатите через Click или Payme. Официальный путь Telegram (App Store/Google Play) требует иностранную карту, что в Узбекистане часто не работает."
+        }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <a href="/ru/blog">Блог</a>
+          <span>/</span>
+          <span>Закончился Premium</span>
+        </nav>
+        <div class="post-tag">Premium</div>
+        <h1 class="post-title">Закончился Telegram Premium: способы продления и что делать (2026)</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> После окончания Telegram Premium <strong>аккаунт и сообщения сохраняются</strong> — отключаются только Premium-функции (большие файлы, premium emoji, анимированная аватарка и др.). Premium, купленный через локальный бот, <strong>не продлевается автоматически</strong> — продлевается вручную. Самый быстрый способ: <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> через Click/Payme/Uzcard/Humo за 5–15 минут. Цены: 1 мес 57 000, 3 мес 172 000, 6 мес 232 000, 12 мес 422 000 сум.
+          </div>
+
+          <p>У вас закончился Telegram Premium или скоро закончится? Первый вопрос — что произойдёт и как продлить. В этой статье разбираются реальные последствия окончания Premium, как проверить срок и самые быстрые шаги продления. Статья написана для пользователя из Узбекистана: фокус на локальных ботах и платежах через Click/Payme/Uzcard/Humo.</p>
+
+          <h2>Что на самом деле происходит после окончания Premium?</h2>
+
+          <p>Главное беспокойство — "потеряется ли аккаунт или сохранятся ли сообщения?" Точный ответ: <strong>ничего не теряется</strong>. Как описано в официальном <a href="https://telegram.org/faq_premium" target="_blank" rel="noopener nofollow">Premium FAQ Telegram</a>, аккаунт, подписки на каналы, контакты и сообщения сохраняются полностью. Отключаются только Premium-функции.</p>
+
+          <p>Что именно отключается:</p>
+
+          <ul>
+            <li><strong>Лимит размера файла</strong> — с 4 ГБ возвращается к 2 ГБ (для новой загрузки)</li>
+            <li><strong>Premium emoji и стикеры</strong> — вы не можете отправлять premium emoji другим, но ранее отправленные не теряются</li>
+            <li><strong>Анимированная аватарка</strong> — если установлена анимированная картинка, превращается в статичный freeze-frame</li>
+            <li><strong>Faster download</strong> — скорость загрузки файлов ограничивается (обычный пользовательский уровень)</li>
+            <li><strong>Voice-to-text</strong> — функция перевода голосовых сообщений в текст отключается</li>
+            <li><strong>Premium reactions и translation</strong> — дополнительные emoji-реакции и перевод сообщений недоступны</li>
+            <li><strong>Лимит 1 000 каналов</strong> — возвращается лимит 500 каналов (избыточные архивируются)</li>
+            <li><strong>Режим без рекламы</strong> — в некоторых крупных публичных каналах могут появиться рекламные сообщения Telegram (на локальные каналы влияет минимально)</li>
+          </ul>
+
+          <p>После покупки нового пакета функции возвращаются сразу — анимированная аватарка снова работает, ранее отправленные premium emoji снова отображаются как premium и т.д.</p>
+
+          <h2>Как посмотреть, когда заканчивается Premium?</h2>
+
+          <p>Найти точную дату — 30 секунд:</p>
+
+          <ol>
+            <li>Откройте Telegram</li>
+            <li>Зайдите в <strong>Settings</strong> (Настройки)</li>
+            <li>Нажмите <strong>Telegram Premium</strong></li>
+            <li>Сверху — название текущего пакета и <strong>точная дата окончания</strong> (DD.MM.YYYY)</li>
+          </ol>
+
+          <p>На мобильной и Desktop версиях информация одинаковая. За 7 дней до окончания Telegram автоматически отправляет уведомление — это хорошее время для заблаговременного продления. Если на балансе есть Stars, проверьте также через <a href="/ru/blog/telegram-stars-hisobini-tekshirish">руководство по проверке баланса Stars</a>.</p>
+
+          <h2>Есть ли auto-renew?</h2>
+
+          <p>Это самый частый вопрос. Ответ <strong>зависит от способа покупки</strong>:</p>
+
+          <table class="price-table">
+            <thead>
+              <tr><th>Способ покупки</th><th>Auto-renew</th><th>Продление</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>App Store (iOS)</td><td>Да, включён по умолчанию</td><td>Автоматическое</td></tr>
+              <tr><td>Google Play (Android)</td><td>Да, включён по умолчанию</td><td>Автоматическое</td></tr>
+              <tr><td>Локальный реселлер-бот (Click/Payme/Uzcard/Humo)</td><td>Нет</td><td>Вручную</td></tr>
+              <tr><td>Через Telegram Stars</td><td>Нет</td><td>Вручную</td></tr>
+            </tbody>
+          </table>
+
+          <p>Premium, купленный через локальный бот, не продлевается автоматически — это особенность, не недостаток. Причина: бот отправляет одноразовую активацию через Bot Payments API или gift-канал Telegram, без оформления постоянной подписки. Плюс — с вас не списывают неожиданные платежи, и можно в любой момент перейти на другой пакет (например, с 6 на 12 месяцев).</p>
+
+          <p>Управление подписками App Store и Google Play — в настройках этих платформ (меню Subscriptions). Но для пользователей из Узбекистана этот путь часто практически закрыт — нужна иностранная карта и оплата часто не проходит.</p>
+
+          <h2>Самый быстрый способ продления (5–15 минут)</h2>
+
+          <p>Продление через локальный реселлер-бот — пошагово:</p>
+
+          <ol>
+            <li><strong>Откройте @starsjoybot</strong> — найдите в Telegram <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> и нажмите /start</li>
+            <li><strong>Выберите меню Premium</strong> — нажмите кнопку "Premium" или "Telegram Premium" в меню бота</li>
+            <li><strong>Выберите пакет</strong> — 1, 3, 6 или 12 месяцев (различия пакетов ниже)</li>
+            <li><strong>Введите username</strong> — на какой аккаунт активировать Premium (@username)</li>
+            <li><strong>Выберите платёжную систему</strong> — Click, Payme, Uzcard или Humo</li>
+            <li><strong>Подтвердите в банковском приложении</strong> — SMS-код или кнопка</li>
+            <li><strong>Подождите 5–15 минут</strong> — Premium активируется автоматически и придёт уведомление</li>
+          </ol>
+
+          <p class="natural-cta">Точные цены и различия пакетов — в статье <a href="/ru/blog/telegram-premium-paketlar-taqqoslash">Сравнение пакетов Premium</a>: цена за единицу для 1, 3, 6 и 12 месяцев и кому какой пакет подходит.</p>
+
+          <h2>Какой пакет выбрать при продлении?</h2>
+
+          <p>Выбор пакета при продлении зависит от того, на сколько вы планируете пользоваться Premium:</p>
+
+          <table class="price-table">
+            <thead>
+              <tr><th>Пакет</th><th>Цена</th><th>В месяц</th><th>Кому подходит</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1 месяц</td><td>57 000 сум</td><td>57 000 сум</td><td>Первая проба</td></tr>
+              <tr><td>3 месяца</td><td>172 000 сум</td><td>~57 333 сум</td><td>Краткосрочный фокус</td></tr>
+              <tr><td>6 месяцев</td><td>232 000 сум</td><td>~38 667 сум</td><td>Постоянный пользователь (популярнее всего)</td></tr>
+              <tr><td>12 месяцев</td><td>422 000 сум</td><td>~35 167 сум</td><td>Самый экономный (266 000 сум экономии в год vs 3-мес × 4)</td></tr>
+            </tbody>
+          </table>
+
+          <p>Цена за единицу самая низкая в 12-месячном пакете (35 167 сум/мес), самая высокая в 1-месячном (57 000 сум/мес). Если планируете пользоваться весь год и бюджет позволяет — 12 месяцев логичнее. Если вы постоянный пользователь, но 422 000 сум сразу тяжело — 6 месяцев (232 000) оптимальное среднее решение.</p>
+
+          <h2>Долгая пауза после окончания — есть ли потеря?</h2>
+
+          <p>Если не продлить сразу после окончания Premium, ничего "не теряется". Аккаунт, сообщения и настройки сохраняются полностью. В двух-трёх случаях стоит обратить внимание:</p>
+
+          <ul>
+            <li><strong>Анимированная аватарка</strong> — превращается в статичный freeze-frame, при продлении сразу возвращается</li>
+            <li><strong>Отправленные premium emoji</strong> — в ваших сообщениях у других выглядят как обычные (но данные emoji не теряются). При новом пакете во всех старых сообщениях premium-вид возвращается</li>
+            <li><strong>Подписки на 1 000+ каналов</strong> — лимит 500. Дополнительные автоматически архивируются (не теряются). При продлении снова раскрываются</li>
+            <li><strong>Файлы более 4 ГБ</strong> — для новой загрузки применяется лимит 2 ГБ. Ранее загруженные не теряются и могут быть приняты</li>
+          </ul>
+
+          <p>Даже после долгой паузы (месяцы, годы) при покупке нового пакета функции возвращаются полностью. Premium не связан со штрафом за "перерыв" или "повторное использование" со стороны Telegram.</p>
+
+          <h2>Проверка после нового пакета</h2>
+
+          <p>Проверка работы после продления — 1 минута:</p>
+
+          <ol>
+            <li><strong>Settings → Telegram Premium</strong> — обновилась ли новая дата окончания?</li>
+            <li>Появилась ли в профиле звезда Premium (★)?</li>
+            <li>Попробуйте использовать premium emoji (в новом сообщении) — отображается правильно?</li>
+            <li>Откройте любой чат — видна ли кнопка voice-to-text?</li>
+          </ol>
+
+          <p>Если всё в порядке, Premium активен. Если в течение 30 минут не активировался, напишите в <a href="https://t.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> — оператор быстро поможет.</p>
+
+          <h2>Что делать заблаговременно?</h2>
+
+          <p>За 7 дней до окончания Telegram отправляет автоматическое уведомление. В это время лучшие шаги:</p>
+
+          <ul>
+            <li><strong>Выбрать новый пакет</strong> — по частоте использования. Для постоянного пользователя логично 6 или 12 месяцев</li>
+            <li><strong>Продлить заранее</strong> — если купить новый пакет до окончания текущего, время не теряется: новый срок добавляется к текущему</li>
+            <li><strong>Подготовить оплату</strong> — на Click или Payme достаточно средств, или Uzcard/Humo карта в руке</li>
+          </ul>
+
+          <p>При заблаговременном продлении Premium-функции не отключаются ни на минуту — анимированная аватарка не пропадает, premium emoji продолжают отображаться правильно.</p>
+
+          <h2>Часто задаваемые вопросы</h2>
+
+          <div class="post-faq">
+            <div class="post-faq-item">
+              <h3>Что происходит, когда заканчивается срок Premium?</h3>
+              <p>Premium-функции (большие файлы, premium emoji, анимированная аватарка, voice-to-text, faster download) отключаются автоматически. Аккаунт, сообщения, каналы и настройки сохраняются полностью. После нового пакета всё возвращается сразу.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Как посмотреть, когда заканчивается Premium?</h3>
+              <p>Settings → Telegram Premium — там название пакета и точная дата окончания (DD.MM.YYYY). На мобильной и Desktop одинаково. За 7 дней до окончания приходит автоматическое уведомление.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Auto-renew не сработал — что делать?</h3>
+              <p>Premium, купленный через локальный реселлер-бот, не продлевается автоматически (это особенность) — продлевается вручную в конце каждого срока. Auto-renew работает только в подписках через App Store или Google Play.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Можно продлить Premium заранее?</h3>
+              <p>Да. При покупке нового пакета до окончания текущего новый срок добавляется к текущему — время не теряется. Пример: за месяц до окончания 12-месячного купите 6 месяцев — итого ещё 7 месяцев Premium.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Сообщения и настройки не теряются после окончания?</h3>
+              <p>Нет. Аккаунт, сообщения, подписки на каналы, контакты и настройки сохраняются полностью. Отключаются только Premium-функции и возвращаются сразу с новым пакетом.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Какой самый быстрый способ продления?</h3>
+              <p>@starsjoybot через Click/Payme/Uzcard/Humo за 5–15 минут. Официальный путь Telegram (App Store, Google Play) требует иностранную карту и для пользователя из Узбекистана часто практически закрыт.</p>
+            </div>
+          </div>
+
+          <h2>Вывод</h2>
+
+          <p>Окончание срока Telegram Premium — не катастрофа: аккаунт и сообщения полностью сохраняются, отключаются только Premium-функции. После нового пакета все функции возвращаются сразу (анимированная аватарка, premium emoji, большие файлы и др.). Premium через локальный реселлер-бот не продлевается автоматически — продлевается вручную в конце срока, но это гарантирует отсутствие неожиданных платежей.</p>
+
+          <p>Самый быстрый способ продления — <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> за 5–15 минут. Оплата через Click, Payme, Uzcard или Humo, пакет активируется сразу. Для постоянного пользователя логичен 6-месячный (232 000) или 12-месячный (422 000) — цена за единицу значительно ниже, чем в 1-месячном.</p>
+
+          <div class="end-cta">
+            <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">Продлить Premium — @starsjoybot &rarr;</a>
+          </div>
+
+          <h2>Читайте также</h2>
+
+          <ul class="related-list">
+            <li><a href="/ru/blog/telegram-premium-paketlar-taqqoslash">Пакеты Telegram Premium: 1, 3, 6, 12 месяцев — сравнение</a></li>
+            <li><a href="/ru/blog/telegram-premium-12-oylik">Как купить 12 месяцев Telegram Premium</a></li>
+            <li><a href="/ru/blog/telegram-premium-uzcard">Покупка Telegram Premium через Uzcard</a></li>
+            <li><a href="/ru/blog/telegram-premium-sotib-olish">Покупка Telegram Premium — самый быстрый способ</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 820px;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    word-wrap: break-word;
+  }
+
+  .post-meta {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 0.9rem; color: var(--text-muted);
+  }
+
+  .post-body { padding: 60px 24px; }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 48px 0 20px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 10px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .tldr-box {
+    background: #FFF8E6;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-left: 4px solid #F59E0B;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 0 0 28px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box strong { color: #B45309; }
+  .tldr-box a { color: var(--primary); font-weight: 600; }
+
+  .natural-cta {
+    background: #F8F6FF;
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 24px 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+  .natural-cta strong { color: var(--primary); }
+
+  .end-cta {
+    margin: 32px 0 24px;
+    padding: 14px 18px;
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .end-cta a {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 24px;
+    font-size: 0.95rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .price-table th,
+  .price-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-table th {
+    background: #F8F6FF;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .price-table tr:last-child td { border-bottom: none; }
+
+  .post-faq { margin: 24px 0; }
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 12px;
+  }
+  .post-faq-item h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+  .post-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+  .related-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 16px 0 32px;
+  }
+  .related-list li {
+    padding: 12px 16px;
+    background: #F8F6FF;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  .related-list a {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 0.96rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.55rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.02rem; }
+    .post-content p, .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 18px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .price-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .price-table th, .price-table td { padding: 10px 12px; white-space: nowrap; }
+  }
+</style>
