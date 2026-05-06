@@ -1,0 +1,598 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Telegram Mini App'da Stars bilan to'lov: qanday ishlaydi va xavfsizmi? (2026) | StarsJoy Blog";
+const description = "Telegram Mini App'da Stars bilan to'lov nima, qanday ishlaydi, qaysi mashhur Mini App'lar Stars qabul qiladi va to'lov bosqichlari — to'liq qo'llanma 2026.";
+const publishDate = "2026-05-07";
+const modifiedDate = "2026-05-07";
+const wordCount = 1750;
+const canonical = "https://starsjoy.uz/blog/telegram-mini-app-stars-tolov";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="Telegram Mini App Stars, Mini App'da Stars to'lov, Mini App qanday to'lash, Stars Mini App, Telegram WebApp to'lov, Hamster Stars, Notcoin Stars, Mini App 2026, StarsJoy"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-mini-app-stars-tolov" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-mini-app-stars-tolov" }
+  ]}
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Telegram Mini App'da Stars bilan to'lov: qanday ishlaydi va xavfsizmi? (2026)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "Telegram Mini App Stars to'lov, Mini App, WebApp, Stars 2026, StarsJoy",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": canonical,
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://starsjoy.uz/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Mini App'da Stars to'lov", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram Mini App'da Stars bilan to'lov qilish",
+    "description": "Mini App ichida tovar yoki xizmat uchun Stars bilan to'lov bosqichlari.",
+    "totalTime": "PT1M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram ilovasi" },
+      { "@type": "HowToTool", "name": "Stars balansida etarli miqdor" }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Mini App ni oching",
+        "text": "Botni topib /start bosing yoki Mini App tugmasini bosing. Mini App Telegram ichida ochiladi."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Tovar yoki xizmatni tanlang",
+        "text": "Mini App ichida sizga kerakli mahsulot, paket yoki funksiyani tanlang."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Stars bilan to'lash tugmasini bosing",
+        "text": "To'lov sahifasida \"Pay XX Stars\" tugmasi paydo bo'ladi. Telegram'ning rasmiy to'lov interfeysi (sariq Stars belgisi) ochiladi."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "To'lovni tasdiqlang",
+        "text": "Telegram interfeysida summa va Mini App nomini tekshiring, \"Confirm\" yoki \"Pay\" ni bosing. Qo'shimcha SMS yoki kod kerak emas."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Tovar yoki xizmat avtomatik tushadi",
+        "text": "To'lov tasdiqlangandan keyin tovar yoki xizmat darhol Mini App ichida aktivlashadi. Tranzaksiya tarixi Settings → Telegram Stars'da ko'rinadi."
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Telegram Mini App nima va Stars qanday ishlatiladi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mini App — Telegram ichida ochiladigan to'liq web-ilovasi. Bot ichidan kichik tugma bilan ochiladi va sizga mobil ilovaga o'xshash interfeys taqdim etadi: katalog, profil, sozlamalar, to'lov sahifalari. Stars Mini App'da ichki valyuta sifatida ishlatiladi — tovar sotib olish, premium funksiyalar yoqish, oyin ichi to'lovlar va boshqalar uchun. Telegram'ning rasmiy Bot Payments API orqali to'lov amalga oshiriladi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mini App'da Stars bilan to'lov xavfsizmi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ha, agar Mini App rasmiy va Telegram'ning Bot Payments API orqali ishlasa. To'lov interfeysi har doim Telegram'ning o'zi tomonidan ko'rsatiladi (sariq Stars belgisi va \"Pay\" tugmasi) — Mini App o'zi to'g'ridan-to'g'ri Stars'ni ololmaydi. Telegram interfeysida summa, qabul qiluvchi nom va Mini App nomi aniq ko'rsatilgan bo'ladi. Lekin shubhali Mini App'lar o'z ichida soxta to'lov tugmalari ko'rsatishi mumkin — har doim Telegram'ning rasmiy interfeysidan to'lashga ishonch hosil qiling."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qaysi mashhur Mini App'lar Stars qabul qiladi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "2026-yilda Stars qabul qiluvchi Mini App'lar yuzlab. Eng mashhurlari: oyinlar (Hamster Kombat, Notcoin va boshqa play-to-earn), e-com platformalari, NFT va kollektsiya marketplace'lari, ta'lim platformalari, kontent yaratuvchi platformalari. Telegram'ning rasmiy katalogida Mini App'larni qidirish uchun bot bilan ishlash kerak yoki Telegram qidiruvida \"Mini Apps\" toifasini tanlash mumkin. Yangi Mini App'lar oydan-oyga qo'shilib bormoqda."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Stars bilan to'lasangiz refund qilish mumkinmi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mini App'da Stars bilan to'lov refund qoidalari Telegram'ning umumiy Stars siyosatiga bo'ysunadi: 14 kun ichida tovar yoki xizmat ishlatilmagan bo'lsa, ba'zi holatlarda refund mumkin. Lekin amalda Mini App'da to'lov ko'pincha darhol tovarni yetkazadi (oyin ichi mahsulot, kontent ochish va h.k.) — shu sababli refund kamdan-kam qo'llaniladi. Aniq refund jarayoni uchun Mini App operatori bilan bog'lanish kerak."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Stars balansim yetmasa Mini App'da nima qilish kerak?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To'lov tugmasi bosilganda Telegram avtomatik balansni tekshiradi. Yetarli emas bo'lsa, Telegram \"Stars yetishmaydi\" xabari ko'rsatadi va Stars qo'shish taklif qiladi. Mahalliy reseller bot orqali tezkor to'ldirib, qaytib Mini App'ga to'lov qilish 5–10 daqiqada amalga oshadi. Tezkor sxema — @starsjoybot orqali Click yoki Payme bilan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mini App'da to'lov qilganda nima Telegram tomonidan saqlanadi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Telegram tranzaksiya tarixini saqlaydi: qachon, qancha Stars, qaysi Mini App'ga to'langan. Bu ma'lumot Settings → Telegram Stars menyusida har doim ko'rinadi. Mini App o'zi siz haqingizda umumiy Telegram identifikatori (User ID) va to'lov fakti haqida ma'lumot oladi — lekin sizning karta yoki banking ma'lumotlari Telegram tomonidan Mini App'ga uzatilmaydi. Bu Mini App ekosistemasining muhim xavfsizlik xususiyati."
+        }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/">Bosh sahifa</a>
+          <span>/</span>
+          <a href="/blog">Blog</a>
+          <span>/</span>
+          <span>Mini App'da Stars to'lov</span>
+        </nav>
+        <div class="post-tag">Stars</div>
+        <h1 class="post-title">Telegram Mini App'da Stars bilan to'lov: qanday ishlaydi va xavfsizmi? (2026)</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Telegram Mini App — bot ichidan ochiladigan to'liq web-ilova. Mini App ichida <strong>Stars bilan to'lov</strong> Telegram'ning rasmiy Bot Payments API orqali amalga oshiriladi: foydalanuvchi "Pay XX Stars" tugmasini bosadi, Telegram interfeysi (sariq Stars belgisi) summani tasdiqlaydi va to'lov 1 daqiqa ichida tugaydi. Xavfsiz — Mini App sizning karta ma'lumotlaringizni ololmaydi, faqat to'lov fakti haqida xabar oladi. Stars yetmasa @starsjoybot orqali Click/Payme bilan 5 daqiqada to'ldirib, qaytib davom etish mumkin.
+          </div>
+
+          <p>2024-yildan beri Telegram Mini App ekosistemasi tezda kengaydi: oyinlar, e-com platformalari, NFT marketplace'lari, ta'lim ilovalari va kontent platformalari Mini App ko'rinishida ishga tushdi. Ko'pchiligi to'lov sifatida Telegram Stars qabul qiladi. Bu maqolada Mini App'da Stars bilan to'lov qanday ishlashi, xavfsizligi va amaliy bosqichlar batafsil ko'rib chiqiladi.</p>
+
+          <h2>Telegram Mini App nima?</h2>
+
+          <p>Mini App — Telegram bot ichidan ochiladigan to'liq web-ilova. Texnik nuqtai nazardan bu HTML/JS/CSS asosidagi sahifa, Telegram ilovasining ichida render bo'ladi va foydalanuvchiga tabiiy mobil ilovaga o'xshash interfeys taqdim etadi.</p>
+
+          <p>Asosiy farq oddiy bot bilan — Mini App vizual jihatdan boy va to'liq ilova darajasida ishlaydi: katalog ko'rsatish, profil sahifalari, oyin grafikasi, real-time interaktsiya. Telegram'ning rasmiy <a href="https://core.telegram.org/bots/webapps" target="_blank" rel="noopener nofollow">Mini Apps hujjatida</a> tafsilot bor.</p>
+
+          <p>Mini App'larning asosiy turlari:</p>
+
+          <ul>
+            <li><strong>Oyinlar</strong> — play-to-earn, casual, arcade (Hamster Kombat, Notcoin va boshqalar mashhur misollar)</li>
+            <li><strong>E-com platformalari</strong> — kichik magazinlar, marketplace'lar, mahsulot katalogi</li>
+            <li><strong>NFT va kollektsiya</strong> — Telegram NFT Gifts'ni sotuv, jamg'armani ko'rib chiqish</li>
+            <li><strong>Ta'lim platformalari</strong> — kurslar, mashqlar, sertifikat tizimlari</li>
+            <li><strong>Kontent yaratuvchi tools</strong> — sticker setlari, premium kontent ochish</li>
+            <li><strong>Reseller botlar</strong> — Stars/Premium savdo botlari (StarsJoy ham Mini App ko'rinishida ishlaydi)</li>
+          </ul>
+
+          <h2>Stars Mini App'da qanday ishlatiladi?</h2>
+
+          <p>Stars Mini App ichida ichki valyuta sifatida turli vaziyatlarda ishlatiladi:</p>
+
+          <h3>Tovar yoki xizmat sotib olish</h3>
+          <p>E-com Mini App'larda mahsulot uchun to'lash. Misol: 100 Stars bilan virtual sticker seti, 500 Stars bilan oyin ichi premium aksessuar, 1000 Stars bilan NFT collectible.</p>
+
+          <h3>Premium funksiya yoqish</h3>
+          <p>Mini App ichida cheklangan funksionallik bor — premium foydalanuvchilar qo'shimcha imkoniyatlarga ega. Stars to'lab funksionallik kengaytiriladi.</p>
+
+          <h3>Oyin ichi to'lovlar</h3>
+          <p>Play-to-earn va casual oyinlarda virtual valyuta, ekipirovka, qadam yoki energiya sotib olish.</p>
+
+          <h3>Obuna yoki tarif</h3>
+          <p>Ba'zi Mini App'lar oylik obuna sifatida ishlaydi — Stars bilan obuna olib, ma'lum vaqt davomida funksionallik ochilgan bo'ladi.</p>
+
+          <h3>Tip va donat</h3>
+          <p>Kontent yaratuvchi yoki dasturchini qo'llab-quvvatlash uchun bevosita tip yuborish.</p>
+
+          <h2>To'lov mexanizmi qanday ishlaydi?</h2>
+
+          <p>Bu eng muhim qism. Mini App'da Stars to'lov ikki bosqichdan iborat:</p>
+
+          <h3>Bosqich 1: Mini App'ning ko'rsatishi</h3>
+          <p>Mini App ichida tovar yoki xizmat ko'rsatiladi va "Pay 100 Stars" yoki "Buy with Stars" tugmasi bo'ladi. Tugmani bosganda Mini App Telegram'ning Bot Payments API ga so'rov yuboradi.</p>
+
+          <h3>Bosqich 2: Telegram'ning rasmiy to'lov interfeysi</h3>
+          <p>Mini App so'rovi Telegram tomonidan ushlanadi va foydalanuvchi oldida <strong>Telegram'ning o'zining</strong> to'lov sahifasi ochiladi. Bu sahifada:</p>
+
+          <ul>
+            <li>Sariq Stars belgisi (★) — vizual signal</li>
+            <li>Aniq summa (Stars'da)</li>
+            <li>Qabul qiluvchi: Mini App nomi va dasturchining ma'lumoti</li>
+            <li>"Confirm" yoki "Pay" tugmasi</li>
+            <li>Foydalanuvchining joriy Stars balansi</li>
+          </ul>
+
+          <p>Foydalanuvchi tasdiqlaydi va to'lov 1-2 soniyada amalga oshadi. Stars darhol balansdan kamayadi va Mini App tovar yoki xizmatni aktivlashtiradi.</p>
+
+          <h2>To'lovning xavfsizligi</h2>
+
+          <p>Mini App ekosistemasining muhim xususiyati — to'lov interfeysi har doim Telegram'ning o'zi tomonidan ko'rsatiladi, Mini App o'zi to'g'ridan-to'g'ri Stars'ni olishi mumkin emas. Bu xavfsizlikning asosiy mexanizmi.</p>
+
+          <p>Xavfsizlik elementlari:</p>
+
+          <ul>
+            <li><strong>Mini App sizning karta ma'lumotlaringizni ko'rmaydi</strong> — Telegram'ga karta ma'lumotlari emas, faqat Stars summasi yuboriladi</li>
+            <li><strong>Telegram interfeysi har doim Mini App'dan tashqarida</strong> — to'lov tasdiqlash sahifasi soxtalashtirilishi qiyin</li>
+            <li><strong>To'lov tarixi saqlanadi</strong> — har bir tranzaksiya Settings → Telegram Stars'da ko'rinadi</li>
+            <li><strong>Mini App fakti haqida ma'lumot oladi</strong> — siz haqingizda Telegram User ID va to'lov muvaffaqiyat statusi, lekin shaxsiy ma'lumotlar emas</li>
+            <li><strong>Refund qoidalari Telegram'ga bog'liq</strong> — 14 kun ichida ishlatilmagan to'lov refund qilinishi mumkin</li>
+          </ul>
+
+          <p>Lekin diqqat: shubhali Mini App'lar o'z ichida soxta "to'lov" tugmalarini ko'rsatishi mumkin (haqiqiy Telegram interfeysidan tashqari). Har doim Telegram'ning <strong>sariq Stars belgisi va "Pay" tugmasi</strong> ko'rinishini tekshiring. Agar tugma Mini App ichida bo'lsa va Telegram interfeysi ochilmasa — bu shubhali signal.</p>
+
+          <p class="natural-cta">Mini App va boshqa Telegram xizmatlarida xavfsiz to'lov haqida — <a href="/blog/telegram-stars-firibgarlik-himoya">Stars firibgarlardan himoya</a> qo'llanmasida.</p>
+
+          <h2>To'lov bosqichlari (foydalanuvchi nuqtai nazaridan)</h2>
+
+          <p>Bosqichma-bosqich amaliy ko'rsatma:</p>
+
+          <ol>
+            <li><strong>Mini App ni oching</strong> — botni topib /start bosing yoki Mini App tugmasini bosing</li>
+            <li><strong>Tovar/xizmatni tanlang</strong> — Mini App ichida kerakli mahsulot yoki funksiyani tanlang</li>
+            <li><strong>"Pay XX Stars" tugmasini bosing</strong> — to'lov tugmasini bosing</li>
+            <li><strong>Telegram interfeysi ochiladi</strong> — sariq Stars belgisi va summa ko'rsatiladi</li>
+            <li><strong>Ma'lumotlarni tekshiring</strong> — Mini App nomi, summa va tovar tafsilotini tasdiqlang</li>
+            <li><strong>"Confirm" tugmasini bosing</strong> — to'lov tasdiqlanadi</li>
+            <li><strong>Tovar darhol aktivlashadi</strong> — Mini App'da tovar yoki funksionallik darhol ochiladi</li>
+          </ol>
+
+          <p>Jami vaqt — 30-60 soniya. SMS-kod yoki qo'shimcha tasdiqlash kerak emas (chunki Stars allaqachon balansingizda).</p>
+
+          <h2>Stars yetmasa nima qilish kerak?</h2>
+
+          <p>To'lov tugmasini bosganda Telegram avtomatik tarzda balansni tekshiradi. Stars yetarli emas bo'lsa, Telegram quyidagi yo'llarni taklif qiladi:</p>
+
+          <ul>
+            <li><strong>"Buy more Stars" tugmasi</strong> — Telegram'ning rasmiy interfeysi orqali, lekin App Store yoki Google Play orqali (xorijiy karta talab qilinadi)</li>
+            <li><strong>Mini App ni tark etib boshqa joydan to'ldirish</strong> — mahalliy bot orqali, keyin qaytib Mini App'ga davom etish</li>
+          </ul>
+
+          <p>O'zbekiston foydalanuvchilari uchun amaliy yo'l — <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click/Payme bilan 5 daqiqada Stars to'ldirish, keyin Mini App'ga qaytib to'lovni davom ettirish. Tezkor sxema — <a href="/blog/telegram-stars-tez-toldirish">5 daqiqada Stars to'ldirish</a> qo'llanmasida.</p>
+
+          <h2>Mashhur Mini App'lar va ulardagi to'lovlar</h2>
+
+          <p>2026-yilda Stars qabul qiluvchi Mini App'lar yuzlab. Eng mashhur kategoriyalar:</p>
+
+          <table class="price-table">
+            <thead>
+              <tr><th>Kategoriya</th><th>Mashhur misollar</th><th>O'rtacha to'lov (Stars)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Play-to-earn oyinlar</td><td>Hamster Kombat, Notcoin tipidagi</td><td>50–500 Stars</td></tr>
+              <tr><td>NFT marketplace</td><td>Telegram Gifts marketplace, Fragment kontekstida</td><td>500–10 000 Stars</td></tr>
+              <tr><td>E-com va katalog</td><td>Kichik biznes va kontent yaratuvchi do'konlari</td><td>100–2 000 Stars</td></tr>
+              <tr><td>Ta'lim va kurs</td><td>Til, dasturlash, ko'nikma kurslari</td><td>500–5 000 Stars</td></tr>
+              <tr><td>Reseller (Stars/Premium savdo)</td><td>StarsJoy va o'xshash botlar</td><td>50–10 000 Stars</td></tr>
+              <tr><td>Tip va donat</td><td>Kontent yaratuvchi qo'llab-quvvatlash</td><td>10–1 000 Stars</td></tr>
+            </tbody>
+          </table>
+
+          <p>Yangi Mini App'lar oydan-oyga qo'shilib boradi. Telegram'ning Apps katalogi yoki ijtimoiy media kanallari orqali yangi popüler Mini App'larni topish mumkin.</p>
+
+          <h2>Mini App ichidagi to'lov vs Stars sotib olish — farqi</h2>
+
+          <p>Ko'p foydalanuvchi savol beradi — "Mini App'da to'lov qilganda Stars qaysidir tarzda olinmaydimi?" Yo'q, jarayon teskari:</p>
+
+          <ol>
+            <li><strong>Birinchi:</strong> siz Stars'ni alohida sotib olasiz (App Store, Google Play, Fragment yoki mahalliy bot orqali)</li>
+            <li><strong>Stars balansingizda turadi</strong> (cheksiz vaqt — <a href="/blog/telegram-stars-amal-muddati">Stars amal muddati</a> qo'llanmasida)</li>
+            <li><strong>Keyin Mini App'da</strong> tovar uchun balansdan Stars'ni ishlatasiz</li>
+          </ol>
+
+          <p>Ya'ni Mini App o'zi Stars sotmaydi — u sizning balansingizdan Stars'ni qabul qiladi. Bu farq foydalanuvchi uchun afzallik: bir martagina Stars sotib olib, ko'p Mini App'larda turli xaridlar amalga oshirish mumkin.</p>
+
+          <h2>Tez-tez beriladigan savollar</h2>
+
+          <div class="post-faq">
+            <div class="post-faq-item">
+              <h3>Telegram Mini App nima va Stars qanday ishlatiladi?</h3>
+              <p>Mini App — Telegram ichida ochiladigan to'liq web-ilovasi. Bot ichidan kichik tugma bilan ochiladi va sizga mobil ilovaga o'xshash interfeys taqdim etadi. Stars ichki valyuta — tovar sotib olish, premium funksiyalar, oyin ichi to'lovlar va boshqalar uchun. Bot Payments API orqali to'lov amalga oshadi.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Mini App'da Stars bilan to'lov xavfsizmi?</h3>
+              <p>Ha, agar Mini App rasmiy va Bot Payments API orqali ishlasa. To'lov interfeysi har doim Telegram'ning o'zi tomonidan ko'rsatiladi (sariq Stars belgisi). Mini App o'zi to'g'ridan-to'g'ri Stars'ni ololmaydi — Telegram interfeysidan tashqari "to'lov" tugmasi shubhali signal.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Qaysi mashhur Mini App'lar Stars qabul qiladi?</h3>
+              <p>2026-yilda yuzlab — oyinlar (Hamster Kombat, Notcoin va boshqa play-to-earn), e-com platformalari, NFT marketplace'lari, ta'lim platformalari, reseller botlari, tip va donat ilovalari. Yangilari oydan-oyga qo'shiladi.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Stars bilan to'lasangiz refund qilish mumkinmi?</h3>
+              <p>14 kun ichida tovar yoki xizmat ishlatilmagan bo'lsa, ba'zi holatlarda mumkin. Lekin amalda Mini App'da to'lov ko'pincha darhol tovarni yetkazadi (oyin ichi, kontent ochish), shu sababli refund kamdan-kam. Aniq jarayon Mini App operatori bilan.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Stars yetmasa Mini App'da nima qilish kerak?</h3>
+              <p>Telegram avtomatik balansni tekshiradi. Yetarli emas bo'lsa, Stars qo'shish taklif qiladi. Mahalliy reseller bot orqali tezkor to'ldirib (5 daqiqada Click yoki Payme bilan), qaytib Mini App'ga to'lov davom ettirish mumkin.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Mini App'da to'lov qilganda nima Telegram saqlanadi?</h3>
+              <p>Tranzaksiya tarixi: qachon, qancha Stars, qaysi Mini App. Mini App'ga sizning karta yoki banking ma'lumotlari uzatilmaydi — faqat User ID va to'lov fakti. Ma'lumotlarning xavfsizligi Mini App ekosistemasining muhim xususiyati.</p>
+            </div>
+          </div>
+
+          <h2>Xulosa</h2>
+
+          <p>Telegram Mini App'da Stars bilan to'lov 2026-yilga kelib oddiy va keng qo'llaniladigan jarayon: oyinlar, e-com, NFT, ta'lim va reseller Mini App'larida ichki to'lov vositasi sifatida ishlatiladi. Telegram'ning rasmiy Bot Payments API mexanizmi tufayli xavfsiz — to'lov interfeysi har doim Telegram tomonidan ko'rsatiladi va Mini App sizning shaxsiy ma'lumotlaringizni ololmaydi.</p>
+
+          <p>Stars balansingiz bo'lsa, Mini App'da to'lov 30-60 soniya ichida amalga oshadi. Yetmasa — <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click/Payme bilan 5 daqiqada to'ldirib, qaytib davom etish mumkin. 1 Star = 240 so'm reseller kursida — aniq summalarni hisoblash oson.</p>
+
+          <div class="end-cta">
+            <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">Stars to'ldirish — @starsjoybot &rarr;</a>
+          </div>
+
+          <h2>Shuni ham o'qing</h2>
+
+          <ul class="related-list">
+            <li><a href="/blog/telegram-stars-paketlari-taqqoslash">Telegram Stars paketlari taqqoslash: 50, 100, 500, 1000</a></li>
+            <li><a href="/blog/telegram-stars-tez-toldirish">Telegram Stars'ni 5 daqiqada to'ldirish</a></li>
+            <li><a href="/blog/telegram-stars-amal-muddati">Telegram Stars qancha vaqt amal qiladi</a></li>
+            <li><a href="/blog/telegram-stars-firibgarlik-himoya">Stars sotib olishda firibgarlardan himoya</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 820px;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    word-wrap: break-word;
+  }
+
+  .post-meta {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 0.9rem; color: var(--text-muted);
+  }
+
+  .post-body { padding: 60px 24px; }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 48px 0 20px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 10px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .tldr-box {
+    background: #FFF8E6;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-left: 4px solid #F59E0B;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 0 0 28px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box strong { color: #B45309; }
+  .tldr-box a { color: var(--primary); font-weight: 600; }
+
+  .natural-cta {
+    background: #F8F6FF;
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 24px 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+  .natural-cta strong { color: var(--primary); }
+
+  .end-cta {
+    margin: 32px 0 24px;
+    padding: 14px 18px;
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .end-cta a {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 24px;
+    font-size: 0.95rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .price-table th,
+  .price-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-table th {
+    background: #F8F6FF;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .price-table tr:last-child td { border-bottom: none; }
+
+  .post-faq { margin: 24px 0; }
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 12px;
+  }
+  .post-faq-item h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+  .post-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+  .related-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 16px 0 32px;
+  }
+  .related-list li {
+    padding: 12px 16px;
+    background: #F8F6FF;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  .related-list a {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 0.96rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.55rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.02rem; }
+    .post-content p, .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 18px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .price-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .price-table th, .price-table td { padding: 10px 12px; white-space: nowrap; }
+  }
+</style>

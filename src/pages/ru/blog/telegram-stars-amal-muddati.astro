@@ -1,0 +1,535 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+
+const title = "Сколько действуют Telegram Stars и не сгорают ли они? (2026) | Блог StarsJoy";
+const description = "Есть ли срок действия у Telegram Stars, сгорают ли Stars на балансе, правила refund и куда деваются Stars при удалении аккаунта — полное объяснение.";
+const publishDate = "2026-05-06";
+const modifiedDate = "2026-05-06";
+const wordCount = 1680;
+const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-amal-muddati";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="срок действия Telegram Stars, сгорают ли Stars, сколько действуют Stars, refund Stars, Stars сгорели, Telegram Stars 2026, Stars пропадают, StarsJoy"
+  lang="ru"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-stars-amal-muddati" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-stars-amal-muddati" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Сколько действуют Telegram Stars и не сгорают ли они? (2026)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "срок действия Telegram Stars, сгорают ли Stars, refund Stars, StarsJoy",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": canonical,
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Срок действия Stars", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Сколько времени действуют Telegram Stars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "У Telegram Stars НЕТ срока действия — после покупки они хранятся на аккаунте бессрочно. Не сгорают, не уменьшаются со временем и не списываются автоматически. Это указано в официальной политике Stars: Stars — внутренняя валюта экосистемы Telegram, не привязанная ко времени. Stars на вашем балансе доступны для использования через 1 год или 5 лет в той же ценности."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "В каких случаях Stars могут пропасть с аккаунта?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Stars уходят с аккаунта в нескольких случаях: (1) вы их используете — на покупку Gift, оплату paid каналов, оплату в Mini App. (2) Аккаунт блокируется Telegram за нарушение правил — Stars вместе с аккаунтом приостанавливаются. (3) Вы удаляете аккаунт сами — Stars пропадают (вместе со всем содержимым аккаунта). Других автоматических потерь нет."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно ли сделать refund (вернуть) Stars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "По официальной политике refund Telegram: если Stars не использованы в течение 14 дней с покупки, можно запросить возврат. Процесс описан в документации Stars Refund. Для Stars, купленных через App Store и Google Play, действуют политики этих платформ. Для Stars через локальный реселлер-бот нужно связаться с оператором бота — у каждого бота своя политика refund."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Если мой аккаунт удалили, вернутся ли Stars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Нет. Если аккаунт удалён (вами или Telegram), все данные — сообщения, контакты и баланс Stars — пропадают и не подлежат возврату. Поэтому вместо хранения большого баланса Stars рекомендуется покупать нужное количество и сразу использовать. О защите аккаунта — в статье о защите от мошенников."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Я отправил Stars контакту, но он удалил аккаунт — куда делись Stars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Если Stars дошли и контакт потом удалил аккаунт — Stars пропали вместе с тем аккаунтом. Telegram не предоставляет автоматическую компенсацию ни принимающему, ни отправителю. Для предотвращения таких ситуаций перед отправкой больших сумм Stars стоит убедиться в активности аккаунта получателя."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Пропадают ли Stars при окончании Telegram Premium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Нет. Stars и Premium — разные системы. Когда заканчивается срок Premium (месячный, годовой), Premium-функции отключаются, но это не влияет на баланс Stars на аккаунте. Stars сохраняются и доступны для использования позже. Даже когда Premium снова активируется, Stars никуда не делись."
+        }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <a href="/ru/blog">Блог</a>
+          <span>/</span>
+          <span>Срок действия Stars</span>
+        </nav>
+        <div class="post-tag">Stars</div>
+        <h1 class="post-title">Сколько действуют Telegram Stars и не сгорают ли они? (2026)</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> У Telegram Stars <strong>НЕТ срока действия</strong> — после покупки хранятся на аккаунте бессрочно и не сгорают. Stars уходят с аккаунта только в 4 случаях: (1) вы используете, (2) аккаунт блокирует Telegram, (3) вы удаляете аккаунт сами, (4) делаете refund (в течение 14 дней с покупки). Не уменьшаются со временем, не списываются автоматически, не сгорают. Окончание Premium не влияет на Stars.
+          </div>
+
+          <p>Перед покупкой Telegram Stars или при накоплении большого баланса один из самых естественных вопросов — "Сколько времени действуют Stars? Сгорают ли они? Что будет, если их не будет на аккаунте через месяц?" В этой статье разбираются официальная политика срока действия Stars, в каких случаях они пропадают и в каких сохраняются — всё точно.</p>
+
+          <h2>Официальный срок действия Stars</h2>
+
+          <p>В официальной <a href="https://core.telegram.org/api/stars" target="_blank" rel="noopener nofollow">документации Stars от Telegram</a> прямо сказано: Stars — внутренняя валюта экосистемы Telegram, не привязанная ко времени. Купленные Stars хранятся на аккаунте бессрочно. Всегда действует:</p>
+
+          <ul>
+            <li>После покупки Stars <strong>срок не начинается</strong> — таймера нет</li>
+            <li>Через 1 месяц, 1 год или 5 лет Stars на балансе сохраняются в той же ценности</li>
+            <li>Неактивность аккаунта (перерыв в использовании) не влияет на Stars</li>
+            <li>Telegram не имеет процесса автоматического "сгорания" Stars</li>
+            <li>Окончание Premium или его отсутствие не влияет на баланс Stars</li>
+          </ul>
+
+          <p>Это отличает Stars от "традиционных" банковских сертификатов и промокодов. У банковских карт есть срок (3-5 лет), у промокодов — обычно несколько недель/месяцев. У Stars — бессрочно. Экономическая логика проста: Stars — внутреннее средство платежа Telegram, и ограничение по времени принуждало бы пользователя "тратить быстрее", что не выгодно платформе.</p>
+
+          <h2>В каких случаях Stars уходят с аккаунта?</h2>
+
+          <p>Существует 4 пути потери Stars — других автоматических потерь нет:</p>
+
+          <h3>1. Вы используете Stars</h3>
+          <p>Самый естественный путь. Случаи использования Stars:</p>
+          <ul>
+            <li>Покупка Telegram Gift и отправка другу</li>
+            <li>Подписка на paid канал или открытие paid post</li>
+            <li>Оплата в Mini App</li>
+            <li>Установка premium reactions (1 реакция = 1 Star)</li>
+            <li>Конвертация в Telegram Premium (через Stars)</li>
+          </ul>
+          <p>История каждой транзакции видна через руководство <a href="/ru/blog/telegram-stars-hisobini-tekshirish">Проверка баланса Stars</a> — когда, сколько и на что потрачено.</p>
+
+          <h3>2. Telegram блокирует аккаунт</h3>
+          <p>Если вы нарушаете правила Telegram (мошенничество, спам, нелегальный контент), Telegram может временно или полностью заблокировать аккаунт. При блокировке баланс Stars также приостанавливается. Это редкая ситуация — при обычном использовании такого риска нет.</p>
+
+          <h3>3. Вы удаляете аккаунт сами</h3>
+          <p>При удалении через Settings → Privacy and Security → Delete Account, всё содержимое аккаунта (сообщения, контакты, баланс Stars) пропадает и не подлежит возврату. Telegram в этом случае не переводит Stars на другой аккаунт автоматически и не предоставляет компенсацию.</p>
+
+          <h3>4. Refund (в течение 14 дней с покупки)</h3>
+          <p>Если купленные Stars не использованы, в течение 14 дней можно сделать refund. При refund Stars удаляются с аккаунта и средства возвращаются на источник оплаты (карта, внутренний баланс Telegram).</p>
+
+          <h2>Правила refund подробно</h2>
+
+          <p>Refund по официальной политике Telegram — но зависит от способа покупки:</p>
+
+          <table class="price-table">
+            <thead>
+              <tr><th>Способ покупки</th><th>Refund возможен?</th><th>Условие</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>App Store / Google Play</td><td>Да</td><td>Официальный процесс refund Apple/Google — обычно 14 дней</td></tr>
+              <tr><td>Telegram Web (каталог Stars)</td><td>Да</td><td>Через Telegram support — 14 дней с неиспользованных Stars</td></tr>
+              <tr><td>Fragment / TON wallet</td><td>Ограниченно</td><td>После завершения onchain-транзакции refund затруднён</td></tr>
+              <tr><td>Локальный реселлер-бот</td><td>Зависит от политики бота</td><td>Связь с оператором, у каждого бота свои условия</td></tr>
+            </tbody>
+          </table>
+
+          <p>При покупке Stars через локальный реселлер-бот, если нужен refund — напишите оператору @starsjoybot. В большинстве случаев, если Stars не использованы и с покупки не прошло 14 дней, refund возможен. Но при оперативной и правильной покупке через бот, refund запрашивается крайне редко.</p>
+
+          <h2>Удаление аккаунта и потеря Stars</h2>
+
+          <p>Удаление Telegram-аккаунта приводит к следующему:</p>
+
+          <ul>
+            <li>Все сообщения и контакты пропадают (без возможности восстановления)</li>
+            <li>Баланс Stars пропадает (Telegram не переводит на другой аккаунт)</li>
+            <li>Срок Premium останавливается, остаток времени не возвращается</li>
+            <li>Отправленные вами Gifts остаются на аккаунте принимающего</li>
+            <li>Полученные вами Gifts пропадают (так как хранились на аккаунте)</li>
+          </ul>
+
+          <p>Поэтому вместо хранения большого баланса Stars рекомендуется покупать нужное количество и сразу использовать. По курсу 240 сум/Star Stars быстро покупаются — 100 или 500 Stars при необходимости пополняются за 5 минут (<a href="/ru/blog/telegram-stars-tez-toldirish">Stars за 5 минут</a>).</p>
+
+          <p class="natural-cta">Советы по защите аккаунта и от мошенников — в <a href="/ru/blog/telegram-stars-firibgarlik-himoya">руководстве по защите Stars</a>. Также полезно для предотвращения блокировки аккаунта.</p>
+
+          <h2>Отправленные Stars и Gifts</h2>
+
+          <p>Что происходит при переводе Stars и отправке Gift?</p>
+
+          <h3>При отправке Gift</h3>
+          <p>Stars сразу превращаются в Gift и приходят на аккаунт указанного контакта. С вашего баланса Stars уходят (использованы), контакт получает Gift. Это одностороння транзакция — отменить нельзя (даже если контакт не принял, Gift приходит автоматически).</p>
+
+          <h3>Если контакт удалит аккаунт</h3>
+          <p>Отправленные вами Gift и Stars были на аккаунте контакта — если контакт удалит аккаунт, они пропадают. Telegram в таких случаях не предоставляет автоматической компенсации отправителю.</p>
+
+          <h3>Перевод Stars другу</h3>
+          <p>Прямой перевод Stars от одного пользователя другому — не стандартная функция Telegram. Но в руководстве <a href="/ru/blog/telegram-stars-otkazish">Перевод Stars другу</a> показаны существующие пути — отправка Gift, покупка paid post и другие методы переводят Stars на другой аккаунт.</p>
+
+          <h2>Влияет ли окончание Premium на Stars?</h2>
+
+          <p>Самый частый вопрос — что происходит с балансом Stars при окончании Premium. Ответ точный: <strong>ничего</strong>. Stars и Premium — две разные системы:</p>
+
+          <ul>
+            <li>Premium — месячная/годовая подписка (для Premium-функций)</li>
+            <li>Stars — разовая покупка (внутренняя валюта с собственной ценностью)</li>
+          </ul>
+
+          <p>При окончании Premium отключаются Premium-функции (анимированный профиль, premium emoji, voice-to-text и др.), но баланс Stars сохраняется в той же ценности. Подробнее — в статье <a href="/ru/blog/telegram-premium-muddati-tugadi">Закончился Telegram Premium</a>.</p>
+
+          <h2>Советы по долгому хранению Stars</h2>
+
+          <p>Если Stars нужно хранить в большом количестве или долго:</p>
+
+          <ol>
+            <li><strong>Защитите аккаунт</strong> — включите двухэтапную проверку (Settings → Privacy → Two-Step Verification)</li>
+            <li><strong>Сохраните основную SIM-карту</strong> — для входа в Telegram нужен номер. Если номер потерян, восстановить аккаунт сложно</li>
+            <li><strong>Защитите от автоудаления</strong> — Settings → Privacy → Auto-delete account inactive установите на "1 год" вместо "знакомым"</li>
+            <li><strong>Контролируйте login session</strong> — если кто-то вошёл с другого устройства, видно в Settings → Devices</li>
+            <li><strong>Лучше использовать сразу</strong> — вместо хранения: 100, 500 Stars при необходимости купить за 5 минут и сразу применить — практичнее</li>
+          </ol>
+
+          <h2>Часто задаваемые вопросы</h2>
+
+          <div class="post-faq">
+            <div class="post-faq-item">
+              <h3>Сколько времени действуют Telegram Stars?</h3>
+              <p>У Stars НЕТ срока действия — после покупки хранятся на аккаунте бессрочно. Не сгорают, не уменьшаются со временем и не списываются автоматически. Через 1 год или 5 лет доступны в той же ценности.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>В каких случаях Stars могут пропасть с аккаунта?</h3>
+              <p>В 4 случаях: (1) вы используете (Gift, paid канал, Mini App, reactions). (2) Telegram блокирует аккаунт за нарушение правил. (3) Вы удаляете аккаунт сами. (4) Делаете refund (в течение 14 дней с покупки). Других автоматических потерь нет.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Можно сделать refund Stars?</h3>
+              <p>В течение 14 дней с неиспользованных Stars — да. На App Store/Google Play — по политике этих платформ. Через Telegram Web — через Telegram support. Через локальный реселлер-бот — связь с оператором, у каждого бота свои условия.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Если аккаунт удалят, вернутся ли Stars?</h3>
+              <p>Нет. При удалении аккаунта все данные — сообщения, контакты и баланс Stars — пропадают и не подлежат возврату. Telegram не переводит на другой аккаунт.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Я отправил Stars контакту, но он удалил аккаунт — куда делись?</h3>
+              <p>Stars пропали вместе с тем аккаунтом. Telegram не предоставляет автоматическую компенсацию. Отправителю тоже не возвращаются. Перед отправкой больших сумм Stars стоит убедиться в активности аккаунта получателя.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Пропадают ли Stars при окончании Telegram Premium?</h3>
+              <p>Нет. Stars и Premium — разные системы. При окончании Premium отключаются Premium-функции, но это не влияет на баланс Stars. Stars сохраняются и доступны для использования позже.</p>
+            </div>
+          </div>
+
+          <h2>Вывод</h2>
+
+          <p>У Telegram Stars <strong>нет срока действия</strong> — после покупки хранятся на аккаунте бессрочно. Сгорание, автоматическая потеря или уменьшение со временем не происходят ни в каком случае. Stars уходят только 4 путями: использование, блокировка аккаунта, удаление аккаунта и refund.</p>
+
+          <p>Окончание Premium или его отсутствие никак не влияет на баланс Stars — это две разные системы. Защита аккаунта (двухэтапная проверка, основная SIM-карта) — главное условие сохранности Stars. Вместо хранения больших сумм практичнее покупать нужное количество и сразу использовать.</p>
+
+          <div class="end-cta">
+            <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">Купить Stars — @starsjoybot &rarr;</a>
+          </div>
+
+          <h2>Читайте также</h2>
+
+          <ul class="related-list">
+            <li><a href="/ru/blog/telegram-stars-hisobini-tekshirish">Как проверить баланс Telegram Stars</a></li>
+            <li><a href="/ru/blog/telegram-stars-tez-toldirish">Пополнить Telegram Stars за 5 минут</a></li>
+            <li><a href="/ru/blog/telegram-stars-firibgarlik-himoya">Защита от мошенников при покупке Stars</a></li>
+            <li><a href="/ru/blog/telegram-stars-otkazish">Как перевести Telegram Stars другу</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 820px;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    word-wrap: break-word;
+  }
+
+  .post-meta {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 0.9rem; color: var(--text-muted);
+  }
+
+  .post-body { padding: 60px 24px; }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 48px 0 20px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 10px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .tldr-box {
+    background: #FFF8E6;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-left: 4px solid #F59E0B;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 0 0 28px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box strong { color: #B45309; }
+  .tldr-box a { color: var(--primary); font-weight: 600; }
+
+  .natural-cta {
+    background: #F8F6FF;
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 24px 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+  .natural-cta strong { color: var(--primary); }
+
+  .end-cta {
+    margin: 32px 0 24px;
+    padding: 14px 18px;
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .end-cta a {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 24px;
+    font-size: 0.95rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .price-table th,
+  .price-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-table th {
+    background: #F8F6FF;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .price-table tr:last-child td { border-bottom: none; }
+
+  .post-faq { margin: 24px 0; }
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 12px;
+  }
+  .post-faq-item h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+  .post-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+  .related-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 16px 0 32px;
+  }
+  .related-list li {
+    padding: 12px 16px;
+    background: #F8F6FF;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  .related-list a {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 0.96rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.55rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.02rem; }
+    .post-content p, .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 18px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .price-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .price-table th, .price-table td { padding: 10px 12px; white-space: nowrap; }
+  }
+</style>
