@@ -258,6 +258,133 @@ export async function verifyToken(token: string): Promise<boolean> {
   }
 }
 
+// ───── SALARY (MAOSH) ─────
+// Foyda formulasi (modad.astro renderProfit funksiyasi bilan moslashtirilgan):
+// Stars/Gift = 12%, Premium/Premium Send = 10%, Premium 1/12 = fixed 18 000 / 48 000 so'm
+
+export function tashkentParts(d: Date = new Date()) {
+  const tz = new Date(d.getTime() + 5 * 60 * 60 * 1000);
+  return {
+    y: tz.getUTCFullYear(),
+    m: tz.getUTCMonth() + 1,
+    day: tz.getUTCDate(),
+  };
+}
+
+export function fmtMonth(y: number, m: number): string {
+  return `${y}-${String(m).padStart(2, '0')}`;
+}
+
+export function shiftMonth(month: string, delta: number): string {
+  const [y, m] = month.split('-').map(Number);
+  const total = (y * 12) + (m - 1) + delta;
+  const ny = Math.floor(total / 12);
+  const nm = (total % 12) + 1;
+  return fmtMonth(ny, nm);
+}
+
+export function activeAttributionMonth(d: Date = new Date()): string {
+  const { y, m, day } = tashkentParts(d);
+  if (day <= 5) return shiftMonth(fmtMonth(y, m), -1);
+  return fmtMonth(y, m);
+}
+
+export async function ensureSalaryTable() {
+  const sql = getSQL();
+  await sql`
+    CREATE TABLE IF NOT EXISTS salary_withdrawals (
+      id SERIAL PRIMARY KEY,
+      amount BIGINT NOT NULL,
+      note TEXT DEFAULT '',
+      attributed_month TEXT NOT NULL,
+      timestamp TIMESTAMPTZ DEFAULT NOW()
+    )
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS idx_salary_attr ON salary_withdrawals(attributed_month)`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_salary_ts ON salary_withdrawals(timestamp)`;
+}
+
+export async function getMonthProfit(month: string): Promise<number> {
+  const sql = getSQL();
+  const since = new Date(`${month}-01T00:00:00+05:00`).toISOString();
+  const next = shiftMonth(month, 1);
+  const until = new Date(`${next}-01T00:00:00+05:00`).toISOString();
+  const [r] = await sql`
+    SELECT
+      COALESCE(SUM(price) FILTER (WHERE type = 'stars'), 0) as stars_rev,
+      COALESCE(SUM(price) FILTER (WHERE type = 'gift'), 0) as gift_rev,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium'), 0) as premium_rev,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_send'), 0) as ps_rev,
+      COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount = '1 oy') as p112_one,
+      COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount = '12 oy') as p112_twelve
+    FROM orders WHERE timestamp >= ${since} AND timestamp < ${until}
+  `;
+  return (
+    Math.round(+r.stars_rev * 0.12) +
+    Math.round(+r.gift_rev * 0.12) +
+    Math.round(+r.premium_rev * 0.10) +
+    Math.round(+r.ps_rev * 0.10) +
+    (+r.p112_one * 18000) +
+    (+r.p112_twelve * 48000)
+  );
+}
+
+export async function sumWithdrawalsForMonth(month: string): Promise<number> {
+  const sql = getSQL();
+  const [r] = await sql`SELECT COALESCE(SUM(amount), 0) as total FROM salary_withdrawals WHERE attributed_month = ${month}`;
+  return +r.total;
+}
+
+async function getEarliestMonth(): Promise<string | null> {
+  const sql = getSQL();
+  const [r] = await sql`
+    SELECT TO_CHAR(MIN(t) AT TIME ZONE 'Asia/Tashkent', 'YYYY-MM') as m
+    FROM (
+      SELECT timestamp as t FROM orders
+      UNION ALL
+      SELECT timestamp as t FROM salary_withdrawals
+    ) tx
+  `;
+  return r?.m || null;
+}
+
+// Walk-forward bilan har oyning leftover'ini hisoblaydi (zanjirli rollover).
+// Cap: 24 oy (xavfsizlik uchun).
+export async function getRolloverInto(month: string): Promise<number> {
+  const earliest = await getEarliestMonth();
+  if (!earliest || earliest >= month) return 0;
+  let cursor = earliest;
+  let leftover = 0;
+  for (let i = 0; i < 24; i++) {
+    if (cursor >= month) break;
+    const profit = await getMonthProfit(cursor);
+    const withdrawn = await sumWithdrawalsForMonth(cursor);
+    leftover = Math.max(0, profit + leftover - withdrawn);
+    cursor = shiftMonth(cursor, 1);
+  }
+  return leftover;
+}
+
+export async function listWithdrawals(limit = 200) {
+  const sql = getSQL();
+  return await sql`SELECT id, amount, note, attributed_month, timestamp FROM salary_withdrawals ORDER BY timestamp DESC LIMIT ${limit}`;
+}
+
+export async function addWithdrawal(amount: number, note: string, month: string) {
+  const sql = getSQL();
+  const [r] = await sql`
+    INSERT INTO salary_withdrawals (amount, note, attributed_month)
+    VALUES (${amount}, ${note}, ${month})
+    RETURNING id, amount, note, attributed_month, timestamp
+  `;
+  return r;
+}
+
+export async function deleteWithdrawal(id: number) {
+  const sql = getSQL();
+  await sql`DELETE FROM salary_withdrawals WHERE id = ${id}`;
+}
+
 // ───── ORDERS ─────
 
 export async function addOrder(params: {
