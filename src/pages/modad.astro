@@ -841,6 +841,11 @@ if (authenticated && !dbReady) {
       font-size: 0.76rem; color: var(--text-2); max-width: 260px; overflow: hidden;
       text-overflow: ellipsis; white-space: nowrap; vertical-align: middle;
     }
+    /* Sahifalar bo'limida URL'lar to'liq ko'rsatilsin */
+    #pagesTable .path-chip {
+      max-width: none; overflow: visible; text-overflow: clip;
+      white-space: normal; word-break: break-all;
+    }
 
     /* Country */
     .country-cell { display: inline-flex; align-items: center; gap: 6px; }
