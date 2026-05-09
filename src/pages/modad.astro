@@ -482,7 +482,7 @@ if (authenticated && !dbReady) {
             <div class="salary-context" id="salaryClosing" hidden>
               <div class="salary-context-title" id="salaryClosingTitle"></div>
               <div class="salary-cards">
-                <div class="salary-card"><div class="sc-label">Foyda + Rollover</div><div class="sc-val" id="salClosingPot">0</div><div class="sc-sub" id="salClosingPotSub"></div></div>
+                <div class="salary-card"><div class="sc-label">O'tgan oydan qolgan</div><div class="sc-val" id="salClosingRollover">0</div><div class="sc-sub">so'm</div></div>
                 <div class="salary-card"><div class="sc-label">Olingan</div><div class="sc-val" id="salClosingWithdrawn">0</div><div class="sc-sub">so'm</div></div>
                 <div class="salary-card sc-primary"><div class="sc-label">To'liq olish mumkin</div><div class="sc-val" id="salClosingAvailable">0</div><div class="sc-sub" id="salClosingAvailSub">so'm</div></div>
               </div>
@@ -491,9 +491,9 @@ if (authenticated && !dbReady) {
             <div class="salary-context" id="salaryCurrent">
               <div class="salary-context-title" id="salaryCurrentTitle"></div>
               <div class="salary-cards">
-                <div class="salary-card"><div class="sc-label">Foyda + Rollover</div><div class="sc-val" id="salCurPot">0</div><div class="sc-sub" id="salCurPotSub"></div></div>
+                <div class="salary-card"><div class="sc-label">O'tgan oydan qolgan</div><div class="sc-val" id="salCurRollover">0</div><div class="sc-sub">so'm</div></div>
                 <div class="salary-card"><div class="sc-label">Olingan</div><div class="sc-val" id="salCurWithdrawn">0</div><div class="sc-sub">so'm</div></div>
-                <div class="salary-card"><div class="sc-label">Tavsiya etilgan limit (50%)</div><div class="sc-val" id="salCurLimit">0</div><div class="sc-sub">so'm</div></div>
+                <div class="salary-card"><div class="sc-label">Tavsiya etilgan limit</div><div class="sc-val" id="salCurLimit">0</div><div class="sc-sub" id="salCurLimitSub">so'm</div></div>
                 <div class="salary-card sc-primary"><div class="sc-label" id="salCurAvailLabel">Hozir olish mumkin</div><div class="sc-val" id="salCurAvailable">0</div><div class="sc-sub" id="salCurAvailSub">so'm</div></div>
               </div>
             </div>
@@ -1130,7 +1130,9 @@ if (authenticated && !dbReady) {
       background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 14px 16px;
     }
-    .salary-card.sc-primary { border-color: var(--accent); background: var(--accent-bg); }
+    .salary-card.sc-primary { border-color: rgba(16, 185, 129, 0.5); background: rgba(16, 185, 129, 0.10); }
+    .salary-card.sc-primary .sc-val { color: var(--green); }
+    .salary-card.sc-primary .sc-label { color: var(--green); opacity: 0.9; }
     .salary-card.sc-over { border-color: var(--red); background: rgba(239, 68, 68, 0.08); }
     .sc-label { font-size: 0.72rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
     .sc-val { font-size: 1.5rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.4px; }
@@ -2514,8 +2516,7 @@ if (authenticated && !dbReady) {
         if (s.closing) {
           closingWrap.hidden = false;
           document.getElementById('salaryClosingTitle').textContent = fmtMonthName(s.closing.month) + " (yopilish)";
-          document.getElementById('salClosingPot').textContent = fmtMoney(s.closing.pot);
-          document.getElementById('salClosingPotSub').textContent = "foyda " + fmtMoney(s.closing.profit) + " + rollover " + fmtMoney(s.closing.rollover);
+          document.getElementById('salClosingRollover').textContent = fmtMoney(s.closing.rollover);
           document.getElementById('salClosingWithdrawn').textContent = fmtMoney(s.closing.withdrawn);
           var availEl = document.getElementById('salClosingAvailable');
           var availCard = availEl.closest('.salary-card');
@@ -2536,10 +2537,15 @@ if (authenticated && !dbReady) {
 
         // Current month context
         document.getElementById('salaryCurrentTitle').textContent = fmtMonthName(s.current.month) + " (joriy)";
-        document.getElementById('salCurPot').textContent = fmtMoney(s.current.pot);
-        document.getElementById('salCurPotSub').textContent = "foyda " + fmtMoney(s.current.profit) + " + rollover " + fmtMoney(s.current.rollover);
+        document.getElementById('salCurRollover').textContent = fmtMoney(s.current.rollover);
         document.getElementById('salCurWithdrawn').textContent = fmtMoney(s.current.withdrawn);
         document.getElementById('salCurLimit').textContent = s.current.limit > 0 ? fmtMoney(s.current.limit) : '—';
+        var limitSubEl = document.getElementById('salCurLimitSub');
+        if (s.current.phase === 'new_starting') {
+          limitSubEl.textContent = "yangi siklda hali yo'q";
+        } else {
+          limitSubEl.textContent = "rollover " + fmtMoney(s.current.rollover) + " + 50% × " + fmtMoney(s.current.profit);
+        }
         var curAvailEl = document.getElementById('salCurAvailable');
         var curAvailCard = curAvailEl.closest('.salary-card');
         var curAvailLabel = document.getElementById('salCurAvailLabel');
