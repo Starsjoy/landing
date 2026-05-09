@@ -2772,8 +2772,13 @@ if (authenticated && !dbReady) {
         var box = document.getElementById('mobileQuickStats');
         if (!box) return;
         var allowed = (currentSection === 'overview' || currentSection === 'profit');
-        if (!isMobileView() || !allowed) { box.hidden = true; return; }
+        if (!isMobileView() || !allowed) {
+          box.hidden = true;
+          box.style.display = 'none';
+          return;
+        }
         box.hidden = false;
+        box.style.display = '';
 
         var label = mqsPeriodLabels[currentPeriod] || (currentMonth ? 'Oylik' : 'Bugungi');
         var ov = statsData && statsData.orders && statsData.orders.overview;
