@@ -176,7 +176,7 @@ export async function getFilteredStats(period: string = 'today', from?: string, 
     WHERE timestamp >= ${since} AND timestamp <= ${until}
     GROUP BY path
     ORDER BY views DESC
-    LIMIT 20
+    LIMIT 1000
   `;
 
   const countries = await sql`

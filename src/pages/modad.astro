@@ -268,7 +268,14 @@ if (authenticated && !dbReady) {
           <!-- Pages -->
           <div id="section-pages" class="section-content" hidden>
             <div class="panel">
-              <div class="panel-header"><h2>Sahifalar reytingi</h2></div>
+              <div class="panel-header" style="display:flex;align-items:center;justify-content:space-between">
+                <h2>Sahifalar reytingi</h2>
+                <div class="row-filters" id="pagesFilters">
+                  <button class="rf-btn active" data-pages-filter="all" onclick="setPagesFilter('all')">Umumiy</button>
+                  <button class="rf-btn" data-pages-filter="bots" onclick="setPagesFilter('bots')">Bot trafik</button>
+                  <button class="rf-btn" data-pages-filter="users" onclick="setPagesFilter('users')">User trafik</button>
+                </div>
+              </div>
               <div class="panel-body" id="pagesTable"></div>
             </div>
           </div>
@@ -1937,8 +1944,26 @@ if (authenticated && !dbReady) {
         `).join('');
       }
 
+      var pagesFilter = 'all'; // 'all' | 'bots' | 'users'
+
+      function setPagesFilter(name) {
+        pagesFilter = name;
+        document.querySelectorAll('#pagesFilters .rf-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.pagesFilter === name);
+        });
+        renderPages();
+      }
+
       function renderPages() {
-        const rows = statsData.topPages;
+        var raw = (statsData && statsData.topPages) || [];
+        var rows;
+        if (pagesFilter === 'bots') {
+          rows = raw.filter(p => p.botViews > 0).slice().sort((a, b) => b.botViews - a.botViews);
+        } else if (pagesFilter === 'users') {
+          rows = raw.filter(p => p.humanViews > 0).slice().sort((a, b) => b.humanViews - a.humanViews);
+        } else {
+          rows = raw.slice().sort((a, b) => b.views - a.views);
+        }
         if (!rows.length) {
           document.getElementById('pagesTable').innerHTML = '<div class="empty">Sahifa ma\'lumoti yo\'q</div>';
           return;
