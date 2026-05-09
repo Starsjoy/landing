@@ -2517,8 +2517,8 @@ if (authenticated && !dbReady) {
         var statusEl = document.getElementById('salaryStatus');
         var phaseTxt = '';
         if (s.showClosing) phaseTxt = "Yopilish davri (1–5) — " + fmtMonthName(s.closing.month) + " uchun qolgan maosh";
-        else if (s.current.phase === 'first_half') phaseTxt = fmtMonthName(s.current.month) + " 1-yarmi (1–15): rollover + 50% yangi foyda";
-        else phaseTxt = fmtMonthName(s.current.month) + " 2-yarmi (16–oxiri): yangi foyda 50% chegarasida";
+        else if (s.current.phase === 'first_half') phaseTxt = fmtMonthName(s.current.month) + " 1-yarmi (1–15): rollover + 30% yangi foyda";
+        else phaseTxt = fmtMonthName(s.current.month) + " 2-yarmi (16–oxiri): yangi foyda 30% chegarasida";
         statusEl.innerHTML = '<span class="ss-dot"></span><span>' + phaseTxt + '</span>';
         statusEl.classList.toggle('warn', s.current.over > 0);
 
@@ -2555,7 +2555,7 @@ if (authenticated && !dbReady) {
         if (s.current.phase === 'new_starting') {
           limitSubEl.textContent = "yangi siklda hali yo'q";
         } else {
-          limitSubEl.textContent = "rollover " + fmtMoney(s.current.rollover) + " + 50% × " + fmtMoney(s.current.profit);
+          limitSubEl.textContent = "rollover " + fmtMoney(s.current.rollover) + " + 30% × " + fmtMoney(s.current.profit);
         }
         var curAvailEl = document.getElementById('salCurAvailable');
         var curAvailCard = curAvailEl.closest('.salary-card');
@@ -2805,7 +2805,8 @@ if (authenticated && !dbReady) {
       });
 
       initMonthFilters();
-      showSection('overview');
+      // Mobile default — Maosh; desktop default — Umumiy
+      showSection(isMobileView() ? 'salary' : 'overview');
       fetchStats();
       fetchMqsYesterday();
       setInterval(fetchStats, 30000);

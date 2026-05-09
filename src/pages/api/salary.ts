@@ -53,7 +53,7 @@ export const GET: APIRoute = async ({ cookies }) => {
     currentLimit = 0;
     phase = 'new_starting';
   } else {
-    currentLimit = current.rollover + Math.floor(current.profit * 0.5);
+    currentLimit = current.rollover + Math.floor(current.profit * 0.3);
     phase = t.day <= 15 ? 'first_half' : 'second_half';
   }
   const currentAvailable = Math.max(0, currentLimit - current.withdrawn);
