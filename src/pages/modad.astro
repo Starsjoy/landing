@@ -1521,6 +1521,9 @@ if (authenticated && !dbReady) {
         if (name === 'salary') {
           fetchSalary();
         }
+
+        // Mobile quick stats faqat overview va profit'da ko'rinadi
+        if (typeof renderMobileQuickStats === 'function') renderMobileQuickStats();
       }
 
       function setPeriod(p) {
@@ -2768,7 +2771,8 @@ if (authenticated && !dbReady) {
       function renderMobileQuickStats() {
         var box = document.getElementById('mobileQuickStats');
         if (!box) return;
-        if (!isMobileView()) { box.hidden = true; return; }
+        var allowed = (currentSection === 'overview' || currentSection === 'profit');
+        if (!isMobileView() || !allowed) { box.hidden = true; return; }
         box.hidden = false;
 
         var label = mqsPeriodLabels[currentPeriod] || (currentMonth ? 'Oylik' : 'Bugungi');
@@ -2801,9 +2805,7 @@ if (authenticated && !dbReady) {
       }
 
       window.addEventListener('resize', function() {
-        var box = document.getElementById('mobileQuickStats');
-        if (box) box.hidden = !isMobileView();
-        if (isMobileView()) renderMobileQuickStats();
+        renderMobileQuickStats();
       });
 
       initMonthFilters();
