@@ -2,11 +2,6 @@ import { neon } from '@neondatabase/serverless';
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { detectBot } from './bots';
 
-// Statistikadan istisno qilinadigan ichki akkauntlar (lower-case).
-// Foyda, daromad, top buyers, buyer insights, maosh — hammasidan chiqariladi.
-// Yangi akkaunt qo'shish kerak bo'lsa shu ro'yxatga lower-case'da qo'ying.
-const EXCLUDED_USERNAMES_LOWER = ['starsjoysupport', '@starsjoysupport'];
-
 function getSQL() {
   const url = import.meta.env.DATABASE_URL;
   if (!url) throw new Error('DATABASE_URL is not set');
@@ -323,7 +318,6 @@ export async function getMonthProfit(month: string): Promise<number> {
       COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount = '1 oy') as p112_one,
       COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount = '12 oy') as p112_twelve
     FROM orders WHERE timestamp >= ${since} AND timestamp < ${until}
-      AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
   `;
   return (
     Math.round(+r.stars_rev * 0.12) +
@@ -433,7 +427,6 @@ export async function getAnalyticsData(period: string, source: string = 'all', f
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
       FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
-        AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
       GROUP BY hour ORDER BY hour ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -448,7 +441,6 @@ export async function getAnalyticsData(period: string, source: string = 'all', f
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
       FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
-        AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
       GROUP BY month, month_name ORDER BY month ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -461,7 +453,6 @@ export async function getAnalyticsData(period: string, source: string = 'all', f
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
       FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
-        AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
       GROUP BY week_start ORDER BY week_start ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -475,7 +466,6 @@ export async function getAnalyticsData(period: string, source: string = 'all', f
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
       FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
-        AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
       GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent') ORDER BY date ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -616,14 +606,12 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COALESCE(SUM(price) FILTER (WHERE type = 'premium_1_12' AND amount = '12 oy'), 0) as p112_twelve_revenue,
       COALESCE(SUM(CASE WHEN type = 'premium_1_12' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as p112_total_months
     FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
-      AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
   `;
 
   const recent = await sql`
     SELECT id, order_number, type, username, amount, price, transaction_id, status, timestamp
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
-      AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
     ORDER BY timestamp DESC
     LIMIT 100
   `;
@@ -634,7 +622,6 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COALESCE(SUM(price), 0) as revenue
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
-      AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
@@ -651,7 +638,6 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COUNT(*) FILTER (WHERE type = 'premium_1_12') as p112_orders
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != '' AND type = ANY(${types})
-      AND LOWER(username) <> ALL(${EXCLUDED_USERNAMES_LOWER})
     GROUP BY username
     ORDER BY total_spent DESC
     LIMIT 15
@@ -665,7 +651,6 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       ), 0) as total_stars
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'stars' OR type = 'gift')
-      AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
@@ -678,7 +663,6 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
     ), 0) as total_stars
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'stars' OR type = 'gift')
-      AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
   `;
 
   // Daily premium months (for premium_send view)
@@ -690,7 +674,6 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       ), 0) as total_months
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'premium' OR type = 'premium_send' OR type = 'premium_1_12')
-      AND LOWER(COALESCE(username, '')) <> ALL(${EXCLUDED_USERNAMES_LOWER})
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
@@ -772,7 +755,6 @@ export async function getBuyerInsights(period: string, source: string = 'all', f
       MIN(timestamp) as first_in_period, MAX(timestamp) as last_in_period
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != '' AND type = ANY(${types})
-      AND LOWER(username) <> ALL(${EXCLUDED_USERNAMES_LOWER})
     GROUP BY username
   `;
 
