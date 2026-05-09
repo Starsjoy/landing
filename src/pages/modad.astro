@@ -2503,11 +2503,11 @@ if (authenticated && !dbReady) {
         var s = salaryState;
         var statusEl = document.getElementById('salaryStatus');
         var phaseTxt = '';
-        if (s.inClosingWindow) phaseTxt = "Yopilish davri (1–5) — " + fmtMonthName(s.closing.month) + " uchun maosh";
-        else if (s.current.phase === 'first_half') phaseTxt = fmtMonthName(s.current.month) + " 1-yarmi (6–15): tavsiya 50%";
-        else phaseTxt = fmtMonthName(s.current.month) + " 2-yarmi (16–oy oxiri): limit oshirilmasligi tavsiya";
+        if (s.showClosing) phaseTxt = "Yopilish davri (1–5) — " + fmtMonthName(s.closing.month) + " uchun qolgan maosh";
+        else if (s.current.phase === 'first_half') phaseTxt = fmtMonthName(s.current.month) + " 1-yarmi (1–15): rollover + 50% yangi foyda";
+        else phaseTxt = fmtMonthName(s.current.month) + " 2-yarmi (16–oxiri): yangi foyda 50% chegarasida";
         statusEl.innerHTML = '<span class="ss-dot"></span><span>' + phaseTxt + '</span>';
-        statusEl.classList.toggle('warn', s.current.phase === 'second_half' && s.current.over > 0);
+        statusEl.classList.toggle('warn', s.current.over > 0);
 
         // Closing context (faqat 1-5 da)
         var closingWrap = document.getElementById('salaryClosing');
@@ -2563,9 +2563,9 @@ if (authenticated && !dbReady) {
           curAvailCard.classList.add('sc-primary');
         }
 
-        // Month attribution toggle (faqat 1-5 davrida)
+        // Month attribution toggle (faqat 1-5 davrida va o'tgan oy kuzatilgan bo'lsa)
         var mtWrap = document.getElementById('salMonthToggle');
-        if (s.inClosingWindow && s.closing) {
+        if (s.showClosing && s.closing) {
           mtWrap.hidden = false;
           var prevBtn = document.getElementById('salMtPrev');
           var curBtn = document.getElementById('salMtCur');
@@ -2634,7 +2634,7 @@ if (authenticated && !dbReady) {
           return;
         }
         var month = null;
-        if (salaryState && salaryState.inClosingWindow) {
+        if (salaryState && salaryState.showClosing && salaryState.closing) {
           var pick = salaryAttribOverride || 'prev';
           month = pick === 'cur' ? salaryState.current.month : salaryState.closing.month;
         }

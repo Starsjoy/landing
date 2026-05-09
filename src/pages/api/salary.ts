@@ -7,10 +7,10 @@ import {
   getMonthProfit,
   sumWithdrawalsForMonth,
   getRolloverInto,
+  getTrackingStartMonth,
   listWithdrawals,
   addWithdrawal,
   deleteWithdrawal,
-  activeAttributionMonth,
   shiftMonth,
   fmtMonth,
   tashkentParts,
@@ -38,17 +38,29 @@ export const GET: APIRoute = async ({ cookies }) => {
   const currentMonth = fmtMonth(t.y, t.m);
   const prevMonth = shiftMonth(currentMonth, -1);
   const inClosingWindow = t.day <= 5;
+  const startMonth = await getTrackingStartMonth();
+  // Closing context faqat o'tgan oy ham kuzatilgan bo'lsa ko'rinadi
+  const showClosing = inClosingWindow && prevMonth >= startMonth;
 
   const current = await buildContext(currentMonth);
-  // Joriy oy uchun limit (rollover bilan):
-  // - 1-5 (closing window): hozir tavsiya etilmaydi (yangi sikl boshlanmoqda)
-  // - 6-end: 50% × pot
-  const currentLimit = inClosingWindow ? 0 : Math.floor(current.pot * 0.5);
+  // Limit qoidasi (foydalanuvchi tushuntiruvi bo'yicha):
+  // - Rollover (o'tgan qoldiq) — limitsiz, istalgan vaqt to'liq olinadi
+  // - Joriy oy yangi foydasi — faqat 50% (1–oxiri davomida)
+  // - Closing window (1-5) yangi oy uchun: hech qanday tavsiya yo'q (yangi sikl boshlanmoqda)
+  let currentLimit = 0;
+  let phase: 'new_starting' | 'first_half' | 'second_half';
+  if (showClosing) {
+    currentLimit = 0;
+    phase = 'new_starting';
+  } else {
+    currentLimit = current.rollover + Math.floor(current.profit * 0.5);
+    phase = t.day <= 15 ? 'first_half' : 'second_half';
+  }
   const currentAvailable = Math.max(0, currentLimit - current.withdrawn);
   const currentOver = Math.max(0, current.withdrawn - currentLimit);
 
   let closing: any = null;
-  if (inClosingWindow) {
+  if (showClosing) {
     const closingCtx = await buildContext(prevMonth);
     // Yopilish davrida to'liq potdan olishingiz mumkin
     const closingAvailable = Math.max(0, closingCtx.pot - closingCtx.withdrawn);
@@ -61,13 +73,15 @@ export const GET: APIRoute = async ({ cookies }) => {
   return new Response(JSON.stringify({
     today: { y: t.y, m: t.m, day: t.day },
     inClosingWindow,
-    defaultAttribMonth: inClosingWindow ? prevMonth : currentMonth,
+    showClosing,
+    trackingStart: startMonth,
+    defaultAttribMonth: showClosing ? prevMonth : currentMonth,
     current: {
       ...current,
       limit: currentLimit,
       available: currentAvailable,
       over: currentOver,
-      phase: inClosingWindow ? 'new_starting' : (t.day <= 15 ? 'first_half' : 'second_half'),
+      phase,
     },
     closing,
     recent: recent.map((r: any) => ({ ...r, amount: +r.amount })),
@@ -87,7 +101,15 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       return new Response(JSON.stringify({ error: "Summa noto'g'ri" }), { status: 400 });
     }
     const note = (body.note || '').toString().slice(0, 200);
-    const month = (body.month || activeAttributionMonth()).toString();
+    let month = (body.month || '').toString();
+    if (!month) {
+      // Client month bermagan: auto-attribute (tracking start'ni hurmat qilamiz)
+      const t = tashkentParts();
+      const cur = fmtMonth(t.y, t.m);
+      const prev = shiftMonth(cur, -1);
+      const start = await getTrackingStartMonth();
+      month = (t.day <= 5 && prev >= start) ? prev : cur;
+    }
     if (!/^\d{4}-\d{2}$/.test(month)) {
       return new Response(JSON.stringify({ error: "Oy formati noto'g'ri" }), { status: 400 });
     }

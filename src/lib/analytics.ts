@@ -335,25 +335,25 @@ export async function sumWithdrawalsForMonth(month: string): Promise<number> {
   return +r.total;
 }
 
-async function getEarliestMonth(): Promise<string | null> {
+// Lazy init: birinchi murojaatda joriy oyga belgilanadi va keyin o'zgarmaydi.
+// Eski oylar foydasi rollover'ga qo'shilmasligi uchun shu nuqtadan boshlab walk qilamiz.
+export async function getTrackingStartMonth(): Promise<string> {
   const sql = getSQL();
-  const [r] = await sql`
-    SELECT TO_CHAR(MIN(t) AT TIME ZONE 'Asia/Tashkent', 'YYYY-MM') as m
-    FROM (
-      SELECT timestamp as t FROM orders
-      UNION ALL
-      SELECT timestamp as t FROM salary_withdrawals
-    ) tx
-  `;
-  return r?.m || null;
+  const rows = await sql`SELECT value FROM settings WHERE key = 'salary_tracking_start'`;
+  if (rows.length > 0 && /^\d{4}-\d{2}$/.test(rows[0].value)) return rows[0].value;
+  const t = tashkentParts();
+  const cur = fmtMonth(t.y, t.m);
+  await sql`INSERT INTO settings (key, value) VALUES ('salary_tracking_start', ${cur}) ON CONFLICT (key) DO NOTHING`;
+  return cur;
 }
 
 // Walk-forward bilan har oyning leftover'ini hisoblaydi (zanjirli rollover).
+// Tracking start oyidan boshlanadi — eski oylar foydasi qo'shilmaydi.
 // Cap: 24 oy (xavfsizlik uchun).
 export async function getRolloverInto(month: string): Promise<number> {
-  const earliest = await getEarliestMonth();
-  if (!earliest || earliest >= month) return 0;
-  let cursor = earliest;
+  const startMonth = await getTrackingStartMonth();
+  if (startMonth >= month) return 0;
+  let cursor = startMonth;
   let leftover = 0;
   for (let i = 0; i < 24; i++) {
     if (cursor >= month) break;
