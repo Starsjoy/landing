@@ -101,19 +101,31 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       return new Response(JSON.stringify({ error: "Summa noto'g'ri" }), { status: 400 });
     }
     const note = (body.note || '').toString().slice(0, 200);
-    let month = (body.month || '').toString();
-    if (!month) {
-      // Client month bermagan: auto-attribute (tracking start'ni hurmat qilamiz)
+    const dateStr = (body.date || '').toString().trim();
+
+    let timestamp: Date | undefined;
+    let y: number, m: number, day: number;
+
+    if (dateStr && /^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+      timestamp = new Date(dateStr + 'T12:00:00+05:00');
+      if (isNaN(timestamp.getTime())) {
+        return new Response(JSON.stringify({ error: "Sana noto'g'ri" }), { status: 400 });
+      }
+      const tz = new Date(timestamp.getTime() + 5 * 60 * 60 * 1000);
+      y = tz.getUTCFullYear();
+      m = tz.getUTCMonth() + 1;
+      day = tz.getUTCDate();
+    } else {
       const t = tashkentParts();
-      const cur = fmtMonth(t.y, t.m);
-      const prev = shiftMonth(cur, -1);
-      const start = await getTrackingStartMonth();
-      month = (t.day <= 5 && prev >= start) ? prev : cur;
+      y = t.y; m = t.m; day = t.day;
     }
-    if (!/^\d{4}-\d{2}$/.test(month)) {
-      return new Response(JSON.stringify({ error: "Oy formati noto'g'ri" }), { status: 400 });
-    }
-    const r = await addWithdrawal(amount, note, month);
+
+    const cur = fmtMonth(y, m);
+    const prev = shiftMonth(cur, -1);
+    const start = await getTrackingStartMonth();
+    const month = (day <= 5 && prev >= start) ? prev : cur;
+
+    const r = await addWithdrawal(amount, note, month, timestamp);
     return new Response(JSON.stringify({ ok: true, item: { ...r, amount: +r.amount } }), {
       headers: { 'Content-Type': 'application/json' },
     });

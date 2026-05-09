@@ -503,12 +503,11 @@ if (authenticated && !dbReady) {
                 <div class="panel-header"><h2>Pul olish</h2></div>
                 <div class="panel-body panel-pad">
                   <div class="form-stack">
-                    <input type="text" inputmode="numeric" id="salAmount" placeholder="Summa (so'm)" autocomplete="off" />
+                    <input type="text" inputmode="numeric" id="salAmount" placeholder="Summa (so'm)" autocomplete="off" oninput="formatSalAmount(this)" />
                     <input type="text" id="salNote" placeholder="Izoh (ixtiyoriy)" maxlength="200" />
-                    <div class="sal-month-toggle" id="salMonthToggle" hidden>
-                      <span class="sal-mt-label">Tegishli oy:</span>
-                      <button type="button" class="sal-mt-btn" data-mt="prev" id="salMtPrev"></button>
-                      <button type="button" class="sal-mt-btn" data-mt="cur" id="salMtCur"></button>
+                    <div class="sal-date-row">
+                      <label class="sal-date-label" for="salDate">Olingan sana</label>
+                      <input type="date" id="salDate" />
                     </div>
                     <div class="sal-warn" id="salWarn" hidden></div>
                     <button class="form-btn" onclick="addSalaryWithdrawal()">Qo'shish</button>
@@ -1140,17 +1139,14 @@ if (authenticated && !dbReady) {
     .sc-over .sc-val { color: var(--red); }
 
     .salary-form-wrap { margin-top: 20px; max-width: 480px; }
-    .sal-month-toggle {
-      display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 4px 0;
+    .sal-date-row { display: flex; align-items: center; gap: 10px; }
+    .sal-date-label { font-size: 0.82rem; color: var(--text-2); flex-shrink: 0; }
+    .sal-date-row input[type="date"] {
+      flex: 1; padding: 10px 12px; background: var(--bg-1); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text-1); font-size: 0.88rem; font-family: inherit;
+      outline: none; transition: border-color 0.2s; color-scheme: dark;
     }
-    .sal-mt-label { font-size: 0.78rem; color: var(--text-3); margin-right: 4px; }
-    .sal-mt-btn {
-      padding: 6px 12px; background: var(--bg-1); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); color: var(--text-2); font-size: 0.78rem; font-weight: 500;
-      font-family: inherit; cursor: pointer; transition: all 0.15s;
-    }
-    .sal-mt-btn:hover { color: var(--text-1); border-color: var(--border-light); }
-    .sal-mt-btn.active { background: var(--accent); color: var(--bg-0); border-color: var(--accent); }
+    .sal-date-row input[type="date"]:focus { border-color: var(--accent); }
     .sal-warn {
       padding: 10px 12px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3);
       border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--orange);
@@ -1317,6 +1313,7 @@ if (authenticated && !dbReady) {
 
       /* ── Settings ── */
       .form-stack input { padding: 12px 14px; font-size: 16px; }
+      .sal-date-row input[type="date"] { font-size: 16px; padding: 12px 14px; }
       .form-btn { padding: 12px 20px; font-size: 0.85rem; width: 100%; text-align: center; }
       .info-item { font-size: 0.78rem; padding: 8px 0; }
 
@@ -2479,7 +2476,18 @@ if (authenticated && !dbReady) {
 
       // ───── SALARY (MAOSH) ─────
       var salaryState = null;
-      var salaryAttribOverride = null; // 'prev' | 'cur' | null
+
+      function formatSalAmount(input) {
+        var raw = (input.value || '').replace(/\D/g, '');
+        if (!raw) { input.value = ''; return; }
+        input.value = parseInt(raw, 10).toLocaleString('en-US');
+      }
+
+      function todayTashkentISO() {
+        var d = new Date();
+        var tz = new Date(d.getTime() + 5 * 60 * 60 * 1000);
+        return tz.getUTCFullYear() + '-' + String(tz.getUTCMonth() + 1).padStart(2, '0') + '-' + String(tz.getUTCDate()).padStart(2, '0');
+      }
 
       function fmtMonthName(yyyymm) {
         if (!yyyymm) return '';
@@ -2572,23 +2580,9 @@ if (authenticated && !dbReady) {
           curAvailCard.classList.add('sc-primary');
         }
 
-        // Month attribution toggle (faqat 1-5 davrida va o'tgan oy kuzatilgan bo'lsa)
-        var mtWrap = document.getElementById('salMonthToggle');
-        if (s.showClosing && s.closing) {
-          mtWrap.hidden = false;
-          var prevBtn = document.getElementById('salMtPrev');
-          var curBtn = document.getElementById('salMtCur');
-          prevBtn.textContent = fmtMonthName(s.closing.month);
-          curBtn.textContent = fmtMonthName(s.current.month);
-          var pick = salaryAttribOverride || 'prev';
-          prevBtn.classList.toggle('active', pick === 'prev');
-          curBtn.classList.toggle('active', pick === 'cur');
-          prevBtn.onclick = function() { salaryAttribOverride = 'prev'; renderSalary(); };
-          curBtn.onclick = function() { salaryAttribOverride = 'cur'; renderSalary(); };
-        } else {
-          mtWrap.hidden = true;
-          salaryAttribOverride = null;
-        }
+        // Sana inputiga bugungi default (faqat bo'sh bo'lsa)
+        var dateEl = document.getElementById('salDate');
+        if (dateEl && !dateEl.value) dateEl.value = todayTashkentISO();
 
         renderSalaryHistory();
       }
@@ -2632,9 +2626,10 @@ if (authenticated && !dbReady) {
 
       async function addSalaryWithdrawal() {
         var msg = document.getElementById('salMsg');
-        var amountStr = document.getElementById('salAmount').value.replace(/\s|,/g, '');
+        var amountStr = document.getElementById('salAmount').value.replace(/\D/g, '');
         var amount = parseInt(amountStr, 10);
         var note = document.getElementById('salNote').value.trim();
+        var date = document.getElementById('salDate').value || todayTashkentISO();
         msg.textContent = '';
         msg.className = 'form-msg';
         if (!amount || amount <= 0) {
@@ -2642,16 +2637,11 @@ if (authenticated && !dbReady) {
           msg.classList.add('err');
           return;
         }
-        var month = null;
-        if (salaryState && salaryState.showClosing && salaryState.closing) {
-          var pick = salaryAttribOverride || 'prev';
-          month = pick === 'cur' ? salaryState.current.month : salaryState.closing.month;
-        }
         try {
           var res = await fetch('/api/salary', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'add', amount: amount, note: note, month: month }),
+            body: JSON.stringify({ action: 'add', amount: amount, note: note, date: date }),
           });
           var data = await res.json();
           if (!res.ok || data.error) {
@@ -2663,6 +2653,7 @@ if (authenticated && !dbReady) {
           msg.classList.add('ok');
           document.getElementById('salAmount').value = '';
           document.getElementById('salNote').value = '';
+          document.getElementById('salDate').value = todayTashkentISO();
           fetchSalary();
         } catch (e) {
           msg.textContent = 'Tarmoq xatosi';

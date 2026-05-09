@@ -370,8 +370,16 @@ export async function listWithdrawals(limit = 200) {
   return await sql`SELECT id, amount, note, attributed_month, timestamp FROM salary_withdrawals ORDER BY timestamp DESC LIMIT ${limit}`;
 }
 
-export async function addWithdrawal(amount: number, note: string, month: string) {
+export async function addWithdrawal(amount: number, note: string, month: string, timestamp?: Date) {
   const sql = getSQL();
+  if (timestamp) {
+    const [r] = await sql`
+      INSERT INTO salary_withdrawals (amount, note, attributed_month, timestamp)
+      VALUES (${amount}, ${note}, ${month}, ${timestamp.toISOString()})
+      RETURNING id, amount, note, attributed_month, timestamp
+    `;
+    return r;
+  }
   const [r] = await sql`
     INSERT INTO salary_withdrawals (amount, note, attributed_month)
     VALUES (${amount}, ${note}, ${month})
