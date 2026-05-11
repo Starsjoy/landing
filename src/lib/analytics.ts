@@ -559,12 +559,14 @@ export async function deleteOrder(id: number) {
   await sql`DELETE FROM orders WHERE id = ${id}`;
 }
 
-// source: 'starsjoy' = stars,gift,premium | 'premium_send' | 'premium_1_12' | 'all'
+// source: 'starsjoy' = stars,gift,premium | 'premium_send' | 'premium_1_12' | 'uzgets' | 'all'
+// 'uzgets' alohida silos — 'all' filteriga qo'shilmaydi (foyda va maosh hisobiga ham ta'sir qilmaydi)
 function sourceFilter(source: string): string[] {
   if (source === 'starsjoy') return ['stars', 'gift', 'premium'];
   if (source === 'premium_send') return ['premium_send'];
   if (source === 'premium_1_12') return ['premium_1_12'];
-  return ['stars', 'gift', 'premium', 'premium_send', 'premium_1_12']; // all
+  if (source === 'uzgets') return ['uzgets_stars', 'uzgets_premium'];
+  return ['stars', 'gift', 'premium', 'premium_send', 'premium_1_12']; // all (uzgets'siz)
 }
 
 export async function getOrderStats(period: string, from?: string, to?: string, source: string = 'all') {
@@ -604,7 +606,19 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COALESCE(SUM(price) FILTER (WHERE type = 'premium_1_12' AND amount = '1 oy'), 0) as p112_one_revenue,
       COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount = '12 oy') as p112_twelve_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'premium_1_12' AND amount = '12 oy'), 0) as p112_twelve_revenue,
-      COALESCE(SUM(CASE WHEN type = 'premium_1_12' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as p112_total_months
+      COALESCE(SUM(CASE WHEN type = 'premium_1_12' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as p112_total_months,
+      COUNT(*) FILTER (WHERE type = 'uzgets_stars') as uz_stars_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_stars'), 0) as uz_stars_revenue,
+      COALESCE(SUM(CASE WHEN type = 'uzgets_stars' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as uz_stars_total_amount,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium') as uz_premium_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium'), 0) as uz_premium_revenue,
+      COALESCE(SUM(CASE WHEN type = 'uzgets_premium' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as uz_premium_total_months,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '3 oy') as uz_3_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '3 oy'), 0) as uz_3_revenue,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy') as uz_6_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy'), 0) as uz_6_revenue,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy') as uz_12_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy'), 0) as uz_12_revenue
     FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
   `;
 
@@ -635,7 +649,9 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COUNT(*) FILTER (WHERE type = 'gift') as gift_orders,
       COUNT(*) FILTER (WHERE type = 'premium') as premium_orders,
       COUNT(*) FILTER (WHERE type = 'premium_send') as ps_orders,
-      COUNT(*) FILTER (WHERE type = 'premium_1_12') as p112_orders
+      COUNT(*) FILTER (WHERE type = 'premium_1_12') as p112_orders,
+      COUNT(*) FILTER (WHERE type = 'uzgets_stars') as uz_stars_orders,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium') as uz_premium_orders
     FROM orders
     WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != '' AND type = ANY(${types})
     GROUP BY username
@@ -650,7 +666,7 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
         NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
       ), 0) as total_stars
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'stars' OR type = 'gift')
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'stars' OR type = 'gift' OR type = 'uzgets_stars')
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
@@ -662,7 +678,7 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
     ), 0) as total_stars
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'stars' OR type = 'gift')
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'stars' OR type = 'gift' OR type = 'uzgets_stars')
   `;
 
   // Daily premium months (for premium_send view)
@@ -673,7 +689,7 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
         NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
       ), 0) as total_months
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'premium' OR type = 'premium_send' OR type = 'premium_1_12')
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'premium' OR type = 'premium_send' OR type = 'premium_1_12' OR type = 'uzgets_premium')
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
@@ -703,6 +719,18 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       p112TwelveRevenue: +overview.p112_twelve_revenue,
       p112TotalMonths: +overview.p112_total_months,
       totalStars: +starsTotal.total_stars,
+      uzStarsCount: +overview.uz_stars_count,
+      uzStarsRevenue: +overview.uz_stars_revenue,
+      uzStarsTotalAmount: +overview.uz_stars_total_amount,
+      uzPremiumCount: +overview.uz_premium_count,
+      uzPremiumRevenue: +overview.uz_premium_revenue,
+      uzPremiumTotalMonths: +overview.uz_premium_total_months,
+      uz3Count: +overview.uz_3_count,
+      uz3Revenue: +overview.uz_3_revenue,
+      uz6Count: +overview.uz_6_count,
+      uz6Revenue: +overview.uz_6_revenue,
+      uz12Count: +overview.uz_12_count,
+      uz12Revenue: +overview.uz_12_revenue,
     },
     recent: recent.map(r => ({
       id: +r.id,
@@ -729,6 +757,8 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       premiumOrders: +b.premium_orders,
       psOrders: +b.ps_orders,
       p112Orders: +b.p112_orders,
+      uzStarsOrders: +b.uz_stars_orders,
+      uzPremiumOrders: +b.uz_premium_orders,
     })),
     dailyStars: dailyStars.map(d => ({
       date: d.date,

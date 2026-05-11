@@ -7,6 +7,7 @@ let dbReady = false;
 
 const PREMIUM_SEND_CHAT_ID = import.meta.env.PREMIUM_SEND_CHAT_ID || '-1003606510579';
 const PREMIUM_1_12_CHAT_ID = import.meta.env.PREMIUM_1_12_CHAT_ID || '-1003951417706';
+const UZGETS_CHAT_ID = import.meta.env.UZGETS_CHAT_ID || '-1003986767336';
 
 interface TelegramUpdate {
   channel_post?: {
@@ -174,9 +175,10 @@ export const POST: APIRoute = async ({ request }) => {
     const chatId = String(update.channel_post?.chat?.id || '');
     const isPremiumSend = chatId === PREMIUM_SEND_CHAT_ID;
     const isPremium112 = chatId === PREMIUM_1_12_CHAT_ID;
+    const isUzgets = chatId === UZGETS_CHAT_ID;
 
     // DEBUG: log incoming chat_id va text
-    console.log('[WEBHOOK] chat_id=' + chatId + ' | premium_send=' + isPremiumSend + ' | premium_1_12=' + isPremium112);
+    console.log('[WEBHOOK] chat_id=' + chatId + ' | premium_send=' + isPremiumSend + ' | premium_1_12=' + isPremium112 + ' | uzgets=' + isUzgets);
     console.log('[WEBHOOK] text:', JSON.stringify(text));
 
     const order = parseOrderMessage(text, isPremium112);
@@ -193,6 +195,17 @@ export const POST: APIRoute = async ({ request }) => {
     // Premium Send kanalidan kelgan buyurtmalar — type ni premium_send ga o'zgartirish
     if (isPremiumSend) {
       order.type = 'premium_send' as any;
+    }
+
+    // Uzgets kanalidan kelgan buyurtmalar — type'ga 'uzgets_' prefiks; gift qo'llab quvvatlanmaydi
+    if (isUzgets) {
+      if (order.type === 'gift') {
+        console.log('[WEBHOOK] uzgets gift skipped');
+        return new Response(JSON.stringify({ ok: true, skipped: true, reason: 'uzgets has no gift', chatId }), {
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+      order.type = ('uzgets_' + order.type) as any;
     }
 
     const timestamp = update.channel_post?.date

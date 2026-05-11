@@ -97,6 +97,7 @@ if (authenticated && !dbReady) {
               <a data-section="sales" data-source="starsjoy" onclick="showSection('sales','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="sales" data-source="premium_send" onclick="showSection('sales','premium_send')"><span class="dd-label">Premium Send</span></a>
               <a data-section="sales" data-source="premium_1_12" onclick="showSection('sales','premium_1_12')"><span class="dd-label">Premium 1/12</span></a>
+              <a data-section="sales" data-source="uzgets" onclick="showSection('sales','uzgets')"><span class="dd-label">Uzgets</span></a>
               <a data-section="sales" data-source="all" onclick="showSection('sales','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -112,6 +113,7 @@ if (authenticated && !dbReady) {
               <a data-section="profit" data-source="starsjoy" onclick="showSection('profit','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="profit" data-source="premium_send" onclick="showSection('profit','premium_send')"><span class="dd-label">Premium Send</span></a>
               <a data-section="profit" data-source="premium_1_12" onclick="showSection('profit','premium_1_12')"><span class="dd-label">Premium 1/12</span></a>
+              <a data-section="profit" data-source="uzgets" onclick="showSection('profit','uzgets')"><span class="dd-label">Uzgets</span></a>
               <a data-section="profit" data-source="all" onclick="showSection('profit','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -133,6 +135,7 @@ if (authenticated && !dbReady) {
               <a data-section="buyers" data-source="starsjoy" onclick="showSection('buyers','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="buyers" data-source="premium_send" onclick="showSection('buyers','premium_send')"><span class="dd-label">Premium Send</span></a>
               <a data-section="buyers" data-source="premium_1_12" onclick="showSection('buyers','premium_1_12')"><span class="dd-label">Premium 1/12</span></a>
+              <a data-section="buyers" data-source="uzgets" onclick="showSection('buyers','uzgets')"><span class="dd-label">Uzgets</span></a>
               <a data-section="buyers" data-source="all" onclick="showSection('buyers','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -148,6 +151,7 @@ if (authenticated && !dbReady) {
               <a data-section="analytics" data-source="starsjoy" onclick="showSection('analytics','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="analytics" data-source="premium_send" onclick="showSection('analytics','premium_send')"><span class="dd-label">Premium Send</span></a>
               <a data-section="analytics" data-source="premium_1_12" onclick="showSection('analytics','premium_1_12')"><span class="dd-label">Premium 1/12</span></a>
+              <a data-section="analytics" data-source="uzgets" onclick="showSection('analytics','uzgets')"><span class="dd-label">Uzgets</span></a>
               <a data-section="analytics" data-source="all" onclick="showSection('analytics','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -932,6 +936,12 @@ if (authenticated && !dbReady) {
     .pill-premium { background: rgba(168, 85, 247, 0.1); color: #c084fc; }
     .pill-premium_send { background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
     .pill-premium_1_12 { background: rgba(236, 72, 153, 0.1); color: #f472b6; }
+    .pill-uzgets_stars { background: rgba(6, 182, 212, 0.12); color: #22d3ee; }
+    .pill-uzgets_premium { background: rgba(20, 184, 166, 0.12); color: #2dd4bf; }
+    .sales-cards.cols-6 { grid-template-columns: repeat(6, 1fr); }
+    .sales-cards.cols-6 .sc-value { font-size: 1.4rem; }
+    .sales-cards.cols-6 .sc-sub { font-size: 0.66rem; gap: 5px; }
+    .sales-cards.cols-6 .stat-card { padding: 16px 12px; }
     .sc-revenue { font-size: 0.82rem; font-weight: 700; color: var(--green); }
 
     /* Daily revenue bars */
@@ -1990,10 +2000,12 @@ if (authenticated && !dbReady) {
         if (type === 'gift') return { pill: 'pill-gift', label: 'Gift' };
         if (type === 'premium_send') return { pill: 'pill-premium_send', label: 'PS Premium' };
         if (type === 'premium_1_12') return { pill: 'pill-premium_1_12', label: 'P 1/12' };
+        if (type === 'uzgets_stars') return { pill: 'pill-uzgets_stars', label: 'UZ Stars' };
+        if (type === 'uzgets_premium') return { pill: 'pill-uzgets_premium', label: 'UZ Premium' };
         return { pill: 'pill-premium', label: 'Premium' };
       }
 
-      var sourceLabels = { starsjoy: 'Starsjoy', premium_send: 'Premium Send', premium_1_12: 'Premium 1/12', all: 'Umumiy' };
+      var sourceLabels = { starsjoy: 'Starsjoy', premium_send: 'Premium Send', premium_1_12: 'Premium 1/12', uzgets: 'Uzgets', all: 'Umumiy' };
 
       function renderSales() {
         var o = statsData.orders;
@@ -2026,6 +2038,29 @@ if (authenticated && !dbReady) {
             <div class="sc-label">💎 12 oy</div>
             <div class="sc-value">${ov.p112TwelveCount}</div>
             <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.p112TwelveRevenue)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney(ov.p112TwelveCount * 48000)}</span></div>
+          </div>`;
+        } else if (currentSource === 'uzgets') {
+          var uzStarsProfit = Math.round((ov.uzStarsRevenue || 0) * 0.10);
+          cards += `
+          <div class="stat-card">
+            <div class="sc-label">⭐ Stars</div>
+            <div class="sc-value">${fmtMoney(ov.uzStarsTotalAmount || 0)}</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.uzStarsRevenue || 0)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney(uzStarsProfit)}</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-label">👑 3 oy</div>
+            <div class="sc-value">${ov.uz3Count || 0}</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.uz3Revenue || 0)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney((ov.uz3Count || 0) * 15000)}</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-label">👑 6 oy</div>
+            <div class="sc-value">${ov.uz6Count || 0}</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.uz6Revenue || 0)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney((ov.uz6Count || 0) * 25000)}</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-label">👑 12 oy</div>
+            <div class="sc-value">${ov.uz12Count || 0}</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.uz12Revenue || 0)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney((ov.uz12Count || 0) * 35000)}</span></div>
           </div>`;
         } else if (currentSource === 'starsjoy') {
           cards += `
@@ -2072,6 +2107,7 @@ if (authenticated && !dbReady) {
         var colsClass = '';
         if (currentSource === 'premium_send') colsClass = ' cols-2';
         else if (currentSource === 'premium_1_12') colsClass = ' cols-3';
+        else if (currentSource === 'uzgets') colsClass = ' cols-5';
         else if (currentSource === 'all') colsClass = ' cols-5';
         salesCardsEl.className = 'stat-cards sales-cards' + colsClass;
         salesCardsEl.innerHTML = cards;
@@ -2112,6 +2148,8 @@ if (authenticated && !dbReady) {
             if (b.premiumOrders) details.push('👑' + b.premiumOrders);
             if (b.psOrders) details.push('📤' + b.psOrders);
             if (b.p112Orders) details.push('💎' + b.p112Orders);
+            if (b.uzStarsOrders) details.push('UZ⭐' + b.uzStarsOrders);
+            if (b.uzPremiumOrders) details.push('UZ👑' + b.uzPremiumOrders);
             return '<tr>' +
               '<td><span class="pill pill-rank">' + (i + 1) + '</span></td>' +
               '<td>@' + b.username + '</td>' +
@@ -2224,18 +2262,26 @@ if (authenticated && !dbReady) {
         var premiumProfit = Math.round(ov.premiumRevenue * 0.10);
         var psProfit = Math.round(ov.psRevenue * 0.10);
         var p112Profit = (ov.p112OneCount * 18000) + (ov.p112TwelveCount * 48000);
+        // Uzgets — alohida silos, "Umumiy" foydaga qo'shilmaydi
+        var uzStarsProfit = Math.round((ov.uzStarsRevenue || 0) * 0.10);
+        var uz3Profit = (ov.uz3Count || 0) * 15000;
+        var uz6Profit = (ov.uz6Count || 0) * 25000;
+        var uz12Profit = (ov.uz12Count || 0) * 35000;
+        var uzTotalProfit = uzStarsProfit + uz3Profit + uz6Profit + uz12Profit;
 
         // Source bo'yicha foyda yig'indisi
         var profit;
         if (currentSource === 'starsjoy') profit = starsProfit + giftProfit + premiumProfit;
         else if (currentSource === 'premium_send') profit = psProfit;
         else if (currentSource === 'premium_1_12') profit = p112Profit;
-        else profit = starsProfit + giftProfit + premiumProfit + psProfit + p112Profit;
+        else if (currentSource === 'uzgets') profit = uzTotalProfit;
+        else profit = starsProfit + giftProfit + premiumProfit + psProfit + p112Profit; // 'all' — uzgets'siz
 
         // Update profit label based on source
         var profitLabel = currentSource === 'premium_send' ? 'Sof foyda (10%)' :
           currentSource === 'premium_1_12' ? 'Sof foyda (fixed)' :
-          currentSource === 'starsjoy' ? 'Sof foyda (12%/10%)' : 'Sof foyda';
+          currentSource === 'starsjoy' ? 'Sof foyda (12%/10%)' :
+          currentSource === 'uzgets' ? 'Sof foyda (10% + fixed)' : 'Sof foyda';
         document.querySelector('.profit-main .pc-label').textContent = profitLabel;
 
         document.getElementById('profitValue').textContent = fmtMoney(profit);
@@ -2258,6 +2304,13 @@ if (authenticated && !dbReady) {
           breakdownHTML += `
             <div class="pb-row"><span class="pb-dot" style="background:#f472b6"></span><span class="pb-name">P 1 oy</span><span class="pb-revenue">${ov.p112OneCount} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(ov.p112OneCount * 18000)} so'm</span></div>
             <div class="pb-row"><span class="pb-dot" style="background:#f472b6"></span><span class="pb-name">P 12 oy</span><span class="pb-revenue">${ov.p112TwelveCount} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(ov.p112TwelveCount * 48000)} so'm</span></div>`;
+        }
+        if (currentSource === 'uzgets') {
+          breakdownHTML += `
+            <div class="pb-row"><span class="pb-dot" style="background:#22d3ee"></span><span class="pb-name">UZ Stars</span><span class="pb-revenue">${fmtMoney(ov.uzStarsRevenue || 0)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uzStarsProfit)} so'm (10%)</span></div>
+            <div class="pb-row"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 3 oy</span><span class="pb-revenue">${ov.uz3Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz3Profit)} so'm (15 000 × ta)</span></div>
+            <div class="pb-row"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 6 oy</span><span class="pb-revenue">${ov.uz6Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz6Profit)} so'm (25 000 × ta)</span></div>
+            <div class="pb-row"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 12 oy</span><span class="pb-revenue">${ov.uz12Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz12Profit)} so'm (35 000 × ta)</span></div>`;
         }
         document.querySelector('.profit-breakdown').innerHTML = breakdownHTML;
       }
