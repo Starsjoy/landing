@@ -1,0 +1,624 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Telegram Stars'ni Uzcard bilan sotib olish (2026 narxlar, 1-3 daqiqada) | StarsJoy Blog";
+const description = "Uzcard orqali Telegram Stars sotib olish — O'zbekistonda eng qulay yo'l. 1 Star = 240 so'm, 100 Stars = 24 000 so'm, Click yoki Payme orqali 1-3 daqiqada. Bosqichma-bosqich qo'llanma, narx jadvali va xavfsizlik maslahatlari.";
+const publishDate = "2026-05-12";
+const modifiedDate = "2026-05-12";
+const wordCount = 1820;
+const canonical = "https://starsjoy.uz/blog/telegram-stars-uzcard-bilan-sotib-olish";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="Telegram Stars Uzcard, Stars Uzcard bilan, Telegram Stars sotib olish Uzcard, Uzcard orqali Stars, Telegram Stars O'zbekiston, Stars narxi Uzcard, Stars 1-3 daqiqada, Uzcard Click Payme Stars"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: canonical },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-stars-uzcard-bilan-sotib-olish" }
+  ]}
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Telegram Stars'ni Uzcard bilan sotib olish (2026 narxlar, 1-3 daqiqada)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "Telegram Stars Uzcard, Uzcard orqali Stars, Stars sotib olish, StarsJoy, Click, Payme",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": canonical,
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://starsjoy.uz/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Stars Uzcard bilan sotib olish", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Uzcard orqali Telegram Stars sotib olish mumkinmi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ha. To'g'ridan-to'g'ri Telegram saytidan emas, balki mahalliy yetkazib beruvchi (masalan, @starsjoybot) orqali. Uzcard kartangiz bilan Click yoki Payme orqali so'mda to'laysiz, 1-3 daqiqada Stars hisobingizga tushadi. 1 Star standart kurs bo'yicha 240 so'm, demak 100 Stars = 24 000 so'm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Nima uchun Uzcard bilan to'g'ridan-to'g'ri Telegram'dan Stars olib bo'lmaydi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Telegram Stars'ni rasmiy ravishda Apple App Store, Google Play yoki Telegram'ning Fragment platformasi orqali sotadi — ularning hammasi xalqaro to'lov tizimini (Visa, Mastercard, Apple/Google Pay yoki TON cryptocurrency) talab qiladi. Uzcard va Humo mahalliy to'lov tizimi bo'lib, xalqaro tranzaktsiyalarda qabul qilinmaydi. VPN ham yechim emas — muammo geografik emas, balki karta tizimida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Stars qancha vaqtda hisobimga tushadi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standart paketlar (50-2500 Stars) uchun to'lov tasdiqlangach 1-3 daqiqa ichida Stars hisobingizga tushadi. Yiriklarda (5000+) ba'zan 5-10 daqiqa kerak bo'lishi mumkin. Hisobni tekshirish uchun Telegram → Settings → My Stars bo'limini oching."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Akkauntim xavfsiz qoladimi? Parol so'rashadimi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ha, akkauntingiz to'liq xavfsiz. Ishonchli yetkazib beruvchi sizdan faqat Telegram username yoki @username havolasini so'raydi — parol, SMS-kod yoki ikki bosqichli tasdiqlash kodi hech qachon so'ralmaydi. Stars sovg'a sifatida Telegram'ning rasmiy Gift mexanizmi orqali yuboriladi, akkauntingizga kirish kerak emas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Click va Payme'dan qaysi biri yaxshi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ikkalasi ham bir xil tezlikda ishlaydi (3-5 soniyada to'lov tasdiqlanadi) va Uzcard/Humo bilan to'liq integratsiyalangan. Tanlov foydalanuvchi odatiga bog'liq: kim qaysi ilovaga ko'proq o'rganib qolgan bo'lsa o'shani tanlaydi. Komissiya har ikkisida ham yo'q (StarsJoy tomonidan)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Humo karta ham qabul qilinadi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ha. @starsjoybot Uzcard va Humo kartalarini ham qabul qiladi — to'lov Click yoki Payme orqali amalga oshadi (bu platformalar ikkala karta tizimi bilan ham ishlaydi). Texnik jihatdan Uzcard va Humo to'lov jarayonida foydalanuvchi uchun farq yo'q."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Uzcard'da limit yetmasa nima qilish kerak?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Agar bir martalik to'lov limitiga tushib qolsangiz: (1) Click yoki Payme'da kunlik limitni vaqtincha oshiring (bu sozlamalardan amalga oshadi), yoki (2) buyurtmani 2 ta kichik to'lovga bo'lib amalga oshiring. Yirik buyurtmalarda (1000+ Stars) bank o'tkazmasi orqali to'lov ham mavjud — bu uchun @starsjoysupport bilan bog'lansangiz tafsilotlarni yuboradi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Stars'ni keyin pulga qaytarib aylantirish mumkinmi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yo'q. Sotib olingan Stars'ni qaytib so'mga yoki dollar ga aylantirib bo'lmaydi — bu Telegram'ning rasmiy qoidasi. Faqat kanal yoki bot tomonidan paid post va paid reactions orqali ishlab topilgan Stars TON cryptocurrency'ga aylantirilishi mumkin (Fragment orqali). Shuning uchun Stars'ni faqat ishlatish rejasi aniq bo'lganda olish kerak."
+        }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Uzcard orqali Telegram Stars sotib olish",
+    "description": "@starsjoybot va Click/Payme yordamida Uzcard bilan Telegram Stars sotib olishning bosqichma-bosqich qo'llanmasi.",
+    "totalTime": "PT3M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Uzcard yoki Humo karta" },
+      { "@type": "HowToTool", "name": "Click yoki Payme ilovasi" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Botni oching", "text": "Telegram'da @starsjoybot ni qidiring yoki t.me/starsjoybot havolasiga o'ting va /start tugmasini bosing." },
+      { "@type": "HowToStep", "name": "Stars bo'limini tanlang", "text": "Bot menyusidan 'Telegram Stars' tugmasini bosing va kerakli Stars miqdorini tanlang (masalan, 100 Stars)." },
+      { "@type": "HowToStep", "name": "To'lov turini tanlang", "text": "Click yoki Payme'ni tanlang. Ikkalasi ham Uzcard bilan ishlaydi." },
+      { "@type": "HowToStep", "name": "Uzcard bilan to'lang", "text": "Click yoki Payme ilovasiga o'tasiz, Uzcard kartangiz tanlangan bo'lsa tasdiqlash uchun parol kiriting yoki SMS-kodni tasdiqlang." },
+      { "@type": "HowToStep", "name": "Username kiriting", "text": "To'lovdan keyin bot sizdan Telegram username so'raydi (masalan, @yourname). Bu Stars qaysi akkauntga tushishini ko'rsatadi." },
+      { "@type": "HowToStep", "name": "Stars hisobingizda", "text": "1-3 daqiqa ichida Stars hisobingizga tushadi. Telegram → Settings → My Stars'da tekshiring." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/">Bosh sahifa</a>
+          <span>/</span>
+          <a href="/blog">Blog</a>
+          <span>/</span>
+          <span>Stars Uzcard bilan sotib olish</span>
+        </nav>
+        <div class="post-tag">Stars</div>
+        <h1 class="post-title">Telegram Stars'ni Uzcard bilan sotib olish (2026 narxlar, 1-3 daqiqada)</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy Blog</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Uzcard bilan Telegram Stars'ni Telegram saytidan to'g'ridan-to'g'ri olib bo'lmaydi — Telegram xalqaro karta (Visa/Mastercard) yoki TON talab qiladi. Lekin mahalliy yetkazib beruvchi <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard bilan Click yoki Payme orqali to'lab, <strong>1-3 daqiqada</strong> Stars olish mumkin. Standart kurs <strong>1 Star = 240 so'm</strong> (100 Stars = 24 000 so'm, 1000 Stars = 240 000 so'm). Parol berish shart emas — faqat username yetarli.
+          </div>
+
+          <p>Telegram Stars 2024-yildan beri Telegram ekosistemasi ichida asosiy ichki valyutaga aylandi: ular orqali Premium obuna sovg'a qilinadi, Mini App'larda to'lov qilinadi, kanallarda paid post va paid reaction'lar uchun foydalaniladi. Lekin O'zbekistondagi ko'pchilik foydalanuvchi xalqaro Visa yoki Mastercard'siz ishlaydi va shunchaki Uzcard yoki Humo kartasi bilan Stars'ni qanday olish kerakligi savol bo'lib qoladi.</p>
+
+          <p>Bu maqolada Uzcard bilan Telegram Stars sotib olishning real va xavfsiz yo'lini bosqichma-bosqich tushuntiramiz: nima uchun to'g'ridan-to'g'ri Telegram'dan Uzcard bilan olib bo'lmasligi, vositachi mexanizmi qanday ishlashi, har bir Stars paketining so'mdagi aniq narxi, Click va Payme orqali to'lashning farqi va asosiy xavfsizlik chiziqlari. Ma'lumotlar 2026-yil may holatiga to'g'ri, kurs Starsjoy mahalliy yetkazib beruvchi tariffi bo'yicha.</p>
+
+          <h2>Nima uchun Uzcard bilan to'g'ridan-to'g'ri Telegram'dan Stars olib bo'lmaydi?</h2>
+
+          <p>Telegram Stars sotib olishning 3 ta rasmiy yo'li bor: <strong>(1) iPhone'da App Store</strong>, <strong>(2) Android'da Google Play</strong>, <strong>(3) Desktop yoki veb-da Telegram'ning Fragment platformasi orqali TON cryptocurrency bilan</strong>. Hammasi xalqaro to'lov vositasini talab qiladi — Visa, Mastercard, Apple Pay/Google Pay yoki TON.</p>
+
+          <p>Uzcard va Humo mahalliy to'lov tizimi bo'lib, ular faqat O'zbekiston ichida tranzaksiyalarni qo'llab-quvvatlaydi. Apple App Store va Google Play'da Uzcard ulanmaydi, Fragment esa faqat TON wallet (crypto) ishlatadi. Buni VPN orqali ham hal qilib bo'lmaydi — muammo geografik blokada emas, balki karta tizimining xalqaro qabul qilinmasligida.</p>
+
+          <p>Bundan tashqari, mobil ilovada (iOS/Android) Stars sotib olganda Apple yoki Google qo'shimcha <strong>25-40% komissiya</strong> oladi — narx Telegram'ning rasmiy kursi ($0.013-0.016 per Star)dan ancha yuqori chiqadi. Desktop'da Fragment orqali olish arzonroq, lekin TON wallet sozlash va kripto sotib olish bilan murakkablashadi.</p>
+
+          <p><strong>Yechim shu:</strong> Mahalliy yetkazib beruvchi xalqaro karta orqali Telegram'ning rasmiy "Gift Stars" mexanizmidan foydalanib Stars sotib oladi va sizga sovg'a sifatida yuboradi. Siz esa Uzcard bilan so'mda to'laysiz. Bu butunlay qonuniy, Telegram qoidalariga zid emas va Starsjoy ham xuddi shu rasmiy mexanizm bilan ishlaydi. <a href="/blog/telegram-stars-visa-kartasiz">Visa kartasiz Stars olish</a> haqida ham batafsil maqolamiz bor.</p>
+
+          <h2>Uzcard orqali Telegram Stars olish: umumiy sxema</h2>
+
+          <p>Jarayon 4 ta oddiy qadamda yakunlanadi va texnik jihatdan tushunarli:</p>
+
+          <ol>
+            <li><strong>Siz</strong> mahalliy yetkazib beruvchi botiga (@starsjoybot) Stars miqdori va Telegram username'ingizni aytasiz.</li>
+            <li><strong>Bot</strong> sizga so'mdagi narxni va to'lov havolasini chiqaradi — bu Click yoki Payme tomon bo'ladi.</li>
+            <li><strong>Siz</strong> Uzcard yoki Humo karta orqali to'laysiz (Click yoki Payme ilovasida).</li>
+            <li><strong>Yetkazib beruvchi</strong> Telegram'ning rasmiy Gift Stars mexanizmi orqali sizga Stars yuboradi — 1-3 daqiqada hisobingizda paydo bo'ladi.</li>
+          </ol>
+
+          <p>Bu jarayonda sizdan Telegram parolingiz, SMS-kod yoki ikki bosqichli tasdiqlash kodi <em>hech qachon</em> so'ralmaydi. Faqat Telegram username (yoki t.me/username havolasi) yetarli — bu Stars qaysi akkauntga tushishini ko'rsatadi. Parol so'ralsa — bu firibgar belgisi, darhol to'xtating va boshqa xizmat qidiring.</p>
+
+          <h2>Stars paketlari va Uzcard'dagi 2026 narxlari</h2>
+
+          <p>Starsjoy mahalliy yetkazib beruvchi sifatida standart kurs <strong>1 Star = 240 so'm</strong> bilan ishlaydi. Bu Telegram'ning rasmiy ($0.013-0.016) kursiga so'mda taxminan mos keladi va Apple/Google in-app variantidan ancha arzon (chunki platforma 30% komissiyasi yo'q). Mana asosiy paketlar:</p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <thead>
+                <tr>
+                  <th>Stars miqdori</th>
+                  <th>Uzcard narxi (so'm)</th>
+                  <th>Mos keluvchi xarid</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>50 Stars</td>
+                  <td>12 000 so'm</td>
+                  <td>2-3 ta kichik (15-25) Gift</td>
+                </tr>
+                <tr>
+                  <td>100 Stars</td>
+                  <td>24 000 so'm</td>
+                  <td>Paid reactions, kichik bot to'lov</td>
+                </tr>
+                <tr>
+                  <td>250 Stars</td>
+                  <td>60 000 so'm</td>
+                  <td>O'rta hajmdagi Gift</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>500 Stars</td>
+                  <td>120 000 so'm</td>
+                  <td>Premium 1 oy gift uchun bonus</td>
+                </tr>
+                <tr>
+                  <td>1000 Stars</td>
+                  <td>240 000 so'm</td>
+                  <td>Multi-use, eng populyar paket</td>
+                </tr>
+                <tr>
+                  <td>2500 Stars</td>
+                  <td>600 000 so'm</td>
+                  <td>Bulk — kanal byudjeti</td>
+                </tr>
+                <tr>
+                  <td>5000+ Stars</td>
+                  <td>shaxsiy kurs</td>
+                  <td>Telegram Ads, paid post test</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><em>Narxlar 2026-yil may holatiga to'g'ri. Yiriklarda (5000+) Starsjoy support bilan shaxsiy kurs muhokama qilinadi — narx pastroq bo'lishi mumkin.</em> <a href="/blog/telegram-stars-narxi">Telegram Stars narxi</a> umumiy paketlar bo'yicha batafsil maqolamiz ham bor.</p>
+
+          <p class="natural-cta"><strong>Eslatma:</strong> Agar siz birinchi marta Stars sotib olayotgan bo'lsangiz, 50 yoki 100 Stars'dan boshlash mantiqliroq — bu jarayonni o'rganib olish uchun yetarli, narxi past, va kelajakdagi yirikroq buyurtmalarda support bilan ishlashga ko'nikasiz. 100 Stars'ni <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali to'g'ridan-to'g'ri bot menyusidan tanlash mumkin.</p>
+
+          <h2>Click va Payme orqali Uzcard to'lash — qaysi qulayroq?</h2>
+
+          <p>Starsjoy bot Uzcard kartangizdan to'lovni 2 ta yo'l orqali qabul qiladi: <strong>Click</strong> yoki <strong>Payme</strong>. Texnik jihatdan ikkalasi ham bir xil — siz bot ko'rsatgan to'lov havolasini bosasiz, mos ilovaga o'tasiz va Uzcard bilan to'laysiz. Tezligi va xavfsizligi bir xil. Tanlov foydalanuvchi odatiga bog'liq:</p>
+
+          <h3>Click qachon qulayroq?</h3>
+          <p>Agar Click ilovasi sizda allaqachon o'rnatilgan va Uzcard ulanib qo'yilgan bo'lsa, to'lov 5-10 soniyada amalga oshadi: havola → Click ochiladi → "To'lash" tugmasini bosasiz → PIN-kod yoki SMS-kod kiritasiz. Click intuitiv interfeysga ega va ko'pchilik foydalanuvchilar uchun standart variant.</p>
+
+          <h3>Payme qachon qulayroq?</h3>
+          <p>Payme'da bir nechta karta ulangan bo'lsa, to'lash paytida tanlash imkoni bor (masalan, ish kartangiz emas, shaxsiy Uzcard'ni tanlash). Bundan tashqari, Payme'da to'lovlar tarixi avtomatik saqlanadi — kelajakda buxgalteriya yoki shaxsiy hisobchi yuritish uchun qulay.</p>
+
+          <p>Komissiya har ikkisida ham yo'q — Starsjoy to'lov platformalari komissiyasini o'z zimmasiga oladi. <a href="/blog/telegram-stars-click-payme">Click va Payme orqali Stars</a> haqida batafsil maqolamiz ham bor.</p>
+
+          <h2>Bosqichma-bosqich: @starsjoybot orqali Uzcard bilan Stars olish</h2>
+
+          <p>Jarayon to'liq avtomatik, 1-3 daqiqada tugaydi. Mana aniq qadamlar:</p>
+
+          <p><strong>Kerakli narsalar:</strong></p>
+          <ul>
+            <li>Telegram akkaunt (o'zingizniki yoki sovg'a qilmoqchi bo'lganingiznikida)</li>
+            <li>Uzcard yoki Humo kartasi (Click yoki Payme ilovasiga ulangan)</li>
+            <li>Internet aloqa</li>
+          </ul>
+
+          <h3>Qadamba-qadam:</h3>
+
+          <ol>
+            <li>Telegram'da <a href="https://t.me/starsjoybot" target="_blank" rel="noopener"><code>@starsjoybot</code></a> ni qidiring yoki to'g'ridan-to'g'ri havoladan oching. <code>/start</code> tugmasini bosing.</li>
+            <li>Menyuda <strong>"Telegram Stars"</strong> tugmasini bosing.</li>
+            <li>Tayyor paketlardan tanlang (50, 100, 500, 1000 va h.k.) yoki "Maxsus miqdor" kiriting.</li>
+            <li>To'lov turini tanlang: <strong>Click</strong> yoki <strong>Payme</strong>. Bot to'lov havolasini chiqaradi.</li>
+            <li>Havolani bosing — ilova ochiladi. Uzcard kartangiz tanlanganmi tekshiring va "To'lash" ni bosing. PIN yoki SMS-kod bilan tasdiqlang.</li>
+            <li>To'lov tasdiqlangach botga qaytasiz. Bot sizdan <strong>Telegram username</strong> so'raydi (masalan, <code>@yourname</code>). Bu Stars qaysi akkauntga tushishini ko'rsatadi.</li>
+            <li>1-3 daqiqa ichida Stars hisobingizga tushadi. Telegram'da <strong>Settings → My Stars</strong> bo'limini ochib tekshiring — <a href="/blog/telegram-stars-hisobini-tekshirish">Stars hisobini tekshirish</a> haqida batafsil maqolada.</li>
+          </ol>
+
+          <p>Jarayon davomida bot <em>hech qachon</em> parol, SMS-kod yoki Telegram ikki bosqichli tasdiqlash kodini so'ramaydi — bular Telegram'dan to'g'ridan-to'g'ri kelishi kerak va ularni hech kim bilan baham ko'rmaslik kerak.</p>
+
+          <h2>Stars'ni nimaga ishlatish mumkin?</h2>
+
+          <p>Sotib olingan Stars'ni bir nechta yo'lda ishlatish mumkin — bu narx haqida o'ylab xarid qilishda yordam beradi:</p>
+
+          <ul>
+            <li><strong>Telegram Gift sovg'a qilish</strong> — eng arzon 15 Stars Gift (~4 500 so'm), katta gift'lar 100-500 Stars oralig'ida. <a href="/blog/telegram-gifts-narxi-royxati">Gift narxlari ro'yxati</a>.</li>
+            <li><strong>Premium gift</strong> — boshqa foydalanuvchiga Telegram Premium sovg'a qilish (3, 6 yoki 12 oy).</li>
+            <li><strong>Paid post (paid media)</strong> — public kanallarda yopiq kontentga kirish uchun to'lov.</li>
+            <li><strong>Paid reactions</strong> — postga "yulduz" reaktsiyasi qo'yish (har bittasi 1 Star).</li>
+            <li><strong>Mini App ichki to'lovlar</strong> — Hamster, Notcoin yoki boshqa Mini App'larda premium funksiyalar.</li>
+            <li><strong>Telegram Ads</strong> — biznes egalari uchun reklama kampaniya byudjeti.</li>
+          </ul>
+
+          <p>Batafsil — <a href="/blog/telegram-stars-bilan-nima-qilish-mumkin">Telegram Stars bilan nima qilish mumkin</a> maqolamizda 9 ta yo'l yoritilgan.</p>
+
+          <h2>Xavfsizlik: soxta xizmatlar va xavfli signal'lar</h2>
+
+          <p>Bozorda ko'plab Stars sotuvchi bot va kanallar paydo bo'ldi — afsuski hammasi ham xavfsiz emas. Quyidagi belgilar firibgar xizmat ekanligini ko'rsatadi:</p>
+
+          <h3>Xavfli signal'lar (xizmatdan voz keching)</h3>
+          <ul>
+            <li>Telegram parolingizni so'rashadi</li>
+            <li>SMS tasdiqlash kodini so'rashadi</li>
+            <li>Ikki bosqichli tasdiqlash (2FA) parolini so'rashadi</li>
+            <li>"Avval to'lang, keyin Stars yuboramiz" deyishadi va aloqa uziladi</li>
+            <li>Narx bozor narxidan keskin past (masalan, 1000 Stars 80 000 so'mga — bu mumkin emas)</li>
+            <li>Botda hech qanday sharh, rasmiy kanal yoki support kontakt yo'q</li>
+            <li>To'lov shaxsiy karta raqamiga (Click/Payme rasmiy tizimi orqali emas)</li>
+          </ul>
+
+          <h3>Ishonchli xizmat belgilari</h3>
+          <ul>
+            <li>Rasmiy veb-sayt va Telegram kanal mavjud (StarsJoy uchun: <a href="https://starsjoy.uz">starsjoy.uz</a> va <a href="https://t.me/starsjoy" target="_blank" rel="noopener">@starsjoy</a>)</li>
+            <li>To'lov rasmiy Click yoki Payme platforma orqali</li>
+            <li>Support kontakti aniq (<a href="https://t.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a>)</li>
+            <li>Narx bozorga mos (1 Star ≈ 240 so'm)</li>
+            <li>Parol, SMS-kod yoki 2FA so'ralmaydi</li>
+          </ul>
+
+          <p>Firibgarlik belgilari va himoya bo'yicha batafsil — <a href="/blog/telegram-stars-firibgarlik-himoya">Telegram Stars firibgarlikdan himoya</a> maqolasida.</p>
+
+          <h2>Xulosa</h2>
+
+          <p><strong>Uzcard bilan Telegram Stars sotib olish</strong> — bugun O'zbekistondagi eng keng tarqalgan yo'l. Jarayon oddiy va tezkor: <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ga kiring, kerakli Stars miqdorini tanlang, Click yoki Payme orqali Uzcard bilan to'lang — <strong>1-3 daqiqada</strong> Stars hisobingizda paydo bo'ladi. Standart kurs 1 Star = 240 so'm, yiriklarda shaxsiy taklif.</p>
+
+          <p>Asosiy qoidalar: ishonchli xizmatni tanlang (rasmiy kanal va support kontakti bilan), <strong>hech qachon parol bermang</strong>, narxni boshqa platformalar bilan solishtirib ko'ring (in-app sotib olish 25-40% qimmatroq). Stars kelajakdagi <a href="/blog/telegram-stars-bilan-nima-qilish-mumkin">9 ta yo'l</a> bilan ishlatiladi — Gift, Premium gift, paid post, paid reactions, Mini App va Telegram Ads.</p>
+
+          <div class="end-cta">
+            Uzcard bilan tezkor Stars: <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali 1-3 daqiqada
+          </div>
+
+          <h2>Ko'p beriladigan savollar</h2>
+
+          <div class="post-faq">
+            <div class="post-faq-item">
+              <h3>Uzcard orqali Telegram Stars sotib olish mumkinmi?</h3>
+              <p>Ha. To'g'ridan-to'g'ri Telegram saytidan emas, balki mahalliy yetkazib beruvchi (masalan, <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>) orqali. Uzcard kartangiz bilan Click yoki Payme orqali so'mda to'laysiz, 1-3 daqiqada Stars hisobingizga tushadi. 1 Star standart kurs bo'yicha 240 so'm, demak 100 Stars = 24 000 so'm.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Nima uchun Uzcard bilan to'g'ridan-to'g'ri Telegram'dan Stars olib bo'lmaydi?</h3>
+              <p>Telegram Stars'ni rasmiy ravishda Apple App Store, Google Play yoki Telegram'ning Fragment platformasi orqali sotadi — ularning hammasi xalqaro to'lov tizimini (Visa, Mastercard, Apple/Google Pay yoki TON cryptocurrency) talab qiladi. Uzcard va Humo mahalliy to'lov tizimi bo'lib, xalqaro tranzaktsiyalarda qabul qilinmaydi. VPN ham yechim emas — muammo geografik emas, balki karta tizimida.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Stars qancha vaqtda hisobimga tushadi?</h3>
+              <p>Standart paketlar (50-2500 Stars) uchun to'lov tasdiqlangach 1-3 daqiqa ichida Stars hisobingizga tushadi. Yiriklarda (5000+) ba'zan 5-10 daqiqa kerak bo'lishi mumkin. Hisobni tekshirish uchun Telegram → Settings → My Stars bo'limini oching.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Akkauntim xavfsiz qoladimi? Parol so'rashadimi?</h3>
+              <p>Ha, akkauntingiz to'liq xavfsiz. Ishonchli yetkazib beruvchi sizdan faqat Telegram username yoki @username havolasini so'raydi — parol, SMS-kod yoki ikki bosqichli tasdiqlash kodi <strong>hech qachon</strong> so'ralmaydi. Stars sovg'a sifatida Telegram'ning rasmiy Gift mexanizmi orqali yuboriladi, akkauntingizga kirish kerak emas.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Click va Payme'dan qaysi biri yaxshi?</h3>
+              <p>Ikkalasi ham bir xil tezlikda ishlaydi (3-5 soniyada to'lov tasdiqlanadi) va Uzcard/Humo bilan to'liq integratsiyalangan. Tanlov foydalanuvchi odatiga bog'liq: kim qaysi ilovaga ko'proq o'rganib qolgan bo'lsa o'shani tanlaydi. Komissiya har ikkisida ham yo'q (StarsJoy tomonidan).</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Humo karta ham qabul qilinadi?</h3>
+              <p>Ha. <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> Uzcard va Humo kartalarini ham qabul qiladi — to'lov Click yoki Payme orqali amalga oshadi. Texnik jihatdan ikkala karta tizimi foydalanuvchi uchun bir xil ishlaydi. Batafsil — <a href="/blog/telegram-stars-humo-bilan-sotib-olish">Humo bilan Stars sotib olish</a> maqolasida.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Uzcard'da limit yetmasa nima qilish kerak?</h3>
+              <p>Agar bir martalik to'lov limitiga tushib qolsangiz: (1) Click yoki Payme'da kunlik limitni vaqtincha oshiring (sozlamalardan), yoki (2) buyurtmani 2 ta kichik to'lovga bo'ling. Yirik buyurtmalarda (1000+ Stars) bank o'tkazmasi orqali to'lov ham mavjud — buning uchun <a href="https://t.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> bilan bog'lansangiz tafsilotlarni yuboradi.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Stars'ni keyin pulga qaytarib aylantirish mumkinmi?</h3>
+              <p>Yo'q. Sotib olingan Stars'ni qaytib so'mga yoki dollarga aylantirib bo'lmaydi — bu Telegram'ning rasmiy qoidasi. Faqat kanal yoki bot tomonidan paid post va paid reactions orqali ishlab topilgan Stars TON cryptocurrency'ga aylantirilishi mumkin (Fragment orqali). Shuning uchun Stars'ni faqat ishlatish rejasi aniq bo'lganda olish kerak — <a href="/blog/telegram-stars-amal-muddati">Stars amal muddati</a> haqida ham maqolamiz bor.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 760px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .post-body {
+    padding: 60px 24px;
+  }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content section { padding: 0; margin: 0; }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 28px 0 12px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .post-content a { color: var(--primary); text-decoration: none; }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul, .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 14px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .post-table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+  }
+
+  .post-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .post-table th {
+    background: rgba(124, 58, 237, 0.06);
+    color: var(--text);
+    font-weight: 700;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+  }
+
+  .post-table td {
+    padding: 12px 18px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+  }
+
+  .post-table tr:last-child td { border-bottom: none; }
+
+  .post-table .highlight-row { background: rgba(124, 58, 237, 0.04); }
+  .post-table .highlight-row td { color: var(--primary); font-weight: 600; }
+
+  .tldr-box {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.07), rgba(124, 58, 237, 0.05));
+    border-left: 4px solid #F59E0B;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 0 0 28px;
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .tldr-box strong { color: #B45309; }
+  .tldr-box a { color: var(--primary); font-weight: 600; }
+
+  .natural-cta {
+    background: rgba(124, 58, 237, 0.04);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 22px 0;
+    font-size: 0.96rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+  .natural-cta strong { color: var(--primary); }
+
+  .end-cta {
+    background: rgba(124, 58, 237, 0.06);
+    border: 1px dashed rgba(124, 58, 237, 0.3);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 28px 0 0;
+    text-align: center;
+    font-size: 0.98rem;
+    color: var(--text);
+  }
+  .end-cta a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .end-cta a:hover { text-decoration: underline; }
+
+  .post-faq { margin: 24px 0; }
+
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+
+  .post-faq-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+
+  .post-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.6rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.05rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .post-table th { padding: 10px 12px; font-size: 0.85rem; }
+    .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+    .tldr-box { padding: 16px 18px; font-size: 0.94rem; }
+    .natural-cta { padding: 12px 14px; font-size: 0.92rem; }
+    .end-cta { padding: 14px 14px; }
+    .end-cta a { font-size: 0.92rem; }
+  }
+</style>
