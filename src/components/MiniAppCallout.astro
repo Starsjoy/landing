@@ -1,0 +1,61 @@
+---
+const { lang = "uz" } = Astro.props;
+
+const copy = {
+  uz: {
+    label: "Eslatma",
+    body: "Starsjoy — Telegram Mini App'i (oddiy bot emas). Telegram ichida ochiladigan zamonaviy ilova: kartalar, tarix, profil va tezkor xarid.",
+    link: "Batafsil",
+    href: "/blog/starsjoy-mini-app-nima",
+  },
+  ru: {
+    label: "Примечание",
+    body: "Starsjoy — это Telegram Mini App (не обычный бот). Современное приложение внутри Telegram: карточки, история, профиль и быстрая покупка.",
+    link: "Подробнее",
+    href: "/ru/blog/starsjoy-mini-app-nima",
+  },
+};
+
+const t = copy[lang as "uz" | "ru"] ?? copy.uz;
+---
+
+<aside class="miniapp-callout" aria-label={t.label}>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <rect x="6" y="2.5" width="12" height="19" rx="3" stroke="currentColor" stroke-width="1.6"/>
+    <line x1="10.5" y1="18.5" x2="13.5" y2="18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <rect x="8.5" y="6" width="7" height="9.5" rx="1" stroke="currentColor" stroke-width="1.2"/>
+  </svg>
+  <p>
+    <strong>{t.label}:</strong> {t.body} <a href={t.href}>{t.link} →</a>
+  </p>
+</aside>
+
+<style>
+  .miniapp-callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    margin: 18px 0;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.06), rgba(107, 147, 255, 0.06));
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    border-radius: 10px;
+    color: var(--text, #2A2A2E);
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+  .miniapp-callout svg {
+    flex-shrink: 0;
+    color: #7C3AED;
+    margin-top: 2px;
+  }
+  .miniapp-callout p { margin: 0; }
+  .miniapp-callout strong { color: #7C3AED; font-weight: 600; }
+  .miniapp-callout a {
+    color: #7C3AED;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .miniapp-callout a:hover { text-decoration: underline; }
+</style>

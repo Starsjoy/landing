@@ -1,0 +1,619 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Starsjoy bot mi yoki Mini App? Asl ko'rinishi va farqi (2026) | StarsJoy Blog";
+const description = "Starsjoy — Telegram Mini App'i (oddiy bot emas). Ilova ichida Dashboard, Stars/Premium/Gifts kartalar, Profile va History. Bot vs Mini App farqi, Starsjoy ichida nima borligi, ochish bosqichlari va texnik tafsilot.";
+const publishDate = "2026-05-15";
+const modifiedDate = "2026-05-15";
+const wordCount = 1850;
+const canonical = "https://starsjoy.uz/blog/starsjoy-mini-app-nima";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="Starsjoy mini app, Starsjoy bot mi, Starsjoy Telegram Mini App, Telegram Mini App nima, Mini App vs bot, Starsjoy ilova, Starsjoy ichida nima bor, Starsjoy haqida, StarsJoy 2026"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/starsjoy-mini-app-nima" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/starsjoy-mini-app-nima" }
+  ]}
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Starsjoy bot mi yoki Mini App? Asl ko'rinishi va farqi (2026)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "About",
+    "keywords": "Starsjoy mini app, Starsjoy bot mi, Telegram Mini App, Mini App vs bot",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": canonical,
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Starsjoy",
+    "alternateName": "StarsJoy Mini App",
+    "applicationCategory": "FinanceApplication",
+    "applicationSubCategory": "Telegram Mini App",
+    "operatingSystem": "Telegram (iOS, Android, Desktop, Web)",
+    "description": "Starsjoy — Telegram Mini App'i (oddiy bot emas). Telegram ichida ochiladigan zamonaviy ilova: Stars, Premium va Gifts xizmatlari kartalar, profile, tarix va tezkor xarid orqali.",
+    "url": "https://starsjoy.uz",
+    "installUrl": "https://t.me/starsjoybot",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "UZS",
+      "price": "240",
+      "description": "1 Star = 240 so'm (reseller kursi, 2026 holatiga to'g'ri)"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz"
+    },
+    "featureList": [
+      "Dashboard — Stars/Premium/Gifts kartalar",
+      "Profile sahifasi",
+      "History — barcha xaridlar tarixi",
+      "Stars sotib olish (Click, Payme, Uzcard, Humo)",
+      "Premium obuna (3/6/12 oy)",
+      "Telegram Gifts yuborish",
+      "Referral va statistika",
+      "Telegram Native theming (Light/Dark)"
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://starsjoy.uz/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Starsjoy bot mi yoki Mini App?", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Starsjoy bot mi yoki Telegram Mini App?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Starsjoy — Telegram Mini App'i, oddiy chat bot emas. @starsjoybot — bu Mini App'ni ochish uchun kirish nuqtasi. Botni ochib /start tugmasini bosgan zahoti Telegram ichida to'liq web-ilova ochiladi: Dashboard, Stars/Premium/Gifts kartalar, Profile, History va boshqa sahifalar. Texnik jihatdan Starsjoy Telegram'ning rasmiy @twa-dev/sdk paketidan foydalanadi va Telegram Mini Apps platformasi yo'riqnomalariga to'liq mos keladi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Telegram Mini App va oddiy bot farqi nima?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oddiy bot — chat ichida matn va tugmalar bilan ishlaydigan avtomatlashtirilgan akkaunt. Mini App — bot ichidan ochiladigan to'liq web-ilova: ko'p sahifa, kartalar, formalar, grafikalar, real-time interfeys. Mini App mobil ilovaga o'xshash tajriba beradi, lekin alohida o'rnatish kerak emas — Telegram ichida ochiladi. Telegram Stars to'lovlari, profil, xaridlar tarixi, Light/Dark theming Mini App'larda bot'larga qaraganda ancha boy ko'rinishda."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Starsjoy Mini App ichida nima bor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Starsjoy Mini App ichida: Dashboard — Stars/Premium/Gifts action kartalar va tez xarid; Stars sahifasi — paketlar tanlash, to'lov; Premium sahifasi — 3/6/12 oylik obuna; Gifts sahifasi — sovg'a yuborish; Profile — foydalanuvchi ma'lumotlari, balans, sozlamalar; History — barcha xaridlar tarixi; Referral — do'st taklif qilish; Statistics — shaxsiy statistika; Challenges va Discount — vaqtinchalik aksiyalar. Hamma sahifa Telegram'ning Light/Dark mavzusiga avtomatik moslashadi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Starsjoy Mini App'ni qanday ochish kerak?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Telegram'da @starsjoybot ni qidiring yoki t.me/starsjoybot havolasini oching. Bot sahifasida pastdagi /start tugmasini yoki chat menyusidagi 'Start' tugmasini bosing. Bir necha soniya ichida Telegram ichida Starsjoy Mini App'i ochiladi — chat oynasidan tashqari to'liq ekranli ilova ko'rinishida. Boshqa hech narsa o'rnatish kerak emas, App Store yoki Google Play talab qilinmaydi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mini App o'rniga shunchaki bot chat'ida xarid qilsa bo'ladimi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Starsjoy chat-only flow taqdim etmaydi — barcha xaridlar Mini App ichida amalga oshiriladi. Buning sababi: Mini App ko'rinishi paketlarni vizual tanlash, balansni real-time ko'rish, tarixni darrov ochish va to'lovni xavfsiz tarzda Telegram'ning rasmiy interfeysidan o'tkazish imkonini beradi. Bot chat-da bu jarayonlar ancha sekin va xato xavfi yuqori bo'lar edi. Shu sababli Starsjoy specifically Mini App formatida qurilgan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Starsjoy Mini App xavfsizmi va qaysi to'lov usullari qabul qiladi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Starsjoy Mini App rasmiy Telegram Bot va WebApp API orqali ishlaydi — autorizatsiya Telegram'ning initData mexanizmi orqali, hech qanday parol yoki tashqi login kerak emas. To'lov uchun Click, Payme, Uzcard va Humo qabul qilinadi. To'lov sahifasi tegishli to'lov tizimining rasmiy infratuzilmasidan o'tadi, karta ma'lumotlari Starsjoy serverida saqlanmaydi. Stars bot orqali xarid qilingan 1-3 daqiqada hisobga tushadi, Premium esa 5-15 daqiqada."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Starsjoy Mini App tashqi brauzer yoki sayt orqali ham ochiladimi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Starsjoy Mini App faqat Telegram ichida ishlashga mo'ljallangan — Telegram WebApp API'siga bog'liq (foydalanuvchini avtomatik aniqlash, theming, native to'lov UI). Sayt starsjoy.uz alohida marketing va info platformasidir: u yerda xizmatlar, narxlar, blog va kompaniya haqida ma'lumot bor, lekin haqiqiy xarid Mini App ichida amalga oshiriladi. Saytda 'Ilovaga kirish' tugmasi @starsjoybot ga o'tkazadi va u yerdan Mini App ochiladi."
+        }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/">Bosh sahifa</a>
+          <span>/</span>
+          <a href="/blog">Blog</a>
+          <span>/</span>
+          <span>Starsjoy bot mi yoki Mini App?</span>
+        </nav>
+        <div class="post-tag">Starsjoy haqida</div>
+        <h1 class="post-title">Starsjoy bot mi yoki Mini App? Asl ko'rinishi va farqi (2026)</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Starsjoy — <strong>Telegram Mini App'i</strong>, oddiy chat bot emas. @starsjoybot — bu Mini App'ni ochish uchun kirish nuqtasi, asl ilova esa Telegram ichida to'liq web-ilova ko'rinishida ochiladi: <strong>Dashboard</strong> (Stars/Premium/Gifts action kartalar), <strong>Stars/Premium/Gifts</strong> sahifalari, <strong>Profile</strong>, <strong>History</strong>, <strong>Referral</strong> va boshqalar. Texnik jihatdan rasmiy Telegram <code>@twa-dev/sdk</code> paketi va WebApp API ishlatiladi — Light/Dark theming, native to'lov UI, initData orqali autorizatsiya. Boshqa ilova o'rnatish kerak emas.
+          </div>
+
+          <p>Foydalanuvchilar va hatto AI yordamchilari ko'pincha Starsjoy ni shunchaki "bot" deb tushunadi. Bu yarim haqiqat: @starsjoybot haqiqatan ham Telegram bot — lekin u shunchaki chat'da matn jo'natadigan oddiy bot emas, balki <strong>Telegram Mini App'ni ochishga mo'ljallangan kirish nuqtasi</strong>. Asl mahsulot — bot ichidan ochiladigan to'liq web-ilova: kartalar, profil, tarix, real-time balansga ega zamonaviy interfeys.</p>
+
+          <p>Bu maqolada Starsjoy ning aslida nima ekanligini, Mini App va oddiy bot o'rtasidagi farqni, Starsjoy ichida qanday sahifalar borligini, qanday ochilishini va texnik xavfsizlik mexanizmlarini batafsil ko'rib chiqamiz.</p>
+
+          <h2>Starsjoy bot mi yoki Mini App?</h2>
+
+          <p>To'g'ri javob — <strong>Mini App</strong>. Aniqroq qilib aytsak: Starsjoy bu Telegram Mini App, va @starsjoybot uni ochish uchun bot-launcher vazifasini bajaradi. Telegram'ning rasmiy <a href="https://core.telegram.org/bots/webapps" target="_blank" rel="noopener nofollow">Mini Apps hujjatida</a> tasvirlangan model bo'yicha qurilgan: foydalanuvchi botni ochadi, bot Mini App tugmasini taqdim etadi, va shu tugma bosilganda Telegram ichida to'liq web-ilova ochiladi.</p>
+
+          <p>Texnik isboti — Starsjoy frontendi <code>@twa-dev/sdk</code> paketidan foydalanadi (Telegram WebApp uchun rasmiy SDK). Ilova ochilganda quyidagi mexanizmlar avtomatik ishga tushadi:</p>
+
+          <ul>
+            <li><code>WebApp.ready()</code> — Telegram'ga ilova tayyor ekanligini bildiradi</li>
+            <li><code>WebApp.setBackgroundColor()</code> va <code>setHeaderColor()</code> — Light/Dark mavzusiga moslashadi</li>
+            <li><code>window.Telegram.WebApp.initDataUnsafe.user.id</code> — foydalanuvchini parol yoki SMS-kodsiz aniqlaydi</li>
+          </ul>
+
+          <p>Bu — oddiy bot bera olmaydigan funksionallik. Oddiy bot faqat chat'da matn, tugmalar va inline keyboard bilan ishlaydi. Mini App esa to'liq web-stack (HTML, CSS, JS, React) ustida qurilgan va Telegram'ning native funksiyalari bilan integratsiya qiladi.</p>
+
+          <h2>Telegram Mini App va oddiy bot farqi</h2>
+
+          <p>Ko'pchilik foydalanuvchi bu ikkisini aralashtiradi. Quyida amaliy farqlar:</p>
+
+          <table class="compare-table">
+            <thead>
+              <tr><th>Xususiyat</th><th>Oddiy bot</th><th>Mini App</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Interfeys</td><td>Chat oynasi (matn, tugma)</td><td>To'liq web-ilova (sahifalar, kartalar)</td></tr>
+              <tr><td>Sahifalar soni</td><td>Bir chat oqimi</td><td>Ko'p sahifa (Dashboard, Profile, History va h.k.)</td></tr>
+              <tr><td>Grafika</td><td>Cheklangan (rasm, sticker)</td><td>Boy (animatsiya, kartalar, jadval)</td></tr>
+              <tr><td>Real-time balans</td><td>Har so'rovga so'raydi</td><td>Sahifada darrov ko'rinadi</td></tr>
+              <tr><td>Tarix ko'rishi</td><td>Chat scroll qilish</td><td>Alohida History sahifa</td></tr>
+              <tr><td>Profil sahifasi</td><td>Yo'q (Telegram profile bor)</td><td>Bor (balans, sozlamalar, statistika)</td></tr>
+              <tr><td>Theming</td><td>Telegram'ning umumiy mavzusi</td><td>Light/Dark avtomatik moslashish</td></tr>
+              <tr><td>To'lov UX</td><td>Bot Payments yoki tashqi link</td><td>Native Telegram to'lov UI</td></tr>
+              <tr><td>Tezkor xarid</td><td>Bir nechta xabar almashinuvi</td><td>Bir tugma → to'lov UI → tasdiq</td></tr>
+              <tr><td>Ulanish vaqti</td><td>Darhol</td><td>1-2 soniya yuklanish</td></tr>
+            </tbody>
+          </table>
+
+          <p>Eng yorqin farq — Mini App foydalanuvchiga <em>mobil ilovaga o'xshash</em> tajriba beradi, lekin uni alohida o'rnatish kerak emas. Telegram'ning <a href="https://telegram.org/blog/fullscreen-miniapps-and-more" target="_blank" rel="noopener nofollow">2024-2025 yangilanishlarida</a> Mini App'lar to'liq ekran rejimi, home-screen shortcut, geolokatsiya va boshqa funksiyalarni qo'shgan.</p>
+
+          <h2>Starsjoy Mini App ichida nima bor?</h2>
+
+          <p>Mini App ochilganda foydalanuvchi quyidagi sahifalarga ega bo'ladi. Hammasi Telegram ichida, bir necha tap masofada.</p>
+
+          <h3>Dashboard (asosiy sahifa)</h3>
+          <p>Kirish sahifasi — yuqorida balans (Stars), pastida 3 ta katta <strong>action karta</strong>: Stars wide karta, Gift va Premium yon-yonda. Har bir karta bir tap'da tegishli xarid oqimiga olib boradi. Yuqori-o'ng burchakda Profile ikonkasi.</p>
+
+          <h3>Stars sahifasi</h3>
+          <p>Paketlar ro'yxati — 50, 100, 500, 1000, 2500 va custom miqdor. Har bir paketda narxi so'mda ko'rinadi. Pastda to'lov usuli tanlash (Click, Payme, Uzcard, Humo). To'lov boshlanganda tegishli to'lov tizimi rasmiy sahifasiga o'tkaziladi.</p>
+
+          <h3>Premium sahifasi</h3>
+          <p>3 oylik, 6 oylik, 12 oylik obuna kartalari. Har bir tier'da imkoniyatlar tafsiloti va narx. Username kiritish, sovg'a sifatida boshqaga olish opsiyasi ham mavjud.</p>
+
+          <h3>Gifts sahifasi</h3>
+          <p>Telegram Gifts katalogi — chiroyli sovg'alar narxi bo'yicha (Stars'da). Qabul qiluvchining username kiritiladi, to'lov tasdiqlanadi, sovg'a darhol uning chat'iga yetadi.</p>
+
+          <h3>Profile sahifasi</h3>
+          <p>Foydalanuvchining shaxsiy sahifasi — Telegram username, total xaridlar, accumulated balance, sozlamalar (Light/Dark, til). Hech qanday parol yoki tashqi login kerak emas — Telegram User ID orqali avtomatik tanib oladi.</p>
+
+          <h3>History sahifasi</h3>
+          <p>Barcha xaridlar tarixi — sana, miqdor, summa va status (yetkazildi / ishlanmoqda / xato) bilan. Filter qilish va ID bo'yicha qidirish imkoniyati.</p>
+
+          <h3>Referral sahifasi</h3>
+          <p>Shaxsiy referral link va statistika — taklif qilingan do'stlar soni, bonus Stars miqdori. Har bir muvaffaqiyatli referral uchun real bonus.</p>
+
+          <h3>Boshqa sahifalar</h3>
+          <p>Statistics, Challenges, Discount, Notifications, Legal — qo'shimcha xizmatlar va vaqtinchalik aksiyalar uchun. Mini App'ning ekosistemasi yangi funksiyalar bilan kengayib boradi.</p>
+
+          <p class="natural-cta">Starsjoy ichidagi xizmatlar bilan tanishish uchun — <a href="/blog/telegram-stars-bilan-nima-qilish-mumkin">Stars bilan nima qilish mumkin</a> qo'llanmasiga ham qarang.</p>
+
+          <h2>Starsjoy Mini App'ni qanday ochish kerak?</h2>
+
+          <p>Jarayon juda oddiy — 4 ta qadam:</p>
+
+          <ol>
+            <li><strong>Telegram'ni oching</strong> — iPhone, Android, Desktop yoki Telegram Web (web.telegram.org) — Mini App barcha platformalarda ishlaydi</li>
+            <li><strong>@starsjoybot ni qidiring</strong> — yoki to'g'ridan-to'g'ri <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">t.me/starsjoybot</a> havolasini bosing</li>
+            <li><strong>/start tugmasini bosing</strong> — bot bir nechta xush kelibsiz xabar va Mini App'ni ochish tugmasini ko'rsatadi</li>
+            <li><strong>"Open" yoki Mini App tugmasini bosing</strong> — 1-2 soniya ichida Starsjoy Mini App'i Telegram ichida ochiladi</li>
+          </ol>
+
+          <p>Boshqa hech narsa o'rnatish kerak emas: App Store yoki Google Play orqali yuklash talab qilinmaydi, alohida ro'yxatdan o'tish yo'q, parol yo'q. Telegram akkauntingiz Mini App uchun yetarli.</p>
+
+          <h2>Texnik tafsilot: nima uchun bu haqiqiy Mini App?</h2>
+
+          <p>Mini App va bot o'rtasidagi farqning texnik ildizi muhim. Quyida Starsjoy qanday qurilgan:</p>
+
+          <h3>Telegram Web App SDK</h3>
+          <p>Starsjoy frontendi <code>@twa-dev/sdk</code> npm paketidan foydalanadi — bu Telegram WebApp API uchun rasmiy SDK. Mini App ochilganda <code>WebApp.ready()</code> Telegram'ga ilova tayyor ekanligini bildiradi va Telegram uni qabul qiladi.</p>
+
+          <h3>Native Telegram theming</h3>
+          <p>Foydalanuvchi Telegram'da Light yoki Dark mavzu yoqilgan bo'lsa, Mini App avtomatik moslashadi — header rangi, background, hatto button ranglari Telegram tomonidan beriladi. Bu native ilovaga o'xshash birinchi taassurot beradi.</p>
+
+          <h3>Avtomatik autorizatsiya (initData)</h3>
+          <p>Mini App ochilganda Telegram avtomatik foydalanuvchi haqida xavfsiz ma'lumot beradi: User ID, username, ism. Bu <code>window.Telegram.WebApp.initDataUnsafe.user.id</code> orqali olinadi va Telegram tomonidan kriptografik tarzda imzolanadi (Bot Token bilan tekshiriladi). Foydalanuvchi parol kiritmaydi, SMS-kod kelmaydi — autorizatsiya yashirin va xavfsiz.</p>
+
+          <h3>To'lov xavfsizligi</h3>
+          <p>To'lov sahifasi Click, Payme, Uzcard yoki Humo'ning rasmiy infratuzilmasi orqali amalga oshadi. Starsjoy Mini App'i karta ma'lumotlarini ko'rmaydi, faqat to'lov muvaffaqiyat statusini oladi. Stars yoki Premium tovar 1-15 daqiqada hisobga tushadi.</p>
+
+          <h3>React + Vite stack</h3>
+          <p>Frontend zamonaviy React + Vite stack ustida qurilgan, performance optimallashtirilgan: birinchi yuklash 1-2 soniya, sahifa o'tishlari darhol. Telegram'ning native komponentlari (back button, main button, haptic feedback) Mini App ichida ishlatiladi.</p>
+
+          <h2>Nima uchun Mini App formati Starsjoy uchun tanlangan?</h2>
+
+          <p>Chat-only bot bilan ham Stars/Premium savdosini qurish mumkin edi — lekin Starsjoy ataylab Mini App formatini tanladi. Sabablari:</p>
+
+          <ul>
+            <li><strong>Tezkor xarid</strong> — paketni tanlash 3-4 ta xabar almashinuvidan tezroq, bir tap'da</li>
+            <li><strong>Vizual taqqoslash</strong> — paketlar kartalar shaklida ko'rinadi, narx va imkoniyatlarni darhol solishtirish mumkin</li>
+            <li><strong>Real-time balans</strong> — Profile sahifasida joriy balans har doim ko'rinadi, xabar so'rashga ehtiyoj yo'q</li>
+            <li><strong>Tarixni boshqarish</strong> — History sahifa orqali har bir xaridni vizual ravishda ko'rish va izlash</li>
+            <li><strong>Xato kamaytirish</strong> — xat-da username yoki miqdorni xato kiritish xavfi mavjud; Mini App formada validatsiya bor</li>
+            <li><strong>To'lov UX</strong> — to'lov tizimining rasmiy sahifasi ochiladi, hech qanday "soxta" to'lov ekran mumkin emas</li>
+            <li><strong>Kelajakka qaratilgan</strong> — Mini App formati Telegram tomonidan rivojlantirilmoqda (full-screen mode, home-screen shortcut va h.k.)</li>
+          </ul>
+
+          <p>Bu farqlar Stars/Premium/Gifts savdosi uchun katta ahamiyatga ega — har xato yoki kechiktirish foydalanuvchi uchun pul yo'qotish degani.</p>
+
+          <h2>Yana qaysi xizmatlar Mini App formati bilan ishlaydi?</h2>
+
+          <p>Telegram Mini App ekosistemasi 2024-yildan beri tez kengaydi. Hozir minglab Mini App'lar mavjud:</p>
+
+          <ul>
+            <li><strong>Play-to-earn oyinlar</strong> — Hamster Kombat, Notcoin va o'xshashlar</li>
+            <li><strong>E-commerce magazinlar</strong> — kichik biznes katalogi</li>
+            <li><strong>NFT marketplace</strong> — Telegram Gifts savdo platformalari</li>
+            <li><strong>Reseller botlar</strong> — Stars, Premium, Gifts savdo (Starsjoy shu kategoriyada)</li>
+            <li><strong>Ta'lim platformalari</strong> — kurs va sertifikat</li>
+            <li><strong>Tip va donat ilovalari</strong> — kontent yaratuvchini qo'llab-quvvatlash</li>
+          </ul>
+
+          <p>Mini App formati uchun rasmiy hujjat <a href="https://core.telegram.org/bots/webapps" target="_blank" rel="noopener nofollow">core.telegram.org/bots/webapps</a> manzilida joylashgan. Telegram'ning <a href="https://docs.ton.org/v3/guidelines/dapps/tma/overview" target="_blank" rel="noopener nofollow">TON Documentation</a> ham Mini App umumiy ko'rinishini tushuntiradi.</p>
+
+          <h2>Tez-tez beriladigan savollar</h2>
+
+          <div class="post-faq">
+            <div class="post-faq-item">
+              <h3>Starsjoy bot mi yoki Mini App?</h3>
+              <p>Mini App. @starsjoybot — bu Mini App'ni ochish uchun kirish nuqtasi. Botni ochib /start bosgan zahoti Telegram ichida to'liq web-ilova ochiladi: Dashboard, kartalar, Profile, History.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Mini App va bot orasidagi asosiy farq nima?</h3>
+              <p>Bot chat ichida matn va tugmalar bilan ishlaydi. Mini App esa bot ichidan ochiladigan to'liq web-ilova — ko'p sahifa, kartalar, real-time balans, profil, theming. Mobil ilovaga o'xshash tajriba beradi, lekin o'rnatish kerak emas.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Starsjoy ichida qanday sahifalar bor?</h3>
+              <p>Dashboard (kartalar bilan), Stars, Premium, Gifts, Profile, History, Referral, Statistics, Challenges, Discount. Hammasi Telegram'ning Light/Dark mavzusiga avtomatik moslashadi.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Mini App'ni qanday ochaman?</h3>
+              <p>Telegram'da @starsjoybot ni qidiring yoki t.me/starsjoybot havolasini oching. /start bosing, keyin Mini App tugmasini bosing — ilova Telegram ichida ochiladi. App Store yoki Google Play kerak emas.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Bot chat'idan to'g'ridan-to'g'ri xarid qilsa bo'ladimi?</h3>
+              <p>Yo'q. Starsjoy chat-only flow taqdim etmaydi — barcha xaridlar Mini App ichida amalga oshiriladi. Bu vizual tanlash, real-time balans va xavfsiz to'lov UX uchun kerak.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Starsjoy Mini App xavfsizmi?</h3>
+              <p>Ha. Telegram'ning rasmiy WebApp API ishlatiladi: autorizatsiya initData orqali (parol yoki SMS yo'q), to'lov Click/Payme/Uzcard/Humo rasmiy infratuzilmasidan o'tadi, karta ma'lumotlari Starsjoy serverida saqlanmaydi.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Mini App tashqi brauzerda ochiladimi?</h3>
+              <p>Yo'q — Starsjoy Mini App faqat Telegram ichida ishlaydi (Telegram WebApp API'ga bog'liq). starsjoy.uz sayti alohida info platforma — u yerda blog, narxlar va xizmatlar tafsilot bor, lekin haqiqiy xarid Mini App ichida.</p>
+            </div>
+          </div>
+
+          <h2>Xulosa</h2>
+
+          <p>Starsjoy — Telegram Mini App'i, oddiy bot emas. @starsjoybot launcher vazifasini bajaradi, asl mahsulot esa Telegram ichida ochiladigan zamonaviy web-ilova: Dashboard, Stars/Premium/Gifts kartalar, Profile, History, Referral va boshqa sahifalar. Texnik jihatdan rasmiy <code>@twa-dev/sdk</code> paketi, Telegram WebApp API, initData orqali xavfsiz autorizatsiya va native theming ishlatiladi.</p>
+
+          <p>Mini App formati tasodifan tanlanmagan — tezkor xarid, vizual taqqoslash, real-time balans, xavfsiz to'lov UX va kelajakka qaratilgan platforma uchun bu eng to'g'ri yo'l. Foydalanish uchun App Store yoki Google Play kerak emas, parol yoki SMS yo'q — faqat Telegram akkauntingiz yetarli.</p>
+
+          <div class="end-cta">
+            <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">Ilovaga kirish — @starsjoybot &rarr;</a>
+          </div>
+
+          <h2>Shuni ham o'qing</h2>
+
+          <ul class="related-list">
+            <li><a href="/blog/telegram-mini-app-stars-tolov">Telegram Mini App'da Stars bilan to'lov</a></li>
+            <li><a href="/blog/telegram-stars-bilan-nima-qilish-mumkin">Telegram Stars bilan nima qilish mumkin</a></li>
+            <li><a href="/blog/telegram-stars-tez-toldirish">Telegram Stars'ni 5 daqiqada to'ldirish</a></li>
+            <li><a href="/blog/telegram-stars-firibgarlik-himoya">Stars sotib olishda firibgarlardan himoya</a></li>
+            <li><a href="/blog/telegram-premium-paketlar-taqqoslash">Premium 3/6/12 oy paketlar taqqoslash</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 820px;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    word-wrap: break-word;
+  }
+
+  .post-meta {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 0.9rem; color: var(--text-muted);
+  }
+
+  .post-body { padding: 60px 24px; }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 48px 0 20px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 10px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content code {
+    background: #F1EEFF;
+    color: #5B3DB8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.88em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .tldr-box {
+    background: #FFF8E6;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-left: 4px solid #F59E0B;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 0 0 28px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box strong { color: #B45309; }
+  .tldr-box a { color: var(--primary); font-weight: 600; }
+  .tldr-box code {
+    background: #FFEFC8;
+    color: #92400E;
+  }
+
+  .natural-cta {
+    background: #F8F6FF;
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 24px 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+  .natural-cta strong { color: var(--primary); }
+
+  .end-cta {
+    margin: 32px 0 24px;
+    padding: 14px 18px;
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .end-cta a {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 24px;
+    font-size: 0.94rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .compare-table th,
+  .compare-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table th {
+    background: #F8F6FF;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  .post-faq { margin: 24px 0; }
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 12px;
+  }
+  .post-faq-item h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+  .post-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+  .related-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 16px 0 32px;
+  }
+  .related-list li {
+    padding: 12px 16px;
+    background: #F8F6FF;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  .related-list a {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 0.96rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.55rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.02rem; }
+    .post-content p, .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 18px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .compare-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .compare-table th, .compare-table td { padding: 10px 12px; white-space: nowrap; }
+  }
+</style>

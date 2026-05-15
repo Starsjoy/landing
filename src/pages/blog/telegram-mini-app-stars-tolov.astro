@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import MiniAppCallout from '../../components/MiniAppCallout.astro';
 
 const title = "Telegram Mini App'da Stars bilan to'lov: qanday ishlaydi va xavfsizmi? (2026) | StarsJoy Blog";
 const description = "Telegram Mini App'da Stars bilan to'lov nima, qanday ishlaydi, qaysi mashhur Mini App'lar Stars qabul qiladi va to'lov bosqichlari — to'liq qo'llanma 2026.";
@@ -201,6 +202,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+          <MiniAppCallout lang="uz" />
 
           <div class="tldr-box" aria-label="Qisqacha javob">
             <strong>Qisqacha javob:</strong> Telegram Mini App — bot ichidan ochiladigan to'liq web-ilova. Mini App ichida <strong>Stars bilan to'lov</strong> Telegram'ning rasmiy Bot Payments API orqali amalga oshiriladi: foydalanuvchi "Pay XX Stars" tugmasini bosadi, Telegram interfeysi (sariq Stars belgisi) summani tasdiqlaydi va to'lov 1 daqiqa ichida tugaydi. Xavfsiz — Mini App sizning karta ma'lumotlaringizni ololmaydi, faqat to'lov fakti haqida xabar oladi. Stars yetmasa @starsjoybot orqali Click/Payme bilan 5 daqiqada to'ldirib, qaytib davom etish mumkin.
