@@ -2,7 +2,6 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
-import MiniAppCallout from '../../../components/MiniAppCallout.astro';
 
 const title = "Оплата Stars в Telegram Mini App: как работает и безопасно ли? (2026) | Блог StarsJoy";
 const description = "Оплата Stars в Telegram Mini App — как работает, какие популярные Mini App принимают Stars и пошаговое руководство по оплате — полное руководство 2026.";
@@ -203,13 +202,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
-          <MiniAppCallout lang="ru" />
 
           <div class="tldr-box" aria-label="Краткий ответ">
             <strong>Краткий ответ:</strong> Telegram Mini App — полноценное веб-приложение, открывающееся из бота. <strong>Оплата Stars в Mini App</strong> идёт через официальный Bot Payments API Telegram: пользователь нажимает "Pay XX Stars", интерфейс Telegram (жёлтая звезда Stars) подтверждает сумму, и оплата завершается за 1 минуту. Безопасно — Mini App не может получить ваши банковские данные, только информацию о факте оплаты. Если Stars не хватает, через @starsjoybot можно пополнить за 5 минут с Click/Payme и вернуться продолжить.
           </div>
 
           <p>С 2024 года экосистема Telegram Mini App быстро расширилась: игры, e-com платформы, NFT marketplace, образовательные приложения и платформы для контент-мейкеров запустились в виде Mini App. Многие из них принимают Telegram Stars как оплату. В этой статье подробно разбирается, как работает оплата Stars в Mini App, её безопасность и практические шаги.</p>
+
+          <p>Описанные ниже механизмы полностью применимы и к Starsjoy — потому что Starsjoy и сам является таким же <a href="/ru/blog/starsjoy-mini-app-nima">Telegram Mini App</a> (а не обычным ботом).</p>
 
           <h2>Что такое Telegram Mini App?</h2>
 
