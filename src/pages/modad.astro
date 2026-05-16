@@ -572,7 +572,7 @@ if (authenticated && !dbReady) {
                 <div class="pc-value" id="planProfitVal">0</div>
                 <div class="pc-sub" id="planProfitSub">—</div>
               </div>
-              <div class="plan-card">
+              <div class="plan-card" id="planForecastCard">
                 <div class="pc-label">Prognoz (oy oxiri)</div>
                 <div class="pc-value" id="planForecastVal">0</div>
                 <div class="pc-sub" id="planForecastSub">—</div>
@@ -604,6 +604,12 @@ if (authenticated && !dbReady) {
                 <span class="pd-legend-item"><span class="pd-legend-dot" style="background:var(--orange)"></span>Nishondan kam</span>
                 <span class="pd-legend-item"><span class="pd-legend-dot" style="background:var(--bg-3);opacity:0.5"></span>Kelajak / sotuv yo'q</span>
               </div>
+            </div>
+
+            <div class="plan-needed" id="planNeeded" data-state="none" hidden>
+              <div class="pn-label" id="planNeededLabel">Bugundan har kuni kerakli</div>
+              <div class="pn-value" id="planNeededVal">0</div>
+              <div class="pn-sub" id="planNeededSub">—</div>
             </div>
           </div>
 
@@ -1348,6 +1354,23 @@ if (authenticated && !dbReady) {
     }
     .plan-card-main { border-color: var(--border-light); }
     .plan-card-main .pc-value { color: var(--accent-light); }
+
+    /* Forecast card rang holatlari (90% / 100% chegaralari) */
+    .plan-card[data-state="green"] {
+      border-color: rgba(16,185,129,0.3);
+      background: linear-gradient(180deg, rgba(16,185,129,0.05), var(--bg-2));
+    }
+    .plan-card[data-state="green"] .pc-value { color: var(--green); }
+    .plan-card[data-state="yellow"] {
+      border-color: rgba(245,158,11,0.3);
+      background: linear-gradient(180deg, rgba(245,158,11,0.05), var(--bg-2));
+    }
+    .plan-card[data-state="yellow"] .pc-value { color: var(--orange); }
+    .plan-card[data-state="red"] {
+      border-color: rgba(239,68,68,0.3);
+      background: linear-gradient(180deg, rgba(239,68,68,0.05), var(--bg-2));
+    }
+    .plan-card[data-state="red"] .pc-value { color: var(--red); }
     .pc-edit {
       position: absolute; top: 12px; right: 12px;
       background: transparent; border: 1px solid var(--border); border-radius: 6px;
@@ -1440,6 +1463,44 @@ if (authenticated && !dbReady) {
     .pd-legend-item { display: flex; align-items: center; gap: 6px; }
     .pd-legend-dot { width: 9px; height: 9px; border-radius: 2px; }
 
+    /* Kunlik kerakli — katta blok */
+    .plan-needed {
+      margin-top: 16px; padding: 24px 22px;
+      border-radius: var(--radius); background: var(--bg-2);
+      border: 1px solid var(--border); text-align: center;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .plan-needed .pn-label {
+      font-size: 0.75rem; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.9px;
+      margin-bottom: 10px; font-weight: 600;
+    }
+    .plan-needed .pn-value {
+      font-size: 2.6rem; font-weight: 900; letter-spacing: -1.2px;
+      font-variant-numeric: tabular-nums;
+      color: var(--text-0); line-height: 1.05;
+    }
+    .plan-needed .pn-sub {
+      font-size: 0.82rem; color: var(--text-3);
+      margin-top: 10px; line-height: 1.4;
+    }
+    .plan-needed .pn-sub b { color: var(--text-1); font-weight: 600; }
+    .plan-needed[data-state="green"] {
+      background: linear-gradient(180deg, rgba(16,185,129,0.10), rgba(16,185,129,0.03));
+      border-color: rgba(16,185,129,0.35);
+    }
+    .plan-needed[data-state="green"] .pn-value { color: var(--green); }
+    .plan-needed[data-state="yellow"] {
+      background: linear-gradient(180deg, rgba(245,158,11,0.10), rgba(245,158,11,0.03));
+      border-color: rgba(245,158,11,0.35);
+    }
+    .plan-needed[data-state="yellow"] .pn-value { color: var(--orange); }
+    .plan-needed[data-state="red"] {
+      background: linear-gradient(180deg, rgba(239,68,68,0.10), rgba(239,68,68,0.03));
+      border-color: rgba(239,68,68,0.35);
+    }
+    .plan-needed[data-state="red"] .pn-value { color: var(--red); }
+
     @media (max-width: 640px) {
       .plan-cards { grid-template-columns: 1fr; gap: 10px; }
       .plan-card { padding: 14px; }
@@ -1457,6 +1518,10 @@ if (authenticated && !dbReady) {
       .pe-row { flex-wrap: wrap; }
       .pe-row input { flex: 1 1 100%; }
       .pe-save, .pe-cancel { flex: 1; }
+      .plan-needed { padding: 20px 16px; margin-top: 12px; }
+      .plan-needed .pn-value { font-size: 2rem; letter-spacing: -0.8px; }
+      .plan-needed .pn-label { font-size: 0.7rem; letter-spacing: 0.7px; }
+      .plan-needed .pn-sub { font-size: 0.78rem; }
     }
 
     /* ───── SETTINGS ───── */
@@ -1787,8 +1852,9 @@ if (authenticated && !dbReady) {
           fetchSalary();
         }
 
-        // Plan section: fetch on enter
+        // Plan section: fetch on enter (salyut uchun arm qilamiz)
         if (name === 'plan') {
+          planConfettiArmed = true;
           fetchPlan();
         }
 
@@ -3037,6 +3103,71 @@ if (authenticated && !dbReady) {
       // ───── PLAN (REJA) ─────
       var planState = null;
       var planSelectedMonth = null; // YYYY-MM
+      var planConfettiArmed = false; // showSection yoki planSave da true bo'ladi
+
+      function launchSalyut() {
+        var canvas = document.getElementById('salyutCanvas');
+        if (canvas) canvas.remove();
+        canvas = document.createElement('canvas');
+        canvas.id = 'salyutCanvas';
+        canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;';
+        document.body.appendChild(canvas);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        var ctx = canvas.getContext('2d');
+        var colors = ['#10b981','#fbbf24','#3b82f6','#ec4899','#a78bfa','#f59e0b','#f87171','#34d399'];
+        var particles = [];
+
+        function burst(cx, cy) {
+          var n = 55;
+          for (var i = 0; i < n; i++) {
+            var angle = -Math.PI/2 + (Math.random() - 0.5) * 1.4;
+            var speed = 9 + Math.random() * 11;
+            particles.push({
+              x: cx, y: cy,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed,
+              size: 4 + Math.random() * 5,
+              color: colors[Math.floor(Math.random() * colors.length)],
+              rot: Math.random() * Math.PI * 2,
+              rotSpd: (Math.random() - 0.5) * 0.35,
+            });
+          }
+        }
+
+        burst(canvas.width * 0.2, canvas.height);
+        burst(canvas.width * 0.8, canvas.height);
+        setTimeout(function() {
+          if (document.getElementById('salyutCanvas')) burst(canvas.width * 0.5, canvas.height);
+        }, 220);
+
+        var start = Date.now();
+        var DUR = 2800;
+        function tick() {
+          var t = Date.now() - start;
+          if (t > DUR) { canvas.remove(); return; }
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          var life = Math.max(0, 1 - t / DUR);
+          for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+            p.vy += 0.20; // gravity
+            p.vx *= 0.997;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.rot += p.rotSpd;
+            if (p.y > canvas.height + 40) continue;
+            ctx.save();
+            ctx.globalAlpha = life;
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size * 1.4);
+            ctx.restore();
+          }
+          requestAnimationFrame(tick);
+        }
+        tick();
+      }
 
       function planCurrentTashkentMonth() {
         var d = new Date();
@@ -3120,8 +3251,23 @@ if (authenticated && !dbReady) {
           document.getElementById('planProfitSub').textContent = p.isCurrent ? 'davomida' : '';
         }
 
-        // Forecast
+        // Forecast — qiymat + rang holati
         document.getElementById('planForecastVal').textContent = fmtMoney(p.forecast) + " so'm";
+        var fcard = document.getElementById('planForecastCard');
+        var fstate = 'none';
+        if (p.target > 0) {
+          if (!p.isCurrent && !p.isPast) {
+            fstate = 'none'; // kelajak — neutral
+          } else {
+            var ratio = p.forecast / p.target;
+            if (ratio >= 1.0) fstate = 'green';
+            else if (ratio >= 0.9) fstate = 'yellow';
+            else fstate = 'red';
+          }
+        }
+        if (fstate === 'none') fcard.removeAttribute('data-state');
+        else fcard.setAttribute('data-state', fstate);
+
         if (p.target > 0 && p.forecast > 0) {
           var fpct = Math.round((p.forecast / p.target) * 100);
           var fdiff = p.forecast - p.target;
@@ -3187,8 +3333,80 @@ if (authenticated && !dbReady) {
         // Bars
         renderPlanBars(p);
 
+        // Kunlik kerakli — katta blok
+        renderPlanNeeded(p);
+
+        // Salyut: armed bo'lsa va prognoz reja ustida bo'lsa
+        if (planConfettiArmed && p.target > 0 && (p.signal === 'green' || (p.isPast && p.profitToDate >= p.target))) {
+          planConfettiArmed = false;
+          setTimeout(launchSalyut, 250);
+        } else if (planConfettiArmed && (p.signal === 'yellow' || p.signal === 'red')) {
+          // Armed bo'lsa-da, yashil emas — disarm (toza holatga keltiramiz)
+          planConfettiArmed = false;
+        }
+
         // Hide edit if open
         planCloseEdit();
+      }
+
+      function renderPlanNeeded(p) {
+        var box = document.getElementById('planNeeded');
+        var valEl = document.getElementById('planNeededVal');
+        var labEl = document.getElementById('planNeededLabel');
+        var subEl = document.getElementById('planNeededSub');
+
+        if (!p.target || p.target <= 0) {
+          box.hidden = true;
+          return;
+        }
+        box.hidden = false;
+
+        if (p.isPast) {
+          // O'tgan oy — yakuniy kunlik o'rtacha vs nishon
+          labEl.textContent = "Yakuniy kunlik o'rtacha";
+          valEl.textContent = fmtMoney(p.dailyAvg) + " so'm";
+          var diff = p.dailyAvg - p.dailyTargetAvg;
+          var ratio = p.dailyTargetAvg > 0 ? p.dailyAvg / p.dailyTargetAvg : 0;
+          var state = 'red';
+          if (ratio >= 1.0) state = 'green';
+          else if (ratio >= 0.9) state = 'yellow';
+          box.setAttribute('data-state', state);
+          subEl.innerHTML = "Nishon: <b>" + fmtMoney(p.dailyTargetAvg) + " so'm/kun</b> · "
+            + (diff >= 0 ? '+' : '−') + fmtMoney(Math.abs(diff)) + " so'm";
+          return;
+        }
+
+        if (!p.isCurrent && !p.isPast) {
+          // Kelajak — rejalashtirilgan kunlik
+          labEl.textContent = "Kunlik o'rtacha (rejaga ko'ra)";
+          valEl.textContent = fmtMoney(p.dailyTargetAvg) + " so'm";
+          box.setAttribute('data-state', 'none');
+          subEl.innerHTML = "Oy boshlangach, joriy temp shu yerda taqqoslanadi";
+          return;
+        }
+
+        // Joriy oy
+        if (p.dailyPaceNeeded === 0) {
+          labEl.textContent = "Reja bajarildi 🎉";
+          valEl.textContent = "100%+";
+          box.setAttribute('data-state', 'green');
+          subEl.innerHTML = "Hozirgi foyda: <b>" + fmtMoney(p.profitToDate) + " so'm</b> · Reja: <b>" + fmtMoney(p.target) + " so'm</b>";
+          return;
+        }
+
+        labEl.textContent = "Bugundan har kuni kerakli";
+        valEl.textContent = fmtMoney(p.dailyPaceNeeded) + " so'm";
+
+        // Rang: joriy temp (dailyAvg) vs kerakli (dailyPaceNeeded)
+        var paceRatio = p.dailyPaceNeeded > 0 ? p.dailyAvg / p.dailyPaceNeeded : 1;
+        var pstate = 'red';
+        if (paceRatio >= 1.0) pstate = 'green';
+        else if (paceRatio >= 0.9) pstate = 'yellow';
+        box.setAttribute('data-state', pstate);
+
+        var pacePct = Math.round(paceRatio * 100);
+        subEl.innerHTML = "Joriy temp: <b>" + fmtMoney(p.dailyAvg) + " so'm/kun</b> (" + pacePct + "%) · "
+          + p.daysRemaining + " kun qoldi";
       }
 
       function renderPlanBars(p) {
@@ -3269,6 +3487,7 @@ if (authenticated && !dbReady) {
           }
           msg.textContent = 'Saqlandi';
           msg.classList.add('ok');
+          planConfettiArmed = true; // saqlangach yashil bo'lsa salyut
           fetchPlan();
         } catch (e) {
           msg.textContent = 'Tarmoq xatosi';

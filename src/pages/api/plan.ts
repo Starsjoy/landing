@@ -90,14 +90,14 @@ export const GET: APIRoute = async ({ url, cookies }) => {
   if (target && dayToday > 0) expectedToDate = Math.round(target * (dayToday / totalDays));
 
   // Signal: yashil / sariq / qizil
-  // Yashil: prognoz >= target (yoki target yo'q)
-  // Sariq: prognoz 80–99% target
-  // Qizil: prognoz < 80% target
+  // Yashil: prognoz >= target
+  // Sariq: prognoz 90–99% target (10% gacha kam)
+  // Qizil: prognoz < 90% target (10%+ kam)
   let signal: 'green' | 'yellow' | 'red' | 'none' = 'none';
   if (target && target > 0) {
     const pct = forecast / target;
     if (pct >= 1.0) signal = 'green';
-    else if (pct >= 0.8) signal = 'yellow';
+    else if (pct >= 0.9) signal = 'yellow';
     else signal = 'red';
   }
 
