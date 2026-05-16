@@ -89,6 +89,23 @@ export const GET: APIRoute = async ({ url, cookies }) => {
   let expectedToDate = 0;
   if (target && dayToday > 0) expectedToDate = Math.round(target * (dayToday / totalDays));
 
+  // Bugungi foyda (faqat shu kunlik bucket)
+  let todayProfit = 0;
+  if (isCurrent && dayToday > 0) {
+    const todayBucket = breakdown.find((b: any) => b.day === dayToday);
+    todayProfit = todayBucket ? todayBucket.profit : 0;
+  }
+
+  // Bugun shuncha bo'lsa, prognoz rejaga to'g'ri keladigan summa:
+  // forecast = (P / D) × T = target  =>  P = target × D / T (= expectedToDate)
+  // P = profit_through_yesterday + today_amount
+  // today_amount = expectedToDate - profit_through_yesterday
+  let todayNeeded = 0;
+  if (target && isCurrent && dayToday > 0) {
+    const profitYesterday = Math.max(0, profitToDate - todayProfit);
+    todayNeeded = Math.max(0, Math.ceil(expectedToDate - profitYesterday));
+  }
+
   // Signal: yashil / sariq / qizil
   // Yashil: prognoz >= target
   // Sariq: prognoz 90–99% target (10% gacha kam)

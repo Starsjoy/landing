@@ -562,6 +562,11 @@ if (authenticated && !dbReady) {
             </div>
 
             <div class="plan-cards">
+              <div class="plan-card" id="planForecastCard">
+                <div class="pc-label">Prognoz (oy oxiri)</div>
+                <div class="pc-value" id="planForecastVal">0</div>
+                <div class="pc-sub" id="planForecastSub">—</div>
+              </div>
               <div class="plan-card plan-card-main">
                 <div class="pc-label">Reja</div>
                 <div class="pc-value" id="planTargetVal">—</div>
@@ -571,11 +576,6 @@ if (authenticated && !dbReady) {
                 <div class="pc-label" id="planProfitLabel">Hozirgi foyda</div>
                 <div class="pc-value" id="planProfitVal">0</div>
                 <div class="pc-sub" id="planProfitSub">—</div>
-              </div>
-              <div class="plan-card" id="planForecastCard">
-                <div class="pc-label">Prognoz (oy oxiri)</div>
-                <div class="pc-value" id="planForecastVal">0</div>
-                <div class="pc-sub" id="planForecastSub">—</div>
               </div>
             </div>
 
@@ -2918,9 +2918,14 @@ if (authenticated && !dbReady) {
         var phaseTxt = '';
         if (s.showClosing) phaseTxt = "Yopilish davri (1–5) — " + fmtMonthName(s.closing.month) + " uchun qolgan maosh";
         else if (s.current.phase === 'first_half') phaseTxt = fmtMonthName(s.current.month) + " 1-yarmi (1–15): rollover + 30% yangi foyda";
-        else phaseTxt = fmtMonthName(s.current.month) + " 2-yarmi (16–oxiri): yangi foyda 30% chegarasida";
-        statusEl.innerHTML = '<span class="ss-dot"></span><span>' + phaseTxt + '</span>';
-        statusEl.classList.toggle('warn', s.current.over > 0);
+        // 2-yarmi (16–oxiri) uchun matn ko'rsatilmaydi
+        if (phaseTxt) {
+          statusEl.style.display = '';
+          statusEl.innerHTML = '<span class="ss-dot"></span><span>' + phaseTxt + '</span>';
+          statusEl.classList.toggle('warn', s.current.over > 0);
+        } else {
+          statusEl.style.display = 'none';
+        }
 
         // Closing context (faqat 1-5 da)
         var closingWrap = document.getElementById('salaryClosing');
@@ -3377,11 +3382,11 @@ if (authenticated && !dbReady) {
         }
 
         if (!p.isCurrent && !p.isPast) {
-          // Kelajak — rejalashtirilgan kunlik
+          // Kelajak — rejalashtirilgan kunlik o'rtacha
           labEl.textContent = "Kunlik o'rtacha (rejaga ko'ra)";
           valEl.textContent = fmtMoney(p.dailyTargetAvg) + " so'm";
           box.setAttribute('data-state', 'none');
-          subEl.innerHTML = "Oy boshlangach, joriy temp shu yerda taqqoslanadi";
+          subEl.innerHTML = "Oy boshlangach, bugungi kerakli summa shu yerda ko'rsatiladi";
           return;
         }
 
@@ -3394,19 +3399,28 @@ if (authenticated && !dbReady) {
           return;
         }
 
-        labEl.textContent = "Bugundan har kuni kerakli";
-        valEl.textContent = fmtMoney(p.dailyPaceNeeded) + " so'm";
+        if (p.todayNeeded <= 0) {
+          // Kechagacha allaqachon temp ustida — bugun shart emas
+          labEl.textContent = "Bugun shart emas — tempdan oldindasiz";
+          valEl.textContent = "0 so'm";
+          box.setAttribute('data-state', 'green');
+          subEl.innerHTML = "Bugungi joriy: <b>" + fmtMoney(p.todayProfit) + " so'm</b> · bonus";
+          return;
+        }
 
-        // Rang: joriy temp (dailyAvg) vs kerakli (dailyPaceNeeded)
-        var paceRatio = p.dailyPaceNeeded > 0 ? p.dailyAvg / p.dailyPaceNeeded : 1;
+        labEl.textContent = "Bugun shuncha bo'lsa, prognoz rejaga to'g'ri keladi";
+        valEl.textContent = fmtMoney(p.todayNeeded) + " so'm";
+
+        // Rang: bugungi joriy (todayProfit) vs kerakli (todayNeeded)
+        var ratio = p.todayProfit / p.todayNeeded;
         var pstate = 'red';
-        if (paceRatio >= 1.0) pstate = 'green';
-        else if (paceRatio >= 0.9) pstate = 'yellow';
+        if (ratio >= 1.0) pstate = 'green';
+        else if (ratio >= 0.9) pstate = 'yellow';
         box.setAttribute('data-state', pstate);
 
-        var pacePct = Math.round(paceRatio * 100);
-        subEl.innerHTML = "Joriy temp: <b>" + fmtMoney(p.dailyAvg) + " so'm/kun</b> (" + pacePct + "%) · "
-          + p.daysRemaining + " kun qoldi";
+        var pct = Math.round(ratio * 100);
+        var remaining = Math.max(0, p.todayNeeded - p.todayProfit);
+        subEl.innerHTML = "Bugun hozir: <b>" + fmtMoney(p.todayProfit) + " so'm</b> (" + pct + "%) · qoldi <b>" + fmtMoney(remaining) + " so'm</b>";
       }
 
       function renderPlanBars(p) {
