@@ -393,6 +393,80 @@ export async function deleteWithdrawal(id: number) {
   await sql`DELETE FROM salary_withdrawals WHERE id = ${id}`;
 }
 
+// ───── MONTHLY PLAN (REJA) ─────
+
+export async function ensurePlanTable() {
+  const sql = getSQL();
+  await sql`
+    CREATE TABLE IF NOT EXISTS monthly_plans (
+      month TEXT PRIMARY KEY,
+      target_profit BIGINT NOT NULL,
+      created_at TIMESTAMPTZ DEFAULT NOW(),
+      updated_at TIMESTAMPTZ DEFAULT NOW()
+    )
+  `;
+}
+
+export async function getPlan(month: string): Promise<number | null> {
+  const sql = getSQL();
+  const rows = await sql`SELECT target_profit FROM monthly_plans WHERE month = ${month}`;
+  if (rows.length === 0) return null;
+  return +rows[0].target_profit;
+}
+
+export async function setPlan(month: string, target: number) {
+  const sql = getSQL();
+  await sql`
+    INSERT INTO monthly_plans (month, target_profit)
+    VALUES (${month}, ${target})
+    ON CONFLICT (month) DO UPDATE
+    SET target_profit = EXCLUDED.target_profit, updated_at = NOW()
+  `;
+}
+
+export async function deletePlan(month: string) {
+  const sql = getSQL();
+  await sql`DELETE FROM monthly_plans WHERE month = ${month}`;
+}
+
+// Har bir kun uchun foydani qaytaradi (Tashkent vaqt zonasida).
+// Faqat shu oyga tegishli kunlar (1 dan oyning oxirgi kunigacha).
+export async function getDailyProfitsForMonth(month: string): Promise<Array<{ day: number; profit: number }>> {
+  const sql = getSQL();
+  const since = new Date(`${month}-01T00:00:00+05:00`).toISOString();
+  const next = shiftMonth(month, 1);
+  const until = new Date(`${next}-01T00:00:00+05:00`).toISOString();
+  const rows = await sql`
+    SELECT
+      EXTRACT(DAY FROM (timestamp AT TIME ZONE 'Asia/Tashkent'))::int as day,
+      COALESCE(SUM(price) FILTER (WHERE type = 'stars'), 0) as stars_rev,
+      COALESCE(SUM(price) FILTER (WHERE type = 'gift'), 0) as gift_rev,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium'), 0) as premium_rev,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_send'), 0) as ps_rev,
+      COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount = '1 oy') as p112_one,
+      COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount = '12 oy') as p112_twelve
+    FROM orders
+    WHERE timestamp >= ${since} AND timestamp < ${until}
+    GROUP BY day
+    ORDER BY day ASC
+  `;
+  return rows.map((r: any) => ({
+    day: +r.day,
+    profit:
+      Math.round(+r.stars_rev * 0.12) +
+      Math.round(+r.gift_rev * 0.12) +
+      Math.round(+r.premium_rev * 0.10) +
+      Math.round(+r.ps_rev * 0.10) +
+      (+r.p112_one * 18000) +
+      (+r.p112_twelve * 48000),
+  }));
+}
+
+export function daysInMonth(month: string): number {
+  const [y, m] = month.split('-').map(Number);
+  return new Date(y, m, 0).getDate();
+}
+
 // ───── ORDERS ─────
 
 export async function addOrder(params: {
