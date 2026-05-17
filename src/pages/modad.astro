@@ -130,6 +130,22 @@ if (authenticated && !dbReady) {
             <span>Reja</span>
           </a>
           <div class="sb-dropdown">
+            <a class="sb-dropdown-toggle" data-section="cashflow" onclick="toggleDropdown('cashflow')">
+              <span class="sb-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V8a2 2 0 0 0-2-2H5a2 2 0 0 1 0-4h14"/><path d="M3 6v12a2 2 0 0 0 2 2h16v-6"/><circle cx="17" cy="14" r="1.5"/></svg>
+              </span>
+              <span>Kirim/Chiqim</span>
+              <svg class="sb-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="sb-dropdown-menu" id="dd-cashflow">
+              <a data-section="cashflow" data-source="starsjoy" onclick="showSection('cashflow','starsjoy')"><span class="dd-label">starsjoy</span></a>
+              <a data-section="cashflow" data-source="premium_send" onclick="showSection('cashflow','premium_send')"><span class="dd-label">Premium Send</span></a>
+              <a data-section="cashflow" data-source="premium_1_12" onclick="showSection('cashflow','premium_1_12')"><span class="dd-label">Premium 1/12</span></a>
+              <a data-section="cashflow" data-source="uzgets" onclick="showSection('cashflow','uzgets')"><span class="dd-label">Uzgets</span></a>
+              <a data-section="cashflow" data-source="all" onclick="showSection('cashflow','all')"><span class="dd-label">Umumiy</span></a>
+            </div>
+          </div>
+          <div class="sb-dropdown">
             <a class="sb-dropdown-toggle" data-section="buyers" onclick="toggleDropdown('buyers')">
               <span class="sb-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -610,6 +626,71 @@ if (authenticated && !dbReady) {
               <div class="pn-label" id="planNeededLabel">Bugundan har kuni kerakli</div>
               <div class="pn-value" id="planNeededVal">0</div>
               <div class="pn-sub" id="planNeededSub">—</div>
+            </div>
+          </div>
+
+          <!-- Cashflow (Kirim/Chiqim) -->
+          <div id="section-cashflow" class="section-content" hidden>
+            <div class="cf-header">
+              <div class="cf-source-title" id="cfSourceTitle">Umumiy</div>
+              <div class="cf-source-hint" id="cfSourceHint">hozirdan boshlab hisoblanadi</div>
+            </div>
+
+            <div class="profit-cards cf-cards">
+              <div class="profit-card cf-card-balance">
+                <div class="pc-label">Hozirgi qoldiq</div>
+                <div class="pc-value" id="cfBalanceVal">0</div>
+                <div class="pc-sub" id="cfBalanceSub">so'm</div>
+                <button class="pc-edit" onclick="cfOpenEditBalance()" id="cfEditBalanceBtn">Tahrirlash</button>
+              </div>
+              <div class="profit-card">
+                <div class="pc-label">Jami kirim</div>
+                <div class="pc-value pc-dim" id="cfKirimVal">0</div>
+                <div class="pc-sub" id="cfKirimSub">so'm</div>
+              </div>
+              <div class="profit-card">
+                <div class="pc-label">Jami sotuv</div>
+                <div class="pc-value pc-dim" id="cfSalesVal">0</div>
+                <div class="pc-sub" id="cfSalesSub">so'm</div>
+              </div>
+            </div>
+
+            <div class="cf-balance-edit" id="cfBalanceEdit" hidden>
+              <div class="cf-be-row">
+                <input type="text" inputmode="numeric" id="cfBalanceInput" placeholder="Hozirgi qoldiq (so'm)" autocomplete="off" oninput="cfFormatInput(this)" />
+                <button class="cf-be-save" onclick="cfSaveBalance()">Saqlash</button>
+                <button class="cf-be-cancel" onclick="cfCloseEditBalance()">Bekor</button>
+              </div>
+              <div class="cf-be-msg" id="cfBalanceMsg"></div>
+            </div>
+
+            <div class="cf-add-disabled" id="cfAddDisabled" hidden>
+              Kirim qo'shish uchun avval bot tanlang (Umumiy'da emas)
+            </div>
+
+            <div class="cf-kirim-wrap" id="cfKirimWrap">
+              <div class="panel">
+                <div class="panel-header"><h2>Kirim qo'shish</h2></div>
+                <div class="panel-body panel-pad">
+                  <div class="form-stack">
+                    <input type="text" inputmode="numeric" id="cfKirimAmount" placeholder="Summa (so'm)" autocomplete="off" oninput="cfFormatInput(this)" />
+                    <input type="text" id="cfKirimNote" placeholder="Izoh (ixtiyoriy)" maxlength="200" />
+                    <div class="sal-date-row">
+                      <label class="sal-date-label" for="cfKirimDate">Sana</label>
+                      <input type="date" id="cfKirimDate" />
+                    </div>
+                    <button class="form-btn" onclick="cfAddKirim()">Qo'shish</button>
+                    <div class="form-msg" id="cfKirimMsg"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header"><h2>Tarix</h2></div>
+              <div class="panel-body" id="cfHistory">
+                <div class="sal-empty">Hech qanday yozuv yo'q</div>
+              </div>
             </div>
           </div>
 
@@ -1780,6 +1861,64 @@ if (authenticated && !dbReady) {
       .mqs-label { font-size: 0.58rem; letter-spacing: 0.3px; }
       .mqs-today .mqs-label { font-size: 0.62rem; }
     }
+
+    /* ───── CASHFLOW (Kirim/Chiqim) — minimal ───── */
+    .cf-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .cf-source-title { font-size: 1.05rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.2px; }
+    .cf-source-hint { font-size: 0.75rem; color: var(--text-3); }
+    .cf-cards .cf-card-balance .pc-value { color: var(--accent-light); }
+    .cf-balance-edit {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 14px 16px; margin: 0 0 18px;
+    }
+    .cf-be-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .cf-be-row input {
+      flex: 1; min-width: 180px; padding: 10px 14px; background: var(--bg-3);
+      border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-0);
+      font-family: inherit; font-size: 0.9rem; outline: none; transition: border-color 0.15s;
+    }
+    .cf-be-row input:focus { border-color: var(--accent); }
+    .cf-be-save, .cf-be-cancel {
+      padding: 10px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      font-family: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+      transition: all 0.15s;
+    }
+    .cf-be-save { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .cf-be-save:hover { background: var(--accent-dark); }
+    .cf-be-cancel { background: transparent; color: var(--text-2); }
+    .cf-be-cancel:hover { background: var(--bg-3); color: var(--text-0); }
+    .cf-be-msg { margin-top: 8px; font-size: 0.78rem; min-height: 1em; }
+    .cf-be-msg.err { color: var(--red); }
+    .cf-be-msg.ok { color: var(--green); }
+    .cf-add-disabled {
+      padding: 14px 16px; border: 1px dashed var(--border); border-radius: var(--radius);
+      color: var(--text-3); font-size: 0.85rem; margin-bottom: 18px; text-align: center;
+    }
+    .cf-kirim-wrap { max-width: 480px; margin-bottom: 20px; }
+    .cf-row {
+      display: grid; grid-template-columns: 100px 90px 1fr 140px 36px; gap: 12px; align-items: center;
+      padding: 10px 20px; font-size: 0.85rem; color: var(--text-1); border-top: 1px solid var(--border);
+    }
+    .cf-row:first-of-type { border-top: none; }
+    .cf-row .cf-date { color: var(--text-3); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+    .cf-row .cf-kind {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
+      padding: 3px 8px; border-radius: 999px; text-align: center; white-space: nowrap;
+    }
+    .cf-row .cf-kind.kirim { background: rgba(16, 185, 129, 0.12); color: var(--green); }
+    .cf-row .cf-kind.balance { background: rgba(99, 102, 241, 0.14); color: var(--accent-light); }
+    .cf-row .cf-source-tag {
+      font-size: 0.68rem; color: var(--text-3); margin-left: 6px;
+    }
+    .cf-row .cf-note { color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cf-row .cf-amt { font-weight: 600; color: var(--text-0); text-align: right; font-variant-numeric: tabular-nums; }
+
+    @media (max-width: 768px) {
+      .cf-row { grid-template-columns: 70px 70px 1fr 100px 32px; gap: 8px; padding: 10px 16px; font-size: 0.78rem; }
+      .cf-kirim-wrap { max-width: 100%; }
+      .cf-be-row input { min-width: 100%; }
+      .cf-be-save, .cf-be-cancel { flex: 1; }
+    }
   </style>
 
   {authenticated && (
@@ -1856,6 +1995,11 @@ if (authenticated && !dbReady) {
         if (name === 'plan') {
           planConfettiArmed = true;
           fetchPlan();
+        }
+
+        // Cashflow section: fetch on enter (source-aware)
+        if (name === 'cashflow') {
+          fetchCashflow(currentSource);
         }
 
         // Mobile quick stats faqat overview va profit'da ko'rinadi
@@ -3103,6 +3247,251 @@ if (authenticated && !dbReady) {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+      }
+
+      // ───── CASHFLOW (Kirim/Chiqim) ─────
+      var cashflowState = null;
+      var cashflowSource = 'all';
+
+      var CF_SOURCE_LABELS = {
+        starsjoy: 'starsjoy',
+        premium_send: 'Premium Send',
+        premium_1_12: 'Premium 1/12',
+        uzgets: 'Uzgets',
+        all: 'Umumiy',
+      };
+
+      function cfFormatInput(input) {
+        var v = input.value.replace(/\D/g, '');
+        if (!v) { input.value = ''; return; }
+        input.value = parseInt(v, 10).toLocaleString('ru-RU').replace(/\s/g, ' ');
+      }
+
+      function cfEscape(s) {
+        return (s || '').replace(/[<>&"]/g, function(c) { return '&#' + c.charCodeAt(0) + ';'; });
+      }
+
+      async function fetchCashflow(source) {
+        cashflowSource = source || 'all';
+        try {
+          var res = await fetch('/api/cashflow?source=' + encodeURIComponent(cashflowSource));
+          if (!res.ok) {
+            console.error('Cashflow fetch failed:', res.status);
+            return;
+          }
+          cashflowState = await res.json();
+          renderCashflow();
+        } catch (e) {
+          console.error('Cashflow fetch error:', e);
+        }
+      }
+
+      function renderCashflow() {
+        if (!cashflowState) return;
+        var s = cashflowState.summary;
+        var isAll = cashflowSource === 'all';
+
+        // Header
+        var titleEl = document.getElementById('cfSourceTitle');
+        if (titleEl) titleEl.textContent = CF_SOURCE_LABELS[cashflowSource] || cashflowSource;
+        var hintEl = document.getElementById('cfSourceHint');
+        if (hintEl) {
+          if (!s.trackingStart) {
+            hintEl.textContent = 'hozirdan boshlab hisoblanadi';
+          } else {
+            var dt = new Date(s.trackingStart);
+            var dd = String(dt.getDate()).padStart(2, '0');
+            var mm = String(dt.getMonth() + 1).padStart(2, '0');
+            var yy = dt.getFullYear();
+            hintEl.textContent = dd + '.' + mm + '.' + yy + ' dan boshlab';
+          }
+        }
+
+        // Cards
+        document.getElementById('cfBalanceVal').textContent = fmtMoney(s.currentBalance);
+        var balSubEl = document.getElementById('cfBalanceSub');
+        if (s.balanceUpdatedAt) {
+          var bdt = new Date(s.balanceUpdatedAt);
+          var bdd = String(bdt.getDate()).padStart(2, '0');
+          var bmm = String(bdt.getMonth() + 1).padStart(2, '0');
+          balSubEl.textContent = "so'm — " + bdd + '.' + bmm + ' yangilangan';
+        } else {
+          balSubEl.textContent = "so'm — kiritilmagan";
+        }
+
+        document.getElementById('cfKirimVal').textContent = fmtMoney(s.totalKirim);
+        document.getElementById('cfKirimSub').textContent = s.kirimCount > 0
+          ? ("so'm — " + s.kirimCount + ' ta yozuv')
+          : "so'm";
+
+        document.getElementById('cfSalesVal').textContent = fmtMoney(s.totalSales);
+        document.getElementById('cfSalesSub').textContent = s.trackingStart
+          ? "so'm — boshidan"
+          : "so'm — sotuv yo'q";
+
+        // Edit/add availability: faqat aniq bot tanlanganda
+        var editBtn = document.getElementById('cfEditBalanceBtn');
+        var kirimWrap = document.getElementById('cfKirimWrap');
+        var addDisabled = document.getElementById('cfAddDisabled');
+        if (isAll) {
+          if (editBtn) editBtn.hidden = true;
+          if (kirimWrap) kirimWrap.hidden = true;
+          if (addDisabled) addDisabled.hidden = false;
+          // Close edit form if open
+          cfCloseEditBalance();
+        } else {
+          if (editBtn) editBtn.hidden = false;
+          if (kirimWrap) kirimWrap.hidden = false;
+          if (addDisabled) addDisabled.hidden = true;
+          // Default sana
+          var dateEl = document.getElementById('cfKirimDate');
+          if (dateEl && !dateEl.value) dateEl.value = todayTashkentISO();
+        }
+
+        renderCashflowHistory();
+      }
+
+      function renderCashflowHistory() {
+        var box = document.getElementById('cfHistory');
+        if (!cashflowState || !cashflowState.entries || cashflowState.entries.length === 0) {
+          box.innerHTML = '<div class="sal-empty">Hech qanday yozuv yo\'q</div>';
+          return;
+        }
+        var isAll = cashflowSource === 'all';
+        var html = '';
+        cashflowState.entries.forEach(function(r) {
+          var dt = new Date(r.timestamp);
+          var dd = String(dt.getDate()).padStart(2, '0');
+          var mm = String(dt.getMonth() + 1).padStart(2, '0');
+          var dateStr = dd + '.' + mm;
+          var kindLabel = r.kind === 'kirim' ? 'Kirim' : 'Qoldiq';
+          var srcTag = isAll ? '<span class="cf-source-tag">' + cfEscape(CF_SOURCE_LABELS[r.source] || r.source) + '</span>' : '';
+          var note = cfEscape(r.note);
+          html += '<div class="cf-row">';
+          html += '<span class="cf-date">' + dateStr + '</span>';
+          html += '<span class="cf-kind ' + r.kind + '">' + kindLabel + '</span>';
+          html += '<span class="cf-note">' + (note || '<span style="color:var(--text-4)">—</span>') + srcTag + '</span>';
+          html += '<span class="cf-amt">' + fmtMoney(+r.amount) + " so'm</span>";
+          html += '<button class="sal-del-btn" onclick="cfDeleteEntry(' + r.id + ")\" title=\"O'chirish\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"3 6 5 6 21 6\"/><path d=\"M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6\"/><path d=\"M10 11v6M14 11v6\"/></svg></button>";
+          html += '</div>';
+        });
+        box.innerHTML = html;
+      }
+
+      function cfOpenEditBalance() {
+        var wrap = document.getElementById('cfBalanceEdit');
+        if (!wrap) return;
+        wrap.hidden = false;
+        var input = document.getElementById('cfBalanceInput');
+        if (input) {
+          var cur = cashflowState && cashflowState.summary ? cashflowState.summary.currentBalance : 0;
+          input.value = cur ? cur.toLocaleString('ru-RU').replace(/\s/g, ' ') : '';
+          input.focus();
+        }
+        var msg = document.getElementById('cfBalanceMsg');
+        if (msg) { msg.textContent = ''; msg.className = 'cf-be-msg'; }
+      }
+
+      function cfCloseEditBalance() {
+        var wrap = document.getElementById('cfBalanceEdit');
+        if (wrap) wrap.hidden = true;
+      }
+
+      async function cfSaveBalance() {
+        var msg = document.getElementById('cfBalanceMsg');
+        msg.textContent = '';
+        msg.className = 'cf-be-msg';
+        if (cashflowSource === 'all') {
+          msg.textContent = "Bot tanlang";
+          msg.classList.add('err');
+          return;
+        }
+        var amountStr = document.getElementById('cfBalanceInput').value.replace(/\D/g, '');
+        var amount = parseInt(amountStr, 10);
+        if (!Number.isFinite(amount) || amount < 0) {
+          msg.textContent = "Qoldiq noto'g'ri";
+          msg.classList.add('err');
+          return;
+        }
+        try {
+          var res = await fetch('/api/cashflow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'set_balance', source: cashflowSource, amount: amount }),
+          });
+          var data = await res.json();
+          if (!res.ok || data.error) {
+            msg.textContent = data.error || ('Xato: ' + res.status);
+            msg.classList.add('err');
+            return;
+          }
+          cfCloseEditBalance();
+          fetchCashflow(cashflowSource);
+        } catch (e) {
+          msg.textContent = 'Tarmoq xatosi';
+          msg.classList.add('err');
+        }
+      }
+
+      async function cfAddKirim() {
+        var msg = document.getElementById('cfKirimMsg');
+        msg.textContent = '';
+        msg.className = 'form-msg';
+        if (cashflowSource === 'all') {
+          msg.textContent = "Bot tanlang";
+          msg.classList.add('err');
+          return;
+        }
+        var amountStr = document.getElementById('cfKirimAmount').value.replace(/\D/g, '');
+        var amount = parseInt(amountStr, 10);
+        if (!amount || amount <= 0) {
+          msg.textContent = "Summa noto'g'ri";
+          msg.classList.add('err');
+          return;
+        }
+        var note = document.getElementById('cfKirimNote').value.trim();
+        var date = document.getElementById('cfKirimDate').value || todayTashkentISO();
+        try {
+          var res = await fetch('/api/cashflow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'add_kirim', source: cashflowSource, amount: amount, note: note, date: date }),
+          });
+          var data = await res.json();
+          if (!res.ok || data.error) {
+            msg.textContent = data.error || ('Xato: ' + res.status);
+            msg.classList.add('err');
+            return;
+          }
+          msg.textContent = 'Saqlandi';
+          msg.classList.add('ok');
+          document.getElementById('cfKirimAmount').value = '';
+          document.getElementById('cfKirimNote').value = '';
+          document.getElementById('cfKirimDate').value = todayTashkentISO();
+          fetchCashflow(cashflowSource);
+        } catch (e) {
+          msg.textContent = 'Tarmoq xatosi';
+          msg.classList.add('err');
+        }
+      }
+
+      async function cfDeleteEntry(id) {
+        if (!confirm("Bu yozuvni o'chirasizmi?")) return;
+        try {
+          var res = await fetch('/api/cashflow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'delete', id: id }),
+          });
+          var data = await res.json();
+          if (!res.ok || data.error) {
+            alert(data.error || ('Xato: ' + res.status));
+            return;
+          }
+          fetchCashflow(cashflowSource);
+        } catch (e) {
+          alert('Tarmoq xatosi');
+        }
       }
 
       // ───── PLAN (REJA) ─────
