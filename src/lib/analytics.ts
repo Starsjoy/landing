@@ -394,9 +394,9 @@ export async function deleteWithdrawal(id: number) {
 }
 
 // ───── CASHFLOW (KIRIM/CHIQIM) ─────
-// Har bot uchun alohida: 'starsjoy' | 'premium_send' | 'premium_1_12' | 'uzgets'
-// kind: 'balance' (qoldiq snapshot) | 'kirim' (to'ldirish)
-// "Hozirdan boshlab" — birinchi yozuv vaqtidan boshlab sotuv hisoblanadi.
+// Umumiy kirim (qo'lda kiritiladi) + umumiy sotuv (orders'dan auto).
+// Asl foyda = Umumiy sotuv − Umumiy kirim.
+// "Hozirdan boshlab" — birinchi kirim yozuvi vaqtidan boshlab sotuv hisoblanadi.
 
 export async function ensureCashflowTable() {
   const sql = getSQL();
@@ -410,34 +410,24 @@ export async function ensureCashflowTable() {
       timestamp TIMESTAMPTZ DEFAULT NOW()
     )
   `;
-  await sql`CREATE INDEX IF NOT EXISTS idx_cashflow_source ON cashflow_entries(source)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_cashflow_kind ON cashflow_entries(kind)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_cashflow_ts ON cashflow_entries(timestamp)`;
 }
 
-const CASHFLOW_SOURCES = ['starsjoy', 'premium_send', 'premium_1_12', 'uzgets'];
-
-function expandCashflowSources(source: string): string[] {
-  if (source === 'all') return ['starsjoy', 'premium_send', 'premium_1_12'];
-  return [source];
-}
-
-export async function addCashflowEntry(source: string, kind: string, amount: number, note: string, timestamp?: Date) {
+export async function addCashflowKirim(amount: number, note: string, timestamp?: Date) {
   const sql = getSQL();
-  if (!CASHFLOW_SOURCES.includes(source)) throw new Error('invalid source');
-  if (kind !== 'balance' && kind !== 'kirim') throw new Error('invalid kind');
   if (timestamp) {
     const [r] = await sql`
       INSERT INTO cashflow_entries (source, kind, amount, note, timestamp)
-      VALUES (${source}, ${kind}, ${amount}, ${note}, ${timestamp.toISOString()})
-      RETURNING id, source, kind, amount, note, timestamp
+      VALUES ('global', 'kirim', ${amount}, ${note}, ${timestamp.toISOString()})
+      RETURNING id, kind, amount, note, timestamp
     `;
     return r;
   }
   const [r] = await sql`
     INSERT INTO cashflow_entries (source, kind, amount, note)
-    VALUES (${source}, ${kind}, ${amount}, ${note})
-    RETURNING id, source, kind, amount, note, timestamp
+    VALUES ('global', 'kirim', ${amount}, ${note})
+    RETURNING id, kind, amount, note, timestamp
   `;
   return r;
 }
@@ -447,52 +437,31 @@ export async function deleteCashflowEntry(id: number) {
   await sql`DELETE FROM cashflow_entries WHERE id = ${id}`;
 }
 
-// Eng birinchi yozuv vaqti (shu manba uchun) — "hozirdan boshlab" anchor'i
-async function getCashflowStartForSources(sources: string[]): Promise<string | null> {
+// Birinchi kirim vaqti — sotuvni shu paytdan boshlab hisoblash uchun
+async function getCashflowStart(): Promise<string | null> {
   const sql = getSQL();
   const rows = await sql`
-    SELECT MIN(timestamp) as start FROM cashflow_entries WHERE source = ANY(${sources})
+    SELECT MIN(timestamp) as start FROM cashflow_entries WHERE kind = 'kirim'
   `;
   if (!rows[0] || !rows[0].start) return null;
   return new Date(rows[0].start).toISOString();
 }
 
-// Hozirgi qoldiq = oxirgi 'balance' yozuv (umumiy uchun har manbalarning yig'indisi)
-async function getCurrentBalanceForSources(sources: string[]): Promise<{ amount: number; timestamp: string | null }> {
-  const sql = getSQL();
-  let total = 0;
-  let latestTs: string | null = null;
-  for (const src of sources) {
-    const rows = await sql`
-      SELECT amount, timestamp FROM cashflow_entries
-      WHERE source = ${src} AND kind = 'balance'
-      ORDER BY timestamp DESC LIMIT 1
-    `;
-    if (rows.length > 0) {
-      total += +rows[0].amount;
-      const ts = new Date(rows[0].timestamp).toISOString();
-      if (!latestTs || ts > latestTs) latestTs = ts;
-    }
-  }
-  return { amount: total, timestamp: latestTs };
-}
-
-// Jami kirim — barcha 'kirim' yozuvlarining yig'indisi
-async function getTotalKirimForSources(sources: string[]): Promise<{ amount: number; count: number }> {
+async function getTotalKirim(): Promise<{ amount: number; count: number }> {
   const sql = getSQL();
   const [r] = await sql`
     SELECT COALESCE(SUM(amount), 0) as total, COUNT(*) as cnt
-    FROM cashflow_entries
-    WHERE source = ANY(${sources}) AND kind = 'kirim'
+    FROM cashflow_entries WHERE kind = 'kirim'
   `;
   return { amount: +r.total, count: +r.cnt };
 }
 
-// Jami sotuv — orders jadvalidan, tracking start'dan keyin
-async function getTotalSalesSince(source: string, since: string | null): Promise<number> {
+// Jami sotuv — barcha botlar bo'yicha (starsjoy/premium_send/premium_1_12/uzgets),
+// birinchi kirim'dan keyingi vaqtdan boshlab
+async function getTotalSalesSince(since: string | null): Promise<number> {
   if (!since) return 0;
   const sql = getSQL();
-  const types = sourceFilter(source);
+  const types = ['stars', 'gift', 'premium', 'premium_send', 'premium_1_12', 'uzgets_stars', 'uzgets_premium'];
   const [r] = await sql`
     SELECT COALESCE(SUM(price), 0) as total
     FROM orders
@@ -501,30 +470,25 @@ async function getTotalSalesSince(source: string, since: string | null): Promise
   return +r.total;
 }
 
-export async function getCashflowSummary(source: string) {
-  const sources = expandCashflowSources(source);
-  const start = await getCashflowStartForSources(sources);
-  const bal = await getCurrentBalanceForSources(sources);
-  const kirim = await getTotalKirimForSources(sources);
-  const sales = await getTotalSalesSince(source, start);
+export async function getCashflowSummary() {
+  const start = await getCashflowStart();
+  const kirim = await getTotalKirim();
+  const sales = await getTotalSalesSince(start);
   return {
-    source,
     trackingStart: start,
-    currentBalance: bal.amount,
-    balanceUpdatedAt: bal.timestamp,
     totalKirim: kirim.amount,
     kirimCount: kirim.count,
     totalSales: sales,
+    realProfit: sales - kirim.amount,
   };
 }
 
-export async function listCashflowEntries(source: string, limit = 200) {
+export async function listCashflowKirim(limit = 200) {
   const sql = getSQL();
-  const sources = expandCashflowSources(source);
   const rows = await sql`
-    SELECT id, source, kind, amount, note, timestamp
+    SELECT id, amount, note, timestamp
     FROM cashflow_entries
-    WHERE source = ANY(${sources})
+    WHERE kind = 'kirim'
     ORDER BY timestamp DESC
     LIMIT ${limit}
   `;
