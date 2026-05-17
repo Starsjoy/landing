@@ -4,10 +4,12 @@ import type { APIRoute } from 'astro';
 import {
   verifyToken,
   ensureCashflowTable,
-  getCashflowSummary,
+  getMonthlyCashflowBreakdown,
   listCashflowKirim,
   addCashflowKirim,
   deleteCashflowEntry,
+  setMonthQoldiq,
+  deleteMonthQoldiq,
 } from '../../lib/analytics';
 
 let cashflowReady = false;
@@ -20,10 +22,10 @@ export const GET: APIRoute = async ({ cookies }) => {
   if (!await verifyToken(token)) return new Response('unauthorized', { status: 401 });
   await ensure();
 
-  const summary = await getCashflowSummary();
+  const breakdown = await getMonthlyCashflowBreakdown();
   const entries = await listCashflowKirim(200);
 
-  return new Response(JSON.stringify({ summary, entries }), {
+  return new Response(JSON.stringify({ ...breakdown, entries }), {
     headers: { 'Content-Type': 'application/json' },
   });
 };
@@ -51,6 +53,32 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     }
     const r = await addCashflowKirim(amount, note, timestamp);
     return new Response(JSON.stringify({ ok: true, item: { ...r, amount: +r.amount } }), {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  if (body.action === 'set_qoldiq') {
+    const month = (body.month || '').toString();
+    if (!/^\d{4}-\d{2}$/.test(month)) {
+      return new Response(JSON.stringify({ error: "Oy noto'g'ri" }), { status: 400 });
+    }
+    const amount = Math.floor(+body.amount);
+    if (!Number.isFinite(amount) || amount < 0) {
+      return new Response(JSON.stringify({ error: "Qoldiq noto'g'ri" }), { status: 400 });
+    }
+    await setMonthQoldiq(month, amount);
+    return new Response(JSON.stringify({ ok: true }), {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  if (body.action === 'delete_qoldiq') {
+    const month = (body.month || '').toString();
+    if (!/^\d{4}-\d{2}$/.test(month)) {
+      return new Response(JSON.stringify({ error: "Oy noto'g'ri" }), { status: 400 });
+    }
+    await deleteMonthQoldiq(month);
+    return new Response(JSON.stringify({ ok: true }), {
       headers: { 'Content-Type': 'application/json' },
     });
   }

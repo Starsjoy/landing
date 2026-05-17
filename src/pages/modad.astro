@@ -622,26 +622,8 @@ if (authenticated && !dbReady) {
           <!-- Cashflow (Kirim/Chiqim) -->
           <div id="section-cashflow" class="section-content" hidden>
             <div class="cf-header">
-              <div class="cf-source-title">Kirim/Chiqim</div>
-              <div class="cf-source-hint" id="cfSourceHint">hozirdan boshlab hisoblanadi</div>
-            </div>
-
-            <div class="profit-cards cf-cards">
-              <div class="profit-card">
-                <div class="pc-label">Umumiy kirim</div>
-                <div class="pc-value pc-dim" id="cfKirimVal">0</div>
-                <div class="pc-sub" id="cfKirimSub">so'm</div>
-              </div>
-              <div class="profit-card">
-                <div class="pc-label">Umumiy sotuv</div>
-                <div class="pc-value pc-dim" id="cfSalesVal">0</div>
-                <div class="pc-sub" id="cfSalesSub">so'm</div>
-              </div>
-              <div class="profit-card cf-card-profit" id="cfProfitCard">
-                <div class="pc-label">Asl foyda</div>
-                <div class="pc-value" id="cfProfitVal">0</div>
-                <div class="pc-sub" id="cfProfitSub">sotuv − kirim</div>
-              </div>
+              <div class="cf-source-title">Kirim/Chiqim — oylik kesim</div>
+              <div class="cf-source-hint">har oy oxirida qoldiqni kiriting → asl foyda chiqadi</div>
             </div>
 
             <div class="cf-kirim-wrap">
@@ -660,6 +642,10 @@ if (authenticated && !dbReady) {
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div class="cf-months" id="cfMonths">
+              <div class="sal-empty">Birinchi kirim qo'shsangiz, oylar shu yerda ko'rinadi</div>
             </div>
 
             <div class="panel">
@@ -1838,13 +1824,66 @@ if (authenticated && !dbReady) {
       .mqs-today .mqs-label { font-size: 0.62rem; }
     }
 
-    /* ───── CASHFLOW (Kirim/Chiqim) — minimal ───── */
+    /* ───── CASHFLOW (Kirim/Chiqim) — oylik ───── */
     .cf-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
     .cf-source-title { font-size: 1.05rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.2px; }
     .cf-source-hint { font-size: 0.75rem; color: var(--text-3); }
-    .cf-cards .cf-card-profit .pc-value { color: var(--green); }
-    .cf-cards .cf-card-profit[data-state="neg"] .pc-value { color: var(--red); }
     .cf-kirim-wrap { max-width: 480px; margin-bottom: 20px; }
+    .cf-months { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+    .cf-month-card {
+      background: var(--bg-1); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 18px;
+    }
+    .cf-month-card.cf-current { border-color: var(--accent); }
+    .cf-mh {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-bottom: 12px;
+    }
+    .cf-mh-title { font-size: 0.95rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.1px; }
+    .cf-mh-badge {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
+      padding: 3px 8px; border-radius: 999px;
+      background: rgba(99, 102, 241, 0.14); color: var(--accent-light);
+    }
+    .cf-mh-profit {
+      font-size: 0.95rem; font-weight: 800; color: var(--text-2); font-variant-numeric: tabular-nums;
+    }
+    .cf-mh-profit.pos { color: var(--green); }
+    .cf-mh-profit.neg { color: var(--red); }
+    .cf-mgrid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px;
+    }
+    .cf-mstat {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 10px 12px; min-height: 64px;
+      display: flex; flex-direction: column; justify-content: center; gap: 4px;
+    }
+    .cf-mstat-label { font-size: 0.68rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; }
+    .cf-mstat-val { font-size: 0.92rem; font-weight: 700; color: var(--text-0); font-variant-numeric: tabular-nums; }
+    .cf-mstat-val.dim { color: var(--text-2); font-weight: 600; }
+    .cf-mstat-val.muted { color: var(--text-3); font-weight: 500; }
+    .cf-qoldiq-input {
+      width: 100%; padding: 6px 8px; background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: 4px; color: var(--text-0); font-family: inherit; font-size: 0.85rem;
+      font-variant-numeric: tabular-nums; outline: none; transition: border-color 0.15s;
+    }
+    .cf-qoldiq-input:focus { border-color: var(--accent); }
+    .cf-qoldiq-row { display: flex; gap: 6px; align-items: center; }
+    .cf-qoldiq-save {
+      padding: 6px 10px; background: var(--accent); color: #fff; border: none;
+      border-radius: 4px; font-family: inherit; font-size: 0.72rem; font-weight: 700; cursor: pointer;
+    }
+    .cf-qoldiq-save:hover { background: var(--accent-dark); }
+    .cf-qoldiq-del {
+      padding: 6px 8px; background: transparent; color: var(--text-3); border: 1px solid var(--border);
+      border-radius: 4px; font-family: inherit; font-size: 0.72rem; cursor: pointer;
+    }
+    .cf-qoldiq-del:hover { color: var(--red); border-color: var(--red); }
+    .cf-mfoot {
+      margin-top: 10px; font-size: 0.72rem; color: var(--text-3);
+    }
+    .cf-mfoot .pos { color: var(--green); font-weight: 600; }
+    .cf-mfoot .neg { color: var(--red); font-weight: 600; }
     .cf-row {
       display: grid; grid-template-columns: 90px 1fr 140px 36px; gap: 12px; align-items: center;
       padding: 10px 20px; font-size: 0.85rem; color: var(--text-1); border-top: 1px solid var(--border);
@@ -1857,6 +1896,9 @@ if (authenticated && !dbReady) {
     @media (max-width: 768px) {
       .cf-row { grid-template-columns: 70px 1fr 100px 32px; gap: 8px; padding: 10px 16px; font-size: 0.78rem; }
       .cf-kirim-wrap { max-width: 100%; }
+      .cf-mgrid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .cf-month-card { padding: 14px; }
+      .cf-mh-title { font-size: 0.88rem; }
     }
   </style>
 
@@ -3217,46 +3259,123 @@ if (authenticated && !dbReady) {
 
       function renderCashflow() {
         if (!cashflowState) return;
-        var s = cashflowState.summary;
-
-        var hintEl = document.getElementById('cfSourceHint');
-        if (hintEl) {
-          if (!s.trackingStart) {
-            hintEl.textContent = 'hozirdan boshlab hisoblanadi';
-          } else {
-            var dt = new Date(s.trackingStart);
-            var dd = String(dt.getDate()).padStart(2, '0');
-            var mm = String(dt.getMonth() + 1).padStart(2, '0');
-            var yy = dt.getFullYear();
-            hintEl.textContent = dd + '.' + mm + '.' + yy + ' dan boshlab';
-          }
-        }
-
-        document.getElementById('cfKirimVal').textContent = fmtMoney(s.totalKirim);
-        document.getElementById('cfKirimSub').textContent = s.kirimCount > 0
-          ? ("so'm — " + s.kirimCount + ' ta yozuv')
-          : "so'm";
-
-        document.getElementById('cfSalesVal').textContent = fmtMoney(s.totalSales);
-        document.getElementById('cfSalesSub').textContent = s.trackingStart
-          ? "so'm — barcha botlar"
-          : "so'm — sotuv yo'q";
-
-        var profit = s.realProfit;
-        var profitCard = document.getElementById('cfProfitCard');
-        var profitValEl = document.getElementById('cfProfitVal');
-        if (profit >= 0) {
-          profitValEl.textContent = fmtMoney(profit);
-          profitCard.removeAttribute('data-state');
-        } else {
-          profitValEl.textContent = '−' + fmtMoney(-profit);
-          profitCard.setAttribute('data-state', 'neg');
-        }
 
         var dateEl = document.getElementById('cfKirimDate');
         if (dateEl && !dateEl.value) dateEl.value = todayTashkentISO();
 
+        renderCashflowMonths();
         renderCashflowHistory();
+      }
+
+      function renderCashflowMonths() {
+        var box = document.getElementById('cfMonths');
+        if (!cashflowState || !cashflowState.months || cashflowState.months.length === 0) {
+          box.innerHTML = '<div class="sal-empty">Birinchi kirim qo\'shsangiz, oylar shu yerda ko\'rinadi</div>';
+          return;
+        }
+        var html = '';
+        cashflowState.months.forEach(function(m) {
+          var label = fmtMonthName(m.month);
+          var badge = m.isCurrent ? '<span class="cf-mh-badge">joriy</span>' : '';
+
+          // Foyda displayed in header
+          var profitHdr;
+          if (m.realProfit === null) {
+            profitHdr = '<span class="cf-mh-profit">— so\'m</span>';
+          } else if (m.realProfit >= 0) {
+            profitHdr = '<span class="cf-mh-profit pos">+' + fmtMoney(m.realProfit) + " so'm</span>";
+          } else {
+            profitHdr = '<span class="cf-mh-profit neg">−' + fmtMoney(-m.realProfit) + " so'm</span>";
+          }
+
+          // Qoldiq cell
+          var qoldiqCell;
+          if (m.isCurrent) {
+            qoldiqCell = '<div class="cf-mstat-val muted">oy tugashini kuting</div>';
+          } else if (m.qoldiq === null) {
+            qoldiqCell = '<div class="cf-qoldiq-row">'
+              + '<input type="text" inputmode="numeric" class="cf-qoldiq-input" id="cfQ-' + m.month + '" placeholder="0" oninput="cfFormatInput(this)" />'
+              + '<button class="cf-qoldiq-save" onclick="cfSaveQoldiq(\'' + m.month + '\')">Saqlash</button>'
+              + '</div>';
+          } else {
+            qoldiqCell = '<div class="cf-qoldiq-row">'
+              + '<input type="text" inputmode="numeric" class="cf-qoldiq-input" id="cfQ-' + m.month + '" value="' + (+m.qoldiq).toLocaleString('ru-RU').replace(/\s/g, ' ') + '" oninput="cfFormatInput(this)" />'
+              + '<button class="cf-qoldiq-save" onclick="cfSaveQoldiq(\'' + m.month + '\')">↻</button>'
+              + '<button class="cf-qoldiq-del" onclick="cfDeleteQoldiq(\'' + m.month + '\')" title="O\'chirish">×</button>'
+              + '</div>';
+          }
+
+          // Foot — detail breakdown
+          var foot = '';
+          if (m.realProfit !== null && m.consumed !== null) {
+            var pct = m.consumed > 0 ? Math.round((m.realProfit / m.consumed) * 1000) / 10 : 0;
+            var pctClass = m.realProfit >= 0 ? 'pos' : 'neg';
+            foot = '<div class="cf-mfoot">Iste\'mol: <strong>' + fmtMoney(m.consumed) + " so'm</strong>"
+              + ' &nbsp;·&nbsp; Foyda foizi: <span class="' + pctClass + '">' + (pct >= 0 ? '+' : '') + pct + '%</span>'
+              + '</div>';
+          } else if (m.isCurrent) {
+            foot = '<div class="cf-mfoot">Joriy oy — oy tugagach qoldiqni kiriting</div>';
+          } else {
+            foot = '<div class="cf-mfoot">Qoldiq kiritilmagan — asl foyda hisoblanmaydi</div>';
+          }
+
+          html += '<div class="cf-month-card' + (m.isCurrent ? ' cf-current' : '') + '">';
+          html += '<div class="cf-mh"><div><span class="cf-mh-title">' + label + '</span> ' + badge + '</div>' + profitHdr + '</div>';
+          html += '<div class="cf-mgrid">';
+          html += '<div class="cf-mstat"><div class="cf-mstat-label">Boshlang\'ich qoldiq</div><div class="cf-mstat-val dim">' + (m.prevQoldiq !== null ? fmtMoney(m.prevQoldiq) : '—') + " so'm</div></div>";
+          html += '<div class="cf-mstat"><div class="cf-mstat-label">Kirim</div><div class="cf-mstat-val">' + fmtMoney(m.kirim) + " so'm</div></div>";
+          html += '<div class="cf-mstat"><div class="cf-mstat-label">Sotuv</div><div class="cf-mstat-val">' + fmtMoney(m.sotuv) + " so'm</div></div>";
+          html += '<div class="cf-mstat"><div class="cf-mstat-label">Oxirgi qoldiq</div>' + qoldiqCell + '</div>';
+          html += '</div>';
+          html += foot;
+          html += '</div>';
+        });
+        box.innerHTML = html;
+      }
+
+      async function cfSaveQoldiq(month) {
+        var input = document.getElementById('cfQ-' + month);
+        if (!input) return;
+        var amountStr = input.value.replace(/\D/g, '');
+        var amount = parseInt(amountStr, 10);
+        if (!Number.isFinite(amount) || amount < 0) {
+          alert("Qoldiq noto'g'ri");
+          return;
+        }
+        try {
+          var res = await fetch('/api/cashflow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'set_qoldiq', month: month, amount: amount }),
+          });
+          var data = await res.json();
+          if (!res.ok || data.error) {
+            alert(data.error || ('Xato: ' + res.status));
+            return;
+          }
+          fetchCashflow();
+        } catch (e) {
+          alert('Tarmoq xatosi');
+        }
+      }
+
+      async function cfDeleteQoldiq(month) {
+        if (!confirm(fmtMonthName(month) + " uchun qoldiqni o'chirasizmi? Shu va keyingi oylarning asl foydasi qayta hisoblanadi.")) return;
+        try {
+          var res = await fetch('/api/cashflow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'delete_qoldiq', month: month }),
+          });
+          var data = await res.json();
+          if (!res.ok || data.error) {
+            alert(data.error || ('Xato: ' + res.status));
+            return;
+          }
+          fetchCashflow();
+        } catch (e) {
+          alert('Tarmoq xatosi');
+        }
       }
 
       function renderCashflowHistory() {

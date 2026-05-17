@@ -393,10 +393,9 @@ export async function deleteWithdrawal(id: number) {
   await sql`DELETE FROM salary_withdrawals WHERE id = ${id}`;
 }
 
-// ───── CASHFLOW (KIRIM/CHIQIM) ─────
-// Umumiy kirim (qo'lda kiritiladi) + umumiy sotuv (orders'dan auto).
-// Asl foyda = Umumiy sotuv − Umumiy kirim.
-// "Hozirdan boshlab" — birinchi kirim yozuvi vaqtidan boshlab sotuv hisoblanadi.
+// ───── CASHFLOW (KIRIM/CHIQIM) — OYLIK KESIM ─────
+// Har oy: kirim (qo'lda) + sotuv (orders'dan auto) + oxirgi qoldiq (qo'lda, keyingi oy boshida)
+// Asl foyda = sotuv − iste'mol; iste'mol = (oldingi oy qoldig'i) + kirim − (shu oy qoldig'i)
 
 export async function ensureCashflowTable() {
   const sql = getSQL();
@@ -412,6 +411,13 @@ export async function ensureCashflowTable() {
   `;
   await sql`CREATE INDEX IF NOT EXISTS idx_cashflow_kind ON cashflow_entries(kind)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_cashflow_ts ON cashflow_entries(timestamp)`;
+  await sql`
+    CREATE TABLE IF NOT EXISTS cashflow_month_qoldiq (
+      month TEXT PRIMARY KEY,
+      amount BIGINT NOT NULL,
+      updated_at TIMESTAMPTZ DEFAULT NOW()
+    )
+  `;
 }
 
 export async function addCashflowKirim(amount: number, note: string, timestamp?: Date) {
@@ -437,50 +443,21 @@ export async function deleteCashflowEntry(id: number) {
   await sql`DELETE FROM cashflow_entries WHERE id = ${id}`;
 }
 
-// Birinchi kirim vaqti — sotuvni shu paytdan boshlab hisoblash uchun
-async function getCashflowStart(): Promise<string | null> {
+export async function setMonthQoldiq(month: string, amount: number) {
   const sql = getSQL();
-  const rows = await sql`
-    SELECT MIN(timestamp) as start FROM cashflow_entries WHERE kind = 'kirim'
+  if (!/^\d{4}-\d{2}$/.test(month)) throw new Error('invalid month');
+  await sql`
+    INSERT INTO cashflow_month_qoldiq (month, amount, updated_at)
+    VALUES (${month}, ${amount}, NOW())
+    ON CONFLICT (month) DO UPDATE
+    SET amount = EXCLUDED.amount, updated_at = NOW()
   `;
-  if (!rows[0] || !rows[0].start) return null;
-  return new Date(rows[0].start).toISOString();
 }
 
-async function getTotalKirim(): Promise<{ amount: number; count: number }> {
+export async function deleteMonthQoldiq(month: string) {
   const sql = getSQL();
-  const [r] = await sql`
-    SELECT COALESCE(SUM(amount), 0) as total, COUNT(*) as cnt
-    FROM cashflow_entries WHERE kind = 'kirim'
-  `;
-  return { amount: +r.total, count: +r.cnt };
-}
-
-// Jami sotuv — barcha botlar bo'yicha (starsjoy/premium_send/premium_1_12/uzgets),
-// birinchi kirim'dan keyingi vaqtdan boshlab
-async function getTotalSalesSince(since: string | null): Promise<number> {
-  if (!since) return 0;
-  const sql = getSQL();
-  const types = ['stars', 'gift', 'premium', 'premium_send', 'premium_1_12', 'uzgets_stars', 'uzgets_premium'];
-  const [r] = await sql`
-    SELECT COALESCE(SUM(price), 0) as total
-    FROM orders
-    WHERE timestamp >= ${since} AND type = ANY(${types})
-  `;
-  return +r.total;
-}
-
-export async function getCashflowSummary() {
-  const start = await getCashflowStart();
-  const kirim = await getTotalKirim();
-  const sales = await getTotalSalesSince(start);
-  return {
-    trackingStart: start,
-    totalKirim: kirim.amount,
-    kirimCount: kirim.count,
-    totalSales: sales,
-    realProfit: sales - kirim.amount,
-  };
+  if (!/^\d{4}-\d{2}$/.test(month)) throw new Error('invalid month');
+  await sql`DELETE FROM cashflow_month_qoldiq WHERE month = ${month}`;
 }
 
 export async function listCashflowKirim(limit = 200) {
@@ -493,6 +470,108 @@ export async function listCashflowKirim(limit = 200) {
     LIMIT ${limit}
   `;
   return rows.map((r: any) => ({ ...r, amount: +r.amount }));
+}
+
+// Har oy uchun: kirim, sotuv, qoldiq, boshlang'ich qoldiq, iste'mol, asl foyda
+// Birinchi kirim/qoldiq oyidan to joriy oygacha
+export async function getMonthlyCashflowBreakdown() {
+  const sql = getSQL();
+
+  // Eng erta oy: kirim yoki qoldiq
+  const [firstKirim] = await sql`
+    SELECT TO_CHAR(DATE(MIN(timestamp) AT TIME ZONE 'Asia/Tashkent'), 'YYYY-MM') as m
+    FROM cashflow_entries WHERE kind = 'kirim'
+  `;
+  const [firstQoldiq] = await sql`SELECT MIN(month) as m FROM cashflow_month_qoldiq`;
+
+  let startMonth: string | null = null;
+  if (firstKirim && firstKirim.m) startMonth = firstKirim.m;
+  if (firstQoldiq && firstQoldiq.m) {
+    if (!startMonth || firstQoldiq.m < startMonth) startMonth = firstQoldiq.m;
+  }
+  if (!startMonth) return { months: [], currentMonth: fmtMonth(tashkentParts().y, tashkentParts().m) };
+
+  const t = tashkentParts();
+  const currentMonth = fmtMonth(t.y, t.m);
+
+  // Per-month kirim
+  const kirimRows = await sql`
+    SELECT TO_CHAR(DATE(timestamp AT TIME ZONE 'Asia/Tashkent'), 'YYYY-MM') as month,
+      COALESCE(SUM(amount), 0) as total,
+      COUNT(*) as cnt
+    FROM cashflow_entries
+    WHERE kind = 'kirim'
+    GROUP BY month
+  `;
+  const kirimByMonth = new Map<string, { amount: number; count: number }>();
+  kirimRows.forEach((r: any) => kirimByMonth.set(r.month, { amount: +r.total, count: +r.cnt }));
+
+  // Per-month sotuv (barcha botlar)
+  const types = ['stars', 'gift', 'premium', 'premium_send', 'premium_1_12', 'uzgets_stars', 'uzgets_premium'];
+  const sotuvRows = await sql`
+    SELECT TO_CHAR(DATE(timestamp AT TIME ZONE 'Asia/Tashkent'), 'YYYY-MM') as month,
+      COALESCE(SUM(price), 0) as total
+    FROM orders
+    WHERE type = ANY(${types})
+    GROUP BY month
+  `;
+  const sotuvByMonth = new Map<string, number>();
+  sotuvRows.forEach((r: any) => sotuvByMonth.set(r.month, +r.total));
+
+  // Per-month qoldiq
+  const qoldiqRows = await sql`SELECT month, amount FROM cashflow_month_qoldiq`;
+  const qoldiqByMonth = new Map<string, number>();
+  qoldiqRows.forEach((r: any) => qoldiqByMonth.set(r.month, +r.amount));
+
+  // Iterate startMonth → currentMonth
+  const months: Array<{
+    month: string;
+    kirim: number;
+    kirimCount: number;
+    sotuv: number;
+    qoldiq: number | null;
+    prevQoldiq: number | null;
+    consumed: number | null;
+    realProfit: number | null;
+    isCurrent: boolean;
+  }> = [];
+
+  let cursor = startMonth;
+  let prevQoldiq: number | null = 0;
+  // Xavfsizlik cheklov: 60 oy
+  for (let i = 0; i < 60 && cursor <= currentMonth; i++) {
+    const k = kirimByMonth.get(cursor) || { amount: 0, count: 0 };
+    const sotuv = sotuvByMonth.get(cursor) || 0;
+    const qoldiq = qoldiqByMonth.has(cursor) ? qoldiqByMonth.get(cursor)! : null;
+    const isCurrent = cursor === currentMonth;
+
+    let consumed: number | null = null;
+    let realProfit: number | null = null;
+    if (qoldiq !== null && prevQoldiq !== null) {
+      consumed = prevQoldiq + k.amount - qoldiq;
+      realProfit = sotuv - consumed;
+    }
+
+    months.push({
+      month: cursor,
+      kirim: k.amount,
+      kirimCount: k.count,
+      sotuv,
+      qoldiq,
+      prevQoldiq,
+      consumed,
+      realProfit,
+      isCurrent,
+    });
+
+    prevQoldiq = qoldiq;
+    cursor = shiftMonth(cursor, 1);
+  }
+
+  // Eng yangi tepada
+  months.reverse();
+
+  return { months, currentMonth };
 }
 
 // ───── MONTHLY PLAN (REJA) ─────
