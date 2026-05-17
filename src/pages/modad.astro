@@ -649,7 +649,12 @@ if (authenticated && !dbReady) {
             </div>
 
             <div class="panel">
-              <div class="panel-header"><h2>Kirim tarixi</h2></div>
+              <div class="panel-header cf-hist-header">
+                <h2>Kirim tarixi</h2>
+                <select class="cf-hist-filter" id="cfHistFilter" onchange="renderCashflowHistory()">
+                  <option value="all">Barcha oylar</option>
+                </select>
+              </div>
               <div class="panel-body" id="cfHistory">
                 <div class="sal-empty">Hech qanday yozuv yo'q</div>
               </div>
@@ -1879,6 +1884,16 @@ if (authenticated && !dbReady) {
       border-radius: 4px; font-family: inherit; font-size: 0.72rem; cursor: pointer;
     }
     .cf-qoldiq-del:hover { color: var(--red); border-color: var(--red); }
+    .cf-hist-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .cf-hist-filter {
+      background: var(--bg-3); color: var(--text-1); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 6px 28px 6px 10px; font-family: inherit;
+      font-size: 0.78rem; cursor: pointer; outline: none; transition: border-color 0.15s;
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23a0a0a0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat; background-position: right 8px center;
+    }
+    .cf-hist-filter:focus { border-color: var(--accent); }
     .cf-mfoot {
       margin-top: 10px; font-size: 0.72rem; color: var(--text-3);
     }
@@ -3378,14 +3393,51 @@ if (authenticated && !dbReady) {
         }
       }
 
+      function cfMonthOfTs(ts) {
+        var dt = new Date(ts);
+        return dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0');
+      }
+
       function renderCashflowHistory() {
         var box = document.getElementById('cfHistory');
-        if (!cashflowState || !cashflowState.entries || cashflowState.entries.length === 0) {
-          box.innerHTML = '<div class="sal-empty">Hech qanday yozuv yo\'q</div>';
+        var filterEl = document.getElementById('cfHistFilter');
+        var entries = (cashflowState && cashflowState.entries) || [];
+
+        // Filter dropdown'ni yangilash — entries dagi unikal oylar
+        if (filterEl) {
+          var prevValue = filterEl.value || 'all';
+          var months = [];
+          var seen = {};
+          entries.forEach(function(r) {
+            var m = cfMonthOfTs(r.timestamp);
+            if (!seen[m]) { seen[m] = true; months.push(m); }
+          });
+          months.sort().reverse();
+          var optsHtml = '<option value="all">Barcha oylar</option>';
+          months.forEach(function(m) {
+            optsHtml += '<option value="' + m + '">' + fmtMonthName(m) + '</option>';
+          });
+          filterEl.innerHTML = optsHtml;
+          // Avvalgi tanlovni saqlash (agar hali mavjud bo'lsa)
+          if (prevValue === 'all' || seen[prevValue]) {
+            filterEl.value = prevValue;
+          } else {
+            filterEl.value = 'all';
+          }
+        }
+
+        var selected = filterEl ? filterEl.value : 'all';
+        var filtered = selected === 'all' ? entries : entries.filter(function(r) {
+          return cfMonthOfTs(r.timestamp) === selected;
+        });
+
+        if (filtered.length === 0) {
+          box.innerHTML = '<div class="sal-empty">' + (entries.length === 0 ? "Hech qanday yozuv yo'q" : "Bu oyda kirim yo'q") + '</div>';
           return;
         }
+
         var html = '';
-        cashflowState.entries.forEach(function(r) {
+        filtered.forEach(function(r) {
           var dt = new Date(r.timestamp);
           var dd = String(dt.getDate()).padStart(2, '0');
           var mm = String(dt.getMonth() + 1).padStart(2, '0');
