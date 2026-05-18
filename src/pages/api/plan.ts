@@ -141,6 +141,8 @@ export const GET: APIRoute = async ({ url, cookies }) => {
     dailyTargetAvg,
     dailyPaceNeeded,
     expectedToDate,
+    todayProfit,
+    todayNeeded,
     signal,
     suggested,
     prevMonth,
