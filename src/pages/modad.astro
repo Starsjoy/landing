@@ -3729,10 +3729,14 @@ if (authenticated && !dbReady) {
         var info = '';
         if (p.target > 0) {
           info += 'Kunlik o\'rtacha kerakli: <b>' + fmtMoney(p.dailyTargetAvg) + " so'm</b>";
-          if (p.isCurrent && p.daysRemaining > 0 && p.dailyPaceNeeded > 0) {
-            info += ' · Bugundan boshlab har kuni <b>' + fmtMoney(p.dailyPaceNeeded) + " so'm</b> bo'lsa, reja bajariladi";
-          } else if (p.isCurrent && p.daysRemaining > 0 && p.dailyPaceNeeded === 0) {
-            info += ' · Reja allaqachon bajarilgan ✓';
+          if (p.isCurrent) {
+            if (p.profitToDate >= p.target) {
+              info += ' · Reja allaqachon bajarilgan ✓';
+            } else if (p.daysRemaining > 0 && p.dailyPaceNeeded > 0) {
+              info += ' · Bugundan boshlab har kuni <b>' + fmtMoney(p.dailyPaceNeeded) + " so'm</b> bo'lsa, reja bajariladi";
+            } else if (p.daysRemaining === 0) {
+              info += ' · Oyning oxirgi kuni';
+            }
           }
         } else {
           info = "Reja kiritilsa, kunlik o'rtacha va kerakli pace ko'rsatiladi";
@@ -3794,10 +3798,11 @@ if (authenticated && !dbReady) {
           return;
         }
 
-        // Joriy oy
-        if (p.dailyPaceNeeded === 0) {
+        // Joriy oy — reja allaqachon bajarilganmi?
+        if (p.profitToDate >= p.target) {
           labEl.textContent = "Reja bajarildi 🎉";
-          valEl.textContent = "100%+";
+          var pctDone = Math.round((p.profitToDate / p.target) * 100);
+          valEl.textContent = pctDone + '%';
           box.setAttribute('data-state', 'green');
           subEl.innerHTML = "Hozirgi foyda: <b>" + fmtMoney(p.profitToDate) + " so'm</b> · Reja: <b>" + fmtMoney(p.target) + " so'm</b>";
           return;
