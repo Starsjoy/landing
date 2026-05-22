@@ -3,19 +3,24 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 
-const title = "Telegram Premium 12 oy uchun qanday sotib olinadi va qancha turadi (2026) | StarsJoy Blog";
-const description = "O'zbekistonda 12 oylik Telegram Premium qanday sotib olinadi? Narxi 422 000 so'm — Uzcard va Humo bilan bot orqali. Paketlar taqqoslash va bosqichma-bosqich qo'llanma.";
+const title = "Telegram Premium 12 oylik 2026 — narxi, paketlar va Uzcard/Humo bilan sotib olish | StarsJoy Blog";
+const description = "12 oylik Telegram Premium narxi 422 000 so'm — oyiga ~35 167 so'm. Paketlar taqqoslash (3/6/12), Telegram Business bundle, Uzcard va Humo bilan @starsjoybot orqali 5–15 daqiqada faollashadi. 2026 yangilangan qo'llanma.";
 const publishDate = "2026-04-17";
+const modifiedDate = "2026-05-22";
+const wordCount = 1720;
+const canonical = "https://starsjoy.uz/blog/telegram-premium-12-oylik";
+const ogImage = "https://starsjoy.uz/og-image.png";
 ---
 
 <Layout
   title={title}
   description={description}
-  canonical="https://starsjoy.uz/blog/telegram-premium-12-oylik"
-  keywords="Telegram Premium 12 oy, 12 oylik Telegram Premium, 12 oylik Premium olish, Telegram Premium 12 oylik qanday olinadi, Telegram Premium yillik, Telegram Premium narxi, Telegram Premium O'zbekiston, Telegram Premium Uzcard"
+  canonical={canonical}
+  keywords="Telegram Premium 12 oy, 12 oylik Telegram Premium, Telegram Premium yillik 2026, Telegram Premium 422 000 som, Telegram Premium Uzcard, Telegram Premium Humo, Telegram Business Premium, 12 oylik Premium sotib olish"
   ogType="article"
+  ogImage={ogImage}
   hreflangs={[
-    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-premium-12-oylik" },
+    { lang: "uz", href: canonical },
     { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-premium-12-oylik" }
   ]}
 >
@@ -24,14 +29,22 @@ const publishDate = "2026-04-17";
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Telegram Premium 12 oy uchun qanday sotib olinadi va qancha turadi",
+    "headline": "Telegram Premium 12 oylik 2026 — narxi, paketlar va Uzcard/Humo bilan sotib olish",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "Telegram Premium 12 oylik, Telegram Premium yillik, Premium 422 000 som, Uzcard, Humo, Telegram Business, StarsJoy",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -42,10 +55,10 @@ const publishDate = "2026-04-17";
         "url": "https://starsjoy.uz/logo.png"
       }
     },
-    "mainEntityOfPage": "https://starsjoy.uz/blog/telegram-premium-12-oylik",
+    "mainEntityOfPage": canonical,
     "image": {
       "@type": "ImageObject",
-      "url": "https://starsjoy.uz/og-image.png",
+      "url": ogImage,
       "width": 1200,
       "height": 630
     }
@@ -57,7 +70,7 @@ const publishDate = "2026-04-17";
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
       { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://starsjoy.uz/blog" },
-      { "@type": "ListItem", "position": 3, "name": "Premium 12 oylik", "item": "https://starsjoy.uz/blog/telegram-premium-12-oylik" }
+      { "@type": "ListItem", "position": 3, "name": "Premium 12 oylik", "item": canonical }
     ]
   })} />
 
@@ -67,10 +80,10 @@ const publishDate = "2026-04-17";
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "12 oylik Telegram Premium narxi qancha?",
+        "name": "12 oylik Telegram Premium narxi qancha (2026)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "O'zbekistonda StarsJoy orqali 12 oylik Telegram Premium narxi 422 000 so'm. Oyiga hisoblaganda ~35 167 so'm — bu barcha paketlar ichida eng arzon variant."
+          "text": "O'zbekistonda StarsJoy orqali 12 oylik Telegram Premium narxi 422 000 so'm. Oyiga hisoblaganda ~35 167 so'm — bu mavjud paketlar ichida eng arzon oylik narx. To'lov bir martalik, kartadan avtomatik yechilmaydi."
         }
       },
       {
@@ -78,7 +91,7 @@ const publishDate = "2026-04-17";
         "name": "12 oylik Telegram Premium qanday sotib olinadi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "@starsjoybot ga kirib, 12 oylik paketni tanlang, Telegram username'ingizni kiriting va Click yoki Payme orqali to'lang. 5–15 daqiqada Premium faol bo'ladi."
+          "text": "@starsjoybot ga kiring → 12 oylik paketni tanlang → Telegram username'ingizni kiriting → Click yoki Payme orqali to'lang. 5–15 daqiqada Premium faol bo'ladi. Parol yoki SMS-kod so'ralmaydi — Telegram'ning rasmiy Gift Premium mexanizmi orqali ishlaydi."
         }
       },
       {
@@ -86,7 +99,7 @@ const publishDate = "2026-04-17";
         "name": "12 oylik Premium 3 yoki 6 oylikdan qanchalik arzon?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "12 oylik oyiga ~35 167 so'm, 6 oylik oyiga ~38 667 so'm, 3 oylik oyiga ~57 333 so'm. 12 oylik paket 3 oylikdan 39% arzon, 6 oylikdan 9% arzon."
+          "text": "12 oylik oyiga ~35 167 so'm, 6 oylik oyiga ~38 667 so'm, 3 oylik oyiga ~57 333 so'm. 12 oylik paket 3 oylikka nisbatan yiliga 266 000 so'm, 6 oylikka nisbatan 42 000 so'm tejaydi. Asosiy yutuq — bir marta to'lab, bir yil eslamasdan foydalanasiz."
         }
       },
       {
@@ -94,7 +107,15 @@ const publishDate = "2026-04-17";
         "name": "12 oylik Premium uchun Visa karta kerakmi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yo'q. StarsJoy orqali Uzcard va Humo kartasi bilan Click yoki Payme orqali to'lash mumkin. Xalqaro karta shart emas."
+          "text": "Yo'q. StarsJoy orqali Uzcard yoki Humo kartasi bilan Click yoki Payme orqali to'lash mumkin — xalqaro karta umuman shart emas. Uzcard va Humo egasi uchun karta limiti va Click/Payme to'lov nuanslari haqida alohida deep-dive maqolamiz bor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "12 oylik Premium ichida Telegram Business funksiyalari ham bormi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ha. 2024-yilda Telegram Business chiqarilganda, uning barcha funksiyalari (avtomatik javoblar, ish vaqti, biznes profili, tezkor javob shabloni, Chatbot API kengaytirilgan) Premium obunasi ichiga qo'shimcha to'lovsiz kiritildi. 12 oylik Premium oluvchilar avtomatik ravishda Business tools'ga ham ega bo'ladilar — alohida obuna olish kerak emas."
         }
       },
       {
@@ -102,7 +123,7 @@ const publishDate = "2026-04-17";
         "name": "12 oylik Premium sovg'a qilish mumkinmi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ha. @starsjoybot da Gift Premium orqali istalgan Telegram foydalanuvchisiga 12 oylik Premium sovg'a qilish mumkin — faqat ularning username'ini kiritasiz."
+          "text": "Ha. @starsjoybot da Gift Premium orqali istalgan Telegram foydalanuvchisiga 12 oylik Premium sovg'a qilish mumkin — faqat ularning username'ini kiritasiz. Tug'ilgan kun yoki bayram uchun jiddiy va eslab qoladigan sovg'a."
         }
       },
       {
@@ -110,7 +131,7 @@ const publishDate = "2026-04-17";
         "name": "12 oylik Premium 12 oy tugagandan keyin nima bo'ladi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Obuna avtomatik to'xtaydi, akkaunt oddiy rejimga qaytadi. Suhbatlar va fayllar saqlanadi, lekin Premium funksiyalar o'chadi. Xohlasangiz qayta sotib olishingiz mumkin."
+          "text": "Obuna avtomatik to'xtaydi, akkaunt oddiy rejimga qaytadi. Kartadan ortiqcha pul yechilmaydi — avtomatik obuna mexanizmi mavjud emas. Suhbatlar va fayllar saqlanadi, faqat Premium funksiyalar o'chadi. Xohlasangiz qaytadan sotib olishingiz mumkin."
         }
       },
       {
@@ -118,10 +139,42 @@ const publishDate = "2026-04-17";
         "name": "12 oylik Premium'ni bo'lib to'lash mumkinmi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yo'q, to'lov bir martalik. Agar 422 000 so'm birdan qiyin bo'lsa — avval 3 oylik (172 000 so'm) yoki 6 oylik (232 000 so'm) paketdan boshlash mumkin."
+          "text": "To'g'ridan-to'g'ri bo'lib to'lash mexanizmi yo'q — Telegram Gift mexanizmi yagona to'lovda ishlaydi. Lekin variantlar bor: (1) 6 oylik (232 000 so'm) dan boshlab, keyin yana 6 oylik olish; (2) Click yoki Payme'dagi bo'lib to'lash xizmati orqali kartaga vaqtinchalik kredit limit olish. Ko'pchilik 1-variantni tanlaydi — risksiz va oddiy."
         }
       }
     ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "12 oylik Telegram Premium sotib olish (Uzcard yoki Humo bilan)",
+    "description": "@starsjoybot orqali 12 oylik Telegram Premium'ni Uzcard yoki Humo karta bilan Click yoki Payme'da sotib olish bosqichlari.",
+    "totalTime": "PT8M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Uzcard yoki Humo karta" },
+      { "@type": "HowToTool", "name": "Click yoki Payme ilovasi" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "@starsjoybot ni oching", "text": "Telegram'da @starsjoybot ni qidiring yoki t.me/starsjoybot havolasiga o'ting va /start tugmasini bosing." },
+      { "@type": "HowToStep", "name": "12 oylik paketni tanlang", "text": "Bot menyusidan Telegram Premium → 12 oylik (1 yil) tugmasini bosing. Narx — 422 000 so'm." },
+      { "@type": "HowToStep", "name": "Username kiriting", "text": "Premium qaysi Telegram akkauntga tushishi kerakligini kiriting (o'zingizniki yoki sovg'a oluvchiniki — @username shaklida). Bot tasdiqlash uchun so'raydi." },
+      { "@type": "HowToStep", "name": "To'lov turini tanlang", "text": "Click yoki Payme'ni tanlang. Ikkalasi ham Uzcard va Humo kartalarini qabul qiladi. Bot to'lov havolasini chiqaradi." },
+      { "@type": "HowToStep", "name": "Uzcard yoki Humo bilan to'lang", "text": "Havolani bosing — ilova ochiladi. Kartani tanlang va PIN yoki SMS-kod bilan to'lovni tasdiqlang. 422 000 so'm so'mda yechiladi, konvertatsiya yo'q." },
+      { "@type": "HowToStep", "name": "Premium faollashishini kuting", "text": "5–15 daqiqa ichida 12 oylik Premium ko'rsatilgan akkauntda faol bo'ladi. Telegram → Settings → Premium bo'limidan tekshiring." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
   })} />
 
   <article class="blog-post">
@@ -135,10 +188,10 @@ const publishDate = "2026-04-17";
           <span>Premium 12 oylik</span>
         </nav>
         <div class="post-tag">Premium</div>
-        <h1 class="post-title">Telegram Premium 12 oy uchun qanday sotib olinadi va qancha turadi</h1>
+        <h1 class="post-title">Telegram Premium 12 oylik 2026 — narxi, paketlar va Uzcard/Humo bilan sotib olish</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
-          <span class="post-author">StarsJoy</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
+          <span class="post-author">StarsJoy Blog</span>
         </div>
       </div>
     </header>
@@ -147,171 +200,169 @@ const publishDate = "2026-04-17";
       <div class="container">
         <div class="post-content">
 
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> O'zbekistonda 12 oylik Telegram Premium narxi <strong>422 000 so'm</strong> — oyiga ~35 167 so'm, mavjud paketlar ichida eng arzoni. <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ga kirib, 12 oylik tugmasini bosing, username'ingizni kiriting va Click yoki Payme orqali Uzcard/Humo bilan to'lang — 5–15 daqiqada faollashadi. Visa shart emas, parol so'ralmaydi. 2024-yildan beri 12 oylik Premium ichida <strong>Telegram Business</strong> funksiyalari ham qo'shimcha to'lovsiz bor — kichik biznes uchun ayniqsa foydali.
+          </div>
+
           <section>
-            <p>3 oylik Premium olgansiz — yoqdi. 6 oylik ham oldingiz — endi doimiy foydalanuvchisiz. Lekin har 3–6 oyda qayta sotib olish, to'lov qilish, eslab turish — bu bezovta qiladi. Bundan tashqari, qisqa muddatli paketlarda oylik narx yuqoriroq. Yechim bor: <strong>Telegram Premium 12 oy uchun</strong> sotib oling — bir marta to'lang, bir yil xotirjam foydalaning.</p>
+            <p>3 oylik Premium olgansiz — yoqdi. 6 oylik ham oldingiz — endi doimiy foydalanuvchisiz. Lekin har 3–6 oyda qayta sotib olish, to'lov qilish va eslab turish — bu bezovta qiladi. Bundan tashqari, qisqa muddatli paketlarda oylik narx yuqoriroq. Yechim bor: <strong>Telegram Premium 12 oy uchun</strong> sotib oling — bir marta to'lang, bir yil xotirjam foydalaning, oyiga eng arzon narx, ustiga Telegram Business bundle bonus.</p>
 
-            <p>12 oylik Premium Starsjoy <a href="/blog/starsjoy-mini-app-nima">Mini App</a> ichida bir sahifada to'liq ko'rinadi — oddiy bot bo'lganida 4-5 ta xabar almashinuvi kerak edi.</p>
+            <p>12 oylik Premium Starsjoy <a href="/blog/starsjoy-mini-app-nima">Mini App</a> ichida bir sahifada to'liq ko'rinadi — oddiy bot bo'lganida 4–5 ta xabar almashinuvi kerak edi. 2026-yil may'da maqola qayta ko'rib chiqildi: narxlar tasdiqlandi, Telegram Business bundle (2024-yilda Premium'ga qo'shildi) qamrab olindi va Uzcard/Humo karta egasi uchun batafsil deep-dive havolasi qo'shildi.</p>
 
-            <p><strong>Telegram Premium 12 oy uchun qanday sotib olinadi va qancha turadi?</strong> O'zbekistonda Uzcard va Humo kartasi bilan 422 000 so'mga — <a href="https://t.me/starsjoybot" target="_blank">@starsjoybot</a> orqali 5–15 daqiqada faollashadi. Ushbu maqolada narxlar taqqoslash, kimga mos ekanligi va bosqichma-bosqich sotib olish jarayonini batafsil ko'rib chiqamiz.</p>
+            <p>Ushbu maqolada quyidagilar batafsil ko'rib chiqamiz: 12 oylik paket narxi va 3/6 oylikka nisbatan tejash, kimga to'g'ri keladi, Telegram Business funksiyalari bundle, Uzcard yoki Humo bilan bosqichma-bosqich sotib olish jarayoni va xavfsizlik.</p>
           </section>
 
           <section>
-            <h2>Qisqa javob</h2>
+            <h2>12 oylik Telegram Premium narxi va paketlar taqqoslash (2026)</h2>
 
-            <p><strong>12 oylik Telegram Premium</strong> narxi O'zbekistonda 422 000 so'm — oyiga ~35 167 so'm. Bu barcha paketlar ichida eng arzon oylik narx. Sotib olish: <a href="https://t.me/starsjoybot" target="_blank">@starsjoybot</a> ga kiring → 12 oylik paketni tanlang → username'ingizni kiriting → Click yoki Payme orqali to'lang. Visa karta kerak emas — Uzcard va Humo bilan ishlaydi.</p>
-          </section>
-
-          <section>
-            <h2>12 oylik Telegram Premium narxi va paketlar taqqoslash</h2>
-
-            <p><strong>Telegram Premium 12 oy uchun qancha turadi</strong> — bu savol narxni bilishdan ko'ra ko'proq. Muhimi — oyiga qancha to'layotganingiz. Keling, barcha paketlarni jadvalda solishtiramiz.</p>
+            <p><strong>12 oylik paket qancha turadi</strong> — savol narxni bilishdan ko'ra muhimi: oyiga qancha to'layotganingiz. Quyida 2026-yil may holatidagi narxlar:</p>
 
             <div class="post-table-wrap">
               <table class="post-table">
                 <thead>
                   <tr>
                     <th>Paket</th>
-                    <th>Umumiy narx</th>
+                    <th>Bir martalik narx</th>
                     <th>Oyiga</th>
-                    <th>Tejash (3 oylikka nisbatan)</th>
+                    <th>12 oyga konvertatsiya</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>1 oylik</td>
-                    <td>57 000 so'm</td>
-                    <td>57 000 so'm/oy</td>
-                    <td>—</td>
-                  </tr>
-                  <tr>
                     <td>3 oylik</td>
                     <td>172 000 so'm</td>
-                    <td>~57 333 so'm/oy</td>
-                    <td>Bazaviy narx</td>
+                    <td>~57 333 so'm</td>
+                    <td>688 000 so'm (×4)</td>
                   </tr>
                   <tr>
                     <td>6 oylik</td>
                     <td>232 000 so'm</td>
-                    <td>~38 667 so'm/oy</td>
-                    <td>~33% arzon</td>
+                    <td>~38 667 so'm</td>
+                    <td>464 000 so'm (×2)</td>
                   </tr>
                   <tr class="highlight-row">
                     <td>12 oylik</td>
                     <td>422 000 so'm</td>
-                    <td>~35 167 so'm/oy</td>
-                    <td>~39% arzon</td>
+                    <td>~35 167 so'm</td>
+                    <td>422 000 so'm</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <p>Raqamlar aniq ko'rsatib turibdi: <strong>12 oylik paket</strong> 3 oylikka nisbatan <strong>39% arzon</strong> — oyiga 22 000 so'mdan ko'proq tejaysiz. Yillik hisobda qancha farq bo'ladi? Agar 3 oylik paketni 4 marta olsangiz: 172 000 × 4 = <strong>688 000 so'm</strong>. 12 oylik paket esa <strong>422 000 so'm</strong>. Farq — <strong>266 000 so'm</strong> tejash.</p>
+            <p><em>Narxlar 2026-yil may holatiga to'g'ri.</em> Raqamlar aniq ko'rsatadi: 12 oylik paket 3 oylikka nisbatan <strong>~39% arzon</strong> — yiliga 266 000 so'm tejash. 6 oylikka nisbatan ~9% arzon — yiliga 42 000 so'm tejash. Tejash katta bo'lmasa-da, asosiy yutuq: <strong>kartadan bir marta yechiladi</strong>, keyin 12 oy davomida hech narsa esga olish va eslab turish kerak emas.</p>
 
-            <p>6 oylik bilan solishtirsak: 232 000 × 2 = 464 000 so'm yiliga. 12 oylik = 422 000 so'm. Farq 42 000 so'm — katta emas, lekin baribir tejash bor. Bundan tashqari, 12 oylik paketda siz yil davomida <strong>bir marta to'lov</strong> qilasiz — har 6 oyda eslab turish va qayta sotib olish kerak emas.</p>
+            <p>Tushuncha uchun: 3 oylik paketni 4 marta olsangiz, bir yilda 688 000 so'm to'laysiz va 4 marta bo'lim-bo'lim to'lash, har safar limit va karta vaqtini tekshirib turish kerak. 12 oylik esa <strong>422 000 so'm bir martalik</strong> — yiliga 266 000 so'm tejash + vaqtni tejash.</p>
 
-            <p><a href="/blog/telegram-premium-3-oy-6-oy">3 oy va 6 oy paketlari taqqoslash</a> maqolasida qisqa muddatli variantlarni batafsil ko'rib chiqqanmiz. Agar 12 oylik birdan qiyin bo'lsa — 6 oylikdan boshlash mantiqli.</p>
+            <p><a href="/blog/telegram-premium-paketlar-taqqoslash">Premium paketlar taqqoslash</a> va <a href="/blog/telegram-premium-3-oy-6-oy">3 oy vs 6 oy paketlari</a> maqolalarida qisqa muddatli variantlarni alohida ko'rib chiqqanmiz. Agar 12 oylik birdan qiyin bo'lsa — 6 oylikdan boshlash mantiqli.</p>
           </section>
 
           <section>
-            <h2>12 oylik Premium kimga mos?</h2>
+            <h2>12 oylik Premium kimga to'g'ri keladi?</h2>
 
-            <p>12 oylik paket hamma uchun emas — lekin ayrim foydalanuvchilar uchun bu eng to'g'ri tanlov. Quyida aniq holatlar:</p>
+            <p>12 oylik paket hamma uchun emas — lekin quyidagi holatlarda u eng to'g'ri tanlov:</p>
 
             <h3>Doimiy Telegram foydalanuvchilari</h3>
             <p>Agar siz har kuni Telegram ishlatib, Premium funksiyalaridan muntazam foydalansangiz — 12 oylik eng mantiqiy. Katta fayllar yuklash, tez transkriptsiya, Premium stikerlar, kengaytirilgan reaction'lar — bularni har kuni ishlatadigan odam uchun qisqa muddatli paketlar ortiqcha xarajat.</p>
 
-            <h3>SMS kod muammosini doimiy hal qilmoqchi bo'lganlar</h3>
-            <p>O'zbekistonda <a href="/blog/telegram-sms-kod-kelmayapti">Telegram SMS kod kelmayapti</a> muammosi ko'pchilikni qiynaydi. Premium obunachilari uchun Telegram SMS kodni yuborishda davom etadi. 12 oylik paket bilan siz bir yil davomida bu muammoni umuman sezmaydigan bo'lasiz — har 3 oyda obunani yangilash kerak emas.</p>
+            <h3>Kichik biznes va kanal egalari (Telegram Business bundle uchun)</h3>
+            <p>2024-yilda Telegram Business chiqarilganda, uning barcha funksiyalari Premium ichiga qo'shimcha to'lovsiz kiritildi. Demak, 12 oylik Premium oluvchi <strong>avtomatik ravishda</strong> Business profili, ish vaqti, avtomatik javoblar, tezkor javob shabloni va Chatbot API kengaytirilgan funksiyalariga ega bo'ladi. Kichik biznes (frilanser, do'kon, xizmat ko'rsatuvchi) uchun bu yiliga bir paket bilan ikkita xizmat. <a href="/blog/telegram-business-vs-premium">Business va Premium farqi</a> haqida alohida batafsil maqola bor.</p>
 
-            <h3>Telegram'dan kasbiy maqsadda foydalanuvchilar</h3>
-            <p>Kanal yuritasiz, guruhlar boshqarasiz, biznes uchun Telegram ishlatib botlar yaratayotgan bo'lsangiz — Premium kengaytirilgan imkoniyatlari kerak. Kanaldagi Premium badge, 4 GB gacha fayl yuklash, tezroq yuklanish — bu kasbiy foydalanuvchi uchun zarurat, lyuks emas.</p>
+            <h3>SMS-kod muammosini doimiy hal qilmoqchi bo'lganlar</h3>
+            <p>O'zbekistonda <a href="/blog/telegram-sms-kod-kelmayapti">Telegram SMS-kod kelmayapti</a> muammosi ko'pchilikni qiynaydi. Premium obunachilari uchun Telegram SMS-kodni Telegram orqali yuborishda davom etadi — operator SMS muammosi sezilmaydi. 12 oylik paket bilan bir yil davomida bu muammoni umuman sezmaydigan bo'lasiz.</p>
 
             <h3>Sovg'a qilmoqchi bo'lganlar</h3>
-            <p>12 oylik Premium — bu jiddiy sovg'a. Tug'ilgan kun, bayram yoki shunchaki yaqin odamga qiymat berish uchun. <a href="https://t.me/starsjoybot" target="_blank">@starsjoybot</a> orqali istalgan foydalanuvchiga Gift Premium sifatida 12 oylik paketni sovg'a qilish mumkin — faqat ularning username'ini kiriting.</p>
+            <p>12 oylik Premium — bu jiddiy va eslab qoladigan sovg'a. Tug'ilgan kun, yangi yil yoki yaqin odamga qadr berish uchun. <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali istalgan foydalanuvchiga Gift Premium sifatida 12 oylik paketni sovg'a qilish mumkin — faqat ularning username'ini kiriting.</p>
 
-            <h3>Kimga mos emas?</h3>
-            <p>Agar siz Premium'ni hali sinab ko'rmagan bo'lsangiz — darhol 12 oylikdan boshlash mantiqsiz. Avval <a href="/blog/telegram-premium-1-oylik">1 oylik</a> yoki 3 oylik paket bilan sinab ko'ring. Yoqsa — keyin 12 oylikka o'ting.</p>
+            <h3>Kimga to'g'ri kelmaydi?</h3>
+            <p>Agar siz Premium'ni hali sinab ko'rmagan bo'lsangiz — darhol 12 oylikdan boshlash mantiqsiz. Avval <a href="/blog/telegram-premium-3-oy-6-oy">3 oylik paket</a> bilan sinab ko'ring. Yoqsa — keyin 12 oylikka o'ting va tejash boshlang.</p>
+          </section>
+
+          <section>
+            <h2>12 oylik Premium ichida nima bor?</h2>
+
+            <p>Telegram Premium 12 oy davomida quyidagi imkoniyatlarni ochadi (2026-yil may holati):</p>
+
+            <ul>
+              <li><strong>4 GB gacha fayl yuklash</strong> — oddiy foydalanuvchilarda 2 GB cheklov</li>
+              <li><strong>Tezroq yuklanish</strong> — fayllar va media tezroq yuklanadi</li>
+              <li><strong>1 000 ta gacha guruh va kanal</strong> — bepul rejimda 500 ta</li>
+              <li><strong>20 ta pinned chat</strong> — bepul rejimda 5 ta</li>
+              <li><strong>Premium stikerlar va emoji</strong> — minglab eksklyuziv stiker</li>
+              <li><strong>Kengaytirilgan reaction'lar</strong> — ko'proq emoji bilan reaksiya berish</li>
+              <li><strong>Profildagi Premium badge</strong> — yulduzcha belgisi profilda ko'rinadi</li>
+              <li><strong>Ovozli xabarlarni transkriptsiya</strong> — audio xabarni matnga aylantiradi</li>
+              <li><strong>Real-time tarjima</strong> — xabarlarni ilova ichida tarjima qilish</li>
+              <li><strong>Reklamasiz kanallar</strong> — rasmiy kanallardagi sponsored xabarlar ko'rinmaydi</li>
+              <li><strong>SMS-kod ustuvorligi</strong> — <a href="/blog/telegram-sms-kod-kelmayapti">SMS-kod kelmayapti</a> muammosi hal bo'ladi</li>
+              <li><strong>Telegram Business bundle</strong> (2024-yildan beri) — biznes profili, ish vaqti, avtomatik javoblar, tezkor shablonlar</li>
+            </ul>
+
+            <p>Bu funksiyalarning barchasi 12 oy davomida — hech qanday cheklovsiz. 3 oylik paketda ham bir xil funksiyalar, lekin har 3 oyda qayta sotib olish va yillik hisobda 266 000 so'm ko'proq to'lash kerak. <a href="/blog/telegram-premium-funksiyalari">Premium funksiyalari to'liq ro'yxati</a> alohida maqolada.</p>
           </section>
 
           <section>
             <h2>O'zbekistonda 12 oylik Premium qanday sotib olinadi: bosqichma-bosqich</h2>
 
-            <p><strong>12 oylik Telegram Premium</strong> O'zbekistonda Uzcard va Humo kartasi bilan sotib olish mumkin. Jarayon oddiy va 5 daqiqa vaqt oladi. Quyida bosqichma-bosqich qo'llanma:</p>
+            <p><strong>12 oylik Telegram Premium</strong> O'zbekistonda Uzcard yoki Humo kartasi bilan sotib olish mumkin — xalqaro karta shart emas. Jarayon umumiy 5–10 daqiqa vaqt oladi.</p>
 
             <h3>1-qadam: @starsjoybot'ni oching</h3>
-            <p>Telegram'da <a href="https://t.me/starsjoybot" target="_blank">t.me/starsjoybot</a> ni oching va "Start" tugmasini bosing. Bot avtomatik ravishda sizga xarid variantlarini ko'rsatadi.</p>
+            <p>Telegram'da <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">t.me/starsjoybot</a> ni oching va <code>/start</code> tugmasini bosing. Bot avtomatik ravishda sizga xarid variantlarini ko'rsatadi.</p>
 
             <h3>2-qadam: 12 oylik paketni tanlang</h3>
-            <p>Bot sizga paket variantlarini ko'rsatadi: 3 oy, 6 oy, 12 oy. <strong>12 oylik</strong>ni tanlang. Narx — 422 000 so'm.</p>
+            <p>Bot sizga paket variantlarini ko'rsatadi: 3 oy, 6 oy, 12 oy. <strong>12 oylik</strong> (1 yil) tugmasini tanlang. Narx — 422 000 so'm.</p>
 
             <h3>3-qadam: Telegram username'ingizni kiriting</h3>
-            <p>Premium olmoqchi bo'lgan akkauntning username'ini kiriting. Bu siz o'zingiz uchun ham, boshqa odam uchun ham bo'lishi mumkin (Gift Premium). Bot username'ni tekshiradi va tasdiqlaydi.</p>
+            <p>Premium olmoqchi bo'lgan akkauntning username'ini kiriting. Bu siz o'zingiz uchun ham, boshqa odam uchun ham bo'lishi mumkin (Gift Premium). Bot username'ni tekshiradi va tasdiqlaydi — diqqat bilan ko'rib tasdiqlang, chunki Gift Premium qaytarib olinmaydi.</p>
 
-            <h3>4-qadam: To'lovni amalga oshiring</h3>
-            <p>Click yoki Payme orqali to'lang. Uzcard va Humo kartalari qabul qilinadi. Visa yoki Mastercard shart emas. To'lov so'mda amalga oshadi.</p>
+            <h3>4-qadam: Click yoki Payme'ni tanlang va to'lang</h3>
+            <p>Ikkala variant ham Uzcard va Humo kartalari bilan ishlaydi — qaysi ilovani tez-tez ishlatasiz, o'shani tanlang. Bot to'lov havolasini chiqaradi. Havolani bosing — ilova ochiladi, kartani tanlang, "To'lash" tugmasini bosing va PIN yoki SMS-kod bilan tasdiqlang. To'lov so'mda amalga oshadi — valyuta konvertatsiyasi yoki xalqaro komissiya yo'q.</p>
 
-            <h3>5-qadam: Premium faollashadi</h3>
-            <p>To'lov tasdiqlangach, bot Telegram'ning rasmiy Gift Premium funksiyasi orqali sizga (yoki siz ko'rsatgan foydalanuvchiga) 12 oylik Premium yuboradi. Odatda 5–15 daqiqa ichida faol bo'ladi. Parol berish shart emas — faqat username yetarli.</p>
+            <h3>5-qadam: Premium 5–15 daqiqada faollashadi</h3>
+            <p>To'lov tasdiqlangach, bot Telegram'ning rasmiy Gift Premium mexanizmi orqali sizga (yoki siz ko'rsatgan foydalanuvchiga) 12 oylik Premium yuboradi. 5–15 daqiqa ichida faol bo'ladi. <strong>Settings → Premium</strong> bo'limidan tekshirishingiz mumkin.</p>
 
-            <p><strong>Muhim:</strong> Bot Telegram'ning rasmiy Gift mexanizmidan foydalanadi. Bu xavfsiz va Telegram tomonidan qo'llab-quvvatlanadigan usul. Parol yoki SMS kod so'ralmaydi — agar biror xizmat parol so'rasa, bu <a href="/blog/telegram-stars-firibgarlik-himoya">firibgarlik belgisi</a>.</p>
+            <p class="natural-cta">Yirik to'lov bo'lgani uchun karta limit, Click Premium / Payme Plus tejash va Humo maosh kartasi nuanslari haqida batafsil bilmoqchi bo'lsangiz — <a href="/blog/telegram-premium-12-oylik-uzcard-humo-bilan">12 oylik Premium Uzcard/Humo bilan deep-dive</a> maqolasini o'qing.</p>
+
+            <p><strong>Muhim xavfsizlik eslatmasi:</strong> Bot <em>hech qachon</em> parolingizni, SMS-kodingizni yoki ikki bosqichli tasdiqlash kodini so'ramaydi. Faqat username yetarli — Telegram'ning rasmiy Gift Premium mexanizmi. Parol so'raydigan xizmat — bu <a href="/blog/telegram-stars-firibgarlik-himoya">firibgarlik belgisi</a>.</p>
           </section>
 
           <section>
-            <h2>12 oylik Premium olishda nimaga e'tibor berish kerak?</h2>
+            <h2>12 oylik Premium sotib olishda nimaga e'tibor berish kerak?</h2>
 
-            <p>12 oylik paket — eng katta to'lov. Shuning uchun to'g'ri qaror qilish uchun bir nechta muhim nuqtalarni bilish kerak.</p>
+            <p>12 oylik — eng katta to'lov. Shuning uchun to'g'ri qaror qilish uchun bir nechta muhim nuqtalarni bilish kerak.</p>
 
             <h3>To'lov bir martalik</h3>
-            <p>422 000 so'm bir martalik to'lov — bo'lib to'lash imkoniyati yo'q. Agar hozircha bu summa og'ir bo'lsa — avval <a href="/blog/telegram-premium-3-oy-6-oy">6 oylik paket</a> (232 000 so'm) dan boshlang. 6 oylik ham yaxshi tejash beradi va byudjetga yengilroq.</p>
+            <p>422 000 so'm — bir martalik to'lov, bo'lib to'lash imkoniyati yo'q. Agar hozircha bu summa og'ir bo'lsa, avval <a href="/blog/telegram-premium-3-oy-6-oy">6 oylik paket</a> (232 000 so'm) dan boshlang — 6 oylik ham yaxshi tejash beradi va byudjetga yengilroq.</p>
 
-            <h3>Obuna tugagach nima bo'ladi?</h3>
-            <p>12 oy tugagandan keyin obuna avtomatik to'xtaydi — ortiqcha to'lov olinmaydi. Akkauntingiz oddiy rejimga qaytadi. Barcha suhbatlar, fayllar va guruhlar saqlanadi — faqat Premium funksiyalar (katta fayl yuklash, Premium stikerlar, kengaytirilgan reaction'lar) o'chadi. Xohlasangiz istagan vaqtda qayta sotib olishingiz mumkin.</p>
+            <h3>Avtomatik obuna yo'q</h3>
+            <p>12 oy tugagandan keyin obuna avtomatik to'xtaydi — <strong>kartadan ortiqcha pul yechilmaydi</strong>. Bu Telegram'ning rasmiy Gift Premium mexanizmi xususiyati: bir martalik to'lov, kelajakda hech qanday qo'shimcha yechib olish yo'q. Akkauntingiz oddiy rejimga qaytadi. Barcha suhbatlar, fayllar va guruhlar saqlanadi — faqat Premium funksiyalar o'chadi. Xohlasangiz istagan vaqtda qayta sotib olishingiz mumkin.</p>
 
             <h3>Username to'g'ri kiritilganiga ishonch hosil qiling</h3>
-            <p>Bot orqali Premium olayotganda username'ni diqqat bilan kiriting. Gift Premium qaytarib olinmaydi — agar noto'g'ri username'ga yuborilsa, tuzatish murakkab. Bot username'ni tasdiqlash uchun so'raydi — tasdiqlashdan oldin ikki marta tekshiring.</p>
+            <p>Gift Premium qaytarib olinmaydi — agar noto'g'ri username'ga yuborilsa, tuzatish murakkab. Bot username'ni tasdiqlash uchun so'raydi — tasdiqlashdan oldin ikki marta tekshiring.</p>
 
             <h3>Xavfsiz xizmat tanlang</h3>
-            <p>Premium olishda eng muhim qoida: <strong>hech qachon parol bermang</strong>. Ishonchli xizmatlar Gift mexanizmi orqali ishlaydi — faqat username kerak. Parol so'raydigan xizmat — firibgarlik. <a href="https://starsjoy.uz" target="_blank">starsjoy.uz</a> rasmiy saytga ega, ochiq narxlar, Uzcard/Humo orqali to'lov va uzoq faoliyat tarixiga ega xizmat.</p>
-          </section>
-
-          <section>
-            <h2>12 oylik Premium bilan nima olasiz?</h2>
-
-            <p>Telegram Premium 12 oy davomida quyidagi imkoniyatlarni ochadi:</p>
-
-            <ul>
-              <li><strong>4 GB gacha fayl yuklash</strong> — oddiy foydalanuvchilarda 2 GB cheklov</li>
-              <li><strong>Tezroq yuklanish</strong> — fayllar va media tezroq yuklanadi</li>
-              <li><strong>Premium stikerlar va emoji</strong> — minglab eksklyuziv stiker</li>
-              <li><strong>Kengaytirilgan reaction'lar</strong> — ko'proq emoji bilan reaksiya berish</li>
-              <li><strong>Profildagi Premium badge</strong> — yulduzcha belgisi profilda ko'rinadi</li>
-              <li><strong>Ovozli xabarlarni transkripsiya</strong> — audio xabarni matnga aylantiradi</li>
-              <li><strong>Real-time tarjima</strong> — xabarlarni ilova ichida tarjima qilish</li>
-              <li><strong>Reklamasiz kanallar</strong> — rasmiy kanallardagi sponsored xabarlar ko'rinmaydi</li>
-              <li><strong>Ko'proq bio va profil</strong> — uzunroq bio, animatsion profil rasm</li>
-              <li><strong>SMS kod ustuvorligi</strong> — <a href="/blog/telegram-sms-kod-kelmayapti">SMS kod kelmayapti</a> muammosi hal bo'ladi</li>
-            </ul>
-
-            <p>Bu funksiyalarning barchasi 12 oy davomida — hech qanday cheklovsiz. 3 oylik paketda ham bir xil funksiyalar, lekin har 3 oyda qayta sotib olish va yillik hisobda 266 000 so'm ko'proq to'lash kerak. <a href="/blog/telegram-premium-uzcard">Premium funksiyalari</a> haqida batafsil maqolamiz bor.</p>
+            <p>Premium olishda eng muhim qoida: <strong>hech qachon parol bermang</strong>. Ishonchli xizmatlar Gift mexanizmi orqali ishlaydi — faqat username kerak. Parol so'raydigan xizmat — firibgarlik. <a href="https://starsjoy.uz" target="_blank">starsjoy.uz</a> rasmiy saytga ega, ochiq narxlar, Uzcard va Humo orqali to'lov va uzoq faoliyat tarixi.</p>
           </section>
 
           <section>
             <h2>Xulosa</h2>
 
-            <p><strong>Telegram Premium 12 oy</strong> — doimiy foydalanuvchilar uchun eng tejamkor variant. 422 000 so'm — oyiga ~35 167 so'm. 3 oylikka nisbatan yiliga 266 000 so'm tejash. Bir marta to'lang — bir yil xotirjam foydalaning.</p>
+            <p><strong>Telegram Premium 12 oy</strong> — doimiy foydalanuvchilar va kichik biznes uchun eng tejamkor variant. 422 000 so'm — oyiga ~35 167 so'm, 3 oylikka nisbatan yiliga 266 000 so'm tejash. Bir marta to'lang — bir yil xotirjam foydalaning. Ustiga Telegram Business bundle bonus — alohida obuna olish kerak emas.</p>
 
             <p>O'zbekistonda 12 oylik Premium olish uchun:</p>
             <ol>
-              <li><a href="https://t.me/starsjoybot" target="_blank">@starsjoybot</a> ga kiring</li>
+              <li><a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ga kiring</li>
               <li>12 oylik paketni tanlang</li>
               <li>Username'ingizni kiriting</li>
-              <li>Click yoki Payme orqali Uzcard/Humo bilan to'lang</li>
+              <li>Click yoki Payme orqali Uzcard yoki Humo bilan to'lang</li>
               <li>5–15 daqiqada Premium faol bo'ladi</li>
             </ol>
 
             <p>Visa karta kerak emas. Parol berish shart emas. Faqat username yetarli.</p>
 
-            <p>Foydali maqolalar: <a href="/blog/telegram-premium-sotib-olish">Premium sotib olish to'liq qo'llanma</a>, <a href="/blog/telegram-premium-3-oy-6-oy">3 va 6 oy paketlari taqqoslash</a>, <a href="/blog/telegram-premium-vizasiz">Vizasiz Premium olish</a> va <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a>.</p>
+            <p class="end-cta">12 oylik Premium uchun → <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a></p>
+
+            <p>Foydali maqolalar: <a href="/blog/telegram-premium-12-oylik-uzcard-humo-bilan">Uzcard/Humo bilan 12 oylik (deep-dive)</a>, <a href="/blog/telegram-business-vs-premium">Business va Premium farqi</a>, <a href="/blog/telegram-premium-sotib-olish">Premium sotib olish to'liq qo'llanma</a>, <a href="/blog/telegram-premium-3-oy-6-oy">3 va 6 oy taqqoslash</a> va <a href="/blog/telegram-premium-vizasiz">Vizasiz Premium</a>.</p>
           </section>
 
           <section>
@@ -319,20 +370,24 @@ const publishDate = "2026-04-17";
 
             <div class="post-faq">
               <div class="post-faq-item">
-                <h3>12 oylik Telegram Premium narxi qancha?</h3>
-                <p>O'zbekistonda StarsJoy orqali 422 000 so'm. Oyiga hisoblaganda ~35 167 so'm — bu barcha paketlar ichida eng arzon variant.</p>
+                <h3>12 oylik Telegram Premium narxi qancha (2026)?</h3>
+                <p>O'zbekistonda StarsJoy orqali 422 000 so'm. Oyiga hisoblaganda ~35 167 so'm — bu mavjud paketlar ichida eng arzon oylik narx. To'lov bir martalik, kartadan avtomatik yechilmaydi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>12 oylik Telegram Premium qanday sotib olinadi?</h3>
-                <p><a href="https://t.me/starsjoybot" target="_blank">@starsjoybot</a> ga kirib, 12 oylik paketni tanlang, username'ingizni kiriting va Click yoki Payme orqali to'lang. 5–15 daqiqada Premium faol bo'ladi.</p>
+                <p><a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ga kirib, 12 oylik paketni tanlang, username'ingizni kiriting va Click yoki Payme orqali to'lang. 5–15 daqiqada faol bo'ladi. Parol yoki SMS-kod so'ralmaydi.</p>
               </div>
               <div class="post-faq-item">
-                <h3>12 oylik Premium 3 yoki 6 oylikdan qanchalik arzon?</h3>
-                <p>12 oylik oyiga ~35 167, 6 oylik oyiga ~38 667, 3 oylik oyiga ~57 333 so'm. 12 oylik paket 3 oylikdan 39% arzon, 6 oylikdan 9% arzon.</p>
+                <h3>12 oylik 3 yoki 6 oylikdan qanchalik arzon?</h3>
+                <p>12 oylik oyiga ~35 167, 6 oylik oyiga ~38 667, 3 oylik oyiga ~57 333 so'm. 12 oylik paket 3 oylikka nisbatan yiliga 266 000 so'm, 6 oylikka nisbatan 42 000 so'm tejaydi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>12 oylik Premium uchun Visa karta kerakmi?</h3>
-                <p>Yo'q. StarsJoy orqali Uzcard va Humo bilan Click yoki Payme orqali to'lash mumkin. Xalqaro karta shart emas.</p>
+                <p>Yo'q. StarsJoy orqali Uzcard yoki Humo bilan Click yoki Payme orqali to'lash mumkin — xalqaro karta umuman shart emas. Karta egasi uchun batafsil deep-dive: <a href="/blog/telegram-premium-12-oylik-uzcard-humo-bilan">Uzcard/Humo bilan 12 oylik</a>.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>12 oylik Premium ichida Telegram Business ham bormi?</h3>
+                <p>Ha. 2024-yildan beri Telegram Business funksiyalari (biznes profili, ish vaqti, avtomatik javoblar, tezkor shablonlar) Premium ichida qo'shimcha to'lovsiz keladi. Alohida obuna olish kerak emas.</p>
               </div>
               <div class="post-faq-item">
                 <h3>12 oylik Premium sovg'a qilish mumkinmi?</h3>
@@ -340,11 +395,11 @@ const publishDate = "2026-04-17";
               </div>
               <div class="post-faq-item">
                 <h3>12 oy tugagandan keyin nima bo'ladi?</h3>
-                <p>Obuna avtomatik to'xtaydi, akkaunt oddiy rejimga qaytadi. Suhbatlar va fayllar saqlanadi, lekin Premium funksiyalar o'chadi. Xohlasangiz qayta sotib olishingiz mumkin.</p>
+                <p>Obuna avtomatik to'xtaydi, akkaunt oddiy rejimga qaytadi. <strong>Kartadan ortiqcha pul yechilmaydi</strong> — avtomatik obuna mexanizmi yo'q. Suhbatlar va fayllar saqlanadi, Premium funksiyalar o'chadi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>12 oylik Premium'ni bo'lib to'lash mumkinmi?</h3>
-                <p>Yo'q, to'lov bir martalik. Agar 422 000 so'm birdan qiyin bo'lsa — avval 3 oylik (172 000) yoki 6 oylik (232 000) paketdan boshlang.</p>
+                <p>To'g'ridan-to'g'ri yo'q. Variantlar: (1) 6 oylik dan boshlab, keyin yana 6 oylik olish; (2) Click yoki Payme'dagi bo'lib to'lash xizmati orqali kartaga vaqtinchalik kredit limit olish.</p>
               </div>
             </div>
           </section>
@@ -413,6 +468,19 @@ const publishDate = "2026-04-17";
     margin: 0;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content h2 {
     font-size: 1.5rem;
     font-weight: 800;
@@ -452,6 +520,24 @@ const publishDate = "2026-04-17";
     color: var(--text-muted);
     line-height: 1.8;
     margin-bottom: 6px;
+  }
+
+  .natural-cta {
+    background: rgba(124, 58, 237, 0.04);
+    border-left: 3px solid var(--primary);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 18px 0;
+    font-size: 0.95rem;
+  }
+
+  .end-cta {
+    text-align: center;
+    padding: 14px;
+    background: rgba(124, 58, 237, 0.06);
+    border-radius: 10px;
+    font-weight: 600;
+    margin: 20px 0;
   }
 
   .post-table-wrap {
@@ -531,5 +617,6 @@ const publishDate = "2026-04-17";
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }
     .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
   }
 </style>
