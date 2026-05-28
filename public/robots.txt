@@ -1,4 +1,24 @@
 User-agent: *
 Allow: /
 
+Disallow: /api/
+Disallow: /modad
+Disallow: /modad/
+
+# AI crawlers (allowed — let LLMs cite us)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
 Sitemap: https://starsjoy.uz/sitemap-index.xml

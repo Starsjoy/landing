@@ -1,0 +1,255 @@
+---
+interface Props {
+  lang?: "uz" | "ru";
+}
+const { lang = "uz" } = Astro.props;
+
+const isRu = lang === "ru";
+
+const t = isRu
+  ? {
+      tag: "Блог и гайды",
+      heading: "Популярные статьи о Telegram Stars, Premium и Gifts",
+      sub: "Подробные руководства по покупке Telegram Stars, Premium и Gifts в Узбекистане — цены, способы оплаты, ответы на частые вопросы.",
+      all: "Все статьи в блоге →",
+      blogBase: "/ru/blog",
+    }
+  : {
+      tag: "Blog va qo'llanmalar",
+      heading: "Telegram Stars, Premium va Gifts haqida foydali maqolalar",
+      sub: "O'zbekistonda Telegram Stars, Premium va Gifts sotib olish bo'yicha batafsil qo'llanmalar — narxlar, to'lov usullari, ko'p so'raladigan savollar.",
+      all: "Barcha maqolalar →",
+      blogBase: "/blog",
+    };
+
+const postsUz = [
+  {
+    slug: "telegram-premium-uzbekistan-eng-yaxshi-usullar",
+    title: "Telegram Premium O'zbekistonda: eng yaxshi 3 usul",
+    desc: "Narxlar va to'lov yo'llari taqqoslangan.",
+    tag: "Premium",
+  },
+  {
+    slug: "telegram-1000-stars-sotib-olish",
+    title: "1000 Telegram Stars sotib olish",
+    desc: "Eng mashhur paket — narxi va 5 ta scenario.",
+    tag: "Stars",
+  },
+  {
+    slug: "telegram-stars-naqd-pul-bilan-sotib-olish",
+    title: "Stars'ni naqd pul bilan sotib olish",
+    desc: "Terminal va bankomat orqali — 25 000+ shaxobcha.",
+    tag: "Stars",
+  },
+  {
+    slug: "telegram-premium-12-oylik",
+    title: "Telegram Premium 12 oylik (yillik)",
+    desc: "Eng arzon oylik narx + Business bundle.",
+    tag: "Premium",
+  },
+  {
+    slug: "telegram-gifts-narxi-royxati",
+    title: "Telegram Gifts narxi va to'liq ro'yxat",
+    desc: "Barcha rasmiy sovg'alar 2026 holatida.",
+    tag: "Gifts",
+  },
+  {
+    slug: "telegram-ton-va-stars-farqi",
+    title: "Telegram TON va Stars farqi",
+    desc: "Ikki tokenlar — qaysi qanday holatda kerak.",
+    tag: "Stars",
+  },
+];
+
+const postsRu = [
+  {
+    slug: "telegram-premium-uzbekistan-eng-yaxshi-usullar",
+    title: "Telegram Premium в Узбекистане: 3 лучших способа",
+    desc: "Сравнение цен и способов оплаты.",
+    tag: "Premium",
+  },
+  {
+    slug: "telegram-1000-stars-sotib-olish",
+    title: "Купить 1000 Telegram Stars",
+    desc: "Самый популярный пакет — цена и 5 сценариев.",
+    tag: "Stars",
+  },
+  {
+    slug: "telegram-stars-naqd-pul-bilan-sotib-olish",
+    title: "Купить Stars за наличные",
+    desc: "Через терминал и банкомат — 25 000+ точек.",
+    tag: "Stars",
+  },
+  {
+    slug: "telegram-premium-12-oylik",
+    title: "Telegram Premium на 12 месяцев",
+    desc: "Самая низкая цена в месяц + Business в комплекте.",
+    tag: "Premium",
+  },
+  {
+    slug: "telegram-gifts-narxi-royxati",
+    title: "Цены и полный список Telegram Gifts",
+    desc: "Все официальные подарки на 2026.",
+    tag: "Gifts",
+  },
+  {
+    slug: "telegram-ton-va-stars-farqi",
+    title: "Различие TON и Stars",
+    desc: "Два токена — какой когда нужен.",
+    tag: "Stars",
+  },
+];
+
+const posts = isRu ? postsRu : postsUz;
+---
+
+<section class="blog-highlights">
+  <div class="bh-inner">
+    <div class="bh-head">
+      <span class="bh-tag">{t.tag}</span>
+      <h2 class="bh-heading">{t.heading}</h2>
+      <p class="bh-sub">{t.sub}</p>
+    </div>
+    <div class="bh-grid">
+      {posts.map(p => (
+        <a class="bh-card" href={`${t.blogBase}/${p.slug}`}>
+          <span class="bh-card-tag">{p.tag}</span>
+          <h3 class="bh-card-title">{p.title}</h3>
+          <p class="bh-card-desc">{p.desc}</p>
+          <span class="bh-card-link">{isRu ? "Читать →" : "O'qish →"}</span>
+        </a>
+      ))}
+    </div>
+    <div class="bh-all">
+      <a href={t.blogBase}>{t.all}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog-highlights {
+    padding: 80px 24px;
+    background: #FBFAFE;
+  }
+
+  .bh-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .bh-head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .bh-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .bh-heading {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 0 auto 12px;
+    max-width: 760px;
+    line-height: 1.25;
+  }
+
+  .bh-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .bh-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 36px;
+  }
+
+  .bh-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 14px;
+    padding: 22px;
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bh-card:hover {
+    border-color: rgba(124, 58, 237, 0.3);
+    box-shadow: 0 6px 24px rgba(124, 58, 237, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .bh-card-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(124, 58, 237, 0.07);
+    color: var(--primary);
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    align-self: flex-start;
+  }
+
+  .bh-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+    line-height: 1.35;
+  }
+
+  .bh-card-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin: 0 0 14px;
+    flex-grow: 1;
+  }
+
+  .bh-card-link {
+    color: var(--primary);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .bh-all {
+    text-align: center;
+  }
+
+  .bh-all a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.98rem;
+  }
+  .bh-all a:hover { text-decoration: underline; }
+
+  @media (max-width: 1024px) {
+    .bh-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .blog-highlights { padding: 56px 16px; }
+    .bh-heading { font-size: 1.5rem; }
+    .bh-sub { font-size: 0.94rem; }
+    .bh-grid { grid-template-columns: 1fr; }
+    .bh-card { padding: 18px; }
+    .bh-card-title { font-size: 1rem; }
+  }
+</style>

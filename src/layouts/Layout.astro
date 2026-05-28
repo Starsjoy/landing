@@ -36,6 +36,9 @@ const {
     {hreflangs.map(hl => (
       <link rel="alternate" hreflang={hl.lang} href={hl.href} />
     ))}
+    {hreflangs.length > 0 && (
+      <link rel="alternate" hreflang="x-default" href={hreflangs.find(h => h.lang === "uz")?.href || hreflangs[0].href} />
+    )}
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
