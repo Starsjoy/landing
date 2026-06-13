@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Telegram ekotizimida TON va Stars o'rtasidagi farq nima? (2026) | StarsJoy Blog";
 const description = "Telegramda TON va Stars o'rtasidagi farq nima? Qaysi biri kripto, qaysi biri ichki valyuta? Qaysini qachon ishlatish kerak — to'liq tushuntirish.";
 const publishDate = "2026-04-20";
+const modifiedDate = "2026-06-13";
+const wordCount = 2100;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-04-20";
     "headline": "Telegram ekotizimida TON va Stars o'rtasidagi farq nima?",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "Telegram TON va Stars farqi, TON nima, Stars nima, Telegram kripto, Telegram ichki valyuta, Stars sotib olish, Telegram ekotizimi",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -116,6 +126,17 @@ const publishDate = "2026-04-20";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-ton-va-stars-farqi",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -129,7 +150,7 @@ const publishDate = "2026-04-20";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Telegram ekotizimida TON va Stars o'rtasidagi farq nima?</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -138,6 +159,10 @@ const publishDate = "2026-04-20";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> TON (Toncoin) — Telegram ekotizimiga bog'liq blokcheyn kriptovalyuta: tashqi hamyonda saqlanadi, narxi bozorga qarab o'zgaradi va Fragment'da username/NFT uchun ishlatiladi. <a href="/blog/telegram-stars-nima">Telegram Stars</a> esa Telegram ichidagi barqaror narxli to'lov valyutasi — botlar, sovg'a va kontent uchun. Oddiy foydalanuvchi uchun 90% holatda Stars yetarli, va O'zbekistonda uni Uzcard yoki Humo bilan <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali bir necha daqiqada olish mumkin — kripto va verifikatsiyasiz.
+          </div>
 
           <section>
             <p>Telegram'da kanal ochmoqchisiz, sovg'a yubormoqchisiz yoki bot ichidagi xizmatlar uchun to'lamoqchisiz. Google'da qidiryapsiz — ba'zi manbalar "TON kerak" deydi, boshqalari "Stars sotib oling" deydi. Qaysi biri to'g'ri? Ular bir xilmi yoki boshqami? <strong>Telegram ekotizimida TON va Stars o'rtasidagi farq nima</strong> — bu savol 2026-yilda Telegram'dan faol foydalanuvchilar orasida eng ko'p adashtiruvchi mavzulardan biri.</p>
@@ -519,6 +544,19 @@ const publishDate = "2026-04-20";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -638,6 +676,7 @@ const publishDate = "2026-04-20";
     .post-content h3 { font-size: 1.05rem; }
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

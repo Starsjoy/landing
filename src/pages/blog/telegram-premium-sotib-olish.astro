@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Telegram Premium sotib olish uchun eng tez va oson yo'l (2026) | StarsJoy Blog";
 const description = "Telegram Premium sotib olish 2026 — O'zbekistonda Uzcard, Humo, Click va Payme orqali eng tez yo'l. StarsJoy orqali narxlar, usullar va bosqichma-bosqich qo'llanma.";
 const publishDate = "2026-03-31";
+const modifiedDate = "2026-06-13";
+const wordCount = 1250;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-03-31";
     "headline": "Telegram Premium sotib olish uchun eng tez va oson yo'l (2026)",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "Telegram Premium sotib olish, Telegram Premium O'zbekiston, Telegram Premium narxi, Telegram Premium bot, Premium sotib olish usullari, Telegram Premium 2026",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -108,6 +118,36 @@ const publishDate = "2026-03-31";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "@starsjoybot orqali Telegram Premium sotib olish",
+    "description": "O'zbekistonda Uzcard yoki Humo karta bilan @starsjoybot orqali Telegram Premium sotib olish bosqichlari.",
+    "totalTime": "PT15M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Uzcard yoki Humo karta" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "@starsjoybot ni oching", "text": "Telegram'da @starsjoybot ni oching va /start tugmasini bosing." },
+      { "@type": "HowToStep", "name": "Premium bo'limini tanlang", "text": "\"Telegram Premium\" bo'limini tanlang va paketni tanlang: 3 oy, 6 oy yoki 12 oy." },
+      { "@type": "HowToStep", "name": "To'lovni amalga oshiring", "text": "Click yoki Payme orqali Uzcard yoki Humo kartangiz bilan to'lang." },
+      { "@type": "HowToStep", "name": "Username kiriting", "text": "Telegram username yoki telefon raqamingizni kiriting — parol so'ralmaydi." },
+      { "@type": "HowToStep", "name": "Premium aktivatsiya bo'ladi", "text": "5–15 daqiqada Premium akkauntingizda faollashadi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-premium-sotib-olish",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -121,7 +161,7 @@ const publishDate = "2026-03-31";
         <div class="post-tag">Premium</div>
         <h1 class="post-title">Telegram Premium sotib olish uchun eng tez va oson yo'l (2026)</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -130,6 +170,10 @@ const publishDate = "2026-03-31";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> O'zbekistonda <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Telegram Premium'ni Uzcard yoki Humo bilan Click/Payme orqali so'mda to'lab sotib olasiz — 5–15 daqiqada faol bo'ladi. Visa yoki Mastercard shart emas, parol va SMS so'ralmaydi: ishlash rasmiy Telegram Gift Premium mexanizmi orqali. Paketlar: 3 oy, 6 oy va 12 oy — batafsil <a href="/blog/telegram-premium-3-oy-6-oy">paketlar taqqoslash</a>da.
+          </div>
 
           <section>
             <p><strong>Telegram Premium sotib olish</strong> — bu O'zbekistonda vositachi xizmat orqali so'mda to'lab, Telegram'ning rasmiy Gift mexanizmi bilan Premium obunani aktivatsiya qilish. Visa yoki Mastercard shart emas — Uzcard va Humo bilan ishlaydi.</p>
@@ -386,6 +430,19 @@ const publishDate = "2026-03-31";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -506,6 +563,7 @@ const publishDate = "2026-03-31";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-faq-item { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }
     .post-table td { padding: 10px 12px; font-size: 0.85rem; }

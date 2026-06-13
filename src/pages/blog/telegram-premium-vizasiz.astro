@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Vizasiz Telegram Premium sotib olish (2026): Uzcard, Humo va bot orqali | StarsJoy Blog";
 const description = "Telegram Premium'ni Visa kartasiz sotib olish mumkinmi? Uzcard, Humo, Click va bot orqali eng oson va xavfsiz usullar — O'zbekiston uchun to'liq qo'llanma.";
 const publishDate = "2026-03-23";
+const modifiedDate = "2026-06-13";
+const wordCount = 1150;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-03-23";
     "headline": "Vizasiz Telegram Premium sotib olish (2026): Uzcard, Humo va bot orqali eng oson yo'l",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "Telegram Premium vizasiz, Telegram Premium sotib olish, Telegram Premium Uzcard, Telegram Premium Humo, Telegram Premium O'zbekiston, Premium bot orqali, Telegram Premium narxi",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -108,6 +118,36 @@ const publishDate = "2026-03-23";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram Premium'ni Visa kartasiz sotib olish",
+    "description": "O'zbekistonda Visa kartasiz — Uzcard, Humo yoki Click bilan @starsjoybot orqali Telegram Premium sotib olish bosqichlari.",
+    "totalTime": "PT15M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Uzcard yoki Humo karta" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Botga kiring", "text": "@starsjoybot ga kirib \"Premium\" bo'limini tanlang." },
+      { "@type": "HowToStep", "name": "Paketni tanlang", "text": "Paketni tanlang: 3, 6 yoki 12 oy." },
+      { "@type": "HowToStep", "name": "Username kiriting", "text": "Telegram username'ingizni kiriting." },
+      { "@type": "HowToStep", "name": "To'lov qiling", "text": "Uzcard, Humo yoki Click orqali so'mda to'lov qiling — Visa shart emas." },
+      { "@type": "HowToStep", "name": "Premium keladi", "text": "Premium sovg'a sifatida avtomatik keladi va faollashadi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-premium-vizasiz",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -121,7 +161,7 @@ const publishDate = "2026-03-23";
         <div class="post-tag">Premium</div>
         <h1 class="post-title">Vizasiz Telegram Premium sotib olish (2026): Uzcard, Humo va bot orqali eng oson yo'l</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -130,6 +170,10 @@ const publishDate = "2026-03-23";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Ha, Telegram Premium'ni Visa yoki Mastercard kartasiz ham sotib olish mumkin — <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard, Humo yoki Click bilan so'mda to'lab, 5–15 daqiqada Premium faollashadi. Xalqaro karta ochish, dollar konvertatsiya, parol yoki SMS kerak emas: ishlash rasmiy Telegram Gift Premium mexanizmi orqali. Aynan Uzcard bo'yicha batafsil — <a href="/blog/telegram-premium-uzcard">Uzcard orqali Premium</a> maqolasida.
+          </div>
 
           <section>
             <p>Telegram Premium bugungi kunda oddiy messenjer funksiyasidan ancha keng imkoniyatlarni taklif qiladi. <strong>4 GB gacha fayl yuborish</strong>, reklamasiz foydalanish, ovozli xabarlarni matnga aylantirish va ko'plab premium funksiyalar sabab foydalanuvchilar soni tez o'smoqda.</p>
@@ -416,6 +460,19 @@ const publishDate = "2026-03-23";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -536,6 +593,7 @@ const publishDate = "2026-03-23";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-faq-item { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }
     .post-table td { padding: 10px 12px; font-size: 0.85rem; }

@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Telegram Stars narxi 2026: O'zbekistonda eng arzon narxda sotib olish | StarsJoy Blog";
 const description = "Telegram Stars narxi 2026-yilda qancha? Telegram Stars kursi so'mda, narxlar taqqoslanishi, Uzcard va Humo orqali arzon sotib olish usullari.";
 const publishDate = "2026-03-15";
+const modifiedDate = "2026-06-13";
+const wordCount = 1150;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-03-15";
     "headline": "Telegram Stars narxi 2026: O'zbekistonda eng arzon narxda sotib olish",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "Telegram Stars narxi, Telegram Stars kursi so'mda, arzon Telegram Stars, Telegram Stars Uzcard, Telegram Stars Humo, Telegram yulduzcha narxi 2026",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -100,6 +110,36 @@ const publishDate = "2026-03-15";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram Stars sotib olish (Uzcard/Humo)",
+    "description": "@starsjoybot orqali O'zbekistonda Telegram Stars'ni Humo yoki Uzcard karta bilan sotib olish bosqichlari.",
+    "totalTime": "PT5M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Humo yoki Uzcard karta" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Botni oching", "text": "Telegram'da t.me/starsjoybot botini oching." },
+      { "@type": "HowToStep", "name": "Stars miqdorini tanlang", "text": "100, 500, 1000 kabi paketlardan kerakligini tanlang." },
+      { "@type": "HowToStep", "name": "To'lov usulini tanlang", "text": "Humo yoki Uzcard kartasini tanlang." },
+      { "@type": "HowToStep", "name": "To'lovni tasdiqlang", "text": "To'lov amalga oshirilgandan so'ng buyurtma qayta ishlanadi." },
+      { "@type": "HowToStep", "name": "Stars hisobingizga tushadi", "text": "Odatda Stars bir necha daqiqa ichida Telegram hisobingizga yuboriladi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-stars-narxi",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -113,7 +153,7 @@ const publishDate = "2026-03-15";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Telegram Stars narxi 2026: O'zbekistonda eng arzon narxda sotib olish usuli</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -122,6 +162,10 @@ const publishDate = "2026-03-15";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Telegram Stars narxi sotib olish manbasiga qarab farq qiladi — App Store/Google Play eng qimmat, reseller botlar esa odatda arzonroq. O'zbekistonda <a href="/blog/telegram-stars-sotib-olish">Stars sotib olish</a>ning eng qulay yo'li — Uzcard yoki Humo bilan <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali, Visa shart emas. Aniq paket narxlari botning o'zida ko'rinadi.
+          </div>
 
           <section>
             <p>Telegram platformasida <strong>Telegram Stars</strong> — botlar, mini-ilovalar va pullik kontent uchun ishlatiladigan ichki raqamli valyuta hisoblanadi. 2025–2026 yillarda bu tizim kontent yaratuvchilar, kanal egalari va bot ishlab chiquvchilar uchun muhim monetizatsiya vositasiga aylandi.</p>
@@ -410,6 +454,19 @@ const publishDate = "2026-03-15";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -574,6 +631,7 @@ const publishDate = "2026-03-15";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-cta-box { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

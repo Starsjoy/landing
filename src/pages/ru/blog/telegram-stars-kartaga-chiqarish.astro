@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Вывод Telegram Stars на карту (2026): Полное руководство | StarsJoy Blog";
 const description = "Как вывести Telegram Stars на Uzcard и Humo? Как продать звёзды за сумы, курсы и самые надёжные способы — полное руководство.";
 const publishDate = "2026-03-24";
+const modifiedDate = "2026-06-13";
+const wordCount = 1250;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-03-24";
     "headline": "Вывод Telegram Stars на карту: Полное руководство 2026",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "вывод Telegram Stars на карту, Telegram Stars продать, Telegram Stars Uzcard, Telegram Stars Humo, обналичить Stars, Stars withdraw",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -109,6 +119,31 @@ const publishDate = "2026-03-24";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Вывод Telegram Stars на карту Uzcard или Humo",
+    "description": "Шаги конвертации Telegram Stars в сумы и вывода на карту Uzcard или Humo через службу поддержки.",
+    "totalTime": "PT15M",
+    "step": [
+      { "@type": "HowToStep", "name": "Обратитесь в поддержку", "text": "Напишите в аккаунт t.me/starsjoysupport." },
+      { "@type": "HowToStep", "name": "Подтвердите количество и курс", "text": "Укажите, сколько Stars хотите продать, и подтвердите сумму по текущему курсу." },
+      { "@type": "HowToStep", "name": "Отправьте звёзды", "text": "Передайте Stars через донат или внутренний перевод." },
+      { "@type": "HowToStep", "name": "Получите деньги на карту", "text": "После подтверждения транзакции сумма в сумах переводится на вашу карту Uzcard или Humo." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-stars-kartaga-chiqarish",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -122,7 +157,7 @@ const publishDate = "2026-03-24";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Вывод Telegram Stars на карту: Полное руководство 2026</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -131,6 +166,10 @@ const publishDate = "2026-03-24";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Вывести Telegram Stars на карту Uzcard или Humo можно — без официального Fragment и криптовалюты, через службу поддержки методом доната. Вы пишете в <a href="https://t.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a>, подтверждаете количество и курс, отправляете Stars — и сумма в сумах поступает на карту за несколько минут. Для обратного — <a href="/ru/blog/telegram-stars-sotib-olish">покупки Stars</a> — используется @starsjoybot.
+          </div>
 
           <section>
             <h2>Можно ли вывести Telegram Stars на карту?</h2>
@@ -358,6 +397,19 @@ const publishDate = "2026-03-24";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -477,6 +529,7 @@ const publishDate = "2026-03-24";
     .post-content h3 { font-size: 1.05rem; }
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

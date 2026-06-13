@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Telegram Stars qanday sotib olinadi? (2026 qo'llanma) | StarsJoy Blog";
 const description = "Telegram Stars qanday sotib olinadi — bot orqali tez va oson xarid qilish yo'llari, qadamma-qadam qo'llanma va ko'p beriladigan savollar.";
 const publishDate = "2026-03-11";
+const modifiedDate = "2026-06-13";
+const wordCount = 1000;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-03-11";
     "headline": "Telegram Stars qanday sotib olinadi? (2026 qo'llanma)",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "Telegram Stars qanday sotib olinadi, Telegram Stars sotib olish, Stars xarid qilish, Telegram Stars bot, Uzcard, Humo, StarsJoy",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -100,6 +110,35 @@ const publishDate = "2026-03-11";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram Stars bot orqali sotib olish",
+    "description": "@starsjoybot orqali Telegram Stars'ni Uzcard yoki Humo karta bilan sotib olish bosqichlari.",
+    "totalTime": "PT5M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Uzcard yoki Humo karta" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Stars sotib olish botiga kiring", "text": "Telegram ichida t.me/starsjoybot botni oching." },
+      { "@type": "HowToStep", "name": "Kerakli Stars miqdorini tanlang", "text": "50, 100, 500 yoki 1000 Stars kabi paketlardan birini tanlang." },
+      { "@type": "HowToStep", "name": "To'lovni amalga oshiring", "text": "Bot ko'rsatgan summani Uzcard yoki Humo karta bilan to'lang." },
+      { "@type": "HowToStep", "name": "Stars akkauntingizga yuboriladi", "text": "To'lov tasdiqlangach Stars bir necha daqiqada Telegram hisobingizga tushadi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-stars-sotib-olish",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -113,7 +152,7 @@ const publishDate = "2026-03-11";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Telegram Stars qanday sotib olinadi? (2026 qo'llanma)</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -122,6 +161,10 @@ const publishDate = "2026-03-11";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Telegram Stars'ni eng oson <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali sotib olasiz: botni ochasiz, kerakli paketni (50, 100, 500, 1000 Stars) tanlaysiz va Uzcard yoki Humo bilan to'laysiz — Visa shart emas. To'lovdan keyin Stars bir necha daqiqada akkauntingizga tushadi. <a href="/blog/telegram-stars-narxi">Narxlar haqida</a> alohida maqolamiz ham bor.
+          </div>
 
           <section>
             <h2>Kirish</h2>
@@ -365,6 +408,19 @@ const publishDate = "2026-03-11";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -488,6 +544,7 @@ const publishDate = "2026-03-11";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-cta-box { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
   }

@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Telegram Premium 3 oy va 6 oy sotib olish (2026) | StarsJoy Blog";
 const description = "Telegram Premium 3 oylik va 6 oylik paketlarni O'zbekistonda Uzcard, Humo, Click va Payme orqali eng oson sotib olish yo'li — to'liq qo'llanma.";
 const publishDate = "2026-03-24";
+const modifiedDate = "2026-06-13";
+const wordCount = 1150;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-03-24";
     "headline": "Telegram Premium 3 oy va 6 oy paketlarini eng oson sotib olish yo'li",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "Telegram Premium 3 oy, Telegram Premium 6 oy, Telegram Premium sotib olish, Telegram Premium Uzcard, Telegram Premium Humo, Telegram Premium O'zbekiston, Premium paket narxi",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -124,6 +134,36 @@ const publishDate = "2026-03-24";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "@starsjoybot orqali 3 yoki 6 oylik Telegram Premium sotib olish",
+    "description": "O'zbekistonda Uzcard yoki Humo karta bilan 3 oylik yoki 6 oylik Telegram Premium paketini sotib olish bosqichlari.",
+    "totalTime": "PT15M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Uzcard yoki Humo karta" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Botni oching", "text": "Telegram'da @starsjoybot ni oching." },
+      { "@type": "HowToStep", "name": "Premium bo'limini tanlang", "text": "Bot menyusidan \"Telegram Premium\" bo'limini tanlang." },
+      { "@type": "HowToStep", "name": "Paketni tanlang", "text": "Kerakli paketni tanlang: 3 oy, 6 oy yoki 12 oy." },
+      { "@type": "HowToStep", "name": "To'lovni amalga oshiring", "text": "Uzcard, Humo, Click yoki Payme orqali to'lang." },
+      { "@type": "HowToStep", "name": "Premium aktivlanadi", "text": "Premium profilingizga 5–15 daqiqa ichida aktivlanadi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-premium-3-oy-6-oy",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -137,7 +177,7 @@ const publishDate = "2026-03-24";
         <div class="post-tag">Premium</div>
         <h1 class="post-title">Telegram Premium 3 oy va 6 oy paketlarini eng oson sotib olish yo'li</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -146,6 +186,10 @@ const publishDate = "2026-03-24";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> O'zbekistonda 3 oylik (172 000 so'm) va 6 oylik (232 000 so'm) Telegram Premium'ni <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard yoki Humo bilan Click/Payme orqali sotib olasiz — 5–15 daqiqada faol. Xalqaro karta, VPN, parol yoki SMS kerak emas: ishlash rasmiy Telegram Gift Premium mexanizmi orqali. 6 oylik oyiga ~30% arzonroq. Barcha usullar — <a href="/blog/telegram-premium-sotib-olish">Premium sotib olish qo'llanmasi</a>da.
+          </div>
 
           <section>
             <h2>Telegram Premium 3 oy va 6 oy paketini qanday sotib olish mumkin?</h2>
@@ -386,6 +430,19 @@ const publishDate = "2026-03-24";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -506,6 +563,7 @@ const publishDate = "2026-03-24";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-faq-item { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }
     .post-table td { padding: 10px 12px; font-size: 0.85rem; }

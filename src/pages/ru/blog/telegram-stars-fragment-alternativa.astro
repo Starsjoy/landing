@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Где купить Telegram Stars кроме Fragment? (Узбекистан 2026) | StarsJoy Блог";
 const description = "Fragment не работает? Лучшие альтернативы для покупки Telegram Stars в Узбекистане — через Uzcard, Click, Humo. Сравнение цен и безопасность.";
 const publishDate = "2026-03-19";
+const modifiedDate = "2026-06-13";
+const wordCount = 1250;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-03-19";
     "headline": "Где купить Telegram Stars кроме Fragment?",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "купить Telegram Stars, альтернатива Fragment, Telegram Stars Узбекистан, Telegram Stars Uzcard, Telegram Stars Click, Fragment не работает, где купить Stars",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -125,6 +135,35 @@ const publishDate = "2026-03-19";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Купить Telegram Stars без Fragment",
+    "description": "Шаги покупки Telegram Stars в Узбекистане через @starsjoybot с оплатой Uzcard или Click, без Fragment.",
+    "totalTime": "PT3M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Аккаунт Telegram" },
+      { "@type": "HowToTool", "name": "Карта Uzcard или Humo" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Зайдите в бота", "text": "Откройте @starsjoybot в Telegram." },
+      { "@type": "HowToStep", "name": "Выберите количество Stars", "text": "Выберите нужное количество Stars." },
+      { "@type": "HowToStep", "name": "Оплатите", "text": "Оплатите через Uzcard, Click или Humo — Visa/Mastercard или TON-кошелёк не нужны." },
+      { "@type": "HowToStep", "name": "Получите Stars", "text": "Stars обычно поступают на ваш аккаунт в течение 1 минуты." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-stars-fragment-alternativa",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -138,7 +177,7 @@ const publishDate = "2026-03-19";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Где купить Telegram Stars кроме Fragment?</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -147,6 +186,10 @@ const publishDate = "2026-03-19";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Fragment неудобен для пользователей из Узбекистана — из-за верификации, TON-кошелька и отсутствия поддержки Uzcard/Humo. Самая удобная альтернатива — купить Stars через <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, оплатив картой Uzcard или Click примерно за 1 минуту; Visa/Mastercard или крипта не нужны. Подробные шаги смотрите в статье <a href="/ru/blog/telegram-stars-sotib-olish">Как купить Telegram Stars?</a>
+          </div>
 
           <section>
             <p>Сегодня в Ташкенте и по всему Узбекистану всё больше пользователей используют Telegram Stars. Подарки, премиум-функции и сервисы ботов — всё работает через Stars. Но проблема в том, что официальная платформа Fragment неудобна для большинства.</p>
@@ -444,6 +487,19 @@ const publishDate = "2026-03-19";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -563,6 +619,7 @@ const publishDate = "2026-03-19";
     .post-content h3 { font-size: 1.05rem; }
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

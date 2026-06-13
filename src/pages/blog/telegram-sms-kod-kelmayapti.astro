@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Nega Telegram SMS kod yubormayapti? O'zbekistondagi foydalanuvchilar uchun yechim | StarsJoy Blog";
 const description = "Telegramdan SMS kod kelmayotgan profilga qanday kirish mumkin? O'zbekistonda Telegram kod kelmayapti — sabablari, yechimlar va Premium orqali muqobil usul.";
 const publishDate = "2026-04-11";
+const modifiedDate = "2026-06-13";
+const wordCount = 1750;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-04-11";
     "headline": "Nega Telegram SMS kod yubormayapti? O'zbekistondagi foydalanuvchilar uchun yechim",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "Telegram SMS kod kelmayapti, Telegram kod kelmayapti, Telegram tasdiqlash kodi, Telegram akkauntga kirish, Telegram Premium SMS, O'zbekistonda Telegram muammosi, ikki bosqichli tekshiruv",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -116,6 +126,35 @@ const publishDate = "2026-04-11";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram SMS kod kelmaganda nima qilish kerak",
+    "description": "Telegram raqamingizga SMS kod kelmaganda akkauntga kirish uchun bosqichma-bosqich amallar.",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Telefon va SIM karta" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Boshqa qurilmani tekshiring", "text": "Boshqa telefon, planshet yoki kompyuterda Telegram ochiq bo'lsa — kod SMS emas, Telegram ilovasi ichida keladi." },
+      { "@type": "HowToStep", "name": "10–15 daqiqa kuting", "text": "Darhol \"Qayta yuborish\" tugmasini bosmang — bu raqamingizni vaqtincha bloklaydi va kutish vaqtini uzaytiradi." },
+      { "@type": "HowToStep", "name": "Telefon rejimini tekshiring", "text": "Parvoz rejimi o'chiqligini, tarmoq signali borligini va spam filtri SMS'larni to'smayotganini tekshiring." },
+      { "@type": "HowToStep", "name": "SIM kartani qayta joylashtiring", "text": "SIM kartani chiqarib 30 sekund kutib qayta joylashtiring, keyin telefonni o'chirib yoqing." },
+      { "@type": "HowToStep", "name": "Premium bilan doimiy yeching", "text": "Doimiy yechim uchun @starsjoybot orqali Telegram Premium oling — Premium obunachilarga Telegram SMS kodlarni yuborishda davom etadi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-sms-kod-kelmayapti",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -129,7 +168,7 @@ const publishDate = "2026-04-11";
         <div class="post-tag">Telegram</div>
         <h1 class="post-title">Nega Telegram SMS kod yubormayapti? O'zbekistondagi foydalanuvchilar uchun yechim</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -138,6 +177,10 @@ const publishDate = "2026-04-11";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Telegram 2024-yildan bepul foydalanuvchilarga ko'p hududlarda — jumladan O'zbekistonda — SMS kodlarni yubormay qo'ydi. Avval boshqa qurilmadagi ochiq Telegram'ni tekshiring (kod ilova ichida kelishi mumkin) va "Qayta yuborish"ni ko'p bosmang. Doimiy yechim — Telegram Premium: obunachilarga SMS kod yuborishda davom etadi. O'zbekistonda Uzcard yoki Humo bilan <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali (rasmiy Gift Premium mexanizmi, parol/SMS so'ralmaydi) — batafsil <a href="/blog/telegram-premium-sotib-olish">Premium sotib olish</a>da.
+          </div>
 
           <section>
             <p>Telegram akkauntingizga qaytadan kirmoqchisiz. Raqamni kiritasiz, "Kod yuborish" tugmasini bosasiz — va kutasiz. 1 daqiqa, 5 daqiqa, 15 daqiqa. <strong>SMS kod kelmayapti.</strong> Qayta yuboring — yana kelmaydi. Tanish vaziyatmi? O'zbekistonda bu muammo 2024-yildan boshlab keskin ko'paydi va 2026-yilda ham minglab foydalanuvchini qiynaydi.</p>
@@ -429,6 +472,19 @@ const publishDate = "2026-04-11";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -540,6 +596,7 @@ const publishDate = "2026-04-11";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-faq-item { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }
     .post-table td { padding: 10px 12px; font-size: 0.85rem; }

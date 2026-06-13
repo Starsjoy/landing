@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Как купить Telegram Stars без ошибок: лучший вариант в 2026 году | StarsJoy Блог";
 const description = "Как избежать мошенничества и ошибок при покупке Telegram Stars? Безопасные способы оплаты, проверка сервисов и лучший вариант — полное руководство.";
 const publishDate = "2026-04-10";
+const modifiedDate = "2026-06-13";
+const wordCount = 1900;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-04-10";
     "headline": "Как купить Telegram Stars без ошибок: лучший вариант в 2026 году",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "купить Telegram Stars безопасно, Telegram Stars бот, способы оплаты Telegram Stars, защита от мошенников Telegram Stars, цена Telegram Stars, Telegram Stars официальный способ",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -125,6 +135,32 @@ const publishDate = "2026-04-10";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Проверка сервиса перед покупкой Stars",
+    "description": "Шаги проверки надёжного сервиса, чтобы избежать ошибок при покупке Telegram Stars.",
+    "totalTime": "PT5M",
+    "step": [
+      { "@type": "HowToStep", "name": "Проверьте сайт", "text": "Откройте официальный сайт сервиса в браузере — если сайта нет или он на бесплатном хостинге, будьте осторожны." },
+      { "@type": "HowToStep", "name": "Сравните цену", "text": "Сравните с рыночной ценой — предложение дешевле на 50%+ это признак мошенничества." },
+      { "@type": "HowToStep", "name": "Проверьте оплату и возраст бота", "text": "Прозрачен ли процесс оплаты, даёт ли чек и когда был создан бот." },
+      { "@type": "HowToStep", "name": "Начните с малой суммы", "text": "В первый раз начните с 50–100 Stars, не переводите крупную сумму." },
+      { "@type": "HowToStep", "name": "Проверьте связь", "text": "Напишите вопрос перед оплатой — если ответа нет или давят, не пользуйтесь сервисом." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-stars-sotib-olishda-xatolar",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -138,7 +174,7 @@ const publishDate = "2026-04-10";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Как купить Telegram Stars без ошибок: лучший вариант в 2026 году</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -147,6 +183,10 @@ const publishDate = "2026-04-10";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Чтобы купить Telegram Stars без ошибок, покупайте у проверенного сервиса с официальным сайтом, длительной историей работы и поддержкой, оплачивая картой Uzcard/Humo. Не верьте предложениям в 2+ раза дешевле рыночных и начинайте первую покупку с небольшой суммы. В Узбекистане безопасный способ <a href="/ru/blog/telegram-stars-sotib-olish">купить Stars</a> — через <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, Visa не требуется.
+          </div>
 
           <section>
             <p>Вчера ваш знакомый купил Telegram Stars — всё прошло гладко. Сегодня вы решили сделать то же самое, но в Google появляются десятки ботов, каналов и сайтов. Какой из них надёжный? Где не потеряются деньги? <strong>Как купить Telegram Stars без ошибок</strong> — этот вопрос ежедневно волнует тысячи пользователей в Узбекистане.</p>
@@ -512,6 +552,19 @@ const publishDate = "2026-04-10";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -631,6 +684,7 @@ const publishDate = "2026-04-10";
     .post-content h3 { font-size: 1.05rem; }
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

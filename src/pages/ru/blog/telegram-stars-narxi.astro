@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Цена Telegram Stars 2026: как купить дешевле в Узбекистане | StarsJoy Blog";
 const description = "Сколько стоят Telegram Stars в 2026 году? Курс в сумах, сравнение цен, покупка через Uzcard и Humo — самые выгодные способы.";
 const publishDate = "2026-03-15";
+const modifiedDate = "2026-06-13";
+const wordCount = 1150;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-03-15";
     "headline": "Цена Telegram Stars 2026: как купить дешевле в Узбекистане",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "цена Telegram Stars, Telegram Stars курс в сумах, дешевые Telegram Stars, Telegram Stars Uzcard, Telegram Stars Humo, цена звёзд Телеграм 2026",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -101,6 +111,36 @@ const publishDate = "2026-03-15";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Как купить Telegram Stars (Uzcard/Humo)",
+    "description": "Шаги покупки Telegram Stars в Узбекистане картой Humo или Uzcard через @starsjoybot.",
+    "totalTime": "PT5M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Аккаунт Telegram" },
+      { "@type": "HowToTool", "name": "Карта Humo или Uzcard" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Откройте бот", "text": "Откройте в Telegram бот t.me/starsjoybot." },
+      { "@type": "HowToStep", "name": "Выберите количество Stars", "text": "Выберите нужный пакет — например 100, 500 или 1000 Stars." },
+      { "@type": "HowToStep", "name": "Выберите способ оплаты", "text": "Выберите карту Humo или Uzcard." },
+      { "@type": "HowToStep", "name": "Подтвердите оплату", "text": "После оплаты заказ будет обработан." },
+      { "@type": "HowToStep", "name": "Stars поступят на счёт", "text": "Обычно Stars поступают на ваш аккаунт Telegram в течение нескольких минут." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-stars-narxi",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -114,7 +154,7 @@ const publishDate = "2026-03-15";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Цена Telegram Stars 2026: как купить дешевле в Узбекистане</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -123,6 +163,10 @@ const publishDate = "2026-03-15";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Цена Telegram Stars зависит от источника покупки — App Store/Google Play самые дорогие, а reseller-боты обычно дешевле. В Узбекистане самый удобный способ <a href="/ru/blog/telegram-stars-sotib-olish">купить Stars</a> — картой Uzcard или Humo через <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, Visa не требуется. Точные цены пакетов видны в самом боте.
+          </div>
 
           <section>
             <p>На платформе Telegram <strong>Telegram Stars</strong> — это внутренняя цифровая валюта, используемая для оплаты в ботах, мини-приложениях и за платный контент. В 2025–2026 годах эта система стала важным инструментом монетизации для создателей контента, владельцев каналов и разработчиков ботов.</p>
@@ -409,6 +453,19 @@ const publishDate = "2026-03-15";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -573,6 +630,7 @@ const publishDate = "2026-03-15";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-cta-box { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

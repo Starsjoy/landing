@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Купить Telegram Gifts через бот (2026): полное руководство | StarsJoy";
 const description = "Что такое Telegram Gifts, сколько стоят (в сумах) и как купить в Узбекистане через бот с Uzcard и Humo за 5 минут — пошаговая инструкция.";
 const publishDate = "2026-03-24";
+const modifiedDate = "2026-06-13";
+const wordCount = 1400;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-03-24";
     "headline": "Купить Telegram Gifts через бот (2026): полное руководство",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Gifts",
+    "keywords": "Telegram Gifts, подарки Telegram, купить Telegram Gifts, Telegram Gifts бот, отправить подарок Telegram, цена Telegram Gifts, Telegram Gifts Uzcard",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -144,6 +154,17 @@ const publishDate = "2026-03-24";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-gifts-bot-orqali",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -157,7 +178,7 @@ const publishDate = "2026-03-24";
         <div class="post-tag">Gifts</div>
         <h1 class="post-title">Как быстро и легко получить Telegram Gifts: решение через бот</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -166,6 +187,10 @@ const publishDate = "2026-03-24";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Telegram Gifts — это анимированные цифровые подарки, которые покупаются за <a href="/ru/blog/telegram-stars-nima">Telegram Stars</a> и отправляются любому пользователю. В Узбекистане их проще всего купить через <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> с оплатой картой Uzcard, Humo, Click или Payme — международная карта и VPN не нужны, Gift приходит за 5–15 минут. Regular Gifts начинаются примерно от 6 500 сум; после отправки Gift вернуть нельзя, поэтому проверяйте username получателя.
+          </div>
 
           <section>
             <p>У друга день рождения. Вы не знаете, что подарить. Простое "поздравляю" — недостаточно, хочется отправить что-то особенное. <strong>Telegram Gifts</strong> созданы именно для этого.</p>
@@ -498,6 +523,19 @@ const publishDate = "2026-03-24";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -653,6 +691,7 @@ const publishDate = "2026-03-24";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-cta-box { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

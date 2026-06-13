@@ -1,0 +1,576 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Telegram Premium sovg'a qilish 2026 — do'stga Uzcard/Humo bilan | StarsJoy Blog";
+const description = "Telegram Premium'ni do'stingizga sovg'a qilmoqchimisiz? Rasmiy yo'lda o'zingiz Premium bo'lishingiz shart, StarsJoy orqali esa faqat username + Uzcard/Humo kifoya. Narxlar (3/6/12 oy), bosqichlar va qabul qiluvchi nima ko'rishi — 2026 qo'llanma.";
+const publishDate = "2026-06-13";
+const modifiedDate = "2026-06-13";
+const wordCount = 1730;
+const canonical = "https://starsjoy.uz/blog/telegram-premium-sovga-qilish";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="Telegram Premium sovg'a qilish, Premium sovg'a, Telegram Premium gift, do'stga Premium sovg'a, Premium sovg'a Uzcard, Premium sovg'a Humo, Telegram Premium tug'ilgan kun sovg'asi, Gift Premium O'zbekiston"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: canonical },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-premium-sovga-qilish" }
+  ]}
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Telegram Premium sovg'a qilish 2026 — do'stga Uzcard/Humo bilan",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "Telegram Premium sovg'a qilish, Premium gift, do'stga Premium, Gift Premium, Uzcard, Humo, StarsJoy",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": canonical,
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://starsjoy.uz/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Premium sovg'a qilish", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Telegram Premium'ni do'stga sovg'a qilish mumkinmi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ha. Telegram'ning rasmiy Gift Premium mexanizmi aynan shu uchun yaratilgan — istalgan foydalanuvchiga 3, 6 yoki 12 oylik Premium obunani sovg'a qilish mumkin. Faqat qabul qiluvchining username'i kerak. O'zbekistonda @starsjoybot orqali Uzcard yoki Humo bilan sovg'a qilsangiz, o'zingizda Premium yoki Visa karta bo'lishi shart emas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Premium sovg'a qilish uchun o'zimda Premium bo'lishi kerakmi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Telegram ichidagi rasmiy yo'lda (profil → Sovg'a qilish) — ha, o'zingiz Premium obunachisi bo'lishingiz kerak. Lekin StarsJoy orqali sovg'a qilganda bu shart emas: siz Premium bo'lmasangiz ham, istalgan do'stingizga username orqali Premium sovg'a qila olasiz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Telegram Premium sovg'asi qancha turadi (2026)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "StarsJoy orqali: 3 oylik — 172 000 so'm, 6 oylik — 232 000 so'm, 12 oylik — 422 000 so'm. Sovg'a narxi o'zingiz uchun sotib olish narxidan farq qilmaydi — qo'shimcha 'sovg'a yig'imi' yo'q."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Premium sovg'a qilish uchun Visa karta kerakmi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yo'q. StarsJoy orqali Uzcard yoki Humo kartasi bilan Click yoki Payme orqali to'lab sovg'a qilasiz — xalqaro karta umuman shart emas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sovg'a qabul qiluvchi nimani ko'radi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Premium faollashgach, qabul qiluvchining akkauntida Premium belgisi va barcha funksiyalar paydo bo'ladi. Telegram'ning rasmiy mexanizmida sovg'a chatga animatsiyali quti shaklida tushadi. Qabul qiluvchidan parol, SMS-kod yoki login so'ralmaydi — faqat username yetarli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sovg'a qilingan Premium muddati tugagach nima bo'ladi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Muddat tugagach obuna avtomatik to'xtaydi va akkaunt oddiy rejimga qaytadi. Kartadan ortiqcha pul yechilmaydi — avtomatik uzaytirish mexanizmi yo'q. Suhbatlar va fayllar saqlanadi, faqat Premium funksiyalar o'chadi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O'zimning username'imni emas, boshqa odamnikini kiritsam bo'ladimi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ha — sovg'a qilishning butun mohiyati shu. @starsjoybot da sovg'a qilish tugmasini bosib, qabul qiluvchining username'ini (masalan @dustim) kiritasiz. Premium aynan o'sha akkauntga faollashadi, sizning akkauntingizga emas."
+        }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram Premium'ni do'stga sovg'a qilish (Uzcard yoki Humo bilan)",
+    "description": "@starsjoybot orqali istalgan Telegram foydalanuvchisiga Uzcard yoki Humo karta bilan Telegram Premium sovg'a qilish bosqichlari.",
+    "totalTime": "PT6M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Qabul qiluvchining username'i" },
+      { "@type": "HowToTool", "name": "Uzcard yoki Humo karta" },
+      { "@type": "HowToTool", "name": "Click yoki Payme ilovasi" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "@starsjoybot ni oching", "text": "Telegram'da @starsjoybot ni qidiring yoki t.me/starsjoybot havolasiga o'ting va /start tugmasini bosing." },
+      { "@type": "HowToStep", "name": "Premium va 'Sovg'a qilish'ni tanlang", "text": "Telegram Premium bo'limiga kiring va sovg'a qilish (Gift) variantini tanlang." },
+      { "@type": "HowToStep", "name": "Muddatni tanlang", "text": "3, 6 yoki 12 oylik paketni tanlang. Sovg'a narxi o'zingiz uchun sotib olish narxi bilan bir xil." },
+      { "@type": "HowToStep", "name": "Qabul qiluvchi username'ini kiriting", "text": "Premium kimga borishini belgilash uchun do'stingizning Telegram username'ini (masalan @dustim) kiriting." },
+      { "@type": "HowToStep", "name": "To'lovni amalga oshiring", "text": "Click yoki Payme orqali Uzcard yoki Humo karta bilan to'lang. Visa shart emas, parol yoki SMS-kod so'ralmaydi." },
+      { "@type": "HowToStep", "name": "Premium faollashadi", "text": "5–15 daqiqada qabul qiluvchining akkauntida Telegram Premium faol bo'ladi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/">Bosh sahifa</a>
+          <span>/</span>
+          <a href="/blog">Blog</a>
+          <span>/</span>
+          <span>Premium sovg'a qilish</span>
+        </nav>
+        <div class="post-tag">Premium</div>
+        <h1 class="post-title">Telegram Premium sovg'a qilish: do'stingizga eslab qoladigan sovg'a</h1>
+        <div class="post-meta">
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
+          <span class="post-author">StarsJoy Blog</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Telegram Premium'ni do'stingizga sovg'a qilish — Telegram'ning <strong>rasmiy Gift Premium</strong> mexanizmi orqali ishlaydi. Telegram ichidagi yo'lda o'zingiz Premium bo'lishingiz shart, O'zbekistonda esa bu odatda Visa kartani ham talab qiladi. <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali esa siz Premium bo'lmasangiz ham, faqat do'stingizning <strong>username'ini</strong> kiritib, Uzcard yoki Humo bilan sovg'a qila olasiz. Narxlar: 3 oylik 172 000 so'm, 6 oylik 232 000 so'm, 12 oylik 422 000 so'm. Parol yoki SMS-kod so'ralmaydi.
+          </div>
+
+          <section>
+            <p>Do'stingizning tug'ilgan kuni yaqinlashyaptimi yoki shunchaki yaxshi insonni xursand qilmoqchimisiz? Gul va shirinlik bir kunda tugaydi, lekin <strong>Telegram Premium sovg'asi</strong> har kuni — har bir tezroq yuklab olishda, reklamasiz kanal o'qishda, kattaroq fayl yuborishda eslab turiladi. Bu zamonaviy, amaliy va "men sen haqingda o'yladim" degan ma'noni beradigan sovg'a.</p>
+
+            <p>Yaxshi xabar: Telegram bunday sovg'ani <em>ataylab</em> qo'llab-quvvatlaydi — <a href="https://telegram.org/faq_premium" target="_blank" rel="noopener">rasmiy Gift Premium</a> mexanizmi mavjud. Yomon xabar: O'zbekistonda rasmiy yo'l ikki to'siqqa uchraydi. Quyida ikkala variantni — rasmiy va StarsJoy orqali — ochiq solishtiramiz, narxlarni ko'rsatamiz va sovg'ani qadamma-qadam qanday yuborishni tushuntiramiz.</p>
+          </section>
+
+          <h2>Telegram Premium sovg'a qilish nima?</h2>
+
+          <p>Premium sovg'a qilish — bu boshqa foydalanuvchiga oldindan to'langan (prepaid) Premium obunani yuborish. Siz to'lovni qilasiz, lekin <a href="/blog/telegram-premium-funksiyalari">Premium funksiyalar</a> qabul qiluvchining akkauntida faollashadi: tezroq yuklash, reklamasiz kanallar, 4 GB fayl yuborish, eksklyuziv stikerlar va boshqalar.</p>
+
+          <p>Telegram'ning o'z FAQ'ida shunday deyilgan: agar siz allaqachon Premium obunachisi bo'lsangiz, istalgan foydalanuvchining profilini ochib, unga <strong>3, 6 yoki 12 oylik</strong> oldindan to'langan obunani chegirmali narxda yuborishingiz mumkin. Ya'ni sovg'a — Telegram tizimining rasmiy qismi, hech qanday "chetlab o'tish" yoki "hack" emas.</p>
+
+          <h2>Rasmiy yo'l vs StarsJoy: O'zbekiston uchun farq</h2>
+
+          <p>Rasmiy in-app yo'l (do'stingiz profili → menyu → <em>Gift Premium</em>) ajoyib ishlaydi — lekin O'zbekistondagi foydalanuvchi uchun ikkita amaliy to'siq bor:</p>
+
+          <div class="comparison-table">
+            <div class="comparison-col">
+              <h4>Rasmiy in-app yo'l</h4>
+              <ul>
+                <li>O'zingiz Premium obunachisi bo'lishingiz <strong>shart</strong></li>
+                <li>To'lov uchun ko'pincha Visa/Mastercard kerak</li>
+                <li>Do'stingiz profili orqali yuboriladi</li>
+                <li>Global narx — so'mda emas</li>
+              </ul>
+            </div>
+            <div class="comparison-col">
+              <h4>StarsJoy orqali</h4>
+              <ul>
+                <li>O'zingizda Premium bo'lishi <strong>shart emas</strong></li>
+                <li>Uzcard yoki Humo — Visa kerak emas</li>
+                <li>Faqat username kiritasiz</li>
+                <li>So'mda aniq narx, Click/Payme</li>
+              </ul>
+            </div>
+          </div>
+
+          <p>Bu yerda muhim nuans bor: <strong>"o'zingiz Premium bo'lishingiz shart"</strong> degan qoida faqat <em>profil → Gift Premium</em> yo'liga tegishli. Telegram'da rasman uchta yo'l mavjud:</p>
+
+          <ul>
+            <li><strong>Profil → Gift Premium</strong> — eng oddiy, lekin o'zingiz Premium obunachisi bo'lishingiz va to'lov uchun karta (ko'pincha Visa) bo'lishi kerak.</li>
+            <li><strong>@PremiumBot</strong> — Premium bo'lishingiz shart emas, ammo O'zbekistondan ko'p hollarda mintaqaviy bloklanadi va to'lov xalqaro karta/Stars talab qiladi.</li>
+            <li><strong>Fragment</strong> — Premium shart emas, lekin KYC (shaxs tasdig'i) va TON kriptovalyuta kerak — bu ko'pchilik uchun ortiqcha murakkablik.</li>
+          </ul>
+
+          <p>Ya'ni agar siz hali Premium ishlatmasangiz, Visa kartangiz bo'lmasa yoki kripto bilan ovora bo'lishni xohlamasangiz — uchala rasmiy yo'l ham qiyinlashadi. <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> aynan shu bo'shliqni to'ldiradi: bu ham xuddi shu rasmiy Gift Premium mexanizmiga tayanadi, faqat to'lovni siz uchun Uzcard/Humo orqali mahalliy hal qiladi — Premium ham, Visa ham, kripto ham shart emas.</p>
+
+          <h2>Telegram Premium sovg'asi qancha turadi?</h2>
+
+          <p>StarsJoy orqali sovg'a narxi o'zingiz uchun sotib olish narxidan farq qilmaydi — alohida "sovg'a yig'imi" yo'q. 2026-yil holatiga ko'ra:</p>
+
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th>Muddat</th>
+                <th>Narxi</th>
+                <th>Oyiga</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3 oylik</td>
+                <td>172 000 so'm</td>
+                <td>~57 333 so'm</td>
+              </tr>
+              <tr>
+                <td>6 oylik</td>
+                <td>232 000 so'm</td>
+                <td>~38 667 so'm</td>
+              </tr>
+              <tr>
+                <td>12 oylik</td>
+                <td>422 000 so'm</td>
+                <td>~35 167 so'm</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>Sovg'a uchun eng ommabop tanlov — <strong>3 oylik</strong> (eng arzon kirish nuqtasi) yoki ta'sirli sovg'a sifatida <a href="/blog/telegram-premium-12-oylik">12 oylik</a> (oyiga eng arzon, bir yil davom etadi). Muddatlarni batafsil solishtirish uchun <a href="/blog/telegram-premium-paketlar-taqqoslash">paketlar taqqoslash</a> maqolamizga qarang.</p>
+
+          <h2>StarsJoy orqali qanday sovg'a qilinadi?</h2>
+
+          <p>Jarayon bir necha daqiqa oladi va qabul qiluvchidan hech narsa talab qilinmaydi:</p>
+
+          <ol>
+            <li><strong>@starsjoybot ni oching</strong> — Telegram'da qidiring yoki <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">t.me/starsjoybot</a> ga o'ting va /start bosing.</li>
+            <li><strong>Premium → Sovg'a qilish</strong> bo'limini tanlang.</li>
+            <li><strong>Muddatni tanlang</strong> — 3, 6 yoki 12 oylik.</li>
+            <li><strong>Qabul qiluvchi username'ini kiriting</strong> — masalan @dustim. Premium aynan o'sha akkauntga boradi.</li>
+            <li><strong>To'lang</strong> — Click yoki Payme orqali Uzcard/Humo bilan. Visa shart emas.</li>
+            <li><strong>Tayyor</strong> — 5–15 daqiqada do'stingizning akkauntida Premium faollashadi.</li>
+          </ol>
+
+          <p>Username'ni qanday topish kerakligini bilmasangiz: do'stingizdan uning profilidagi <em>@username</em> ni so'rang. Agar uning username'i bo'lmasa, u Telegram sozlamalaridan bir daqiqada o'rnatib olishi mumkin.</p>
+
+          <p class="natural-cta">Hoziroq sovg'a qilmoqchimisiz? <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> da "Sovg'a qilish" tugmasini bosib boshlang — username yetarli.</p>
+
+          <h2>Sovg'a qabul qiluvchi nimani ko'radi?</h2>
+
+          <p>Premium faollashgach, qabul qiluvchining ismi yonida Premium belgisi paydo bo'ladi va barcha Premium funksiyalar ochiladi. Telegram'ning rasmiy mexanizmida sovg'a chatga chiroyli animatsiyali quti shaklida tushadi — bu sovg'aga bayramona tus beradi.</p>
+
+          <p>Muhimi: qabul qiluvchidan <strong>parol, SMS-kod yoki login</strong> so'ralmaydi. Sovg'a faqat ochiq username orqali bog'lanadi — bu xavfsiz va Telegram qoidalariga to'liq mos. Xavfsizlik haqida ko'proq <a href="/blog/telegram-stars-firibgarlik-himoya">firibgarlikdan himoya</a> maqolamizda.</p>
+
+          <h2>Kimga Premium sovg'a qilish mantiqiy?</h2>
+
+          <ul>
+            <li><strong>Faol Telegram foydalanuvchisi</strong> — kuniga o'nlab kanal o'qiydigan, ko'p fayl almashinadigan do'st reklamasiz va tezroq tajribani darhol sezadi.</li>
+            <li><strong>Kontent yaratuvchi yoki kanal egasi</strong> — Premium funksiyalari ish vositasi bo'ladi.</li>
+            <li><strong>Oila a'zosi</strong> — ota-onaga yoki ukaga uzoq muddatli, "har kuni eslab turiladigan" sovg'a.</li>
+            <li><strong>Hamkasb yoki mijoz</strong> — yangi yil yoki yubiley uchun jiddiy, ammo qimmat bo'lmagan e'tibor belgisi.</li>
+          </ul>
+
+          <p>Agar do'stingiz Telegram'da kollektsion sovg'alarni ham yoqtirsa, <a href="/blog/telegram-gift-collectible-upgrade">Collectible Gifts</a> haqidagi maqolamiz ham qiziq bo'lishi mumkin — bu Premium'ga muqobil yoki qo'shimcha sovg'a g'oyasi.</p>
+
+          <h2>Premium sovg'asi xavfsizmi?</h2>
+
+          <p>Ha. Sovg'a Telegram tomonidan yaratilgan rasmiy infratuzilma orqali ishlaydi — bu "bepul Premium" yoki "hack" emas, balki Telegram ataylab taqdim etgan funksiya. StarsJoy bu mexanizmni mahalliy to'lov (Uzcard/Humo, Click/Payme) bilan bog'laydi, xolos.</p>
+
+          <p>Sovg'a qilayotganda quyidagilarga e'tibor bering:</p>
+
+          <ul>
+            <li>Faqat rasmiy <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> dan foydalaning.</li>
+            <li>Qabul qiluvchining username'ini xatosiz kiriting — Premium aynan o'sha akkauntga boradi.</li>
+            <li>Hech kim sizdan yoki do'stingizdan parol/SMS-kod so'ramasligi kerak — so'rasa, bu firibgarlik belgisi.</li>
+          </ul>
+
+          <h2>Tez-tez beriladigan savollar</h2>
+
+          <div class="post-faq">
+            <div class="post-faq-item">
+              <h3>Telegram Premium'ni do'stga sovg'a qilish mumkinmi?</h3>
+              <p>Ha. Telegram'ning rasmiy Gift Premium mexanizmi aynan shu uchun yaratilgan — 3, 6 yoki 12 oylik obunani istalgan foydalanuvchiga username orqali sovg'a qilish mumkin. @starsjoybot orqali Uzcard/Humo bilan o'zingizda Premium yoki Visa bo'lmasa ham qila olasiz.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Premium sovg'a qilish uchun o'zimda Premium bo'lishi kerakmi?</h3>
+              <p>Telegram ichidagi rasmiy yo'lda — ha. Lekin StarsJoy orqali sovg'a qilganda bu shart emas: Premium bo'lmasangiz ham do'stingizga sovg'a qila olasiz.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Telegram Premium sovg'asi qancha turadi (2026)?</h3>
+              <p>StarsJoy orqali: 3 oylik — 172 000 so'm, 6 oylik — 232 000 so'm, 12 oylik — 422 000 so'm. Qo'shimcha sovg'a yig'imi yo'q.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Visa karta kerakmi?</h3>
+              <p>Yo'q. Uzcard yoki Humo bilan Click yoki Payme orqali to'lab sovg'a qilasiz — xalqaro karta shart emas.</p>
+            </div>
+            <div class="post-faq-item">
+              <h3>Sovg'a muddati tugagach nima bo'ladi?</h3>
+              <p>Obuna avtomatik to'xtaydi, akkaunt oddiy rejimga qaytadi. Kartadan ortiqcha pul yechilmaydi — avtomatik uzaytirish yo'q. Suhbatlar saqlanadi.</p>
+            </div>
+          </div>
+
+          <h2>Xulosa</h2>
+
+          <p>Telegram Premium — har kuni foydalanadigan, eslab turiladigan zamonaviy sovg'a. Rasmiy yo'lda o'zingiz Premium bo'lishingiz va ko'pincha Visa kerak bo'ladi; O'zbekistonda esa eng oson yo'l — <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali faqat do'stingizning username'ini kiritib, Uzcard yoki Humo bilan to'lash. 3 oylikdan 12 oylikgacha tanlang, bir necha daqiqada faollashadi.</p>
+
+          <p class="end-cta">Premium sovg'a qilishni boshlash: <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> · Savollar uchun <a href="https://t.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a></p>
+
+          <p>Shuni ham o'qing: <a href="/blog/telegram-premium-12-oylik">Telegram Premium 12 oylik</a> · <a href="/blog/telegram-premium-paketlar-taqqoslash">Premium paketlar taqqoslash</a> · <a href="/blog/telegram-premium-funksiyalari">Premium funksiyalari</a> · <a href="/blog/telegram-gift-collectible-upgrade">Collectible Gifts</a></p>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 760px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .post-body {
+    padding: 60px 24px;
+  }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 48px 0 20px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 32px 0 12px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .natural-cta {
+    background: rgba(124, 58, 237, 0.04);
+    border-left: 3px solid var(--primary);
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 0.97rem !important;
+  }
+
+  .end-cta {
+    font-size: 0.95rem !important;
+    color: var(--text) !important;
+    font-weight: 600;
+  }
+
+  .comparison-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .comparison-col {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .comparison-col h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .comparison-col ul {
+    padding-left: 18px;
+    margin-bottom: 0;
+  }
+
+  .comparison-col li {
+    font-size: 0.92rem;
+  }
+
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.97rem;
+  }
+  .price-table th,
+  .price-table td {
+    border: 1px solid rgba(124, 58, 237, 0.12);
+    padding: 12px 16px;
+    text-align: left;
+    color: var(--text-muted);
+  }
+  .price-table th {
+    background: #F8F6FF;
+    color: var(--text);
+    font-weight: 700;
+  }
+  .price-table td:first-child { font-weight: 600; color: var(--text); }
+
+  .post-faq {
+    margin: 24px 0;
+  }
+
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+
+  .post-faq-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+
+  .post-faq-item p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.6rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.05rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
+    .comparison-table { grid-template-columns: 1fr; }
+    .comparison-col { padding: 20px; }
+    .price-table { font-size: 0.9rem; }
+    .price-table th, .price-table td { padding: 10px 12px; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+  }
+</style>

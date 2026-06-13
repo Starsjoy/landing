@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Telegram Starsni kartaga chiqarish (2026): To'liq qo'llanma | StarsJoy Blog";
 const description = "Telegram Starsni Uzcard va Humo kartasiga chiqarish mumkinmi? Yulduzlarni so'mga aylantirish, sotish kurslari va eng ishonchli usullar — to'liq qo'llanma.";
 const publishDate = "2026-03-24";
+const modifiedDate = "2026-06-13";
+const wordCount = 1250;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-03-24";
     "headline": "Telegram Starsni kartaga chiqarish mumkinmi: 2026-yilgi To'liq Qo'llanma",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "Telegram Stars kartaga chiqarish, Telegram Stars pulga aylantirish, Telegram Stars sotish, Telegram Stars Uzcard, Telegram Stars Humo, Stars naqd qilish, Stars withdraw",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -108,6 +118,31 @@ const publishDate = "2026-03-24";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram Stars'ni Uzcard yoki Humo kartaga chiqarish",
+    "description": "Qo'llab-quvvatlash xizmati orqali Telegram Stars'ni so'mga aylantirib, Uzcard yoki Humo kartaga olish bosqichlari.",
+    "totalTime": "PT15M",
+    "step": [
+      { "@type": "HowToStep", "name": "Qo'llab-quvvatlashga murojaat qiling", "text": "t.me/starsjoysupport akkauntiga yozing." },
+      { "@type": "HowToStep", "name": "Miqdor va kursni tasdiqlang", "text": "Nechta Stars sotmoqchiligingizni ayting va joriy kurs bo'yicha summani tasdiqlab oling." },
+      { "@type": "HowToStep", "name": "Yulduzlarni yuboring", "text": "Stars'ni donat yoki ichki o'tkazma orqali yuboring." },
+      { "@type": "HowToStep", "name": "Kartaga pul oling", "text": "Tranzaksiya tasdiqlangach summa so'mda Uzcard yoki Humo kartangizga o'tkaziladi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-stars-kartaga-chiqarish",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -121,7 +156,7 @@ const publishDate = "2026-03-24";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Telegram Starsni kartaga chiqarish mumkinmi: 2026-yilgi To'liq Qo'llanma</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -130,6 +165,10 @@ const publishDate = "2026-03-24";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Telegram Stars'ni Uzcard yoki Humo kartaga chiqarish mumkin — rasmiy Fragment va kriptovalyutasiz, qo'llab-quvvatlash xizmati orqali donat usulida. <a href="https://t.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> ga yozasiz, miqdor va kursni tasdiqlaysiz, Stars'ni yuborasiz — so'mma bir necha daqiqada kartangizga tushadi. Aksincha <a href="/blog/telegram-stars-sotib-olish">sotib olish</a> uchun esa @starsjoybot ishlatiladi.
+          </div>
 
           <section>
             <h2>Telegram Starsni kartaga chiqarish mumkinmi?</h2>
@@ -357,6 +396,19 @@ const publishDate = "2026-03-24";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -476,6 +528,7 @@ const publishDate = "2026-03-24";
     .post-content h3 { font-size: 1.05rem; }
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

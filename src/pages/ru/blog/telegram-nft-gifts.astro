@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Что такое Telegram NFT Gifts и каково их будущее? | StarsJoy Blog";
 const description = "Что такое Telegram NFT Gifts, как они работают, чем отличаются от обычных подарков, цены, статистика рынка и использование в Узбекистане.";
 const publishDate = "2026-03-17";
+const modifiedDate = "2026-06-13";
+const wordCount = 1000;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-03-17";
     "headline": "Что такое Telegram NFT Gifts и каково их будущее?",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Gifts",
+    "keywords": "Telegram NFT Gifts, NFT подарки Telegram, что такое Telegram NFT, TON NFT, продажа подарков Telegram, цена NFT Telegram, NFT коллекция Telegram",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -109,6 +119,17 @@ const publishDate = "2026-03-17";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-nft-gifts",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -122,7 +143,7 @@ const publishDate = "2026-03-17";
         <div class="post-tag">Gifts</div>
         <h1 class="post-title">Что такое Telegram NFT Gifts и каково их будущее?</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -131,6 +152,10 @@ const publishDate = "2026-03-17";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Telegram NFT Gifts — это подарки внутри Telegram, токенизированные через блокчейн TON: в отличие от обычных подарков, у них есть подтверждённое право собственности, ограниченный тираж и возможность перепродажи. NFT Gifts покупают за <a href="/ru/blog/telegram-stars-nima">Telegram Stars</a> или TON. В Узбекистане проще всего сначала <a href="/ru/blog/telegram-stars-sotib-olish">купить Stars</a> через <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> картой Uzcard или Humo, а затем приобрести подарок. Остерегайтесь поддельных NFT и пользуйтесь только проверенными платформами.
+          </div>
 
           <section>
             <p><strong>Telegram NFT Gifts</strong> — это подарки внутри Telegram, превращённые в уникальные цифровые активы через блокчейн TON. В отличие от обычных подарков, они обладают правом собственности, ограниченным тиражом и возможностью перепродажи.</p>
@@ -446,6 +471,19 @@ const publishDate = "2026-03-17";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -601,6 +639,7 @@ const publishDate = "2026-03-17";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-cta-box { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

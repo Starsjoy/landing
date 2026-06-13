@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Telegram Starsni do'stimga qanday o'tkazish mumkin? (2026) | StarsJoy Blog";
 const description = "Telegram Starsni do'stimga o'tkazish usullari — gift, bot va Premium orqali yuborish, taqqoslash jadvali va xavfsizlik maslahatlari.";
 const publishDate = "2026-03-18";
+const modifiedDate = "2026-06-13";
+const wordCount = 1150;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-03-18";
     "headline": "Telegram Starsni do'stimga qanday o'tkazish mumkin?",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "Telegram Stars o'tkazish, Telegram Stars yuborish, Telegram Stars gift, Stars do'stimga, Stars bot orqali yuborish, Starsni boshqa akkauntga o'tkazish",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -124,6 +134,36 @@ const publishDate = "2026-03-18";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram Starsni do'stga yuborish",
+    "description": "@starsjoybot orqali do'stingizga Telegram Stars yuborish bosqichlari.",
+    "totalTime": "PT5M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Uzcard yoki Humo karta" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "@starsjoybot ni oching", "text": "Telegram'da @starsjoybot ni qidiring yoki t.me/starsjoybot havolasiga o'ting." },
+      { "@type": "HowToStep", "name": "Do'stingiz username'ini kiriting", "text": "Stars kimga yuborilishini belgilang — qabul qiluvchining username'ini kiriting." },
+      { "@type": "HowToStep", "name": "Stars miqdorini tanlang", "text": "Yuboriladigan Stars miqdorini tanlang." },
+      { "@type": "HowToStep", "name": "To'lov qiling", "text": "Click yoki Payme orqali Uzcard yoki Humo karta bilan to'lang." },
+      { "@type": "HowToStep", "name": "Stars do'stingizga yuboriladi", "text": "To'lovdan so'ng Stars to'g'ridan-to'g'ri do'stingizga yetib boradi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-stars-otkazish",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -137,7 +177,7 @@ const publishDate = "2026-03-18";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Telegram Starsni do'stimga qanday o'tkazish mumkin?</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -146,6 +186,10 @@ const publishDate = "2026-03-18";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Telegram Starsni do'stingizga to'g'ridan-to'g'ri "send" tugmasi orqali o'tkazib bo'lmaydi, lekin bilvosita usullar bor: <a href="/gifts">Gift</a> orqali, bot orqali yoki Premium orqali yuborish. Eng tez va arzon yo'l — <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali do'stingiz username'ini kiritib yuborish; to'lov Uzcard yoki Humo bilan Click/Payme orqali amalga oshiriladi. Username'ni diqqat bilan tekshiring — Stars qaytarib bo'lmaydi.
+          </div>
 
           <section>
             <p>Telegram'da Stars yig'ib qo'ydingiz, lekin uni do'stingizga yubormoqchisiz — shu joyda ko'pchilik to'xtab qoladi. Chunki oddiy pul o'tkazgandek, "send" tugmasi yo'q. Shunday bo'lsa ham, 2026-yilda bir nechta real va ishlaydigan usullar bor.</p>
@@ -468,6 +512,19 @@ const publishDate = "2026-03-18";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -632,6 +689,7 @@ const publishDate = "2026-03-18";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-cta-box { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

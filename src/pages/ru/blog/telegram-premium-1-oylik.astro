@@ -6,7 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Как активировать Telegram Premium на 1 месяц своей картой: гайд из Узбекистана | StarsJoy Блог";
 const description = "1 месяц Telegram Premium — как купить из Узбекистана? Специалист @starsjoysupport бесплатно научит активировать Premium своей картой прямо в Telegram. Пароль давать не нужно.";
 const publishDate = "2026-04-07";
-const modifiedDate = "2026-05-15";
+const modifiedDate = "2026-06-13";
+const wordCount = 1680;
 ---
 
 <Layout
@@ -30,10 +31,18 @@ const modifiedDate = "2026-05-15";
     "description": description,
     "datePublished": publishDate,
     "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "1 месяц Telegram Premium, Telegram Premium своей картой, как активировать Telegram Premium самому, купить Premium на 1 месяц, Telegram Premium Узбекистан, Telegram Premium консультация",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -126,6 +135,36 @@ const modifiedDate = "2026-05-15";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Как активировать Telegram Premium на 1 месяц своей картой",
+    "description": "Шаги активации 1-месячной подписки Telegram Premium международной картой Visa или Mastercard прямо в Telegram.",
+    "totalTime": "PT10M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Аккаунт Telegram" },
+      { "@type": "HowToTool", "name": "Международная карта Visa или Mastercard" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Откройте Настройки", "text": "Откройте приложение Telegram и перейдите в раздел Настройки (Settings)." },
+      { "@type": "HowToStep", "name": "Выберите Telegram Premium", "text": "В настройках откройте раздел Telegram Premium." },
+      { "@type": "HowToStep", "name": "Выберите 1 месяц", "text": "Из доступных вариантов выберите подписку на 1 месяц." },
+      { "@type": "HowToStep", "name": "Введите карту", "text": "На странице оплаты введите международную карту Visa или Mastercard." },
+      { "@type": "HowToStep", "name": "Premium активируется", "text": "После оплаты Premium сразу активируется со всеми функциями." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-premium-1-oylik",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -139,7 +178,7 @@ const modifiedDate = "2026-05-15";
         <div class="post-tag">Premium</div>
         <h1 class="post-title">Как активировать Telegram Premium на 1 месяц своей картой: гайд из Узбекистана</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -148,6 +187,10 @@ const modifiedDate = "2026-05-15";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> 1-месячный Telegram Premium в Telegram официально есть, но активирует его только сам владелец аккаунта своей картой Visa или Mastercard прямо в Telegram (в Gift минимум 3 месяца). Если есть только Uzcard/Humo — лучшая альтернатива 3-месячный Gift Premium через <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> (официальный механизм Gift, пароль и SMS не запрашиваются). Не знаете шаги — <a href="https://t.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> бесплатно научит. Подробнее о пакетах — в <a href="/ru/blog/telegram-premium-sotib-olish">гайде по покупке Premium</a>.
+          </div>
 
           <section>
             <p><strong>1 месяц Telegram Premium</strong> — подписка, которая существует внутри самого приложения Telegram, но недоступна через функцию Gift (подарок). Именно поэтому большинство реселлеров в Узбекистане её не предлагают. Реальный путь — вы <strong>активируете Premium своей картой прямо в Telegram</strong>. Специалист <a href="https://t.me/starsjoysupport" target="_blank">@starsjoysupport</a> бесплатно научит вас этому процессу шаг за шагом.</p>
@@ -432,6 +475,19 @@ const modifiedDate = "2026-05-15";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -569,6 +625,7 @@ const modifiedDate = "2026-05-15";
     .post-content li { font-size: 0.95rem; }
     .post-faq-item { padding: 20px; }
     .post-callout { padding: 14px 16px; font-size: 0.92rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }
     .post-table td { padding: 10px 12px; font-size: 0.85rem; }

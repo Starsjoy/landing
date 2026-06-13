@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Что такое Telegram Stars? Полное руководство | StarsJoy Блог";
 const description = "Что такое Telegram Stars, зачем нужны, где используются и как купить в Узбекистане — полное руководство.";
 const publishDate = "2026-03-08";
+const modifiedDate = "2026-06-13";
+const wordCount = 1050;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-03-08";
     "headline": "Что такое Telegram Stars? Полное руководство",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "что такое Telegram Stars, Telegram Stars, звёзды Телеграм, купить Stars, цифровая валюта Telegram, StarsJoy",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -101,6 +111,35 @@ const publishDate = "2026-03-08";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Как купить Telegram Stars",
+    "description": "Шаги покупки Telegram Stars в Узбекистане картой Uzcard или Humo через @starsjoybot.",
+    "totalTime": "PT5M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Аккаунт Telegram" },
+      { "@type": "HowToTool", "name": "Карта Uzcard или Humo" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Откройте @starsjoybot", "text": "Найдите в Telegram @starsjoybot или перейдите по ссылке t.me/starsjoybot и нажмите /start." },
+      { "@type": "HowToStep", "name": "Выберите количество Stars", "text": "Выберите нужный пакет Stars — цена и количество отображаются в виде визуальных карточек." },
+      { "@type": "HowToStep", "name": "Оплатите", "text": "Оплатите картой Uzcard или Humo через Click или Payme." },
+      { "@type": "HowToStep", "name": "Stars поступят на баланс", "text": "После оплаты Stars поступят на ваш баланс в Telegram, и вы сможете использовать их в ботах и мини-приложениях." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-stars-nima",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -114,7 +153,7 @@ const publishDate = "2026-03-08";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Что такое Telegram Stars? Полное руководство</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -123,6 +162,10 @@ const publishDate = "2026-03-08";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Telegram Stars — это официальная <strong>цифровая валюта</strong> внутри Telegram: ею вы оплачиваете услуги ботов, мини-приложений и игр, а также отправляете <a href="/ru/gifts">подарки</a>. Stars отличается от Premium — Premium это подписка, а Stars средство оплаты. В Узбекистане их можно купить за несколько минут картой Uzcard или Humo через <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> — Visa не требуется.
+          </div>
 
           <p>Telegram Stars — это цифровая валюта внутри Telegram. Она позволяет пользователям оплачивать различные услуги в ботах и мини-приложениях. Через StarsJoy вы можете <a href="/ru/stars">купить Telegram Stars</a> быстро, недорого и надёжно.</p>
 
@@ -358,6 +401,19 @@ const publishDate = "2026-03-08";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content h2 {
     font-size: 1.5rem;
     font-weight: 800;
@@ -519,6 +575,7 @@ const publishDate = "2026-03-08";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-cta-box { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .comparison-table { grid-template-columns: 1fr; }
     .comparison-col { padding: 20px; }
     .post-faq-item { padding: 20px; }

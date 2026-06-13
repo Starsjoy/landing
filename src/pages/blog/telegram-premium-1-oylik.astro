@@ -6,7 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "1 oylik Telegram Premium qanday olinadi: o'z kartangiz orqali yoqish | StarsJoy Blog";
 const description = "1 oylik Telegram Premium — O'zbekistondan qanday olish mumkin? @starsjoysupport mutaxassisi o'z kartangiz orqali Premium yoqishni bepul o'rgatadi. Parol berish shart emas.";
 const publishDate = "2026-04-07";
-const modifiedDate = "2026-05-15";
+const modifiedDate = "2026-06-13";
+const wordCount = 1650;
 ---
 
 <Layout
@@ -29,10 +30,18 @@ const modifiedDate = "2026-05-15";
     "description": description,
     "datePublished": publishDate,
     "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "1 oylik Telegram Premium, Telegram Premium 1 oy, Telegram Premium kartangiz orqali, Telegram Premium o'zi yoqish, Telegram Premium qanday yoqiladi, Telegram Premium O'zbekiston",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -125,6 +134,36 @@ const modifiedDate = "2026-05-15";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "1 oylik Telegram Premium'ni o'z kartangiz orqali yoqish",
+    "description": "Visa yoki Mastercard xalqaro kartangiz bilan Telegram ichidan 1 oylik Premium obunasini yoqish bosqichlari.",
+    "totalTime": "PT10M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Visa yoki Mastercard xalqaro karta" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Sozlamalarni oching", "text": "Telegram ilovasini oching va Sozlamalar (Settings) bo'limiga o'ting." },
+      { "@type": "HowToStep", "name": "Telegram Premium bo'limini tanlang", "text": "Sozlamalar ichidan Telegram Premium bo'limini oching." },
+      { "@type": "HowToStep", "name": "1 oylik obunani tanlang", "text": "Mavjud variantlardan 1 oylik obunani tanlang." },
+      { "@type": "HowToStep", "name": "Kartangizni kiriting", "text": "To'lov sahifasida Visa yoki Mastercard xalqaro kartangizni kiriting." },
+      { "@type": "HowToStep", "name": "Premium faollashadi", "text": "To'lovdan so'ng Premium darhol barcha funksiyalari bilan faollashadi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-premium-1-oylik",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -138,7 +177,7 @@ const modifiedDate = "2026-05-15";
         <div class="post-tag">Premium</div>
         <h1 class="post-title">1 oylik Telegram Premium qanday olinadi: o'z kartangiz orqali yoqish</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -147,6 +186,10 @@ const modifiedDate = "2026-05-15";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> 1 oylik Telegram Premium Telegram'da rasman bor, lekin uni faqat akkaunt egasi o'zi, Visa yoki Mastercard xalqaro kartasi bilan Telegram ichidan yoqadi (Gift'da minimal 3 oy). Faqat Uzcard/Humo bo'lsa — eng yaxshi muqobil <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali 3 oylik Gift Premium (rasmiy Gift mexanizmi, parol/SMS so'ralmaydi). Qadamlarni bilmasangiz, <a href="https://t.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> bepul o'rgatadi.
+          </div>
 
           <section>
             <p><strong>1 oylik Telegram Premium</strong> — Telegram ilovasining o'zida mavjud, lekin Gift (sovg'a) funksiyasi orqali sotib olib bo'lmaydigan paket. Shu sababli O'zbekistondagi reseller xizmatlarning ko'pchiligi uni taklif qilmaydi. Real yo'l — Premium'ni <strong>o'z kartangiz orqali Telegram ichidan o'zingiz yoqasiz</strong>. <a href="https://t.me/starsjoysupport" target="_blank">@starsjoysupport</a> mutaxassisi bu jarayonni bepul, bosqichma-bosqich o'rgatadi.</p>
@@ -431,6 +474,19 @@ const modifiedDate = "2026-05-15";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -568,6 +624,7 @@ const modifiedDate = "2026-05-15";
     .post-content li { font-size: 0.95rem; }
     .post-faq-item { padding: 20px; }
     .post-callout { padding: 14px 16px; font-size: 0.92rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }
     .post-table td { padding: 10px 12px; font-size: 0.85rem; }

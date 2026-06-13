@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Telegram Starsni Fragmentdan tashqari qayerdan sotib olish mumkin? (O'zbekiston 2026) | StarsJoy Blog";
 const description = "Fragment ishlamayaptimi? O'zbekistonda Telegram Stars sotib olishning eng qulay muqobil yo'llari — Uzcard, Click, Humo orqali, narxlar taqqoslanishi va xavfsizlik.";
 const publishDate = "2026-03-19";
+const modifiedDate = "2026-06-13";
+const wordCount = 1300;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-03-19";
     "headline": "Telegram Starsni Fragmentdan tashqari qayerdan sotib olish mumkin?",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "Telegram Stars sotib olish, Fragment alternativa, Telegram Stars Uzcard, Telegram Stars Click, Fragment ishlamayapti, Stars qayerdan olish, Telegram Stars O'zbekiston",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -124,6 +134,35 @@ const publishDate = "2026-03-19";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram Stars'ni Fragmentsiz sotib olish",
+    "description": "@starsjoybot orqali O'zbekistonda Telegram Stars'ni Uzcard yoki Click bilan, Fragmentsiz sotib olish bosqichlari.",
+    "totalTime": "PT3M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Uzcard yoki Humo karta" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Botga kiring", "text": "Telegram'da @starsjoybot ni oching." },
+      { "@type": "HowToStep", "name": "Stars miqdorini tanlang", "text": "Kerakli Stars miqdorini tanlang." },
+      { "@type": "HowToStep", "name": "To'lov qiling", "text": "Uzcard, Click yoki Humo orqali to'lang — Visa/Mastercard yoki TON wallet kerak emas." },
+      { "@type": "HowToStep", "name": "Stars'ni qabul qiling", "text": "Stars odatda 1 daqiqa ichida akkauntingizga tushadi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-stars-fragment-alternativa",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -137,7 +176,7 @@ const publishDate = "2026-03-19";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Telegram Starsni Fragmentdan tashqari qayerdan sotib olish mumkin?</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -146,6 +185,10 @@ const publishDate = "2026-03-19";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Fragment O'zbekiston foydalanuvchilari uchun noqulay — verifikatsiya, TON wallet va Uzcard/Humo qo'llab-quvvatlanmasligi sabab. Eng qulay alternativa — <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard yoki Click bilan to'lab, taxminan 1 daqiqada Stars olish; Visa/Mastercard yoki kripto kerak emas. Batafsil bosqichlar uchun <a href="/blog/telegram-stars-sotib-olish">Telegram Stars qanday sotib olinadi?</a> maqolasiga qarang.
+          </div>
 
           <section>
             <p>Bugungi kunda Toshkent va umuman O'zbekiston foydalanuvchilari orasida Telegram Stars'dan foydalanish tobora ommalashib bormoqda. Telegram ichidagi sovg'alar, premium funksiyalar va bot xizmatlari aynan Stars orqali ishlaydi. Ammo muammo shundaki, rasmiy Fragment platformasi ko'pchilik uchun qulay emas.</p>
@@ -443,6 +486,19 @@ const publishDate = "2026-03-19";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -562,6 +618,7 @@ const publishDate = "2026-03-19";
     .post-content h3 { font-size: 1.05rem; }
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

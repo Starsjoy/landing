@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "В чём разница между TON и Stars в экосистеме Telegram? (2026) | StarsJoy Блог";
 const description = "В чём разница между TON и Stars в Telegram? Что из них криптовалюта, а что внутренняя валюта? Когда что использовать — полное объяснение.";
 const publishDate = "2026-04-20";
+const modifiedDate = "2026-06-13";
+const wordCount = 2050;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-04-20";
     "headline": "В чём разница между TON и Stars в экосистеме Telegram?",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "разница TON и Stars Telegram, что такое TON, что такое Stars, TON vs Stars, Telegram крипто, Telegram внутренняя валюта, купить Stars",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -117,6 +127,17 @@ const publishDate = "2026-04-20";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-ton-va-stars-farqi",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -130,7 +151,7 @@ const publishDate = "2026-04-20";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">В чём разница между TON и Stars в экосистеме Telegram?</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -139,6 +160,10 @@ const publishDate = "2026-04-20";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> TON (Toncoin) — это блокчейн-криптовалюта с рыночной ценой, которая хранится во внешнем крипто-кошельке и нужна в основном для Fragment и NFT. Stars — внутренняя валюта Telegram со стабильной ценой, она хранится на балансе аккаунта и используется для ботов, подарков и контента. В Узбекистане Stars купить намного проще — через <a href="/ru/blog/telegram-stars-sotib-olish">@starsjoybot</a> картой Uzcard или Humo, без крипто-биржи и верификации. Подробнее о том, что такое Stars — в статье <a href="/ru/blog/telegram-stars-nima">Что такое Telegram Stars</a>.
+          </div>
 
           <section>
             <p>Хотите открыть канал в Telegram, подарить что-то другу или оплатить услугу бота. Ищете в Google — одни источники пишут «нужен TON», другие — «купите Stars». Что правильно? Это одно и то же или разные вещи? <strong>Разница между TON и Stars в экосистеме Telegram</strong> — один из самых запутанных вопросов 2026 года среди активных пользователей.</p>
@@ -520,6 +545,19 @@ const publishDate = "2026-04-20";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -639,6 +677,7 @@ const publishDate = "2026-04-20";
     .post-content h3 { font-size: 1.05rem; }
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

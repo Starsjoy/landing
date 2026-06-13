@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Как перевести Telegram Stars другу? (2026) | StarsJoy Blog";
 const description = "Как перевести Telegram Stars другу — все способы: через подарки, бот и Premium. Сравнение, безопасность и пошаговая инструкция.";
 const publishDate = "2026-03-18";
+const modifiedDate = "2026-06-13";
+const wordCount = 1050;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-03-18";
     "headline": "Как перевести Telegram Stars другу?",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "перевести Telegram Stars, отправить Stars другу, Telegram Stars подарок, Telegram Stars бот, перевод Stars на другой аккаунт, подарить звёзды Telegram",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -125,6 +135,36 @@ const publishDate = "2026-03-18";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Как отправить Telegram Stars другу",
+    "description": "Шаги отправки Telegram Stars другу через @starsjoybot.",
+    "totalTime": "PT5M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Аккаунт Telegram" },
+      { "@type": "HowToTool", "name": "Карта Uzcard или Humo" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Откройте @starsjoybot", "text": "Найдите @starsjoybot в Telegram или перейдите по ссылке t.me/starsjoybot." },
+      { "@type": "HowToStep", "name": "Введите юзернейм друга", "text": "Укажите, кому отправить Stars — введите юзернейм получателя." },
+      { "@type": "HowToStep", "name": "Выберите количество Stars", "text": "Выберите количество отправляемых Stars." },
+      { "@type": "HowToStep", "name": "Оплатите", "text": "Оплатите картой Uzcard или Humo через Click или Payme." },
+      { "@type": "HowToStep", "name": "Stars отправляются другу", "text": "После оплаты Stars напрямую поступают вашему другу." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-stars-otkazish",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -138,7 +178,7 @@ const publishDate = "2026-03-18";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Как перевести Telegram Stars другу?</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -147,6 +187,10 @@ const publishDate = "2026-03-18";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Перевести Telegram Stars другу напрямую кнопкой «отправить» нельзя, но есть косвенные способы: через <a href="/ru/gifts">Gift</a>, через бот или через Premium. Самый быстрый и выгодный путь — отправить через <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, введя юзернейм друга; оплата идёт картой Uzcard или Humo через Click/Payme. Внимательно проверяйте юзернейм — вернуть Stars нельзя.
+          </div>
 
           <section>
             <p>Вы накопили Stars в Telegram, но хотите отправить их другу — и тут многие останавливаются. Потому что кнопки «отправить» как при обычном переводе — нет. Тем не менее, в 2026 году есть несколько реальных и работающих способов.</p>
@@ -463,6 +507,19 @@ const publishDate = "2026-03-18";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -627,6 +684,7 @@ const publishDate = "2026-03-18";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-cta-box { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

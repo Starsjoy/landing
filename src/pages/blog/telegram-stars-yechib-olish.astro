@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Telegram Stars yechib olish mumkinmi? Cash out haqida to'liq ma'lumot (2026) | StarsJoy Blog";
 const description = "Telegram Stars yechib olish mumkinmi? Kimlar cash out qila oladi, oddiy foydalanuvchi uchun qanday yo'llar bor, O'zbekistonda starsni pulga aylantirish usullari.";
 const publishDate = "2026-03-21";
+const modifiedDate = "2026-06-13";
+const wordCount = 1300;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-03-21";
     "headline": "Telegram Stars yechib olish mumkinmi? Cash out haqida to'liq ma'lumot",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "telegram stars yechib olish, telegram stars cash out, telegram starsni pulga aylantirish, telegram starsni sotish, telegram stars withdraw, telegram stars O'zbekiston",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -116,6 +126,32 @@ const publishDate = "2026-03-21";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "StarsJoy orqali Stars'ni pulga aylantirish",
+    "description": "Oddiy foydalanuvchi Stars'ni norasmiy bozor yechimi orqali so'mga aylantirish bosqichlari.",
+    "totalTime": "PT15M",
+    "step": [
+      { "@type": "HowToStep", "name": "Murojaat qiling", "text": "t.me/starsjoysupport ga yozasiz." },
+      { "@type": "HowToStep", "name": "Tekshiruv", "text": "Sizdagi Stars miqdori aniqlanadi." },
+      { "@type": "HowToStep", "name": "Taklif", "text": "Sizga komissiya bilan narx beriladi." },
+      { "@type": "HowToStep", "name": "Transfer", "text": "Stars'ni yuborasiz." },
+      { "@type": "HowToStep", "name": "To'lov", "text": "Sizga pul o'tkaziladi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-stars-yechib-olish",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -129,7 +165,7 @@ const publishDate = "2026-03-21";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Telegram Stars yechib olish mumkinmi? Cash out haqida to'liq ma'lumot</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -138,6 +174,10 @@ const publishDate = "2026-03-21";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Oddiy foydalanuvchi Telegram Stars'ni rasmiy tarzda yechib ololmaydi — cash out faqat bot egasi, kanal muallifi va developer uchun ochiq. Lekin norasmiy bozor yechimlari orqali Stars'ni sotib pulga aylantirish mumkin (komissiya bilan). O'zbekistonda buni <a href="https://t.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> orqali qilish mumkin; aksincha <a href="/blog/telegram-stars-sotib-olish">sotib olish</a> esa @starsjoybot orqali.
+          </div>
 
           <section>
             <p>Ko'pchilik foydalanuvchilar Telegram ichida Stars yig'ib boradi — sovg'alar, donatlar yoki botlar orqali. Lekin eng muhim savol shunda paydo bo'ladi: <strong>telegram stars yechib olish mumkinmi</strong> yoki yo'q? Ya'ni, bu virtual valyutani real pulga aylantirishning aniq va qonuniy yo'li bormi?</p>
@@ -472,6 +512,19 @@ const publishDate = "2026-03-21";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -591,6 +644,7 @@ const publishDate = "2026-03-21";
     .post-content h3 { font-size: 1.05rem; }
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

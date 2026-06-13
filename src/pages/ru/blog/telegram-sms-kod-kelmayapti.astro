@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Почему Telegram не отправляет SMS-код? Решение для пользователей Узбекистана | StarsJoy Блог";
 const description = "Telegram не присылает SMS-код для входа? Почему это происходит в Узбекистане, что делать и как получать коды без SMS через Telegram Premium.";
 const publishDate = "2026-04-11";
+const modifiedDate = "2026-06-13";
+const wordCount = 1820;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-04-11";
     "headline": "Почему Telegram не отправляет SMS-код? Решение для пользователей Узбекистана",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "Telegram не отправляет SMS код, Telegram код не приходит, проблема Telegram Узбекистан, код подтверждения Telegram, Telegram Premium SMS, вход в аккаунт Telegram, двухфакторная аутентификация",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -117,6 +127,35 @@ const publishDate = "2026-04-11";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Что делать, если Telegram не присылает SMS-код",
+    "description": "Пошаговые действия для входа в аккаунт Telegram, когда SMS-код не приходит на ваш номер.",
+    "tool": [
+      { "@type": "HowToTool", "name": "Аккаунт Telegram" },
+      { "@type": "HowToTool", "name": "Телефон и SIM-карта" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Проверьте другое устройство", "text": "Если на другом телефоне, планшете или компьютере Telegram открыт — код придёт не по SMS, а внутри приложения Telegram." },
+      { "@type": "HowToStep", "name": "Подождите 10–15 минут", "text": "Не нажимайте «Отправить повторно» сразу — это временно блокирует номер и увеличивает время ожидания." },
+      { "@type": "HowToStep", "name": "Проверьте настройки телефона", "text": "Убедитесь, что режим полёта выключен, есть сигнал сети и спам-фильтр не блокирует SMS." },
+      { "@type": "HowToStep", "name": "Переставьте SIM-карту", "text": "Извлеките SIM-карту, подождите 30 секунд, вставьте обратно и перезагрузите телефон." },
+      { "@type": "HowToStep", "name": "Решите проблему с Premium", "text": "Для постоянного решения купите Telegram Premium через @starsjoybot — подписчикам Telegram продолжает отправлять SMS-коды." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-sms-kod-kelmayapti",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -130,7 +169,7 @@ const publishDate = "2026-04-11";
         <div class="post-tag">Telegram</div>
         <h1 class="post-title">Почему Telegram не отправляет SMS-код? Решение для пользователей Узбекистана</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -139,6 +178,10 @@ const publishDate = "2026-04-11";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> С 2024 года Telegram перестал отправлять SMS-коды бесплатным пользователям во многих регионах, включая Узбекистан. Сначала проверьте открытый Telegram на другом устройстве (код может прийти внутри приложения) и не нажимайте «Отправить повторно» много раз. Постоянное решение — Telegram Premium: подписчикам Telegram продолжает отправлять SMS-код. В Узбекистане его покупают картой Uzcard или Humo через <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> (официальный механизм Gift Premium, пароль и SMS не запрашиваются) — подробнее в <a href="/ru/blog/telegram-premium-sotib-olish">статье о покупке Premium</a>.
+          </div>
 
           <section>
             <p>Хотите снова войти в свой аккаунт Telegram. Вводите номер, нажимаете «Отправить код» — и ждёте. 1 минута, 5 минут, 15 минут. <strong>SMS-код не приходит.</strong> Повторная отправка — снова тишина. Знакомая ситуация? В Узбекистане эта проблема резко усилилась с 2024 года и продолжает затрагивать тысячи пользователей в 2026-м.</p>
@@ -430,6 +473,19 @@ const publishDate = "2026-04-11";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -541,6 +597,7 @@ const publishDate = "2026-04-11";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-faq-item { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }
     .post-table td { padding: 10px 12px; font-size: 0.85rem; }

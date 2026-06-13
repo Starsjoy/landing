@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Можно ли вывести Telegram Stars? Полное руководство по Cash Out (2026) | StarsJoy Блог";
 const description = "Можно ли вывести Telegram Stars? Кто может сделать cash out, какие способы для обычных пользователей, как обменять Stars на деньги в Узбекистане.";
 const publishDate = "2026-03-21";
+const modifiedDate = "2026-06-13";
+const wordCount = 1300;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-03-21";
     "headline": "Можно ли вывести Telegram Stars? Полное руководство по Cash Out",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "вывести Telegram Stars, Telegram Stars cash out, обменять Stars на деньги, продать Telegram Stars, вывод Telegram Stars, Telegram Stars Узбекистан",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -117,6 +127,32 @@ const publishDate = "2026-03-21";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Обмен Stars на деньги через StarsJoy",
+    "description": "Шаги конвертации Telegram Stars в сумы через рыночное решение для обычного пользователя.",
+    "totalTime": "PT15M",
+    "step": [
+      { "@type": "HowToStep", "name": "Обращение", "text": "Напишите в t.me/starsjoysupport." },
+      { "@type": "HowToStep", "name": "Проверка", "text": "Определяется количество ваших Stars." },
+      { "@type": "HowToStep", "name": "Предложение", "text": "Вам называют цену с учётом комиссии." },
+      { "@type": "HowToStep", "name": "Трансфер", "text": "Вы отправляете Stars." },
+      { "@type": "HowToStep", "name": "Оплата", "text": "Вам переводят деньги." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-stars-yechib-olish",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -130,7 +166,7 @@ const publishDate = "2026-03-21";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Можно ли вывести Telegram Stars? Полное руководство по Cash Out</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -139,6 +175,10 @@ const publishDate = "2026-03-21";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Обычный пользователь не может вывести Telegram Stars официально — cash out доступен только владельцам ботов, авторам каналов и разработчикам. Но через неофициальные рыночные решения Stars можно продать и обменять на деньги (с комиссией). В Узбекистане это можно сделать через <a href="https://t.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a>; наоборот, <a href="/ru/blog/telegram-stars-sotib-olish">купить Stars</a> можно через @starsjoybot.
+          </div>
 
           <section>
             <p>Многие пользователи накапливают Telegram Stars — через подарки, донаты или ботов. Но главный вопрос: <strong>можно ли вывести Telegram Stars</strong> или нет? Есть ли реальный и легальный способ превратить эту виртуальную валюту в настоящие деньги?</p>
@@ -473,6 +513,19 @@ const publishDate = "2026-03-21";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -592,6 +645,7 @@ const publishDate = "2026-03-21";
     .post-content h3 { font-size: 1.05rem; }
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }

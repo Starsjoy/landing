@@ -6,6 +6,8 @@ import Footer from '../../components/Footer.astro';
 const title = "Telegram Stars nima? To'liq tushuntirish | StarsJoy Blog";
 const description = "Telegram Stars nima, nima uchun kerak, qayerda ishlatiladi va O'zbekistonda qanday sotib olish mumkin — to'liq qo'llanma.";
 const publishDate = "2026-03-08";
+const modifiedDate = "2026-06-13";
+const wordCount = 1050;
 ---
 
 <Layout
@@ -27,11 +29,19 @@ const publishDate = "2026-03-08";
     "headline": "Telegram Stars nima? To'liq tushuntirish",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "Telegram Stars nima, Telegram Stars, Telegram yulduzchalar, Stars sotib olish, raqamli valyuta, StarsJoy",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -100,6 +110,35 @@ const publishDate = "2026-03-08";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram Stars sotib olish",
+    "description": "@starsjoybot orqali O'zbekistonda Telegram Stars'ni Uzcard yoki Humo karta bilan sotib olish bosqichlari.",
+    "totalTime": "PT5M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Telegram akkaunt" },
+      { "@type": "HowToTool", "name": "Uzcard yoki Humo karta" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "@starsjoybot ni oching", "text": "Telegram'da @starsjoybot ni qidiring yoki t.me/starsjoybot havolasiga o'ting va /start tugmasini bosing." },
+      { "@type": "HowToStep", "name": "Stars miqdorini tanlang", "text": "Kerakli Stars paketini tanlang — paketlar narxi va miqdori vizual kartalar shaklida ko'rinadi." },
+      { "@type": "HowToStep", "name": "To'lovni amalga oshiring", "text": "Click yoki Payme orqali Uzcard yoki Humo karta bilan to'lang." },
+      { "@type": "HowToStep", "name": "Stars balansga tushadi", "text": "To'lovdan so'ng Stars Telegram balansingizga tushadi va botlar hamda mini ilovalarda ishlatishingiz mumkin." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/blog/telegram-stars-nima",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -113,7 +152,7 @@ const publishDate = "2026-03-08";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Telegram Stars nima? To'liq tushuntirish</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -122,6 +161,10 @@ const publishDate = "2026-03-08";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Telegram Stars — bu Telegram ichidagi rasmiy <strong>raqamli valyuta</strong>: u bilan botlar, mini ilovalar va o'yinlarda xizmatlar uchun to'lov qilasiz hamda <a href="/gifts">sovg'a</a> yuborasiz. Stars Premium'dan farq qiladi — Premium bu obuna, Stars esa to'lov vositasi. O'zbekistonda Uzcard yoki Humo bilan <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali bir necha daqiqada sotib olasiz — Visa shart emas.
+          </div>
 
           <p>Telegram Stars — bu Telegram ichida ishlatiladigan raqamli valyuta. U foydalanuvchilarga botlar va mini ilovalarda turli xizmatlar uchun to'lov qilish imkonini beradi. StarsJoy orqali siz <a href="/stars">Telegram Stars sotib olish</a>ingiz mumkin — tez, arzon va ishonchli.</p>
 
@@ -357,6 +400,19 @@ const publishDate = "2026-03-08";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content h2 {
     font-size: 1.5rem;
     font-weight: 800;
@@ -518,6 +574,7 @@ const publishDate = "2026-03-08";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-cta-box { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .comparison-table { grid-template-columns: 1fr; }
     .comparison-col { padding: 20px; }
     .post-faq-item { padding: 20px; }

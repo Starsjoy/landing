@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Как купить Telegram Premium через Uzcard в Узбекистане (2026) | StarsJoy Блог";
 const description = "Можно ли купить Telegram Premium через Uzcard? Пошаговая инструкция покупки Premium в Узбекистане через Uzcard и Humo — быстро и безопасно.";
 const publishDate = "2026-03-26";
+const modifiedDate = "2026-06-13";
+const wordCount = 1350;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-03-26";
     "headline": "Как купить Telegram Premium через Uzcard в Узбекистане (2026)",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "Telegram Premium Uzcard, Telegram Premium Узбекистан, купить Telegram Premium, Telegram Premium Humo, Premium через Uzcard, Telegram Premium цена, Telegram Premium бот",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -109,6 +119,36 @@ const publishDate = "2026-03-26";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Как активировать Telegram Premium через Uzcard",
+    "description": "Шаги активации Telegram Premium в Узбекистане картой Uzcard или Humo через @starsjoybot.",
+    "totalTime": "PT15M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Аккаунт Telegram" },
+      { "@type": "HowToTool", "name": "Карта Uzcard или Humo" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Откройте бот", "text": "Найдите @starsjoybot в Telegram или перейдите по ссылке t.me/starsjoybot и нажмите /start." },
+      { "@type": "HowToStep", "name": "Выберите Premium и пакет", "text": "Выберите раздел «Telegram Premium» и пакет: 3, 6 или 12 месяцев." },
+      { "@type": "HowToStep", "name": "Выберите способ оплаты", "text": "Выберите способ оплаты Click или Payme." },
+      { "@type": "HowToStep", "name": "Оплатите Uzcard или Humo", "text": "Произведите оплату картой Uzcard или Humo." },
+      { "@type": "HowToStep", "name": "Введите username и подождите", "text": "Введите username или номер телефона Telegram — через несколько минут Premium активируется. Пароль не запрашивается." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-premium-uzcard",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -122,7 +162,7 @@ const publishDate = "2026-03-26";
         <div class="post-tag">Premium</div>
         <h1 class="post-title">Как купить Telegram Premium через Uzcard в Узбекистане (2026)</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -131,6 +171,10 @@ const publishDate = "2026-03-26";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Да, купить Telegram Premium через Uzcard (или Humo) можно — не напрямую в Telegram, а через <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>: оплата в сумах через Click/Payme, активация за 5–15 минут. Visa не нужна, пароль и SMS не запрашиваются: всё работает через официальный механизм Telegram Gift Premium, достаточно username. Другие способы без Visa — в статье <a href="/ru/blog/telegram-premium-vizasiz">Premium без Visa</a>.
+          </div>
 
           <section>
             <p><strong>Купить Telegram Premium через Uzcard</strong> — это оплата в сумах через посреднический сервис, который активирует Premium через официальный механизм Gift в Telegram. Visa или Mastercard не нужны.</p>
@@ -435,6 +479,19 @@ const publishDate = "2026-03-26";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -555,6 +612,7 @@ const publishDate = "2026-03-26";
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
     .post-faq-item { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }
     .post-table td { padding: 10px 12px; font-size: 0.85rem; }

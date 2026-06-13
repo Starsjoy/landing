@@ -6,6 +6,8 @@ import FooterRu from '../../../components/FooterRu.astro';
 const title = "Купить Telegram Stars без Visa (2026): самые простые способы в Узбекистане | Блог StarsJoy";
 const description = "Можно ли купить Telegram Stars без Visa карты? Самые простые и безопасные способы покупки Stars через Uzcard, Humo, Payme и Click в Узбекистане.";
 const publishDate = "2026-03-23";
+const modifiedDate = "2026-06-13";
+const wordCount = 1150;
 ---
 
 <Layout
@@ -28,11 +30,19 @@ const publishDate = "2026-03-23";
     "headline": "Купить Telegram Stars без Visa (2026): самые простые способы в Узбекистане",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "Telegram Stars без Visa, Telegram Stars Uzcard, Telegram Stars Humo, Telegram Stars Payme, Telegram Stars Click, Stars без карты, Telegram Stars Узбекистан",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
-      "url": "https://starsjoy.uz"
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://t.me/starsjoy",
+        "https://t.me/starsjoybot"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -109,6 +119,35 @@ const publishDate = "2026-03-23";
     ]
   })} />
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Купить Telegram Stars без Visa (Payme/Click)",
+    "description": "Шаги покупки Telegram Stars без Visa, картой Uzcard/Humo через Payme или Click.",
+    "totalTime": "PT2M",
+    "tool": [
+      { "@type": "HowToTool", "name": "Аккаунт Telegram" },
+      { "@type": "HowToTool", "name": "Карта Uzcard или Humo" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Выберите количество Stars", "text": "В @starsjoybot выберите нужное количество Stars." },
+      { "@type": "HowToStep", "name": "Введите Telegram username", "text": "Укажите username или ID аккаунта, на который поступят Stars." },
+      { "@type": "HowToStep", "name": "Выберите способ оплаты", "text": "Выберите Payme или Click и оплатите картой Uzcard или Humo." },
+      { "@type": "HowToStep", "name": "Stars поступят на баланс", "text": "После подтверждения оплаты Stars обычно поступают на баланс за 30–60 секунд." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/ru/blog/telegram-stars-visa-kartasiz",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
   <article class="blog-post">
     <header class="post-hero">
       <div class="container">
@@ -122,7 +161,7 @@ const publishDate = "2026-03-23";
         <div class="post-tag">Stars</div>
         <h1 class="post-title">Купить Telegram Stars без Visa (2026): самые простые и безопасные способы в Узбекистане</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>
@@ -131,6 +170,10 @@ const publishDate = "2026-03-23";
     <div class="post-body">
       <div class="container">
         <div class="post-content">
+
+          <div class="tldr-box" aria-label="Краткий ответ">
+            <strong>Краткий ответ:</strong> Купить Telegram Stars без карты Visa можно — в Узбекистане через Payme или Click картами Uzcard и Humo. В <a href="https://t.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> вы выбираете количество, вводите username и оплачиваете; Stars обычно поступают на баланс за 30–60 секунд. Пароль или SMS-код не запрашиваются. О ценах есть отдельная статья — <a href="/ru/blog/telegram-stars-narxi">цена Telegram Stars</a>.
+          </div>
 
           <section>
             <h2>Зачем покупать Stars без Visa?</h2>
@@ -483,6 +526,19 @@ const publishDate = "2026-03-23";
     margin: 0 auto;
   }
 
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
   .post-content section {
     padding: 0;
     margin: 0;
@@ -601,6 +657,7 @@ const publishDate = "2026-03-23";
     .post-content h3 { font-size: 1.05rem; }
     .post-content p { font-size: 0.95rem; }
     .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
     .post-faq-item { padding: 20px; }
     .breadcrumb { font-size: 0.8rem; }
     .post-table th { padding: 10px 12px; font-size: 0.85rem; }
