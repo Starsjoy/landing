@@ -26,3 +26,9 @@ Thumbs.db
 # misc
 logo/
 solar-series/
+.vercel
+.env*.local
+
+# GSC service account credentials (NEVER commit)
+scripts/gsc/service-account.json
+scripts/gsc/*.json
