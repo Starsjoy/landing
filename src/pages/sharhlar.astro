@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ReviewForm from '../components/ReviewForm.astro';
+import { getApprovedReviews, aggregateOf } from '../lib/reviews';
+
+const title = "Mijozlar sharhlari — StarsJoy";
+const description = "StarsJoy mijozlarining Telegram Premium va Stars xizmati haqidagi haqiqiy fikrlari va baholari.";
+
+const reviews = await getApprovedReviews('premium');
+const agg = aggregateOf(reviews);
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/sharhlar"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/sharhlar" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/sharhlar" }
+  ]}
+>
+  <Navbar />
+
+  <section class="rv-page">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Bosh sahifa</a>
+        <span>/</span>
+        <span>Sharhlar</span>
+      </nav>
+
+      <div class="rv-head fade-in">
+        <h1>Mijozlar sharhlari</h1>
+        {agg.reviewCount > 0 ? (
+          <p class="rv-sub"><strong class="rv-avg">{agg.ratingValue}</strong> / 5 · {agg.reviewCount} ta sharh</p>
+        ) : (
+          <p class="rv-sub">Hozircha sharh yo'q — birinchi bo'lib fikringizni qoldiring</p>
+        )}
+      </div>
+
+      {reviews.length > 0 && (
+        <div class="reviews-list">
+          {reviews.map((r) => (
+            <div class="review-card fade-in">
+              <div class="review-top">
+                <span class="review-name">{r.author_name}</span>
+                <span class="review-stars">{'★'.repeat(r.rating)}<span class="review-stars-off">{'★'.repeat(5 - r.rating)}</span></span>
+              </div>
+              <p class="review-body">{r.body}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <ReviewForm lang="uz" />
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .rv-page { padding: 120px 24px 80px; background: var(--bg-alt); min-height: 70vh; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 28px; }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .rv-head { text-align: center; margin-bottom: 40px; }
+  .rv-head h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); margin-bottom: 10px; }
+  .rv-sub { color: var(--text-muted); font-size: 1.05rem; }
+  .rv-avg { color: var(--primary); font-size: 1.3rem; }
+
+  .reviews-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1000px; margin: 0 auto 40px; }
+  .review-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px 22px; box-shadow: var(--shadow-sm); }
+  .review-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 12px; }
+  .review-name { font-weight: 700; color: var(--text); font-size: 0.95rem; }
+  .review-stars { color: #F5A623; font-size: 0.95rem; letter-spacing: 1px; white-space: nowrap; }
+  .review-stars-off { color: #E2E2E2; }
+  .review-body { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+  @media (max-width: 900px) { .reviews-list { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) {
+    .rv-page { padding: 100px 16px 50px; }
+    .rv-head h1 { font-size: 1.6rem; }
+    .reviews-list { grid-template-columns: 1fr; }
+  }
+</style>

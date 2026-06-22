@@ -1,0 +1,84 @@
+---
+import { getApprovedReviews, aggregateOf } from '../lib/reviews';
+import ReviewForm from './ReviewForm.astro';
+
+interface Props { lang?: 'uz' | 'ru'; }
+const { lang = 'uz' } = Astro.props;
+
+const reviews = await getApprovedReviews('premium');
+const agg = aggregateOf(reviews);
+
+const allHref = lang === 'ru' ? '/ru/sharhlar' : '/sharhlar';
+const t = lang === 'ru'
+  ? { label: 'Отзывы', title: 'Что говорят клиенты?', count: 'отзывов', beFirst: 'Оставьте свой отзыв первым', all: 'Все отзывы' }
+  : { label: 'Fikrlar', title: 'Mijozlar nima deydi?', count: 'ta sharh', beFirst: "Birinchi bo'lib fikringizni qoldiring", all: 'Barcha sharhlar' };
+---
+
+<section class="reviews-sec" id="reviews">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">{t.label}</span>
+      <h2 class="section-title">{t.title}</h2>
+      {agg.reviewCount > 0 ? (
+        <p class="section-subtitle"><strong class="rv-avg">{agg.ratingValue}</strong> / 5 · {agg.reviewCount} {t.count}</p>
+      ) : (
+        <p class="section-subtitle">{t.beFirst}</p>
+      )}
+    </div>
+
+    {reviews.length > 0 && (
+      <div class="reviews-grid">
+        {reviews.slice(0, 6).map((r) => (
+          <div class="rv-card fade-in">
+            <div class="rv-stars">{'★'.repeat(r.rating)}<span class="rv-off">{'★'.repeat(5 - r.rating)}</span></div>
+            <p class="rv-text">"{r.body}"</p>
+            <div class="rv-author">
+              <div class="rv-avatar">{r.author_name.trim().charAt(0).toUpperCase()}</div>
+              <div class="rv-name">{r.author_name}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {reviews.length > 6 && (
+      <div class="reviews-more">
+        <a href={allHref} class="reviews-all-link">{t.all} ({agg.reviewCount}) →</a>
+      </div>
+    )}
+
+    <ReviewForm lang={lang} />
+  </div>
+</section>
+
+<style>
+  .reviews-sec { background: var(--bg-alt); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px; }
+  .rv-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 32px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .rv-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .rv-stars { color: #F5A623; font-size: 1.1rem; letter-spacing: 1px; margin-bottom: 16px; }
+  .rv-off { color: #E2E2E2; }
+  .rv-text { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; font-style: italic; line-height: 1.7; flex: 1; }
+  .rv-author { display: flex; align-items: center; gap: 12px; }
+  .rv-avatar {
+    width: 44px; height: 44px; border-radius: 12px; background: var(--gradient);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; color: #fff;
+  }
+  .rv-name { font-weight: 600; font-size: 0.95rem; color: var(--text); }
+  .rv-avg { color: var(--primary); font-size: 1.2rem; }
+
+  .reviews-more { text-align: center; margin-bottom: 36px; }
+  .reviews-all-link {
+    display: inline-flex; align-items: center; gap: 6px; color: var(--primary);
+    font-weight: 600; font-size: 0.95rem; text-decoration: none; padding: 10px 20px;
+    border: 1px solid var(--border); border-radius: 50px; transition: border-color 0.2s, background 0.2s;
+  }
+  .reviews-all-link:hover { border-color: var(--primary); background: rgba(124, 58, 237, 0.04); }
+
+  @media (max-width: 1024px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .reviews-grid { grid-template-columns: 1fr; } }
+</style>

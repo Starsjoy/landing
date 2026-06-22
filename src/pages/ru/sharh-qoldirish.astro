@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavbarRu from '../../components/NavbarRu.astro';
+import FooterRu from '../../components/FooterRu.astro';
+import ReviewForm from '../../components/ReviewForm.astro';
+
+const title = "Оставить отзыв — StarsJoy";
+const description = "Оставьте свой отзыв о сервисе StarsJoy. Ваш опыт поможет другим клиентам сделать правильный выбор.";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/ru/sharh-qoldirish"
+  lang="ru"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/sharh-qoldirish" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/sharh-qoldirish" }
+  ]}
+>
+  <NavbarRu />
+
+  <section class="rf-page">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/ru">Главная</a>
+        <span>/</span>
+        <span>Оставить отзыв</span>
+      </nav>
+
+      <div class="rf-page-head fade-in">
+        <h1>Оставьте свой отзыв</h1>
+        <p>Воспользовались сервисом StarsJoy? Ваш опыт поможет другим сделать правильный выбор.</p>
+      </div>
+
+      <ReviewForm lang="ru" />
+
+      <p class="rf-page-back fade-in"><a href="/ru/sharhlar">← Посмотреть все отзывы</a></p>
+    </div>
+  </section>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .rf-page { padding: 120px 24px 80px; background: var(--bg-alt); min-height: 70vh; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 28px; }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .rf-page-head { text-align: center; max-width: 560px; margin: 0 auto 32px; }
+  .rf-page-head h1 { font-size: 2rem; font-weight: 900; color: var(--text); margin-bottom: 12px; }
+  .rf-page-head p { color: var(--text-muted); font-size: 1.02rem; line-height: 1.6; }
+  .rf-page-back { text-align: center; margin-top: 24px; }
+  .rf-page-back a { color: var(--text-muted); font-size: 0.9rem; text-decoration: none; font-weight: 500; }
+  .rf-page-back a:hover { color: var(--primary); }
+  @media (max-width: 640px) {
+    .rf-page { padding: 100px 16px 50px; }
+    .rf-page-head h1 { font-size: 1.5rem; }
+  }
+</style>

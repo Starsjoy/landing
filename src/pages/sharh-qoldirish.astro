@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ReviewForm from '../components/ReviewForm.astro';
+
+const title = "Sharh qoldirish — StarsJoy";
+const description = "StarsJoy xizmati haqida fikringizni qoldiring. Tajribangiz boshqa mijozlarga yordam beradi.";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/sharh-qoldirish"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/sharh-qoldirish" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/sharh-qoldirish" }
+  ]}
+>
+  <Navbar />
+
+  <section class="rf-page">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Bosh sahifa</a>
+        <span>/</span>
+        <span>Sharh qoldirish</span>
+      </nav>
+
+      <div class="rf-page-head fade-in">
+        <h1>Fikringizni qoldiring</h1>
+        <p>StarsJoy xizmatidan foydalandingizmi? Tajribangiz boshqalarga to'g'ri tanlov qilishda yordam beradi.</p>
+      </div>
+
+      <ReviewForm lang="uz" />
+
+      <p class="rf-page-back fade-in"><a href="/sharhlar">← Barcha sharhlarni ko'rish</a></p>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .rf-page { padding: 120px 24px 80px; background: var(--bg-alt); min-height: 70vh; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 28px; }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .rf-page-head { text-align: center; max-width: 560px; margin: 0 auto 32px; }
+  .rf-page-head h1 { font-size: 2rem; font-weight: 900; color: var(--text); margin-bottom: 12px; }
+  .rf-page-head p { color: var(--text-muted); font-size: 1.02rem; line-height: 1.6; }
+  .rf-page-back { text-align: center; margin-top: 24px; }
+  .rf-page-back a { color: var(--text-muted); font-size: 0.9rem; text-decoration: none; font-weight: 500; }
+  .rf-page-back a:hover { color: var(--primary); }
+  @media (max-width: 640px) {
+    .rf-page { padding: 100px 16px 50px; }
+    .rf-page-head h1 { font-size: 1.5rem; }
+  }
+</style>

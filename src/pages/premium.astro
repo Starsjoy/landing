@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import Reviews from '../components/Reviews.astro';
 import { getApprovedReviews, aggregateOf } from '../lib/reviews';
 
 const title = "Telegram Premium Sotib Olish — Arzon Narxda O'zbekistonda | StarsJoy";
@@ -262,54 +263,8 @@ if (agg.reviewCount > 0) {
     </div>
   </section>
 
-  <!-- Mijozlar fikri -->
-  <section class="prem-reviews">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Sharhlar</span>
-        <h2 class="section-title">Mijozlar fikri</h2>
-        {agg.reviewCount > 0 ? (
-          <p class="section-subtitle"><strong class="rv-avg">{agg.ratingValue}</strong> / 5 · {agg.reviewCount} ta sharh</p>
-        ) : (
-          <p class="section-subtitle">Birinchi bo'lib fikringizni qoldiring</p>
-        )}
-      </div>
-
-      {reviews.length > 0 && (
-        <div class="reviews-list">
-          {reviews.slice(0, 12).map((r) => (
-            <div class="review-card fade-in">
-              <div class="review-top">
-                <span class="review-name">{r.author_name}</span>
-                <span class="review-stars">{'★'.repeat(r.rating)}<span class="review-stars-off">{'★'.repeat(5 - r.rating)}</span></span>
-              </div>
-              <p class="review-body">{r.body}</p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      <form class="review-form fade-in" id="reviewForm">
-        <h3>Fikringizni qoldiring</h3>
-        <div class="rf-row">
-          <input type="text" name="author_name" placeholder="Ismingiz" maxlength="60" required />
-          <select name="rating" required>
-            <option value="">Baho tanlang</option>
-            <option value="5">★★★★★ (5)</option>
-            <option value="4">★★★★ (4)</option>
-            <option value="3">★★★ (3)</option>
-            <option value="2">★★ (2)</option>
-            <option value="1">★ (1)</option>
-          </select>
-        </div>
-        <textarea name="body" placeholder="Tajribangiz haqida yozing..." maxlength="600" rows="3" required></textarea>
-        <input type="text" name="website" class="rf-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <button type="submit">Yuborish</button>
-        <p class="rf-msg" id="reviewMsg"></p>
-        <p class="rf-note">Sharhingiz moderatsiyadan so'ng chop etiladi.</p>
-      </form>
-    </div>
-  </section>
+  <!-- Mijozlar fikri (komponent) -->
+  <Reviews lang="uz" />
 
   <!-- CTA -->
   <section class="prem-cta">
@@ -341,39 +296,6 @@ if (agg.reviewCount > 0) {
       }
     });
   });
-</script>
-
-<script>
-  const reviewForm = document.getElementById('reviewForm');
-  if (reviewForm) {
-    reviewForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const msg = document.getElementById('reviewMsg')!;
-      const data: Record<string, string> = Object.fromEntries(new FormData(reviewForm as HTMLFormElement) as any);
-      data.product = 'premium';
-      msg.textContent = 'Yuborilmoqda...';
-      msg.className = 'rf-msg';
-      try {
-        const res = await fetch('/api/reviews', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-        const j = await res.json();
-        if (j.ok) {
-          msg.textContent = j.message || 'Rahmat! Sharhingiz qabul qilindi.';
-          msg.className = 'rf-msg ok';
-          (reviewForm as HTMLFormElement).reset();
-        } else {
-          msg.textContent = j.error || 'Xatolik yuz berdi';
-          msg.className = 'rf-msg err';
-        }
-      } catch {
-        msg.textContent = 'Tarmoq xatosi, qayta urinib ko\'ring';
-        msg.className = 'rf-msg err';
-      }
-    });
-  }
 </script>
 
 <style>
@@ -484,41 +406,6 @@ if (agg.reviewCount > 0) {
     font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
   }
   .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); }
-
-  /* Mijozlar fikri */
-  .prem-reviews { background: var(--bg-alt); }
-  .reviews-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 860px; margin: 0 auto 40px; }
-  .review-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px 22px; box-shadow: var(--shadow-sm); }
-  .review-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 12px; }
-  .review-name { font-weight: 700; color: var(--text); font-size: 0.95rem; }
-  .review-stars { color: #F5A623; font-size: 0.95rem; letter-spacing: 1px; white-space: nowrap; }
-  .review-stars-off { color: #E2E2E2; }
-  .review-body { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
-  .rv-avg { color: var(--primary); font-size: 1.15rem; }
-
-  .review-form { max-width: 560px; margin: 0 auto; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow-sm); position: relative; }
-  .review-form h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: var(--text); }
-  .rf-row { display: flex; gap: 12px; margin-bottom: 12px; }
-  .review-form input[type="text"], .review-form select, .review-form textarea {
-    width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
-    font-family: inherit; font-size: 0.92rem; color: var(--text); background: #fff;
-  }
-  .rf-row input { flex: 1; }
-  .rf-row select { flex: 0 0 160px; }
-  .review-form textarea { margin-bottom: 12px; resize: vertical; }
-  .review-form input:focus, .review-form select:focus, .review-form textarea:focus { outline: none; border-color: var(--primary); }
-  .review-form button { background: var(--gradient); color: #fff; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: inherit; }
-  .review-form button:hover { opacity: 0.92; }
-  .rf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
-  .rf-msg { margin-top: 12px; font-size: 0.9rem; min-height: 1.2em; }
-  .rf-msg.ok { color: #10B981; }
-  .rf-msg.err { color: #EF4444; }
-  .rf-note { margin-top: 8px; font-size: 0.8rem; color: var(--text-muted); }
-  @media (max-width: 640px) {
-    .reviews-list { grid-template-columns: 1fr; }
-    .rf-row { flex-direction: column; }
-    .rf-row select { flex: 1; }
-  }
 
   @media (max-width: 1024px) {
     .prem-hero-inner { flex-direction: column; text-align: center; }

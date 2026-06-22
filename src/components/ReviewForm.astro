@@ -1,0 +1,174 @@
+---
+interface Props { lang?: 'uz' | 'ru'; }
+const { lang = 'uz' } = Astro.props;
+
+const t = lang === 'ru'
+  ? {
+      formTitle: 'Оставьте свой отзыв', formSub: 'Ваш опыт поможет другим',
+      nameLabel: 'Ваше имя', rateLabel: 'Ваша оценка', bodyLabel: 'Ваш отзыв',
+      name: 'Например, Алишер', body: 'Расскажите о вашем опыте...', submit: 'Отправить отзыв',
+      note: 'Отзыв будет опубликован после модерации.', pickRate: 'Выберите оценку',
+    }
+  : {
+      formTitle: 'Fikringizni qoldiring', formSub: 'Tajribangiz boshqalarga yordam beradi',
+      nameLabel: 'Ismingiz', rateLabel: 'Bahoyingiz', bodyLabel: 'Sharhingiz',
+      name: 'Masalan, Alisher', body: 'Tajribangiz haqida yozing...', submit: 'Sharh yuborish',
+      note: "Sharh moderatsiyadan so'ng chop etiladi.", pickRate: 'Bahoni tanlang',
+    };
+const stars = [1, 2, 3, 4, 5];
+---
+
+<form class="review-form fade-in" id="reviewForm">
+  <div class="rf-head">
+    <div class="rf-head-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </div>
+    <div>
+      <h3>{t.formTitle}</h3>
+      <p class="rf-head-sub">{t.formSub}</p>
+    </div>
+  </div>
+
+  <label class="rf-label" for="rfName">{t.nameLabel}</label>
+  <input id="rfName" class="rf-input" type="text" name="author_name" placeholder={t.name} maxlength="60" required />
+
+  <label class="rf-label">{t.rateLabel}</label>
+  <div class="rf-stars-pick" id="rfStars" data-pick={t.pickRate}>
+    {stars.map((n) => (
+      <button type="button" class="rf-star" data-val={n} aria-label={`${n}`}>★</button>
+    ))}
+    <span class="rf-star-hint" id="rfStarHint"></span>
+  </div>
+  <input type="hidden" name="rating" id="ratingInput" value="" />
+
+  <label class="rf-label" for="rfBody">{t.bodyLabel}</label>
+  <textarea id="rfBody" class="rf-input" name="body" placeholder={t.body} maxlength="600" rows="4" required></textarea>
+
+  <input type="text" name="website" class="rf-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <button type="submit" class="rf-submit">{t.submit}</button>
+  <p class="rf-msg" id="reviewMsg"></p>
+  <p class="rf-note">{t.note}</p>
+</form>
+
+<script>
+  const form = document.getElementById('reviewForm') as HTMLFormElement | null;
+  if (form) {
+    const okText = form.querySelector('.rf-note')?.textContent || 'Rahmat!';
+    const msg = document.getElementById('reviewMsg')!;
+
+    const starsWrap = document.getElementById('rfStars')!;
+    const ratingInput = document.getElementById('ratingInput') as HTMLInputElement;
+    const hint = document.getElementById('rfStarHint');
+    const starEls = Array.from(starsWrap.querySelectorAll('.rf-star')) as HTMLElement[];
+    let picked = 0;
+    const paint = (n: number) => starEls.forEach((s, i) => s.classList.toggle('on', i < n));
+    starEls.forEach((s, i) => {
+      s.addEventListener('mouseenter', () => { paint(i + 1); if (hint) hint.textContent = `${i + 1}/5`; });
+      s.addEventListener('click', () => {
+        picked = i + 1;
+        ratingInput.value = String(picked);
+        paint(picked);
+        starsWrap.classList.add('chosen');
+      });
+    });
+    starsWrap.addEventListener('mouseleave', () => { paint(picked); if (hint) hint.textContent = picked ? `${picked}/5` : ''; });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!ratingInput.value) {
+        msg.textContent = starsWrap.dataset.pick || 'Baho tanlang';
+        msg.className = 'rf-msg err';
+        starsWrap.classList.add('shake');
+        setTimeout(() => starsWrap.classList.remove('shake'), 500);
+        return;
+      }
+      const data: Record<string, string> = Object.fromEntries(new FormData(form) as any);
+      data.product = 'premium';
+      msg.textContent = '...';
+      msg.className = 'rf-msg';
+      try {
+        const res = await fetch('/api/reviews', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const j = await res.json();
+        if (j.ok) {
+          msg.textContent = j.message || okText;
+          msg.className = 'rf-msg ok';
+          form.reset();
+          picked = 0; ratingInput.value = ''; paint(0);
+          if (hint) hint.textContent = '';
+          starsWrap.classList.remove('chosen');
+        } else {
+          msg.textContent = j.error || 'Error';
+          msg.className = 'rf-msg err';
+        }
+      } catch {
+        msg.textContent = 'Network error';
+        msg.className = 'rf-msg err';
+      }
+    });
+  }
+</script>
+
+<style>
+  .review-form {
+    max-width: 600px; margin: 0 auto; background: #fff;
+    border: 1px solid var(--border); border-radius: 20px; padding: 32px;
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.07); position: relative;
+  }
+  .rf-head { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+  .rf-head-icon {
+    width: 48px; height: 48px; min-width: 48px; border-radius: 14px;
+    background: linear-gradient(135deg, #EDE7F6, #D1C4E9);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .rf-head h3 { font-size: 1.2rem; font-weight: 800; color: var(--text); margin: 0; }
+  .rf-head-sub { font-size: 0.85rem; color: var(--text-muted); margin: 3px 0 0; }
+
+  .rf-label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .rf-input {
+    width: 100%; padding: 13px 15px; border: 1px solid var(--border); border-radius: 12px;
+    font-family: inherit; font-size: 0.93rem; color: var(--text); background: #FBFAFE;
+    margin-bottom: 18px; transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+  .rf-input::placeholder { color: #B6B3C2; }
+  .rf-input:focus { outline: none; border-color: var(--primary); background: #fff; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1); }
+  textarea.rf-input { resize: vertical; min-height: 96px; line-height: 1.6; }
+
+  .rf-stars-pick { display: flex; align-items: center; gap: 4px; margin-bottom: 18px; }
+  .rf-star {
+    background: none; border: none; padding: 2px; font-size: 2rem; line-height: 1;
+    color: #E0E0E0; cursor: pointer; font-family: inherit;
+    transition: color 0.12s, transform 0.12s;
+  }
+  .rf-star:hover { transform: scale(1.18); }
+  .rf-star.on { color: #F5A623; }
+  .rf-star-hint { margin-left: 10px; font-size: 0.9rem; font-weight: 700; color: var(--primary); min-width: 28px; }
+  .rf-stars-pick.shake { animation: rfShake 0.4s; }
+  @keyframes rfShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+
+  .rf-submit {
+    width: 100%; background: var(--gradient); color: #fff; border: none; padding: 15px;
+    border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: inherit;
+    transition: transform 0.15s, box-shadow 0.2s; margin-top: 4px;
+  }
+  .rf-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(124, 58, 237, 0.28); }
+  .rf-submit:active { transform: translateY(0); }
+
+  .rf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .rf-msg { margin-top: 14px; font-size: 0.9rem; min-height: 1.2em; text-align: center; font-weight: 600; }
+  .rf-msg.ok { color: #10B981; }
+  .rf-msg.err { color: #EF4444; }
+  .rf-note { margin-top: 8px; font-size: 0.8rem; color: var(--text-muted); text-align: center; }
+
+  @media (max-width: 640px) {
+    .review-form { padding: 24px 20px; border-radius: 16px; }
+    .rf-star { font-size: 1.8rem; }
+  }
+</style>

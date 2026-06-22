@@ -101,7 +101,7 @@ export async function getApprovedReviews(product = 'premium'): Promise<Review[]>
       FROM reviews
       WHERE product = ${product} AND status = 'approved'
       ORDER BY created_at DESC
-      LIMIT 50
+      LIMIT 200
     ` as Review[];
     cache.set(product, { data: rows, expires: now + CACHE_TTL_MS });
     return rows;

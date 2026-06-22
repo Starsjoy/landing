@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import NavbarRu from '../../components/NavbarRu.astro';
 import BlogHighlights from '../../components/BlogHighlights.astro';
+import Reviews from '../../components/Reviews.astro';
 import FooterRu from '../../components/FooterRu.astro';
 
 const faqs = [
@@ -27,26 +28,6 @@ const faqs = [
   },
 ];
 
-const testimonials = [
-  {
-    text: "Честно говоря, сначала немного сомневался. Но проверил — всё прошло без проблем. Быстро, без лишней возни. Рекомендую.",
-    name: 'Samandar',
-    handle: '@Khxlimov',
-    initial: 'S',
-  },
-  {
-    text: "Первый раз покупал Stars и не знал, где дешевле и надёжнее. Наткнулся на этого бота — оказался недорогим и проверенным. Всем советую.",
-    name: 'Feruzbek',
-    handle: '@Fe_r_uzbek',
-    initial: 'F',
-  },
-  {
-    text: "Купил Stars — всё удобно и понятно. Главное — нет навязчивой рекламы, работает очень быстро. Остался доволен.",
-    name: 'Abdulaziz',
-    handle: '@lazyzxoja',
-    initial: 'A',
-  },
-];
 ---
 
 <Layout
@@ -389,31 +370,8 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Отзывы</span>
-        <h2 class="section-title">Что говорят клиенты?</h2>
-        <p class="section-subtitle">Реальные отзывы пользователей нашего сервиса</p>
-      </div>
-      <div class="testimonials-grid">
-        {testimonials.map((t) => (
-          <div class="testimonial-card fade-in">
-            <div class="testimonial-stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
-            <p class="testimonial-text">"{t.text}"</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">{t.initial}</div>
-              <div>
-                <div class="testimonial-name">{t.name}</div>
-                <div class="testimonial-handle">{t.handle}</div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- ===== ОТЗЫВЫ (динамические) ===== -->
+  <Reviews lang="ru" />
 
   <!-- ===== REFERRAL ===== -->
   <section class="referral" id="referral">
