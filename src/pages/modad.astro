@@ -135,6 +135,12 @@ if (authenticated && !dbReady) {
             </span>
             <span>Kirim/Chiqim</span>
           </a>
+          <a data-section="reviews" onclick="showSection('reviews')">
+            <span class="sb-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </span>
+            <span>Sharhlar</span>
+          </a>
           <div class="sb-dropdown">
             <a class="sb-dropdown-toggle" data-section="buyers" onclick="toggleDropdown('buyers')">
               <span class="sb-icon">
@@ -238,6 +244,17 @@ if (authenticated && !dbReady) {
                 <div class="mqs-label" id="mqsOrdersLabel">Bugungi buyurtmalar</div>
                 <div class="mqs-value" id="mqsTodayOrders">0</div>
               </div>
+            </div>
+          </div>
+
+          <!-- Sharhlar (moderatsiya) -->
+          <div id="section-reviews" class="section-content" hidden>
+            <div class="panel">
+              <div class="panel-header" style="display:flex;align-items:center;justify-content:space-between">
+                <h2>Kutilayotgan sharhlar (<span id="reviewsPendingCount">0</span>)</h2>
+                <button class="rf-btn" onclick="fetchReviews()">Yangilash</button>
+              </div>
+              <div class="panel-body" id="reviewsTable"></div>
             </div>
           </div>
 
@@ -1943,6 +1960,49 @@ if (authenticated && !dbReady) {
         if (!wasOpen) dd.classList.add('open');
       }
 
+      function escRv(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+          return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+        });
+      }
+      async function fetchReviews() {
+        var box = document.getElementById('reviewsTable');
+        var cnt = document.getElementById('reviewsPendingCount');
+        if (box) box.innerHTML = '<div style="padding:20px;color:#888">Yuklanmoqda...</div>';
+        try {
+          var res = await fetch('/api/reviews');
+          if (!res.ok) { if (box) box.innerHTML = '<div style="padding:20px;color:#c00">Xatolik: ' + res.status + '</div>'; return; }
+          var j = await res.json();
+          var list = j.reviews || [];
+          if (cnt) cnt.textContent = list.length;
+          if (!list.length) { if (box) box.innerHTML = '<div style="padding:20px;color:#888">Kutilayotgan sharh yo\'q</div>'; return; }
+          box.innerHTML = list.map(function (r) {
+            return '<div style="border-bottom:1px solid #eee;padding:14px 16px">'
+              + '<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px">'
+              + '<strong>' + escRv(r.author_name) + '</strong>'
+              + '<span style="color:#F5A623;white-space:nowrap">' + '★'.repeat(r.rating) + '</span>'
+              + '</div>'
+              + '<div style="color:#555;font-size:0.9rem;margin-bottom:10px">' + escRv(r.body) + '</div>'
+              + '<div style="display:flex;gap:8px">'
+              + '<button class="rf-btn" style="background:#10B981;color:#fff;border:none" onclick="moderateReview(\'' + r.id + '\',\'approve\')">Tasdiqlash</button>'
+              + '<button class="rf-btn" style="background:#EF4444;color:#fff;border:none" onclick="moderateReview(\'' + r.id + '\',\'reject\')">Rad etish</button>'
+              + '</div></div>';
+          }).join('');
+        } catch (e) {
+          if (box) box.innerHTML = '<div style="padding:20px;color:#c00">Tarmoq xatosi</div>';
+        }
+      }
+      async function moderateReview(id, action) {
+        try {
+          var res = await fetch('/api/reviews', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: action, id: id })
+          });
+          if (res.ok) fetchReviews();
+          else alert('Xatolik: ' + res.status);
+        } catch (e) { alert('Tarmoq xatosi'); }
+      }
+
       function showSection(name, source) {
         currentSection = name;
         if (source) currentSource = source;
@@ -1996,6 +2056,11 @@ if (authenticated && !dbReady) {
         // Cashflow section: fetch on enter
         if (name === 'cashflow') {
           fetchCashflow();
+        }
+
+        // Reviews moderatsiya: fetch on enter
+        if (name === 'reviews') {
+          fetchReviews();
         }
 
         // Mobile quick stats faqat overview va profit'da ko'rinadi
