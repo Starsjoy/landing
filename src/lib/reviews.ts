@@ -1,10 +1,13 @@
-import { neon } from '@neondatabase/serverless';
+import postgres from 'postgres';
 
-// ---- DB ulanish ----
+// ---- DB ulanish (DigitalOcean + pgBouncer, transaction mode → prepare:false) ----
+let _sql: ReturnType<typeof postgres> | null = null;
 function getSQL() {
+  if (_sql) return _sql;
   const url = import.meta.env.DATABASE_URL;
   if (!url) throw new Error('DATABASE_URL is not set');
-  return neon(url);
+  _sql = postgres(url, { prepare: false });
+  return _sql;
 }
 
 export type ReviewStatus = 'pending' | 'approved' | 'rejected';

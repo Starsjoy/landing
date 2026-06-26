@@ -1,6 +1,17 @@
 import { defineMiddleware } from 'astro:middleware';
-import { neon } from '@neondatabase/serverless';
+import postgres from 'postgres';
 import { detectBot } from './lib/bots';
+
+// DigitalOcean Postgres + pgBouncer (transaction mode → prepare:false).
+// Bitta client butun funksiya instansida qayta ishlatiladi.
+let _sql: ReturnType<typeof postgres> | null = null;
+function getSQL() {
+  if (_sql) return _sql;
+  const url = import.meta.env.DATABASE_URL;
+  if (!url) return null;
+  _sql = postgres(url, { prepare: false });
+  return _sql;
+}
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const path = context.url.pathname;
@@ -18,10 +29,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   // AI bot — track
   if (isBot && botName) {
-    const dbUrl = import.meta.env.DATABASE_URL;
-    if (dbUrl) {
+    const sql = getSQL();
+    if (sql) {
       try {
-        const sql = neon(dbUrl);
         const ip = context.request.headers.get('x-vercel-forwarded-for')?.split(',')[0]?.trim()
           || context.request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
           || context.request.headers.get('x-real-ip')
