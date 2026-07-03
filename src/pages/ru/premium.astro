@@ -66,7 +66,7 @@ if (agg.reviewCount > 0) {
     "author": { "@type": "Person", "name": r.author_name },
     "reviewRating": { "@type": "Rating", "ratingValue": String(r.rating), "bestRating": "5" },
     "reviewBody": r.body,
-    "datePublished": (r.created_at || '').slice(0, 10)
+    "datePublished": r.created_at ? new Date(r.created_at).toISOString().slice(0, 10) : ""
   }));
 }
 ---
