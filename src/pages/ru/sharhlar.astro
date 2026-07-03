@@ -3,13 +3,45 @@ import Layout from '../../layouts/Layout.astro';
 import NavbarRu from '../../components/NavbarRu.astro';
 import FooterRu from '../../components/FooterRu.astro';
 import ReviewForm from '../../components/ReviewForm.astro';
-import { getApprovedReviews, aggregateOf } from '../../lib/reviews';
+import { getApprovedReviews, aggregateOf, formatReviewDate } from '../../lib/reviews';
 
 const title = "Отзывы клиентов — StarsJoy";
 const description = "Реальные отзывы и оценки клиентов StarsJoy о сервисе Telegram Premium и Stars.";
 
 const reviews = await getApprovedReviews('premium');
 const agg = aggregateOf(reviews);
+
+const reviewSchema: any = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "StarsJoy — сервис Telegram Stars, Premium и Gifts",
+  description,
+  brand: { "@type": "Brand", name: "StarsJoy" },
+};
+if (agg.reviewCount > 0) {
+  reviewSchema.aggregateRating = {
+    "@type": "AggregateRating",
+    ratingValue: String(agg.ratingValue),
+    reviewCount: String(agg.reviewCount),
+    bestRating: "5",
+  };
+  reviewSchema.review = reviews.slice(0, 20).map((r) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: r.author_name },
+    reviewRating: { "@type": "Rating", ratingValue: String(r.rating), bestRating: "5" },
+    reviewBody: r.body,
+    datePublished: formatReviewDate(r.created_at),
+  }));
+}
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Главная", item: "https://starsjoy.uz/ru" },
+    { "@type": "ListItem", position: 2, name: "Отзывы", item: "https://starsjoy.uz/ru/sharhlar" },
+  ],
+};
 ---
 
 <Layout
@@ -23,6 +55,9 @@ const agg = aggregateOf(reviews);
   ]}
 >
   <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
   <section class="rv-page">
     <div class="container">
@@ -50,6 +85,7 @@ const agg = aggregateOf(reviews);
                 <span class="review-stars">{'★'.repeat(r.rating)}<span class="review-stars-off">{'★'.repeat(5 - r.rating)}</span></span>
               </div>
               <p class="review-body">{r.body}</p>
+              <span class="review-date">{formatReviewDate(r.created_at)}</span>
             </div>
           ))}
         </div>
@@ -78,7 +114,8 @@ const agg = aggregateOf(reviews);
   .review-name { font-weight: 700; color: var(--text); font-size: 0.95rem; }
   .review-stars { color: #F5A623; font-size: 0.95rem; letter-spacing: 1px; white-space: nowrap; }
   .review-stars-off { color: #E2E2E2; }
-  .review-body { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+  .review-body { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 10px; }
+  .review-date { display: block; font-size: 0.78rem; color: var(--text-muted); opacity: 0.75; }
 
   @media (max-width: 900px) { .reviews-list { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px) {

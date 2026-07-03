@@ -123,6 +123,14 @@ export function aggregateOf(reviews: Review[]): Aggregate {
   return { ratingValue: Math.round((sum / reviews.length) * 10) / 10, reviewCount: reviews.length };
 }
 
+// Sharh yuborilgan sana (created_at) - moderatsiya sanasi EMAS, chunki setReviewStatus
+// faqat status'ni yangilaydi, created_at'ga tegmaydi. Driver Date obyekt qaytaradi,
+// shuning uchun har doim new Date(...) bilan o'raymiz.
+export function formatReviewDate(createdAt: string | Date | null | undefined): string {
+  if (!createdAt) return '';
+  return new Date(createdAt).toISOString().slice(0, 10);
+}
+
 // Keshni majburan tozalash (moderatsiyadan keyin darrov ko'rinishi uchun)
 export function clearReviewsCache(product?: string) {
   if (product) cache.delete(product);

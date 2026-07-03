@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ReviewForm from '../components/ReviewForm.astro';
-import { getApprovedReviews, aggregateOf } from '../lib/reviews';
+import { getApprovedReviews, aggregateOf, formatReviewDate } from '../lib/reviews';
 
 const title = "Mijozlar sharhlari — StarsJoy";
 const description = "StarsJoy mijozlarining Telegram Premium va Stars xizmati haqidagi haqiqiy fikrlari va baholari.";
@@ -84,6 +84,7 @@ const breadcrumbSchema = {
                 <span class="review-stars">{'★'.repeat(r.rating)}<span class="review-stars-off">{'★'.repeat(5 - r.rating)}</span></span>
               </div>
               <p class="review-body">{r.body}</p>
+              <span class="review-date">{formatReviewDate(r.created_at)}</span>
             </div>
           ))}
         </div>
@@ -112,7 +113,8 @@ const breadcrumbSchema = {
   .review-name { font-weight: 700; color: var(--text); font-size: 0.95rem; }
   .review-stars { color: #F5A623; font-size: 0.95rem; letter-spacing: 1px; white-space: nowrap; }
   .review-stars-off { color: #E2E2E2; }
-  .review-body { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+  .review-body { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 10px; }
+  .review-date { display: block; font-size: 0.78rem; color: var(--text-muted); opacity: 0.75; }
 
   @media (max-width: 900px) { .reviews-list { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px) {
