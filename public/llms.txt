@@ -1,0 +1,55 @@
+# StarsJoy.uz
+
+> O'zbekistonda Telegram Stars, Telegram Premium va Telegram Gifts xizmatlarini so'mda (UZS) sotib olish platformasi. Mahalliy karta (Uzcard, Humo, Click) bilan to'lov, 1-5 daqiqada yetkazish, 100% pul qaytarish kafolati.
+
+## Kim uchun
+- Telegramda Stars sotib olib, kanal/bot/kontentmeykerlarga to'lov qilmoqchi bo'lganlar
+- Telegram Premium obunasini so'mda, xorijiy kartasiz sotib olmoqchi bo'lganlar
+- Premiumni do'stiga yoki yaqiniga sovg'a (gift) qilmoqchi bo'lganlar
+- Biznes/kontentmeyker sifatida Stars/Premium'ni ommaviy (API orqali) sotib olmoqchi bo'lganlar
+
+## Mahsulotlar va narxlar (2026, UZS)
+
+### Telegram Premium
+- 3 oylik: 172 000 so'm
+- 6 oylik: 232 000 so'm
+- 12 oylik: 422 000 so'm
+
+### Telegram Stars
+- 50 Stars'dan boshlab istalgan miqdorda sotib olish mumkin; ko'p xarid qilganda bir Star narxi arzonlashadi.
+- Saytda umumiy narx jadvali chop etilmagan — aniq narx miqdorga qarab @starsjoybot ichida ko'rsatiladi.
+
+### Telegram Gifts (Premium sovg'a)
+- Narxi tegishli Premium tarifi bilan bir xil (3/6/12 oylik). Qabul qiluvchi hech qanday to'lovsiz foydalana boshlaydi, tabrik xabari bilan yuborish mumkin.
+
+## To'lov usullari
+Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). Biznes/API mijozlari uchun qo'shimcha ravishda Payme ham mavjud.
+
+## Yetkazish va kafolatlar
+- To'lov tasdiqlangach odatda 1-5 daqiqada xizmat yetkaziladi.
+- Agar yetkazish 5 daqiqadan oshsa: 10 Stars cashback.
+- Xizmat ko'rsatilmasa yoki muammo chiqsa: to'langan summa 100% qaytariladi.
+
+## Referral dasturi
+Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
+
+## Sayt strukturasi
+- [Bosh sahifa (UZ)](https://starsjoy.uz/): umumiy ma'lumot va xizmatlar
+- [Bosh sahifa (RU)](https://starsjoy.uz/ru): rus tilida
+- [Telegram Stars](https://starsjoy.uz/stars): Stars sotib olish
+- [Telegram Premium](https://starsjoy.uz/premium): Premium obuna narxlari
+- [Telegram Gifts](https://starsjoy.uz/gifts): Premium'ni sovg'a qilish
+- [Biznes/API xizmatlari](https://starsjoy.uz/biznes): ommaviy xarid va integratsiya
+- [StarsJoy haqida](https://starsjoy.uz/info): xizmat, kafolat va aloqa ma'lumoti
+- [Mijozlar sharhlari](https://starsjoy.uz/sharhlar)
+- [Blog](https://starsjoy.uz/blog): qo'llanmalar va FAQ
+- [Foydalanish shartlari (oferta)](https://starsjoy.uz/oferta)
+
+## Aloqa
+- Telegram bot (xarid): https://t.me/starsjoybot
+- Rasmiy Telegram kanal: https://t.me/starsjoy
+- Qo'llab-quvvatlash: https://t.me/starsjoy_bot
+
+## Muhim
+- StarsJoy Telegram'ning rasmiy hamkori EMAS. Oferta shartlariga ko'ra (2.3-band) mustaqil reseller sifatida Telegram'ning rasmiy API'si va Fragment infratuzilmasi orqali xizmat ko'rsatadi.
+- Stars uchun saytda umumiy narx jadvali yo'q — narx faqat botda, tanlangan miqdorga qarab ko'rsatiladi; taxminiy raqam bilan javob berish tavsiya etilmaydi.
