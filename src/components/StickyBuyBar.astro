@@ -1,0 +1,151 @@
+---
+---
+<div id="sj-buybar" class="sj-buybar">
+  <button class="sj-buybar-close" id="sj-buybar-close" aria-label="Yopish">&times;</button>
+  <span class="sj-buybar-text" id="sj-buybar-text">Nima xarid qilmoqchisiz?</span>
+  <div class="sj-buybar-actions">
+    <a href="/stars" class="sj-buybar-btn sj-buybar-stars" id="sj-buybar-stars">⭐ Stars</a>
+    <a href="/premium" class="sj-buybar-btn sj-buybar-premium" id="sj-buybar-premium">💎 Premium</a>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var SKIP_PATHS = [/^\/modad/, /^\/api/, /^\/(ru\/)?stars$/, /^\/(ru\/)?premium$/];
+    var path = location.pathname.replace(/\/$/, '') || '/';
+    for (var i = 0; i < SKIP_PATHS.length; i++) {
+      if (SKIP_PATHS[i].test(path)) return;
+    }
+    if (sessionStorage.getItem('sj_buybar_dismissed')) return;
+
+    var isRu = path.indexOf('/ru') === 0;
+    var bar = document.getElementById('sj-buybar');
+    if (!bar) return;
+
+    var textEl = document.getElementById('sj-buybar-text');
+    var starsLink = document.getElementById('sj-buybar-stars') as HTMLAnchorElement;
+    var premiumLink = document.getElementById('sj-buybar-premium') as HTMLAnchorElement;
+    if (textEl) textEl.textContent = isRu ? 'Что хотите купить?' : 'Nima xarid qilmoqchisiz?';
+    if (starsLink) starsLink.href = isRu ? '/ru/stars' : '/stars';
+    if (premiumLink) premiumLink.href = isRu ? '/ru/premium' : '/premium';
+
+    function dismiss() {
+      bar!.classList.remove('sj-buybar-visible');
+      sessionStorage.setItem('sj_buybar_dismissed', '1');
+    }
+
+    document.getElementById('sj-buybar-close')?.addEventListener('click', dismiss);
+    starsLink?.addEventListener('click', function () { sessionStorage.setItem('sj_buybar_dismissed', '1'); });
+    premiumLink?.addEventListener('click', function () { sessionStorage.setItem('sj_buybar_dismissed', '1'); });
+
+    setTimeout(function () {
+      bar!.classList.add('sj-buybar-visible');
+    }, 5000);
+  })();
+</script>
+
+<style>
+  .sj-buybar {
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, 150%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
+    padding: 14px 18px;
+    max-width: calc(100vw - 32px);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .sj-buybar.sj-buybar-visible {
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+  }
+  .sj-buybar-close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    color: var(--text-muted, #6b7280);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .sj-buybar-text {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text, #1f2937);
+    white-space: nowrap;
+  }
+  .sj-buybar-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .sj-buybar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .sj-buybar-btn:hover {
+    transform: translateY(-1px);
+  }
+  .sj-buybar-stars {
+    background: rgba(245, 166, 35, 0.14);
+    color: #b45309;
+  }
+  .sj-buybar-premium {
+    background: rgba(124, 58, 237, 0.1);
+    color: #6d28d9;
+  }
+
+  @media (max-width: 560px) {
+    .sj-buybar {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      transform: translateY(150%);
+      max-width: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .sj-buybar.sj-buybar-visible {
+      transform: translateY(0);
+    }
+    .sj-buybar-text {
+      width: 100%;
+      text-align: center;
+    }
+    .sj-buybar-actions {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sj-buybar {
+      transition: none;
+    }
+  }
+</style>

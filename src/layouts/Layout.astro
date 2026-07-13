@@ -1,4 +1,6 @@
 ---
+import StickyBuyBar from '../components/StickyBuyBar.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -74,6 +76,7 @@ const {
   </head>
   <body>
     <slot />
+    <StickyBuyBar />
     <script>
       // Scroll animations
       const observer = new IntersectionObserver((entries) => {
