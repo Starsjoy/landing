@@ -335,6 +335,15 @@ const faqs = [
       </div>
       <div class="guarantees-grid">
         <div class="guarantee-card fade-in">
+          <div class="guarantee-icon gi-track">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4l3.09 6.26L26 11.27l-5 4.87 1.18 6.88L16 19.9l-6.18 3.25L11 16.14 6 11.27l6.91-1.01L16 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
+            </svg>
+          </div>
+          <h3 class="guarantee-title">8 000+ заказов</h3>
+          <p class="guarantee-desc">Тысячи клиентов успешно воспользовались услугами StarsJoy</p>
+        </div>
+        <div class="guarantee-card fade-in">
           <div class="guarantee-icon gi-speed">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
               <path d="M17.5 4L8 18h7l-2 10L24 14h-7l2-10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
@@ -871,10 +880,8 @@ const faqs = [
   /* ===== GUARANTEES ===== */
   .guarantees-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    max-width: 640px;
-    margin: 0 auto;
   }
 
   .guarantee-card {
@@ -900,6 +907,7 @@ const faqs = [
     align-items: center;
     justify-content: center;
   }
+  .gi-track { background: linear-gradient(135deg, #FFF8E1, #FFE082); color: #D97706; }
   .gi-speed { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #059669; }
   .gi-refund { background: linear-gradient(135deg, #EDE7F6, #D1C4E9); color: #7C3AED; }
 

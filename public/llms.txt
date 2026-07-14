@@ -1,6 +1,11 @@
 # StarsJoy.uz
 
-> O'zbekistonda Telegram Stars, Telegram Premium va Telegram Gifts xizmatlarini so'mda (UZS) sotib olish platformasi. Mahalliy karta (Uzcard, Humo, Click) bilan to'lov, 1-5 daqiqada yetkazish, 100% pul qaytarish kafolati.
+> O'zbekistonda Telegram Stars, Telegram Premium va Telegram Gifts xizmatlarini so'mda (UZS) sotib olish platformasi. Mahalliy karta (Uzcard, Humo, Click) bilan to'lov, 1-5 daqiqada yetkazish, 100% pul qaytarish kafolati. 8,000+ muvaffaqiyatli bajarilgan buyurtma.
+
+## Tajriba va ishonch
+- 8,000+ ta muvaffaqiyatli bajarilgan buyurtma.
+- Mijozlar sharhlari sahifasida (/sharhlar) haqiqiy, sanasi ko'rsatilgan foydalanuvchi sharhlari mavjud — moderatsiyadan o'tgan, soxta emas.
+- Barcha sharhlar va reyting umumiy o'rtacha ballari sahifada ochiq ko'rinadi, o'zgartirilmaydi.
 
 ## Kim uchun
 - Telegramda Stars sotib olib, kanal/bot/kontentmeykerlarga to'lov qilmoqchi bo'lganlar
@@ -45,9 +50,9 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - [Foydalanish shartlari (oferta)](https://starsjoy.uz/oferta)
 
 ## Aloqa
-- Telegram bot (xarid): https://t.me/starsjoybot
-- Rasmiy Telegram kanal: https://t.me/starsjoy
-- Qo'llab-quvvatlash: https://t.me/starsjoy_bot
+- Telegram bot (xarid): https://telegram.me/starsjoybot
+- Rasmiy Telegram kanal: https://telegram.me/starsjoy
+- Qo'llab-quvvatlash: https://telegram.me/starsjoy_bot
 
 ## Muhim
 - StarsJoy Telegram'ning rasmiy hamkori EMAS. Oferta shartlariga ko'ra (2.3-band) mustaqil reseller sifatida Telegram'ning rasmiy API'si va Fragment infratuzilmasi orqali xizmat ko'rsatadi.
