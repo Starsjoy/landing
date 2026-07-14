@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: "Telegram Stars sotib olish narxlari qancha?",
-    a: "StarsJoy orqali Telegram Stars eng arzon narxlarda sotib olish mumkin. Narxlar 50 Stars dan boshlanadi. Ko'proq Stars xarid qilsangiz, har bir yulduz narxi arzonroq bo'ladi. Aniq narxlarni botimizda ko'rishingiz mumkin."
+    a: "StarsJoy orqali Telegram Stars 240 so'm/star tarifida sotib olinadi: 50 Stars — 12,000 so'm, 100 Stars — 24,000 so'm, 250 Stars — 60,000 so'm, 500 Stars — 120,000 so'm, 1,000 Stars — 240,000 so'm, 2,500 Stars — 600,000 so'm, 5,000 Stars — 1,200,000 so'm."
   },
   {
     q: "Telegram yulduzchalar qanday sotib olinadi?",
@@ -57,8 +57,10 @@ const faqs = [
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "UZS",
+      "lowPrice": "12000",
+      "highPrice": "1200000",
       "availability": "https://schema.org/InStock",
-      "offerCount": "10+"
+      "offerCount": "7"
     }
   })} />
 
@@ -128,6 +130,37 @@ const faqs = [
             </svg>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Narxlar -->
+  <section class="stars-pricing">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Narxlar</span>
+        <h2 class="section-title">Telegram Stars narxlari</h2>
+        <p class="section-subtitle">Barcha paketlar uchun aniq narx — 240 so'm/star, yashirin to'lov yo'q</p>
+      </div>
+      <div class="pricing-table-wrap fade-in">
+        <table class="pricing-table">
+          <thead>
+            <tr><th>Stars</th><th>Narx</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>50 ⭐</td><td>12,000 so'm</td></tr>
+            <tr><td>100 ⭐</td><td>24,000 so'm</td></tr>
+            <tr><td>250 ⭐</td><td>60,000 so'm</td></tr>
+            <tr><td>500 ⭐</td><td>120,000 so'm</td></tr>
+            <tr><td>1,000 ⭐</td><td>240,000 so'm</td></tr>
+            <tr><td>2,500 ⭐</td><td>600,000 so'm</td></tr>
+            <tr><td>5,000 ⭐</td><td>1,200,000 so'm</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pricing-note fade-in">Boshqa miqdorda Stars kerak bo'lsa, botda istalgan sonni kiritishingiz mumkin — narx shu tarifga (240 so'm/star) mos hisoblanadi.</p>
+      <div class="pricing-cta fade-in">
+        <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Stars sotib olish</a>
       </div>
     </div>
   </section>
@@ -345,6 +378,44 @@ const faqs = [
     justify-content: center;
     box-shadow: 0 16px 48px rgba(255, 174, 0, 0.2);
   }
+
+  /* ===== PRICING ===== */
+  .stars-pricing { padding: 60px 24px; }
+  .pricing-table-wrap {
+    max-width: 480px;
+    margin: 0 auto 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .pricing-table { width: 100%; border-collapse: collapse; background: #fff; }
+  .pricing-table th {
+    background: var(--bg-alt);
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: left;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pricing-table td {
+    padding: 13px 24px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .pricing-table tr:nth-child(odd) td { background: var(--bg-alt); }
+  .pricing-note {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto 24px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+  .pricing-cta { text-align: center; }
 
   /* ===== WHY ===== */
   .stars-why { background: var(--bg-alt); }
