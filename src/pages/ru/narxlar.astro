@@ -1,0 +1,410 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavbarRu from '../../components/NavbarRu.astro';
+import FooterRu from '../../components/FooterRu.astro';
+
+const title = "Цены на Telegram Stars и Premium 2026 — Всё на одной странице | StarsJoy";
+const description = "Сравните цены на Telegram Stars и Telegram Premium на одной странице: точная цена в сумах для всех пакетов и сроков, без скрытых платежей. Купите через StarsJoy.";
+
+const faqs = [
+  {
+    q: "В какой валюте указаны цены?",
+    a: "Все цены на этой странице указаны в узбекских сумах (UZS) — конвертация валюты или иностранная карта не нужны."
+  },
+  {
+    q: "Есть ли скрытые комиссии сверх указанной цены?",
+    a: "Нет. Цена, указанная на сайте и в боте — итоговая. Никаких скрытых комиссий или доплат."
+  },
+  {
+    q: "Когда обновляются цены?",
+    a: "Цены обновляются при изменении курса Telegram/Fragment. Цены на этой странице и в @starsjoybot всегда синхронизированы — цена в боте самая актуальная."
+  },
+  {
+    q: "Что выгоднее по цене — Stars или Premium?",
+    a: "Зависит от цели: Stars — для оплаты каналов/ботов или поддержки авторов, Premium — для личного использования. Полное сравнение читайте в статье «Stars или Premium?»."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/ru/narxlar"
+  keywords="цены Telegram Stars и Premium, StarsJoy цены, стоимость услуг Telegram, сравнение цен Telegram Stars Premium, цены Telegram 2026"
+  lang="ru"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/narxlar" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/narxlar" }
+  ]}
+>
+  <NavbarRu />
+
+  <!-- SEO Schema: Stars Product -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Telegram Stars",
+    "description": "Цены на Telegram Stars — по тарифу 240 сум/star, пакеты от 50 до 5 000 штук.",
+    "brand": { "@type": "Brand", "name": "StarsJoy" },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "UZS",
+      "lowPrice": "12000",
+      "highPrice": "1200000",
+      "availability": "https://schema.org/InStock",
+      "offerCount": "7"
+    }
+  })} />
+
+  <!-- SEO Schema: Premium Product -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Telegram Premium Подписка",
+    "description": "Цены на Telegram Premium — сроки 3, 6 и 12 месяцев.",
+    "brand": { "@type": "Brand", "name": "StarsJoy" },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "UZS",
+      "lowPrice": "172000",
+      "highPrice": "422000",
+      "availability": "https://schema.org/InStock",
+      "offerCount": "3"
+    }
+  })} />
+
+  <!-- SEO Schema Markup: FAQ -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+    }))
+  })} />
+
+  <!-- SEO Schema Markup: Breadcrumb -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Цены", "item": "https://starsjoy.uz/ru/narxlar" }
+    ]
+  })} />
+
+  <!-- Hero -->
+  <section class="narx-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/ru">Главная</a>
+        <span>/</span>
+        <span>Цены</span>
+      </nav>
+      <div class="narx-hero-inner fade-in">
+        <h1 class="narx-title">Telegram Stars и Premium — Все цены на одной странице</h1>
+        <p class="narx-desc">
+          Сравните перед покупкой: точные цены на все пакеты Telegram Stars и все сроки Telegram Premium — в сумах, без скрытых платежей.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Цены на Stars -->
+  <section class="narx-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Telegram Stars</span>
+        <h2 class="section-title">Цены на Telegram Stars</h2>
+        <p class="section-subtitle">Тариф: 240 сум/star — одинаковый для всех пакетов, без наценок</p>
+      </div>
+      <div class="pricing-table-wrap fade-in">
+        <table class="pricing-table">
+          <thead>
+            <tr><th>Stars</th><th>Цена</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>50 ⭐</td><td>12 000 сум</td></tr>
+            <tr><td>100 ⭐</td><td>24 000 сум</td></tr>
+            <tr><td>250 ⭐</td><td>60 000 сум</td></tr>
+            <tr><td>500 ⭐</td><td>120 000 сум</td></tr>
+            <tr class="pricing-highlight"><td>1 000 ⭐ <span class="pricing-badge">Популярный</span></td><td>240 000 сум</td></tr>
+            <tr><td>2 500 ⭐</td><td>600 000 сум</td></tr>
+            <tr><td>5 000 ⭐</td><td>1 200 000 сум</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="narx-links fade-in">
+        Подробнее: <a href="/ru/stars">страница покупки Stars</a> ·
+        <a href="/ru/blog/telegram-stars-paketlari-taqqoslash">сравнение пакетов</a> ·
+        <a href="/ru/blog/telegram-1000-stars-sotib-olish">полное руководство по 1000 Stars</a>
+      </p>
+      <div class="narx-cta fade-in">
+        <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Купить Stars</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Цены на Premium -->
+  <section class="narx-section narx-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Telegram Premium</span>
+        <h2 class="section-title">Цены на Telegram Premium</h2>
+        <p class="section-subtitle">Чем дольше срок подписки, тем выгоднее цена</p>
+      </div>
+      <div class="pricing-table-wrap fade-in">
+        <table class="pricing-table">
+          <thead>
+            <tr><th>Срок</th><th>Цена</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>3 месяца</td><td>172 000 сум</td></tr>
+            <tr><td>6 месяцев</td><td>232 000 сум</td></tr>
+            <tr class="pricing-highlight"><td>12 месяцев <span class="pricing-badge">Выгоднее всего</span></td><td>422 000 сум</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="narx-links fade-in">
+        Подробнее: <a href="/ru/premium">страница покупки Premium</a> ·
+        <a href="/ru/blog/telegram-premium-paketlar-taqqoslash">сравнение сроков</a> ·
+        <a href="/ru/blog/telegram-premium-12-oylik-uzcard-humo-bilan">12 месяцев с Uzcard/Humo</a> ·
+        <a href="/ru/gifts">подарить Premium</a>
+      </p>
+      <div class="narx-cta fade-in">
+        <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Купить Premium</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Быстрые факты -->
+  <section class="narx-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Важно</span>
+        <h2 class="section-title">Быстрые факты о ценах</h2>
+      </div>
+      <div class="facts-grid">
+        <div class="fact-card fade-in">
+          <h3>В сумах, точная цена</h3>
+          <p>Все цены указаны в узбекских сумах — конвертация валюты или иностранная карта не нужны.</p>
+        </div>
+        <div class="fact-card fade-in">
+          <h3>Без скрытых платежей</h3>
+          <p>Цена на сайте и в боте — итоговая. Никаких дополнительных комиссий.</p>
+        </div>
+        <div class="fact-card fade-in">
+          <h3>Доставка за 1-5 минут</h3>
+          <p>После подтверждения оплаты Stars или Premium поступают на ваш аккаунт за 1-5 минут.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="narx-faq">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Вопросы о ценах</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <div class="faq-item fade-in">
+            <button class="faq-question">
+              <span>{faq.q}</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.a}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="narx-final-cta">
+    <div class="container">
+      <div class="narx-cta-box fade-in">
+        <h2>Готовы купить?</h2>
+        <p>Точная цена, мгновенная доставка и 100% гарантия</p>
+        <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">&#9889; Перейти в бот</a>
+      </div>
+    </div>
+  </section>
+
+  <FooterRu />
+</Layout>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement!;
+      const answer = item.querySelector('.faq-answer') as HTMLElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+        (i.querySelector('.faq-answer') as HTMLElement).style.maxHeight = '';
+      });
+      if (!isActive) {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+<style>
+  .narx-hero {
+    padding: 120px 24px 60px;
+    background: linear-gradient(180deg, #F5F3FF 0%, #FFFFFF 100%);
+  }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .narx-hero-inner { max-width: 760px; }
+  .narx-title {
+    font-size: 2.6rem; font-weight: 900; line-height: 1.15;
+    margin-bottom: 20px; color: var(--text);
+  }
+  .narx-desc {
+    font-size: 1.1rem; color: var(--text-muted); line-height: 1.7;
+  }
+
+  .narx-section { padding: 56px 24px; }
+  .narx-alt { background: var(--bg-alt); }
+
+  .pricing-table-wrap {
+    max-width: 520px;
+    margin: 0 auto 24px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+  }
+  .pricing-table { width: 100%; border-collapse: collapse; background: #fff; }
+  .pricing-table thead th {
+    background: var(--gradient);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-align: left;
+    padding: 16px 28px;
+    letter-spacing: 0.3px;
+  }
+  .pricing-table thead th:last-child { text-align: right; }
+  .pricing-table tbody tr { transition: background 0.2s; }
+  .pricing-table tbody tr:hover { background: var(--bg-alt); }
+  .pricing-table tbody tr:last-child td { border-bottom: none; }
+  .pricing-table td {
+    padding: 16px 28px;
+    color: var(--text);
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .pricing-table td:first-child { font-weight: 600; }
+  .pricing-table td:last-child { font-weight: 800; color: var(--primary); text-align: right; }
+  .pricing-table tr.pricing-highlight td { background: rgba(124, 58, 237, 0.05); }
+  .pricing-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 3px 10px;
+    background: var(--gradient);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    vertical-align: middle;
+  }
+
+  .narx-links {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 24px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+  .narx-links a { color: var(--primary); text-decoration: none; }
+  .narx-links a:hover { text-decoration: underline; }
+  .narx-cta { text-align: center; }
+
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .fact-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .fact-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+  .fact-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+  .narx-faq { background: var(--bg-alt); padding: 56px 24px; }
+  .faq-list {
+    max-width: 760px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .faq-item {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    overflow: hidden; box-shadow: var(--shadow-sm); transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .faq-item.active { border-color: rgba(124, 58, 237, 0.3); box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08); }
+  .faq-question {
+    width: 100%; padding: 20px 24px; background: none; border: none; color: var(--text);
+    font-size: 1rem; font-weight: 600; text-align: left; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: inherit;
+  }
+  .faq-question:hover { color: var(--primary); }
+  .faq-toggle {
+    width: 28px; height: 28px; min-width: 28px; border-radius: 8px;
+    background: rgba(124, 58, 237, 0.06); display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--primary); transition: transform 0.3s;
+  }
+  .faq-item.active .faq-toggle { transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-answer-inner { padding: 0 24px 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+  .narx-final-cta { padding: 60px 24px; }
+  .narx-cta-box {
+    background: var(--gradient);
+    border-radius: 24px; padding: 60px 40px; text-align: center; color: #fff;
+  }
+  .narx-cta-box h2 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+  .narx-cta-box p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 28px; }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px;
+    background: #fff; color: #5B21B6; border-radius: 50px; font-size: 1.05rem;
+    font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); }
+
+  @media (max-width: 640px) {
+    .pricing-table-wrap { max-width: 100%; }
+    .pricing-table th, .pricing-table td { padding: 13px 16px; font-size: 0.88rem; }
+    .pricing-badge { display: block; margin: 4px 0 0; width: fit-content; }
+    .narx-hero { padding: 100px 16px 40px; }
+    .narx-title { font-size: 1.75rem; line-height: 1.25; }
+    .narx-desc { font-size: 0.95rem; }
+    .breadcrumb { margin-bottom: 20px; font-size: 0.8rem; }
+    .narx-section { padding: 40px 16px; }
+    .facts-grid { grid-template-columns: 1fr; gap: 12px; }
+    .narx-cta-box { padding: 40px 20px; }
+    .narx-cta-box h2 { font-size: 1.4rem; }
+    .narx-cta-box p { font-size: 0.95rem; }
+  }
+</style>

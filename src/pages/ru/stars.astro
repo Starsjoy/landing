@@ -155,7 +155,7 @@ const faqs = [
             <tr><td>100 ⭐</td><td>24 000 сум</td></tr>
             <tr><td>250 ⭐</td><td>60 000 сум</td></tr>
             <tr><td>500 ⭐</td><td>120 000 сум</td></tr>
-            <tr><td>1 000 ⭐</td><td>240 000 сум</td></tr>
+            <tr class="pricing-highlight"><td>1 000 ⭐ <span class="pricing-badge">Популярный</span></td><td>240 000 сум</td></tr>
             <tr><td>2 500 ⭐</td><td>600 000 сум</td></tr>
             <tr><td>5 000 ⭐</td><td>1 200 000 сум</td></tr>
           </tbody>
@@ -385,31 +385,49 @@ const faqs = [
   /* ===== PRICING ===== */
   .stars-pricing { padding: 60px 24px; }
   .pricing-table-wrap {
-    max-width: 480px;
-    margin: 0 auto 20px;
+    max-width: 520px;
+    margin: 0 auto 24px;
     border-radius: var(--radius);
-    border: 1px solid var(--border);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
   }
   .pricing-table { width: 100%; border-collapse: collapse; background: #fff; }
-  .pricing-table th {
-    background: var(--bg-alt);
-    color: var(--text);
+  .pricing-table thead th {
+    background: var(--gradient);
+    color: #fff;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     text-align: left;
-    padding: 14px 24px;
-    border-bottom: 1px solid var(--border);
+    padding: 16px 28px;
+    letter-spacing: 0.3px;
   }
+  .pricing-table thead th:last-child { text-align: right; }
+  .pricing-table tbody tr { transition: background 0.2s; }
+  .pricing-table tbody tr:hover { background: var(--bg-alt); }
+  .pricing-table tbody tr:last-child td { border-bottom: none; }
   .pricing-table td {
-    padding: 13px 24px;
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    border-bottom: 1px solid var(--border);
+    padding: 16px 28px;
+    color: var(--text);
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border-light);
   }
-  .pricing-table tr:last-child td { border-bottom: none; }
-  .pricing-table tr:nth-child(odd) td { background: var(--bg-alt); }
+  .pricing-table td:first-child { font-weight: 600; }
+  .pricing-table td:last-child { font-weight: 800; color: var(--primary); text-align: right; }
+  .pricing-table tr.pricing-highlight td { background: rgba(124, 58, 237, 0.05); }
+  .pricing-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 3px 10px;
+    background: var(--gradient);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    vertical-align: middle;
+  }
   .pricing-note {
     text-align: center;
     max-width: 480px;
@@ -614,6 +632,9 @@ const faqs = [
   }
 
   @media (max-width: 640px) {
+    .pricing-table-wrap { max-width: 100%; }
+    .pricing-table th, .pricing-table td { padding: 13px 16px; font-size: 0.88rem; }
+    .pricing-badge { display: block; margin: 4px 0 0; width: fit-content; }
     .stars-hero { padding: 100px 16px 40px; }
     .stars-hero-inner { gap: 28px; text-align: left; }
     .stars-title { font-size: 1.75rem; line-height: 1.2; }

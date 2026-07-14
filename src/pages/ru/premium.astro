@@ -157,6 +157,33 @@ if (agg.reviewCount > 0) {
     </div>
   </section>
 
+  <!-- Цены -->
+  <section class="prem-pricing">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Цены</span>
+        <h2 class="section-title">Цены на Telegram Premium</h2>
+        <p class="section-subtitle">Чем дольше срок подписки, тем выгоднее цена</p>
+      </div>
+      <div class="pricing-table-wrap fade-in">
+        <table class="pricing-table">
+          <thead>
+            <tr><th>Срок</th><th>Цена</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>3 месяца</td><td>172 000 сум</td></tr>
+            <tr><td>6 месяцев</td><td>232 000 сум</td></tr>
+            <tr class="pricing-highlight"><td>12 месяцев <span class="pricing-badge">Выгоднее всего</span></td><td>422 000 сум</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pricing-note fade-in">В цену включены все способы оплаты (Uzcard, Humo, Click) — без скрытых комиссий.</p>
+      <div class="pricing-cta fade-in">
+        <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Купить Premium</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Преимущества Premium -->
   <section class="prem-benefits">
     <div class="container">
@@ -342,6 +369,62 @@ if (agg.reviewCount > 0) {
     box-shadow: 0 16px 48px rgba(124, 58, 237, 0.2);
   }
 
+  /* ===== PRICING ===== */
+  .prem-pricing { padding: 60px 24px; }
+  .pricing-table-wrap {
+    max-width: 520px;
+    margin: 0 auto 24px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+  }
+  .pricing-table { width: 100%; border-collapse: collapse; background: #fff; }
+  .pricing-table thead th {
+    background: var(--gradient);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-align: left;
+    padding: 16px 28px;
+    letter-spacing: 0.3px;
+  }
+  .pricing-table thead th:last-child { text-align: right; }
+  .pricing-table tbody tr { transition: background 0.2s; }
+  .pricing-table tbody tr:hover { background: var(--bg-alt); }
+  .pricing-table tbody tr:last-child td { border-bottom: none; }
+  .pricing-table td {
+    padding: 16px 28px;
+    color: var(--text);
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .pricing-table td:first-child { font-weight: 600; }
+  .pricing-table td:last-child { font-weight: 800; color: var(--primary); text-align: right; }
+  .pricing-table tr.pricing-highlight td { background: rgba(124, 58, 237, 0.05); }
+  .pricing-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 3px 10px;
+    background: var(--gradient);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    vertical-align: middle;
+  }
+  .pricing-note {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto 24px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+  .pricing-cta { text-align: center; }
+
   .prem-benefits { background: var(--bg-alt); }
   .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .benefit-card {
@@ -419,6 +502,9 @@ if (agg.reviewCount > 0) {
     .benefits-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
+    .pricing-table-wrap { max-width: 100%; }
+    .pricing-table th, .pricing-table td { padding: 13px 16px; font-size: 0.88rem; }
+    .pricing-badge { display: block; margin: 4px 0 0; width: fit-content; }
     .prem-hero { padding: 100px 16px 40px; }
     .prem-hero-inner { gap: 28px; text-align: left; }
     .prem-title { font-size: 1.75rem; line-height: 1.2; }
