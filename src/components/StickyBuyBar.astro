@@ -53,10 +53,10 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    background: #fff;
-    border: 1px solid rgba(124, 58, 237, 0.15);
+    background: var(--gradient);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 16px 44px rgba(124, 58, 237, 0.35);
     padding: 14px 18px;
     max-width: calc(100vw - 32px);
     transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease-out;
@@ -88,8 +88,8 @@
   }
   .sj-buybar-text {
     font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--text, #1f2937);
+    font-weight: 700;
+    color: #fff;
     white-space: nowrap;
   }
   .sj-buybar-actions {
@@ -112,12 +112,15 @@
     transform: translateY(-1px);
   }
   .sj-buybar-stars {
-    background: rgba(245, 166, 35, 0.14);
+    background: #fff;
     color: #b45309;
   }
   .sj-buybar-premium {
-    background: rgba(124, 58, 237, 0.1);
+    background: #fff;
     color: #6d28d9;
+  }
+  .sj-buybar-btn:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   }
 
   @media (max-width: 560px) {
