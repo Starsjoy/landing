@@ -27,7 +27,6 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 
 ## Yetkazish va kafolatlar
 - To'lov tasdiqlangach odatda 1-5 daqiqada xizmat yetkaziladi.
-- Agar yetkazish 5 daqiqadan oshsa: 10 Stars cashback.
 - Xizmat ko'rsatilmasa yoki muammo chiqsa: to'langan summa 100% qaytariladi.
 
 ## Referral dasturi
