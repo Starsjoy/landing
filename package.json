@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "images:qollanma": "node scripts/build-qollanma-images.mjs"
+    "images:qollanma": "node scripts/build-qollanma-images.mjs",
+    "og:qollanma": "node scripts/generate-og-qollanma.mjs",
+    "sitemap:images": "node scripts/build-image-sitemap.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
