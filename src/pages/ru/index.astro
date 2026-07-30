@@ -306,7 +306,7 @@ const faqs = [
             </svg>
           </div>
           <h3 class="step-title">Оплатите</h3>
-          <p class="step-desc">Выберите удобный способ: Click, Uzcard или Humo</p>
+          <p class="step-desc">Переведите на показанную карту из любого приложения: Click, Payme, Uzum или банк</p>
         </div>
 
         <div class="step-card fade-in">
@@ -321,6 +321,10 @@ const faqs = [
           <h3 class="step-title">Получите за 5 минут</h3>
           <p class="step-desc">После оплаты услуга будет доставлена в течение 5 минут</p>
         </div>
+      </div>
+
+      <div class="how-guide-link fade-in">
+        <a href="/ru/qollanma">Посмотреть каждый шаг со скриншотом — полная инструкция &rarr;</a>
       </div>
     </div>
   </section>
@@ -875,6 +879,27 @@ const faqs = [
     color: var(--text-muted);
     font-size: 0.88rem;
     line-height: 1.6;
+  }
+
+  .how-guide-link {
+    text-align: center;
+    margin-top: 28px;
+  }
+  .how-guide-link a {
+    display: inline-block;
+    padding: 12px 26px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .how-guide-link a:hover {
+    border-color: rgba(124, 58, 237, 0.35);
+    box-shadow: var(--shadow-sm);
   }
 
   /* ===== GUARANTEES ===== */

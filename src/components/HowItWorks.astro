@@ -58,7 +58,7 @@
           </svg>
         </div>
         <h3 class="step-title">To'lov qiling</h3>
-        <p class="step-desc">Click yoki karta orqali qulay to'lov usulini tanlang</p>
+        <p class="step-desc">Ilova ko'rsatgan kartaga istalgan ilovadan to'lang: Click, Payme, Uzum yoki bank</p>
       </div>
 
       <!-- Step 4: 5 daqiqada oling -->
@@ -74,6 +74,10 @@
         <h3 class="step-title">5 daqiqada oling</h3>
         <p class="step-desc">To'lovdan so'ng 5 daqiqa ichida xizmat yetkaziladi</p>
       </div>
+    </div>
+
+    <div class="how-guide-link fade-in">
+      <a href="/qollanma">Har bir qadamni skrinshot bilan ko'rish — to'liq rasmli qo'llanma &rarr;</a>
     </div>
   </div>
 </section>
@@ -163,6 +167,27 @@
     color: var(--text-muted);
     font-size: 0.88rem;
     line-height: 1.6;
+  }
+
+  .how-guide-link {
+    text-align: center;
+    margin-top: 28px;
+  }
+  .how-guide-link a {
+    display: inline-block;
+    padding: 12px 26px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .how-guide-link a:hover {
+    border-color: rgba(124, 58, 237, 0.35);
+    box-shadow: var(--shadow-sm);
   }
 
   @media (max-width: 1024px) {

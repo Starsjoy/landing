@@ -34,6 +34,20 @@ Tarif: 240 so'm/star (barcha miqdorlar uchun bir xil, chegirmasiz aniq narx).
 ### Telegram Gifts (Premium sovg'a)
 - Narxi tegishli Premium tarifi bilan bir xil (3/6/12 oylik). Qabul qiluvchi hech qanday to'lovsiz foydalana boshlaydi, tabrik xabari bilan yuborish mumkin.
 
+## Xarid qilish tartibi (StarsJoy mini ilovasi, 9 qadam)
+To'liq rasmli qo'llanma: https://starsjoy.uz/qollanma (RU: https://starsjoy.uz/ru/qollanma)
+1. Telegramda @starsjoybot ni ochib «Start» tugmasini bosish.
+2. Xabar maydonidagi «App» tugmasi orqali StarsJoy mini ilovasiga o'tish.
+3. Bosh ekrandan bo'limni tanlash: «Stars olish», «Premium olish» yoki «Gift olish».
+4. Qabul qiluvchining Telegram username'ini kiritish yoki o'ziga olish uchun «O'zim» tugmasini bosish.
+5. Stars miqdorini (50 dan 100 000 gacha) yoki Premium muddatini (3/6/12 oy) tanlash. Promokod bo'lsa, «Tekshirish» orqali qo'llash.
+6. Yakuniy summa ko'rsatilgan xarid tugmasini bosish (masalan «Stars olish - 12 000 so'm»).
+7. Ochilgan «To'lov ma'lumotlari» oynasidan karta raqamini nusxalash. Karta raqami vaqt o'tishi bilan o'zgarishi mumkin, shuning uchun oldin saqlangan raqamga emas, har doim buyurtma oynasida ko'rsatilgan raqamga pul yuborish kerak.
+8. Ko'rsatilgan kartaga aynan ko'rsatilgan summani o'tkazish. O'tkazmani istalgan ilovadan qilish mumkin — Click, Payme, Uzum yoki bankning o'z ilovasi, farqi yo'q; muhimi pul o'sha kartaga va aynan shu summada tushishi. Boshqa summa yuborilsa to'lov tizim tomonidan tanilmaydi. Oynada to'lov taymeri ishlaydi.
+9. Yashil «To'lov qildim» tugmasini bosish. Xizmat odatda 1-5 daqiqada yetkaziladi.
+
+Butun jarayon 2-3 daqiqa oladi. Ro'yxatdan o'tish, parol yoki xorijiy karta talab qilinmaydi — Telegram akkaunt va Uzcard/Humo karta yetarli.
+
 ## To'lov usullari
 Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). Biznes/API mijozlari uchun qo'shimcha ravishda Payme ham mavjud.
 
@@ -50,6 +64,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - [Telegram Stars](https://starsjoy.uz/stars): Stars sotib olish
 - [Telegram Premium](https://starsjoy.uz/premium): Premium obuna narxlari
 - [Telegram Gifts](https://starsjoy.uz/gifts): Premium'ni sovg'a qilish
+- [Xarid qo'llanmasi](https://starsjoy.uz/qollanma): mini ilovada buyurtma berishning 9 qadami, har biri skrinshot bilan
 - [Biznes/API xizmatlari](https://starsjoy.uz/biznes): ommaviy xarid va integratsiya
 - [StarsJoy haqida](https://starsjoy.uz/info): xizmat, kafolat va aloqa ma'lumoti
 - [Mijozlar sharhlari](https://starsjoy.uz/sharhlar)

@@ -15,6 +15,7 @@ const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
       <li><a href="/premium">Premium</a></li>
       <li><a href="/gifts">Gifts</a></li>
       <li><a href="/narxlar">Narxlar</a></li>
+      <li><a href="/qollanma">Qo'llanma</a></li>
       <li><a href="/#guarantees">Kafolatlar</a></li>
       <li><a href="/sharhlar">Fikrlar</a></li>
       <li><a href="/blog">Blog</a></li>
@@ -102,8 +103,9 @@ const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
 
   .nav-links {
     display: flex;
-    gap: 32px;
+    gap: 26px;
     list-style: none;
+    white-space: nowrap;
   }
   .nav-links a {
     color: var(--text-muted);
@@ -187,10 +189,18 @@ const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
   .mobile-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
   .mobile-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
 
+  @media (min-width: 769px) and (max-width: 1120px) {
+    .nav-links { gap: 17px; }
+    .nav-links a { font-size: 0.87rem; }
+    .nav-right { gap: 12px; }
+    .nav-cta { padding: 9px 18px; font-size: 0.85rem; }
+  }
+
   @media (max-width: 768px) {
     .nav-links {
       display: flex;
       flex-direction: column;
+      white-space: normal;
       position: absolute;
       top: 100%;
       left: 0;

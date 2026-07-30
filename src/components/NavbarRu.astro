@@ -15,6 +15,7 @@ const uzPath = currentPath.replace(/^\/ru/, '') || '/';
       <li><a href="/ru/premium">Premium</a></li>
       <li><a href="/ru/gifts">Gifts</a></li>
       <li><a href="/ru/narxlar">Цены</a></li>
+      <li><a href="/ru/qollanma">Инструкция</a></li>
       <li><a href="/ru#guarantees">Гарантии</a></li>
       <li><a href="/ru/sharhlar">Отзывы</a></li>
       <li><a href="/ru/blog">Блог</a></li>
@@ -102,8 +103,9 @@ const uzPath = currentPath.replace(/^\/ru/, '') || '/';
 
   .nav-links {
     display: flex;
-    gap: 32px;
+    gap: 26px;
     list-style: none;
+    white-space: nowrap;
   }
   .nav-links a {
     color: var(--text-muted);
@@ -187,10 +189,18 @@ const uzPath = currentPath.replace(/^\/ru/, '') || '/';
   .mobile-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
   .mobile-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
 
+  @media (min-width: 769px) and (max-width: 1120px) {
+    .nav-links { gap: 15px; }
+    .nav-links a { font-size: 0.86rem; }
+    .nav-right { gap: 12px; }
+    .nav-cta { padding: 9px 16px; font-size: 0.84rem; }
+  }
+
   @media (max-width: 768px) {
     .nav-links {
       display: flex;
       flex-direction: column;
+      white-space: normal;
       position: absolute;
       top: 100%;
       left: 0;

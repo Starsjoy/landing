@@ -1,0 +1,592 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+// Rasmlar `npm run images:qollanma` orqali WebP'ga o'girilgan (scripts/build-qollanma-images.mjs).
+// Statik yo'l ishlatiladi — schema'dagi ImageObject URL'lari ham shular.
+const img1 = '/qollanma/starsjoy-qadam-1-start-tugmasi.webp';
+const img2 = '/qollanma/starsjoy-qadam-2-mini-app-ochish.webp';
+const img3 = '/qollanma/starsjoy-qadam-3-bolim-tanlash.webp';
+const img4 = '/qollanma/starsjoy-qadam-4-username-kiritish.webp';
+const img5 = '/qollanma/starsjoy-qadam-5-miqdor-tanlash.webp';
+const img6 = '/qollanma/starsjoy-qadam-6-olish-tugmasi.webp';
+const img7 = '/qollanma/starsjoy-qadam-7-karta-nusxalash.webp';
+const img8 = '/qollanma/starsjoy-qadam-8-summa-otkazish.webp';
+const img9 = '/qollanma/starsjoy-qadam-9-tolov-qildim.webp';
+
+const title = "Telegram Stars va Premium Qanday Sotib Olinadi — 9 Qadam | StarsJoy";
+const description = "StarsJoy mini ilovasi orqali Telegram Stars, Premium va Gifts sotib olishning to'liq rasmli qo'llanmasi: har bir qadam skrinshot bilan, Uzcard/Humo karta orqali so'mda to'lov.";
+const modifiedDate = "30.07.2026";
+
+const steps = [
+  {
+    id: "start",
+    img: img1,
+    title: "Botni oching va «Start» tugmasini bosing",
+    text: "Telegramda @starsjoybot botini oching. Bot profilida «What can this bot do?» tavsifi ko'rinadi — StarsJoy o'zbek, rus va ingliz tillarida ishlaydi. Ekranning eng pastidagi ko'k «Start» tugmasini bosing.",
+    alt: "StarsJoy Telegram botining boshlang'ich ekrani, pastda ko'k «Start» tugmasi belgilangan",
+    caption: "1-qadam: @starsjoybot ni ochib «Start» tugmasini bosasiz.",
+  },
+  {
+    id: "app",
+    img: img2,
+    title: "«App» tugmasi orqali mini ilovaga o'ting",
+    text: "«Start» bosilgach bot ommaviy oferta shartlarini yuboradi va starsjoy.uz/oferta havolasini ko'rsatadi. «START» tugmasini bosish bilan siz oferta shartlarini qabul qilgan hisoblanasiz. Endi xabar maydonining chap tomonidagi ko'k «App» tugmasini bosing — StarsJoy mini ilovasi ochiladi.",
+    alt: "Telegram botdagi oferta xabari va pastki chapda ko'k «App» tugmasi belgilangan",
+    caption: "2-qadam: «App» tugmasi StarsJoy mini ilovasini ochadi.",
+  },
+  {
+    id: "bolim",
+    img: img3,
+    title: "Kerakli bo'limni tanlang: Stars, Gift yoki Premium",
+    text: "Mini ilova bosh ekranida uchta karta bor: «Stars olish», «Gift olish» va «Premium olish». Nima sotib olmoqchi bo'lsangiz, o'sha kartani bosing. Pastdagi «Taklif qiling, bonus oling» bo'limi referral dasturi uchun — do'stingiz xarid qilsa, xarid summasidan sizga bonus bo'lib qaytadi.",
+    alt: "StarsJoy mini ilovasining bosh ekrani: Stars olish, Gift olish va Premium olish bo'limlari",
+    caption: "3-qadam: uchta bo'limdan keraklisini tanlaysiz.",
+  },
+  {
+    id: "username",
+    img: img4,
+    title: "Kimga olayotganingizni ko'rsating",
+    text: "«Foydalanuvchi nomi @username» maydoniga qabul qiluvchining Telegram username'ini yozing. O'zingizga olayotgan bo'lsangiz — o'ngdagi ko'k «O'zim» tugmasini bosing, username avtomatik to'ldiriladi. Username to'g'ri kiritilganda ilova o'sha akkauntning ismi va rasmini ko'rsatadi — davom etishdan oldin shuni tekshirib oling.",
+    alt: "Telegram Stars sahifasida username kiritish maydoni va «O'zim» tugmasi belgilangan",
+    caption: "4-qadam: username kiritasiz yoki «O'zim» ni bosasiz.",
+  },
+  {
+    id: "miqdor",
+    img: img5,
+    title: "Miqdor yoki tayyor paketni tanlang",
+    text: "«Stars miqdorini kiriting» maydoniga 50 dan 100 000 gacha istalgan sonni yozing yoki tayyor paketlardan birini tanlang: 50 Stars — 12 000 so'm, 100 Stars — 24 000 so'm, 200 Stars — 48 000 so'm. Qolgan variantlarni ko'rish uchun «Ko'proq variantlarni ko'rsatish» ni bosing. Tarif barcha miqdorlar uchun bir xil — 240 so'm/star. Agar siz Premium olayotgan bo'lsangiz, bu ekranda Stars miqdori o'rniga obuna muddatlari chiqadi — 3 oylik, 6 oylik va 12 oylik — va shulardan istalganini tanlaysiz. Promokodingiz bo'lsa, eng pastdagi maydonga kiritib «Tekshirish» ni bosing.",
+    alt: "Stars paketlari ro'yxati: 50 Stars 12 000 so'm, 100 Stars 24 000 so'm, 200 Stars 48 000 so'm",
+    caption: "5-qadam: Stars uchun miqdor, Premium uchun 3, 6 yoki 12 oylik muddat tanlanadi.",
+  },
+  {
+    id: "xarid",
+    img: img6,
+    title: "Xarid tugmasini bosing",
+    text: "Miqdor tanlangach pastdagi ko'k tugmada yakuniy summa paydo bo'ladi — masalan «Stars olish - 12 000 so'm». Tugmadagi raqam siz to'laydigan yakuniy narx: hech qanday yashirin komissiya yoki qo'shimcha to'lov qo'shilmaydi. Tugmani bosing.",
+    alt: "«Stars olish - 12 000 so'm» yozuvli ko'k tugma belgilangan",
+    caption: "6-qadam: tugmadagi summa — yakuniy narx.",
+  },
+  {
+    id: "karta",
+    img: img7,
+    title: "Karta raqamini nusxalang",
+    text: "«To'lov ma'lumotlari» oynasi ochiladi: unda karta raqami, karta egasining nomi va to'lov summasi ko'rsatiladi. Karta raqami yonidagi nusxalash belgisini bosing — raqam buferga ko'chiriladi. Karta raqami vaqt o'tishi bilan o'zgarishi mumkin, shuning uchun eslab qolgan yoki oldin saqlab qo'ygan raqamga emas, har doim aynan shu oynada ko'rsatilgan raqamga pul yuboring.",
+    alt: "StarsJoy to'lov ma'lumotlari oynasi: karta raqami va karta egasi maydonlari belgilangan",
+    caption: "7-qadam: karta raqamini nusxalash belgisi orqali ko'chirasiz.",
+  },
+  {
+    id: "otkazma",
+    img: img8,
+    title: "Aynan ko'rsatilgan summani o'tkazing",
+    text: "Nusxalangan kartaga aynan ko'rsatilgan summani o'tkazing. O'tkazmani istalgan ilovadan qilishingiz mumkin — Click, Payme, Uzum yoki bankingizning o'z ilovasi, farqi yo'q. Muhimi shu: pul o'sha kartaga va aynan ko'rsatilgan summada tushsin, chunki boshqa summa yuborilsa to'lov tizim tomonidan tanilmaydi. Oynadagi taymer to'lov uchun berilgan vaqtni ko'rsatadi — vaqt tugab qolsa, pul yubormang va buyurtmani qaytadan yarating.",
+    alt: "To'lov oynasidagi qizil ogohlantirish: aynan ko'rsatilgan summani yuborish kerakligi va taymer",
+    caption: "8-qadam: istalgan ilovadan o'tkazasiz, summa tiyinigacha bir xil bo'lishi shart.",
+  },
+  {
+    id: "tasdiq",
+    img: img9,
+    title: "«To'lov qildim» tugmasini bosing",
+    text: "Pul o'tkazilgach yashil «✅ To'lov qildim» tugmasini bosing. Shundan keyin to'lov tekshiriladi va odatda 1-5 daqiqa ichida Stars yoki Premium siz ko'rsatgan akkauntga tushadi. Ilovani yopib qo'ysangiz ham buyurtma bekor bo'lmaydi — natija bot orqali xabar qilinadi.",
+    alt: "Yashil «To'lov qildim» tugmasi belgilangan StarsJoy to'lov oynasi",
+    caption: "9-qadam: «To'lov qildim» — buyurtma tekshiruvga ketadi.",
+  },
+];
+
+const IMG_W = 540;
+const IMG_H = 960;
+
+const faqs = [
+  {
+    q: "StarsJoy mini ilovasidan foydalanish uchun ro'yxatdan o'tish kerakmi?",
+    a: "Yo'q. Telegram akkauntingiz yetarli — alohida ro'yxatdan o'tish, parol yoki SMS tasdiqlash talab qilinmaydi. @starsjoybot ni ochib «Start» bosasiz va darhol xarid qilishingiz mumkin."
+  },
+  {
+    q: "To'lov uchun Visa yoki xorijiy karta kerakmi?",
+    a: "Yo'q. To'lov to'liq O'zbekiston so'mida, mahalliy Uzcard yoki Humo kartasi orqali amalga oshiriladi. Valyuta konvertatsiyasi yoki xorijiy karta kerak emas."
+  },
+  {
+    q: "Qaysi ilova orqali to'lasam bo'ladi — Click, Payme yoki Uzum?",
+    a: "Istalgan biri orqali. StarsJoy mini ilovasi sizga karta raqamini beradi, o'tkazmani esa o'zingizga qulay ilovadan qilasiz: Click, Payme, Uzum yoki bankingizning o'z ilovasi — hech qanday farqi yo'q. Faqat ikkita shart bor: pul aynan o'sha kartaga tushsin va summa ilovada ko'rsatilganidek bo'lsin."
+  },
+  {
+    q: "Stars yoki Premium'ni boshqa odamga olsam bo'ladimi?",
+    a: "Ha. 4-qadamda «Foydalanuvchi nomi @username» maydoniga qabul qiluvchining username'ini kiritsangiz, xizmat o'sha akkauntga yetkaziladi. Qabul qiluvchidan hech qanday to'lov yoki tasdiq talab qilinmaydi."
+  },
+  {
+    q: "Noto'g'ri summa yuborsam nima bo'ladi?",
+    a: "Tizim to'lovni summa bo'yicha taniydi, shuning uchun boshqa summa yuborilsa buyurtma avtomatik yakunlanmaydi. Bunday holatda to'lov chekini olib @starsjoy_bot qo'llab-quvvatlash xizmatiga yozing — buyurtma qo'lda yakunlanadi yoki pul to'liq qaytariladi."
+  },
+  {
+    q: "To'lov taymeri tugab qolsa nima qilaman?",
+    a: "Taymer tugagach buyurtma bekor bo'ladi va o'sha summa bo'yicha to'lov kutilmaydi. Pul yubormang — mini ilovaga qaytib buyurtmani qaytadan yarating: ilova yangi taymer va to'lov summasini beradi, karta raqamini esa o'sha yangi oynadan nusxalang."
+  },
+  {
+    q: "Xizmat necha daqiqada yetkaziladi?",
+    a: "«To'lov qildim» bosilgach to'lov tekshiriladi va odatda 1-5 daqiqa ichida Stars yoki Premium akkauntga tushadi. Yuklama yuqori bo'lgan vaqtlarda biroz cho'zilishi mumkin, buyurtma esa yo'qolmaydi."
+  },
+  {
+    q: "Premium va Gifts uchun ham xuddi shu qadamlarmi?",
+    a: "Ha, oqim bir xil. Faqat 3-qadamda «Premium olish» yoki «Gift olish» bo'limini tanlaysiz, 5-qadamda esa Stars miqdori o'rniga obuna muddatini (3, 6 yoki 12 oy) tanlaysiz. Qolgan qadamlar — username, to'lov va tasdiqlash — aynan bir xil."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/qollanma"
+  keywords="Telegram Stars qanday sotib olinadi, Telegram Premium qanday olinadi, StarsJoy qo'llanma, StarsJoy qanday ishlaydi, Telegram Stars olish yo'riqnoma, StarsJoy mini app qo'llanma"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/qollanma" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/qollanma" }
+  ]}
+>
+  <Navbar />
+
+  <!-- SEO Schema: HowTo -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "StarsJoy mini ilovasi orqali Telegram Stars va Premium sotib olish",
+    "description": description,
+    "totalTime": "PT3M",
+    "inLanguage": "uz",
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": "12000" },
+    "supply": [
+      { "@type": "HowToSupply", "name": "Telegram akkaunt" },
+      { "@type": "HowToSupply", "name": "Uzcard yoki Humo karta" }
+    ],
+    "tool": [
+      { "@type": "HowToTool", "name": "StarsJoy Telegram mini ilovasi (@starsjoybot)" }
+    ],
+    "step": steps.map((s, i) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "name": s.title,
+      "text": s.text,
+      "url": `https://starsjoy.uz/qollanma#qadam-${i + 1}`,
+      "image": {
+        "@type": "ImageObject",
+        "url": `https://starsjoy.uz${s.img}`,
+        "width": IMG_W,
+        "height": IMG_H,
+        "caption": s.alt
+      }
+    }))
+  })} />
+
+  <!-- SEO Schema: FAQ -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+    }))
+  })} />
+
+  <!-- SEO Schema: Breadcrumb -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Qo'llanma", "item": "https://starsjoy.uz/qollanma" }
+    ]
+  })} />
+
+  <!-- GEO: speakable -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://starsjoy.uz/qollanma",
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".guide-faq"]
+    }
+  })} />
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Bosh sahifa</a>
+        <span>/</span>
+        <span>Qo'llanma</span>
+      </nav>
+      <div class="guide-hero-inner fade-in">
+        <h1 class="guide-title">Telegram Stars va Premium qanday sotib olinadi — rasmli qo'llanma</h1>
+        <p class="guide-desc">
+          StarsJoy mini ilovasida buyurtma berishning to'qqizta qadami — har biri haqiqiy skrinshot bilan.
+          Boshidan oxirigacha 2-3 daqiqa vaqt oladi.
+        </p>
+        <div class="guide-meta">
+          <span>Yangilangan: {modifiedDate}</span>
+          <span>&middot;</span>
+          <span>9 qadam</span>
+          <span>&middot;</span>
+          <span>~3 daqiqa</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TL;DR + talablar -->
+  <section class="guide-intro">
+    <div class="container guide-narrow">
+      <div class="tldr-box fade-in" aria-label="Qisqacha javob">
+        <strong>Qisqacha:</strong> Telegramda <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ni oching va «Start» bosing →
+        «App» tugmasi orqali mini ilovaga o'ting → «Stars olish», «Premium olish» yoki «Gift olish» bo'limini tanlang →
+        username kiriting yoki «O'zim» ni bosing → miqdor/muddatni tanlang → xarid tugmasini bosing →
+        ilova ko'rsatgan kartaga aynan ko'rsatilgan summani o'tkazing → «To'lov qildim» ni bosing.
+        Xizmat 1-5 daqiqada yetkaziladi. To'lovni istalgan ilovadan — Click, Payme, Uzum yoki bankingiz ilovasidan —
+        mahalliy Uzcard yoki Humo karta bilan, to'liq so'mda amalga oshirasiz.
+      </div>
+
+      <div class="req-grid fade-in">
+        <div class="req-card">
+          <span class="req-label">Nima kerak</span>
+          <p>Telegram akkaunt va Uzcard yoki Humo karta. O'tkazma uchun istalgan ilova bo'ladi — Click, Payme, Uzum yoki bank ilovasi. Ro'yxatdan o'tish, parol yoki xorijiy karta talab qilinmaydi.</p>
+        </div>
+        <div class="req-card">
+          <span class="req-label">Qancha vaqt</span>
+          <p>Buyurtma berish 2-3 daqiqa, xizmat yetkazish to'lovdan keyin odatda 1-5 daqiqa.</p>
+        </div>
+        <div class="req-card">
+          <span class="req-label">Qancha turadi</span>
+          <p>Stars — 240 so'm/star (50 Stars = 12 000 so'm). Premium — 3 oy 172 000, 6 oy 232 000, 12 oy 422 000 so'm. <a href="/narxlar">To'liq narxlar</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qadamlar -->
+  <section class="guide-steps">
+    <div class="container guide-narrow">
+      <div class="section-header fade-in">
+        <span class="section-label">Bosqichma-bosqich</span>
+        <h2 class="section-title">To'qqiz qadamda xarid qilish</h2>
+        <p class="section-subtitle">Har bir qadam StarsJoy mini ilovasidan olingan haqiqiy skrinshot bilan ko'rsatilgan</p>
+      </div>
+
+      <ol class="steps-list">
+        {steps.map((s, i) => (
+          <li class="step-row fade-in" id={`qadam-${i + 1}`}>
+            <div class="step-body">
+              <div class="step-badge">{i + 1}-qadam</div>
+              <h3 class="step-heading">{s.title}</h3>
+              <p class="step-text">{s.text}</p>
+            </div>
+            <figure class="step-figure">
+              <img
+                src={s.img}
+                width={IMG_W}
+                height={IMG_H}
+                alt={s.alt}
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+                class="step-shot"
+              />
+              <figcaption>{s.caption}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ol>
+
+      <div class="note-box fade-in">
+        <strong>Eslatma:</strong> skrinshotlardagi karta raqami va narxlar namuna sifatida ko'rsatilgan.
+        Karta raqami vaqt o'tishi bilan o'zgarishi mumkin, shuning uchun rasmdagi raqamga emas, har doim
+        mini ilovada o'z buyurtmangiz oynasida ko'rsatilgan raqamga pul yuboring.
+        Dolzarb narxlar <a href="/narxlar">narxlar sahifasida</a> va botda ko'rsatiladi.
+      </div>
+    </div>
+  </section>
+
+  <!-- Mahsulot bo'yicha farqlar -->
+  <section class="guide-variants">
+    <div class="container guide-narrow">
+      <div class="section-header fade-in">
+        <span class="section-label">Farqlar</span>
+        <h2 class="section-title">Stars, Premium va Gifts uchun nima o'zgaradi</h2>
+        <p class="section-subtitle">Oqim bir xil — faqat 3- va 5-qadam farq qiladi</p>
+      </div>
+
+      <div class="variant-list">
+        <div class="variant-card fade-in" id="stars">
+          <h3>Telegram Stars</h3>
+          <p>
+            3-qadamda <strong>«Stars olish»</strong> ni tanlaysiz. 5-qadamda 50 dan 100 000 gacha istalgan miqdorni
+            kiritasiz yoki tayyor paketni tanlaysiz — tarif barcha miqdorlar uchun 240 so'm/star.
+            Stars ko'rsatilgan akkauntning Telegram balansiga tushadi va botlar, kanallar hamda mini ilovalarda ishlatiladi.
+          </p>
+          <a href="/stars" class="variant-link">Telegram Stars sahifasi &rarr;</a>
+        </div>
+
+        <div class="variant-card fade-in" id="premium">
+          <h3>Telegram Premium</h3>
+          <p>
+            3-qadamda <strong>«Premium olish»</strong> ni tanlaysiz. 5-qadamda miqdor o'rniga obuna muddatini
+            tanlaysiz: 3 oy — 172 000 so'm, 6 oy — 232 000 so'm, 12 oy — 422 000 so'm.
+            Premium ko'rsatilgan akkauntga ulanadi; agar akkauntda amaldagi obuna bo'lsa, yangi muddat uning ustiga qo'shiladi.
+          </p>
+          <a href="/premium" class="variant-link">Telegram Premium sahifasi &rarr;</a>
+        </div>
+
+        <div class="variant-card fade-in" id="gifts">
+          <h3>Telegram Gifts</h3>
+          <p>
+            3-qadamda <strong>«Gift olish»</strong> ni tanlaysiz. 4-qadamda «O'zim» emas, sovg'a qilmoqchi bo'lgan
+            odamning username'ini kiritasiz — bu yerdagi eng muhim farq shu. Narx tegishli Premium tarifi bilan bir xil,
+            qabul qiluvchi esa hech qanday to'lovsiz foydalana boshlaydi.
+          </p>
+          <a href="/gifts" class="variant-link">Telegram Gifts sahifasi &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Xato qilmaslik uchun -->
+  <section class="guide-rules">
+    <div class="container guide-narrow">
+      <div class="section-header fade-in">
+        <span class="section-label">Muhim</span>
+        <h2 class="section-title">Xato qilmaslik uchun to'rt qoida</h2>
+      </div>
+      <ul class="rules-list fade-in">
+        <li><strong>Summani o'zgartirmang.</strong> Tizim to'lovni aynan summa bo'yicha taniydi. 12 000 o'rniga 12 100 yuborilsa, buyurtma avtomatik yakunlanmaydi.</li>
+        <li><strong>Karta raqamini ilovadan oling.</strong> Karta raqami vaqt o'tishi bilan o'zgarishi mumkin, shuning uchun eslab qolgan yoki oldin saqlab qo'ygan raqamdan foydalanmang — har safar buyurtma oynasidagi raqamni nusxalang.</li>
+        <li><strong>Username'ni tekshiring.</strong> Ilova username kiritilgach akkaunt egasining ismi va rasmini ko'rsatadi. Boshqa odamga yuborilgan xizmatni qaytarib bo'lmaydi.</li>
+        <li><strong>Taymerga qarang.</strong> Vaqt tugagach buyurtma bekor bo'ladi. Bu holatda pul yubormang, mini ilovada buyurtmani qaytadan yarating.</li>
+      </ul>
+      <p class="rules-support fade-in">
+        Biror qadamda muammo chiqsa, to'lov chekini olib <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a>
+        qo'llab-quvvatlash xizmatiga yozing. Xizmat ko'rsatilmasa, to'langan summa 100% qaytariladi.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="guide-faq">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Xarid jarayoni bo'yicha savollar</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <div class="faq-item fade-in">
+            <button class="faq-question">
+              <span>{faq.q}</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.a}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="guide-final-cta">
+    <div class="container">
+      <div class="guide-cta-box fade-in">
+        <h2>Qadamlar tushunarlimi? Endi sinab ko'ring</h2>
+        <p>Botni oching va birinchi buyurtmangizni 3 daqiqada bering</p>
+        <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">&#9889; Botga o'tish</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement!;
+      const answer = item.querySelector('.faq-answer') as HTMLElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+        (i.querySelector('.faq-answer') as HTMLElement).style.maxHeight = '';
+      });
+      if (!isActive) {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+<style>
+  .guide-hero {
+    padding: 120px 24px 56px;
+    background: linear-gradient(180deg, #F5F3FF 0%, #FFFFFF 100%);
+  }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .guide-hero-inner { max-width: 780px; }
+  .guide-title {
+    font-size: 2.5rem; font-weight: 900; line-height: 1.15;
+    margin-bottom: 20px; color: var(--text);
+  }
+  .guide-desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.7; }
+  .guide-meta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-top: 20px; font-size: 0.85rem; color: var(--text-light);
+  }
+
+  .guide-narrow { max-width: 820px; }
+
+  .guide-intro { padding: 8px 24px 48px; }
+  .tldr-box {
+    background: #F5F3FF;
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-sm);
+    padding: 22px 24px;
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); font-weight: 600; }
+
+  .req-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px;
+  }
+  .req-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 20px;
+  }
+  .req-label {
+    display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--primary); margin-bottom: 8px;
+  }
+  .req-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+  .req-card a { color: var(--primary); font-weight: 600; text-decoration: none; }
+  .req-card a:hover { text-decoration: underline; }
+
+  .guide-steps { padding: 56px 24px; background: var(--bg-alt); }
+
+  .steps-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+  .step-row {
+    display: grid; grid-template-columns: 1fr 205px; gap: 36px; align-items: center;
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px 32px;
+    scroll-margin-top: 90px;
+  }
+  .step-badge {
+    display: inline-block; padding: 5px 12px; border-radius: 50px;
+    background: rgba(124, 58, 237, 0.08); color: var(--primary);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.4px; margin-bottom: 12px;
+  }
+  .step-heading { font-size: 1.22rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .step-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.75; }
+
+  .step-figure { margin: 0; }
+  .step-shot {
+    width: 100%; height: auto; border-radius: 14px;
+    border: 1px solid var(--border); background: #000;
+  }
+  .step-figure figcaption {
+    margin-top: 10px; font-size: 0.78rem; color: var(--text-light);
+    line-height: 1.5; text-align: center;
+  }
+
+  .note-box {
+    margin-top: 24px; padding: 18px 22px;
+    background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius-sm);
+    font-size: 0.9rem; line-height: 1.7; color: #78350F;
+  }
+  .note-box a { color: #92400E; font-weight: 600; }
+
+  .guide-variants { padding: 56px 24px; }
+  .variant-list { display: flex; flex-direction: column; gap: 16px; }
+  .variant-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 26px 28px; scroll-margin-top: 90px;
+  }
+  .variant-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+  .variant-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.75; }
+  .variant-link {
+    display: inline-block; margin-top: 12px; color: var(--primary);
+    font-weight: 600; font-size: 0.9rem; text-decoration: none;
+  }
+  .variant-link:hover { text-decoration: underline; }
+
+  .guide-rules { padding: 56px 24px; background: var(--bg-alt); }
+  .rules-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .rules-list li {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 18px 22px; font-size: 0.95rem; line-height: 1.7; color: var(--text-muted);
+  }
+  .rules-list strong { color: var(--text); }
+  .rules-support {
+    margin-top: 20px; font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;
+  }
+  .rules-support a { color: var(--primary); font-weight: 600; text-decoration: none; }
+  .rules-support a:hover { text-decoration: underline; }
+
+  .guide-faq { padding: 56px 24px; }
+  .faq-list {
+    max-width: 760px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .faq-item {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    overflow: hidden; box-shadow: var(--shadow-sm); transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .faq-item.active { border-color: rgba(124, 58, 237, 0.3); box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08); }
+  .faq-question {
+    width: 100%; padding: 20px 24px; background: none; border: none; color: var(--text);
+    font-size: 1rem; font-weight: 600; text-align: left; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: inherit;
+  }
+  .faq-question:hover { color: var(--primary); }
+  .faq-toggle {
+    width: 28px; height: 28px; min-width: 28px; border-radius: 8px;
+    background: rgba(124, 58, 237, 0.06); display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--primary); transition: transform 0.3s;
+  }
+  .faq-item.active .faq-toggle { transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-answer-inner { padding: 0 24px 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+  .guide-final-cta { padding: 20px 24px 72px; }
+  .guide-cta-box {
+    background: var(--gradient);
+    border-radius: 24px; padding: 56px 40px; text-align: center; color: #fff;
+  }
+  .guide-cta-box h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: 12px; }
+  .guide-cta-box p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 28px; }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px;
+    background: #fff; color: #5B21B6; border-radius: 50px; font-size: 1.05rem;
+    font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); }
+
+  @media (max-width: 860px) {
+    .req-grid { grid-template-columns: 1fr; }
+    .step-row { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+    .step-figure { max-width: 240px; margin: 0 auto; }
+  }
+  @media (max-width: 640px) {
+    .guide-hero { padding: 100px 24px 40px; }
+    .guide-title { font-size: 1.85rem; }
+    .guide-desc { font-size: 1rem; }
+    .guide-cta-box { padding: 40px 24px; }
+    .guide-cta-box h2 { font-size: 1.5rem; }
+  }
+</style>
