@@ -32,8 +32,40 @@ const faqs = [
   {
     q: "Безопасно ли покупать Premium через StarsJoy?",
     a: "Абсолютно безопасно. StarsJoy — проверенный сервис с тысячами довольных клиентов. Мы гарантируем 100% активацию подписки и предоставляем поддержку 24/7."
+  },
+  {
+    q: "Нужна ли зарубежная карта для покупки Telegram Premium?",
+    a: "Нет. Visa или Mastercard не требуются. Оплата проходит полностью в сумах картой Uzcard или Humo — без конвертации валюты. Регистрация и пароль тоже не нужны: достаточно аккаунта Telegram и местной карты."
+  },
+  {
+    q: "Можно ли получить Telegram Premium бесплатно?",
+    a: "Telegram Premium — платная подписка, бесплатного способа не существует. Остерегайтесь сайтов, обещающих обратное. Честный способ сэкономить в StarsJoy: по вашей реферальной ссылке вам возвращается 5% от суммы покупки. Кроме того, чем длиннее срок подписки, тем ниже цена за месяц."
+  },
+  {
+    q: "Есть ли подписка на 1 месяц?",
+    a: "StarsJoy предлагает тарифы на 3, 6 и 12 месяцев — тарифа на 1 месяц нет. Минимальный срок — 3 месяца (172 000 сум), это примерно 57 300 сум в месяц."
+  },
+  {
+    q: "Что делать, если Premium не пришёл после оплаты?",
+    a: "Если услуга не оказана или возникла проблема, оплаченная сумма возвращается в размере 100%. По любым вопросам можно обратиться в поддержку."
+  },
+  {
+    q: "StarsJoy — официальный партнёр Telegram?",
+    a: "Нет. StarsJoy — независимый реселлер. Согласно условиям оферты (пункт 2.3), услуга оказывается через официальный API Telegram и инфраструктуру Fragment. Подписка привязывается к вашему настоящему аккаунту официальным путём."
   }
 ];
+
+// Цена за месяц — рассчитывается из опубликованных тарифов (округлённо)
+const plans = [
+  { months: 3,  price: 172000, best: false },
+  { months: 6,  price: 232000, best: false },
+  { months: 12, price: 422000, best: true  },
+];
+const fmt = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+const perMonth = (p: { months: number; price: number }) =>
+  fmt(Math.round(p.price / p.months / 100) * 100);
+// Разница в цене за месяц между тарифами 3 и 12 месяцев
+const monthlySaving = fmt(Math.round((172000 / 3 - 422000 / 12) / 1000) * 1000);
 
 // Отзывы клиентов (одобренные, общий пул с UZ) + рейтинг
 const reviews = await getApprovedReviews('premium');
@@ -168,18 +200,66 @@ if (agg.reviewCount > 0) {
       <div class="pricing-table-wrap fade-in">
         <table class="pricing-table">
           <thead>
-            <tr><th>Срок</th><th>Цена</th></tr>
+            <tr><th>Срок</th><th>В месяц</th><th>Всего</th></tr>
           </thead>
           <tbody>
-            <tr><td>3 месяца</td><td>172 000 сум</td></tr>
-            <tr><td>6 месяцев</td><td>232 000 сум</td></tr>
-            <tr class="pricing-highlight"><td>12 месяцев <span class="pricing-badge">Выгоднее всего</span></td><td>422 000 сум</td></tr>
+            {plans.map((p) => (
+              <tr class={p.best ? 'pricing-highlight' : undefined}>
+                <td>
+                  {p.months} мес.
+                  {p.best && <span class="pricing-badge">Выгоднее всего</span>}
+                </td>
+                <td class="pricing-permonth">~{perMonth(p)} сум</td>
+                <td>{fmt(p.price)} сум</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-      <p class="pricing-note fade-in">В цену включены все способы оплаты (Uzcard, Humo, Click) — без скрытых комиссий.</p>
+      <p class="pricing-note fade-in">
+        В цену включены все способы оплаты (Uzcard, Humo, Click) — без скрытых комиссий.
+        На тарифе 12 месяцев один месяц обходится примерно на {monthlySaving} сум дешевле, чем на тарифе 3 месяца.
+        Все цены сервиса собраны на <a href="/ru/narxlar">странице цен</a>.
+      </p>
       <div class="pricing-cta fade-in">
         <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Купить Premium</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Способы оплаты -->
+  <section class="prem-pay">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Оплата</span>
+        <h2 class="section-title">Uzcard, Humo и Click — в сумах</h2>
+        <p class="section-subtitle">Зарубежная карта и конвертация валюты не нужны</p>
+      </div>
+      <div class="pay-grid">
+        <div class="pay-card fade-in">
+          <h3>Местные карты</h3>
+          <p>
+            Карты Uzcard и Humo поддерживаются полностью. Официальный способ
+            (App Store / Google Play) требует международную карту — Uzcard и Humo
+            там не принимаются, а собственный <strong>@PremiumBot</strong> Telegram
+            из Узбекистана чаще всего не работает. StarsJoy закрывает именно этот пробел.
+          </p>
+        </div>
+        <div class="pay-card fade-in">
+          <h3>Из любого приложения</h3>
+          <p>
+            Перевод можно сделать из Click, Payme, Uzum или приложения вашего банка —
+            разницы нет. Важно одно: деньги должны прийти на карту, указанную в окне
+            заказа, и <strong>ровно на указанную сумму</strong>.
+          </p>
+        </div>
+        <div class="pay-card fade-in">
+          <h3>Без регистрации</h3>
+          <p>
+            Пароль, создание аккаунта или документы не требуются. Достаточно вашего
+            аккаунта Telegram и местной карты. Весь процесс занимает обычно 2-3 минуты.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -271,6 +351,46 @@ if (agg.reviewCount > 0) {
     </div>
   </section>
 
+  <!-- Гарантии и доверие -->
+  <section class="prem-trust">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Гарантии</span>
+        <h2 class="section-title">Почему через StarsJoy?</h2>
+        <p class="section-subtitle">Что мы делаем для безопасности ваших денег и аккаунта</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-item fade-in">
+          <span class="trust-num">8 000+</span>
+          <h3>Выполненных заказов</h3>
+          <p>Сервис работает больше года, число заказов показано открыто.</p>
+        </div>
+        <div class="trust-item fade-in">
+          <span class="trust-num">1-5 мин</span>
+          <h3>Срок доставки</h3>
+          <p>После подтверждения оплаты подписка обычно приходит за 1-5 минут.</p>
+        </div>
+        <div class="trust-item fade-in">
+          <span class="trust-num">100%</span>
+          <h3>Возврат средств</h3>
+          <p>Если услуга не оказана или возникла проблема, сумма возвращается полностью.</p>
+        </div>
+        <div class="trust-item fade-in">
+          <span class="trust-num">5%</span>
+          <h3>Реферальный бонус</h3>
+          <p>Если по вашей ссылке кто-то купит, 5% от суммы вернётся вам бонусом.</p>
+        </div>
+      </div>
+      <p class="trust-note fade-in">
+        Отзывы проходят модерацию и публикуются с датой — прочитать их полностью можно
+        на <a href="/ru/sharhlar">странице отзывов</a>. StarsJoy не является официальным
+        партнёром Telegram: согласно пункту 2.3 <a href="/ru/oferta">оферты</a>, сервис
+        работает как независимый реселлер через официальный API Telegram и инфраструктуру
+        Fragment — подписка привязывается к вашему настоящему аккаунту официальным путём.
+      </p>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="prem-faq">
     <div class="container">
@@ -297,6 +417,26 @@ if (agg.reviewCount > 0) {
 
   <!-- Отзывы (компонент) -->
   <Reviews lang="ru" />
+
+  <!-- Связанные материалы -->
+  <section class="prem-related">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Подробнее</span>
+        <h2 class="section-title">Дополнительные руководства о Premium</h2>
+      </div>
+      <ul class="related-list fade-in">
+        <li><a href="/ru/blog/telegram-premium-funksiyalari">Что даёт Telegram Premium — все функции</a></li>
+        <li><a href="/ru/blog/telegram-premium-paketlar-taqqoslash">Сравнение тарифов 3, 6 и 12 месяцев</a></li>
+        <li><a href="/ru/blog/telegram-premium-uzcard">Покупка Premium картой Uzcard</a></li>
+        <li><a href="/ru/blog/telegram-premium-vizasiz">Как получить Premium без карты Visa</a></li>
+        <li><a href="/ru/blog/telegram-premium-sovga-qilish">Как подарить Premium</a></li>
+        <li><a href="/ru/blog/telegram-premium-muddati-tugadi">Что делать, если Premium закончился</a></li>
+        <li><a href="/ru/blog/telegram-stars-yoki-premium">Stars или Premium — что вам нужно?</a></li>
+        <li><a href="/ru/qollanma#premium">Пошаговое руководство со скриншотами</a></li>
+      </ul>
+    </div>
+  </section>
 
   <!-- CTA -->
   <section class="prem-cta">
@@ -426,6 +566,57 @@ if (agg.reviewCount > 0) {
   }
   .pricing-cta { text-align: center; }
 
+  /* ===== TO'LOV USULLARI ===== */
+  .prem-pay { background: var(--bg-alt); }
+  .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pay-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 24px; box-shadow: var(--shadow-sm);
+  }
+  .pay-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .pay-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+  .pay-card strong { color: var(--text); font-weight: 700; }
+
+  /* ===== KAFOLAT / ISHONCH ===== */
+  .prem-trust { background: var(--bg-alt); }
+  .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .trust-item {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 20px; text-align: center; box-shadow: var(--shadow-sm);
+  }
+  .trust-num {
+    display: block; font-size: 1.6rem; font-weight: 900;
+    background: var(--gradient); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; margin-bottom: 8px;
+  }
+  .trust-item h3 { font-size: 0.98rem; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+  .trust-item p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+  .trust-note {
+    max-width: 760px; margin: 28px auto 0; text-align: center;
+    font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+  }
+  .trust-note a { color: var(--primary); font-weight: 600; text-decoration: none; }
+  .trust-note a:hover { text-decoration: underline; }
+
+  /* ===== BOG'LIQ MATERIALLAR ===== */
+  .related-list {
+    list-style: none; padding: 0; margin: 0 auto; max-width: 860px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 24px;
+  }
+  .related-list li {
+    border-bottom: 1px solid var(--border-light); padding: 10px 0;
+  }
+  .related-list a {
+    color: var(--text); text-decoration: none; font-size: 0.94rem; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s;
+  }
+  .related-list a::before { content: '→'; color: var(--primary); font-weight: 700; }
+  .related-list a:hover { color: var(--primary); }
+
+  .pricing-permonth { color: var(--text-muted) !important; font-weight: 600 !important; text-align: left !important; }
+  .pricing-note a { color: var(--primary); font-weight: 600; text-decoration: none; }
+  .pricing-note a:hover { text-decoration: underline; }
+
   .prem-benefits { background: var(--bg-alt); }
   .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .benefit-card {
@@ -501,10 +692,22 @@ if (agg.reviewCount > 0) {
     .prem-desc { margin: 0 auto 28px; }
     .prem-features { justify-content: center; }
     .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .pay-grid { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
     .pricing-table-wrap { max-width: 100%; }
-    .pricing-table th, .pricing-table td { padding: 13px 16px; font-size: 0.88rem; }
+    .pricing-table th, .pricing-table td { padding: 12px 10px; font-size: 0.82rem; }
+    .pricing-table th:first-child, .pricing-table td:first-child { padding-left: 16px; }
+    .pricing-table th:last-child, .pricing-table td:last-child { padding-right: 16px; }
+    .pay-grid { grid-template-columns: 1fr; gap: 12px; }
+    .pay-card { padding: 20px; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .trust-item { padding: 20px 14px; }
+    .trust-num { font-size: 1.3rem; }
+    .trust-item h3 { font-size: 0.88rem; }
+    .trust-item p { font-size: 0.78rem; }
+    .related-list { grid-template-columns: 1fr; gap: 0; }
     .pricing-badge { display: block; margin: 4px 0 0; width: fit-content; }
     .prem-hero { padding: 100px 16px 40px; }
     .prem-hero-inner { gap: 28px; text-align: left; }
