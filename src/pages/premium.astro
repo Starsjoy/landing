@@ -27,9 +27,41 @@ const faqs = [
   },
 {
     q: "Premium obunani boshqa kishiga sovg'a qilish mumkinmi?",
-    a: "Ha, albatta! StarsJoy orqali istalgan kishiga Telegram Premium sovg'a sifatida yuborishingiz mumkin. Buning uchun botda 'Sovg'a qilish' tugmasini bosing va qabul qiluvchining username ni kiriting."
+    a: "Ha, albatta! StarsJoy orqali istalgan kishiga Telegram Premium sovg'a sifatida yuborishingiz mumkin. Buning uchun botda 'Sovg'a qilish' tugmasini bosing va qabul qiluvchining username ni kiriting. Sovg'a narxi tegishli Premium tarifi bilan bir xil — qabul qiluvchi hech qanday to'lov qilmaydi."
+  },
+  {
+    q: "Telegram Premium sotib olish uchun xorijiy karta kerakmi?",
+    a: "Yo'q. Visa yoki Mastercard talab qilinmaydi. To'lov to'liq so'mda, Uzcard yoki Humo kartangiz orqali amalga oshiriladi — valyuta konvertatsiyasi yo'q. Ro'yxatdan o'tish yoki parol ham kerak emas: Telegram akkaunt va mahalliy karta yetarli."
+  },
+  {
+    q: "Telegram Premium ni bepul olish mumkinmi?",
+    a: "Telegram Premium — pullik obuna, uni bepul olish usuli yo'q. Bepul va'da qiladigan saytlardan ehtiyot bo'ling. StarsJoy'da narxni kamaytirishning halol yo'li bor: referral havolangiz orqali kimdir xarid qilsa, xarid summasining 5% i sizga bonus sifatida qaytariladi. Shuningdek uzoqroq muddat tanlash oylik narxni sezilarli tushiradi."
+  },
+  {
+    q: "1 oylik Telegram Premium bormi?",
+    a: "StarsJoy 3, 6 va 12 oylik tariflarni taklif qiladi — 1 oylik tarif sotilmaydi. Eng qisqa muddat 3 oylik (172 000 so'm), u oyiga taxminan 57 300 so'mga to'g'ri keladi."
+  },
+  {
+    q: "To'lov qilgandan keyin Premium kelmasa nima bo'ladi?",
+    a: "Xizmat ko'rsatilmasa yoki muammo chiqsa, to'langan summa 100% qaytariladi. Har qanday savol bo'yicha qo'llab-quvvatlash xizmatiga murojaat qilishingiz mumkin."
+  },
+  {
+    q: "StarsJoy Telegram'ning rasmiy hamkorimi?",
+    a: "Yo'q. StarsJoy — mustaqil reseller. Oferta shartlariga ko'ra (2.3-band) xizmat Telegram'ning rasmiy API'si va Fragment infratuzilmasi orqali ko'rsatiladi. Obuna sizning haqiqiy Telegram akkauntingizga rasmiy yo'l bilan biriktiriladi."
   }
 ];
+
+// Oylik narx — chop etilgan tariflardan hisoblanadi (yaxlitlangan)
+const plans = [
+  { months: 3,  price: 172000, best: false },
+  { months: 6,  price: 232000, best: false },
+  { months: 12, price: 422000, best: true  },
+];
+const fmt = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+const perMonth = (p: { months: number; price: number }) =>
+  fmt(Math.round(p.price / p.months / 100) * 100);
+// 3 oylik va 12 oylik tarifdagi oylik narx farqi (chop etilgan tariflardan)
+const monthlySaving = fmt(Math.round((172000 / 3 - 422000 / 12) / 1000) * 1000);
 
 // Mijozlar sharhlari (tasdiqlangan, TTL keshli) + reyting
 const reviews = await getApprovedReviews('premium');
@@ -164,18 +196,66 @@ if (agg.reviewCount > 0) {
       <div class="pricing-table-wrap fade-in">
         <table class="pricing-table">
           <thead>
-            <tr><th>Muddat</th><th>Narx</th></tr>
+            <tr><th>Muddat</th><th>Oyiga</th><th>Umumiy narx</th></tr>
           </thead>
           <tbody>
-            <tr><td>3 oylik</td><td>172,000 so'm</td></tr>
-            <tr><td>6 oylik</td><td>232,000 so'm</td></tr>
-            <tr class="pricing-highlight"><td>12 oylik <span class="pricing-badge">Eng foydali</span></td><td>422,000 so'm</td></tr>
+            {plans.map((p) => (
+              <tr class={p.best ? 'pricing-highlight' : undefined}>
+                <td>
+                  {p.months} oylik
+                  {p.best && <span class="pricing-badge">Eng foydali</span>}
+                </td>
+                <td class="pricing-permonth">~{perMonth(p)} so'm</td>
+                <td>{fmt(p.price)} so'm</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-      <p class="pricing-note fade-in">Narxlarga barcha to'lov usullari (Uzcard, Humo, Click) kiradi — yashirin komissiya yo'q.</p>
+      <p class="pricing-note fade-in">
+        Narxlarga barcha to'lov usullari (Uzcard, Humo, Click) kiradi — yashirin komissiya yo'q.
+        12 oylik tarifda bir oy 3 oylik tarifga qaraganda taxminan {monthlySaving} so'mga arzon tushadi.
+        Barcha xizmatlar narxini <a href="/narxlar">narxlar sahifasida</a> bitta jadvalda ko'rishingiz mumkin.
+      </p>
       <div class="pricing-cta fade-in">
         <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Premium sotib olish</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- To'lov usullari -->
+  <section class="prem-pay">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">To'lov</span>
+        <h2 class="section-title">Uzcard, Humo va Click orqali so'mda</h2>
+        <p class="section-subtitle">Xorijiy karta ham, valyuta konvertatsiyasi ham talab qilinmaydi</p>
+      </div>
+      <div class="pay-grid">
+        <div class="pay-card fade-in">
+          <h3>Mahalliy kartalar</h3>
+          <p>
+            Uzcard va Humo kartalari to'liq qo'llab-quvvatlanadi. Rasmiy usul
+            (App Store / Google Play) xalqaro karta talab qiladi — Uzcard va Humo
+            qabul qilinmaydi, Telegram'ning o'z <strong>@PremiumBot</strong>'i esa
+            O'zbekistondan ko'pincha ishlamaydi. StarsJoy aynan shu bo'shliqni yopadi.
+          </p>
+        </div>
+        <div class="pay-card fade-in">
+          <h3>Istalgan ilovadan</h3>
+          <p>
+            O'tkazmani Click, Payme, Uzum yoki bankingizning o'z ilovasidan qilishingiz
+            mumkin — farqi yo'q. Muhimi: pul buyurtma oynasida ko'rsatilgan kartaga va
+            <strong>aynan ko'rsatilgan summada</strong> tushishi kerak.
+          </p>
+        </div>
+        <div class="pay-card fade-in">
+          <h3>Ro'yxatdan o'tish shart emas</h3>
+          <p>
+            Parol, akkaunt yaratish yoki hujjat talab qilinmaydi. Telegram akkauntingiz va
+            mahalliy kartangiz yetarli. Butun jarayon odatda 2-3 daqiqa oladi.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -267,6 +347,47 @@ if (agg.reviewCount > 0) {
     </div>
   </section>
 
+  <!-- Kafolat va ishonch -->
+  <section class="prem-trust">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Kafolat</span>
+        <h2 class="section-title">Nega StarsJoy orqali?</h2>
+        <p class="section-subtitle">Pulingiz va akkauntingiz xavfsizligi uchun nima qilamiz</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-item fade-in">
+          <span class="trust-num">8 000+</span>
+          <h3>Bajarilgan buyurtma</h3>
+          <p>Xizmat bir yildan ortiq vaqtdan beri ishlaydi va buyurtmalar soni ochiq ko'rsatiladi.</p>
+        </div>
+        <div class="trust-item fade-in">
+          <span class="trust-num">1-5 daq.</span>
+          <h3>Yetkazish vaqti</h3>
+          <p>To'lov tasdiqlangach obuna odatda 1-5 daqiqada akkauntingizga tushadi.</p>
+        </div>
+        <div class="trust-item fade-in">
+          <span class="trust-num">100%</span>
+          <h3>Pul qaytarish</h3>
+          <p>Xizmat ko'rsatilmasa yoki muammo chiqsa, to'langan summa to'liq qaytariladi.</p>
+        </div>
+        <div class="trust-item fade-in">
+          <span class="trust-num">5%</span>
+          <h3>Referral bonus</h3>
+          <p>Havolangiz orqali kimdir xarid qilsa, summaning 5% i sizga bonus bo'lib qaytadi.</p>
+        </div>
+      </div>
+      <p class="trust-note fade-in">
+        Sharhlar moderatsiyadan o'tadi va sanasi bilan ochiq turadi — ularni
+        <a href="/sharhlar">sharhlar sahifasida</a> to'liq o'qishingiz mumkin.
+        StarsJoy Telegram'ning rasmiy hamkori emas: <a href="/oferta">oferta</a>ning
+        2.3-bandiga ko'ra mustaqil reseller sifatida Telegram'ning rasmiy API'si va
+        Fragment infratuzilmasi orqali xizmat ko'rsatadi — obuna sizning haqiqiy
+        akkauntingizga rasmiy yo'l bilan biriktiriladi.
+      </p>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="prem-faq">
     <div class="container">
@@ -293,6 +414,26 @@ if (agg.reviewCount > 0) {
 
   <!-- Mijozlar fikri (komponent) -->
   <Reviews lang="uz" />
+
+  <!-- Bog'liq materiallar -->
+  <section class="prem-related">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Batafsil</span>
+        <h2 class="section-title">Premium haqida qo'shimcha qo'llanmalar</h2>
+      </div>
+      <ul class="related-list fade-in">
+        <li><a href="/blog/telegram-premium-funksiyalari">Telegram Premium nima beradi — barcha funksiyalar</a></li>
+        <li><a href="/blog/telegram-premium-paketlar-taqqoslash">3, 6 va 12 oylik paketlarni taqqoslash</a></li>
+        <li><a href="/blog/telegram-premium-uzcard">Uzcard bilan Premium sotib olish</a></li>
+        <li><a href="/blog/telegram-premium-vizasiz">Visa kartasiz Premium olish yo'llari</a></li>
+        <li><a href="/blog/telegram-premium-sovga-qilish">Premium'ni sovg'a qilish</a></li>
+        <li><a href="/blog/telegram-premium-muddati-tugadi">Premium muddati tugasa nima qilish kerak</a></li>
+        <li><a href="/blog/telegram-stars-yoki-premium">Stars yoki Premium — qaysi biri kerak?</a></li>
+        <li><a href="/qollanma#premium">Skrinshotli xarid qo'llanmasi</a></li>
+      </ul>
+    </div>
+  </section>
 
   <!-- CTA -->
   <section class="prem-cta">
@@ -422,6 +563,57 @@ if (agg.reviewCount > 0) {
   }
   .pricing-cta { text-align: center; }
 
+  /* ===== TO'LOV USULLARI ===== */
+  .prem-pay { background: var(--bg-alt); }
+  .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pay-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 24px; box-shadow: var(--shadow-sm);
+  }
+  .pay-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .pay-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+  .pay-card strong { color: var(--text); font-weight: 700; }
+
+  /* ===== KAFOLAT / ISHONCH ===== */
+  .prem-trust { background: var(--bg-alt); }
+  .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .trust-item {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 20px; text-align: center; box-shadow: var(--shadow-sm);
+  }
+  .trust-num {
+    display: block; font-size: 1.6rem; font-weight: 900;
+    background: var(--gradient); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; margin-bottom: 8px;
+  }
+  .trust-item h3 { font-size: 0.98rem; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+  .trust-item p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+  .trust-note {
+    max-width: 760px; margin: 28px auto 0; text-align: center;
+    font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+  }
+  .trust-note a { color: var(--primary); font-weight: 600; text-decoration: none; }
+  .trust-note a:hover { text-decoration: underline; }
+
+  /* ===== BOG'LIQ MATERIALLAR ===== */
+  .related-list {
+    list-style: none; padding: 0; margin: 0 auto; max-width: 860px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 24px;
+  }
+  .related-list li {
+    border-bottom: 1px solid var(--border-light); padding: 10px 0;
+  }
+  .related-list a {
+    color: var(--text); text-decoration: none; font-size: 0.94rem; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s;
+  }
+  .related-list a::before { content: '→'; color: var(--primary); font-weight: 700; }
+  .related-list a:hover { color: var(--primary); }
+
+  .pricing-permonth { color: var(--text-muted) !important; font-weight: 600 !important; text-align: left !important; }
+  .pricing-note a { color: var(--primary); font-weight: 600; text-decoration: none; }
+  .pricing-note a:hover { text-decoration: underline; }
+
   .prem-benefits { background: var(--bg-alt); }
   .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .benefit-card {
@@ -497,10 +689,22 @@ if (agg.reviewCount > 0) {
     .prem-desc { margin: 0 auto 28px; }
     .prem-features { justify-content: center; }
     .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .pay-grid { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
     .pricing-table-wrap { max-width: 100%; }
-    .pricing-table th, .pricing-table td { padding: 13px 16px; font-size: 0.88rem; }
+    .pricing-table th, .pricing-table td { padding: 12px 10px; font-size: 0.82rem; }
+    .pricing-table th:first-child, .pricing-table td:first-child { padding-left: 16px; }
+    .pricing-table th:last-child, .pricing-table td:last-child { padding-right: 16px; }
+    .pay-grid { grid-template-columns: 1fr; gap: 12px; }
+    .pay-card { padding: 20px; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .trust-item { padding: 20px 14px; }
+    .trust-num { font-size: 1.3rem; }
+    .trust-item h3 { font-size: 0.88rem; }
+    .trust-item p { font-size: 0.78rem; }
+    .related-list { grid-template-columns: 1fr; gap: 0; }
     .pricing-badge { display: block; margin: 4px 0 0; width: fit-content; }
     .prem-hero { padding: 100px 16px 40px; }
     .prem-hero-inner { gap: 28px; text-align: left; }
