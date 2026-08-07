@@ -11,6 +11,14 @@ import BlogHighlights from '../components/BlogHighlights.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
+import { getApprovedReviews, aggregateOf } from '../lib/reviews';
+
+// Bosh sahifada AggregateRating: /sharhlar da allaqachon bor edi, lekin AI
+// modellari va qidiruv tizimlari saytning asosiy entity'sini bosh sahifadan
+// oladi. Raqamlar DB'dan olinadi — qo'lda yozilsa eskirib qoladi.
+// getApprovedReviews o'zi keshlangan va xatoni yutadi, shuning uchun DB
+// tushib qolsa ham sahifa buzilmaydi (agg.reviewCount = 0 bo'ladi).
+const agg = aggregateOf(await getApprovedReviews('premium'));
 ---
 
 <Layout
@@ -33,6 +41,28 @@ import Footer from '../components/Footer.astro';
       "url": "https://starsjoy.uz",
       "logo": "https://starsjoy.uz/logo.png"
     }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "StarsJoy",
+    "url": "https://starsjoy.uz",
+    "logo": "https://starsjoy.uz/logo.png",
+    "description": "O'zbekistonda Telegram Stars, Premium va Gifts xizmatlarini so'mda sotib olish platformasi. 8,000+ bajarilgan buyurtma.",
+    "areaServed": { "@type": "Country", "name": "Uzbekistan" },
+    "sameAs": [
+      "https://telegram.me/starsjoybot",
+      "https://telegram.me/starsjoy"
+    ],
+    ...(agg.reviewCount > 0 && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: String(agg.ratingValue),
+        reviewCount: String(agg.reviewCount),
+        bestRating: "5",
+      },
+    }),
   })} />
   <Navbar />
   <Hero />

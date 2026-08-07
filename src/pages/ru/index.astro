@@ -4,11 +4,15 @@ import NavbarRu from '../../components/NavbarRu.astro';
 import BlogHighlights from '../../components/BlogHighlights.astro';
 import Reviews from '../../components/Reviews.astro';
 import FooterRu from '../../components/FooterRu.astro';
+import { getApprovedReviews, aggregateOf } from '../../lib/reviews';
+
+// Qarang: src/pages/index.astro — bir xil AggregateRating signali, ru varianti.
+const agg = aggregateOf(await getApprovedReviews('premium'));
 
 const faqs = [
   {
     q: "Как купить Telegram Stars?",
-    a: "Откройте нашего бота @starsjoybot в Telegram, выберите раздел Stars, укажите нужное количество и оплатите через Click, Uzcard или Humo. Звёзды поступят на ваш аккаунт в течение 5 минут.",
+    a: "Откройте нашего бота @starsjoybot в Telegram, выберите раздел Stars, укажите нужное количество и оплатите через Click, Uzcard или Humo. Звёзды поступят на ваш аккаунт в течение 10 секунд.",
   },
   {
     q: "Сколько стоит Telegram Premium?",
@@ -32,7 +36,7 @@ const faqs = [
 
 <Layout
   title="Telegram Stars, Premium и Gifts — Купить в StarsJoy"
-  description="StarsJoy — купить Telegram Stars, Premium и Gifts быстро и дёшево. Доставка за 5 минут, 100% гарантия возврата. Оплата через Click, Uzcard, Humo."
+  description="StarsJoy — купить Telegram Stars, Premium и Gifts быстро и дёшево. Доставка за 10 секунд, 100% гарантия возврата. Оплата через Click, Uzcard, Humo."
   canonical="https://starsjoy.uz/ru"
   keywords="купить Telegram Stars, Telegram Premium купить, Telegram Gifts, купить звёзды Телеграм, Telegram Premium Узбекистан, StarsJoy"
   lang="ru"
@@ -47,7 +51,7 @@ const faqs = [
     "@type": "WebSite",
     "name": "StarsJoy",
     "url": "https://starsjoy.uz/ru",
-    "description": "StarsJoy — купить Telegram Stars, Premium и Gifts быстро и недорого. Доставка за 5 минут, 100% гарантия возврата денег.",
+    "description": "StarsJoy — купить Telegram Stars, Premium и Gifts быстро и недорого. Доставка за 10 секунд, 100% гарантия возврата денег.",
     "inLanguage": "ru",
     "publisher": {
       "@type": "Organization",
@@ -55,6 +59,29 @@ const faqs = [
       "url": "https://starsjoy.uz",
       "logo": "https://starsjoy.uz/logo.png"
     }
+  })} />
+
+  <!-- Organization + AggregateRating Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "StarsJoy",
+    "url": "https://starsjoy.uz",
+    "logo": "https://starsjoy.uz/logo.png",
+    "description": "Платформа для покупки Telegram Stars, Premium и Gifts в Узбекистане за сумы. Более 8 000 выполненных заказов.",
+    "areaServed": { "@type": "Country", "name": "Uzbekistan" },
+    "sameAs": [
+      "https://telegram.me/starsjoybot",
+      "https://telegram.me/starsjoy"
+    ],
+    ...(agg.reviewCount > 0 && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: String(agg.ratingValue),
+        reviewCount: String(agg.reviewCount),
+        bestRating: "5",
+      },
+    }),
   })} />
 
   <!-- FAQ Schema -->
@@ -80,10 +107,10 @@ const faqs = [
         <h1 class="hero-title">
           Telegram Stars,<br>
           Premium и Gifts<br>
-          <span class="hero-highlight">за 5 минут!</span>
+          <span class="hero-highlight">за 10 секунд!</span>
         </h1>
         <p class="hero-desc">
-          Starsjoy — это Telegram Mini App (не обычный бот). Покупайте Stars, оформляйте Premium или отправляйте Gifts друзьям — всё внутри приложения, за 5 минут.
+          Starsjoy — это Telegram Mini App (не обычный бот). Покупайте Stars, оформляйте Premium или отправляйте Gifts друзьям — всё внутри приложения, за 10 секунд.
         </p>
         <div class="hero-buttons">
           <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">
@@ -318,8 +345,8 @@ const faqs = [
               <path d="M15.5 3L7 16h6l-1.5 9L22 12h-6l1.5-9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
             </svg>
           </div>
-          <h3 class="step-title">Получите за 5 минут</h3>
-          <p class="step-desc">После оплаты услуга будет доставлена в течение 5 минут</p>
+          <h3 class="step-title">Получите за 10 секунд</h3>
+          <p class="step-desc">После оплаты услуга будет доставлена в течение 10 секунд</p>
         </div>
       </div>
 
@@ -353,8 +380,8 @@ const faqs = [
               <path d="M17.5 4L8 18h7l-2 10L24 14h-7l2-10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
             </svg>
           </div>
-          <h3 class="guarantee-title">Доставка за 5 минут</h3>
-          <p class="guarantee-desc">Гарантируем доставку услуги в течение 5 минут после оплаты</p>
+          <h3 class="guarantee-title">Доставка за 10 секунд</h3>
+          <p class="guarantee-desc">После подтверждения оплаты услуга обычно доставляется за 10 секунд — при высокой нагрузке возможна небольшая задержка</p>
         </div>
         <div class="guarantee-card fade-in">
           <div class="guarantee-icon gi-refund">
