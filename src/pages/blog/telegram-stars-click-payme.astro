@@ -91,7 +91,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       { "@type": "HowToStep", "position": 3, "name": "Click to'lov usulini tanlash", "text": "To'lov usullaridan 'Click' tugmasini bosing." },
       { "@type": "HowToStep", "position": 4, "name": "Click sahifasiga o'tish", "text": "Click to'lov sahifasi avtomatik ochiladi yoki SMS orqali tasdiq so'raladi." },
       { "@type": "HowToStep", "position": 5, "name": "Karta bilan to'lash", "text": "Uzcard yoki Humo kartangiz orqali to'lovni tasdiqlang. SMS-kod kiriting." },
-      { "@type": "HowToStep", "position": 6, "name": "Stars qabul qilish", "text": "To'lovdan keyin Stars 1-3 daqiqa ichida Telegram balansingizga tushadi." }
+      { "@type": "HowToStep", "position": 6, "name": "Stars qabul qilish", "text": "To'lovdan keyin Stars 10 soniya ichida Telegram balansingizga tushadi." }
     ]
   })} />
 
@@ -112,7 +112,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       { "@type": "HowToStep", "position": 3, "name": "Payme tugmasini tanlash", "text": "To'lov usullaridan 'Payme' tugmasini bosing." },
       { "@type": "HowToStep", "position": 4, "name": "Payme sahifasiga o'tish", "text": "Payme to'lov sahifasi yoki ilovasi avtomatik ochiladi." },
       { "@type": "HowToStep", "position": 5, "name": "Karta orqali to'lash", "text": "Payme'dagi Uzcard yoki Humo kartangiz bilan to'lovni amalga oshiring." },
-      { "@type": "HowToStep", "position": 6, "name": "Stars qabul qilish", "text": "Stars Telegram balansingizga 1-3 daqiqa ichida avtomatik tushadi." }
+      { "@type": "HowToStep", "position": 6, "name": "Stars qabul qilish", "text": "Stars Telegram balansingizga 10 soniya ichida avtomatik tushadi." }
     ]
   })} />
 
@@ -133,7 +133,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Click yoki Payme — qaysi biri Stars uchun qulayroq?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ikkalasi ham qulay. Click ilovasidan tez foydalanuvchilar uchun Click qulay, Payme bilan ishlash odatlangan bo'lsa Payme tanlanadi. Komissiya va vaqt deyarli bir xil — to'lov 1-3 daqiqada o'tadi."
+          "text": "Ikkalasi ham qulay. Click ilovasidan tez foydalanuvchilar uchun Click qulay, Payme bilan ishlash odatlangan bo'lsa Payme tanlanadi. Komissiya va vaqt deyarli bir xil — to'lov 10 soniyada o'tadi."
         }
       },
       {
@@ -141,7 +141,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Click yoki Payme orqali Stars qancha vaqtda keladi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Odatda 1-3 daqiqa ichida. To'lovdan keyin bot Telegram'ning Fragment shlyuzi orqali Stars'ni avtomatik yuboradi. Kechikish bo'lsa, bot operatorlari yordam beradi."
+          "text": "Odatda 10 soniya ichida. To'lovdan keyin bot Telegram'ning Fragment shlyuzi orqali Stars'ni avtomatik yuboradi. Kechikish bo'lsa, bot operatorlari yordam beradi."
         }
       },
       {
@@ -206,7 +206,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Telegram'ning rasmiy Stars do'koni Click va Payme'ni qabul qilmaydi, lekin O'zbekistondagi xizmatlar bu to'lov tizimlarini qo'llab-quvvatlaydi. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click yoki Payme bilan to'lov qilib, 1-3 daqiqa ichida Stars'ni Telegram akkauntingizga olishingiz mumkin — Uzcard yoki Humo kartangiz orqali to'g'ridan-to'g'ri.
+            <strong>Qisqacha javob:</strong> Telegram'ning rasmiy Stars do'koni Click va Payme'ni qabul qilmaydi, lekin O'zbekistondagi xizmatlar bu to'lov tizimlarini qo'llab-quvvatlaydi. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click yoki Payme bilan to'lov qilib, 10 soniya ichida Stars'ni Telegram akkauntingizga olishingiz mumkin — Uzcard yoki Humo kartangiz orqali to'g'ridan-to'g'ri.
           </div>
 
           <p>Telegram Stars — bu Telegram ichida ishlatiladigan raqamli valyuta. Lekin Telegram'ning rasmiy do'koni faqat Apple Pay, Google Pay va xalqaro karta tizimlari bilan ishlaydi. O'zbekistonda esa ko'p foydalanuvchi <strong>Click</strong> va <strong>Payme</strong> kabi mahalliy to'lov tizimlaridan foydalanadi. Yaxshi xabar shuki — bu ikki tizim orqali ham Stars sotib olish mumkin.</p>
@@ -239,7 +239,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li><strong>Click to'lov usulini tanlash.</strong> To'lov tugmalaridan "Click" ni bosing.</li>
             <li><strong>Click sahifasiga o'tish.</strong> To'lov sahifasi avtomatik ochiladi yoki Click ilovasiga yo'naltiriladi.</li>
             <li><strong>Kartani tanlab, to'lash.</strong> Click'ga ulangan Uzcard yoki Humo kartangiz orqali to'lovni tasdiqlang. SMS-kod kerak bo'lishi mumkin.</li>
-            <li><strong>Stars qabul qilish.</strong> 1-3 daqiqa ichida Stars Telegram akkauntingizga avtomatik tushadi va siz xabar olasiz.</li>
+            <li><strong>Stars qabul qilish.</strong> 10 soniya ichida Stars Telegram akkauntingizga avtomatik tushadi va siz xabar olasiz.</li>
           </ol>
 
           <p>Agar Click ilovasi telefoningizda bo'lmasa, brauzer orqali Click web sahifasidan ham to'lov qilish mumkin. Ko'proq ma'lumot uchun rasmiy <a href="https://click.uz" target="_blank" rel="noopener nofollow">click.uz</a> saytiga qarang.</p>
@@ -254,7 +254,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li><strong>Payme tugmasini bosish.</strong> To'lov usullaridan "Payme" ni tanlang.</li>
             <li><strong>Payme sahifasi yoki ilovasi.</strong> To'lov uchun maxsus link ochiladi.</li>
             <li><strong>Karta orqali to'lash.</strong> Payme'dagi saqlangan Uzcard/Humo karta bilan to'lovni amalga oshiring.</li>
-            <li><strong>Stars akkauntda.</strong> 1-3 daqiqa ichida Stars sizning Telegram balansingizda paydo bo'ladi.</li>
+            <li><strong>Stars akkauntda.</strong> 10 soniya ichida Stars sizning Telegram balansingizda paydo bo'ladi.</li>
           </ol>
 
           <p>Payme haqida batafsil ma'lumot uchun rasmiy <a href="https://payme.uz" target="_blank" rel="noopener nofollow">payme.uz</a> saytiga tashrif buyuring.</p>
@@ -286,7 +286,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
           </div>
 
-          <p>Amaliy farqlar minimal — ikkalasi ham 1-3 daqiqada to'lovni o'tkazadi va Stars bir xil tezlikda keladi. Tanlov foydalanuvchi qaysi ilovani ishlatishiga bog'liq.</p>
+          <p>Amaliy farqlar minimal — ikkalasi ham 10 soniyada to'lovni o'tkazadi va Stars bir xil tezlikda keladi. Tanlov foydalanuvchi qaysi ilovani ishlatishiga bog'liq.</p>
 
           <h2>2026-yilgi narxlar — Click va Payme bilan Stars qancha turadi?</h2>
 
@@ -348,7 +348,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Click yoki Payme orqali Stars qancha vaqtda keladi?</h3>
-              <p>Odatda 1-3 daqiqa ichida. To'lovdan keyin bot Stars'ni avtomatik yuboradi. Kechikish bo'lsa, bot operatorlari yordam beradi.</p>
+              <p>Odatda 10 soniya ichida. To'lovdan keyin bot Stars'ni avtomatik yuboradi. Kechikish bo'lsa, bot operatorlari yordam beradi.</p>
             </div>
             <div class="post-faq-item">
               <h3>Click yoki Payme to'lovi o'tmasa nima qilish kerak?</h3>
@@ -366,7 +366,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Xulosa</h2>
 
-          <p>Click va Payme — O'zbekistonda Telegram Stars sotib olishning eng tez va qulay yo'llaridan biri. Telegram'ning rasmiy do'koni bu tizimlarni qabul qilmasa-da, mahalliy bot xizmatlari orqali to'lov so'mda amalga oshiriladi va Stars rasmiy Fragment infratuzilmasi orqali sizning Telegram akkauntingizga 1-3 daqiqada tushadi.</p>
+          <p>Click va Payme — O'zbekistonda Telegram Stars sotib olishning eng tez va qulay yo'llaridan biri. Telegram'ning rasmiy do'koni bu tizimlarni qabul qilmasa-da, mahalliy bot xizmatlari orqali to'lov so'mda amalga oshiriladi va Stars rasmiy Fragment infratuzilmasi orqali sizning Telegram akkauntingizga 10 soniyada tushadi.</p>
 
           <p>Asosiy maslahat: faqat ishonchli bot manzilini ishlating, to'lov sahifasini har doim manzil qatoridan tekshirib turing va SMS-kodni hech kimga ulashmang.</p>
 
