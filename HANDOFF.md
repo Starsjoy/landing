@@ -105,11 +105,34 @@ bu to'g'ri kontent.)
 
 Yetkazish endi teng, narxda raqobatchi hali arzon. Bu sof biznes qarori.
 
-### 2. ~~Ingliz tili versiyasi~~ — 1-bosqich BAJARILDI (2026-08-07, `ff4c639`)
+### 2. ~~Ingliz tili versiyasi~~ — BAJARILDI (2026-08-07, `ff4c639` + `081ea41`)
 
-5 ta sahifa jonli: `/en`, `/en/premium`, `/en/stars`, `/en/how-to-buy`,
-`/en/about`. Blog maqolalari **ataylab qo'shilmadi** — avval shu 5 tasi AI
-trafigida natija beryaptimi ko'ramiz, keyin kengaytiramiz.
+**16 ta EN sahifa jonli.**
+
+Mahsulot va asosiy sahifalar: `/en`, `/en/premium`, `/en/stars`, `/en/gifts`,
+`/en/how-to-buy`, `/en/about`, `/en/blog`.
+
+Maqolalar (`/en/blog/…`): `telegram-stars-or-premium`,
+`telegram-premium-features`, `what-you-can-do-with-telegram-stars`,
+`cash-out-telegram-stars`, `is-buying-telegram-stars-safe`,
+`telegram-sms-code-not-arriving`, `telegram-premium-expired`,
+`gift-telegram-premium`, `telegram-business-vs-premium`.
+
+**Mavzular kannibalizatsiyaga qarshi tanlangan.** AI trafigi yuqori bo'lgan
+ba'zi mavzular ataylab qoldirilgan, chunki mavjud sahifa ularni allaqachon
+qamraydi — masalan "Premium Uzcard orqali" (293 AI) `/en/premium` bilan
+kesishardi. Yangi EN maqola qo'shishdan oldin shu tekshiruvni takrorlang.
+
+**Inglizcha maqola qo'shish tartibi:**
+1. `src/lib/en-blog.ts` dagi `EN_POSTS` ga qator qo'shing — bu yagona manba,
+   uni `/en/blog`, `llms.txt` va futer o'qiydi.
+2. `src/pages/en/blog/<slug>.astro` yarating, `BlogPostEn` layout bilan.
+   Maqola fayli faqat kontentdan iborat — boilerplate layout ichida.
+3. `node scripts/gen-discovery.mjs` ni qayta ishga tushiring.
+
+⚠️ `BlogPostEn.astro` dagi style bloki **`is:global`** — Astro'da oddiy scoped
+style `<slot/>` ichidagi markup'ga tegmaydi va sahifa jimgina stilsiz chiqadi.
+Buni `<style>` ga qaytarmang.
 
 Tanlov asosi: AI trafigi (bosh sahifa 6 443, `/premium` 534, `/stars` 267,
 `/info` 74% AI) + mavjud inglizcha so'rovlar ("telegram premium uzbekistan",
