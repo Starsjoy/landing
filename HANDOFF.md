@@ -105,16 +105,34 @@ bu to'g'ri kontent.)
 
 Yetkazish endi teng, narxda raqobatchi hali arzon. Bu sof biznes qarori.
 
-### 2. Ingliz tili versiyasi
+### 2. ~~Ingliz tili versiyasi~~ — 1-bosqich BAJARILDI (2026-08-07, `ff4c639`)
 
-Kelishilgan yondashuv: **top-40 ni tarjima qilmaslik**. U ro'yxat o'zbek/rus
-talabiga qurilgan; inglizcha so'rovlar boshqa ("buy telegram premium
-uzbekistan", "telegram stars without visa card"). 10 ta sahifadan boshlash:
-4 ta asosiy (`/`, `/premium`, `/stars`, `/gifts`) + 6 ta pillar maqola.
-Natija AI trafigida ko'rinsa — kengaytirish.
+5 ta sahifa jonli: `/en`, `/en/premium`, `/en/stars`, `/en/how-to-buy`,
+`/en/about`. Blog maqolalari **ataylab qo'shilmadi** — avval shu 5 tasi AI
+trafigida natija beryaptimi ko'ramiz, keyin kengaytiramiz.
+
+Tanlov asosi: AI trafigi (bosh sahifa 6 443, `/premium` 534, `/stars` 267,
+`/info` 74% AI) + mavjud inglizcha so'rovlar ("telegram premium uzbekistan",
+"telegram premium price in uzbekistan", "telegram stars to uzs" — jami ~200
+ko'rinish/90 kun). `/en/gifts` qo'shilmadi: AI trafigi eng past (71).
+
+**Muhim texnik qoidalar:**
+- `src/lib/i18n.ts` — EN↔UZ yo'l jadvali (`EN_TO_UZ`) va `hreflangsFor()`.
+  Inglizcha slug o'zbekchadan farq qiladi (`/en/how-to-buy` ↔ `/qollanma`),
+  shuning uchun oddiy prefiks ishlamaydi. **Yangi EN sahifa qo'shilsa, uni
+  shu jadvalga kiritish shart** — aks holda hreflang bir tomonlama bo'ladi
+  va Google uni butunlay e'tiborsiz qoldiradi.
+- Mavjud 10 ta UZ/RU sahifa endi `hreflangsFor()` ishlatadi va `en`'ga
+  ko'rsatadi. Qo'lda yozilgan `hreflangs={[...]}` ro'yxatlarini qaytarmang.
+- `NavbarEn`/`FooterEn` faqat mavjud EN sahifalarga havola beradi. Ingliz
+  o'quvchini o'zbekcha sahifaga tashlash yomon tajriba — istisno: `/sharhlar`
+  va `/oferta` (ular tarjima qilinmagan va shunday belgilangan).
+- EN sahifalar UZ/RU manbalaridan qurilgan: `<style>` bloklari **aynan
+  ko'chirilgan**. UZ sahifaning dizayni o'zgarsa, EN nusxasini ham yangilash
+  kerak (hozircha qo'lda).
 
 Sabab: to'lov Uzcard/Humo, ya'ni xaridor baribir O'zbekistonda. EN sotuvni
-emas, **AI ko'rinishini** beradi (raqobatchida `/en/` bor, bizda yo'q).
+emas, **AI ko'rinishini** beradi (raqobatchida `/en/` bor edi, bizda yo'q).
 
 ### 3. Google Search Console — index request
 
