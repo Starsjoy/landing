@@ -1,0 +1,515 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavbarEn from '../../components/NavbarEn.astro';
+import FooterEn from '../../components/FooterEn.astro';
+import { hreflangsFor } from '../../lib/i18n';
+
+// Same screenshots as the Uzbek guide — they show the real app. The interface
+// language in the shots is Uzbek; the bot itself also runs in English, which the
+// first step explains.
+const img1 = '/qollanma/starsjoy-qadam-1-start-tugmasi.webp';
+const img2 = '/qollanma/starsjoy-qadam-2-mini-app-ochish.webp';
+const img3 = '/qollanma/starsjoy-qadam-3-bolim-tanlash.webp';
+const img4 = '/qollanma/starsjoy-qadam-4-username-kiritish.webp';
+const img5 = '/qollanma/starsjoy-qadam-5-miqdor-tanlash.webp';
+const img6 = '/qollanma/starsjoy-qadam-6-olish-tugmasi.webp';
+const img7 = '/qollanma/starsjoy-qadam-7-karta-nusxalash.webp';
+const img8 = '/qollanma/starsjoy-qadam-8-summa-otkazish.webp';
+const img9 = '/qollanma/starsjoy-qadam-9-tolov-qildim.webp';
+
+const title = "How to Buy Telegram Stars and Premium in Uzbekistan — 9 Steps with Screenshots | StarsJoy";
+const description = "A step-by-step guide to buying Telegram Stars, Premium and Gifts through the StarsJoy Mini App: all nine steps with real screenshots. Pay in Uzbek som with Uzcard or Humo — no Visa card, no password, about 2–3 minutes.";
+const modifiedDate = "2026-08-07";
+
+const steps = [
+  {
+    img: img1,
+    title: "Open the bot and press Start",
+    text: "Open @starsjoybot in Telegram. The bot profile shows a short 'What can this bot do?' description — StarsJoy runs in Uzbek, Russian and English, so you can switch the interface to English from inside the bot. Press the blue Start button at the bottom of the screen.",
+    alt: "The StarsJoy Telegram bot opening screen with the blue Start button highlighted at the bottom",
+    caption: "Step 1: open @starsjoybot and press Start.",
+  },
+  {
+    img: img2,
+    title: "Open the Mini App with the App button",
+    text: "After Start the bot sends the public offer terms and a link to starsjoy.uz/oferta. Pressing START means you accept those terms. Then tap the blue App button in the bottom-left corner of the message field — this opens the StarsJoy Mini App, which is where the whole purchase happens.",
+    alt: "The public offer message in the Telegram bot with the blue App button highlighted in the bottom-left corner",
+    caption: "Step 2: the App button opens the StarsJoy Mini App.",
+  },
+  {
+    img: img3,
+    title: "Choose what you want: Stars, Gift or Premium",
+    text: "The Mini App home screen has three cards: Stars, Gift and Premium. Tap whichever you want to buy. The flow is identical for all three — only the amount step differs, and the bottom navigation lets you switch between them at any time.",
+    alt: "The StarsJoy Mini App home screen showing the Stars, Gift and Premium sections",
+    caption: "Step 3: pick one of the three sections.",
+  },
+  {
+    img: img4,
+    title: "Say who it is for",
+    text: "Type the recipient's Telegram username into the '@username' field. If you are buying for yourself, tap the blue 'Myself' button on the right and it fills in automatically. This is the only piece of account information the service ever needs — your password and SMS login code are never requested and must never be given to anyone.",
+    alt: "The username input field on the Telegram Stars screen with the 'Myself' button highlighted",
+    caption: "Step 4: enter a username or tap Myself.",
+  },
+  {
+    img: img5,
+    title: "Choose the amount or a ready-made pack",
+    text: "For Stars, type any number from 50 to 100,000 or pick a ready pack: 50 Stars — 12,000 UZS, 100 Stars — 24,000 UZS, and so on at a flat 240 UZS per star. For Premium, choose a 3, 6 or 12-month plan instead. If you have a promo code, apply it here with the check button.",
+    alt: "The list of Stars packs: 50 Stars 12,000 UZS, 100 Stars 24,000 UZS, 200 Stars 48,000 UZS",
+    caption: "Step 5: an amount for Stars, or a 3/6/12-month term for Premium.",
+  },
+  {
+    img: img6,
+    title: "Press the purchase button",
+    text: "Once the amount is selected, the blue button at the bottom shows the final total — for example 'Buy Stars — 12,000 UZS'. The number on that button is exactly what you will pay; there is no fee added afterwards.",
+    alt: "The blue purchase button reading 'Buy Stars — 12,000 UZS' highlighted",
+    caption: "Step 6: the number on the button is the final price.",
+  },
+  {
+    img: img7,
+    title: "Copy the card number",
+    text: "A 'Payment details' window opens showing a card number, the cardholder's name and the amount. Use the copy icon next to the card number to copy it. Important: the card number changes over time, so always use the number shown in your own order window — never one you saved earlier or saw in a screenshot.",
+    alt: "The StarsJoy payment details window with the card number and cardholder name fields highlighted",
+    caption: "Step 7: copy the card number with the copy icon.",
+  },
+  {
+    img: img8,
+    title: "Transfer exactly the amount shown",
+    text: "Send exactly the displayed amount to the copied card. You can make the transfer from any app you like — Click, Payme, Uzum or your own bank's app; it makes no difference. What matters is that the money reaches that card for exactly that amount, down to the last so'm. A different amount will not be recognised by the system. A payment timer runs in the window.",
+    alt: "The red warning in the payment window explaining that the exact amount must be sent, with the countdown timer",
+    caption: "Step 8: any app works, but the amount must match exactly.",
+  },
+  {
+    img: img9,
+    title: "Press 'I have paid'",
+    text: "After the transfer, press the green 'I have paid' button. The payment is then verified and the Stars or Premium usually reach the account within about 10 seconds. Under heavy load it can take a few minutes, but the order is never lost — and if the service is not delivered at all, you get a full refund.",
+    alt: "The StarsJoy payment window with the green 'I have paid' button highlighted",
+    caption: "Step 9: 'I have paid' sends the order for verification.",
+  },
+];
+
+const IMG_W = 540;
+const IMG_H = 960;
+
+const faqs = [
+  {
+    q: "Do I need to register to use the StarsJoy Mini App?",
+    a: "No. Your Telegram account is enough — there is no separate sign-up, no password and no SMS confirmation. You open @starsjoybot, press Start and go straight into the Mini App."
+  },
+  {
+    q: "Will I be asked for my Telegram password or login code?",
+    a: "Never. The only thing the service needs is a Telegram username. Stars and Premium are delivered through Telegram's official gift mechanism, which does not require account access. Any service asking for your password or SMS code is trying to steal your account."
+  },
+  {
+    q: "Which cards and apps can I pay with?",
+    a: "Any Uzcard or Humo card issued in Uzbekistan. The transfer itself can be made from Click, Payme, Uzum or your bank's own app — the system only checks that the correct amount reached the correct card. Visa and Mastercard are not needed."
+  },
+  {
+    q: "What happens if I send a different amount?",
+    a: "The system matches payments by exact amount, so a different sum will not be recognised automatically. If this happens, contact support through the bot with your receipt and it will be resolved manually."
+  },
+  {
+    q: "The card number in the screenshot is different from mine. Which one is correct?",
+    a: "Always the one in your own order window. The screenshots here are illustrative and the receiving card number changes over time. Never send money to a card number you saved earlier or copied from a guide."
+  },
+  {
+    q: "How long does the whole thing take?",
+    a: "Placing the order takes about 2–3 minutes. Delivery after payment is confirmed is usually about 10 seconds."
+  },
+  {
+    q: "Can I buy for someone else?",
+    a: "Yes. Instead of tapping 'Myself' at step 4, enter the recipient's Telegram username. They receive the Stars, Premium or Gift directly and pay nothing."
+  },
+  {
+    q: "What if something goes wrong?",
+    a: "Contact support at @starsjoy_bot with your payment receipt. If the service was not delivered, the full amount is refunded."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/en/how-to-buy"
+  keywords="how to buy telegram stars uzbekistan, how to buy telegram premium uzbekistan, starsjoy guide, telegram stars uzcard step by step, telegram premium humo"
+  lang="en"
+  hreflangs={hreflangsFor('/qollanma')}
+>
+  <NavbarEn />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to buy Telegram Stars and Premium through the StarsJoy Mini App",
+    "description": description,
+    "totalTime": "PT3M",
+    "inLanguage": "en-US",
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": "12000" },
+    "supply": [
+      { "@type": "HowToSupply", "name": "A Telegram account" },
+      { "@type": "HowToSupply", "name": "An Uzcard or Humo card issued in Uzbekistan" }
+    ],
+    "tool": [
+      { "@type": "HowToTool", "name": "StarsJoy Telegram Mini App (@starsjoybot)" }
+    ],
+    "step": steps.map((s, i) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "name": s.title,
+      "text": s.text,
+      "url": `https://starsjoy.uz/en/how-to-buy#step-${i + 1}`,
+      "image": {
+        "@type": "ImageObject",
+        "url": `https://starsjoy.uz${s.img}`,
+        "width": IMG_W,
+        "height": IMG_H,
+        "caption": s.alt
+      }
+    }))
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "en-US",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+    }))
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://starsjoy.uz/en" },
+      { "@type": "ListItem", "position": 2, "name": "How to buy", "item": "https://starsjoy.uz/en/how-to-buy" }
+    ]
+  })} />
+
+  <section class="guide-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/en">Home</a>
+        <span>/</span>
+        <span>How to buy</span>
+      </nav>
+      <div class="guide-hero-inner fade-in">
+        <h1 class="guide-title">How to buy Telegram Stars and Premium in Uzbekistan — 9 steps with screenshots</h1>
+        <p class="guide-desc">
+          Every step of placing an order in the StarsJoy Mini App, each one with a real screenshot.
+          Start to finish it takes about 2–3 minutes.
+        </p>
+        <div class="guide-meta">
+          <span>Updated: {modifiedDate}</span>
+          <span>&middot;</span>
+          <span>9 steps</span>
+          <span>&middot;</span>
+          <span>~3 minutes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TL;DR + requirements -->
+  <section class="guide-intro">
+    <div class="container guide-narrow">
+      <div class="tldr-box fade-in" aria-label="Short answer">
+        <strong>In short:</strong> open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> in Telegram and press Start →
+        tap App to open the Mini App → choose Stars, Premium or Gift → enter a username or tap Myself →
+        choose the amount or term → press the purchase button → transfer exactly the amount shown to the
+        card the app displays → press "I have paid". Delivery takes about 10 seconds. You pay entirely in
+        Uzbek som from an Uzcard or Humo card, using whichever app you already have — Click, Payme, Uzum
+        or your bank's own.
+      </div>
+
+      <div class="req-grid fade-in">
+        <div class="req-card">
+          <span class="req-label">What you need</span>
+          <p>A Telegram account and an Uzcard or Humo card. Any app works for the transfer — Click, Payme, Uzum or your bank's. No registration, no password and no international card.</p>
+        </div>
+        <div class="req-card">
+          <span class="req-label">How long</span>
+          <p>Placing the order takes 2–3 minutes; delivery after payment is usually about 10 seconds.</p>
+        </div>
+        <div class="req-card">
+          <span class="req-label">What it costs</span>
+          <p>Stars — 240 UZS per star (50 Stars = 12,000 UZS). Premium — 172,000 UZS for 3 months, 232,000 for 6, 422,000 for 12. See <a href="/en/stars">Stars</a> and <a href="/en/premium">Premium</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="guide-steps">
+    <div class="container guide-narrow">
+      <div class="section-header fade-in">
+        <span class="section-label">Step by step</span>
+        <h2 class="section-title">Nine steps to a completed order</h2>
+        <p class="section-subtitle">Each step is shown with a real screenshot from the StarsJoy Mini App</p>
+      </div>
+
+      <ol class="steps-list">
+        {steps.map((s, i) => (
+          <li class="step-row fade-in" id={`step-${i + 1}`}>
+            <div class="step-body">
+              <div class="step-badge">Step {i + 1}</div>
+              <h3 class="step-heading">{s.title}</h3>
+              <p class="step-text">{s.text}</p>
+            </div>
+            <figure class="step-figure">
+              <img
+                src={s.img}
+                width={IMG_W}
+                height={IMG_H}
+                alt={s.alt}
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+                class="step-shot"
+              />
+              <figcaption>{s.caption}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ol>
+
+      <div class="note-box fade-in">
+        <strong>Note:</strong> the card number and prices in the screenshots are illustrative. The
+        receiving card number changes over time, so never send money to the number in an image — always
+        use the one shown in your own order window inside the Mini App. The interface in these shots is
+        in Uzbek; the bot also runs in English and Russian, and you can switch the language inside it.
+      </div>
+    </div>
+  </section>
+
+  <!-- Rules -->
+  <section class="guide-rules">
+    <div class="container guide-narrow">
+      <div class="section-header fade-in">
+        <span class="section-label">Important</span>
+        <h2 class="section-title">Four rules that prevent every common mistake</h2>
+      </div>
+      <ul class="rules-list fade-in">
+        <li><strong>Send the exact amount.</strong> Payments are matched automatically by amount. A different sum is not recognised and has to be sorted out manually with support.</li>
+        <li><strong>Use the card number from your own order.</strong> It changes over time. A saved or screenshotted number may no longer belong to the service.</li>
+        <li><strong>Never share your password or login code.</strong> A username is all that is ever needed. Anyone asking for more is trying to take your account.</li>
+        <li><strong>Keep the receipt.</strong> If anything goes wrong, the payment receipt is what lets support resolve it quickly.</li>
+      </ul>
+      <p class="rules-support fade-in">
+        Something went wrong? Message support at
+        <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a>
+        with your receipt. If the service was not delivered, you get a 100% refund.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="guide-faq">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Questions about the purchase process</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <div class="faq-item fade-in">
+            <button class="faq-question">
+              <span>{faq.q}</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.a}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FooterEn />
+</Layout>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement!;
+      const answer = item.querySelector('.faq-answer') as HTMLElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+        (i.querySelector('.faq-answer') as HTMLElement).style.maxHeight = '';
+      });
+      if (!isActive) {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+<style>
+  .guide-hero {
+    padding: 120px 24px 56px;
+    background: linear-gradient(180deg, #F5F3FF 0%, #FFFFFF 100%);
+  }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .guide-hero-inner { max-width: 780px; }
+  .guide-title {
+    font-size: 2.5rem; font-weight: 900; line-height: 1.15;
+    margin-bottom: 20px; color: var(--text);
+  }
+  .guide-desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.7; }
+  .guide-meta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-top: 20px; font-size: 0.85rem; color: var(--text-light);
+  }
+
+  .guide-narrow { max-width: 820px; }
+
+  .guide-intro { padding: 8px 24px 48px; }
+  .tldr-box {
+    background: #F5F3FF;
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-sm);
+    padding: 22px 24px;
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); font-weight: 600; }
+
+  .req-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px;
+  }
+  .req-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 20px;
+  }
+  .req-label {
+    display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--primary); margin-bottom: 8px;
+  }
+  .req-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+  .req-card a { color: var(--primary); font-weight: 600; text-decoration: none; }
+  .req-card a:hover { text-decoration: underline; }
+
+  .guide-steps { padding: 56px 24px; background: var(--bg-alt); }
+
+  .steps-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+  .step-row {
+    display: grid; grid-template-columns: 1fr 205px; gap: 36px; align-items: center;
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px 32px;
+    scroll-margin-top: 90px;
+  }
+  .step-badge {
+    display: inline-block; padding: 5px 12px; border-radius: 50px;
+    background: rgba(124, 58, 237, 0.08); color: var(--primary);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.4px; margin-bottom: 12px;
+  }
+  .step-heading { font-size: 1.22rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .step-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.75; }
+
+  .step-figure { margin: 0; }
+  .step-shot {
+    width: 100%; height: auto; border-radius: 14px;
+    border: 1px solid var(--border); background: #000;
+  }
+  .step-figure figcaption {
+    margin-top: 10px; font-size: 0.78rem; color: var(--text-light);
+    line-height: 1.5; text-align: center;
+  }
+
+  .note-box {
+    margin-top: 24px; padding: 18px 22px;
+    background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius-sm);
+    font-size: 0.9rem; line-height: 1.7; color: #78350F;
+  }
+  .note-box a { color: #92400E; font-weight: 600; }
+
+  .guide-variants { padding: 56px 24px; }
+  .variant-list { display: flex; flex-direction: column; gap: 16px; }
+  .variant-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 26px 28px; scroll-margin-top: 90px;
+  }
+  .variant-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+  .variant-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.75; }
+  .variant-link {
+    display: inline-block; margin-top: 12px; color: var(--primary);
+    font-weight: 600; font-size: 0.9rem; text-decoration: none;
+  }
+  .variant-link:hover { text-decoration: underline; }
+
+  .guide-rules { padding: 56px 24px; background: var(--bg-alt); }
+  .rules-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .rules-list li {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 18px 22px; font-size: 0.95rem; line-height: 1.7; color: var(--text-muted);
+  }
+  .rules-list strong { color: var(--text); }
+  .rules-support {
+    margin-top: 20px; font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;
+  }
+  .rules-support a { color: var(--primary); font-weight: 600; text-decoration: none; }
+  .rules-support a:hover { text-decoration: underline; }
+
+  .guide-faq { padding: 56px 24px; }
+  .faq-list {
+    max-width: 760px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .faq-item {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    overflow: hidden; box-shadow: var(--shadow-sm); transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .faq-item.active { border-color: rgba(124, 58, 237, 0.3); box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08); }
+  .faq-question {
+    width: 100%; padding: 20px 24px; background: none; border: none; color: var(--text);
+    font-size: 1rem; font-weight: 600; text-align: left; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: inherit;
+  }
+  .faq-question:hover { color: var(--primary); }
+  .faq-toggle {
+    width: 28px; height: 28px; min-width: 28px; border-radius: 8px;
+    background: rgba(124, 58, 237, 0.06); display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--primary); transition: transform 0.3s;
+  }
+  .faq-item.active .faq-toggle { transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-answer-inner { padding: 0 24px 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+  .guide-final-cta { padding: 20px 24px 72px; }
+  .guide-cta-box {
+    background: var(--gradient);
+    border-radius: 24px; padding: 56px 40px; text-align: center; color: #fff;
+  }
+  .guide-cta-box h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: 12px; }
+  .guide-cta-box p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 28px; }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px;
+    background: #fff; color: #5B21B6; border-radius: 50px; font-size: 1.05rem;
+    font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); }
+
+  @media (max-width: 860px) {
+    .req-grid { grid-template-columns: 1fr; }
+    .step-row { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+    .step-figure { max-width: 240px; margin: 0 auto; }
+  }
+  @media (max-width: 640px) {
+    .guide-hero { padding: 100px 24px 40px; }
+    .guide-title { font-size: 1.85rem; }
+    .guide-desc { font-size: 1rem; }
+    .guide-cta-box { padding: 40px 24px; }
+    .guide-cta-box h2 { font-size: 1.5rem; }
+  }
+</style>

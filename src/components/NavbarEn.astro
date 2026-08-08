@@ -1,0 +1,65 @@
+---
+/**
+ * Ingliz tilidagi navigatsiya.
+ *
+ * UZ/RU navbardan farqi: ingliz tilida hozircha faqat 5 ta sahifa bor, shuning
+ * uchun menyuda faqat o'shalar. Mavjud bo'lmagan bo'limlarga (Gifts, Blog,
+ * Reviews) havola bermaymiz — ingliz o'quvchini o'zbekcha sahifaga tashlash
+ * yomon tajriba va hreflang'ni ham buzadi.
+ */
+import { EN_TO_UZ } from '../lib/i18n';
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const uzPath = EN_TO_UZ[currentPath] ?? '/';
+---
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/en" class="logo">
+      <img src="/logo.png" alt="StarsJoy" class="logo-img" />
+      <span>StarsJoy</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/en">Home</a></li>
+      <li><a href="/en/stars">Stars</a></li>
+      <li><a href="/en/premium">Premium</a></li>
+      <li><a href="/en/how-to-buy">How to buy</a></li>
+      <li><a href="/en/about">About</a></li>
+      <li class="mobile-menu-cta"><a href="https://telegram.me/starsjoybot" class="nav-cta" target="_blank">Open the bot</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href={uzPath} class="lang-switch desktop-lang">🇺🇿</a>
+      <a href="https://telegram.me/starsjoybot" class="nav-cta" target="_blank">Open the bot</a>
+    </div>
+    <div class="mobile-actions">
+      <a href={uzPath} class="lang-switch mobile-lang">🇺🇿</a>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar?.classList.toggle('scrolled', window.scrollY > 50);
+    navLinks?.classList.remove('show');
+    toggle?.classList.remove('active');
+  });
+
+  const toggle = document.querySelector('.mobile-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  toggle?.addEventListener('click', () => {
+    navLinks?.classList.toggle('show');
+    toggle.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.nav-links') && !target.closest('.mobile-toggle')) {
+      navLinks?.classList.remove('show');
+      toggle?.classList.remove('active');
+    }
+  });
+</script>

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import NavbarRu from '../../components/NavbarRu.astro';
 import FooterRu from '../../components/FooterRu.astro';
+import { hreflangsFor } from '../../lib/i18n';
 
 // Изображения конвертированы в WebP через `npm run images:qollanma` (scripts/build-qollanma-images.mjs).
 const img1 = '/qollanma/starsjoy-qadam-1-start-tugmasi.webp';
@@ -130,10 +131,7 @@ const faqs = [
   ogImage="https://starsjoy.uz/og-qollanma-ru.png"
   keywords="как купить Telegram Stars, как купить Telegram Premium, StarsJoy инструкция, как работает StarsJoy, купить Stars пошагово, StarsJoy мини приложение инструкция"
   lang="ru"
-  hreflangs={[
-    { lang: "uz", href: "https://starsjoy.uz/qollanma" },
-    { lang: "ru", href: "https://starsjoy.uz/ru/qollanma" }
-  ]}
+  hreflangs={hreflangsFor('/qollanma')}
 >
   <NavbarRu />
 

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { hreflangsFor } from '../lib/i18n';
 
 const title = "StarsJoy Haqida — Rasmiy Ma'lumot | Telegram Stars, Premium, Gifts";
 const description = "StarsJoy — O'zbekistonda Telegram Stars, Premium va Gifts xizmatlarini taqdim etuvchi platforma. Xizmatlar, kafolatlar, to'lov usullari va aloqa haqida to'liq rasmiy ma'lumot.";
@@ -12,10 +13,7 @@ const description = "StarsJoy — O'zbekistonda Telegram Stars, Premium va Gifts
   description={description}
   canonical="https://starsjoy.uz/info"
   keywords="StarsJoy haqida, StarsJoy nima, StarsJoy rasmiy, Telegram Stars xizmati, StarsJoy aloqa, StarsJoy kafolatlar"
-  hreflangs={[
-    { lang: "uz", href: "https://starsjoy.uz/info" },
-    { lang: "ru", href: "https://starsjoy.uz/ru/info" }
-  ]}
+  hreflangs={hreflangsFor('/info')}
 >
   <Navbar />
 

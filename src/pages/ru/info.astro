@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import NavbarRu from '../../components/NavbarRu.astro';
 import FooterRu from '../../components/FooterRu.astro';
+import { hreflangsFor } from '../../lib/i18n';
 
 const title = "О StarsJoy — Официальная Информация | Telegram Stars, Premium, Gifts";
 const description = "StarsJoy — платформа для покупки Telegram Stars, Premium и Gifts в Узбекистане. Услуги, гарантии, способы оплаты и контакты — полная официальная информация.";
@@ -13,10 +14,7 @@ const description = "StarsJoy — платформа для покупки Teleg
   canonical="https://starsjoy.uz/ru/info"
   keywords="о StarsJoy, что такое StarsJoy, StarsJoy официальный, Telegram Stars сервис, StarsJoy контакты, StarsJoy гарантии, купить Telegram Stars"
   lang="ru"
-  hreflangs={[
-    { lang: "uz", href: "https://starsjoy.uz/info" },
-    { lang: "ru", href: "https://starsjoy.uz/ru/info" }
-  ]}
+  hreflangs={hreflangsFor('/info')}
 >
   <NavbarRu />
 

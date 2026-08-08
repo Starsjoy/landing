@@ -1,81 +1,75 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import NavbarRu from '../../components/NavbarRu.astro';
-import FooterRu from '../../components/FooterRu.astro';
+import NavbarEn from '../../components/NavbarEn.astro';
+import FooterEn from '../../components/FooterEn.astro';
 import Reviews from '../../components/Reviews.astro';
 import { getApprovedReviews, aggregateOf } from '../../lib/reviews';
 import { hreflangsFor } from '../../lib/i18n';
 
-const title = "Купить Telegram Premium — Дёшево в Узбекистане | StarsJoy";
-const description = "Telegram Premium цена в Узбекистане: 3 мес — 172 000, 6 мес — 232 000, 12 мес — 422 000 сум. Оплата через Click, Uzcard, Humo. Активация за 10 секунд. StarsJoy.";
+const title = "Buy Telegram Premium in Uzbekistan — Pay with Uzcard or Humo | StarsJoy";
+const description = "Telegram Premium price in Uzbekistan: 3 months 172,000 UZS, 6 months 232,000 UZS, 12 months 422,000 UZS. Pay in Uzbek som with Uzcard, Humo or Click — no Visa or Mastercard needed. Delivered in about 10 seconds.";
 
 const faqs = [
   {
-    q: "Что даёт Telegram Premium?",
-    a: "Telegram Premium открывает множество возможностей: загрузка файлов до 4 ГБ, быстрая скорость скачивания, отсутствие рекламы, эксклюзивные стикеры и реакции, значок Premium в профиле, перевод сообщений в реальном времени и многое другое."
+    q: "Can I buy Telegram Premium in Uzbekistan without a Visa or Mastercard?",
+    a: "Yes. This is the main reason StarsJoy exists. Telegram's official checkout (App Store, Google Play, or @PremiumBot) requires an international card, which most Uzbek bank cards are not. StarsJoy accepts Uzcard and Humo directly, in Uzbek som, with no currency conversion and no foreign card of any kind."
   },
   {
-    q: "Сколько стоит Telegram Premium в Узбекистане?",
-    a: "Через StarsJoy вы можете купить Telegram Premium по самой выгодной цене в Узбекистане. Доступны подписки на 3 месяца (172 000 сум), 6 месяцев (232 000 сум) и 12 месяцев (422 000 сум). Чем дольше срок — тем дешевле."
+    q: "How much does Telegram Premium cost in Uzbekistan?",
+    a: "Through StarsJoy: 3 months — 172,000 UZS, 6 months — 232,000 UZS, 12 months — 422,000 UZS. The longer the term, the lower the effective monthly price: the 12-month plan works out to roughly 35,200 UZS per month versus about 57,300 UZS on the 3-month plan."
   },
   {
-    q: "Можно ли оплатить через Uzcard или Humo?",
-    a: "Да! Через StarsJoy вы можете оплатить Telegram Premium картами Uzcard, Humo, через Click или банковскую карту. Процесс оплаты простой и быстрый."
+    q: "Is there a 1-month Telegram Premium plan?",
+    a: "Not through StarsJoy. Telegram's Gift Premium mechanism, which is what resellers use, has a minimum term of 3 months. A 1-month subscription does exist in Telegram itself, but only the account owner can enable it from inside the app using an international card."
   },
   {
-    q: "Как быстро активируется Premium?",
-    a: "После подтверждения оплаты Premium подписка активируется в течение 10 секунд."
+    q: "How long does delivery take?",
+    a: "Usually about 10 seconds after your payment is confirmed. Under heavy load it can take a few minutes, but the order is never lost. You will receive a 'Premium gift' notification from Telegram itself."
   },
   {
-    q: "Можно ли подарить Premium другому человеку?",
-    a: "Конечно! Через StarsJoy вы можете подарить Telegram Premium любому пользователю. Для этого нажмите кнопку «Подарить» в боте и введите username получателя."
+    q: "Do you need my Telegram password or login code?",
+    a: "No, and you should never give those to anyone. StarsJoy only needs your Telegram username. The subscription is attached through Telegram's official Gift Premium mechanism, which does not require access to your account. If any service asks for your password or SMS code, that is a scam."
   },
   {
-    q: "Безопасно ли покупать Premium через StarsJoy?",
-    a: "Абсолютно безопасно. StarsJoy — проверенный сервис с тысячами довольных клиентов. Мы гарантируем 100% активацию подписки и предоставляем поддержку 24/7."
+    q: "Can I gift Telegram Premium to someone else?",
+    a: "Yes. In the bot, choose 'Gift' and enter the recipient's Telegram username. The price is the same as the corresponding Premium plan and the recipient pays nothing — they simply receive a notification from Telegram."
   },
   {
-    q: "Нужна ли зарубежная карта для покупки Telegram Premium?",
-    a: "Нет. Visa или Mastercard не требуются. Оплата проходит полностью в сумах картой Uzcard или Humo — без конвертации валюты. Регистрация и пароль тоже не нужны: достаточно аккаунта Telegram и местной карты."
+    q: "What happens if Premium never arrives?",
+    a: "You get a 100% refund. Contact support through the bot with your payment receipt and the issue is resolved quickly. StarsJoy has completed more than 8,000 orders and publishes dated customer reviews openly."
   },
   {
-    q: "Можно ли получить Telegram Premium бесплатно?",
-    a: "Telegram Premium — платная подписка, бесплатного способа не существует. Остерегайтесь сайтов, обещающих обратное. Честный способ сэкономить в StarsJoy: по вашей реферальной ссылке вам возвращается 5% от суммы покупки. Кроме того, чем длиннее срок подписки, тем ниже цена за месяц."
+    q: "Is StarsJoy an official Telegram partner?",
+    a: "No. StarsJoy is an independent reseller. As stated in clause 2.3 of its public offer, the service is delivered through Telegram's official API and the Fragment infrastructure — the subscription is attached to your real Telegram account through the official route, not through any workaround."
   },
   {
-    q: "Есть ли подписка на 1 месяц?",
-    a: "StarsJoy предлагает тарифы на 3, 6 и 12 месяцев — тарифа на 1 месяц нет. Минимальный срок — 3 месяца (172 000 сум), это примерно 57 300 сум в месяц."
+    q: "Can I get Telegram Premium for free?",
+    a: "No. Telegram Premium is a paid subscription and any site promising it for free is a scam. StarsJoy does have one honest way to reduce the cost: a 5% referral bonus when someone buys through your personal link, plus the lower effective monthly rate on longer plans."
   },
   {
-    q: "Что делать, если Premium не пришёл после оплаты?",
-    a: "Если услуга не оказана или возникла проблема, оплаченная сумма возвращается в размере 100%. По любым вопросам можно обратиться в поддержку."
-  },
-  {
-    q: "StarsJoy — официальный партнёр Telegram?",
-    a: "Нет. StarsJoy — независимый реселлер. Согласно условиям оферты (пункт 2.3), услуга оказывается через официальный API Telegram и инфраструктуру Fragment. Подписка привязывается к вашему настоящему аккаунту официальным путём."
+    q: "I am a foreigner living in or visiting Uzbekistan. Can I use this?",
+    a: "Yes, as long as you have an Uzcard or Humo card issued in Uzbekistan and a Telegram account. No local registration, residence permit or document is required — you only need the card and your Telegram username."
   }
 ];
 
-// Цена за месяц — рассчитывается из опубликованных тарифов (округлённо)
+// Monthly price is derived from the published plan prices (rounded)
 const plans = [
   { months: 3,  price: 172000, best: false },
   { months: 6,  price: 232000, best: false },
   { months: 12, price: 422000, best: true  },
 ];
-const fmt = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+const fmt = (n: number) => n.toLocaleString('en-US');
 const perMonth = (p: { months: number; price: number }) =>
   fmt(Math.round(p.price / p.months / 100) * 100);
-// Разница в цене за месяц между тарифами 3 и 12 месяцев
 const monthlySaving = fmt(Math.round((172000 / 3 - 422000 / 12) / 1000) * 1000);
 
-// Отзывы клиентов (одобренные, общий пул с UZ) + рейтинг
 const reviews = await getApprovedReviews('premium');
 const agg = aggregateOf(reviews);
 
 const productSchema: any = {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "Telegram Premium Подписка",
+  "name": "Telegram Premium subscription",
   "description": description,
   "brand": { "@type": "Brand", "name": "StarsJoy" },
   "offers": {
@@ -87,6 +81,7 @@ const productSchema: any = {
     "offerCount": "3"
   }
 };
+// aggregateRating/review ONLY when real approved reviews exist (Google's rule)
 if (agg.reviewCount > 0) {
   productSchema.aggregateRating = {
     "@type": "AggregateRating",
@@ -107,18 +102,19 @@ if (agg.reviewCount > 0) {
 <Layout
   title={title}
   description={description}
-  canonical="https://starsjoy.uz/ru/premium"
-  keywords="купить Telegram Premium, Telegram Premium цена, Telegram Premium Узбекистан, Premium подписка Телеграм, StarsJoy Premium, Telegram Premium дёшево"
-  lang="ru"
+  canonical="https://starsjoy.uz/en/premium"
+  keywords="buy telegram premium uzbekistan, telegram premium price uzbekistan, telegram premium uzcard, telegram premium humo, telegram premium without visa, telegram premium in som"
+  lang="en"
   hreflangs={hreflangsFor('/premium')}
 >
-  <NavbarRu />
+  <NavbarEn />
 
   <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
 
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "inLanguage": "en-US",
     "mainEntity": faqs.map(faq => ({
       "@type": "Question",
       "name": faq.q,
@@ -130,8 +126,8 @@ if (agg.reviewCount > 0) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
-      { "@type": "ListItem", "position": 2, "name": "Купить Telegram Premium", "item": "https://starsjoy.uz/ru/premium" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://starsjoy.uz/en" },
+      { "@type": "ListItem", "position": 2, "name": "Buy Telegram Premium", "item": "https://starsjoy.uz/en/premium" }
     ]
   })} />
 
@@ -139,32 +135,32 @@ if (agg.reviewCount > 0) {
   <section class="prem-hero">
     <div class="container">
       <nav class="breadcrumb">
-        <a href="/ru">Главная</a>
+        <a href="/en">Home</a>
         <span>/</span>
         <span>Telegram Premium</span>
       </nav>
       <div class="prem-hero-inner fade-in">
         <div class="prem-hero-content">
-          <h1 class="prem-title">Купить Telegram Premium — По Лучшей Цене</h1>
+          <h1 class="prem-title">Buy Telegram Premium in Uzbekistan</h1>
           <p class="prem-desc">
-            Оформите подписку Telegram Premium через Uzcard, Click или Humo. Получите доступ к эксклюзивным функциям: загрузка файлов до 4 ГБ, без рекламы, уникальные стикеры и многое другое. Быстрая активация и 100% гарантия.
+            Pay in Uzbek som with an Uzcard or Humo card — no Visa, no Mastercard, no currency conversion. Your subscription is activated in about 10 seconds through Telegram's official Gift Premium mechanism.
           </p>
           <div class="prem-features">
             <div class="prem-feature">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3L5 10l5 10 5-10L10 3z" stroke="#7C3AED" stroke-width="1.5" stroke-linejoin="round" fill="#7C3AED" opacity="0.15"/></svg>
-              <span>Активация за 10 секунд</span>
+              <span>Active in ~10 seconds</span>
             </div>
             <div class="prem-feature">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="5" y="9" width="10" height="9" rx="2" stroke="#7C3AED" stroke-width="1.5"/><path d="M7.5 9V7a2.5 2.5 0 1 1 5 0v2" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
-              <span>Uzcard / Click / Humo</span>
+              <span>Uzcard / Humo / Click</span>
             </div>
             <div class="prem-feature">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#10B981" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>100% гарантия</span>
+              <span>100% refund guarantee</span>
             </div>
           </div>
           <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">
-            &#9889; Купить Premium
+            &#9889; Buy Telegram Premium
           </a>
         </div>
         <div class="prem-hero-visual">
@@ -187,204 +183,204 @@ if (agg.reviewCount > 0) {
     </div>
   </section>
 
-  <!-- Цены -->
+  <!-- Pricing -->
   <section class="prem-pricing">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Цены</span>
-        <h2 class="section-title">Цены на Telegram Premium</h2>
-        <p class="section-subtitle">Чем дольше срок подписки, тем выгоднее цена</p>
+        <span class="section-label">Pricing</span>
+        <h2 class="section-title">Telegram Premium price in Uzbekistan</h2>
+        <p class="section-subtitle">All prices in Uzbek som (UZS). The longer the plan, the lower the monthly cost</p>
       </div>
       <div class="pricing-table-wrap fade-in">
         <table class="pricing-table">
           <thead>
-            <tr><th>Срок</th><th>В месяц</th><th>Всего</th></tr>
+            <tr><th>Plan</th><th>Per month</th><th>Total price</th></tr>
           </thead>
           <tbody>
             {plans.map((p) => (
               <tr class={p.best ? 'pricing-highlight' : undefined}>
                 <td>
-                  {p.months} мес.
-                  {p.best && <span class="pricing-badge">Выгоднее всего</span>}
+                  {p.months} months
+                  {p.best && <span class="pricing-badge">Best value</span>}
                 </td>
-                <td class="pricing-permonth">~{perMonth(p)} сум</td>
-                <td>{fmt(p.price)} сум</td>
+                <td class="pricing-permonth">~{perMonth(p)} UZS</td>
+                <td>{fmt(p.price)} UZS</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <p class="pricing-note fade-in">
-        В цену включены все способы оплаты (Uzcard, Humo, Click) — без скрытых комиссий.
-        На тарифе 12 месяцев один месяц обходится примерно на {monthlySaving} сум дешевле, чем на тарифе 3 месяца.
-        Все цены сервиса собраны на <a href="/ru/narxlar">странице цен</a>.
+        The price includes every payment method (Uzcard, Humo, Click) — there are no hidden fees and no
+        currency conversion. On the 12-month plan a month costs roughly {monthlySaving} UZS less than on
+        the 3-month plan. There is no 1-month plan: Telegram's Gift Premium mechanism starts at 3 months.
       </p>
       <div class="pricing-cta fade-in">
-        <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Купить Premium</a>
+        <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Buy Telegram Premium</a>
       </div>
     </div>
   </section>
 
-  <!-- Способы оплаты -->
+  <!-- Payment -->
   <section class="prem-pay">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Оплата</span>
-        <h2 class="section-title">Uzcard, Humo и Click — в сумах</h2>
-        <p class="section-subtitle">Зарубежная карта и конвертация валюты не нужны</p>
+        <span class="section-label">Payment</span>
+        <h2 class="section-title">Why you cannot just buy it inside Telegram</h2>
+        <p class="section-subtitle">The specific problem StarsJoy solves for people in Uzbekistan</p>
       </div>
       <div class="pay-grid">
         <div class="pay-card fade-in">
-          <h3>Местные карты</h3>
+          <h3>The official route needs a foreign card</h3>
           <p>
-            Карты Uzcard и Humo поддерживаются полностью. Официальный способ
-            (App Store / Google Play) требует международную карту — Uzcard и Humo
-            там не принимаются, а собственный <strong>@PremiumBot</strong> Telegram
-            из Узбекистана чаще всего не работает. StarsJoy закрывает именно этот пробел.
+            Buying Premium through the App Store, Google Play or Telegram's own
+            <strong>@PremiumBot</strong> requires an international card. Uzcard and Humo — the two
+            card systems almost everyone in Uzbekistan actually holds — are not accepted, and
+            @PremiumBot frequently fails from Uzbekistan altogether.
           </p>
         </div>
         <div class="pay-card fade-in">
-          <h3>Из любого приложения</h3>
+          <h3>Pay from any app you already use</h3>
           <p>
-            Перевод можно сделать из Click, Payme, Uzum или приложения вашего банка —
-            разницы нет. Важно одно: деньги должны прийти на карту, указанную в окне
-            заказа, и <strong>ровно на указанную сумму</strong>.
+            You can send the transfer from Click, Payme, Uzum or your own bank's app — it makes no
+            difference. What matters is that the money reaches the card shown in the order window,
+            for <strong>exactly the amount shown</strong>.
           </p>
         </div>
         <div class="pay-card fade-in">
-          <h3>Без регистрации</h3>
+          <h3>No registration, no password</h3>
           <p>
-            Пароль, создание аккаунта или документы не требуются. Достаточно вашего
-            аккаунта Telegram и местной карты. Весь процесс занимает обычно 2-3 минуты.
+            There is no account to create, no document to upload and no password to hand over. A
+            Telegram account and a local card are enough. The whole process usually takes 2–3 minutes.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Преимущества Premium -->
+  <!-- Benefits -->
   <section class="prem-benefits">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Преимущества</span>
-        <h2 class="section-title">Что даёт Telegram Premium?</h2>
-        <p class="section-subtitle">Все возможности, которые открывает Premium подписка</p>
+        <span class="section-label">Features</span>
+        <h2 class="section-title">What Telegram Premium gives you</h2>
+        <p class="section-subtitle">Everything the subscription unlocks</p>
       </div>
       <div class="benefits-grid">
         <div class="benefit-card fade-in">
           <div class="benefit-icon bi-file">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M7 4h10l6 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="2"/><path d="M17 4v6h6" stroke="currentColor" stroke-width="2"/></svg>
           </div>
-          <h3>Файлы до 4 ГБ</h3>
-          <p>Загружайте и отправляйте файлы размером до 4 ГБ</p>
+          <h3>4 GB file uploads</h3>
+          <p>Upload and share files of up to 4 GB instead of the standard 2 GB</p>
         </div>
         <div class="benefit-card fade-in">
           <div class="benefit-icon bi-speed">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M15 5L7 16h6l-2 7 8-11h-6l2-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
           </div>
-          <h3>Быстрая загрузка</h3>
-          <p>Скачивайте файлы на максимальной скорости</p>
+          <h3>Faster downloads</h3>
+          <p>Download media and files at maximum speed with no throttling</p>
         </div>
         <div class="benefit-card fade-in">
           <div class="benefit-icon bi-noads">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="2"/><path d="M7 21L21 7" stroke="currentColor" stroke-width="2"/></svg>
           </div>
-          <h3>Без рекламы</h3>
-          <p>Избавьтесь от всей рекламы в каналах Telegram</p>
+          <h3>No ads in channels</h3>
+          <p>Sponsored messages in public channels disappear entirely</p>
         </div>
         <div class="benefit-card fade-in">
           <div class="benefit-icon bi-sticker">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="2"/><path d="M10 16c1.5 2 5.5 2 7 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10.5" cy="12" r="1.5" fill="currentColor"/><circle cx="17.5" cy="12" r="1.5" fill="currentColor"/></svg>
           </div>
-          <h3>Эксклюзивные стикеры</h3>
-          <p>Уникальные стикеры и реакции только для Premium пользователей</p>
+          <h3>Exclusive stickers and reactions</h3>
+          <p>Premium-only animated stickers, custom emoji and extra reactions</p>
         </div>
         <div class="benefit-card fade-in">
           <div class="benefit-icon bi-profile">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="11" r="5" stroke="currentColor" stroke-width="2"/><path d="M6 24c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
-          <h3>Значок Premium</h3>
-          <p>Значок Premium в профиле, анимированный аватар и био</p>
+          <h3>Premium profile</h3>
+          <p>A verified-style badge, animated profile video and a longer bio</p>
         </div>
         <div class="benefit-card fade-in">
           <div class="benefit-icon bi-translate">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 7h12M10 4v3M7 7c0 4 3 8 7 10M15 7c0 4-3 8-7 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 18l3-6 3 6M17 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
-          <h3>Перевод сообщений</h3>
-          <p>Переводите сообщения на любой язык одним нажатием</p>
+          <h3>Real-time translation</h3>
+          <p>Translate whole chats into your language with a single tap</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Как купить -->
+  <!-- How to buy -->
   <section class="prem-how">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Инструкция</span>
-        <h2 class="section-title">Как купить Telegram Premium?</h2>
-        <p class="section-subtitle">Оформите подписку за 3 простых шага через нашего бота</p>
+        <span class="section-label">How it works</span>
+        <h2 class="section-title">How to buy Telegram Premium</h2>
+        <p class="section-subtitle">Three steps inside the bot</p>
       </div>
       <div class="how-steps">
         <div class="how-step fade-in">
           <div class="how-step-num">1</div>
-          <h3>Откройте бота</h3>
-          <p>Перейдите в <strong>@starsjoybot</strong> и выберите «Купить Premium»</p>
+          <h3>Open the bot</h3>
+          <p>Open <strong>@starsjoybot</strong> in Telegram and choose "Premium"</p>
         </div>
         <div class="how-step fade-in">
           <div class="how-step-num">2</div>
-          <h3>Выберите срок</h3>
-          <p>Выберите подписку на 3 месяца, 6 месяцев или 12 месяцев</p>
+          <h3>Pick a plan</h3>
+          <p>Choose 3, 6 or 12 months and enter the Telegram username it is for</p>
         </div>
         <div class="how-step fade-in">
           <div class="how-step-num">3</div>
-          <h3>Оплатите и получите</h3>
-          <p>Оплатите через Uzcard, Click или Humo — Premium активируется за 10 секунд</p>
+          <h3>Pay and receive</h3>
+          <p>Transfer the exact amount from Click, Payme or your bank app — Premium activates in about 10 seconds</p>
         </div>
       </div>
       <div class="how-cta fade-in">
-        <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Начать сейчас</a>
-        <p class="how-guide-note"><a href="/ru/qollanma#premium">Посмотреть каждый шаг со скриншотом &rarr;</a></p>
+        <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Start now</a>
+        <p class="how-guide-note"><a href="/en/how-to-buy">See every step with screenshots &rarr;</a></p>
       </div>
     </div>
   </section>
 
-  <!-- Гарантии и доверие -->
+  <!-- Trust -->
   <section class="prem-trust">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Гарантии</span>
-        <h2 class="section-title">Почему через StarsJoy?</h2>
-        <p class="section-subtitle">Что мы делаем для безопасности ваших денег и аккаунта</p>
+        <span class="section-label">Trust</span>
+        <h2 class="section-title">Why buy through StarsJoy</h2>
+        <p class="section-subtitle">What we do to protect your money and your account</p>
       </div>
       <div class="trust-grid">
         <div class="trust-item fade-in">
-          <span class="trust-num">8 000+</span>
-          <h3>Выполненных заказов</h3>
-          <p>Сервис работает больше года, число заказов показано открыто.</p>
+          <span class="trust-num">8,000+</span>
+          <h3>Completed orders</h3>
+          <p>The service has been running for over a year and the order count is published openly.</p>
         </div>
         <div class="trust-item fade-in">
-          <span class="trust-num">1-5 мин</span>
-          <h3>Срок доставки</h3>
-          <p>После подтверждения оплаты подписка обычно приходит за 10 секунд.</p>
+          <span class="trust-num">~10 s</span>
+          <h3>Delivery time</h3>
+          <p>Once payment is confirmed the subscription usually reaches the account in about 10 seconds.</p>
         </div>
         <div class="trust-item fade-in">
           <span class="trust-num">100%</span>
-          <h3>Возврат средств</h3>
-          <p>Если услуга не оказана или возникла проблема, сумма возвращается полностью.</p>
+          <h3>Refund</h3>
+          <p>If the service is not delivered or something goes wrong, you get the full amount back.</p>
         </div>
         <div class="trust-item fade-in">
           <span class="trust-num">5%</span>
-          <h3>Реферальный бонус</h3>
-          <p>Если по вашей ссылке кто-то купит, 5% от суммы вернётся вам бонусом.</p>
+          <h3>Referral bonus</h3>
+          <p>When somebody buys through your personal link, 5% of the amount comes back to you.</p>
         </div>
       </div>
       <p class="trust-note fade-in">
-        Отзывы проходят модерацию и публикуются с датой — прочитать их полностью можно
-        на <a href="/ru/sharhlar">странице отзывов</a>. StarsJoy не является официальным
-        партнёром Telegram: согласно пункту 2.3 <a href="/ru/oferta">оферты</a>, сервис
-        работает как независимый реселлер через официальный API Telegram и инфраструктуру
-        Fragment — подписка привязывается к вашему настоящему аккаунту официальным путём.
+        Customer reviews are moderated but never edited or deleted, and each one carries a date — you can
+        read them in full on the <a href="/sharhlar">reviews page</a> (in Uzbek). StarsJoy is not an
+        official Telegram partner: under clause 2.3 of its <a href="/oferta">public offer</a> it operates
+        as an independent reseller delivering through Telegram's official API and the Fragment
+        infrastructure, so the subscription is attached to your real account through the official route.
       </p>
     </div>
   </section>
@@ -394,8 +390,8 @@ if (agg.reviewCount > 0) {
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">FAQ</span>
-        <h2 class="section-title">Вопросы о Telegram Premium</h2>
-        <p class="section-subtitle">Ответы на самые частые вопросы о Premium подписке</p>
+        <h2 class="section-title">Frequently asked questions</h2>
+        <p class="section-subtitle">Telegram Premium in Uzbekistan — the questions people actually ask</p>
       </div>
       <div class="faq-list">
         {faqs.map((faq) => (
@@ -413,41 +409,20 @@ if (agg.reviewCount > 0) {
     </div>
   </section>
 
-  <!-- Отзывы (компонент) -->
-  <Reviews lang="ru" />
-
-  <!-- Связанные материалы -->
-  <section class="prem-related">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Подробнее</span>
-        <h2 class="section-title">Дополнительные руководства о Premium</h2>
-      </div>
-      <ul class="related-list fade-in">
-        <li><a href="/ru/blog/telegram-premium-funksiyalari">Что даёт Telegram Premium — все функции</a></li>
-        <li><a href="/ru/blog/telegram-premium-paketlar-taqqoslash">Сравнение тарифов 3, 6 и 12 месяцев</a></li>
-        <li><a href="/ru/blog/telegram-premium-uzcard">Покупка Premium картой Uzcard</a></li>
-        <li><a href="/ru/blog/telegram-premium-vizasiz">Как получить Premium без карты Visa</a></li>
-        <li><a href="/ru/blog/telegram-premium-sovga-qilish">Как подарить Premium</a></li>
-        <li><a href="/ru/blog/telegram-premium-muddati-tugadi">Что делать, если Premium закончился</a></li>
-        <li><a href="/ru/blog/telegram-stars-yoki-premium">Stars или Premium — что вам нужно?</a></li>
-        <li><a href="/ru/qollanma#premium">Пошаговое руководство со скриншотами</a></li>
-      </ul>
-    </div>
-  </section>
+  <Reviews lang="en" />
 
   <!-- CTA -->
   <section class="prem-cta">
     <div class="container">
       <div class="prem-cta-box fade-in">
-        <h2>Готовы подключить Telegram Premium?</h2>
-        <p>Лучшие цены в Узбекистане, оплата через Uzcard/Click/Humo</p>
-        <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">&#9889; Купить Premium</a>
+        <h2>Ready to get Telegram Premium?</h2>
+        <p>Pay in som with Uzcard or Humo — active in about 10 seconds</p>
+        <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">&#9889; Buy Telegram Premium</a>
       </div>
     </div>
   </section>
 
-  <FooterRu />
+  <FooterEn />
 </Layout>
 
 <script>

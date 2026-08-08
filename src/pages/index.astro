@@ -12,6 +12,7 @@ import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
 import { getApprovedReviews, aggregateOf } from '../lib/reviews';
+import { hreflangsFor } from '../lib/i18n';
 
 // Bosh sahifada AggregateRating: /sharhlar da allaqachon bor edi, lekin AI
 // modellari va qidiruv tizimlari saytning asosiy entity'sini bosh sahifadan
@@ -24,10 +25,7 @@ const agg = aggregateOf(await getApprovedReviews('premium'));
 <Layout
   title="Telegram Stars, Premium va Gifts - StarsJoy"
   canonical="https://starsjoy.uz"
-  hreflangs={[
-    { lang: "uz", href: "https://starsjoy.uz" },
-    { lang: "ru", href: "https://starsjoy.uz/ru" }
-  ]}
+  hreflangs={hreflangsFor('/')}
 >
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",

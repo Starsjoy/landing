@@ -1,20 +1,28 @@
 ---
-interface Props { lang?: 'uz' | 'ru'; }
+interface Props { lang?: 'uz' | 'ru' | 'en'; }
 const { lang = 'uz' } = Astro.props;
 
-const t = lang === 'ru'
-  ? {
-      formTitle: 'Оставьте свой отзыв', formSub: 'Ваш опыт поможет другим',
-      nameLabel: 'Ваше имя', rateLabel: 'Ваша оценка', bodyLabel: 'Ваш отзыв',
-      name: 'Например, Алишер', body: 'Расскажите о вашем опыте...', submit: 'Отправить отзыв',
-      note: 'Отзыв будет опубликован после модерации.', pickRate: 'Выберите оценку',
-    }
-  : {
-      formTitle: 'Fikringizni qoldiring', formSub: 'Tajribangiz boshqalarga yordam beradi',
-      nameLabel: 'Ismingiz', rateLabel: 'Bahoyingiz', bodyLabel: 'Sharhingiz',
-      name: 'Masalan, Alisher', body: 'Tajribangiz haqida yozing...', submit: 'Sharh yuborish',
-      note: "Sharh moderatsiyadan so'ng chop etiladi.", pickRate: 'Bahoni tanlang',
-    };
+const T = {
+  uz: {
+    formTitle: 'Fikringizni qoldiring', formSub: 'Tajribangiz boshqalarga yordam beradi',
+    nameLabel: 'Ismingiz', rateLabel: 'Bahoyingiz', bodyLabel: 'Sharhingiz',
+    name: 'Masalan, Alisher', body: 'Tajribangiz haqida yozing...', submit: 'Sharh yuborish',
+    note: "Sharh moderatsiyadan so'ng chop etiladi.", pickRate: 'Bahoni tanlang',
+  },
+  ru: {
+    formTitle: 'Оставьте свой отзыв', formSub: 'Ваш опыт поможет другим',
+    nameLabel: 'Ваше имя', rateLabel: 'Ваша оценка', bodyLabel: 'Ваш отзыв',
+    name: 'Например, Алишер', body: 'Расскажите о вашем опыте...', submit: 'Отправить отзыв',
+    note: 'Отзыв будет опубликован после модерации.', pickRate: 'Выберите оценку',
+  },
+  en: {
+    formTitle: 'Leave a review', formSub: 'Your experience helps others decide',
+    nameLabel: 'Your name', rateLabel: 'Your rating', bodyLabel: 'Your review',
+    name: 'For example, Alisher', body: 'Tell us about your experience...', submit: 'Submit review',
+    note: 'Reviews are published after moderation.', pickRate: 'Pick a rating',
+  },
+};
+const t = T[lang] ?? T.uz;
 const stars = [1, 2, 3, 4, 5];
 ---
 

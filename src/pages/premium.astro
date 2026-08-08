@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Reviews from '../components/Reviews.astro';
 import { getApprovedReviews, aggregateOf } from '../lib/reviews';
+import { hreflangsFor } from '../lib/i18n';
 
 const title = "Telegram Premium Sotib Olish — Arzon Narxda O'zbekistonda | StarsJoy";
 const description = "Telegram Premium narxi O'zbekistonda: 3 oy 172 000, 6 oy 232 000, 12 oy 422 000 so'm. Uzcard, Click, Humo orqali to'lang — 10 soniyada aktivlashadi. StarsJoy 100% kafolat.";
@@ -105,10 +106,7 @@ if (agg.reviewCount > 0) {
   description={description}
   canonical="https://starsjoy.uz/premium"
   keywords="Telegram Premium sotib olish, Telegram Premium narxi O'zbekiston, arzon Telegram Premium, Telegram Premium 1 yillik narxi, Telegram Premium Uzcard, Telegram Premium bot orqali sotib olish"
-  hreflangs={[
-    { lang: "uz", href: "https://starsjoy.uz/premium" },
-    { lang: "ru", href: "https://starsjoy.uz/ru/premium" }
-  ]}
+  hreflangs={hreflangsFor('/premium')}
 >
   <Navbar />
 
@@ -362,7 +360,7 @@ if (agg.reviewCount > 0) {
           <p>Xizmat bir yildan ortiq vaqtdan beri ishlaydi va buyurtmalar soni ochiq ko'rsatiladi.</p>
         </div>
         <div class="trust-item fade-in">
-          <span class="trust-num">1-5 daq.</span>
+          <span class="trust-num">10 son.</span>
           <h3>Yetkazish vaqti</h3>
           <p>To'lov tasdiqlangach obuna odatda 10 soniyada akkauntingizga tushadi.</p>
         </div>

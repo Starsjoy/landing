@@ -1,46 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import NavbarRu from '../../components/NavbarRu.astro';
-import BlogHighlights from '../../components/BlogHighlights.astro';
+import NavbarEn from '../../components/NavbarEn.astro';
 import Reviews from '../../components/Reviews.astro';
-import FooterRu from '../../components/FooterRu.astro';
+import FooterEn from '../../components/FooterEn.astro';
 import { getApprovedReviews, aggregateOf } from '../../lib/reviews';
 import { hreflangsFor } from '../../lib/i18n';
 
-// Qarang: src/pages/index.astro — bir xil AggregateRating signali, ru varianti.
+// Qarang: src/pages/index.astro — bir xil AggregateRating signali, en varianti.
 const agg = aggregateOf(await getApprovedReviews('premium'));
 
 const faqs = [
   {
-    q: "Как купить Telegram Stars?",
-    a: "Откройте нашего бота @starsjoybot в Telegram, выберите раздел Stars, укажите нужное количество и оплатите через Click, Uzcard или Humo. Звёзды поступят на ваш аккаунт в течение 10 секунд.",
+    q: "How do I buy Telegram Stars?",
+    a: "Open @starsjoybot in Telegram, choose the Stars section, enter the amount you need and pay with Click, Uzcard or Humo. The Stars reach your account in about 10 seconds. No Visa card and no TON wallet are required.",
   },
   {
-    q: "Сколько стоит Telegram Premium?",
-    a: "Цена зависит от срока подписки: 3 месяца (172 000 сум), 6 месяцев (232 000 сум) или 12 месяцев (422 000 сум). Чем дольше период, тем выгоднее.",
+    q: "How much does Telegram Premium cost?",
+    a: "The price depends on the term: 3 months (172,000 UZS), 6 months (232,000 UZS) or 12 months (422,000 UZS). The longer the term, the lower the effective monthly cost. There is no 1-month plan — Telegram’s Gift Premium mechanism starts at 3 months.",
   },
   {
-    q: "Как отправить Telegram Gift другу?",
-    a: "Выберите раздел Gifts в боте, укажите username получателя, выберите подарок и оплатите. Подарок будет доставлен мгновенно прямо в Telegram.",
+    q: "How do I send a Telegram Gift to a friend?",
+    a: "Choose the Gifts section in the bot, enter the recipient’s Telegram username, pick a gift and pay. The gift arrives directly in Telegram and the recipient pays nothing.",
   },
   {
-    q: "Какие способы оплаты доступны?",
-    a: "Мы принимаем Click, Uzcard, Humo и банковские переводы. Все платежи проходят через защищённое соединение.",
+    q: "What payment methods can I use?",
+    a: "Any Uzcard or Humo card issued in Uzbekistan. The transfer itself can be made from Click, Payme, Uzum or your own bank’s app. Visa and Mastercard are not needed, and prices are set in som so there is no currency conversion.",
   },
   {
-    q: "Что делать, если Stars не пришли?",
-    a: "Если услуга не была оказана — возвращаем 100% суммы. Обратитесь в поддержку через бота.",
+    q: "What if the Stars never arrive?",
+    a: "You get a 100% refund. Contact support through the bot with your payment receipt and it is resolved quickly.",
   },
 ];
 
 ---
 
 <Layout
-  title="Telegram Stars, Premium и Gifts — Купить в StarsJoy"
-  description="StarsJoy — купить Telegram Stars, Premium и Gifts быстро и дёшево. Доставка за 10 секунд, 100% гарантия возврата. Оплата через Click, Uzcard, Humo."
-  canonical="https://starsjoy.uz/ru"
-  keywords="купить Telegram Stars, Telegram Premium купить, Telegram Gifts, купить звёзды Телеграм, Telegram Premium Узбекистан, StarsJoy"
-  lang="ru"
+  title="Buy Telegram Stars, Premium and Gifts in Uzbekistan — StarsJoy"
+  description="Buy Telegram Stars, Premium and Gifts in Uzbekistan — pay in Uzbek som with Uzcard or Humo, no Visa card needed. Stars 240 UZS each, Premium from 172,000 UZS. Delivered in about 10 seconds, 100% refund guarantee."
+  canonical="https://starsjoy.uz/en"
+  keywords="buy telegram stars uzbekistan, buy telegram premium uzbekistan, telegram gifts, telegram stars uzcard, telegram premium humo, telegram stars to uzs, starsjoy"
+  lang="en"
   hreflangs={hreflangsFor('/')}
 >
   <!-- WebSite Schema -->
@@ -48,9 +47,9 @@ const faqs = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "StarsJoy",
-    "url": "https://starsjoy.uz/ru",
-    "description": "StarsJoy — купить Telegram Stars, Premium и Gifts быстро и недорого. Доставка за 10 секунд, 100% гарантия возврата денег.",
-    "inLanguage": "ru",
+    "url": "https://starsjoy.uz/en",
+    "description": "Buy Telegram Stars, Premium and Gifts in Uzbekistan, paid in som with a local card. Delivered in about 10 seconds with a 100% refund guarantee.",
+    "inLanguage": "en-US",
     "publisher": {
       "@type": "Organization",
       "name": "StarsJoy",
@@ -66,7 +65,7 @@ const faqs = [
     "name": "StarsJoy",
     "url": "https://starsjoy.uz",
     "logo": "https://starsjoy.uz/logo.png",
-    "description": "Платформа для покупки Telegram Stars, Premium и Gifts в Узбекистане за сумы. Более 8 000 выполненных заказов.",
+    "description": "Platform for buying Telegram Stars, Premium and Gifts in Uzbekistan, paid in Uzbek som. More than 8,000 completed orders.",
     "areaServed": { "@type": "Country", "name": "Uzbekistan" },
     "sameAs": [
       "https://telegram.me/starsjoybot",
@@ -96,7 +95,7 @@ const faqs = [
     }))
   })} />
 
-  <NavbarRu />
+  <NavbarEn />
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
@@ -104,18 +103,18 @@ const faqs = [
       <div class="hero-content">
         <h1 class="hero-title">
           Telegram Stars,<br>
-          Premium и Gifts<br>
-          <span class="hero-highlight">за 10 секунд!</span>
+          Premium and Gifts<br>
+          <span class="hero-highlight">in 10 seconds!</span>
         </h1>
         <p class="hero-desc">
-          Starsjoy — это Telegram Mini App (не обычный бот). Покупайте Stars, оформляйте Premium или отправляйте Gifts друзьям — всё внутри приложения, за 10 секунд.
+          StarsJoy is a Telegram Mini App, not an ordinary bot. Buy Stars, get Premium or send Gifts to friends — all inside the app, paid in Uzbek som with a local card.
         </p>
         <div class="hero-buttons">
           <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">
-            &#9889; Открыть приложение
+            &#9889; Open the app
           </a>
           <a href="#services" class="btn-secondary">
-            Наши услуги &#8595;
+            Our services &#8595;
           </a>
         </div>
       </div>
@@ -143,7 +142,7 @@ const faqs = [
                 </svg>
               </div>
               <span class="face-title">Stars</span>
-              <span class="face-sub">Купить звёзды</span>
+              <span class="face-sub">Buy Stars</span>
             </div>
 
             <!-- Right: Premium -->
@@ -164,7 +163,7 @@ const faqs = [
                 </svg>
               </div>
               <span class="face-title">Premium</span>
-              <span class="face-sub">Оформить подписку</span>
+              <span class="face-sub">Get Premium</span>
             </div>
 
             <!-- Back: Gifts -->
@@ -186,7 +185,7 @@ const faqs = [
                 </svg>
               </div>
               <span class="face-title">Gifts</span>
-              <span class="face-sub">Отправить подарок</span>
+              <span class="face-sub">Send a gift</span>
             </div>
 
             <!-- Left: Cashback -->
@@ -204,8 +203,8 @@ const faqs = [
                   <path d="M26 14v24M32 20c0-3.3-2.7-6-6-6s-6 2.7-6 6c0 3.3 2.7 6 6 6s6 2.7 6 6c0 3.3-2.7 6-6 6s-6-2.7-6-6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
                 </svg>
               </div>
-              <span class="face-title">Кешбэк</span>
-              <span class="face-sub">Реферальный бонус</span>
+              <span class="face-title">Cashback</span>
+              <span class="face-sub">Referral bonus</span>
             </div>
           </div>
         </div>
@@ -226,9 +225,9 @@ const faqs = [
   <section id="services">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Услуги</span>
-        <h2 class="section-title">Что вы хотите купить?</h2>
-        <p class="section-subtitle">Все премиум-услуги Telegram в одном месте — быстро и по лучшей цене</p>
+        <span class="section-label">Services</span>
+        <h2 class="section-title">What do you want to buy?</h2>
+        <p class="section-subtitle">Every Telegram premium service in one place — fast, and paid for in som</p>
       </div>
       <div class="services-grid">
         <div class="service-card service-purple fade-in">
@@ -241,7 +240,7 @@ const faqs = [
               </svg>
             </div>
           </div>
-          <p class="service-desc">Покупайте Stars для оплаты контента, поддержки каналов и покупок через ботов</p>
+          <p class="service-desc">Buy Stars to unlock paid posts, tip creators and pay inside bots and Mini Apps</p>
         </div>
 
         <div class="service-card service-blue fade-in">
@@ -255,7 +254,7 @@ const faqs = [
               </svg>
             </div>
           </div>
-          <p class="service-desc">Безлимитные возможности: большие файлы, быстрая загрузка, эксклюзивные стикеры и реакции</p>
+          <p class="service-desc">Unlimited possibilities: 4 GB uploads, faster downloads, no channel ads, exclusive stickers</p>
         </div>
 
         <div class="service-card service-amber fade-in">
@@ -270,7 +269,7 @@ const faqs = [
               </svg>
             </div>
           </div>
-          <p class="service-desc">Отправляйте уникальные подарки друзьям — с анимациями и премиум-эффектами</p>
+          <p class="service-desc">Send gifts to friends — the recipient pays nothing and gets a notification from Telegram</p>
         </div>
       </div>
     </div>
@@ -280,9 +279,9 @@ const faqs = [
   <section class="how-it-works" id="how-it-works">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Процесс</span>
-        <h2 class="section-title">Как это работает?</h2>
-        <p class="section-subtitle">Всего 4 шага — и нужная услуга у вас</p>
+        <span class="section-label">Process</span>
+        <h2 class="section-title">How does it work?</h2>
+        <p class="section-subtitle">Four steps and the service is yours</p>
       </div>
       <div class="steps-grid">
         <div class="step-card fade-in">
@@ -297,8 +296,8 @@ const faqs = [
               <path d="M14 9v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <h3 class="step-title">Откройте бот</h3>
-          <p class="step-desc">Откройте @starsjoybot в Telegram и нажмите /start</p>
+          <h3 class="step-title">Open the bot</h3>
+          <p class="step-desc">Open @starsjoybot in Telegram and press /start</p>
         </div>
 
         <div class="step-card fade-in">
@@ -314,8 +313,8 @@ const faqs = [
               <path d="M19 19l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <h3 class="step-title">Выберите услугу</h3>
-          <p class="step-desc">Stars, Premium или Gifts — выберите то, что вам нужно</p>
+          <h3 class="step-title">Choose a service</h3>
+          <p class="step-desc">Stars, Premium or Gifts — pick what you need</p>
         </div>
 
         <div class="step-card fade-in">
@@ -330,8 +329,8 @@ const faqs = [
               <circle cx="21" cy="17" r="2" fill="currentColor" opacity="0.3"/>
             </svg>
           </div>
-          <h3 class="step-title">Оплатите</h3>
-          <p class="step-desc">Переведите на показанную карту из любого приложения: Click, Payme, Uzum или банк</p>
+          <h3 class="step-title">Pay</h3>
+          <p class="step-desc">Transfer to the card shown, from any app: Click, Payme, Uzum or your bank</p>
         </div>
 
         <div class="step-card fade-in">
@@ -343,13 +342,13 @@ const faqs = [
               <path d="M15.5 3L7 16h6l-1.5 9L22 12h-6l1.5-9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
             </svg>
           </div>
-          <h3 class="step-title">Получите за 10 секунд</h3>
-          <p class="step-desc">После оплаты услуга будет доставлена в течение 10 секунд</p>
+          <h3 class="step-title">Receive in 10 seconds</h3>
+          <p class="step-desc">Once payment is confirmed the service arrives in about 10 seconds</p>
         </div>
       </div>
 
       <div class="how-guide-link fade-in">
-        <a href="/ru/qollanma">Посмотреть каждый шаг со скриншотом — полная инструкция &rarr;</a>
+        <a href="/en/how-to-buy">See every step with screenshots — the full guide &rarr;</a>
       </div>
     </div>
   </section>
@@ -358,9 +357,9 @@ const faqs = [
   <section id="guarantees">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Гарантии</span>
-        <h2 class="section-title">Ваше доверие —<br class="mobile-br"> наш приоритет</h2>
-        <p class="section-subtitle">Мы берём на себя полную ответственность за каждый заказ</p>
+        <span class="section-label">Guarantees</span>
+        <h2 class="section-title">Your trust is<br class="mobile-br"> our priority</h2>
+        <p class="section-subtitle">We take full responsibility for every single order</p>
       </div>
       <div class="guarantees-grid">
         <div class="guarantee-card fade-in">
@@ -369,8 +368,8 @@ const faqs = [
               <path d="M16 4l3.09 6.26L26 11.27l-5 4.87 1.18 6.88L16 19.9l-6.18 3.25L11 16.14 6 11.27l6.91-1.01L16 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
             </svg>
           </div>
-          <h3 class="guarantee-title">8 000+ заказов</h3>
-          <p class="guarantee-desc">Тысячи клиентов успешно воспользовались услугами StarsJoy</p>
+          <h3 class="guarantee-title">8,000+ orders</h3>
+          <p class="guarantee-desc">Thousands of customers have bought through StarsJoy, and reviews are published openly with dates</p>
         </div>
         <div class="guarantee-card fade-in">
           <div class="guarantee-icon gi-speed">
@@ -378,8 +377,8 @@ const faqs = [
               <path d="M17.5 4L8 18h7l-2 10L24 14h-7l2-10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" opacity="0.15"/>
             </svg>
           </div>
-          <h3 class="guarantee-title">Доставка за 10 секунд</h3>
-          <p class="guarantee-desc">После подтверждения оплаты услуга обычно доставляется за 10 секунд — при высокой нагрузке возможна небольшая задержка</p>
+          <h3 class="guarantee-title">Delivered in 10 seconds</h3>
+          <p class="guarantee-desc">Once payment is confirmed the service usually arrives in about 10 seconds — under heavy load it can take a little longer</p>
         </div>
         <div class="guarantee-card fade-in">
           <div class="guarantee-icon gi-refund">
@@ -389,43 +388,43 @@ const faqs = [
               <circle cx="16" cy="20" r="2" fill="currentColor"/>
             </svg>
           </div>
-          <h3 class="guarantee-title">Полный возврат денег</h3>
-          <p class="guarantee-desc">Если услуга не доставлена или возникла проблема — вернём 100% суммы</p>
+          <h3 class="guarantee-title">Full refund</h3>
+          <p class="guarantee-desc">If the service is not delivered or something goes wrong, you get 100% of the amount back</p>
         </div>
       </div>
       <div class="guarantees-footer fade-in">
-        <a href="/oferta" class="guarantees-link">Договор публичной оферты</a>
+        <a href="/oferta" class="guarantees-link">Public offer agreement (in Uzbek)</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== ОТЗЫВЫ (динамические) ===== -->
-  <Reviews lang="ru" />
+  <!-- ===== REVIEWS (from database) ===== -->
+  <Reviews lang="en" />
 
   <!-- ===== REFERRAL ===== -->
   <section class="referral" id="referral">
     <div class="container">
       <div class="referral-box fade-in">
         <div class="referral-content">
-          <span class="section-label">Реферальная программа</span>
-          <h2 class="referral-title">Пригласите друга —<br>получите 5% бонус!</h2>
-          <p class="referral-desc">Каждый раз, когда ваш друг совершает покупку, вы получаете 5% от суммы в виде бонуса</p>
+          <span class="section-label">Referral programme</span>
+          <h2 class="referral-title">Invite a friend —<br>get a 5% bonus!</h2>
+          <p class="referral-desc">Every time somebody buys through your link you receive 5% of the amount as a bonus</p>
           <div class="referral-steps">
             <div class="referral-step">
               <div class="referral-step-num">1</div>
-              <span>Получите свою реферальную ссылку в боте</span>
+              <span>Get your personal referral link from the bot</span>
             </div>
             <div class="referral-step">
               <div class="referral-step-num">2</div>
-              <span>Поделитесь ссылкой с друзьями</span>
+              <span>Share the link with friends</span>
             </div>
             <div class="referral-step">
               <div class="referral-step-num">3</div>
-              <span>Получайте 5% бонус с каждой покупки друга</span>
+              <span>Earn 5% from every purchase they make</span>
             </div>
           </div>
           <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">
-            Получить реферальную ссылку
+            Get a referral link
           </a>
         </div>
         <div class="referral-visual">
@@ -440,21 +439,19 @@ const faqs = [
             </svg>
           </div>
           <div class="referral-bonus">5%</div>
-          <div class="referral-bonus-label">бонус с каждой покупки</div>
+          <div class="referral-bonus-label">bonus on every purchase</div>
         </div>
       </div>
     </div>
   </section>
-
-  <BlogHighlights lang="ru" />
 
   <!-- ===== FAQ ===== -->
   <section id="faq">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">FAQ</span>
-        <h2 class="section-title">Часто задаваемые вопросы</h2>
-        <p class="section-subtitle">Ответы на самые популярные вопросы о наших услугах</p>
+        <h2 class="section-title">Frequently asked questions</h2>
+        <p class="section-subtitle">The questions people ask most about buying Telegram Stars and Premium in Uzbekistan</p>
       </div>
       <div class="faq-list">
         {faqs.map((faq) => (
@@ -476,16 +473,16 @@ const faqs = [
   <section class="cta-section">
     <div class="container">
       <div class="cta-box fade-in">
-        <h2 class="cta-title">Начните прямо сейчас!</h2>
-        <p class="cta-desc">Telegram Stars, Premium и Gifts — быстро и по лучшей цене только в StarsJoy</p>
+        <h2 class="cta-title">Start right now</h2>
+        <p class="cta-desc">Telegram Stars, Premium and Gifts — paid in som, delivered in about 10 seconds</p>
         <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">
-          &#11088; Перейти в бот
+          &#11088; Open the bot
         </a>
       </div>
     </div>
   </section>
 
-  <FooterRu />
+  <FooterEn />
 </Layout>
 
 <!-- 3D Cube & Animation Scripts -->

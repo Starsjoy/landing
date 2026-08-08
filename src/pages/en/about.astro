@@ -1,0 +1,219 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavbarEn from '../../components/NavbarEn.astro';
+import FooterEn from '../../components/FooterEn.astro';
+import { getApprovedReviews, aggregateOf } from '../../lib/reviews';
+import { hreflangsFor } from '../../lib/i18n';
+
+const title = "About StarsJoy — Who We Are, What We Guarantee | Telegram Stars & Premium in Uzbekistan";
+const description = "StarsJoy is an independent Telegram Stars, Premium and Gifts reseller for Uzbekistan. Over 8,000 completed orders, dated public customer reviews, a 100% refund guarantee, and payment in Uzbek som with Uzcard or Humo.";
+
+// Trust numbers come from the database, not from a hardcoded string — a number
+// nobody can verify is exactly what makes competitors' claims worthless.
+const agg = aggregateOf(await getApprovedReviews('premium'));
+
+const orgSchema: any = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "StarsJoy",
+  "url": "https://starsjoy.uz",
+  "logo": "https://starsjoy.uz/logo.png",
+  "description": description,
+  "areaServed": { "@type": "Country", "name": "Uzbekistan" },
+  "knowsLanguage": ["uz", "ru", "en"],
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "url": "https://telegram.me/starsjoy_bot",
+      "availableLanguage": ["Uzbek", "Russian", "English"]
+    }
+  ],
+  "sameAs": [
+    "https://telegram.me/starsjoy",
+    "https://telegram.me/starsjoybot"
+  ]
+};
+if (agg.reviewCount > 0) {
+  orgSchema.aggregateRating = {
+    "@type": "AggregateRating",
+    ratingValue: String(agg.ratingValue),
+    reviewCount: String(agg.reviewCount),
+    bestRating: "5",
+  };
+}
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/en/about"
+  keywords="starsjoy, starsjoy review, is starsjoy safe, telegram stars reseller uzbekistan, telegram premium reseller uzbekistan, starsjoy refund"
+  lang="en"
+  hreflangs={hreflangsFor('/info')}
+>
+  <NavbarEn />
+
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://starsjoy.uz/en" },
+      { "@type": "ListItem", "position": 2, "name": "About StarsJoy", "item": "https://starsjoy.uz/en/about" }
+    ]
+  })} />
+
+  <section class="info-hero">
+    <div class="container">
+      <div class="info-content">
+        <nav class="breadcrumb">
+          <a href="/en">Home</a>
+          <span>/</span>
+          <span>About</span>
+        </nav>
+        <h1 class="info-title">About StarsJoy</h1>
+        <p class="info-meta">starsjoy.uz &middot; @starsjoybot</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content">
+        <p><strong>StarsJoy</strong> sells Telegram Stars, Telegram Premium and Telegram Gifts to people in Uzbekistan, paid for in Uzbek som with local Uzcard and Humo cards.</p>
+        <p>The service exists because of a specific gap. Telegram's own checkout — the App Store, Google Play, Fragment or <strong>@PremiumBot</strong> — requires an international card or a TON crypto wallet. Neither is realistic for most people in Uzbekistan, where Uzcard and Humo are the everyday card systems. StarsJoy bridges that: you pay in som from the card you already have, and the Stars or subscription are delivered through Telegram's official mechanisms.</p>
+        <p>Everything happens inside <strong>@starsjoybot</strong> and its Mini App. You choose the service, pay, and receive it in about 10 seconds.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content">
+        <h2>What we are — and what we are not</h2>
+        <p><strong>StarsJoy is an independent reseller. It is not an official Telegram partner</strong>, and does not claim to be. Clause 2.3 of the <a href="/oferta">public offer</a> states this explicitly.</p>
+        <p>What that means in practice: delivery runs through Telegram's official API and the Fragment infrastructure, using Telegram's own Gift Stars and Gift Premium mechanisms. Your subscription or Stars are attached to your real account through the official route — there is no workaround, no shared account and no grey scheme.</p>
+        <p>It also means we never need access to your account. <strong>A Telegram username is the only thing required.</strong> Your password, your SMS login code and your 2FA code are never requested — by us or by anyone legitimate. Any service that asks for them is trying to steal the account.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content">
+        <h2>Track record</h2>
+        <p><strong>More than 8,000 completed orders.</strong> The service has been running for over a year.</p>
+        {agg.reviewCount > 0 && (
+          <p>
+            <strong>{agg.reviewCount} published customer reviews, averaging {agg.ratingValue} out of 5.</strong>
+            Every review carries an author name and a date. Reviews are moderated for spam but are never
+            edited or deleted, and the average is calculated from all of them —
+            <a href="/sharhlar"> read them in full</a> (the reviews page is in Uzbek).
+            Anyone can <a href="/sharh-qoldirish">leave one</a>.
+          </p>
+        )}
+        <p><strong>100% refund.</strong> If the service is not delivered, or something goes wrong that we cannot fix, the full amount is returned. Contact support with your payment receipt.</p>
+        <p>These are the numbers we can actually show you. We deliberately do not publish rounded-up order counts or user totals that nobody can check — if a competitor's stated numbers cannot be verified, they are worth nothing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content">
+        <h2>Services and prices</h2>
+        <p><strong>Telegram Stars</strong> — Telegram's internal currency, used for paid posts, paid reactions, tips, bots and Mini Apps, Telegram Gifts and Telegram Ads. A flat 240 UZS per star, from 50 up to 100,000. <a href="/en/stars">Stars page &rarr;</a></p>
+        <p><strong>Telegram Premium</strong> — the subscription that unlocks 4 GB uploads, faster downloads, no channel ads, exclusive stickers and reactions, a premium profile and real-time translation. 172,000 UZS for 3 months, 232,000 for 6 months, 422,000 for 12 months. <a href="/en/premium">Premium page &rarr;</a></p>
+        <p><strong>Telegram Gifts</strong> — send Premium to someone else. The price matches the corresponding Premium plan and the recipient pays nothing; you can attach a message.</p>
+        <p><strong>Referral programme</strong> — share your personal link from the bot and receive 5% of the purchase amount as a bonus whenever someone buys through it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content">
+        <h2>Payment</h2>
+        <p>All prices are set in Uzbek som, so there is no currency conversion and no exchange-rate surprise between ordering and paying.</p>
+        <p>You can pay with any <strong>Uzcard</strong> or <strong>Humo</strong> card issued in Uzbekistan. The transfer itself can be made from whichever app you already use — <strong>Click</strong>, <strong>Payme</strong>, <strong>Uzum</strong> or your own bank's app; the system only checks that the correct amount reached the correct card. Business and API customers can additionally use Payme directly.</p>
+        <p>Full walkthrough with screenshots: <a href="/en/how-to-buy">How to buy &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section info-alt">
+    <div class="container">
+      <div class="info-content">
+        <h2>Contact</h2>
+        <p><strong>@starsjoybot</strong> — the bot and Mini App where purchases happen</p>
+        <p><strong>@starsjoy_bot</strong> — support, for questions and problems</p>
+        <p><strong>@starsjoy</strong> — the official Telegram channel, for news and announcements</p>
+        <p>The bot interface is available in Uzbek, Russian and English.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-footer-line">
+    <div class="container">
+      <div class="info-content">
+        <p class="info-footer-text">StarsJoy &middot; starsjoy.uz &middot; @starsjoybot</p>
+      </div>
+    </div>
+  </section>
+
+  <FooterEn />
+</Layout>
+
+<style>
+  .info-hero {
+    padding: 120px 24px 32px;
+    background: #FFFFFF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .info-content { max-width: 760px; margin: 0 auto; }
+  .info-title {
+    font-size: 2.4rem; font-weight: 900; line-height: 1.15;
+    margin-bottom: 16px; color: var(--text);
+  }
+  .info-meta {
+    font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;
+  }
+
+  .info-section { padding: 32px 24px; }
+  .info-alt { background: #FFFFFF; }
+
+  .info-content h2 {
+    font-size: 1.4rem; font-weight: 800; margin-bottom: 20px; color: var(--text);
+  }
+  .info-content p {
+    font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 12px;
+  }
+  .info-content p:last-child { margin-bottom: 0; }
+
+  .info-footer-line {
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+  }
+  .info-footer-text {
+    text-align: center; font-size: 0.9rem; color: var(--text-muted); font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .info-hero { padding: 100px 16px 40px; }
+    .info-title { font-size: 1.6rem; }
+    .info-meta { font-size: 0.85rem; }
+    .info-section { padding: 24px 16px; }
+    .info-content h2 { font-size: 1.2rem; margin-bottom: 16px; }
+    .info-content p { font-size: 0.9rem; }
+    .breadcrumb { margin-bottom: 20px; font-size: 0.8rem; }
+  }
+</style>

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { hreflangsFor } from '../lib/i18n';
 
 // Rasmlar `npm run images:qollanma` orqali WebP'ga o'girilgan (scripts/build-qollanma-images.mjs).
 // Statik yo'l ishlatiladi — schema'dagi ImageObject URL'lari ham shular.
@@ -139,10 +140,7 @@ const faqs = [
   canonical="https://starsjoy.uz/qollanma"
   ogImage="https://starsjoy.uz/og-qollanma.png"
   keywords="Telegram Stars qanday sotib olinadi, Telegram Premium qanday olinadi, StarsJoy qo'llanma, StarsJoy qanday ishlaydi, Telegram Stars olish yo'riqnoma, StarsJoy mini app qo'llanma"
-  hreflangs={[
-    { lang: "uz", href: "https://starsjoy.uz/qollanma" },
-    { lang: "ru", href: "https://starsjoy.uz/ru/qollanma" }
-  ]}
+  hreflangs={hreflangsFor('/qollanma')}
 >
   <Navbar />
 

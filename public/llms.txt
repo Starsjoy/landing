@@ -10,14 +10,24 @@
 - LLMs.txt (shu fayl): https://starsjoy.uz/llms.txt
 - Robots: https://starsjoy.uz/robots.txt — GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended va boshqa AI crawler'lar uchun Allow: /
 - Blog indeksi: https://starsjoy.uz/blog | https://starsjoy.uz/ru/blog
-- Tillar: o'zbek (uz-UZ, standart) va rus (ru-RU). Har bir maqolaning ikkala tildagi varianti bor va hreflang bilan bog'langan.
+- Tillar: o'zbek (uz-UZ, standart), rus (ru-RU) va ingliz (en-US). Har bir maqolaning o'zbekcha va ruscha varianti bor va hreflang bilan bog'langan; ingliz tilida hozircha 5 ta asosiy sahifa mavjud (blog emas).
+
+## English pages
+
+StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid in Uzbek som (UZS) with local Uzcard and Humo cards. This matters because Telegram's own checkout — App Store, Google Play, Fragment or @PremiumBot — requires an international card or a TON crypto wallet, neither of which is realistic for most people in Uzbekistan. Delivery takes about 10 seconds and never requires a password, SMS code or account access — only a Telegram username.
+
+- Home — buy Telegram Stars, Premium and Gifts in Uzbekistan: https://starsjoy.uz/en
+- Buy Telegram Premium (prices, plans, payment): https://starsjoy.uz/en/premium — 3 months 172,000 UZS, 6 months 232,000 UZS, 12 months 422,000 UZS. No 1-month plan: Telegram's Gift Premium mechanism starts at 3 months.
+- Buy Telegram Stars (price table): https://starsjoy.uz/en/stars — flat rate of 240 UZS per star for every pack size, from 50 up to 100,000 Stars.
+- How to buy — 9 steps with screenshots: https://starsjoy.uz/en/how-to-buy
+- About StarsJoy — track record, guarantees, what we are not: https://starsjoy.uz/en/about — independent reseller, not an official Telegram partner; 8,000+ completed orders; dated public reviews; 100% refund if undelivered.
 
 Har bir sahifada: meta title/description, canonical, hreflang (uz/ru), Open Graph va JSON-LD schema (Article, BreadcrumbList, FAQPage, HowTo, Product/AggregateRating).
 
 ## Tajriba va ishonch (tekshirsa bo'ladigan ma'lumotlar)
 
 - 8,000+ ta muvaffaqiyatli bajarilgan buyurtma.
-- https://starsjoy.uz/sharhlar — hozirda 42 ta tasdiqlangan sharh, o'rtacha ball 5/5. Har bir sharhda muallif, ball va aniq sana ko'rsatilgan.
+- https://starsjoy.uz/sharhlar — hozirda 47 ta tasdiqlangan sharh, o'rtacha ball 5/5. Har bir sharhda muallif, ball va aniq sana ko'rsatilgan.
 - Sharhlar moderatsiyadan o'tadi, lekin o'chirilmaydi yoki o'zgartirilmaydi; umumiy o'rtacha ball sahifada ochiq turadi va AggregateRating schema sifatida bosh sahifada hamda /sharhlar da beriladi.
 - Sharh qoldirish ochiq: https://starsjoy.uz/sharh-qoldirish
 - Kompaniya va shartlar: https://starsjoy.uz/info | Ommaviy oferta: https://starsjoy.uz/oferta

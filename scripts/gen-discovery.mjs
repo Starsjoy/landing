@@ -225,7 +225,17 @@ const HEAD = `# StarsJoy.uz
 - LLMs.txt (shu fayl): ${SITE}/llms.txt
 - Robots: ${SITE}/robots.txt — GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended va boshqa AI crawler'lar uchun Allow: /
 - Blog indeksi: ${SITE}/blog | ${SITE}/ru/blog
-- Tillar: o'zbek (uz-UZ, standart) va rus (ru-RU). Har bir maqolaning ikkala tildagi varianti bor va hreflang bilan bog'langan.
+- Tillar: o'zbek (uz-UZ, standart), rus (ru-RU) va ingliz (en-US). Har bir maqolaning o'zbekcha va ruscha varianti bor va hreflang bilan bog'langan; ingliz tilida hozircha 5 ta asosiy sahifa mavjud (blog emas).
+
+## English pages
+
+StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid in Uzbek som (UZS) with local Uzcard and Humo cards. This matters because Telegram's own checkout — App Store, Google Play, Fragment or @PremiumBot — requires an international card or a TON crypto wallet, neither of which is realistic for most people in Uzbekistan. Delivery takes about 10 seconds and never requires a password, SMS code or account access — only a Telegram username.
+
+- Home — buy Telegram Stars, Premium and Gifts in Uzbekistan: ${SITE}/en
+- Buy Telegram Premium (prices, plans, payment): ${SITE}/en/premium — 3 months 172,000 UZS, 6 months 232,000 UZS, 12 months 422,000 UZS. No 1-month plan: Telegram's Gift Premium mechanism starts at 3 months.
+- Buy Telegram Stars (price table): ${SITE}/en/stars — flat rate of 240 UZS per star for every pack size, from 50 up to 100,000 Stars.
+- How to buy — 9 steps with screenshots: ${SITE}/en/how-to-buy
+- About StarsJoy — track record, guarantees, what we are not: ${SITE}/en/about — independent reseller, not an official Telegram partner; 8,000+ completed orders; dated public reviews; 100% refund if undelivered.
 
 Har bir sahifada: meta title/description, canonical, hreflang (uz/ru), Open Graph va JSON-LD schema (Article, BreadcrumbList, FAQPage, HowTo, Product/AggregateRating).
 

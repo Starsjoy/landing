@@ -2,16 +2,21 @@
 import { getApprovedReviews, aggregateOf, formatReviewDate } from '../lib/reviews';
 import ReviewForm from './ReviewForm.astro';
 
-interface Props { lang?: 'uz' | 'ru'; }
+interface Props { lang?: 'uz' | 'ru' | 'en'; }
 const { lang = 'uz' } = Astro.props;
 
 const reviews = await getApprovedReviews('premium');
 const agg = aggregateOf(reviews);
 
+// Inglizcha sharhlar sahifasi hozircha yo'q — o'zbekchasiga yuboramiz, chunki
+// sharhlarning o'zi (ism, ball, sana) tildan qat'i nazar o'qiladi.
 const allHref = lang === 'ru' ? '/ru/sharhlar' : '/sharhlar';
-const t = lang === 'ru'
-  ? { label: 'Отзывы', title: 'Что говорят клиенты?', count: 'отзывов', beFirst: 'Оставьте свой отзыв первым', all: 'Все отзывы' }
-  : { label: 'Fikrlar', title: 'Mijozlar nima deydi?', count: 'ta sharh', beFirst: "Birinchi bo'lib fikringizni qoldiring", all: 'Barcha sharhlar' };
+const T = {
+  uz: { label: 'Fikrlar', title: 'Mijozlar nima deydi?', count: 'ta sharh', beFirst: "Birinchi bo'lib fikringizni qoldiring", all: 'Barcha sharhlar' },
+  ru: { label: 'Отзывы', title: 'Что говорят клиенты?', count: 'отзывов', beFirst: 'Оставьте свой отзыв первым', all: 'Все отзывы' },
+  en: { label: 'Reviews', title: 'What customers say', count: 'reviews', beFirst: 'Be the first to leave a review', all: 'All reviews' },
+};
+const t = T[lang] ?? T.uz;
 ---
 
 <section class="reviews-sec" id="reviews">
