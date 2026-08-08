@@ -1,0 +1,105 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  {
+    q: "Does the recipient have to pay anything?",
+    a: "No. A gifted Premium subscription costs the recipient nothing — no card, no confirmation of payment, no account details. They receive a notification from Telegram and the subscription attaches to their account."
+  },
+  {
+    q: "Do I need anything from them besides a username?",
+    a: "No. A public Telegram username is all that is required. If someone asks you for the recipient's phone number, password or login code to 'process a gift', that is not how gifting works — it is a scam."
+  },
+  {
+    q: "What if the recipient has no username?",
+    a: "They need to set one first: Settings → Username. It takes a few seconds and is public information anyway. Without a username there is no way to address the gift."
+  },
+  {
+    q: "What if they already have Premium?",
+    a: "The gifted time is added to their existing subscription rather than replacing it. Nothing is lost and nothing overlaps."
+  },
+  {
+    q: "Can I gift a 1-month subscription?",
+    a: "No. Telegram's Gift Premium mechanism starts at 3 months, so the shortest gift is a 3-month plan at 172,000 UZS. The 1-month subscription exists inside Telegram but only the account owner can enable it, with an international card."
+  },
+  {
+    q: "Can I send it anonymously or with a message?",
+    a: "You can attach a short message to the gift. Telegram shows the sender to the recipient — gifting is not anonymous by design."
+  }
+];
+---
+
+<BlogPostEn
+  slug="gift-telegram-premium"
+  title="How to Gift Telegram Premium to Someone in Uzbekistan"
+  heading="How to gift Telegram Premium to someone"
+  crumb="Gift Premium"
+  tag="Gifts"
+  description="Gifting Telegram Premium needs one thing: the recipient's username. What it costs, what they receive, why they pay nothing, and how to do it from Uzbekistan with an Uzcard or Humo card."
+  keywords="gift telegram premium, send telegram premium to a friend, telegram premium gift uzbekistan, buy premium for someone else"
+  publishDate="2026-08-07"
+  uzHref="https://starsjoy.uz/blog/telegram-premium-sovga-qilish"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-premium-sovga-qilish"
+  faqs={faqs}
+>
+  <section>
+    <p class="post-lead"><strong>Short answer:</strong> you need the recipient's Telegram <em>username</em> and nothing else. They pay nothing, confirm nothing and hand over no account details — Telegram delivers the subscription to them directly and notifies them itself. The price is the same as buying Premium for yourself: 172,000 UZS for 3 months, 232,000 for 6, 422,000 for 12.</p>
+  </section>
+
+  <section>
+    <h2>How gifting actually works</h2>
+    <p>Telegram has a built-in Gift Premium function. The sender specifies a recipient by username and pays; Telegram attaches the subscription to that account and sends them a notification. The sender never touches the recipient's account, and could not even if they wanted to.</p>
+    <p>That design has a useful consequence: <strong>a gift is one of the safest transactions on Telegram</strong>. Nothing sensitive changes hands in either direction. If anyone involved in a gift asks for a phone number, password or login code, the request has nothing to do with gifting.</p>
+  </section>
+
+  <section>
+    <h2>Doing it from Uzbekistan</h2>
+    <ol>
+      <li>Ask the person for their username, or copy it from their profile — the <strong>@name</strong> line.</li>
+      <li>Open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> and choose Premium (or Gift).</li>
+      <li>Enter <strong>their</strong> username instead of tapping "Myself".</li>
+      <li>Pick a term: 3, 6 or 12 months.</li>
+      <li>Transfer the exact amount shown to the card in the order window, from Click, Payme, Uzum or your bank app.</li>
+      <li>Press "I have paid". The gift arrives in about 10 seconds and Telegram notifies them.</li>
+    </ol>
+    <p>The whole thing takes 2–3 minutes. Full walkthrough with screenshots: <a href="/en/how-to-buy">how to buy</a>.</p>
+  </section>
+
+  <section>
+    <h2>Check the username twice</h2>
+    <p>This is the one mistake with real consequences. The subscription goes to whichever username you typed — if you get a character wrong and that username exists, a stranger receives your gift and there is no way to reverse it.</p>
+    <p>Copy and paste rather than typing from memory, and check the profile the username actually opens before you pay. Usernames also change: someone who was <strong>@name</strong> last year may not be now.</p>
+  </section>
+
+  <section>
+    <h2>Which term to pick</h2>
+    <div class="post-table-wrap">
+      <table class="post-table">
+        <thead>
+          <tr><th>Term</th><th>Price</th><th>Per month</th><th>Good for</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>3 months</td><td>172,000 UZS</td><td>~57,300 UZS</td><td>A birthday gift, or letting someone try it</td></tr>
+          <tr><td>6 months</td><td>232,000 UZS</td><td>~38,700 UZS</td><td>The balance point between price and length</td></tr>
+          <tr><td>12 months</td><td>422,000 UZS</td><td>~35,200 UZS</td><td>Best value — a year for barely more than six months</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The 12-month plan is only 82% more expensive than 6 months while lasting twice as long, which makes it the obvious choice if the gift is for someone who will keep using it.</p>
+  </section>
+
+  <section>
+    <h2>What they get</h2>
+    <p>Everything a paid subscriber gets: 4 GB uploads, no sponsored messages in public channels, faster downloads, custom emoji, an animated profile video, a premium badge, doubled limits and Telegram Business features. Full list in <a href="/en/blog/telegram-premium-features">what Telegram Premium actually gives you</a>.</p>
+    <p>There is no trial period, no card on file and nothing that renews automatically — when the term ends it simply ends, with no surprise charge to anyone.</p>
+  </section>
+
+  <section>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/en/premium">Buy Telegram Premium in Uzbekistan</a></li>
+      <li><a href="/en/gifts">Telegram Gifts</a> — sending gifts paid for in Stars</li>
+      <li><a href="/en/blog/is-buying-telegram-stars-safe">Is buying Telegram Stars safe? How to spot a scam</a></li>
+    </ul>
+  </section>
+</BlogPostEn>

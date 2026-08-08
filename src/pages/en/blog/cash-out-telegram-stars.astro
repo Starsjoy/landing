@@ -1,0 +1,109 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  {
+    q: "Can an ordinary user withdraw Telegram Stars?",
+    a: "Not through Telegram's official route. Telegram only lets channel owners, bot developers and creators who earned Stars withdraw them, and that goes through Fragment in TON after a 21-day holding period. A personal balance of Stars you bought is not eligible. The practical alternative in Uzbekistan is to send those Stars as a donation to a service that pays out in som — StarsJoy does this to Uzcard and Humo."
+  },
+  {
+    q: "How long does the official Fragment withdrawal take?",
+    a: "At least 21 days. Telegram holds earned Stars for a 21-day period before they can be converted, and after that you still need a TON wallet and a crypto exchange to turn TON into local currency."
+  },
+  {
+    q: "Do I need a TON wallet or a crypto exchange?",
+    a: "For the official route, yes — both. For the donation route through StarsJoy, no. You send the Stars inside Telegram and receive som on your Uzcard or Humo card, with no wallet, no exchange and no KYC on a foreign platform."
+  },
+  {
+    q: "Is the exchange rate the same as the buying rate?",
+    a: "No, and no honest service will tell you it is. Buying and selling rates always differ — that spread is how the service covers Telegram's own commission and the payout cost. Ask for the current rate in the bot before you send anything."
+  },
+  {
+    q: "Is this against Telegram's rules?",
+    a: "Sending Stars as a gift or donation is a normal, built-in Telegram function. What you should avoid is any service that asks for your account password, login code or 2FA to 'process' a withdrawal — that is account theft, not a payout."
+  }
+];
+---
+
+<BlogPostEn
+  slug="cash-out-telegram-stars"
+  title="How to Cash Out Telegram Stars in Uzbekistan (2026)"
+  heading="How to cash out Telegram Stars in Uzbekistan"
+  crumb="Cash out Stars"
+  tag="Stars"
+  description="Can you convert Telegram Stars back into money? The official Fragment route needs a TON wallet and a 21-day wait. Here is what actually works in Uzbekistan — payouts to Uzcard and Humo in som, without crypto."
+  keywords="cash out telegram stars, withdraw telegram stars, telegram stars to money, telegram stars to uzcard, sell telegram stars uzbekistan, telegram stars to som"
+  publishDate="2026-08-07"
+  uzHref="https://starsjoy.uz/blog/telegram-stars-kartaga-chiqarish"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-stars-kartaga-chiqarish"
+  faqs={faqs}
+>
+  <section>
+    <p class="post-lead"><strong>Short answer:</strong> Telegram's official withdrawal is only open to channel owners, bot developers and creators who <em>earned</em> Stars — and it runs through Fragment in TON with a 21-day holding period. If you simply have Stars sitting in your balance, that route is closed to you. The workable alternative in Uzbekistan is to send those Stars as a donation to a service that pays out in som: StarsJoy transfers to Uzcard or Humo, with no crypto wallet and no waiting period.</p>
+  </section>
+
+  <section>
+    <h2>Why the official route stops most people</h2>
+    <p>Telegram does have a real cash-out system, but it was designed for monetisation, not for individuals unloading a balance. Four conditions have to be met at once:</p>
+    <ul>
+      <li><strong>You must have earned the Stars</strong> — through paid posts, paid reactions, tips, or sales inside your bot or Mini App. Stars you purchased do not qualify.</li>
+      <li><strong>You need a Fragment account</strong>, which means connecting a TON wallet.</li>
+      <li><strong>You wait 21 days.</strong> Telegram holds earned Stars for a fixed period before they can be converted.</li>
+      <li><strong>You still end up holding TON</strong>, not money. To get som you then need a crypto exchange, usually with KYC on a foreign platform.</li>
+    </ul>
+    <p>For someone in Uzbekistan, the last step is the real wall. Buying and selling TON from an Uzbek bank card is awkward, the rate moves several percent in a day, and exchange fees eat into whatever you were trying to recover.</p>
+  </section>
+
+  <section>
+    <h2>The two routes side by side</h2>
+    <div class="post-table-wrap">
+      <table class="post-table">
+        <thead>
+          <tr><th></th><th>Official (Fragment)</th><th>Donation to StarsJoy</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Who can use it</td><td>Creators, channel and bot owners only</td><td>Anyone with a Stars balance</td></tr>
+          <tr><td>Waiting period</td><td>21 days</td><td>None</td></tr>
+          <tr><td>Requires TON wallet</td><td>Yes</td><td>No</td></tr>
+          <tr><td>Requires crypto exchange</td><td>Yes</td><td>No</td></tr>
+          <tr><td>You receive</td><td>TON, then convert yourself</td><td>Som, on Uzcard or Humo</td></tr>
+          <tr><td>Rate risk</td><td>TON price moves while you wait</td><td>Rate fixed when you agree it</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Neither route is free. The official one costs you time and exchange fees; the donation route costs you the spread between the buying and selling rate. What matters is which cost you can actually pay.</p>
+  </section>
+
+  <section>
+    <h2>How the donation route works</h2>
+    <p>Telegram has a built-in gift function: you can send Stars from your balance to another account. That function is what makes this possible — nothing unusual, nothing hidden.</p>
+    <ol>
+      <li>Message support at <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a> and say how many Stars you want to convert.</li>
+      <li>Agree the current rate and the total in som. Confirm it before sending anything — the rate is quoted at that moment, not calculated afterwards.</li>
+      <li>Send the Stars as a gift to the account you are given.</li>
+      <li>Receive the transfer to your Uzcard or Humo card.</li>
+    </ol>
+    <p>At no point does anyone need your password, your SMS login code or your 2FA password. If a service asks for those, it is not processing a payout — it is taking your account.</p>
+  </section>
+
+  <section>
+    <h2>Expect the rate to be lower than what you paid</h2>
+    <p>This is the part that surprises people, so it is worth being blunt about it. Buying Stars and selling them back are not the same price, and they never will be. The gap covers Telegram's own commission on the transfer plus the cost of the payout.</p>
+    <p>Any service quoting you the same rate in both directions is either mistaken or planning not to pay. Ask for the number in the bot before you send Stars, and treat a refusal to quote as a warning sign.</p>
+  </section>
+
+  <section>
+    <h2>When cashing out is the wrong move</h2>
+    <p>If you are holding Stars you intend to spend inside Telegram anyway, converting them is a loss. Stars do not expire and do not lose value sitting in your balance, so there is no pressure to move them. Cashing out makes sense when you received Stars you have no use for — as a gift, or from a channel that pays in Stars — not as a way to manage a balance you will spend eventually.</p>
+    <p>If you are a creator earning meaningful volume, the official Fragment route is worth setting up despite the friction: it scales, and the 21-day wait only bites once.</p>
+  </section>
+
+  <section>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/en/stars">Buy Telegram Stars in Uzbekistan</a> — prices and payment methods</li>
+      <li><a href="/en/blog/what-you-can-do-with-telegram-stars">What you can actually do with Telegram Stars</a></li>
+      <li><a href="/en/blog/is-buying-telegram-stars-safe">Is buying Telegram Stars safe? How to spot a scam</a></li>
+    </ul>
+  </section>
+</BlogPostEn>

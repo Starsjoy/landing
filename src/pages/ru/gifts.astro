@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import NavbarRu from '../../components/NavbarRu.astro';
 import FooterRu from '../../components/FooterRu.astro';
+import { hreflangsFor } from '../../lib/i18n';
 
 const title = "Подарить Telegram Premium — Купить Gift | StarsJoy";
 const description = "Подарите Telegram Premium друзьям и близким. Быстрая доставка, доступные цены, 100% гарантия. StarsJoy — лучший способ отправить подарок в Телеграм.";
@@ -40,10 +41,7 @@ const faqs = [
   canonical="https://starsjoy.uz/ru/gifts"
   keywords="подарить Telegram Premium, Telegram Gift купить, Telegram подарок, купить Telegram Premium в подарок, StarsJoy Gifts, подарок Телеграм"
   lang="ru"
-  hreflangs={[
-    { lang: "uz", href: "https://starsjoy.uz/gifts" },
-    { lang: "ru", href: "https://starsjoy.uz/ru/gifts" }
-  ]}
+  hreflangs={hreflangsFor('/gifts')}
 >
   <NavbarRu />
 

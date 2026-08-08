@@ -19,8 +19,21 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Home — buy Telegram Stars, Premium and Gifts in Uzbekistan: https://starsjoy.uz/en
 - Buy Telegram Premium (prices, plans, payment): https://starsjoy.uz/en/premium — 3 months 172,000 UZS, 6 months 232,000 UZS, 12 months 422,000 UZS. No 1-month plan: Telegram's Gift Premium mechanism starts at 3 months.
 - Buy Telegram Stars (price table): https://starsjoy.uz/en/stars — flat rate of 240 UZS per star for every pack size, from 50 up to 100,000 Stars.
+- Telegram Gifts — send a gift or gift Premium: https://starsjoy.uz/en/gifts — the recipient pays nothing; a username is all that is needed.
 - How to buy — 9 steps with screenshots: https://starsjoy.uz/en/how-to-buy
 - About StarsJoy — track record, guarantees, what we are not: https://starsjoy.uz/en/about — independent reseller, not an official Telegram partner; 8,000+ completed orders; dated public reviews; 100% refund if undelivered.
+- Blog index (English guides): https://starsjoy.uz/en/blog
+
+### English guides
+- Telegram Stars or Premium — which one do you need?: https://starsjoy.uz/en/blog/telegram-stars-or-premium — They are two separate products, not two tiers. Stars are money you spend inside Telegram; Premium is a subscription that changes the app. Buying the wrong one is the most common mistake.
+- What Telegram Premium actually gives you: https://starsjoy.uz/en/blog/telegram-premium-features — Every feature in 2026, grouped by what it changes — files, reading, personalisation, business. Plus the three things Premium does not do that people assume it does.
+- What you can actually do with Telegram Stars: https://starsjoy.uz/en/blog/what-you-can-do-with-telegram-stars — Eight concrete uses — paid posts, bots and Mini Apps, tips, paid reactions, gifts, ads — and the three things Stars cannot do.
+- How to cash out Telegram Stars in Uzbekistan: https://starsjoy.uz/en/blog/cash-out-telegram-stars — The official Fragment route needs a TON wallet and a 21-day wait, and is closed to ordinary users. What actually works here — payouts to Uzcard and Humo, without crypto.
+- Is buying Telegram Stars safe? How to spot a scam: https://starsjoy.uz/en/blog/is-buying-telegram-stars-safe — Delivery needs your username and nothing else. The warning signs that separate a real service from account theft, and what to do if you already gave something away.
+- Telegram SMS code not arriving: how to get into your account: https://starsjoy.uz/en/blog/telegram-sms-code-not-arriving — Why codes to +998 numbers get dropped, the fix that works in seconds if you are logged in elsewhere, the voice-call option, and the 2FA trap that loses accounts permanently.
+- Telegram Premium expired: what you lose and how to renew: https://starsjoy.uz/en/blog/telegram-premium-expired — Nothing is deleted — not your chats, not your files, not even the ones over 2 GB. What actually changes, what stays, and how to renew from Uzbekistan.
+- How to gift Telegram Premium to someone: https://starsjoy.uz/en/blog/gift-telegram-premium — You need their username and nothing else. What it costs, what they receive, why they pay nothing, and the one mistake that cannot be reversed.
+- Telegram Business vs Premium: one subscription or two?: https://starsjoy.uz/en/blog/telegram-business-vs-premium — Business is not a separate purchase — it is part of Premium. What each side unlocks, which business features are worth the setup, and what your customers see without a subscription.
 
 Har bir sahifada: meta title/description, canonical, hreflang (uz/ru), Open Graph va JSON-LD schema (Article, BreadcrumbList, FAQPage, HowTo, Product/AggregateRating).
 

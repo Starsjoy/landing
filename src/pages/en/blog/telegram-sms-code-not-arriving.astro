@@ -1,0 +1,100 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  {
+    q: "Why is Telegram not sending me an SMS code in Uzbekistan?",
+    a: "Two things overlap. Telegram has been cutting back on SMS delivery since 2024 to reduce costs, sending in-app codes instead wherever it can. On top of that, Uzbek mobile operators apply their own restrictions to inbound international SMS. The result is that codes to +998 numbers are delayed or dropped more often than elsewhere."
+  },
+  {
+    q: "What is the fastest way to get in if the SMS never arrives?",
+    a: "If you are still signed in to Telegram on any other device — phone, tablet, desktop or web — the code is delivered there as an in-app message, not by SMS. Check that device first. This is the single most common fix and it takes seconds."
+  },
+  {
+    q: "Should I keep pressing 'Resend code'?",
+    a: "No. Repeated requests trigger Telegram's flood protection and each attempt makes the wait longer. Request once, then wait 10–15 minutes without touching it. If you have already pressed it several times, expect to wait longer before anything arrives."
+  },
+  {
+    q: "Can Telegram call me instead?",
+    a: "Yes. After the SMS attempt fails, Telegram offers a voice call that reads the code aloud. Voice calls often get through when SMS does not, because they travel over a different route. Have a pen ready — the code is read once, sometimes twice."
+  },
+  {
+    q: "Does Telegram Premium help with login codes?",
+    a: "Indirectly. Premium does not change how codes are delivered, but an active account you stay logged into on more than one device means you almost never need an SMS again — the in-app code path is always available to you."
+  },
+  {
+    q: "I have 2FA enabled and forgot the password. What now?",
+    a: "If you set a recovery email when enabling two-step verification, use it. If you did not, Telegram cannot restore access and the account can only be reset after 7 days of inactivity, which deletes it. This is why setting a recovery email at the moment you enable 2FA matters."
+  }
+];
+---
+
+<BlogPostEn
+  slug="telegram-sms-code-not-arriving"
+  title="Telegram SMS Code Not Arriving in Uzbekistan — What Actually Works"
+  heading="Telegram SMS code not arriving: how to get into your account"
+  crumb="SMS code not arriving"
+  tag="Guide"
+  description="Telegram login code not coming through on an Uzbek number? Why it happens, the fix that works in seconds if you are logged in elsewhere, and what to do if you are not — including the voice-call option and the 2FA trap."
+  keywords="telegram sms code not arriving, telegram code not received uzbekistan, telegram login code problem, telegram verification code, telegram not sending sms"
+  publishDate="2026-08-07"
+  uzHref="https://starsjoy.uz/blog/telegram-sms-kod-kelmayapti"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-sms-kod-kelmayapti"
+  faqs={faqs}
+>
+  <section>
+    <p class="post-lead"><strong>Start here:</strong> if you are still signed in to Telegram on <em>any</em> other device, the login code was almost certainly delivered there as an in-app message rather than by SMS. Open Telegram on that device and read it. If you have no other session, request the code once, wait 10–15 minutes without pressing resend, and then use the voice-call option. Repeatedly tapping "Resend" is the one thing that reliably makes this worse.</p>
+  </section>
+
+  <section>
+    <h2>Why this happens more in Uzbekistan</h2>
+    <p>It is not your phone and usually not your account. Two separate things stack on top of each other:</p>
+    <ul>
+      <li><strong>Telegram has been reducing SMS delivery since 2024.</strong> Sending international SMS costs real money per message, so Telegram routes codes through the app itself wherever it can. SMS is increasingly the fallback, not the default.</li>
+      <li><strong>Uzbek operators restrict inbound international SMS.</strong> Filtering, throttling and routing rules on the operator side mean messages to +998 numbers are dropped or delayed more often than to numbers in other countries.</li>
+    </ul>
+    <p>Neither of these is something you can fix from your side. What you can do is stop relying on SMS as the delivery channel.</p>
+  </section>
+
+  <section>
+    <h2>The fixes, in the order worth trying them</h2>
+    <ol>
+      <li><strong>Check every device you are still logged in on.</strong> Phone, tablet, laptop, Telegram Web in a browser you left open. If any session is alive, the code arrives there instantly as a message from Telegram. This solves the majority of cases.</li>
+      <li><strong>Wait 10–15 minutes without pressing resend.</strong> Delayed SMS is common; the message frequently lands after the countdown has ended. Every extra request restarts flood protection and pushes the delay out further.</li>
+      <li><strong>Use the voice call.</strong> Once the SMS attempt has run out, Telegram offers to call and read the code aloud. Voice takes a different route than SMS and often gets through when messages do not.</li>
+      <li><strong>Check your operator's blocklist.</strong> Some numbers end up with international SMS blocked at the operator level, sometimes as an anti-spam setting the subscriber never asked for. Your operator's support can check and lift it.</li>
+      <li><strong>Move the SIM to a different handset.</strong> Rare, but it does happen: a full message store or a network registration problem on one device can silently swallow incoming SMS.</li>
+      <li><strong>Try again on Wi-Fi, or on mobile data instead.</strong> The in-app code path depends on Telegram reaching your device; a flaky connection blocks it even when the account is fine.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>The trap: two-step verification without a recovery email</h2>
+    <p>If you enabled two-step verification (2FA) and set a recovery email, you can always get back in. If you enabled it and skipped the email, and then forget the password, <strong>Telegram cannot help you</strong> — support has no override. The only path is resetting the account after 7 days of inactivity, which deletes the messages in it.</p>
+    <p>If your 2FA currently has no recovery email, add one now while you still have access: <strong>Settings → Privacy and Security → Two-Step Verification</strong>. It takes a minute and it is the difference between an inconvenience and a lost account.</p>
+  </section>
+
+  <section>
+    <h2>Never give the code to anyone</h2>
+    <p>The login code is the account. A very common scam runs like this: someone messages you claiming to be support, a friend in trouble, or a giveaway administrator, and asks you to forward "the code you just received". The moment you do, they are in.</p>
+    <p>Telegram never asks for the code. Neither does any legitimate service — including anywhere you buy Stars or Premium, which needs nothing beyond your public username. If a request for a code arrives together with time pressure, that is the scam, not the exception.</p>
+  </section>
+
+  <section>
+    <h2>How to avoid the problem next time</h2>
+    <ul>
+      <li><strong>Stay logged in on a second device.</strong> A desktop or web session you never close removes SMS from the equation permanently.</li>
+      <li><strong>Enable 2FA with a recovery email.</strong> It protects the account and gives you a way back.</li>
+      <li><strong>Keep a cloud password you can actually retrieve</strong> — a password manager entry, not a memory.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/en/blog/is-buying-telegram-stars-safe">Is buying Telegram Stars safe? How to spot a scam</a></li>
+      <li><a href="/en/premium">Buy Telegram Premium in Uzbekistan</a></li>
+      <li><a href="/en/about">About StarsJoy</a> — what we do and do not ask for</li>
+    </ul>
+  </section>
+</BlogPostEn>

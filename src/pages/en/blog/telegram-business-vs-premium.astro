@@ -1,0 +1,115 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  {
+    q: "Is Telegram Business a separate paid subscription?",
+    a: "No. Telegram Business is a set of features inside Telegram Premium, not a product you buy separately. One active Premium subscription unlocks both the consumer features and the business ones."
+  },
+  {
+    q: "So do I need to pay twice?",
+    a: "No. There is one price. If you already have Premium, the business features are already available to you — turn them on under Settings → Telegram Business."
+  },
+  {
+    q: "Do my customers need Premium to message my business profile?",
+    a: "No. Everything customer-facing works outward: they see your opening hours, your address on the map, your greeting message and your quick replies without any subscription of their own."
+  },
+  {
+    q: "Can I run this on a personal account or do I need a separate one?",
+    a: "Either works. Business features apply to whichever account holds the subscription. Many small businesses in Uzbekistan run them on a dedicated account so that personal chats stay separate, but that is organisation, not a requirement."
+  },
+  {
+    q: "What happens to business features if Premium expires?",
+    a: "They switch off — greeting messages, away messages, quick replies and opening hours stop working. Nothing is deleted; the settings return the moment you renew."
+  },
+  {
+    q: "Is this the same as a Telegram bot?",
+    a: "No. A bot is a separate automated account you build. Business features run on your own account, with your own name and chats — no development needed. You can link a bot to a business account, but that is optional."
+  }
+];
+---
+
+<BlogPostEn
+  slug="telegram-business-vs-premium"
+  title="Telegram Business vs Premium — One Subscription or Two?"
+  heading="Telegram Business vs Premium: one subscription or two?"
+  crumb="Business vs Premium"
+  tag="Premium"
+  description="Telegram Business is not a separate purchase — it is part of Premium. What each side unlocks, what your customers see without a subscription, and how to enable it from Uzbekistan."
+  keywords="telegram business vs premium, telegram business subscription, is telegram business free, telegram business features uzbekistan"
+  publishDate="2026-08-07"
+  uzHref="https://starsjoy.uz/blog/telegram-business-vs-premium"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-business-vs-premium"
+  faqs={faqs}
+>
+  <section>
+    <p class="post-lead"><strong>Short answer:</strong> there is no separate Telegram Business subscription. Business is a group of features bundled <em>inside</em> Telegram Premium. One subscription, one price — 172,000 UZS for 3 months, 232,000 for 6, 422,000 for 12 — unlocks both the consumer features and the business ones. If you already pay for Premium, you already have Business and may simply not have switched it on.</p>
+  </section>
+
+  <section>
+    <h2>Why the confusion exists</h2>
+    <p>Telegram markets Business under its own name, with its own settings section and its own onboarding. That naming makes it look like a tier — the way most software sells a "Business plan" above a personal one. It is not. It is closer to a folder of features that appears once you subscribe.</p>
+  </section>
+
+  <section>
+    <h2>What each side gives you</h2>
+    <div class="post-table-wrap">
+      <table class="post-table">
+        <thead>
+          <tr><th>Premium (consumer side)</th><th>Business side</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>4 GB file uploads</td><td>Business profile with address and map location</td></tr>
+          <tr><td>No sponsored messages in channels</td><td>Opening hours shown on your profile</td></tr>
+          <tr><td>Faster downloads</td><td>Greeting message for first-time contacts</td></tr>
+          <tr><td>Custom emoji and stickers</td><td>Away message outside working hours</td></tr>
+          <tr><td>Animated profile video, premium badge</td><td>Quick replies — saved answers sent with a shortcut</td></tr>
+          <tr><td>Doubled limits on folders and channels</td><td>Chat tags for organising conversations</td></tr>
+          <tr><td>Voice-to-text, chat translation</td><td>Links that open a chat with a pre-filled message</td></tr>
+          <tr><td>Channel boosts</td><td>Connected bots for automating replies</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Both columns come with the same subscription. You do not choose between them.</p>
+  </section>
+
+  <section>
+    <h2>Which business features are actually worth the setup</h2>
+    <p>Not all of them earn their keep. In practice three do most of the work:</p>
+    <ul>
+      <li><strong>Away message.</strong> The single highest-value one. A customer messaging at 23:00 gets an immediate answer telling them when you open, instead of silence that reads as being ignored.</li>
+      <li><strong>Quick replies.</strong> If you answer the same four questions every day — price, delivery, location, availability — saving them as shortcuts removes most of the repetitive typing.</li>
+      <li><strong>Opening hours and location.</strong> Shown directly on your profile, so people stop asking.</li>
+    </ul>
+    <p>The greeting message is worth setting once and then leaving alone. Chat tags help only if you handle enough conversations to lose track of them.</p>
+  </section>
+
+  <section>
+    <h2>Your customers need nothing</h2>
+    <p>This is the part that makes it useful. Everything customer-facing works outward: they see your hours, your location, your greeting and your away message on a completely ordinary free account. There is no app to install, no subscription to buy and nothing to accept.</p>
+  </section>
+
+  <section>
+    <h2>Enabling it from Uzbekistan</h2>
+    <p>The subscription is the only obstacle, and it is the usual one: Telegram's own checkout wants an international card. Through StarsJoy you pay in som with Uzcard or Humo, and Premium — with Business inside it — activates in about 10 seconds.</p>
+    <ol>
+      <li>Buy Premium on the <a href="/en/premium">Telegram Premium page</a> or directly in <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>.</li>
+      <li>Once active, open <strong>Settings → Telegram Business</strong>.</li>
+      <li>Set opening hours, location, greeting and away messages, and your first few quick replies.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>When Business is not the right tool</h2>
+    <p>If you need order tracking, a product catalogue, inventory or payment processing, business features will not cover it — you need a bot or a Mini App. Business is for making a human account easier to deal with, not for automating a shop. The two combine well: a business profile as the front door, a bot behind it for anything transactional.</p>
+  </section>
+
+  <section>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/en/blog/telegram-premium-features">What Telegram Premium actually gives you</a> — the full feature list</li>
+      <li><a href="/en/premium">Buy Telegram Premium in Uzbekistan</a></li>
+      <li><a href="/en/blog/telegram-premium-expired">Telegram Premium expired — what happens and how to renew</a></li>
+    </ul>
+  </section>
+</BlogPostEn>

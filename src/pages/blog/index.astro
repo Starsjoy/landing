@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { hreflangsFor } from '../../lib/i18n';
 
 // Blog postlar ro'yxati — yangi maqola qo'shganda shu yerga qo'shing
 const posts = [
@@ -373,10 +374,7 @@ const description = "StarsJoy blog — Telegram Stars, Premium va Gifts haqida f
   description={description}
   canonical="https://starsjoy.uz/blog"
   keywords="StarsJoy blog, Telegram Stars maqola, Telegram Premium blog, Telegram yangiliklar"
-  hreflangs={[
-    { lang: "uz", href: "https://starsjoy.uz/blog" },
-    { lang: "ru", href: "https://starsjoy.uz/ru/blog" }
-  ]}
+  hreflangs={hreflangsFor('/blog')}
 >
   <Navbar />
 

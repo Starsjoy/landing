@@ -157,6 +157,27 @@ function shorten(text, max = 160) {
 const uz = readMeta(path.join(ROOT, 'src/pages/blog'), '/blog/');
 const ru = readMeta(path.join(ROOT, 'src/pages/ru/blog'), '/ru/blog/');
 
+/* ── Inglizcha maqolalar ─────────────────────────────────────────────────── */
+// src/lib/en-blog.ts — TypeScript, bu skript esa oddiy .mjs, shuning uchun
+// import qila olmaymiz. Blog meta'si kabi manbadan o'qiymiz. Ro'yxat o'sha
+// faylda saqlanadi, chunki uni /en/blog sahifasi ham ishlatadi.
+function readEnPosts() {
+  const src = fs.readFileSync(path.join(ROOT, 'src/lib/en-blog.ts'), 'utf8');
+  const body = src.slice(src.indexOf('EN_POSTS: EnPost[] = ['));
+  const out = [];
+  for (const block of body.split(/\n\s*\{\s*\n/).slice(1)) {
+    const pick = (key) =>
+      block.match(new RegExp(`${key}:\\s*\\n?\\s*(['"\`])([\\s\\S]*?)\\1\\s*,`))?.[2];
+    const slug = pick('slug');
+    const title = pick('title');
+    const excerpt = pick('excerpt');
+    if (slug && title && excerpt) out.push({ slug, title, excerpt: excerpt.replace(/\s+/g, ' ') });
+  }
+  if (!out.length) throw new Error('en-blog.ts dan birorta maqola o\'qilmadi — format o\'zgarganmi?');
+  return out;
+}
+const EN_POSTS = readEnPosts();
+
 /* ── Sharhlar statistikasi (ixtiyoriy) ───────────────────────────────────── */
 // Raqobatchilarda umuman sharh yo'q, shuning uchun "42 ta sharh, o'rtacha 5.0"
 // eng kuchli farqlovchi signal. Lekin qo'lda yozilsa eskiradi — DB'dan olamiz.
@@ -234,8 +255,13 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Home — buy Telegram Stars, Premium and Gifts in Uzbekistan: ${SITE}/en
 - Buy Telegram Premium (prices, plans, payment): ${SITE}/en/premium — 3 months 172,000 UZS, 6 months 232,000 UZS, 12 months 422,000 UZS. No 1-month plan: Telegram's Gift Premium mechanism starts at 3 months.
 - Buy Telegram Stars (price table): ${SITE}/en/stars — flat rate of 240 UZS per star for every pack size, from 50 up to 100,000 Stars.
+- Telegram Gifts — send a gift or gift Premium: ${SITE}/en/gifts — the recipient pays nothing; a username is all that is needed.
 - How to buy — 9 steps with screenshots: ${SITE}/en/how-to-buy
 - About StarsJoy — track record, guarantees, what we are not: ${SITE}/en/about — independent reseller, not an official Telegram partner; 8,000+ completed orders; dated public reviews; 100% refund if undelivered.
+- Blog index (English guides): ${SITE}/en/blog
+
+### English guides
+${EN_POSTS.map((p) => `- ${p.title}: ${SITE}/en/blog/${p.slug} — ${p.excerpt}`).join('\n')}
 
 Har bir sahifada: meta title/description, canonical, hreflang (uz/ru), Open Graph va JSON-LD schema (Article, BreadcrumbList, FAQPage, HowTo, Product/AggregateRating).
 

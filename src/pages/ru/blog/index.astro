@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { hreflangsFor } from '../../../lib/i18n';
 
 const posts = [
   {
@@ -373,10 +374,7 @@ const description = "Блог StarsJoy — полезные статьи о Tele
   canonical="https://starsjoy.uz/ru/blog"
   keywords="StarsJoy блог, Telegram Stars статьи, Telegram Premium блог, Telegram новости, купить Telegram Stars"
   lang="ru"
-  hreflangs={[
-    { lang: "uz", href: "https://starsjoy.uz/blog" },
-    { lang: "ru", href: "https://starsjoy.uz/ru/blog" }
-  ]}
+  hreflangs={hreflangsFor('/blog')}
 >
   <NavbarRu />
 

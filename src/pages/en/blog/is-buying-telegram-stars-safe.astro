@@ -1,0 +1,108 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  {
+    q: "Is it safe to buy Telegram Stars from a reseller?",
+    a: "It is safe when the delivery uses Telegram's official gift mechanism, which requires nothing but your public username. It is not safe when a service asks for your password, SMS login code or 2FA password — none of those are ever needed to deliver Stars, and handing them over means losing the account."
+  },
+  {
+    q: "What is the single clearest sign of a scam?",
+    a: "Any request for a login code. Telegram never asks for it and no legitimate service needs it. If someone asks you to forward 'the code you just received', they are taking over your account, not processing your order."
+  },
+  {
+    q: "Are prices far below the market a warning sign?",
+    a: "Yes. Stars have a real cost to the seller, so a rate dramatically under everyone else's is usually either a bait price that changes at checkout, or an outright theft. A small difference between services is normal competition; half price is not."
+  },
+  {
+    q: "Should I pay a personal card or a company account?",
+    a: "In Uzbekistan, transfers to a card are the normal mechanism and not by itself a red flag. What matters is that the card number is shown inside your own order window, that a receipt exists, and that support answers before you pay. Never use a card number from a screenshot or an old message."
+  },
+  {
+    q: "What should I do if I have already been scammed?",
+    a: "Change your Telegram cloud password immediately and terminate all other sessions under Settings → Devices. If you gave a login code, do this within minutes — it is the only window in which you can push the intruder out. Then report the payment to your bank with the receipt."
+  }
+];
+---
+
+<BlogPostEn
+  slug="is-buying-telegram-stars-safe"
+  title="Is Buying Telegram Stars Safe? How to Spot a Scam (2026)"
+  heading="Is buying Telegram Stars safe? How to spot a scam"
+  crumb="Is it safe?"
+  tag="Stars"
+  description="Buying Telegram Stars or Premium through a reseller is safe when nothing but your username is required. The warning signs that separate a real service from account theft, and what to do if you already gave something away."
+  keywords="is buying telegram stars safe, telegram stars scam, telegram premium scam, safe telegram stars reseller, telegram account stolen"
+  publishDate="2026-08-07"
+  uzHref="https://starsjoy.uz/blog/telegram-stars-firibgarlik-himoya"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-stars-firibgarlik-himoya"
+  faqs={faqs}
+>
+  <section>
+    <p class="post-lead"><strong>The one rule:</strong> delivering Telegram Stars or Premium requires your <em>public username</em> and nothing else. Not your password, not your SMS login code, not your 2FA password, not access to your account. Any service asking for those is not selling you anything — it is taking the account. Everything else on this page is detail; that rule catches almost every scam.</p>
+  </section>
+
+  <section>
+    <h2>Why a username is genuinely enough</h2>
+    <p>Telegram has a built-in gift mechanism. A sender specifies a recipient by username, pays, and Telegram delivers the Stars or the subscription to that account. The sender never touches the recipient's account and could not if they wanted to.</p>
+    <p>This is the same mechanism a friend uses to gift you Premium. A reseller is doing exactly that, at scale. Which means the moment anyone needs <em>more</em> than a username, the transaction has stopped being a delivery and become something else.</p>
+  </section>
+
+  <section>
+    <h2>Warning signs, in order of severity</h2>
+    <ul>
+      <li><strong>Asks for your login code.</strong> Stop immediately. This is account theft in progress, always, with no exceptions and no legitimate explanation.</li>
+      <li><strong>Asks for your password or 2FA password.</strong> Same category.</li>
+      <li><strong>Asks you to log in to a website with your Telegram number.</strong> A phishing page that harvests the code as you enter it.</li>
+      <li><strong>A price far below everyone else.</strong> Stars cost the seller real money. A rate at half the market is a bait figure that changes at checkout, or a payment you never see again.</li>
+      <li><strong>Pressure and a countdown.</strong> "Pay in 2 minutes or the price goes up." Urgency exists to stop you checking.</li>
+      <li><strong>A card number sent in chat rather than shown in your order.</strong> Legitimate flows display the receiving card inside your own order window. A number pasted into a message can be swapped for anyone's.</li>
+      <li><strong>No support before payment.</strong> If nobody answers a simple question now, nobody will answer after your money is gone.</li>
+      <li><strong>No reviews, or reviews with no dates.</strong> Undated testimonials cost nothing to fabricate.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What a legitimate purchase looks like</h2>
+    <ol>
+      <li>You open the bot and pick what you want. No registration, no password, no document.</li>
+      <li>You enter a username — the recipient's, or your own.</li>
+      <li>The order window shows a card number and an exact amount. Both come from your own order, not from a chat message.</li>
+      <li>You transfer that exact amount from any app you use — Click, Payme, Uzum or your bank.</li>
+      <li>You confirm, and delivery arrives in about 10 seconds through Telegram's official notification.</li>
+    </ol>
+    <p>Note what is absent: at no point does anyone need to be inside your account.</p>
+  </section>
+
+  <section>
+    <h2>How to check a service before paying</h2>
+    <ul>
+      <li><strong>Look for dated reviews.</strong> Names and dates on individual reviews are far harder to fake than a round number in a headline. StarsJoy publishes its reviews with dates on <a href="/sharhlar">the reviews page</a>.</li>
+      <li><strong>Treat unverifiable scale claims as worthless.</strong> "100,000+ orders" with nothing to check it against tells you nothing — and inconsistent figures (a huge order count next to a small user count) tell you something worse.</li>
+      <li><strong>Ask a question first.</strong> A real service answers before payment. Response quality now predicts response quality later.</li>
+      <li><strong>Check there is a public offer or terms page</strong> naming what happens if delivery fails.</li>
+      <li><strong>Send a small first order.</strong> 50 Stars costs 12,000 UZS. That is a cheap way to test a service you have not used before.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>If you already gave something away</h2>
+    <p>Act in minutes, not hours:</p>
+    <ol>
+      <li><strong>Settings → Privacy and Security → Two-Step Verification</strong> — set or change the cloud password. This locks out anyone holding only a login code.</li>
+      <li><strong>Settings → Devices</strong> — terminate all other sessions.</li>
+      <li>Check <strong>Settings → Privacy and Security → Active Sessions</strong> again afterwards; if a session reappears, someone still has access.</li>
+      <li>Report the payment to your bank with the receipt. Card-to-card transfers are hard to reverse, but a report creates a record.</li>
+    </ol>
+    <p>If you lost money but not the account, you got off lightly. The account is the more expensive thing.</p>
+  </section>
+
+  <section>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/en/blog/telegram-sms-code-not-arriving">Telegram SMS code not arriving — and why you must never forward it</a></li>
+      <li><a href="/en/about">About StarsJoy</a> — what we are, and what we are not</li>
+      <li><a href="/en/how-to-buy">How to buy — 9 steps with screenshots</a></li>
+    </ul>
+  </section>
+</BlogPostEn>

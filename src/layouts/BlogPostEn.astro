@@ -1,0 +1,403 @@
+---
+/**
+ * Ingliz tilidagi blog maqolalari uchun umumiy layout.
+ *
+ * Nega alohida layout: o'zbekcha/ruscha maqolalarning har biri o'z ichida
+ * to'liq boilerplate (3 ta JSON-LD, breadcrumb, hero, style bloki) saqlaydi —
+ * 100+ faylda takrorlangan. Inglizcha maqolalar yangi boshlangani uchun bu
+ * takrorni boshidanoq oldini olamiz: maqola fayli faqat kontentdan iborat.
+ *
+ * Ishlatish:
+ *   <BlogPostEn {...} faqs={[{q,a}]}>
+ *     <section>...</section>
+ *   </BlogPostEn>
+ */
+import Layout from './Layout.astro';
+import NavbarEn from '../components/NavbarEn.astro';
+import FooterEn from '../components/FooterEn.astro';
+
+interface Faq { q: string; a: string; }
+
+interface Props {
+  /** URL oxiri: /en/blog/<slug> */
+  slug: string;
+  /** <title> uchun (" | StarsJoy" avtomatik qo'shiladi) */
+  title: string;
+  description: string;
+  keywords?: string;
+  /** ISO sana, masalan "2026-08-07" */
+  publishDate: string;
+  /** Sahifadagi H1 — odatda title'ning qisqaroq varianti */
+  heading: string;
+  /** Breadcrumb'dagi oxirgi bo'g'in */
+  crumb: string;
+  /** Rang belgisi: Stars | Premium | Gifts | Guide */
+  tag?: string;
+  faqs?: Faq[];
+  /** Shu maqolaning o'zbekcha varianti bo'lsa — hreflang uchun */
+  uzHref?: string;
+  ruHref?: string;
+}
+
+const {
+  slug, title, description, keywords = '', publishDate,
+  heading, crumb, tag = 'Guide', faqs = [], uzHref, ruHref,
+} = Astro.props;
+
+const url = `https://starsjoy.uz/en/blog/${slug}`;
+
+// hreflang faqat haqiqatan mavjud variantlar uchun — bo'lmagan URL'ga
+// hreflang berish Google Search Console'da xato sifatida chiqadi.
+const hreflangs = [
+  ...(uzHref ? [{ lang: 'uz', href: uzHref }] : []),
+  ...(ruHref ? [{ lang: 'ru', href: ruHref }] : []),
+  { lang: 'en', href: url },
+];
+---
+
+<Layout
+  title={`${title} | StarsJoy`}
+  description={description}
+  canonical={url}
+  keywords={keywords}
+  lang="en"
+  ogType="article"
+  hreflangs={hreflangs}
+>
+  <NavbarEn />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": heading,
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": publishDate,
+    "inLanguage": "en-US",
+    "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png" }
+    },
+    "mainEntityOfPage": url,
+    "image": { "@type": "ImageObject", "url": "https://starsjoy.uz/og-image.png", "width": 1200, "height": 630 }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://starsjoy.uz/en" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://starsjoy.uz/en/blog" },
+      { "@type": "ListItem", "position": 3, "name": crumb, "item": url }
+    ]
+  })} />
+
+  {faqs.length > 0 && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "en-US",
+      "mainEntity": faqs.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    })} />
+  )}
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/en">Home</a>
+          <span>/</span>
+          <a href="/en/blog">Blog</a>
+          <span>/</span>
+          <span>{crumb}</span>
+        </nav>
+        <div class="post-tag">{tag}</div>
+        <h1 class="post-title">{heading}</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+          <slot />
+
+          {faqs.length > 0 && (
+            <section class="post-faq">
+              <h2>Frequently asked questions</h2>
+              {faqs.map((f) => (
+                <div class="post-faq-item">
+                  <h3>{f.q}</h3>
+                  <p>{f.a}</p>
+                </div>
+              ))}
+            </section>
+          )}
+
+          <div class="post-cta-box">
+            <p><strong>Buy Telegram Stars or Premium in Uzbekistan</strong></p>
+            <p class="post-cta-sub">Pay in Uzbek som with Uzcard or Humo — no Visa card needed, delivered in about 10 seconds.</p>
+            <a href="https://telegram.me/starsjoybot" class="post-cta-btn" target="_blank" rel="noopener">Open @starsjoybot</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterEn />
+</Layout>
+
+<style is:global>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 760px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .post-body {
+    padding: 60px 24px;
+  }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
+  .post-content section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 28px 0 12px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+  .post-content a.post-cta-btn {
+    text-decoration: none;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 14px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .post-table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+  }
+
+  .post-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .post-table th {
+    background: rgba(124, 58, 237, 0.06);
+    color: var(--text);
+    font-weight: 700;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+  }
+
+  .post-table td {
+    padding: 12px 18px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+  }
+
+  .post-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .post-table .highlight-row {
+    background: rgba(124, 58, 237, 0.04);
+  }
+
+  .post-table .highlight-row td {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .post-cta-box {
+    margin: 16px 0;
+    padding: 0;
+    background: none;
+    border: none;
+  }
+
+  .post-cta-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(124, 58, 237, 0.06);
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .post-cta-btn:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.3);
+  }
+
+  .post-cta-btn.secondary {
+    background: none;
+    border-color: var(--border);
+    color: var(--text-muted);
+  }
+  .post-cta-btn.secondary:hover {
+    border-color: rgba(124, 58, 237, 0.2);
+    color: var(--primary);
+  }
+
+  .post-cta-sub {
+    display: inline;
+    margin-left: 10px;
+    font-size: 0.82rem;
+    color: var(--text-light);
+  }
+
+  .post-faq {
+    margin: 24px 0;
+  }
+
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+
+  .post-faq-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+
+  .post-faq-item p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.6rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.05rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .post-cta-box { padding: 20px; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .post-table th { padding: 10px 12px; font-size: 0.85rem; }
+    .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+  }
+
+  .post-content .post-lead {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    padding: 18px 20px;
+    background: #F6F3FF;
+    border-left: 3px solid var(--primary);
+    border-radius: 0 10px 10px 0;
+  }
+</style>

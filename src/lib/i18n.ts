@@ -17,8 +17,10 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en': '/',
   '/en/premium': '/premium',
   '/en/stars': '/stars',
+  '/en/gifts': '/gifts',
   '/en/how-to-buy': '/qollanma',
   '/en/about': '/info',
+  '/en/blog': '/blog',
 };
 
 /** O'zbekcha sahifa → uning inglizcha ekvivalenti (yuqoridagining teskarisi) */
