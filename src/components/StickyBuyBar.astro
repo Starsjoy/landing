@@ -11,7 +11,7 @@
 
 <script>
   (function () {
-    var SKIP_PATHS = [/^\/modad/, /^\/api/, /^\/(ru\/)?stars$/, /^\/(ru\/)?premium$/];
+    var SKIP_PATHS = [/^\/modad/, /^\/api/, /^\/(ru\/|en\/)?stars$/, /^\/(ru\/|en\/)?premium$/];
     var path = location.pathname.replace(/\/$/, '') || '/';
     for (var i = 0; i < SKIP_PATHS.length; i++) {
       if (SKIP_PATHS[i].test(path)) return;
@@ -19,13 +19,14 @@
     if (sessionStorage.getItem('sj_buybar_dismissed')) return;
 
     var isRu = path.indexOf('/ru') === 0;
+    var isEn = path.indexOf('/en') === 0;
     var bar = document.getElementById('sj-buybar');
     if (!bar) return;
 
     var textEl = document.getElementById('sj-buybar-text');
     var starsLink = document.getElementById('sj-buybar-stars') as HTMLAnchorElement;
     var premiumLink = document.getElementById('sj-buybar-premium') as HTMLAnchorElement;
-    if (textEl) textEl.textContent = isRu ? 'Что хотите купить?' : 'Nima xarid qilmoqchisiz?';
+    if (textEl) textEl.textContent = isRu ? 'Что хотите купить?' : isEn ? 'What would you like to buy?' : 'Nima xarid qilmoqchisiz?';
 
     function dismiss() {
       bar!.classList.remove('sj-buybar-visible');

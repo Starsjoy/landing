@@ -52,7 +52,10 @@ const {
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="StarsJoy" />
-    <meta property="og:locale" content={lang === "ru" ? "ru_RU" : "uz_UZ"} />
+    <meta property="og:locale" content={lang === "ru" ? "ru_RU" : lang === "en" ? "en_US" : "uz_UZ"} />
+    {hreflangs.filter(hl => hl.lang !== lang).map(hl => (
+      <meta property="og:locale:alternate" content={hl.lang === "ru" ? "ru_RU" : hl.lang === "en" ? "en_US" : "uz_UZ"} />
+    ))}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

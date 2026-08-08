@@ -1,6 +1,9 @@
 ---
+import { UZ_TO_EN } from '../lib/i18n';
+
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
+const enPath = UZ_TO_EN[currentPath];
 ---
 
 <nav id="navbar">
@@ -23,10 +26,12 @@ const ruPath = currentPath === '/' ? '/ru' : `/ru${currentPath}`;
     </ul>
     <div class="nav-right">
       <a href={ruPath} class="lang-switch desktop-lang">🇷🇺</a>
+      {enPath && <a href={enPath} class="lang-switch desktop-lang" hreflang="en" aria-label="English">🇬🇧</a>}
       <a href="https://telegram.me/starsjoybot" class="nav-cta" target="_blank">Botga o'tish</a>
     </div>
     <div class="mobile-actions">
       <a href={ruPath} class="lang-switch mobile-lang">🇷🇺</a>
+      {enPath && <a href={enPath} class="lang-switch mobile-lang" hreflang="en" aria-label="English">🇬🇧</a>}
       <button class="mobile-toggle" aria-label="Menu">
         <span class="hamburger"></span>
       </button>
