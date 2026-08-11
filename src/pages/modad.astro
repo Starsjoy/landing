@@ -2157,8 +2157,9 @@ if (authenticated && !dbReady) {
           fetchReviews();
         }
 
-        // Mobile quick stats faqat overview va profit'da ko'rinadi
+        // Mobile quick stats faqat Umumiy (overview) bo'limida ko'rinadi
         if (typeof renderMobileQuickStats === 'function') renderMobileQuickStats();
+        if (name === 'overview' && typeof fetchMqsYesterday === 'function') fetchMqsYesterday();
       }
 
       function setPeriod(p) {
@@ -4223,21 +4224,35 @@ if (authenticated && !dbReady) {
         '3months': '3 oylik', '6months': '6 oylik', '12months': 'Yillik'
       };
 
-      function mqsCalcProfit(ov) {
+      // Foyda hisobi renderProfit bilan bir xil qoidada, tanlangan source bo'yicha.
+      // 'all' = Starsjoy + Premium Send + Premium 1/12 + Uzgets (jami sof foyda).
+      function mqsProfitOf(ov, uzOv) {
         if (!ov) return 0;
         var starsProfit = Math.round((ov.starsRevenue || 0) * 0.12);
         var giftProfit = Math.round((ov.giftRevenue || 0) * 0.12);
         var premiumProfit = Math.round((ov.premiumRevenue || 0) * 0.10);
         var psProfit = Math.round((ov.psRevenue || 0) * 0.10);
         var p112Profit = ((ov.p112OneCount || 0) * 18000) + ((ov.p112TwelveCount || 0) * 48000);
-        return starsProfit + giftProfit + premiumProfit + psProfit + p112Profit;
+        if (currentSource === 'starsjoy') return starsProfit + giftProfit + premiumProfit;
+        if (currentSource === 'premium_send') return psProfit;
+        if (currentSource === 'premium_1_12') return p112Profit;
+        if (currentSource === 'uzgets') return calcUzgets(ov).total;
+        return starsProfit + giftProfit + premiumProfit + psProfit + p112Profit + calcUzgets(uzOv).total;
+      }
+
+      function mqsOrdersOf(ov, uzOv) {
+        if (!ov) return 0;
+        var n = ov.totalOrders || 0;
+        if (currentSource === 'all' && uzOv) n += (uzOv.totalOrders || 0);
+        return n;
       }
 
       function renderMobileQuickStats() {
         var box = document.getElementById('mobileQuickStats');
         if (!box) return;
-        var allowed = (currentSection === 'overview' || currentSection === 'profit');
-        if (!isMobileView() || !allowed) {
+        // Faqat Umumiy ko'rinishda. Foyda bo'limida o'z kartochkalari bor —
+        // bu yerda ko'rsatilsa raqam takrorlanib qolardi.
+        if (!isMobileView() || currentSection !== 'overview') {
           box.hidden = true;
           box.style.display = 'none';
           return;
@@ -4246,31 +4261,34 @@ if (authenticated && !dbReady) {
         box.style.display = '';
 
         var label = mqsPeriodLabels[currentPeriod] || (currentMonth ? 'Oylik' : 'Bugungi');
+        var srcName = sourceLabels[currentSource] || 'Umumiy';
         var ov = statsData && statsData.orders && statsData.orders.overview;
-        var profit = mqsCalcProfit(ov);
-        var orders = ov ? (ov.totalOrders || 0) : 0;
 
         var todayLabel = document.getElementById('mqsTodayLabel');
         var ordersLabel = document.getElementById('mqsOrdersLabel');
-        if (todayLabel) todayLabel.textContent = label + ' foyda';
+        if (todayLabel) todayLabel.textContent = label + ' foyda · ' + srcName;
         if (ordersLabel) ordersLabel.textContent = label + ' buyurtmalar';
-        document.getElementById('mqsTodayProfit').textContent = fmtMoney(profit) + " so'm";
-        document.getElementById('mqsTodayOrders').textContent = orders + ' ta';
+        document.getElementById('mqsTodayProfit').textContent = fmtMoney(mqsProfitOf(ov, uzgetsOv)) + " so'm";
+        document.getElementById('mqsTodayOrders').textContent = mqsOrdersOf(ov, uzgetsOv) + ' ta';
       }
 
       async function fetchMqsYesterday() {
-        if (!isMobileView()) return;
+        if (!isMobileView() || currentSection !== 'overview') return;
         var now = new Date();
         var tz = new Date(now.getTime() + 5 * 60 * 60 * 1000);
         var yest = new Date(Date.UTC(tz.getUTCFullYear(), tz.getUTCMonth(), tz.getUTCDate() - 1));
         var ys = yest.getUTCFullYear() + '-' + String(yest.getUTCMonth() + 1).padStart(2, '0') + '-' + String(yest.getUTCDate()).padStart(2, '0');
+        var range = 'salesFrom=' + ys + '&salesTo=' + ys;
         try {
-          var res = await fetch('/api/stats?salesFrom=' + ys + '&salesTo=' + ys + '&source=all');
-          if (res.status === 401) { location.reload(); return; }
-          var data = await res.json();
-          var ov = data.orders && data.orders.overview;
+          var reqs = [fetch('/api/stats?' + range + '&source=' + currentSource)];
+          if (currentSource === 'all') reqs.push(fetch('/api/stats?' + range + '&source=uzgets'));
+          var responses = await Promise.all(reqs);
+          if (responses.some(function (r) { return r.status === 401; })) { location.reload(); return; }
+          var payloads = await Promise.all(responses.map(function (r) { return r.json(); }));
+          var ov = payloads[0].orders && payloads[0].orders.overview;
+          var uzOv = payloads[1] ? (payloads[1].orders && payloads[1].orders.overview) : null;
           var el = document.getElementById('mqsYdayProfit');
-          if (el) el.textContent = fmtMoney(mqsCalcProfit(ov)) + " so'm";
+          if (el) el.textContent = fmtMoney(mqsProfitOf(ov, uzOv)) + " so'm";
         } catch (e) { console.error('MQS yesterday error:', e); }
       }
 
