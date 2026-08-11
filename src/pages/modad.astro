@@ -99,15 +99,27 @@ if (authenticated && !dbReady) {
               <h2>Davr bo'yicha foyda</h2>
             </div>
             <div class="uz-filter" id="uzFilter">
-              <button type="button" data-range="today" class="active" onclick="uzSetRange('today')">Bugun</button>
-              <button type="button" data-range="yesterday" onclick="uzSetRange('yesterday')">Kecha</button>
-              <button type="button" data-range="week" onclick="uzSetRange('week')">7 kun</button>
-              <button type="button" data-range="month" onclick="uzSetRange('month')">30 kun</button>
-              <button type="button" data-range="custom" onclick="uzSetRange('custom')">Sana tanlash</button>
+              <button type="button" class="uzf-btn active" data-range="today" onclick="uzSetRange('today')">Bugun</button>
+              <button type="button" class="uzf-btn" data-range="yesterday" onclick="uzSetRange('yesterday')">Kecha</button>
+              <button type="button" class="uzf-btn" data-range="week" onclick="uzSetRange('week')">7 kun</button>
+              <button type="button" class="uzf-btn" data-range="month" onclick="uzSetRange('month')">30 kun</button>
+
+              <div class="uz-picker-wrap">
+                <button type="button" class="uzf-btn" data-range="pickmonth" id="uzMonthBtn" onclick="uzToggleMonthPicker(event)">Oy tanlash</button>
+                <div class="uz-month-picker" id="uzMonthPicker">
+                  <div class="ump-year">
+                    <button type="button" onclick="uzPickerYearShift(-1)" aria-label="Oldingi yil">&lsaquo;</button>
+                    <span id="uzPickerYear"></span>
+                    <button type="button" id="uzPickerNext" onclick="uzPickerYearShift(1)" aria-label="Keyingi yil">&rsaquo;</button>
+                  </div>
+                  <div class="ump-grid" id="uzMonthGrid"></div>
+                </div>
+              </div>
+
+              <button type="button" class="uzf-btn" data-range="pickday" id="uzDayBtn" onclick="uzOpenDayPicker()">Sana tanlash</button>
             </div>
-            <div class="uz-daterange" id="uzDateRange" hidden>
-              <label>dan <input type="date" id="uzFrom" onchange="uzApplyCustom()" /></label>
-              <label>gacha <input type="date" id="uzTo" onchange="uzApplyCustom()" /></label>
+            <div class="uz-day-row" id="uzDayRow" hidden>
+              <label>Kun <input type="date" id="uzDay" onchange="uzApplyDay()" /></label>
             </div>
             <div id="uzRangeResult"></div>
           </section>
@@ -154,7 +166,8 @@ if (authenticated && !dbReady) {
                   <input type="date" id="uzSalDate" required />
                 </label>
                 <label>Summa (so'm)
-                  <input type="number" id="uzSalAmount" min="1" step="1000" placeholder="0" required />
+                  <input type="text" id="uzSalAmount" inputmode="numeric" autocomplete="off"
+                    placeholder="0" required oninput="uzFormatAmount(this)" />
                 </label>
               </div>
               <label>Izoh (ixtiyoriy)
@@ -1352,25 +1365,53 @@ if (authenticated && !dbReady) {
 
     /* Davr filtri */
     .uz-filter { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-    .uz-filter button {
+    .uz-filter .uzf-btn {
       padding: 9px 14px; background: var(--bg-3); border: 1px solid var(--border);
       border-radius: 10px; color: var(--text-2); font-size: 0.8rem; font-weight: 600;
       font-family: inherit; cursor: pointer; transition: all 0.15s; white-space: nowrap;
     }
-    .uz-filter button:hover { background: var(--bg-4); color: var(--text-0); }
-    .uz-filter button.active { background: rgba(34,211,238,0.12); border-color: rgba(34,211,238,0.4); color: #22d3ee; }
+    .uz-filter .uzf-btn:hover { background: var(--bg-4); color: var(--text-0); }
+    .uz-filter .uzf-btn.active { background: rgba(34,211,238,0.12); border-color: rgba(34,211,238,0.4); color: #22d3ee; }
 
-    .uz-daterange { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
-    .uz-daterange label {
+    .uz-day-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+    .uz-day-row label {
       display: flex; align-items: center; gap: 8px;
       font-size: 0.78rem; color: var(--text-3); font-weight: 500;
     }
-    .uz-daterange input, .usal-form input {
+    .uz-day-row input, .usal-form input {
       background: var(--bg-1); border: 1px solid var(--border); border-radius: 9px;
       color: var(--text-1); font-family: inherit; font-size: 0.85rem; padding: 9px 12px;
       outline: none; transition: border-color 0.15s; color-scheme: dark;
     }
-    .uz-daterange input:focus, .usal-form input:focus { border-color: rgba(34,211,238,0.5); }
+    .uz-day-row input:focus, .usal-form input:focus { border-color: rgba(34,211,238,0.5); }
+
+    /* Oy tanlash dropdown'i */
+    .uz-picker-wrap { position: relative; }
+    .uz-month-picker {
+      display: none; position: absolute; top: calc(100% + 6px); left: 0; z-index: 40;
+      width: 252px; max-width: calc(100vw - 48px);
+      background: var(--bg-2); border: 1px solid var(--border-light);
+      border-radius: 14px; padding: 12px; box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+    .uz-month-picker.open { display: block; }
+    .ump-year { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .ump-year span { font-size: 0.85rem; font-weight: 700; color: var(--text-0); }
+    .ump-year button {
+      width: 28px; height: 28px; background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text-2); font-size: 0.95rem; font-family: inherit;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .ump-year button:hover:not(:disabled) { background: var(--bg-4); color: var(--text-0); }
+    .ump-year button:disabled { opacity: 0.3; cursor: not-allowed; }
+    .ump-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .ump-grid button {
+      padding: 9px 4px; background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: 9px; color: var(--text-2); font-size: 0.76rem; font-weight: 600;
+      font-family: inherit; cursor: pointer; transition: all 0.15s;
+    }
+    .ump-grid button:hover:not(:disabled) { background: var(--bg-4); color: var(--text-0); }
+    .ump-grid button.active { background: rgba(34,211,238,0.14); border-color: rgba(34,211,238,0.45); color: #22d3ee; }
+    .ump-grid button:disabled { opacity: 0.25; cursor: not-allowed; }
 
     .uz-month-total {
       display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
@@ -1445,10 +1486,12 @@ if (authenticated && !dbReady) {
       .uz-month-total { flex-direction: column; align-items: flex-start; gap: 4px; }
       .uz-month-total .umt-value { font-size: 1.5rem; }
       .uz-filter { gap: 6px; }
-      .uz-filter button { padding: 9px 11px; font-size: 0.76rem; }
-      .uz-daterange { flex-direction: column; gap: 8px; }
-      .uz-daterange label { justify-content: space-between; }
-      .uz-daterange input { flex: 1; }
+      .uz-filter .uzf-btn { padding: 9px 11px; font-size: 0.76rem; }
+      .uz-day-row { flex-direction: column; gap: 8px; }
+      .uz-day-row label { justify-content: space-between; }
+      .uz-day-row input { flex: 1; }
+      /* iOS input'ga bosilganda zoom qilmasligi uchun shrift 16px dan kichik bo'lmasin */
+      .uz-day-row input, .usal-form input { font-size: 16px; }
       .usal-hero { grid-template-columns: 1fr; }
       .usal-main { padding: 20px; }
       .usal-value { font-size: 2.1rem; }
@@ -4474,6 +4517,7 @@ if (authenticated && !dbReady) {
       // va faqat orders qismini qaytaradi — boshqa ma'lumot bu yerga kelmaydi.
 
       var UZ_MONTHS = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentabr', 'Oktyabr', 'Noyabr', 'Dekabr'];
+      var UZ_MONTHS_SHORT = ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun', 'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'];
 
       function uzFmt(n) {
         return Number(n || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -4599,38 +4643,137 @@ if (authenticated && !dbReady) {
         );
       }
 
+      function uzMonthQuery(y, m) {
+        return uzRangeQuery(uzDateStr(y, m, 1), uzDateStr(y, m, new Date(y, m + 1, 0).getDate()));
+      }
+
+      /** Joriy tanlovni qayta yuklaydi (avto-yangilash uchun) — UI holatiga tegmaydi. */
+      function uzReloadRange() {
+        if (uzRange === 'pickday') {
+          var d = document.getElementById('uzDay').value;
+          if (d) uzLoadRange(uzRangeQuery(d, d));
+          return;
+        }
+        if (uzRange === 'pickmonth') {
+          if (uzPickedMonth) uzLoadRange(uzMonthQuery(uzPickedMonth.y, uzPickedMonth.m));
+          return;
+        }
+        uzLoadRange(uzRangeParams(uzRange));
+      }
+
+      var uzPickedMonth = null; // { y, m } — m 0-indeksli
+
+      function uzPrettyDate(s) {
+        var p = s.split('-');
+        return p[2] + '.' + p[1] + '.' + p[0];
+      }
+
       function uzRangeLabel() {
         if (uzRange === 'today') return 'Bugun';
         if (uzRange === 'yesterday') return 'Kecha';
         if (uzRange === 'week') return 'Oxirgi 7 kun';
         if (uzRange === 'month') return 'Oxirgi 30 kun';
-        var f = document.getElementById('uzFrom').value;
-        var t = document.getElementById('uzTo').value || f;
-        return f === t ? f : (f + ' — ' + t);
+        if (uzRange === 'pickmonth' && uzPickedMonth) {
+          return UZ_MONTHS[uzPickedMonth.m] + ' ' + uzPickedMonth.y;
+        }
+        var d = document.getElementById('uzDay').value;
+        return d ? uzPrettyDate(d) : 'Tanlangan sana';
+      }
+
+      function uzMarkActive(range) {
+        document.querySelectorAll('#uzFilter .uzf-btn').forEach(function (b) {
+          b.classList.toggle('active', b.dataset.range === range);
+        });
       }
 
       function uzSetRange(range) {
         uzRange = range;
-        document.querySelectorAll('#uzFilter button').forEach(function (b) {
-          b.classList.toggle('active', b.dataset.range === range);
-        });
-        document.getElementById('uzDateRange').hidden = range !== 'custom';
-        if (range === 'custom') { uzApplyCustom(); return; }
+        uzMarkActive(range);
+        uzCloseMonthPicker();
+        document.getElementById('uzDayRow').hidden = range !== 'pickday';
         uzLoadRange(uzRangeParams(range));
       }
 
-      function uzApplyCustom() {
-        var fromEl = document.getElementById('uzFrom');
-        var toEl = document.getElementById('uzTo');
-        var from = fromEl.value;
-        if (!from) {
-          document.getElementById('uzRangeResult').innerHTML = '<div class="uz-hint">Sanani tanlang</div>';
+      // ───── Kun tanlash (brauzer kalendari) ─────
+      function uzOpenDayPicker() {
+        uzRange = 'pickday';
+        uzMarkActive('pickday');
+        uzCloseMonthPicker();
+        var row = document.getElementById('uzDayRow');
+        row.hidden = false;
+        var input = document.getElementById('uzDay');
+        if (input.value) {
+          uzApplyDay();
+        } else {
+          document.getElementById('uzRangeResult').innerHTML = '<div class="uz-hint">Kalendardan kunni tanlang</div>';
+        }
+        // Kalendarni darhol ochamiz; qo'llab-quvvatlamasa foydalanuvchi o'zi bosadi
+        try { if (input.showPicker) input.showPicker(); else input.focus(); } catch (e) { input.focus(); }
+      }
+
+      function uzApplyDay() {
+        var d = document.getElementById('uzDay').value;
+        if (!d) {
+          document.getElementById('uzRangeResult').innerHTML = '<div class="uz-hint">Kalendardan kunni tanlang</div>';
           return;
         }
-        // "gacha" bo'sh yoki oldinda bo'lsa — bir kunlik oraliq
-        if (!toEl.value || toEl.value < from) toEl.value = from;
-        uzLoadRange(uzRangeQuery(from, toEl.value));
+        uzRange = 'pickday';
+        uzMarkActive('pickday');
+        document.getElementById('uzDayBtn').textContent = 'Sana: ' + uzPrettyDate(d);
+        uzLoadRange(uzRangeQuery(d, d));
       }
+
+      // ───── Oy tanlash ─────
+      var uzPickerYear = uzToday().y;
+
+      function uzRenderMonthPicker() {
+        var t = uzToday();
+        document.getElementById('uzPickerYear').textContent = uzPickerYear;
+        document.getElementById('uzPickerNext').disabled = uzPickerYear >= t.y;
+        var html = '';
+        for (var m = 0; m < 12; m++) {
+          var future = uzPickerYear > t.y || (uzPickerYear === t.y && m > t.m);
+          var active = uzPickedMonth && uzPickedMonth.y === uzPickerYear && uzPickedMonth.m === m;
+          html += '<button type="button" class="' + (active ? 'active' : '') + '"'
+            + (future ? ' disabled' : '')
+            + ' onclick="uzPickMonth(' + uzPickerYear + ',' + m + ')">' + UZ_MONTHS_SHORT[m] + '</button>';
+        }
+        document.getElementById('uzMonthGrid').innerHTML = html;
+      }
+
+      function uzToggleMonthPicker(e) {
+        e.stopPropagation();
+        var dd = document.getElementById('uzMonthPicker');
+        if (dd.classList.contains('open')) { dd.classList.remove('open'); return; }
+        uzPickerYear = uzPickedMonth ? uzPickedMonth.y : uzToday().y;
+        uzRenderMonthPicker();
+        dd.classList.add('open');
+      }
+
+      function uzCloseMonthPicker() {
+        document.getElementById('uzMonthPicker').classList.remove('open');
+      }
+
+      function uzPickerYearShift(delta) {
+        uzPickerYear += delta;
+        uzRenderMonthPicker();
+      }
+
+      function uzPickMonth(y, m) {
+        uzPickedMonth = { y: y, m: m };
+        uzRange = 'pickmonth';
+        uzMarkActive('pickmonth');
+        uzRenderMonthPicker();
+        uzCloseMonthPicker();
+        document.getElementById('uzDayRow').hidden = true;
+        document.getElementById('uzMonthBtn').textContent = UZ_MONTHS[m] + ' ' + y;
+        uzLoadRange(uzMonthQuery(y, m));
+      }
+
+      document.addEventListener('click', function (e) {
+        var wrap = document.querySelector('.uz-picker-wrap');
+        if (wrap && !wrap.contains(e.target)) uzCloseMonthPicker();
+      });
 
       // Filtr tez almashtirilsa eski javob yangisining ustiga chizilmasligi kerak,
       // shuning uchun har so'rovga tartib raqami beriladi va yorliq shu yerda olinadi.
@@ -4738,12 +4881,24 @@ if (authenticated && !dbReady) {
         }).join('');
       }
 
+      /** Summa maydoni: faqat raqam, yozilayotganda 30000 → "30 000". */
+      function uzFormatAmount(el) {
+        var digits = el.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 12);
+        el.value = digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+      }
+
       async function uzSalAdd(e) {
         e.preventDefault();
         var btn = document.getElementById('uzSalSubmit');
         var msg = document.getElementById('uzSalMsg');
+        var amount = document.getElementById('uzSalAmount').value.replace(/\D/g, '');
         msg.className = 'usf-msg';
         msg.textContent = '';
+        if (!amount || +amount <= 0) {
+          msg.className = 'usf-msg is-err';
+          msg.textContent = 'Summani kiriting';
+          return;
+        }
         btn.disabled = true;
         try {
           var res = await fetch('/api/uz-salary', {
@@ -4751,7 +4906,7 @@ if (authenticated && !dbReady) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               action: 'add',
-              amount: document.getElementById('uzSalAmount').value,
+              amount: amount,
               date: document.getElementById('uzSalDate').value,
               note: document.getElementById('uzSalNote').value,
             }),
@@ -4792,16 +4947,14 @@ if (authenticated && !dbReady) {
       // ───── Init ─────
       (function () {
         var t = uzToday();
-        var todayStr = uzDateStr(t.y, t.m, t.d);
-        document.getElementById('uzFrom').max = todayStr;
-        document.getElementById('uzTo').max = todayStr;
+        document.getElementById('uzDay').max = uzDateStr(t.y, t.m, t.d);
       })();
 
       uzSetRange('today');
       uzLoadQuick();
       setInterval(function () {
         uzLoadQuick();
-        if (uzActiveTab === 'foyda') uzSetRange(uzRange);
+        if (uzActiveTab === 'foyda') uzReloadRange();
         else uzSalLoad();
       }, 60000);
     </script>
