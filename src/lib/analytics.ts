@@ -428,6 +428,108 @@ export async function deleteWithdrawal(id: number) {
   await sql`DELETE FROM salary_withdrawals WHERE id = ${id}`;
 }
 
+// ───── UZGETS MAOSH (yordamchi admin) ─────
+// Foyda: uzgets_stars = 10%, uzgets_premium 3/6/12 oy = fixed 15 000 / 25 000 / 35 000.
+// Qoida: olish mumkin = (oldingi oylardan qoldiq) + (shu oy foydasi) − (shu oyda olingan).
+// Kuzatuv boshlangan oydan oldingi oylar umuman hisobga olinmaydi.
+
+export async function ensureUzSalaryTable() {
+  const sql = getSQL();
+  await sql`
+    CREATE TABLE IF NOT EXISTS uz_salary_withdrawals (
+      id SERIAL PRIMARY KEY,
+      amount BIGINT NOT NULL,
+      note TEXT DEFAULT '',
+      attributed_month TEXT NOT NULL,
+      timestamp TIMESTAMPTZ DEFAULT NOW()
+    )
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS idx_uz_salary_attr ON uz_salary_withdrawals(attributed_month)`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_uz_salary_ts ON uz_salary_withdrawals(timestamp)`;
+}
+
+export async function getUzMonthProfit(month: string): Promise<number> {
+  const sql = getSQL();
+  const since = new Date(`${month}-01T00:00:00+05:00`).toISOString();
+  const next = shiftMonth(month, 1);
+  const until = new Date(`${next}-01T00:00:00+05:00`).toISOString();
+  const [r] = await sql`
+    SELECT
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_stars'), 0) as uz_stars_rev,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '3 oy') as uz3,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy') as uz6,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy') as uz12
+    FROM orders WHERE timestamp >= ${since} AND timestamp < ${until}
+  `;
+  return (
+    Math.round(+r.uz_stars_rev * 0.10) +
+    (+r.uz3 * 15000) +
+    (+r.uz6 * 25000) +
+    (+r.uz12 * 35000)
+  );
+}
+
+export async function sumUzWithdrawalsForMonth(month: string): Promise<number> {
+  const sql = getSQL();
+  const [r] = await sql`SELECT COALESCE(SUM(amount), 0) as total FROM uz_salary_withdrawals WHERE attributed_month = ${month}`;
+  return +r.total;
+}
+
+// Lazy init: birinchi murojaatda joriy oyga belgilanadi va keyin o'zgarmaydi.
+export async function getUzTrackingStartMonth(): Promise<string> {
+  const sql = getSQL();
+  const rows = await sql`SELECT value FROM settings WHERE key = 'uz_salary_tracking_start'`;
+  if (rows.length > 0 && /^\d{4}-\d{2}$/.test(rows[0].value)) return rows[0].value;
+  const t = tashkentParts();
+  const cur = fmtMonth(t.y, t.m);
+  await sql`INSERT INTO settings (key, value) VALUES ('uz_salary_tracking_start', ${cur}) ON CONFLICT (key) DO NOTHING`;
+  return cur;
+}
+
+// Walk-forward: har oyning qoldig'i keyingi oyga o'tadi. Cap: 24 oy.
+export async function getUzRolloverInto(month: string): Promise<number> {
+  const startMonth = await getUzTrackingStartMonth();
+  if (startMonth >= month) return 0;
+  let cursor = startMonth;
+  let leftover = 0;
+  for (let i = 0; i < 24; i++) {
+    if (cursor >= month) break;
+    const profit = await getUzMonthProfit(cursor);
+    const withdrawn = await sumUzWithdrawalsForMonth(cursor);
+    leftover = Math.max(0, profit + leftover - withdrawn);
+    cursor = shiftMonth(cursor, 1);
+  }
+  return leftover;
+}
+
+export async function listUzWithdrawals(limit = 200) {
+  const sql = getSQL();
+  return await sql`SELECT id, amount, note, attributed_month, timestamp FROM uz_salary_withdrawals ORDER BY timestamp DESC LIMIT ${limit}`;
+}
+
+export async function addUzWithdrawal(amount: number, note: string, month: string, timestamp?: Date) {
+  const sql = getSQL();
+  if (timestamp) {
+    const [r] = await sql`
+      INSERT INTO uz_salary_withdrawals (amount, note, attributed_month, timestamp)
+      VALUES (${amount}, ${note}, ${month}, ${timestamp.toISOString()})
+      RETURNING id, amount, note, attributed_month, timestamp
+    `;
+    return r;
+  }
+  const [r] = await sql`
+    INSERT INTO uz_salary_withdrawals (amount, note, attributed_month)
+    VALUES (${amount}, ${note}, ${month})
+    RETURNING id, amount, note, attributed_month, timestamp
+  `;
+  return r;
+}
+
+export async function deleteUzWithdrawal(id: number) {
+  const sql = getSQL();
+  await sql`DELETE FROM uz_salary_withdrawals WHERE id = ${id}`;
+}
+
 // ───── CASHFLOW (KIRIM/CHIQIM) — OYLIK KESIM ─────
 // Har oy: kirim (qo'lda) + sotuv (orders'dan auto) + oxirgi qoldiq (qo'lda, keyingi oy boshida)
 // Asl foyda = sotuv − iste'mol; iste'mol = (oldingi oy qoldig'i) + kirim − (shu oy qoldig'i)
