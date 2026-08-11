@@ -26,7 +26,11 @@ async function ensure() {
   if (!ready) { await ensureUzSalaryTable(); ready = true; }
 }
 
-/** Berilgan oy uchun: foyda, oldingi qoldiq, olingan va olish mumkin bo'lgan summa. */
+/**
+ * Berilgan oy uchun: foyda, oldingi qoldiq, olingan va olish mumkin bo'lgan summa.
+ * `available` manfiy bo'lishi mumkin — foydadan ortiq olinsa qarz sifatida qoladi
+ * va keyingi oyga o'tadi.
+ */
 async function monthContext(month: string) {
   const trackingStart = await getUzTrackingStartMonth();
   // Kuzatuv boshlanishidan oldingi oylar hisobga olinmaydi
@@ -44,7 +48,7 @@ async function monthContext(month: string) {
     rollover,
     pot,
     withdrawn,
-    available: Math.max(0, pot - withdrawn),
+    available: pot - withdrawn,
     over: Math.max(0, withdrawn - pot),
     tracked: true,
   };
@@ -97,11 +101,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     const trackingStart = await getUzTrackingStartMonth();
     if (month < trackingStart) return bad(`Hisob ${trackingStart} oyidan boshlangan — undan oldingi sana tanlab bo'lmaydi`);
 
-    // Ortiqcha yozib qo'yishning oldini olamiz: shu oy uchun mavjud limitdan oshmasin
-    const ctx = await monthContext(month);
-    if (amount > ctx.available) {
-      return bad(`Bu oyda olish mumkin bo'lgan summa ${ctx.available.toLocaleString('ru-RU').replace(/ /g, ' ')} so'm`);
-    }
+    // Foydadan ortiq olish taqiqlanmaydi: qoldiq minusga o'tadi va keyingi oyga ko'chadi.
 
     const timestamp = new Date(dateStr + 'T12:00:00+05:00');
     if (isNaN(timestamp.getTime())) return bad("Sana noto'g'ri");

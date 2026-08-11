@@ -143,6 +143,7 @@ if (authenticated && !dbReady) {
                   <span id="uzSalLegendTaken">Olingan 0</span>
                   <span id="uzSalLegendPot">Jami 0</span>
                 </div>
+                <div class="usal-warn" id="uzSalWarn" hidden></div>
               </div>
               <div class="usal-side">
                 <div class="usal-item">
@@ -1436,6 +1437,17 @@ if (authenticated && !dbReady) {
     .usal-bar span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #22d3ee, #2dd4bf); transition: width 0.4s ease; }
     .usal-bar span.is-over { background: linear-gradient(90deg, #f59e0b, #ef4444); }
     .usal-legend { display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; font-size: 0.72rem; color: var(--text-3); font-weight: 500; }
+
+    /* Foydadan ortiq olinganda */
+    .usal-main.is-over { background: linear-gradient(160deg, rgba(239,68,68,0.12), rgba(239,68,68,0.02)); border-color: rgba(239,68,68,0.4); }
+    .usal-value.is-neg { color: var(--red); }
+    .usal-warn {
+      display: flex; align-items: flex-start; gap: 8px; margin-top: 14px;
+      background: rgba(239,68,68,0.10); border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 10px; padding: 10px 12px;
+      font-size: 0.78rem; font-weight: 600; color: #fca5a5; line-height: 1.45;
+    }
+    .usal-item-value.is-neg { color: var(--red); }
 
     .usal-side { display: flex; flex-direction: column; gap: 10px; }
     .usal-item {
@@ -4523,6 +4535,12 @@ if (authenticated && !dbReady) {
         return Number(n || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
       }
 
+      /** Manfiy sonni minus belgisi bilan: -450000 → "-450 000" */
+      function uzSigned(n) {
+        var v = Number(n || 0);
+        return v < 0 ? '-' + uzFmt(-v) : uzFmt(v);
+      }
+
       function uzLogout() {
         document.cookie = 'moda_token=;path=/;max-age=0';
         location.reload();
@@ -4842,19 +4860,34 @@ if (authenticated && !dbReady) {
         document.getElementById('uzSalLoading').style.display = 'none';
         document.getElementById('uzSalBody').hidden = false;
 
+        var over = d.available < 0;
         var monthName = UZ_MONTHS[Number(d.month.slice(5, 7)) - 1] + ' ' + d.month.slice(0, 4);
         document.getElementById('uzSalMonthLabel').textContent = monthName + ' foydasi';
-        document.getElementById('uzSalAvailable').textContent = uzFmt(d.available);
+
+        var avEl = document.getElementById('uzSalAvailable');
+        avEl.textContent = uzSigned(d.available);
+        avEl.className = 'usal-value' + (over ? ' is-neg' : '');
+        document.querySelector('.usal-main').className = 'usal-main' + (over ? ' is-over' : '');
+
         document.getElementById('uzSalProfit').textContent = uzFmt(d.profit) + " so'm";
-        document.getElementById('uzSalRollover').textContent = uzFmt(d.rollover) + " so'm";
+        var rollEl = document.getElementById('uzSalRollover');
+        rollEl.textContent = uzSigned(d.rollover) + " so'm";
+        rollEl.className = 'usal-item-value' + (d.rollover < 0 ? ' is-neg' : '');
         document.getElementById('uzSalWithdrawn').textContent = uzFmt(d.withdrawn) + " so'm";
 
-        var pct = d.pot > 0 ? Math.min(100, Math.round((d.withdrawn / d.pot) * 100)) : 0;
+        var pct = d.pot > 0 ? Math.min(100, Math.round((d.withdrawn / d.pot) * 100)) : (d.withdrawn > 0 ? 100 : 0);
         var bar = document.getElementById('uzSalBar');
         bar.style.width = pct + '%';
-        bar.className = d.over > 0 ? 'is-over' : '';
+        bar.className = over ? 'is-over' : '';
         document.getElementById('uzSalLegendTaken').textContent = 'Olingan ' + uzFmt(d.withdrawn) + " so'm (" + pct + '%)';
         document.getElementById('uzSalLegendPot').textContent = 'Jami ' + uzFmt(d.pot) + " so'm";
+
+        var warn = document.getElementById('uzSalWarn');
+        warn.hidden = !over;
+        if (over) {
+          warn.innerHTML = '&#9888; Foydadan ' + uzFmt(-d.available) + " so'm ortiq olingan. "
+            + 'Bu summa qarz sifatida keyingi oyga o&#39;tadi.';
+        }
 
         var t = uzToday();
         var todayStr = uzDateStr(t.y, t.m, t.d);
@@ -4898,6 +4931,12 @@ if (authenticated && !dbReady) {
           msg.className = 'usf-msg is-err';
           msg.textContent = 'Summani kiriting';
           return;
+        }
+        // Foydadan ortiq olish mumkin, lekin xato yozib yuborishning oldini olamiz
+        if (uzSalData && +amount > uzSalData.available) {
+          var extra = +amount - uzSalData.available;
+          if (!confirm('Bu summa mavjud qoldiqdan ' + uzFmt(extra) + " so'm ko'p.\n"
+            + "Qoldiq minusga o'tadi va keyingi oyga qarz bo'lib ko'chadi.\n\nBaribir yozilsinmi?")) return;
         }
         btn.disabled = true;
         try {

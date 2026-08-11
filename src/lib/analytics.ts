@@ -487,6 +487,8 @@ export async function getUzTrackingStartMonth(): Promise<string> {
 }
 
 // Walk-forward: har oyning qoldig'i keyingi oyga o'tadi. Cap: 24 oy.
+// Qoldiq manfiy ham bo'lishi mumkin — foydadan ortiq olingan bo'lsa,
+// qarz keyingi oyga ko'chadi va o'z-o'zidan yo'qolib ketmaydi.
 export async function getUzRolloverInto(month: string): Promise<number> {
   const startMonth = await getUzTrackingStartMonth();
   if (startMonth >= month) return 0;
@@ -496,7 +498,7 @@ export async function getUzRolloverInto(month: string): Promise<number> {
     if (cursor >= month) break;
     const profit = await getUzMonthProfit(cursor);
     const withdrawn = await sumUzWithdrawalsForMonth(cursor);
-    leftover = Math.max(0, profit + leftover - withdrawn);
+    leftover = profit + leftover - withdrawn;
     cursor = shiftMonth(cursor, 1);
   }
   return leftover;
