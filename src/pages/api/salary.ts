@@ -2,7 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import {
-  verifyToken,
+  verifyOwnerToken,
   ensureSalaryTable,
   getMonthProfit,
   sumWithdrawalsForMonth,
@@ -31,7 +31,7 @@ async function buildContext(month: string) {
 
 export const GET: APIRoute = async ({ cookies }) => {
   const token = cookies.get('moda_token')?.value || '';
-  if (!await verifyToken(token)) return new Response('unauthorized', { status: 401 });
+  if (!await verifyOwnerToken(token)) return new Response('unauthorized', { status: 401 });
   await ensure();
 
   const t = tashkentParts();
@@ -90,7 +90,7 @@ export const GET: APIRoute = async ({ cookies }) => {
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   const token = cookies.get('moda_token')?.value || '';
-  if (!await verifyToken(token)) return new Response('unauthorized', { status: 401 });
+  if (!await verifyOwnerToken(token)) return new Response('unauthorized', { status: 401 });
   await ensure();
 
   const body = await request.json();

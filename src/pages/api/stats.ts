@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { verifyToken, getFilteredStats, getAllVisits, getOrderStats, getAnalyticsData, getBuyerInsights, deleteOrder, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
+import { getRole, getFilteredStats, getAllVisits, getOrderStats, getAnalyticsData, getBuyerInsights, deleteOrder, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
 
 let dbReady = false;
 
@@ -11,7 +11,8 @@ async function ensureDB() {
 
 export const GET: APIRoute = async ({ request, cookies }) => {
   const token = cookies.get('moda_token')?.value || '';
-  if (!await verifyToken(token)) {
+  const role = await getRole(token);
+  if (!role) {
     return new Response('unauthorized', { status: 401 });
   }
 
@@ -19,8 +20,9 @@ export const GET: APIRoute = async ({ request, cookies }) => {
   const url = new URL(request.url);
   const period = url.searchParams.get('period') || 'today';
 
-  // CSV export — returns all visits for the period
+  // CSV export — returns all visits for the period (faqat owner)
   if (url.searchParams.get('export') === 'csv') {
+    if (role !== 'owner') return new Response('forbidden', { status: 403 });
     const visits = await getAllVisits(period);
     return new Response(JSON.stringify(visits), {
       headers: { 'Content-Type': 'application/json' },
@@ -31,6 +33,15 @@ export const GET: APIRoute = async ({ request, cookies }) => {
   const salesTo = url.searchParams.get('salesTo') || undefined;
   const analyticsPeriod = url.searchParams.get('ap') || 'week';
   const source = url.searchParams.get('source') || 'all';
+
+  // Yordamchi admin — faqat Uzgets buyurtmalari. Tashriflar, analitika,
+  // xaridor tahlili va boshqa manbalar umuman qaytarilmaydi.
+  if (role === 'assistant') {
+    const orders = await getOrderStats(period, salesFrom, salesTo, 'uzgets');
+    return new Response(JSON.stringify({ orders }), {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   // Agar salesFrom bor bo'lsa, visits va buyers ham shu diapazon bo'yicha filter qilinadi
   const effectivePeriod = salesFrom ? 'custom' : period;
@@ -47,7 +58,8 @@ export const GET: APIRoute = async ({ request, cookies }) => {
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   const token = cookies.get('moda_token')?.value || '';
-  if (!await verifyToken(token)) {
+  // Parol o'zgartirish va buyurtma o'chirish — faqat to'liq huquqli admin
+  if (await getRole(token) !== 'owner') {
     return new Response('unauthorized', { status: 401 });
   }
 

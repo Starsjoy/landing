@@ -1,23 +1,31 @@
 ---
 export const prerender = false;
 
-import { verifyToken, verifyPassword, generateToken, initDB } from '../lib/analytics';
+import { getRole, verifyPassword, generateToken, verifyAssistantLogin, generateAssistantToken, initDB } from '../lib/analytics';
 
 const token = Astro.cookies.get('moda_token')?.value || '';
-let authenticated = await verifyToken(token);
+let role = await getRole(token);
 let loginError = '';
 
 if (Astro.request.method === 'POST') {
   const form = await Astro.request.formData();
+  const login = form.get('login')?.toString() || '';
   const password = form.get('password')?.toString() || '';
+  const cookieOpts = { path: '/', httpOnly: true, secure: true, sameSite: 'lax' as const, maxAge: 60 * 60 * 24 * 7 };
+
   if (await verifyPassword(password)) {
-    const newToken = generateToken(password);
-    Astro.cookies.set('moda_token', newToken, { path: '/', httpOnly: true, secure: true, sameSite: 'lax', maxAge: 60 * 60 * 24 * 7 });
-    authenticated = true;
+    Astro.cookies.set('moda_token', generateToken(password), cookieOpts);
+    role = 'owner';
+  } else if (verifyAssistantLogin(login, password)) {
+    Astro.cookies.set('moda_token', generateAssistantToken(), cookieOpts);
+    role = 'assistant';
   } else {
-    loginError = "Parol noto'g'ri";
+    loginError = login ? "Login yoki parol noto'g'ri" : "Parol noto'g'ri";
   }
 }
+
+const authenticated = role !== null;
+const isAssistant = role === 'assistant';
 
 let dbReady = false;
 if (authenticated && !dbReady) {
@@ -45,11 +53,54 @@ if (authenticated && !dbReady) {
           <span class="login-brand-text">StarsJoy</span>
         </div>
         <h1>Analytics kirish</h1>
-        <p>Dashboard ga kirish uchun parolni kiriting</p>
+        <p>Login (agar berilgan bo'lsa) va parolni kiriting</p>
         {loginError && <div class="login-error">{loginError}</div>}
-        <input type="password" name="password" placeholder="Parol" autofocus required />
+        <input type="text" name="login" placeholder="Login (ixtiyoriy)" autocomplete="username" />
+        <input type="password" name="password" placeholder="Parol" autocomplete="current-password" autofocus required />
         <button type="submit">Kirish</button>
       </form>
+    </div>
+  ) : isAssistant ? (
+    <!-- ══════ YORDAMCHI ADMIN — FAQAT UZGETS FOYDASI ══════ -->
+    <div class="uz-wrap">
+      <header class="uz-topbar">
+        <div class="uz-brand">
+          <img src="/logo.png" alt="Uzgets" class="uz-logo" />
+          <div>
+            <span class="uz-brand-name">Uzgets</span>
+            <span class="uz-brand-sub">Foyda hisoboti</span>
+          </div>
+        </div>
+        <div class="uz-topbar-right">
+          <div class="tb-live" title="Har 60s yangilanadi">
+            <span class="live-dot"></span>
+            <span class="live-text">Live</span>
+          </div>
+          <button class="tb-btn" onclick="uzLogout()">Chiqish</button>
+        </div>
+      </header>
+
+      <main class="uz-main">
+        <div id="uzLoading" class="loading-state">
+          <div class="loading-spinner"></div>
+          <span>Yuklanmoqda...</span>
+        </div>
+
+        <div class="profit-cards pc-grid-all" id="uzQuickCards" hidden></div>
+
+        <section class="uz-section" id="uzMonthSection" hidden>
+          <div class="uz-section-head">
+            <h2>Oylik foyda</h2>
+            <div class="uz-year-nav">
+              <button type="button" onclick="uzChangeYear(-1)" aria-label="Oldingi yil">&lsaquo;</button>
+              <span id="uzYearLabel"></span>
+              <button type="button" onclick="uzChangeYear(1)" aria-label="Keyingi yil">&rsaquo;</button>
+            </div>
+          </div>
+          <div class="uz-month-grid" id="uzMonthGrid"></div>
+          <div id="uzMonthResult"></div>
+        </section>
+      </main>
     </div>
   ) : (
     <div class="app">
@@ -1189,6 +1240,65 @@ if (authenticated && !dbReady) {
     .pb-group-sum.is-uz { color: #22d3ee; }
     .pb-row.is-uz .pb-profit { color: #22d3ee; }
 
+    /* ───── YORDAMCHI ADMIN (faqat Uzgets) ───── */
+    .uz-wrap { min-height: 100vh; background: var(--bg-0); }
+    .uz-topbar {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 16px 28px; background: var(--bg-1); border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 20;
+    }
+    .uz-brand { display: flex; align-items: center; gap: 12px; }
+    .uz-logo { width: 38px; height: 38px; border-radius: 10px; object-fit: cover; display: block; }
+    .uz-brand-name { display: block; font-size: 1.05rem; font-weight: 800; color: var(--text-0); letter-spacing: -0.3px; line-height: 1.2; }
+    .uz-brand-sub { display: block; font-size: 0.72rem; color: var(--text-3); font-weight: 500; }
+    .uz-topbar-right { display: flex; align-items: center; gap: 12px; }
+    .uz-main { padding: 28px; max-width: 1100px; margin: 0 auto; }
+
+    .uz-section {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px 24px;
+    }
+    .uz-section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+    .uz-section-head h2 { font-size: 0.95rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.2px; }
+    .uz-year-nav { display: flex; align-items: center; gap: 4px; }
+    .uz-year-nav span { font-size: 0.85rem; font-weight: 700; color: var(--text-0); min-width: 48px; text-align: center; }
+    .uz-year-nav button {
+      width: 28px; height: 28px; background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text-2); font-size: 0.95rem; cursor: pointer;
+      font-family: inherit; transition: all 0.15s;
+    }
+    .uz-year-nav button:hover:not(:disabled) { background: var(--bg-4); color: var(--text-0); }
+    .uz-year-nav button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .uz-month-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 20px; }
+    .uz-month-grid button {
+      padding: 10px 6px; background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--text-2); font-size: 0.8rem; font-weight: 600;
+      font-family: inherit; cursor: pointer; transition: all 0.15s;
+    }
+    .uz-month-grid button:hover:not(:disabled) { background: var(--bg-4); color: var(--text-0); }
+    .uz-month-grid button.active { background: rgba(34,211,238,0.12); border-color: rgba(34,211,238,0.4); color: #22d3ee; }
+    .uz-month-grid button:disabled { opacity: 0.25; cursor: not-allowed; }
+
+    .uz-month-total {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+      padding: 16px 18px; margin-bottom: 12px; border-radius: 12px;
+      background: rgba(34,211,238,0.06); border: 1px solid rgba(34,211,238,0.25);
+    }
+    .uz-month-total .umt-label { font-size: 0.8rem; font-weight: 600; color: var(--text-2); }
+    .uz-month-total .umt-value { font-size: 1.7rem; font-weight: 900; color: #22d3ee; letter-spacing: -0.8px; }
+    .uz-month-total .umt-sub { font-size: 0.75rem; color: var(--text-3); }
+    .uz-hint { font-size: 0.82rem; color: var(--text-3); padding: 14px 0; }
+
+    @media (max-width: 640px) {
+      .uz-topbar { padding: 12px 16px; }
+      .uz-main { padding: 16px; }
+      .uz-section { padding: 16px; }
+      .uz-month-grid { grid-template-columns: repeat(3, 1fr); }
+      .uz-month-total { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .uz-month-total .umt-value { font-size: 1.5rem; }
+    }
+
     /* ───── ANALYTICS TABS ───── */
     .an-tabs {
       display: flex; gap: 8px; margin-bottom: 16px;
@@ -1918,7 +2028,7 @@ if (authenticated && !dbReady) {
     }
   </style>
 
-  {authenticated && (
+  {authenticated && !isAssistant && (
     <script is:inline>
       let currentSection = 'profit';
       let currentPeriod = 'today';
@@ -4177,6 +4287,173 @@ if (authenticated && !dbReady) {
       fetchMqsYesterday();
       setInterval(fetchStats, 30000);
       setInterval(fetchMqsYesterday, 60000);
+    </script>
+  )}
+
+  {authenticated && isAssistant && (
+    <script is:inline>
+      // ══════ YORDAMCHI ADMIN — FAQAT UZGETS FOYDASI ══════
+      // Server /api/stats ni bu token uchun majburan source=uzgets ga qulflaydi
+      // va faqat orders qismini qaytaradi — boshqa ma'lumot bu yerga kelmaydi.
+
+      var UZ_MONTHS = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentabr', 'Oktyabr', 'Noyabr', 'Dekabr'];
+      var UZ_MONTHS_SHORT = ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun', 'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'];
+
+      function uzFmt(n) {
+        return Number(n || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+      }
+
+      function uzLogout() {
+        document.cookie = 'moda_token=;path=/;max-age=0';
+        location.reload();
+      }
+
+      // Toshkent (UTC+5) bo'yicha bugungi sana
+      function uzToday() {
+        var now = new Date();
+        var t = new Date(now.getTime() + 5 * 60 * 60 * 1000);
+        return { y: t.getUTCFullYear(), m: t.getUTCMonth(), d: t.getUTCDate() };
+      }
+
+      function uzDateStr(y, m, d) {
+        return y + '-' + String(m + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+      }
+
+      // Uzgets foydasi: Stars 10%, Premium 3/6/12 oy — fixed 15k/25k/35k
+      function uzProfit(ov) {
+        var o = ov || {};
+        var stars = Math.round((o.uzStarsRevenue || 0) * 0.10);
+        var p3 = (o.uz3Count || 0) * 15000;
+        var p6 = (o.uz6Count || 0) * 25000;
+        var p12 = (o.uz12Count || 0) * 35000;
+        return {
+          ov: o, stars: stars, p3: p3, p6: p6, p12: p12,
+          total: stars + p3 + p6 + p12,
+          revenue: o.totalRevenue || 0,
+          orders: o.totalOrders || 0,
+        };
+      }
+
+      async function uzFetch(query) {
+        var res = await fetch('/api/stats?' + query);
+        if (res.status === 401) { location.reload(); return null; }
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var data = await res.json();
+        return uzProfit(data.orders && data.orders.overview);
+      }
+
+      function uzRangeQuery(from, to) {
+        return 'salesFrom=' + from + '&salesTo=' + to;
+      }
+
+      function uzCard(label, p, cls) {
+        return '<div class="profit-card ' + cls + '">'
+          + '<div class="pc-label">' + label + '</div>'
+          + '<div class="pc-value">' + uzFmt(p.total) + '</div>'
+          + '<div class="pc-sub">so\'m — ' + p.orders + ' ta buyurtma</div>'
+          + '</div>';
+      }
+
+      function uzBreakdown(p) {
+        return '<div class="profit-breakdown">'
+          + '<div class="pb-header">Tafsilot</div>'
+          + '<div class="pb-row is-uz"><span class="pb-dot" style="background:#22d3ee"></span><span class="pb-name">UZ Stars</span><span class="pb-revenue">' + uzFmt(p.ov.uzStarsRevenue) + ' so\'m</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">' + uzFmt(p.stars) + ' so\'m (10%)</span></div>'
+          + '<div class="pb-row is-uz"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">Premium 3 oy</span><span class="pb-revenue">' + (p.ov.uz3Count || 0) + ' ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">' + uzFmt(p.p3) + ' so\'m</span></div>'
+          + '<div class="pb-row is-uz"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">Premium 6 oy</span><span class="pb-revenue">' + (p.ov.uz6Count || 0) + ' ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">' + uzFmt(p.p6) + ' so\'m</span></div>'
+          + '<div class="pb-row is-uz"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">Premium 12 oy</span><span class="pb-revenue">' + (p.ov.uz12Count || 0) + ' ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">' + uzFmt(p.p12) + ' so\'m</span></div>'
+          + '</div>';
+      }
+
+      // ───── Bugun / Kecha / Bu oy ─────
+      async function uzLoadQuick() {
+        var t = uzToday();
+        var yest = new Date(Date.UTC(t.y, t.m, t.d - 1));
+        var ys = uzDateStr(yest.getUTCFullYear(), yest.getUTCMonth(), yest.getUTCDate());
+        var monthFrom = uzDateStr(t.y, t.m, 1);
+        var monthTo = uzDateStr(t.y, t.m, new Date(t.y, t.m + 1, 0).getDate());
+
+        try {
+          var results = await Promise.all([
+            uzFetch('period=today'),
+            uzFetch(uzRangeQuery(ys, ys)),
+            uzFetch(uzRangeQuery(monthFrom, monthTo)),
+          ]);
+          if (results.some(function (r) { return r === null; })) return;
+
+          var box = document.getElementById('uzQuickCards');
+          box.innerHTML =
+            uzCard('Bugungi foyda', results[0], 'profit-main')
+            + uzCard('Kechagi foyda', results[1], '')
+            + uzCard(UZ_MONTHS[t.m] + ' oyi foydasi', results[2], 'profit-total');
+          box.hidden = false;
+          document.getElementById('uzMonthSection').hidden = false;
+          document.getElementById('uzLoading').style.display = 'none';
+
+          var dot = document.querySelector('.live-dot');
+          var txt = document.querySelector('.live-text');
+          if (dot) { dot.style.background = 'var(--green)'; dot.style.boxShadow = '0 0 8px rgba(16,185,129,0.5)'; }
+          if (txt) txt.style.color = 'var(--green)';
+        } catch (e) {
+          console.error('Uzgets quick stats error:', e);
+          document.getElementById('uzLoading').innerHTML = '<span style="color:var(--red)">Ma\'lumotni yuklab bo\'lmadi</span>';
+          // Xato bo'lsa ham oy bo'yicha qidiruv ishlayversin
+          document.getElementById('uzMonthSection').hidden = false;
+          var d = document.querySelector('.live-dot');
+          if (d) { d.style.background = 'var(--red)'; d.style.boxShadow = '0 0 8px rgba(239,68,68,0.5)'; }
+        }
+      }
+
+      // ───── Oy tanlash ─────
+      var uzPickerYear = uzToday().y;
+      var uzSelected = null; // { y, m }
+
+      function uzRenderMonths() {
+        var t = uzToday();
+        document.getElementById('uzYearLabel').textContent = uzPickerYear;
+        document.querySelector('.uz-year-nav button:last-child').disabled = uzPickerYear >= t.y;
+
+        var html = '';
+        for (var m = 0; m < 12; m++) {
+          var future = uzPickerYear > t.y || (uzPickerYear === t.y && m > t.m);
+          var active = uzSelected && uzSelected.y === uzPickerYear && uzSelected.m === m;
+          html += '<button type="button" class="' + (active ? 'active' : '') + '"'
+            + (future ? ' disabled' : '')
+            + ' onclick="uzShowMonth(' + uzPickerYear + ',' + m + ')">' + UZ_MONTHS_SHORT[m] + '</button>';
+        }
+        document.getElementById('uzMonthGrid').innerHTML = html;
+      }
+
+      function uzChangeYear(delta) {
+        uzPickerYear += delta;
+        uzRenderMonths();
+      }
+
+      async function uzShowMonth(y, m) {
+        uzSelected = { y: y, m: m };
+        uzRenderMonths();
+        var box = document.getElementById('uzMonthResult');
+        box.innerHTML = '<div class="uz-hint">Yuklanmoqda...</div>';
+        try {
+          var from = uzDateStr(y, m, 1);
+          var to = uzDateStr(y, m, new Date(y, m + 1, 0).getDate());
+          var p = await uzFetch(uzRangeQuery(from, to));
+          if (!p) return;
+          box.innerHTML =
+            '<div class="uz-month-total">'
+            + '<span class="umt-label">' + UZ_MONTHS[m] + ' ' + y + '</span>'
+            + '<span class="umt-value">' + uzFmt(p.total) + " so'm</span>"
+            + '<span class="umt-sub">' + p.orders + ' ta buyurtma · ' + uzFmt(p.revenue) + " so'm aylanma</span>"
+            + '</div>'
+            + uzBreakdown(p);
+        } catch (e) {
+          console.error('Uzgets month error:', e);
+          box.innerHTML = '<div class="uz-hint" style="color:var(--red)">Ma\'lumotni yuklab bo\'lmadi</div>';
+        }
+      }
+
+      uzRenderMonths();
+      uzLoadQuick();
+      setInterval(uzLoadQuick, 60000);
     </script>
   )}
 </body>

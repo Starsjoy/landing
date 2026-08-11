@@ -2,7 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import {
-  verifyToken,
+  verifyOwnerToken,
   ensureCashflowTable,
   getMonthlyCashflowBreakdown,
   listCashflowKirim,
@@ -19,7 +19,7 @@ async function ensure() {
 
 export const GET: APIRoute = async ({ cookies }) => {
   const token = cookies.get('moda_token')?.value || '';
-  if (!await verifyToken(token)) return new Response('unauthorized', { status: 401 });
+  if (!await verifyOwnerToken(token)) return new Response('unauthorized', { status: 401 });
   await ensure();
 
   const breakdown = await getMonthlyCashflowBreakdown();
@@ -32,7 +32,7 @@ export const GET: APIRoute = async ({ cookies }) => {
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   const token = cookies.get('moda_token')?.value || '';
-  if (!await verifyToken(token)) return new Response('unauthorized', { status: 401 });
+  if (!await verifyOwnerToken(token)) return new Response('unauthorized', { status: 401 });
   await ensure();
 
   const body = await request.json();

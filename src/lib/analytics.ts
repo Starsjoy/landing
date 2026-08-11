@@ -223,6 +223,12 @@ export async function getFilteredStats(period: string = 'today', from?: string, 
 const ENV_PASS = import.meta.env.ANALYTICS_PASSWORD || 'starsjoy2026';
 const HMAC_SECRET = import.meta.env.HMAC_SECRET || 'starsjoy-hmac-key-2026';
 
+// Yordamchi admin — faqat Uzgets ma'lumotlarini ko'radi
+const ASSISTANT_USER = import.meta.env.ASSISTANT_USER || 'Abdulloh';
+const ASSISTANT_PASS = import.meta.env.ASSISTANT_PASSWORD || 'Aa321';
+
+export type Role = 'owner' | 'assistant';
+
 export async function getPassword(): Promise<string> {
   try {
     const sql = getSQL();
@@ -249,17 +255,42 @@ export function generateToken(password: string): string {
   return createHmac('sha256', HMAC_SECRET).update(password).digest('hex');
 }
 
-export async function verifyToken(token: string): Promise<boolean> {
+// Assistant tokeni owner tokenidan boshqa prefiks bilan imzolanadi,
+// shuning uchun ular hech qachon bir-biriga mos kelmaydi.
+export function generateAssistantToken(): string {
+  return createHmac('sha256', HMAC_SECRET).update('assistant:' + ASSISTANT_PASS).digest('hex');
+}
+
+export function verifyAssistantLogin(login: string, password: string): boolean {
+  return login.trim().toLowerCase() === ASSISTANT_USER.toLowerCase() && password === ASSISTANT_PASS;
+}
+
+function tokenEq(token: string, expected: string): boolean {
+  const a = Buffer.from(token);
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
+/** Token egasining roli; token yaroqsiz bo'lsa null. */
+export async function getRole(token: string): Promise<Role | null> {
   try {
-    if (!token || token.length !== 64) return false;
+    if (!token || token.length !== 64) return null;
+    if (tokenEq(token, generateAssistantToken())) return 'assistant';
     const current = await getPassword();
-    const expected = generateToken(current);
-    const a = Buffer.from(token);
-    const b = Buffer.from(expected);
-    return a.length === b.length && timingSafeEqual(a, b);
+    if (tokenEq(token, generateToken(current))) return 'owner';
+    return null;
   } catch {
-    return false;
+    return null;
   }
+}
+
+export async function verifyToken(token: string): Promise<boolean> {
+  return (await getRole(token)) !== null;
+}
+
+/** Faqat to'liq huquqli admin uchun — assistant tokeni rad etiladi. */
+export async function verifyOwnerToken(token: string): Promise<boolean> {
+  return (await getRole(token)) === 'owner';
 }
 
 // ───── SALARY (MAOSH) ─────

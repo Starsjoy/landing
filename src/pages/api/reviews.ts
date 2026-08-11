@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { verifyToken } from '../../lib/analytics';
+import { verifyOwnerToken } from '../../lib/analytics';
 import {
   submitReview, getPendingReviews, getAllReviews, setReviewStatus, initReviewsDB,
 } from '../../lib/reviews';
@@ -20,7 +20,7 @@ function json(data: unknown, status = 200) {
 // ---- Admin: kutilayotgan/barcha sharhlar ro'yxati ----
 export const GET: APIRoute = async ({ request, cookies }) => {
   const token = cookies.get('moda_token')?.value || '';
-  if (!await verifyToken(token)) return new Response('unauthorized', { status: 401 });
+  if (!await verifyOwnerToken(token)) return new Response('unauthorized', { status: 401 });
   await initReviewsDB();
   const url = new URL(request.url);
   const all = url.searchParams.get('all') === '1';
@@ -46,7 +46,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   // --- Admin moderatsiya (action bor + valid token) ---
   if (body.action === 'approve' || body.action === 'reject') {
     const token = cookies.get('moda_token')?.value || '';
-    if (!await verifyToken(token)) return new Response('unauthorized', { status: 401 });
+    if (!await verifyOwnerToken(token)) return new Response('unauthorized', { status: 401 });
     const id = String(body.id || '');
     if (!id) return json({ ok: false, error: 'id yo\'q' }, 400);
     await setReviewStatus(id, body.action === 'approve' ? 'approved' : 'rejected');
