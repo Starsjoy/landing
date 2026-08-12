@@ -21,6 +21,10 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/how-to-buy': '/qollanma',
   '/en/about': '/info',
   '/en/blog': '/blog',
+  // Blog maqolalari — EN slug o'zbekchadan farq qiladi, shuning uchun har biri
+  // alohida yoziladi. Yozuv bo'lmasa NavbarEn dagi 🇺🇿 tugmasi o'quvchini
+  // maqolaga emas, bosh sahifaga tashlaydi.
+  '/en/blog/most-expensive-telegram-gifts': '/blog/eng-qimmat-telegram-sovgalari',
 };
 
 /** O'zbekcha sahifa → uning inglizcha ekvivalenti (yuqoridagining teskarisi) */

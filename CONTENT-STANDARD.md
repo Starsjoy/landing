@@ -15,8 +15,31 @@ Mavjud maqolalar (blog/index.astro) bilan solishtiriladi. Yangi search intent qo
 - SEO: title ≤60 belgi (kalit so'z oldinda), meta 140–160 belgi, bitta H1, mantiqiy H2/H3, OG image, canonical, sitemap.
 - AEO: boshida 40–60 so'zlik to'g'ridan-to'g'ri javob, savol-formatdagi H2, FAQ bloki, jadval/ro'yxat.
 
-## 5. 🌐 Ikki til pariteti (uz + ru)
-uz (`/blog/`) va ru (`/ru/blog/`) ikkala versiya, hreflang o'zaro bog'lanadi, ikkala index.astro ga qo'shiladi. RU — sifatli tarjima.
+## 5. 🌐 Uch til pariteti (uz + ru + en) — MAJBURIY
+Har bir yangi maqola **uchala tilda** yoziladi: uz (`/blog/`), ru (`/ru/blog/`), en (`/en/blog/`). Bittasi ham tashlab ketilmaydi. RU va EN — sifatli tarjima, mashina tarjimasi emas.
+
+**Har bir maqola uchun tegiladigan fayllar:**
+
+| Fayl | Nima qilinadi |
+|---|---|
+| `src/pages/blog/<slug>.astro` | UZ maqola (to'liq boilerplate) |
+| `src/pages/ru/blog/<slug>.astro` | RU maqola (to'liq boilerplate) |
+| `src/pages/en/blog/<en-slug>.astro` | EN maqola — **`BlogPostEn` layout**, faqat kontent |
+| `src/pages/blog/index.astro` | UZ indeksga obyekt |
+| `src/pages/ru/blog/index.astro` | RU indeksga obyekt |
+| `src/lib/en-blog.ts` → `EN_POSTS` | EN qator (bu `/en/blog`, llms.txt va FooterEn uchun yagona manba) |
+| `src/lib/i18n.ts` → `EN_TO_UZ` | `'/en/blog/<en-slug>': '/blog/<uz-slug>'` — bo'lmasa NavbarEn dagi 🇺🇿 tugmasi bosh sahifaga tashlaydi |
+| `scripts/gen-discovery.mjs` → `GROUPS` | UZ slug (kiritilmasa skript xato beradi) |
+
+**hreflang ikki tomonlama bo'lishi shart.** Google bir tomonlama hreflang'ni butunlay e'tiborsiz qoldiradi:
+- EN faylda `BlogPostEn` ga `uzHref` va `ruHref` proplarini bering.
+- UZ va RU fayllardagi `hreflangs={[...]}` ro'yxatiga `{ lang: "en", href: "https://starsjoy.uz/en/blog/<en-slug>" }` **qo'shish esdan chiqmasin** — eski maqolalarda faqat uz+ru bor.
+
+**EN slug o'zbekchadan farq qilishi mumkin** (`/en/blog/most-expensive-telegram-gifts` ↔ `/blog/eng-qimmat-telegram-sovgalari`) — inglizcha kalit so'z bo'yicha tanlanadi, transliteratsiya qilinmaydi.
+
+⚠️ `BlogPostEn.astro` dagi style bloki `is:global` — uni oddiy `<style>` ga qaytarmang, aks holda sahifa jimgina stilsiz chiqadi.
+
+⚠️ EN maqola yozishdan oldin mavjud `/en/` sahifalari bilan kannibalizatsiyani tekshiring (masalan `/en/premium` va `/en/stars` ba'zi mavzularni allaqachon qamraydi). Kesishsa — EN versiyani boshqa burchakdan yozing yoki mavjud sahifani kengaytiring.
 
 ## 6. 🏷️ JSON-LD schema majburiy
 Article/BlogPosting + BreadcrumbList + kontentga mos (FAQPage / HowTo / ItemList). datePublished va dateModified to'g'ri.

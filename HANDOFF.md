@@ -121,7 +121,13 @@ Maqolalar (`/en/blog/…`): `telegram-stars-or-premium`,
 **Mavzular kannibalizatsiyaga qarshi tanlangan.** AI trafigi yuqori bo'lgan
 ba'zi mavzular ataylab qoldirilgan, chunki mavjud sahifa ularni allaqachon
 qamraydi — masalan "Premium Uzcard orqali" (293 AI) `/en/premium` bilan
-kesishardi. Yangi EN maqola qo'shishdan oldin shu tekshiruvni takrorlang.
+kesishardi.
+
+> ⚠️ **2026-08-12 dan siyosat o'zgardi.** Yuqoridagi "EN faqat tanlab
+> qo'shiladi" qoidasi **yangi maqolalarga tegishli emas**. Endi har bir yangi
+> maqola uz + ru + **en** uchala tilda yoziladi — qarang `CONTENT-STANDARD.md`
+> mezon #5. Kannibalizatsiya tekshiruvi saqlanadi, lekin u endi "EN yozilsinmi"
+> emas, "EN qaysi burchakdan yozilsin" degan savolga javob beradi.
 
 **Inglizcha maqola qo'shish tartibi:**
 1. `src/lib/en-blog.ts` dagi `EN_POSTS` ga qator qo'shing — bu yagona manba,

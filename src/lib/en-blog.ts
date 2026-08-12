@@ -20,6 +20,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'most-expensive-telegram-gifts',
+    title: 'The most expensive Telegram gifts in 2026',
+    excerpt:
+      'The record sale on Fragment is a Plush Pepe at 88,888 GRAM. The top 10 collections, why the floor and the record differ by 14x inside one collection, and why a small supply does not mean a high price.',
+    date: '2026-08-12',
+    tag: 'Gifts',
+  },
+  {
     slug: 'telegram-stars-or-premium',
     title: 'Telegram Stars or Premium — which one do you need?',
     excerpt:
