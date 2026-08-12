@@ -99,6 +99,7 @@ const GROUPS = [
       'telegram-gifts-narxi-royxati',
       'telegram-nft-gifts',
       'telegram-gift-collectible-upgrade',
+      'eng-qimmat-telegram-sovgalari',
     ],
   },
   {
