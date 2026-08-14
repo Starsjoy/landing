@@ -10,7 +10,9 @@ const PREMIUM_1_12_CHAT_ID = import.meta.env.PREMIUM_1_12_CHAT_ID || '-100395141
 const UZGETS_CHAT_ID = import.meta.env.UZGETS_CHAT_ID || '-1003986767336';
 
 interface TelegramUpdate {
+  update_id?: number;
   channel_post?: {
+    message_id?: number;
     chat?: { id?: number };
     text?: string;
     date?: number;
@@ -212,7 +214,13 @@ export const POST: APIRoute = async ({ request }) => {
       ? new Date(update.channel_post.date * 1000)
       : new Date();
 
-    await addOrder({ ...order, timestamp });
+    // Telegram javobni kutolmasa (timeout) o'sha update'ni qayta yuboradi.
+    // chat_id + message_id — xabarning yagona identifikatori, shu kalit bo'yicha
+    // takroriy yozuv DB darajasida bloklanadi.
+    const messageId = update.channel_post?.message_id;
+    const msgKey = chatId && messageId ? chatId + ':' + messageId : undefined;
+
+    await addOrder({ ...order, timestamp, msgKey });
 
     return new Response(JSON.stringify({ ok: true, order: order.type, number: order.orderNumber }), {
       headers: { 'Content-Type': 'application/json' },

@@ -54,6 +54,9 @@ export async function initDB() {
   `;
   await sql`CREATE INDEX IF NOT EXISTS idx_orders_timestamp ON orders(timestamp)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_orders_type ON orders(type)`;
+  // Telegram webhook retry'da bir xil xabar ikki marta yozilmasligi uchun
+  await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS msg_key TEXT`;
+  await sql`CREATE UNIQUE INDEX IF NOT EXISTS idx_orders_msg_key ON orders(msg_key)`;
 }
 
 export async function addVisit(params: {
@@ -798,11 +801,16 @@ export async function addOrder(params: {
   transactionId: string;
   status: string;
   timestamp: Date;
+  msgKey?: string;
 }) {
   const sql = getSQL();
+  // msgKey = "<chat_id>:<message_id>" — Telegram webhook'ni qayta yuborsa
+  // (timeout/retry) o'sha buyurtma ikkinchi marta yozilmasligi uchun.
+  const msgKey = params.msgKey || null;
   await sql`
-    INSERT INTO orders (order_number, type, username, amount, price, transaction_id, status, timestamp)
-    VALUES (${params.orderNumber}, ${params.type}, ${params.username}, ${params.amount}, ${params.price}, ${params.transactionId}, ${params.status}, ${params.timestamp})
+    INSERT INTO orders (order_number, type, username, amount, price, transaction_id, status, timestamp, msg_key)
+    VALUES (${params.orderNumber}, ${params.type}, ${params.username}, ${params.amount}, ${params.price}, ${params.transactionId}, ${params.status}, ${params.timestamp}, ${msgKey})
+    ON CONFLICT (msg_key) DO NOTHING
   `;
 }
 
