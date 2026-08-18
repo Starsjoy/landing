@@ -1,0 +1,31 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+const faqs = [
+  {q:'Can I pay for Telegram Ads with Stars I bought personally?',a:'No. Buy Ads uses Stars earned by the channel or bot. Telegram does not provide a direct transfer from a personal Stars balance to an ad account.'},
+  {q:'Is there a discount for paying with Stars?',a:'Yes. Telegram documents a special rate with a 30% discount when a channel or bot reinvests earned Stars into ads.'},
+  {q:'Can I advertise a different channel with the Stars?',a:'No. Earned Stars can only promote the same channel or bot that earned them.'},
+  {q:'Where is the Buy Ads button?',a:"For a channel, open Profile → Statistics → Monetization. For a bot, open Profile → Edit → Balance."},
+];
+---
+<BlogPostEn
+  slug="pay-for-telegram-ads-with-stars"
+  title="How to Pay for Telegram Ads with Stars in 2026"
+  heading="How to pay for Telegram Ads with Stars"
+  crumb="Telegram Ads with Stars"
+  tag="Guide"
+  description="Who can pay for Telegram Ads with Stars, how the 30% discount works, where to find Buy Ads, and the restriction most guides miss."
+  keywords="pay telegram ads with stars, telegram stars advertising, buy ads telegram, telegram ads discount"
+  publishDate="2026-08-18"
+  uzHref="https://starsjoy.uz/blog/telegram-ads-stars-bilan"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-ads-stars-bilan"
+  faqs={faqs}
+>
+  <section><p class="post-lead"><strong>Short answer:</strong> a channel or bot owner can pay for Telegram Ads with Stars <strong>earned by that same channel or bot</strong>. Open Balance or Monetization and tap <strong>Buy Ads</strong>. Telegram applies a special rate with a 30% discount. Stars bought on a personal account cannot be used this way.</p></section>
+  <section><h2>Who can pay for ads with Stars?</h2><p>This route is for creators and bot developers. A channel may earn Stars from paid reactions, paid media and subscriptions; a bot may earn them by selling digital goods or services. Those earnings sit on the channel's or bot's own balance.</p><p>A user's personal balance is separate. Stars bought to send gifts, unlock posts or pay in Mini Apps cannot be manually moved into an advertising account. That distinction matters: “buy Stars, then run ads” is not the official flow.</p></section>
+  <section><h2>How does the 30% discount work?</h2><p>Telegram's <a href="https://core.telegram.org/api/stars#paying-for-ads" target="_blank" rel="noopener nofollow">official Stars documentation</a> says channel and bot owners receive a special ad rate with a 30% discount when they reinvest earned Stars. It removes the need to withdraw them to TON before buying ads.</p><p>The 30% is not cashback paid into your balance. It is a subsidised rate applied inside the ad flow. Check the final amount shown by the Ads platform before confirming a campaign.</p></section>
+  <section><h2>How to launch an ad with Stars</h2><ol><li>For a channel, open Profile → Statistics → Monetization. For a bot, open Profile → Edit → Balance.</li><li>Tap <strong>Buy Ads</strong>. Telegram opens an ad account tied to that channel or bot.</li><li>Write a concise ad, add its destination and choose relevant public channels or topics.</li><li>Review the budget and the Stars conversion shown in the interface.</li><li>Submit the ad for review, then monitor delivery in the Ads dashboard.</li></ol><p>If Buy Ads is missing, confirm that you are the owner, the asset has earned Stars, and the option is available for that account.</p></section>
+  <section><h2>What can you advertise?</h2><div class="post-table-wrap"><table class="post-table"><thead><tr><th>Stars source</th><th>Advertised asset</th><th>Allowed?</th></tr></thead><tbody><tr><td>Channel balance</td><td>The same channel</td><td>Yes</td></tr><tr><td>Bot balance</td><td>The same bot</td><td>Yes</td></tr><tr><td>One channel</td><td>Another channel</td><td>No</td></tr><tr><td>Personal balance</td><td>A channel or bot</td><td>No</td></tr></tbody></table></div><p>Telegram explicitly limits the Stars route to advertising the channel or bot that earned them.</p></section>
+  <section><h2>How is Telegram Ads different?</h2><p>Telegram says its ads are contextual: they appear in large public channels and are not targeted from private messages or personal user data. They do not appear inside private chats or the chat list.</p><p>For a first test, use one clear promise, one destination and a small set of closely related channels. Measure what subscribers do after joining, not only the lowest acquisition price.</p></section>
+  <section><h2>How can a channel or bot earn Stars?</h2><ul><li>enable paid reactions on channel posts;</li><li>publish paid photos and videos;</li><li>offer a monthly Stars subscription;</li><li>sell digital services through a bot or Mini App.</li></ul><p>See <a href="/en/blog/what-you-can-do-with-telegram-stars">what you can do with Telegram Stars</a> and <a href="/en/blog/cash-out-telegram-stars">how Stars withdrawals work</a>. If you need Stars for personal purchases rather than ads, buy them in UZS through Uzcard, Humo, Click or Payme at <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>.</p></section>
+  <section><h2>Frequently asked questions</h2>{faqs.map(({q,a})=><div class="post-faq-item"><h3>{q}</h3><p>{a}</p></div>)}</section>
+</BlogPostEn>

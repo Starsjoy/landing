@@ -25,6 +25,7 @@ export const EN_TO_UZ: Record<string, string> = {
   // alohida yoziladi. Yozuv bo'lmasa NavbarEn dagi 🇺🇿 tugmasi o'quvchini
   // maqolaga emas, bosh sahifaga tashlaydi.
   '/en/blog/most-expensive-telegram-gifts': '/blog/eng-qimmat-telegram-sovgalari',
+  '/en/blog/pay-for-telegram-ads-with-stars': '/blog/telegram-ads-stars-bilan',
 };
 
 /** O'zbekcha sahifa → uning inglizcha ekvivalenti (yuqoridagining teskarisi) */

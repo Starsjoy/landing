@@ -65,6 +65,7 @@ const GROUPS = [
       'telegram-stars-yechib-olish',
       'telegram-ton-va-stars-farqi',
       'telegram-mini-app-stars-tolov',
+      'telegram-ads-stars-bilan',
     ],
   },
   {

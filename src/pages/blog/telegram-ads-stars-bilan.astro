@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Telegram Ads'ni Stars bilan to'lash: qo'llanma 2026";
+const description = "Telegram Ads'ni Stars bilan kim to'lay oladi? 30% chegirma, Balance → Buy Ads bosqichlari, cheklovlar va kanal reklamasini ishga tushirish qo'llanmasi.";
+const publishDate = "2026-08-18";
+const canonical = "https://starsjoy.uz/blog/telegram-ads-stars-bilan";
+const faqs = [
+  ["Oddiy foydalanuvchi sotib olgan Stars bilan reklama bera oladimi?", "Yo'q. Buy Ads funksiyasi kanal yoki bot ishlab topgan Stars balansidan foydalanadi. Shaxsiy balansdagi sotib olingan Stars'ni reklama hisobiga bevosita o'tkazish yo'li ko'rsatilmagan."],
+  ["Stars bilan reklama qilishda chegirma bormi?", "Ha. Telegram rasmiy hujjatiga ko'ra, kanal yoki bot ishlab topgan Stars reklama hisobiga o'tkazilganda reklama 30% chegirmali maxsus kursda hisoblanadi."],
+  ["Stars bilan boshqa kanalni reklama qilsa bo'ladimi?", "Yo'q. Stars faqat ularni ishlab topgan kanal yoki botning o'zini reklama qilish uchun ishlatiladi."],
+  ["Buy Ads tugmasi qayerda?", "Kanal uchun Profile → Statistics → Monetization, bot uchun Profile → Edit → Balance bo'limini oching va Buy Ads tugmasini bosing."],
+];
+---
+
+<Layout title={title} description={description} canonical={canonical} keywords="Telegram Ads Stars bilan, Stars reklama, Telegram kanal reklama, Buy Ads Telegram, Telegram Ads 30 foiz chegirma" ogType="article" ogImage="https://starsjoy.uz/og-image.png" hreflangs={[
+  { lang: 'uz', href: canonical },
+  { lang: 'ru', href: 'https://starsjoy.uz/ru/blog/telegram-ads-stars-bilan' },
+  { lang: 'en', href: 'https://starsjoy.uz/en/blog/pay-for-telegram-ads-with-stars' },
+]}>
+  <Navbar />
+  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"Article",headline:"Telegram Ads'ni Stars bilan qanday to'lash mumkin?",description,datePublished:publishDate,dateModified:publishDate,inLanguage:"uz-UZ",articleSection:"Biznes",author:{"@type":"Organization",name:"StarsJoy",url:"https://starsjoy.uz"},publisher:{"@type":"Organization",name:"StarsJoy",logo:{"@type":"ImageObject",url:"https://starsjoy.uz/logo.png"}},mainEntityOfPage:canonical,image:"https://starsjoy.uz/og-image.png"})} />
+  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Bosh sahifa",item:"https://starsjoy.uz"},{"@type":"ListItem",position:2,name:"Blog",item:"https://starsjoy.uz/blog"},{"@type":"ListItem",position:3,name:"Telegram Ads Stars bilan",item:canonical}]})} />
+  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.map(([name,text])=>({"@type":"Question",name,acceptedAnswer:{"@type":"Answer",text}}))})} />
+  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"HowTo",name:"Telegram Ads'ni Stars bilan ishga tushirish",step:["Kanal monetizatsiyasi yoki bot balansini oching","Buy Ads tugmasini bosing","Telegram Ads sahifasida reklama matni va auditoriyani sozlang","Budjetni tekshirib reklamani yuboring"].map((text,i)=>({"@type":"HowToStep",position:i+1,text}))})} />
+
+  <article class="blog-post">
+    <header class="post-hero"><div class="container"><nav class="breadcrumb"><a href="/">Bosh sahifa</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>Telegram Ads Stars bilan</span></nav><div class="post-tag">Biznes</div><h1 class="post-title">Telegram Ads'ni Stars bilan qanday to'lash mumkin?</h1><div class="post-meta"><span>{publishDate}</span><span>StarsJoy Blog</span></div></div></header>
+    <div class="post-body"><div class="container"><div class="post-content">
+      <section><p class="post-lead"><strong>Qisqa javob:</strong> kanal yoki bot egasi shu kanal/bot <strong>ishlab topgan Stars</strong> bilan Telegram Ads sotib olishi mumkin. Balance yoki Monetization bo'limidagi <strong>Buy Ads</strong> tugmasi reklama kabinetini ochadi. Telegram bu usulga 30% chegirma beradi. Shaxsiy hisobga xarid qilingan Stars bundan foydalanmaydi.</p></section>
+
+      <section><h2>Kim Telegram Ads uchun Stars ishlata oladi?</h2><p>Bu funksiya kontent yaratuvchilar va bot dasturchilariga mo'ljallangan. Kanal pullik reaksiyalar, pullik media yoki Stars obunalaridan; bot esa raqamli mahsulot va xizmatlardan Stars ishlab topishi mumkin. Ana shu daromad kanal yoki bot balansida ko'rinadi.</p><p>Oddiy foydalanuvchining shaxsiy <a href="/stars">Stars</a> balansi boshqa hisobdir. StarsJoy yoki Telegram orqali sotib olingan Stars sovg'a, bot, Mini App va pullik kontent uchun ishlatiladi, ammo uni kanalning reklama balansiga qo'lda ko'chirish funksiyasi yo'q.</p></section>
+
+      <section><h2>30% chegirma qanday ishlaydi?</h2><p>Telegram'ning <a href="https://core.telegram.org/api/stars#paying-for-ads" target="_blank" rel="noopener nofollow">rasmiy Stars hujjati</a> kanal va bot egalari Stars bilan reklama olganda maxsus kurs va 30% chegirma berilishini aytadi. Bu bonus Stars'ni avval TON'ga chiqarib, keyin reklama hisobini to'ldirish zaruratini kamaytiradi.</p><p>30% — cashback yoki balansga qaytariladigan Stars emas. U reklama xarajatini subsidiyalovchi maxsus kurs. Kabinet ko'rsatgan yakuniy budjet va natija reklama yaratilayotgan paytdagi sozlamalarga bog'liq.</p></section>
+
+      <section><h2>Stars bilan reklamani qanday ishga tushirish mumkin?</h2><ol><li><strong>Balansni oching.</strong> Kanalda Profile → Statistics → Monetization; botda Profile → Edit → Balance.</li><li><strong>Buy Ads'ni bosing.</strong> Telegram aynan shu kanal yoki botga bog'langan Ads sahifasini ochadi.</li><li><strong>Reklamani yarating.</strong> Qisqa matn va havolani kiriting, kerakli ommaviy kanallar yoki mavzularni tanlang.</li><li><strong>Budjetni tekshiring.</strong> Stars hisobidan olinadigan summa va 30% maxsus kursni tasdiqlashdan oldin ko'ring.</li><li><strong>Moderatsiyaga yuboring.</strong> Tasdiqlangach reklama tanlangan kontekstda ko'rsatiladi; natijani Ads kabinetidan kuzating.</li></ol><p>Buy Ads ko'rinmasa, siz kanal/bot egasi emassiz, daromad balansi yo'q yoki ushbu hisob uchun funksiya hali mavjud emasligini tekshiring.</p></section>
+
+      <section><h2>Qaysi kanal yoki botni reklama qilish mumkin?</h2><div class="post-table-wrap"><table class="post-table"><thead><tr><th>Holat</th><th>Mumkinmi?</th><th>Izoh</th></tr></thead><tbody><tr><td>Kanal ishlab topgan Stars → o'sha kanal</td><td>Ha</td><td>Buy Ads orqali</td></tr><tr><td>Bot ishlab topgan Stars → o'sha bot</td><td>Ha</td><td>Buy Ads orqali</td></tr><tr><td>Bir kanal Stars'i → boshqa kanal</td><td>Yo'q</td><td>Balans manbaga bog'langan</td></tr><tr><td>Shaxsiy sotib olingan Stars → Ads</td><td>Yo'q</td><td>Shaxsiy va daromad balansi alohida</td></tr></tbody></table></div><p>Telegram rasmiy e'lonida Stars faqat ularni ishlab topgan kanal yoki botni reklama qilish uchun ishlatilishi alohida qayd etilgan.</p></section>
+
+      <section><h2>Telegram Ads nimasi bilan farq qiladi?</h2><p>Telegram reklamasi foydalanuvchining shaxsiy xabarlari yoki maxfiy ma'lumotlariga qarab nishonlanmaydi. Rasmiy tavsifga ko'ra, u katta ommaviy kanallarda va kanal kontekstiga qarab ko'rsatiladi. Reklama chatlar ro'yxatida yoki shaxsiy suhbat ichida chiqmaydi.</p><p>Amaliy jihatdan bitta aniq taklif, bitta maqsadli havola va auditoriyaga yaqin kanallar odatda tushunarliroq kampaniya beradi. Birinchi testda kichik budjet qo'ying, obunachi narxi va keyingi faollikni o'lchang, so'ng ishlagan variantni kengaytiring.</p></section>
+
+      <section><h2>Stars'ni reklama uchun qanday ishlab topish mumkin?</h2><ul><li>kanalda pullik reaksiyalarni yoqish;</li><li>foto va videoni pullik media sifatida joylash;</li><li>oylik Stars obunali yopiq kanal yaratish;</li><li>bot yoki Mini App'da raqamli xizmat sotish.</li></ul><p>Stars ekotizimini avval tushunish uchun <a href="/blog/telegram-stars-bilan-nima-qilish-mumkin">Stars bilan nima qilish mumkin</a> va <a href="/blog/telegram-kanalda-pulli-post">kanalda pullik post yaratish</a> qo'llanmalarini o'qing. Balansni pulga aylantirish kerak bo'lsa, <a href="/blog/telegram-stars-yechib-olish">Stars'ni yechib olish</a> tartibi alohida.</p></section>
+
+      <section><h2>Ko'p beriladigan savollar</h2><div class="post-faq">{faqs.map(([q,a])=><div class="post-faq-item"><h3>{q}</h3><p>{a}</p></div>)}</div></section>
+      <section><h2>Xulosa</h2><p>Stars bilan Telegram Ads — Stars ishlab topayotgan kanal va botlar uchun eng sodda qayta investitsiya yo'li. Asosiy qoida: mablag' daromad balansidan keladi va aynan o'sha aktivni reklama qiladi. Agar sizga auditoriya sifatida Stars kerak bo'lsa, ularni Uzcard, Humo, Click yoki Payme orqali <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>dan olishingiz mumkin.</p></section>
+    </div></div></div>
+  </article>
+  <Footer />
+</Layout>
+
+<style>
+  .post-hero{padding:120px 24px 48px;background:#F8F6FF}.breadcrumb{display:flex;gap:8px;flex-wrap:wrap;font-size:.85rem;color:var(--text-muted);margin-bottom:24px}.breadcrumb a,.post-content a{color:var(--primary);text-decoration:none}.post-tag{display:inline-block;padding:4px 12px;background:rgba(124,58,237,.08);border-radius:50px;color:var(--primary);font-size:.78rem;font-weight:600;margin-bottom:16px}.post-title{font-size:2.4rem;font-weight:900;line-height:1.2;max-width:760px}.post-meta{display:flex;gap:16px;color:var(--text-muted)}.post-body{padding:60px 24px}.post-content{max-width:760px;margin:auto}.post-content section{padding:0}.post-lead{font-size:1.08rem!important;background:#F8F6FF;border-left:3px solid var(--primary);border-radius:8px;padding:18px 20px;line-height:1.75!important}.post-content h2{font-size:1.5rem;margin:30px 0 12px}.post-content h3{font-size:1.05rem}.post-content p,.post-content li{color:var(--text-muted);line-height:1.8}.post-table-wrap{overflow-x:auto;border:1px solid rgba(124,58,237,.12);border-radius:12px}.post-table{width:100%;border-collapse:collapse}.post-table th,.post-table td{padding:12px 16px;text-align:left;border-bottom:1px solid rgba(124,58,237,.08)}.post-table th{background:rgba(124,58,237,.06)}.post-faq-item{background:#F8F6FF;border:1px solid rgba(124,58,237,.1);border-radius:12px;padding:20px;margin:12px 0}.post-faq-item p{margin:0}@media(max-width:640px){.post-hero{padding:100px 16px 36px}.post-title{font-size:1.6rem}.post-body{padding:40px 16px}.post-content h2{font-size:1.25rem}}
+</style>

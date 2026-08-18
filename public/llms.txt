@@ -25,6 +25,7 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Blog index (English guides): https://starsjoy.uz/en/blog
 
 ### English guides
+- How to pay for Telegram Ads with Stars: https://starsjoy.uz/en/blog/pay-for-telegram-ads-with-stars — Who can pay with Stars, how the 30% discount works, where to find Buy Ads, and why Stars bought on a personal account cannot fund a campaign.
 - The most expensive Telegram gifts in 2026: https://starsjoy.uz/en/blog/most-expensive-telegram-gifts — The record sale on Fragment is a Plush Pepe at 88,888 GRAM. The top 10 collections, why the floor and the record differ by 14x inside one collection, and why a small supply does not mean a high price.
 - Telegram Stars or Premium — which one do you need?: https://starsjoy.uz/en/blog/telegram-stars-or-premium — They are two separate products, not two tiers. Stars are money you spend inside Telegram; Premium is a subscription that changes the app. Buying the wrong one is the most common mistake.
 - What Telegram Premium actually gives you: https://starsjoy.uz/en/blog/telegram-premium-features — Every feature in 2026, grouped by what it changes — files, reading, personalisation, business. Plus the three things Premium does not do that people assume it does.
@@ -113,7 +114,7 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 ## Referral dasturi
 Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
 
-## Maqolalar (52 ta mavzu, har biri o'zbek va rus tilida)
+## Maqolalar (53 ta mavzu, har biri o'zbek va rus tilida)
 
 ### Telegram Stars — asoslar, narx va xarid
 
@@ -151,6 +152,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - Telegram Stars yechib olish mumkinmi? Cash out haqida to'liq ma'lumot (2026): https://starsjoy.uz/blog/telegram-stars-yechib-olish (RU: https://starsjoy.uz/ru/blog/telegram-stars-yechib-olish) — Telegram Stars yechib olish mumkinmi? Kimlar cash out qila oladi, oddiy foydalanuvchi uchun qanday yo'llar bor, O'zbekistonda starsni pulga aylantirish…
 - Telegram ekotizimida TON va Stars o'rtasidagi farq nima? (2026): https://starsjoy.uz/blog/telegram-ton-va-stars-farqi (RU: https://starsjoy.uz/ru/blog/telegram-ton-va-stars-farqi) — Telegramda TON va Stars o'rtasidagi farq nima? Qaysi biri kripto, qaysi biri ichki valyuta? Qaysini qachon ishlatish kerak — to'liq tushuntirish.
 - Telegram Mini App'da Stars bilan to'lov: qanday ishlaydi va xavfsizmi? (2026): https://starsjoy.uz/blog/telegram-mini-app-stars-tolov (RU: https://starsjoy.uz/ru/blog/telegram-mini-app-stars-tolov) — Telegram Mini App'da Stars bilan to'lov nima, qanday ishlaydi, qaysi mashhur Mini App'lar Stars qabul qiladi va to'lov bosqichlari — to'liq qo'llanma 2026.
+- Telegram Ads'ni Stars bilan to'lash: qo'llanma 2026: https://starsjoy.uz/blog/telegram-ads-stars-bilan (RU: https://starsjoy.uz/ru/blog/telegram-ads-stars-bilan) — Telegram Ads'ni Stars bilan kim to'lay oladi? 30% chegirma, Balance → Buy Ads bosqichlari, cheklovlar va kanal reklamasini ishga tushirish qo'llanmasi.
 
 ### Telegram Premium — narx, paketlar va sotib olish
 

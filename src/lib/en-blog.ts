@@ -20,6 +20,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'pay-for-telegram-ads-with-stars',
+    title: 'How to pay for Telegram Ads with Stars',
+    excerpt:
+      'Who can pay with Stars, how the 30% discount works, where to find Buy Ads, and why Stars bought on a personal account cannot fund a campaign.',
+    date: '2026-08-18',
+    tag: 'Guide',
+  },
+  {
     slug: 'most-expensive-telegram-gifts',
     title: 'The most expensive Telegram gifts in 2026',
     excerpt:
