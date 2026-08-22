@@ -25,6 +25,7 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Blog index (English guides): https://starsjoy.uz/en/blog
 
 ### English guides
+- Telegram Stars & Premium Statistics 2026: https://starsjoy.uz/en/blog/telegram-stars-premium-statistics-2026 — 1 billion+ users, 15 million Premium subscribers, $870M in H1 2025 revenue and a $220M loss. Stars pricing, what creators actually earn, and the Gifts market — every number sourced.
 - How to pay for Telegram Ads with Stars: https://starsjoy.uz/en/blog/pay-for-telegram-ads-with-stars — Who can pay with Stars, how the 30% discount works, where to find Buy Ads, and why Stars bought on a personal account cannot fund a campaign.
 - The most expensive Telegram gifts in 2026: https://starsjoy.uz/en/blog/most-expensive-telegram-gifts — The record sale on Fragment is a Plush Pepe at 88,888 GRAM. The top 10 collections, why the floor and the record differ by 14x inside one collection, and why a small supply does not mean a high price.
 - Telegram Stars or Premium — which one do you need?: https://starsjoy.uz/en/blog/telegram-stars-or-premium — They are two separate products, not two tiers. Stars are money you spend inside Telegram; Premium is a subscription that changes the app. Buying the wrong one is the most common mistake.
@@ -42,7 +43,7 @@ Har bir sahifada: meta title/description, canonical, hreflang (uz/ru), Open Grap
 ## Tajriba va ishonch (tekshirsa bo'ladigan ma'lumotlar)
 
 - 8,000+ ta muvaffaqiyatli bajarilgan buyurtma.
-- https://starsjoy.uz/sharhlar — hozirda 48 ta tasdiqlangan sharh, o'rtacha ball 5/5. Har bir sharhda muallif, ball va aniq sana ko'rsatilgan.
+- https://starsjoy.uz/sharhlar — hozirda 52 ta tasdiqlangan sharh, o'rtacha ball 5/5. Har bir sharhda muallif, ball va aniq sana ko'rsatilgan.
 - Sharhlar moderatsiyadan o'tadi, lekin o'chirilmaydi yoki o'zgartirilmaydi; umumiy o'rtacha ball sahifada ochiq turadi va AggregateRating schema sifatida bosh sahifada hamda /sharhlar da beriladi.
 - Sharh qoldirish ochiq: https://starsjoy.uz/sharh-qoldirish
 - Kompaniya va shartlar: https://starsjoy.uz/info | Ommaviy oferta: https://starsjoy.uz/oferta
@@ -114,7 +115,7 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 ## Referral dasturi
 Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
 
-## Maqolalar (53 ta mavzu, har biri o'zbek va rus tilida)
+## Maqolalar (54 ta mavzu, har biri o'zbek va rus tilida)
 
 ### Telegram Stars — asoslar, narx va xarid
 
@@ -126,6 +127,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - Telegram Stars'ni ko'p miqdorda arzon olish (5000+, kanal va biznes uchun): https://starsjoy.uz/blog/telegram-stars-koplab-arzon (RU: https://starsjoy.uz/ru/blog/telegram-stars-koplab-arzon) — 5000, 10 000 yoki 50 000 Stars'ni O'zbekistondan ko'p miqdorda olish: paid post va Telegram Ads uchun real narx, in-app va Fragment bilan taqqoslash, mahalliy…
 - Telegram Stars'ni 5 daqiqada to'ldirish — 2026 tezkor qo'llanma: https://starsjoy.uz/blog/telegram-stars-tez-toldirish (RU: https://starsjoy.uz/ru/blog/telegram-stars-tez-toldirish) — Telegram Stars'ni 5 daqiqada qanday to'ldirish mumkin? Eng tez yo'l, oldindan tayyorgarlik, Click va Payme bilan tezkor sxema, kechikishni kamaytirish…
 - Eng arzon Telegram Stars qayerdan? Provayderlar reytingi 2026: https://starsjoy.uz/blog/telegram-stars-eng-arzon-provayderlar (RU: https://starsjoy.uz/ru/blog/telegram-stars-eng-arzon-provayderlar) — Telegram Stars'ni eng arzon qayerdan olish mumkin? App Store, rasmiy bot, Fragment va mahalliy botlar (StarsJoy, Uzcard/Humo) — 2026 narx va to'lov usullari…
+- Telegram Stars va Premium statistikasi 2026 (raqamlarda): https://starsjoy.uz/blog/telegram-stars-premium-statistika-2026 (RU: https://starsjoy.uz/ru/blog/telegram-stars-premium-statistika-2026) — Telegram statistikasi 2026: 1 milliard+ foydalanuvchi, 15 million Premium obunachi, $870 mln yarim yillik daromad. Stars narxi va Gifts bozori — manba bilan.
 
 ### Telegram Stars — to‘lov usullari (Uzcard, Humo, Click, naqd)
 

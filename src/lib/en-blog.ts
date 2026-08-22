@@ -20,6 +20,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'telegram-stars-premium-statistics-2026',
+    title: 'Telegram Stars & Premium Statistics 2026',
+    excerpt:
+      '1 billion+ users, 15 million Premium subscribers, $870M in H1 2025 revenue and a $220M loss. Stars pricing, what creators actually earn, and the Gifts market — every number sourced.',
+    date: '2026-08-23',
+    tag: 'Stars',
+  },
+  {
     slug: 'pay-for-telegram-ads-with-stars',
     title: 'How to pay for Telegram Ads with Stars',
     excerpt:

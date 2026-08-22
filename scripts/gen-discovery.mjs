@@ -33,6 +33,7 @@ const GROUPS = [
       'telegram-stars-koplab-arzon',
       'telegram-stars-tez-toldirish',
       'telegram-stars-eng-arzon-provayderlar',
+      'telegram-stars-premium-statistika-2026',
     ],
   },
   {

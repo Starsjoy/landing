@@ -65,7 +65,7 @@ Layout + Navbar/NavbarRu + Footer/FooterRu, sana formati YYYY-MM-DD, tag mavjud 
 4. Stars refund/qaytarish — `telegram-stars-refund-qaytarish` (Stars)
 5. Eng qimmat/noyob sovg'alar TOP — `eng-qimmat-telegram-sovgalari` (Gifts)
 6. Telegram Ads Stars bilan — `telegram-ads-stars-bilan` (Biznes)
-7. Stars/Premium statistika 2026 — `telegram-stars-premium-statistika-2026` (Stars)
+7. ~~Stars/Premium statistika 2026~~ — BAJARILDI (2026-08-23) — `telegram-stars-premium-statistika-2026` (Stars)
 8. Stars atamalari lug'ati — `telegram-stars-atamalar-lugati` (Stars)
 9. Sovg'ani sotish/Fragment — `telegram-sovga-sotish-fragment` (Gifts)
 10. Stars yoki Premium — qaysi biri — `telegram-stars-yoki-premium` (Premium)
