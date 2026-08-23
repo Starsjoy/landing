@@ -26,7 +26,7 @@ const ruPath = uzPath === '/' ? '/ru' : `/ru${uzPath}`;
         <a href="/en/stars">Stars <span class="caret">&#9662;</span></a>
         <ul class="dropdown-menu">
           <li><a href="/en/stars/100">100 ⭐</a></li>
-          <li><a href="/en/stars/500">500 ⭐</a></li>
+          <li><a href="/en/stars/500-pack">500 ⭐</a></li>
           <li><a href="/en/stars/1000">1000 ⭐</a></li>
           <li><a href="/en/stars/5000">5000 ⭐</a></li>
           <li><a href="/en/stars/10000">10,000 ⭐</a></li>
@@ -84,6 +84,15 @@ const ruPath = uzPath === '/' ? '/ru' : `/ru${uzPath}`;
       navLinks?.classList.remove('show');
       toggle?.classList.remove('active');
     }
+  });
+
+  document.querySelectorAll('.has-dropdown > a .caret').forEach((caret) => {
+    caret.addEventListener('click', (e) => {
+      if (window.innerWidth > 768) return;
+      e.preventDefault();
+      e.stopPropagation();
+      (caret as HTMLElement).closest('.has-dropdown')?.classList.toggle('open');
+    });
   });
 </script>
 

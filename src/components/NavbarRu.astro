@@ -18,7 +18,7 @@ const enPath = UZ_TO_EN[uzPath];
         <a href="/ru/stars">Stars <span class="caret">&#9662;</span></a>
         <ul class="dropdown-menu">
           <li><a href="/ru/stars/100">100 ⭐</a></li>
-          <li><a href="/ru/stars/500">500 ⭐</a></li>
+          <li><a href="/ru/stars/500-ta">500 ⭐</a></li>
           <li><a href="/ru/stars/1000">1000 ⭐</a></li>
           <li><a href="/ru/stars/5000">5000 ⭐</a></li>
           <li><a href="/ru/stars/10000">10 000 ⭐</a></li>
@@ -78,6 +78,15 @@ const enPath = UZ_TO_EN[uzPath];
       navLinks?.classList.remove('show');
       toggle?.classList.remove('active');
     }
+  });
+
+  document.querySelectorAll('.has-dropdown > a .caret').forEach((caret) => {
+    caret.addEventListener('click', (e) => {
+      if (window.innerWidth > 768) return;
+      e.preventDefault();
+      e.stopPropagation();
+      (caret as HTMLElement).closest('.has-dropdown')?.classList.toggle('open');
+    });
   });
 </script>
 
@@ -272,7 +281,8 @@ const enPath = UZ_TO_EN[uzPath];
       transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease, gap 0.35s ease;
     }
     .nav-links.show {
-      max-height: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
       opacity: 1;
       padding: 24px;
       gap: 20px;
@@ -287,12 +297,17 @@ const enPath = UZ_TO_EN[uzPath];
     .mobile-toggle { display: block; }
 
     .has-dropdown > a { justify-content: space-between; }
+    .has-dropdown > a .caret { padding: 6px 10px; margin: -6px -10px; }
     .dropdown-menu {
       position: static; transform: none; opacity: 1; visibility: visible; pointer-events: auto;
       box-shadow: none; border: none; border-left: 2px solid var(--border);
-      border-radius: 0; margin: 4px 0 8px 8px; padding: 0 0 0 12px;
+      border-radius: 0; margin: 0 0 0 8px; padding: 0 0 0 12px;
       background: none;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, margin 0.3s ease;
     }
+    .has-dropdown.open > a .caret { transform: rotate(180deg); }
+    .has-dropdown.open .dropdown-menu { max-height: 320px; margin: 4px 0 8px 8px; }
     .dropdown-menu a { padding: 8px 4px; font-size: 0.88rem; color: var(--text-muted); }
     .dropdown-all { border-top: none; margin-top: 0; padding-top: 0; }
   }

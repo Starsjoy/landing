@@ -11,7 +11,9 @@ const description = "Telegram Stars price in Uzbekistan: 240 UZS per star, flat 
 // Flat rate — every pack uses the same 240 UZS/star, no volume discount.
 const RATE = 240;
 const packs = [50, 100, 250, 500, 1000, 2500, 5000, 10000];
-const linkedPacks = new Set([100, 500, 1000, 5000, 10000]);
+// 500 uses a "-pack" suffix slug — a bare "/500" path triggers a platform-level
+// routing issue on Vercel, so every language's 500 variant page is named around it.
+const packSlugs: Record<number, string> = { 100: '100', 500: '500-pack', 1000: '1000', 5000: '5000', 10000: '10000' };
 const fmt = (n: number) => n.toLocaleString('en-US');
 
 const faqs = [
@@ -178,7 +180,7 @@ const faqs = [
             {packs.map((n) => (
               <tr class={n === 1000 ? 'pricing-highlight' : undefined}>
                 <td>
-                  {linkedPacks.has(n) ? <a href={`/en/stars/${n}`}>{fmt(n)} ⭐</a> : `${fmt(n)} ⭐`}
+                  {packSlugs[n] ? <a href={`/en/stars/${packSlugs[n]}`}>{fmt(n)} ⭐</a> : `${fmt(n)} ⭐`}
                   {n === 1000 && <span class="pricing-badge">Most popular</span>}
                 </td>
                 <td>{fmt(n * RATE)} UZS</td>

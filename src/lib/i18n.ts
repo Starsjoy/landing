@@ -26,7 +26,7 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/premium/6-months': '/premium/6-oy',
   '/en/premium/12-months': '/premium/12-oy',
   '/en/stars/100': '/stars/100',
-  '/en/stars/500': '/stars/500',
+  '/en/stars/500-pack': '/stars/500-ta',
   '/en/stars/1000': '/stars/1000',
   '/en/stars/5000': '/stars/5000',
   '/en/stars/10000': '/stars/10000',
