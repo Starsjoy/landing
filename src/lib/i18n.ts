@@ -21,6 +21,15 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/how-to-buy': '/qollanma',
   '/en/about': '/info',
   '/en/blog': '/blog',
+  // Premium/Stars variant landing pages (SEO/AEO/GEO commercial pages)
+  '/en/premium/3-months': '/premium/3-oy',
+  '/en/premium/6-months': '/premium/6-oy',
+  '/en/premium/12-months': '/premium/12-oy',
+  '/en/stars/100': '/stars/100',
+  '/en/stars/500': '/stars/500',
+  '/en/stars/1000': '/stars/1000',
+  '/en/stars/5000': '/stars/5000',
+  '/en/stars/10000': '/stars/10000',
   // Blog maqolalari — EN slug o'zbekchadan farq qiladi, shuning uchun har biri
   // alohida yoziladi. Yozuv bo'lmasa NavbarEn dagi 🇺🇿 tugmasi o'quvchini
   // maqolaga emas, bosh sahifaga tashlaydi.

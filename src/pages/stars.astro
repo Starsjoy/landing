@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: "Telegram Stars sotib olish narxlari qancha?",
-    a: "StarsJoy orqali Telegram Stars 240 so'm/star tarifida sotib olinadi: 50 Stars — 12,000 so'm, 100 Stars — 24,000 so'm, 250 Stars — 60,000 so'm, 500 Stars — 120,000 so'm, 1,000 Stars — 240,000 so'm, 2,500 Stars — 600,000 so'm, 5,000 Stars — 1,200,000 so'm."
+    a: "StarsJoy orqali Telegram Stars 240 so'm/star tarifida sotib olinadi: 50 Stars — 12,000 so'm, 100 Stars — 24,000 so'm, 250 Stars — 60,000 so'm, 500 Stars — 120,000 so'm, 1,000 Stars — 240,000 so'm, 2,500 Stars — 600,000 so'm, 5,000 Stars — 1,200,000 so'm, 10,000 Stars — 2,400,000 so'm."
   },
   {
     q: "Telegram yulduzchalar qanday sotib olinadi?",
@@ -56,9 +56,9 @@ const faqs = [
       "@type": "AggregateOffer",
       "priceCurrency": "UZS",
       "lowPrice": "12000",
-      "highPrice": "1200000",
+      "highPrice": "2400000",
       "availability": "https://schema.org/InStock",
-      "offerCount": "7"
+      "offerCount": "8"
     }
   })} />
 
@@ -147,12 +147,13 @@ const faqs = [
           </thead>
           <tbody>
             <tr><td>50 ⭐</td><td>12,000 so'm</td></tr>
-            <tr><td>100 ⭐</td><td>24,000 so'm</td></tr>
+            <tr><td><a href="/stars/100">100 ⭐</a></td><td>24,000 so'm</td></tr>
             <tr><td>250 ⭐</td><td>60,000 so'm</td></tr>
-            <tr><td>500 ⭐</td><td>120,000 so'm</td></tr>
-            <tr class="pricing-highlight"><td>1,000 ⭐ <span class="pricing-badge">Mashhur</span></td><td>240,000 so'm</td></tr>
+            <tr><td><a href="/stars/500">500 ⭐</a></td><td>120,000 so'm</td></tr>
+            <tr class="pricing-highlight"><td><a href="/stars/1000">1,000 ⭐</a> <span class="pricing-badge">Mashhur</span></td><td>240,000 so'm</td></tr>
             <tr><td>2,500 ⭐</td><td>600,000 so'm</td></tr>
-            <tr><td>5,000 ⭐</td><td>1,200,000 so'm</td></tr>
+            <tr><td><a href="/stars/5000">5,000 ⭐</a></td><td>1,200,000 so'm</td></tr>
+            <tr><td><a href="/stars/10000">10,000 ⭐</a></td><td>2,400,000 so'm</td></tr>
           </tbody>
         </table>
       </div>
@@ -409,6 +410,8 @@ const faqs = [
     border-bottom: 1px solid var(--border-light);
   }
   .pricing-table td:first-child { font-weight: 600; }
+  .pricing-table td:first-child a { color: inherit; text-decoration: none; }
+  .pricing-table td:first-child a:hover { color: var(--primary); text-decoration: underline; }
   .pricing-table td:last-child { font-weight: 800; color: var(--primary); text-align: right; }
   .pricing-table tr.pricing-highlight td { background: rgba(124, 58, 237, 0.05); }
   .pricing-badge {

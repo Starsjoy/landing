@@ -1,0 +1,109 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+import VariantPage from '../../../components/VariantPage.astro';
+import { hreflangsFor } from '../../../lib/i18n';
+
+const canonical = "https://starsjoy.uz/ru/stars/500";
+const title = "Купить 500 Telegram Stars — 120 000 сум | StarsJoy";
+const description = "500 Telegram Stars — 120 000 сум. Средний пакет для тех, кто регулярно пользуется платными функциями ботов и каналов. Оплата Uzcard/Click, доставка за 10 секунд.";
+
+const faqs = [
+  {
+    q: "Где можно купить 500 Telegram Stars дешевле?",
+    a: "Через @starsjoybot — введите количество 500 и оплатите через Uzcard, Humo или Click. Цена 120 000 сум, поступление на баланс за 10 секунд."
+  },
+  {
+    q: "Кому оптимально подходит пакет 500 Stars?",
+    a: "500 Stars — практичное среднее количество для тех, кто регулярно пользуется несколькими платными функциями ботов или хочет поддержать нескольких авторов контента."
+  },
+  {
+    q: "Что выгоднее — 500 или 1000 Stars?",
+    a: "Оба пакета по одному тарифу (240 сум/звезда) — экономия только в общей сумме, не в проценте. 1000 удобнее, если нужен больший запас, 500 — если хотите начать с меньшей суммы."
+  },
+  {
+    q: "За сколько доставляются 500 Stars?",
+    a: "Обычно в течение 10 секунд после подтверждения оплаты."
+  },
+  {
+    q: "Можно ли монетизировать канал с помощью 500 Stars?",
+    a: "500 Stars достаточно для личного использования или небольших платежей, но для постоянной монетизации канала с большой аудиторией лучше подойдут пакеты 5000 или 10 000."
+  },
+  {
+    q: "Какие способы оплаты принимаются?",
+    a: "Uzcard, Humo, Click или Payme — зарубежная карта не требуется, всё в сумах."
+  }
+];
+
+const siblings = [
+  { href: "/ru/stars/100", label: "100 ⭐" },
+  { href: "/ru/stars/500", label: "500 ⭐", active: true },
+  { href: "/ru/stars/1000", label: "1000 ⭐" },
+  { href: "/ru/stars/5000", label: "5000 ⭐" },
+  { href: "/ru/stars/10000", label: "10 000 ⭐" },
+];
+
+const trustItems = [
+  { num: "8 000+", title: "Выполненных заказов", text: "Сервис работает больше года, число заказов открыто." },
+  { num: "10 сек.", title: "Время доставки", text: "После подтверждения оплаты Stars приходят обычно за 10 секунд." },
+  { num: "100%", title: "Возврат средств", text: "Если услуга не оказана — сумма возвращается полностью." },
+];
+
+const related = [
+  { href: "/blog/telegram-stars-paketlari-taqqoslash", label: "Сравнение пакетов Stars — какой когда выбрать" },
+  { href: "/blog/telegram-stars-narxi", label: "Цена Telegram Stars 2026 — полное руководство" },
+  { href: "/ru/stars", label: "Все пакеты Stars" },
+  { href: "/ru/narxlar", label: "Stars и Premium — все цены" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="500 Telegram Stars, цена 500 stars, купить 500 Telegram Stars, Telegram Stars 500 штук"
+  lang="ru"
+  hreflangs={hreflangsFor('/stars/500')}
+>
+  <NavbarRu />
+  <VariantPage
+    accent="gold"
+    canonical={canonical}
+    homeLabel="Главная"
+    hubLabel="Telegram Stars"
+    hubHref="/ru/stars"
+    currentLabel="500 ⭐"
+    eyebrow="Telegram Stars — 500 штук"
+    h1="Купить 500 Telegram Stars"
+    quickAnswer="500 Telegram Stars — 120 000 сум, поступают на баланс через @starsjoybot за 10 секунд."
+    heroNote="Средний пакет для тех, кто регулярно пользуется платными функциями ботов и каналов."
+    siblingsTitle="Другие количества"
+    siblings={siblings}
+    priceLabel="Цена"
+    priceValue="120 000 сум"
+    priceSubtext="240 сум/звезда"
+    ctaLabel="Купить 500 Stars"
+    ctaHref="https://telegram.me/starsjoybot"
+    forWhomTitle="Кому подойдёт?"
+    forWhomText="500 Stars — практичное среднее количество для тех, кто регулярно пользуется несколькими платными функциями ботов или хочет постоянно поддерживать нескольких авторов контента."
+    trustItems={trustItems}
+    faqTitle="Вопросы о 500 Stars"
+    faqSubtitle="Ответы на самые частые вопросы"
+    faqs={faqs}
+    relatedTitle="Дополнительно о Stars"
+    related={related}
+    finalCtaTitle="Готовы купить 500 Stars?"
+    finalCtaText="120 000 сум, оплата Uzcard/Click, доставка за 10 секунд"
+    finalCtaLabel="Купить сейчас"
+    schemaName="Telegram Stars — 500 штук"
+    schemaDescription={description}
+    priceAmount="120000"
+    breadcrumbSchema={[
+      { name: "Главная", item: "https://starsjoy.uz/ru" },
+      { name: "Telegram Stars", item: "https://starsjoy.uz/ru/stars" },
+      { name: "500 штук", item: canonical },
+    ]}
+  />
+  <FooterRu />
+</Layout>

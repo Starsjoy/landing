@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import VariantPage from '../../components/VariantPage.astro';
+import { hreflangsFor } from '../../lib/i18n';
+
+const canonical = "https://starsjoy.uz/stars/100";
+const title = "100 ta Telegram Stars sotib olish — 24 000 so'm | StarsJoy";
+const description = "100 ta Telegram Stars narxi — 24 000 so'm. Birinchi marta stars sotib olayotganlar uchun eng kichik va sinov paketi. Uzcard/Click orqali 10 soniyada yetkaziladi.";
+
+const faqs = [
+  {
+    q: "100 ta Telegram Stars'ni qayerdan sotib olsam bo'ladi?",
+    a: "@starsjoybot orqali — botda miqdorni 100 deb kiriting va Uzcard, Humo yoki Click bilan to'lang. Narxi 24 000 so'm, 10 soniyada hisobingizga tushadi."
+  },
+  {
+    q: "100 ta Stars nimalarga yetadi?",
+    a: "100 ta Stars bilan kanallardagi bitta-ikkita premium postni ochish, kichik bot xizmatidan foydalanish yoki kontentmeykerga kichik miqdorda yordam (tip) yuborish mumkin. Bu — sinov uchun eng kichik paket."
+  },
+  {
+    q: "Birinchi marta Stars sotib olsam, 100 tadan boshlash tavsiya qilinadimi?",
+    a: "Ha, agar Stars nima ekanini va jarayon qanday ishlashini birinchi bor sinab ko'rmoqchi bo'lsangiz, 100 ta (24 000 so'm) eng arzon va xavfsiz boshlanish nuqtasi. Jarayon yoqsa, keyinroq kattaroq paket olishingiz mumkin."
+  },
+  {
+    q: "100 ta kabi kichik miqdor ham 10 soniyada keladimi?",
+    a: "Ha, yetkazish tezligi miqdorga bog'liq emas — 100 ta ham, 10 000 ta ham to'lov tasdiqlangach odatda 10 soniya ichida hisobingizga tushadi."
+  },
+  {
+    q: "100 ta Stars narxi boshqa paketlarga nisbatan qimmatroqmi?",
+    a: "Yo'q, StarsJoy'da barcha paketlar bir xil tarifda — 240 so'm/star. 100 ta ham, 5000 ta ham bir xil kursda hisoblanadi, faqat umumiy summa farq qiladi."
+  },
+  {
+    q: "100 ta Stars'ni sovg'a qilsam bo'ladimi?",
+    a: "Ha, botda istalgan Telegram foydalanuvchisiga 100 ta Stars'ni sovg'a sifatida yuborishingiz mumkin — bu kichik va qulay hadya varianti."
+  }
+];
+
+const siblings = [
+  { href: "/stars/100", label: "100 ⭐", active: true },
+  { href: "/stars/500", label: "500 ⭐" },
+  { href: "/stars/1000", label: "1000 ⭐" },
+  { href: "/stars/5000", label: "5000 ⭐" },
+  { href: "/stars/10000", label: "10 000 ⭐" },
+];
+
+const trustItems = [
+  { num: "8 000+", title: "Bajarilgan buyurtma", text: "Xizmat 1 yildan ortiq ishlaydi, buyurtmalar soni ochiq." },
+  { num: "10 son.", title: "Yetkazish vaqti", text: "To'lov tasdiqlangach Stars odatda 10 soniyada tushadi." },
+  { num: "100%", title: "Pul qaytarish", text: "Xizmat ko'rsatilmasa, to'langan summa to'liq qaytariladi." },
+];
+
+const related = [
+  { href: "/blog/telegram-stars-paketlari-taqqoslash", label: "Stars paketlarini taqqoslash — qaysi biri qachon mos?" },
+  { href: "/blog/telegram-stars-sotib-olish", label: "Telegram Stars qanday sotib olinadi — to'liq qo'llanma" },
+  { href: "/stars", label: "Barcha Stars paketlari" },
+  { href: "/narxlar", label: "Stars va Premium — barcha narxlar" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="100 Telegram Stars, 100 stars narxi, 100 ta stars sotib olish, Telegram Stars 100 dona"
+  hreflangs={hreflangsFor('/stars/100')}
+>
+  <Navbar />
+  <VariantPage
+    accent="gold"
+    canonical={canonical}
+    homeLabel="Bosh sahifa"
+    hubLabel="Telegram Stars"
+    hubHref="/stars"
+    currentLabel="100 ⭐"
+    eyebrow="Telegram Stars — 100 ta"
+    h1="100 ta Telegram Stars sotib olish"
+    quickAnswer="100 ta Telegram Stars narxi — 24 000 so'm, @starsjoybot orqali 10 soniyada hisobingizga tushadi."
+    heroNote="Birinchi marta Stars sotib olayotganlar uchun eng kichik va arzon sinov paketi."
+    siblingsTitle="Boshqa miqdorlar"
+    siblings={siblings}
+    priceLabel="Narx"
+    priceValue="24 000 so'm"
+    priceSubtext="240 so'm/star"
+    ctaLabel="100 ta Stars sotib olish"
+    ctaHref="https://telegram.me/starsjoybot"
+    forWhomTitle="Kimga mos?"
+    forWhomText="100 ta Stars — birinchi marta sinab ko'rmoqchi bo'lganlar, kichik miqdorda kontentmeykerni qo'llab-quvvatlamoqchi bo'lganlar yoki bitta-ikkita premium postni ochish uchun kifoya qiladigan foydalanuvchilar uchun mos."
+    trustItems={trustItems}
+    faqTitle="100 ta Stars haqida savollar"
+    faqSubtitle="Eng ko'p so'raladigan savollarga javoblar"
+    faqs={faqs}
+    relatedTitle="Stars haqida qo'shimcha"
+    related={related}
+    finalCtaTitle="100 ta Stars'ga tayyor bo'ling"
+    finalCtaText="24 000 so'm, Uzcard/Click orqali, 10 soniyada yetkaziladi"
+    finalCtaLabel="Hozir sotib olish"
+    schemaName="Telegram Stars — 100 ta"
+    schemaDescription={description}
+    priceAmount="24000"
+    breadcrumbSchema={[
+      { name: "Bosh sahifa", item: "https://starsjoy.uz" },
+      { name: "Telegram Stars", item: "https://starsjoy.uz/stars" },
+      { name: "100 ta", item: canonical },
+    ]}
+  />
+  <Footer />
+</Layout>

@@ -54,9 +54,9 @@ const faqs = [
 
 // Oylik narx — chop etilgan tariflardan hisoblanadi (yaxlitlangan)
 const plans = [
-  { months: 3,  price: 172000, best: false },
-  { months: 6,  price: 232000, best: false },
-  { months: 12, price: 422000, best: true  },
+  { months: 3,  price: 172000, best: false, href: "/premium/3-oy" },
+  { months: 6,  price: 232000, best: false, href: "/premium/6-oy" },
+  { months: 12, price: 422000, best: true,  href: "/premium/12-oy" },
 ];
 const fmt = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const perMonth = (p: { months: number; price: number }) =>
@@ -200,7 +200,7 @@ if (agg.reviewCount > 0) {
             {plans.map((p) => (
               <tr class={p.best ? 'pricing-highlight' : undefined}>
                 <td>
-                  {p.months} oylik
+                  <a href={p.href}>{p.months} oylik</a>
                   {p.best && <span class="pricing-badge">Eng foydali</span>}
                 </td>
                 <td class="pricing-permonth">~{perMonth(p)} so'm</td>
@@ -536,6 +536,8 @@ if (agg.reviewCount > 0) {
     border-bottom: 1px solid var(--border-light);
   }
   .pricing-table td:first-child { font-weight: 600; }
+  .pricing-table td:first-child a { color: inherit; text-decoration: none; }
+  .pricing-table td:first-child a:hover { color: var(--primary); text-decoration: underline; }
   .pricing-table td:last-child { font-weight: 800; color: var(--primary); text-align: right; }
   .pricing-table tr.pricing-highlight td { background: rgba(124, 58, 237, 0.05); }
   .pricing-badge {

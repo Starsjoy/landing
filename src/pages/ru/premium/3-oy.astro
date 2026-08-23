@@ -1,0 +1,107 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+import VariantPage from '../../../components/VariantPage.astro';
+import { hreflangsFor } from '../../../lib/i18n';
+
+const canonical = "https://starsjoy.uz/ru/premium/3-oy";
+const title = "Telegram Premium на 3 месяца — 172 000 сум | StarsJoy";
+const description = "Telegram Premium на 3 месяца — 172 000 сум. Оплата Uzcard, Humo или Click, активация за 10 секунд. Самый доступный вариант, чтобы попробовать Premium.";
+
+const faqs = [
+  {
+    q: "Где можно купить Telegram Premium на 3 месяца дешевле?",
+    a: "Через StarsJoy — зайдите в @starsjoybot, нажмите «Купить Premium» и выберите 3 месяца. Цена 172 000 сум, оплата Uzcard, Humo или Click, активация за 10 секунд."
+  },
+  {
+    q: "Почему нет подписки на 1 месяц, только от 3 месяцев?",
+    a: "StarsJoy работает через официальный механизм Telegram 'Gift Premium', минимальный срок которого — 3 месяца. Тариф на 1 месяц доступен только внутри самого приложения Telegram и требует зарубежной карты, которая не работает из Узбекистана."
+  },
+  {
+    q: "Достаточно ли 3 месяцев, чтобы попробовать Premium?",
+    a: "Да, большинству пользователей этого хватает, чтобы оценить возможности Premium (файлы до 4 ГБ, без рекламы, эксклюзивные стикеры). Если не понравится — после окончания срока ничего не списывается автоматически."
+  },
+  {
+    q: "После 3 месяцев подписка продлевается автоматически?",
+    a: "Нет. Подписка через StarsJoy — разовая оплата, автопродления и повторного списания с карты нет. По истечении срока вы можете купить снова при желании."
+  },
+  {
+    q: "Насколько 3 месяца дороже 12 месяцев в пересчёте на месяц?",
+    a: "На 3-месячном тарифе месяц стоит около 57 300 сум, на 12-месячном — около 35 200 сум. То есть длинный срок выгоднее в месяц, но 3-месячный удобнее, если хотите попробовать за меньшую разовую сумму."
+  },
+  {
+    q: "Можно оплатить картой Uzcard или Humo?",
+    a: "Да. Зарубежная карта (Visa/Mastercard) не нужна — оплата полностью в сумах через Uzcard, Humo или Click, без конвертации валюты."
+  }
+];
+
+const siblings = [
+  { href: "/ru/premium/3-oy", label: "3 месяца", active: true },
+  { href: "/ru/premium/6-oy", label: "6 месяцев" },
+  { href: "/ru/premium/12-oy", label: "12 месяцев" },
+];
+
+const trustItems = [
+  { num: "8 000+", title: "Выполненных заказов", text: "Сервис работает больше года, число заказов открыто." },
+  { num: "10 сек.", title: "Время доставки", text: "После подтверждения оплаты Premium приходит обычно за 10 секунд." },
+  { num: "100%", title: "Возврат средств", text: "Если услуга не оказана — сумма возвращается полностью." },
+];
+
+const related = [
+  { href: "/blog/telegram-premium-3-oylik-sotib-olish", label: "Полное руководство по покупке Premium на 3 месяца" },
+  { href: "/blog/telegram-premium-paketlar-taqqoslash", label: "Сравнение тарифов 1, 3, 6 и 12 месяцев" },
+  { href: "/ru/premium", label: "Все тарифы Premium" },
+  { href: "/ru/narxlar", label: "Stars и Premium — все цены" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="Telegram Premium 3 месяца, Telegram Premium цена 3 месяца, купить Telegram Premium 3 месяца, Telegram Premium Uzcard"
+  lang="ru"
+  hreflangs={hreflangsFor('/premium/3-oy')}
+>
+  <NavbarRu />
+  <VariantPage
+    accent="purple"
+    canonical={canonical}
+    homeLabel="Главная"
+    hubLabel="Telegram Premium"
+    hubHref="/ru/premium"
+    currentLabel="3 месяца"
+    eyebrow="Telegram Premium — 3 месяца"
+    h1="Telegram Premium на 3 месяца"
+    quickAnswer="Telegram Premium на 3 месяца — 172 000 сум, активация через @starsjoybot за 10 секунд (Uzcard/Humo/Click)."
+    heroNote="Самый доступный вариант для тех, кто хочет впервые попробовать Premium."
+    siblingsTitle="Другие сроки"
+    siblings={siblings}
+    priceLabel="Цена"
+    priceValue="172 000 сум"
+    priceSubtext="~57 300 сум/мес"
+    ctaLabel="Купить Premium на 3 месяца"
+    ctaHref="https://telegram.me/starsjoybot"
+    forWhomTitle="Кому подойдёт?"
+    forWhomText="Тариф на 3 месяца подходит тем, кто впервые хочет попробовать Premium или не готов сразу привязываться к длинному сроку. За небольшую разовую сумму вы полностью оцените файлы до 4 ГБ, отсутствие рекламы и эксклюзивные стикеры."
+    trustItems={trustItems}
+    faqTitle="Вопросы о Premium на 3 месяца"
+    faqSubtitle="Ответы на самые частые вопросы"
+    faqs={faqs}
+    relatedTitle="Дополнительно о Premium на 3 месяца"
+    related={related}
+    finalCtaTitle="Готовы оформить Premium на 3 месяца?"
+    finalCtaText="172 000 сум, оплата Uzcard/Click, активация за 10 секунд"
+    finalCtaLabel="Купить сейчас"
+    schemaName="Telegram Premium — подписка на 3 месяца"
+    schemaDescription={description}
+    priceAmount="172000"
+    breadcrumbSchema={[
+      { name: "Главная", item: "https://starsjoy.uz/ru" },
+      { name: "Telegram Premium", item: "https://starsjoy.uz/ru/premium" },
+      { name: "3 месяца", item: canonical },
+    ]}
+  />
+  <FooterRu />
+</Layout>

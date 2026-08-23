@@ -54,9 +54,9 @@ const faqs = [
 
 // Monthly price is derived from the published plan prices (rounded)
 const plans = [
-  { months: 3,  price: 172000, best: false },
-  { months: 6,  price: 232000, best: false },
-  { months: 12, price: 422000, best: true  },
+  { months: 3,  price: 172000, best: false, href: "/en/premium/3-months" },
+  { months: 6,  price: 232000, best: false, href: "/en/premium/6-months" },
+  { months: 12, price: 422000, best: true,  href: "/en/premium/12-months" },
 ];
 const fmt = (n: number) => n.toLocaleString('en-US');
 const perMonth = (p: { months: number; price: number }) =>
@@ -200,7 +200,7 @@ if (agg.reviewCount > 0) {
             {plans.map((p) => (
               <tr class={p.best ? 'pricing-highlight' : undefined}>
                 <td>
-                  {p.months} months
+                  <a href={p.href}>{p.months} months</a>
                   {p.best && <span class="pricing-badge">Best value</span>}
                 </td>
                 <td class="pricing-permonth">~{perMonth(p)} UZS</td>
@@ -514,6 +514,8 @@ if (agg.reviewCount > 0) {
     border-bottom: 1px solid var(--border-light);
   }
   .pricing-table td:first-child { font-weight: 600; }
+  .pricing-table td:first-child a { color: inherit; text-decoration: none; }
+  .pricing-table td:first-child a:hover { color: var(--primary); text-decoration: underline; }
   .pricing-table td:last-child { font-weight: 800; color: var(--primary); text-align: right; }
   .pricing-table tr.pricing-highlight td { background: rgba(124, 58, 237, 0.05); }
   .pricing-badge {

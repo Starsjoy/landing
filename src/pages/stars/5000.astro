@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import VariantPage from '../../components/VariantPage.astro';
+import { hreflangsFor } from '../../lib/i18n';
+
+const canonical = "https://starsjoy.uz/stars/5000";
+const title = "5000 ta Telegram Stars sotib olish — 1 200 000 so'm | StarsJoy";
+const description = "5000 ta Telegram Stars narxi — 1 200 000 so'm. Faol kontentmeykerlar va kanal egalari uchun optom paket. Uzcard/Click orqali 10 soniyada yetkaziladi.";
+
+const faqs = [
+  {
+    q: "5000 ta Telegram Stars'ni qayerdan optom arzon narxda sotib olsam bo'ladi?",
+    a: "@starsjoybot orqali — miqdorni 5000 deb kiritib, Uzcard, Humo yoki Click bilan to'lang. Narxi 1 200 000 so'm, 10 soniyada hisobingizga tushadi."
+  },
+  {
+    q: "5000 ta Stars kimlar uchun mos?",
+    a: "5000 ta — kanal egalari, botlarni faol ishlatuvchi biznes hisoblari yoki bir nechta kontentmeykerni muntazam qo'llab-quvvatlaydigan foydalanuvchilar uchun optom miqdor."
+  },
+  {
+    q: "5000 ta kabi katta miqdorni bir martada sotib olish xavfsizmi?",
+    a: "Ha, jarayon 100 ta yoki 1000 ta sotib olishdan farq qilmaydi — to'lov tasdiqlangach 10 soniyada hisobingizga tushadi, muammo chiqsa 100% pul qaytariladi."
+  },
+  {
+    q: "5000 ta uchun chegirma bormi?",
+    a: "StarsJoy'da barcha miqdorlar bir xil tarifda (240 so'm/star) — miqdor oshgani bilan bir star narxi o'zgarmaydi, faqat umumiy summa oshadi."
+  },
+  {
+    q: "Katta summani (1 200 000 so'm) qanday to'lash mumkin?",
+    a: "Uzcard, Humo, Click yoki Payme orqali — agar bank kartangizda kunlik limit bo'lsa, Click yoki Payme ilovasidan to'lashni sinab ko'ring."
+  },
+  {
+    q: "5000 ta yetmasa, undan ko'proq buyurtma berish mumkinmi?",
+    a: "Ha, botda istalgan miqdorni kiritish mumkin — 5000 tadan ko'p kerak bo'lsa (masalan 10 000), narx shu tarifga mos hisoblanadi. 10 000 ta uchun alohida sahifamiz ham bor."
+  }
+];
+
+const siblings = [
+  { href: "/stars/100", label: "100 ⭐" },
+  { href: "/stars/500", label: "500 ⭐" },
+  { href: "/stars/1000", label: "1000 ⭐" },
+  { href: "/stars/5000", label: "5000 ⭐", active: true },
+  { href: "/stars/10000", label: "10 000 ⭐" },
+];
+
+const trustItems = [
+  { num: "8 000+", title: "Bajarilgan buyurtma", text: "Xizmat 1 yildan ortiq ishlaydi, buyurtmalar soni ochiq." },
+  { num: "10 son.", title: "Yetkazish vaqti", text: "To'lov tasdiqlangach Stars odatda 10 soniyada tushadi." },
+  { num: "100%", title: "Pul qaytarish", text: "Xizmat ko'rsatilmasa, to'langan summa to'liq qaytariladi." },
+];
+
+const related = [
+  { href: "/blog/telegram-stars-koplab-arzon", label: "Stars'ni ko'p miqdorda arzon olish — kanal va biznes uchun" },
+  { href: "/blog/telegram-stars-paketlari-taqqoslash", label: "Stars paketlarini taqqoslash — qaysi biri qachon mos?" },
+  { href: "/stars", label: "Barcha Stars paketlari" },
+  { href: "/narxlar", label: "Stars va Premium — barcha narxlar" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="5000 Telegram Stars, 5000 stars narxi, 5000 ta stars sotib olish, Telegram Stars optom"
+  hreflangs={hreflangsFor('/stars/5000')}
+>
+  <Navbar />
+  <VariantPage
+    accent="gold"
+    canonical={canonical}
+    homeLabel="Bosh sahifa"
+    hubLabel="Telegram Stars"
+    hubHref="/stars"
+    currentLabel="5000 ⭐"
+    eyebrow="Telegram Stars — 5000 ta"
+    h1="5000 ta Telegram Stars sotib olish"
+    quickAnswer="5000 ta Telegram Stars narxi — 1 200 000 so'm, @starsjoybot orqali 10 soniyada hisobingizga tushadi."
+    heroNote="Kanal egalari va faol kontentmeykerlar uchun optom paket — bir xil 240 so'm/star tarifida."
+    siblingsTitle="Boshqa miqdorlar"
+    siblings={siblings}
+    priceLabel="Narx"
+    priceValue="1 200 000 so'm"
+    priceSubtext="240 so'm/star"
+    ctaLabel="5000 ta Stars sotib olish"
+    ctaHref="https://telegram.me/starsjoybot"
+    forWhomTitle="Kimga mos?"
+    forWhomText="5000 ta Stars — kanal egalari, faol biznes hisoblari yoki bir nechta kontentmeykerni muntazam qo'llab-quvvatlaydigan, kattaroq zaxiraga muhtoj foydalanuvchilar uchun optom miqdor."
+    trustItems={trustItems}
+    faqTitle="5000 ta Stars haqida savollar"
+    faqSubtitle="Eng ko'p so'raladigan savollarga javoblar"
+    faqs={faqs}
+    relatedTitle="Stars haqida qo'shimcha"
+    related={related}
+    finalCtaTitle="5000 ta Stars'ga tayyor bo'ling"
+    finalCtaText="1 200 000 so'm, Uzcard/Click orqali, 10 soniyada yetkaziladi"
+    finalCtaLabel="Hozir sotib olish"
+    schemaName="Telegram Stars — 5000 ta"
+    schemaDescription={description}
+    priceAmount="1200000"
+    breadcrumbSchema={[
+      { name: "Bosh sahifa", item: "https://starsjoy.uz" },
+      { name: "Telegram Stars", item: "https://starsjoy.uz/stars" },
+      { name: "5000 ta", item: canonical },
+    ]}
+  />
+  <Footer />
+</Layout>

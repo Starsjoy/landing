@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import VariantPage from '../../components/VariantPage.astro';
+import { hreflangsFor } from '../../lib/i18n';
+
+const canonical = "https://starsjoy.uz/premium/6-oy";
+const title = "Telegram Premium 6 oylik sotib olish — 232 000 so'm | StarsJoy";
+const description = "Telegram Premium 6 oylik obuna narxi — 232 000 so'm, oyiga ~38 700 so'm. Uzcard, Humo yoki Click orqali 10 soniyada faollashadi. Narx va muddat o'rtasidagi eng muvozanatli tarif.";
+
+const faqs = [
+  {
+    q: "Telegram Premium 6 oylikni qayerdan sotib olish mumkin?",
+    a: "@starsjoybot orqali — botga kirib 'Premium' bo'limidan 6 oylik tarifni tanlang. Narxi 232 000 so'm, Uzcard, Humo yoki Click bilan to'lab, 10 soniyada faollashadi."
+  },
+  {
+    q: "6 oylik nima uchun eng ko'p tanlanadigan tarif hisoblanadi?",
+    a: "6 oylik 3 oylikka nisbatan oyiga sezilarli arzonroq (~38 700 vs ~57 300 so'm), lekin 12 oylik kabi bir yilga bog'lab qo'ymaydi. Shu sababli Premium'ni doimiy ishlatadigan, lekin bir yilga oldindan to'lashni istamaydigan foydalanuvchilar uchun muvozanatli variant."
+  },
+  {
+    q: "6 oylik va 3 oylikning oylik narxida qancha farq bor?",
+    a: "3 oylikda 1 oy taxminan 57 300 so'm, 6 oylikda esa ~38 700 so'm — ya'ni 6 oylikni tanlab, 3 oylikni ikki marta qayta xarid qilishga nisbatan sezilarli tejaysiz."
+  },
+  {
+    q: "6 oy tugagach eslatma yoki avtomatik yechim bo'ladimi?",
+    a: "Yo'q, StarsJoy'dagi barcha tariflar bir martalik to'lov — avtomatik yangilanish va kartadan qo'shimcha pul yechish yo'q. Muddat tugaganda xohishga ko'ra qayta sotib olasiz."
+  },
+  {
+    q: "6 oylikni Uzcard yoki Humo bilan sotib olsam bo'ladimi?",
+    a: "Ha, 232 000 so'm to'liq Uzcard, Humo yoki Click orqali, xorijiy karta va valyuta konvertatsiyasisiz to'lanadi."
+  },
+  {
+    q: "6 oylikni sovg'a qilsam bo'ladimi?",
+    a: "Ha, botda 'Sovg'a qilish' tugmasi orqali istalgan Telegram foydalanuvchisiga 6 oylik Premium'ni sovg'a qilishingiz mumkin — narxi oddiy xariddagi bilan bir xil."
+  }
+];
+
+const siblings = [
+  { href: "/premium/3-oy", label: "3 oylik" },
+  { href: "/premium/6-oy", label: "6 oylik", active: true },
+  { href: "/premium/12-oy", label: "12 oylik" },
+];
+
+const trustItems = [
+  { num: "8 000+", title: "Bajarilgan buyurtma", text: "Xizmat 1 yildan ortiq ishlaydi, buyurtmalar soni ochiq." },
+  { num: "10 son.", title: "Yetkazish vaqti", text: "To'lov tasdiqlangach Premium odatda 10 soniyada tushadi." },
+  { num: "100%", title: "Pul qaytarish", text: "Xizmat ko'rsatilmasa, to'langan summa to'liq qaytariladi." },
+];
+
+const related = [
+  { href: "/blog/telegram-premium-3-oy-6-oy", label: "3 oy va 6 oy paketlarni sotib olish qo'llanmasi" },
+  { href: "/blog/telegram-premium-paketlar-taqqoslash", label: "1, 3, 6 va 12 oylik paketlarni taqqoslash" },
+  { href: "/premium", label: "Barcha Premium tariflar" },
+  { href: "/narxlar", label: "Stars va Premium — barcha narxlar" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="Telegram Premium 6 oylik, Telegram Premium 6 oy narxi, 6 oylik Premium sotib olish, Telegram Premium 6 oy Uzcard"
+  hreflangs={hreflangsFor('/premium/6-oy')}
+>
+  <Navbar />
+  <VariantPage
+    accent="purple"
+    canonical={canonical}
+    homeLabel="Bosh sahifa"
+    hubLabel="Telegram Premium"
+    hubHref="/premium"
+    currentLabel="6 oylik"
+    eyebrow="Telegram Premium — 6 oylik"
+    h1="Telegram Premium 6 oylik sotib olish"
+    quickAnswer="Telegram Premium 6 oylik obuna narxi — 232 000 so'm (oyiga ~38 700 so'm), @starsjoybot orqali 10 soniyada faollashadi."
+    heroNote="Narx va muddat o'rtasida eng muvozanatli tarif — 3 oylikdan arzonroq, 12 oylikdek uzoq bog'lamaydi."
+    siblingsTitle="Boshqa muddatlar"
+    siblings={siblings}
+    priceLabel="Narx"
+    priceValue="232 000 so'm"
+    priceSubtext="~38 700 so'm/oy"
+    ctaLabel="6 oylik Premium sotib olish"
+    ctaHref="https://telegram.me/starsjoybot"
+    forWhomTitle="Kimga mos?"
+    forWhomText="6 oylik tarif Premium'dan doimiy foydalanadigan, lekin bir yilga oldindan katta summa to'lashni istamaydigan foydalanuvchilar uchun eng muvozanatli tanlov. 3 oylikka nisbatan oyiga sezilarli tejaydi, 12 oylikka nisbatan kirish narxi past."
+    trustItems={trustItems}
+    faqTitle="6 oylik Premium haqida savollar"
+    faqSubtitle="Eng ko'p so'raladigan savollarga javoblar"
+    faqs={faqs}
+    relatedTitle="6 oylik Premium haqida qo'shimcha"
+    related={related}
+    finalCtaTitle="6 oylik Premium'ga tayyor bo'ling"
+    finalCtaText="232 000 so'm, Uzcard/Click orqali, 10 soniyada faollashadi"
+    finalCtaLabel="Hozir sotib olish"
+    schemaName="Telegram Premium 6 oylik obuna"
+    schemaDescription={description}
+    priceAmount="232000"
+    breadcrumbSchema={[
+      { name: "Bosh sahifa", item: "https://starsjoy.uz" },
+      { name: "Telegram Premium", item: "https://starsjoy.uz/premium" },
+      { name: "6 oylik", item: canonical },
+    ]}
+  />
+  <Footer />
+</Layout>

@@ -1,0 +1,106 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarEn from '../../../components/NavbarEn.astro';
+import FooterEn from '../../../components/FooterEn.astro';
+import VariantPage from '../../../components/VariantPage.astro';
+import { hreflangsFor } from '../../../lib/i18n';
+
+const canonical = "https://starsjoy.uz/en/premium/6-months";
+const title = "Buy Telegram Premium 6 Months — 232,000 UZS | StarsJoy";
+const description = "Telegram Premium for 6 months costs 232,000 UZS in Uzbekistan, about 38,700 UZS/month. Pay with Uzcard, Humo or Click — activated in about 10 seconds. The most balanced plan.";
+
+const faqs = [
+  {
+    q: "Where can I buy Telegram Premium for 6 months?",
+    a: "Through @starsjoybot — open the Premium section and choose the 6-month plan. The price is 232,000 UZS, paid via Uzcard, Humo or Click, activated in about 10 seconds."
+  },
+  {
+    q: "Why is the 6-month plan the most popular choice?",
+    a: "6 months is noticeably cheaper per month than 3 months (~38,700 vs ~57,300 UZS), without committing you to a full year like the 12-month plan. It's the balance point for regular Premium users who don't want to pay for a year upfront."
+  },
+  {
+    q: "How much cheaper per month is 6 months compared to 3 months?",
+    a: "The 3-month plan costs about 57,300 UZS/month, the 6-month plan about 38,700 UZS/month — choosing 6 months instead of buying 3 months twice saves a meaningful amount."
+  },
+  {
+    q: "Does it auto-renew or charge my card again after 6 months?",
+    a: "No, every StarsJoy plan is a one-time payment with no auto-renewal and no repeat charge. You can simply buy again after the term ends if you want to."
+  },
+  {
+    q: "Can I pay with Uzcard or Humo?",
+    a: "Yes, the full 232,000 UZS can be paid via Uzcard, Humo or Click — no international card or currency conversion needed."
+  },
+  {
+    q: "Can I gift the 6-month plan to someone?",
+    a: "Yes, use the 'Gift' button in the bot to send 6 months of Premium to any Telegram user — the price is the same as a regular purchase."
+  }
+];
+
+const siblings = [
+  { href: "/en/premium/3-months", label: "3 months" },
+  { href: "/en/premium/6-months", label: "6 months", active: true },
+  { href: "/en/premium/12-months", label: "12 months" },
+];
+
+const trustItems = [
+  { num: "8,000+", title: "Orders completed", text: "The service has run for over a year, with an openly shown order count." },
+  { num: "10 sec.", title: "Delivery time", text: "Premium usually arrives within 10 seconds after payment is confirmed." },
+  { num: "100%", title: "Money-back", text: "If the service is not delivered, the paid amount is fully refunded." },
+];
+
+const related = [
+  { href: "/en/blog/telegram-stars-or-premium", label: "Telegram Stars or Premium — which one do you need?" },
+  { href: "/en/premium", label: "All Premium plans" },
+  { href: "/en/how-to-buy", label: "Step-by-step buying guide" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="Telegram Premium 6 months, Telegram Premium 6 month price, buy Telegram Premium 6 months, Telegram Premium Uzcard"
+  lang="en"
+  hreflangs={hreflangsFor('/premium/6-oy')}
+>
+  <NavbarEn />
+  <VariantPage
+    accent="purple"
+    canonical={canonical}
+    homeLabel="Home"
+    hubLabel="Telegram Premium"
+    hubHref="/en/premium"
+    currentLabel="6 months"
+    eyebrow="Telegram Premium — 6 months"
+    h1="Buy Telegram Premium for 6 Months"
+    quickAnswer="Telegram Premium for 6 months costs 232,000 UZS (~38,700 UZS/month), activated via @starsjoybot in about 10 seconds."
+    heroNote="The most balanced plan — cheaper than 3 months, without a full-year commitment like the 12-month plan."
+    siblingsTitle="Other terms"
+    siblings={siblings}
+    priceLabel="Price"
+    priceValue="232,000 UZS"
+    priceSubtext="~38,700 UZS/month"
+    ctaLabel="Buy Premium — 6 months"
+    ctaHref="https://telegram.me/starsjoybot"
+    forWhomTitle="Who is this for?"
+    forWhomText="The 6-month plan is the best balance for regular Premium users who don't want to pay for a full year at once. It's a meaningful saving over 3 months, with a lower entry cost than the 12-month plan."
+    trustItems={trustItems}
+    faqTitle="Questions about the 6-month plan"
+    faqSubtitle="The most common questions, answered"
+    faqs={faqs}
+    relatedTitle="More about Telegram Premium"
+    related={related}
+    finalCtaTitle="Ready for 6 months of Premium?"
+    finalCtaText="232,000 UZS, pay with Uzcard/Click, activated in about 10 seconds"
+    finalCtaLabel="Buy now"
+    schemaName="Telegram Premium — 6-month subscription"
+    schemaDescription={description}
+    priceAmount="232000"
+    breadcrumbSchema={[
+      { name: "Home", item: "https://starsjoy.uz/en" },
+      { name: "Telegram Premium", item: "https://starsjoy.uz/en/premium" },
+      { name: "6 months", item: canonical },
+    ]}
+  />
+  <FooterEn />
+</Layout>

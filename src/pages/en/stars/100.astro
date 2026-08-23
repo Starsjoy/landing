@@ -1,0 +1,108 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarEn from '../../../components/NavbarEn.astro';
+import FooterEn from '../../../components/FooterEn.astro';
+import VariantPage from '../../../components/VariantPage.astro';
+import { hreflangsFor } from '../../../lib/i18n';
+
+const canonical = "https://starsjoy.uz/en/stars/100";
+const title = "Buy 100 Telegram Stars — 24,000 UZS | StarsJoy";
+const description = "100 Telegram Stars costs 24,000 UZS in Uzbekistan. The smallest starter pack for first-time buyers. Pay with Uzcard/Click, delivered in about 10 seconds.";
+
+const faqs = [
+  {
+    q: "Where can I buy 100 Telegram Stars?",
+    a: "Through @starsjoybot — enter 100 as the amount and pay via Uzcard, Humo or Click. The price is 24,000 UZS, delivered to your balance in about 10 seconds."
+  },
+  {
+    q: "What can I do with 100 Stars?",
+    a: "100 Stars is enough to unlock one or two paid posts in a channel, use a small paid bot feature, or send a small tip to a content creator. It's the smallest pack, meant for trying things out."
+  },
+  {
+    q: "Should I start with 100 Stars if this is my first purchase?",
+    a: "Yes, if you want to try Stars and the purchase process for the first time, 100 (24,000 UZS) is the cheapest, lowest-risk starting point. If it goes well, you can buy a larger pack next time."
+  },
+  {
+    q: "Does a small pack like this still arrive in 10 seconds?",
+    a: "Yes, delivery speed doesn't depend on the amount — both 100 and 10,000 Stars usually land in your balance within 10 seconds of payment confirmation."
+  },
+  {
+    q: "Is the price per Star higher for 100 than for larger packs?",
+    a: "No, StarsJoy uses one flat rate — 240 UZS per Star for any amount. Only the total changes, not the per-Star price."
+  },
+  {
+    q: "Can I gift 100 Stars to someone?",
+    a: "Yes, you can send 100 Stars as a gift to any Telegram user through the bot — a small, easy present."
+  }
+];
+
+const siblings = [
+  { href: "/en/stars/100", label: "100 ⭐", active: true },
+  { href: "/en/stars/500", label: "500 ⭐" },
+  { href: "/en/stars/1000", label: "1000 ⭐" },
+  { href: "/en/stars/5000", label: "5000 ⭐" },
+  { href: "/en/stars/10000", label: "10,000 ⭐" },
+];
+
+const trustItems = [
+  { num: "8,000+", title: "Orders completed", text: "The service has run for over a year, with an openly shown order count." },
+  { num: "10 sec.", title: "Delivery time", text: "Stars usually arrive within 10 seconds after payment is confirmed." },
+  { num: "100%", title: "Money-back", text: "If the service is not delivered, the paid amount is fully refunded." },
+];
+
+const related = [
+  { href: "/en/blog/is-buying-telegram-stars-safe", label: "Is buying Telegram Stars safe?" },
+  { href: "/en/blog/what-you-can-do-with-telegram-stars", label: "What you can do with Telegram Stars" },
+  { href: "/en/stars", label: "All Stars packs" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="100 Telegram Stars, 100 stars price, buy 100 Telegram Stars, Telegram Stars 100 pack"
+  lang="en"
+  hreflangs={hreflangsFor('/stars/100')}
+>
+  <NavbarEn />
+  <VariantPage
+    accent="gold"
+    canonical={canonical}
+    homeLabel="Home"
+    hubLabel="Telegram Stars"
+    hubHref="/en/stars"
+    currentLabel="100 ⭐"
+    eyebrow="Telegram Stars — 100"
+    h1="Buy 100 Telegram Stars"
+    quickAnswer="100 Telegram Stars costs 24,000 UZS, delivered via @starsjoybot in about 10 seconds."
+    heroNote="The smallest, cheapest starter pack for anyone buying Stars for the first time."
+    siblingsTitle="Other amounts"
+    siblings={siblings}
+    priceLabel="Price"
+    priceValue="24,000 UZS"
+    priceSubtext="240 UZS/star"
+    ctaLabel="Buy 100 Stars"
+    ctaHref="https://telegram.me/starsjoybot"
+    forWhomTitle="Who is this for?"
+    forWhomText="100 Stars suits anyone trying the service for the first time, tipping a creator a small amount, or unlocking one or two paid posts in a channel."
+    trustItems={trustItems}
+    faqTitle="Questions about 100 Stars"
+    faqSubtitle="The most common questions, answered"
+    faqs={faqs}
+    relatedTitle="More about Telegram Stars"
+    related={related}
+    finalCtaTitle="Ready to buy 100 Stars?"
+    finalCtaText="24,000 UZS, pay with Uzcard/Click, delivered in about 10 seconds"
+    finalCtaLabel="Buy now"
+    schemaName="Telegram Stars — 100"
+    schemaDescription={description}
+    priceAmount="24000"
+    breadcrumbSchema={[
+      { name: "Home", item: "https://starsjoy.uz/en" },
+      { name: "Telegram Stars", item: "https://starsjoy.uz/en/stars" },
+      { name: "100", item: canonical },
+    ]}
+  />
+  <FooterEn />
+</Layout>

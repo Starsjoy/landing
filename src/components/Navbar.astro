@@ -14,8 +14,26 @@ const enPath = UZ_TO_EN[currentPath];
     </a>
     <ul class="nav-links">
       <li><a href="/">Asosiy</a></li>
-      <li><a href="/stars">Stars</a></li>
-      <li><a href="/premium">Premium</a></li>
+      <li class="has-dropdown">
+        <a href="/stars">Stars <span class="caret">&#9662;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/stars/100">100 ⭐</a></li>
+          <li><a href="/stars/500">500 ⭐</a></li>
+          <li><a href="/stars/1000">1000 ⭐</a></li>
+          <li><a href="/stars/5000">5000 ⭐</a></li>
+          <li><a href="/stars/10000">10 000 ⭐</a></li>
+          <li class="dropdown-all"><a href="/stars">Barcha paketlar &rarr;</a></li>
+        </ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="/premium">Premium <span class="caret">&#9662;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/premium/3-oy">3 oylik</a></li>
+          <li><a href="/premium/6-oy">6 oylik</a></li>
+          <li><a href="/premium/12-oy">12 oylik</a></li>
+          <li class="dropdown-all"><a href="/premium">Barcha tariflar &rarr;</a></li>
+        </ul>
+      </li>
       <li><a href="/gifts">Gifts</a></li>
       <li><a href="/narxlar">Narxlar</a></li>
       <li><a href="/qollanma">Qo'llanma</a></li>
@@ -120,6 +138,37 @@ const enPath = UZ_TO_EN[currentPath];
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--primary); }
+
+  .has-dropdown { position: relative; }
+  .has-dropdown > a { display: flex; align-items: center; gap: 4px; }
+  .caret { font-size: 0.65rem; transition: transform 0.2s; }
+  .has-dropdown:hover .caret { transform: rotate(180deg); }
+  .dropdown-menu {
+    list-style: none;
+    margin: 0; padding: 8px;
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    min-width: 160px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transform: translateX(-50%) translateY(6px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    z-index: 10;
+  }
+  .has-dropdown:hover .dropdown-menu {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  .dropdown-menu li { white-space: nowrap; }
+  .dropdown-menu a {
+    display: block; padding: 8px 12px; border-radius: 6px;
+    font-size: 0.9rem; color: var(--text);
+  }
+  .dropdown-menu a:hover { background: var(--bg-alt); color: var(--primary); }
+  .dropdown-all { border-top: 1px solid var(--border-light); margin-top: 4px; padding-top: 4px; }
+  .dropdown-all a { color: var(--primary); font-weight: 600; }
 
   .lang-switch {
     padding: 0;
@@ -236,5 +285,15 @@ const enPath = UZ_TO_EN[currentPath];
     .mobile-menu-cta { display: list-item; list-style: none; }
     .mobile-menu-cta .nav-cta { display: inline-flex; text-align: center; justify-content: center; width: 100%; color: #fff; }
     .mobile-toggle { display: block; }
+
+    .has-dropdown > a { justify-content: space-between; }
+    .dropdown-menu {
+      position: static; transform: none; opacity: 1; visibility: visible; pointer-events: auto;
+      box-shadow: none; border: none; border-left: 2px solid var(--border);
+      border-radius: 0; margin: 4px 0 8px 8px; padding: 0 0 0 12px;
+      background: none;
+    }
+    .dropdown-menu a { padding: 8px 4px; font-size: 0.88rem; color: var(--text-muted); }
+    .dropdown-all { border-top: none; margin-top: 0; padding-top: 0; }
   }
 </style>

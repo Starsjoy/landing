@@ -1,0 +1,106 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarEn from '../../../components/NavbarEn.astro';
+import FooterEn from '../../../components/FooterEn.astro';
+import VariantPage from '../../../components/VariantPage.astro';
+import { hreflangsFor } from '../../../lib/i18n';
+
+const canonical = "https://starsjoy.uz/en/premium/3-months";
+const title = "Buy Telegram Premium 3 Months — 172,000 UZS | StarsJoy";
+const description = "Telegram Premium for 3 months costs 172,000 UZS in Uzbekistan. Pay with Uzcard, Humo or Click — activated in about 10 seconds. The cheapest way to try Premium.";
+
+const faqs = [
+  {
+    q: "Where can I buy Telegram Premium for 3 months at a good price?",
+    a: "Through StarsJoy — open @starsjoybot, tap 'Buy Premium' and choose 3 months. The price is 172,000 UZS, paid via Uzcard, Humo or Click, activated in about 10 seconds."
+  },
+  {
+    q: "Why is there no 1-month plan, only starting from 3 months?",
+    a: "StarsJoy delivers Premium through Telegram's official 'Gift Premium' mechanism, whose minimum term is 3 months. A 1-month plan does exist inside the Telegram app itself, but it requires an international card, which does not work for most accounts in Uzbekistan."
+  },
+  {
+    q: "Is 3 months enough to try Premium?",
+    a: "Yes, most users find 3 months plenty to evaluate Premium's features — 4 GB file uploads, no ads, exclusive stickers and reactions. If you decide not to continue, nothing renews automatically."
+  },
+  {
+    q: "Does the 3-month plan auto-renew and charge my card again?",
+    a: "No. Every StarsJoy plan is a one-time payment — there is no auto-renewal and no repeat charge. When the term ends, you can simply buy again if you want to."
+  },
+  {
+    q: "How much more expensive is the 3-month plan than the 12-month plan, per month?",
+    a: "The 3-month plan works out to about 57,300 UZS per month, versus roughly 35,200 UZS per month on the 12-month plan. Longer terms are cheaper per month, but the 3-month plan lets you try Premium for a smaller upfront amount."
+  },
+  {
+    q: "Can I pay with Uzcard or Humo?",
+    a: "Yes. No international card is required — pay the full amount in Uzbek som via Uzcard, Humo or Click, with no currency conversion."
+  }
+];
+
+const siblings = [
+  { href: "/en/premium/3-months", label: "3 months", active: true },
+  { href: "/en/premium/6-months", label: "6 months" },
+  { href: "/en/premium/12-months", label: "12 months" },
+];
+
+const trustItems = [
+  { num: "8,000+", title: "Orders completed", text: "The service has run for over a year, with an openly shown order count." },
+  { num: "10 sec.", title: "Delivery time", text: "Premium usually arrives within 10 seconds after payment is confirmed." },
+  { num: "100%", title: "Money-back", text: "If the service is not delivered, the paid amount is fully refunded." },
+];
+
+const related = [
+  { href: "/en/blog/telegram-stars-or-premium", label: "Telegram Stars or Premium — which one do you need?" },
+  { href: "/en/premium", label: "All Premium plans" },
+  { href: "/en/how-to-buy", label: "Step-by-step buying guide" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="Telegram Premium 3 months, Telegram Premium 3 month price, buy Telegram Premium 3 months, Telegram Premium Uzcard"
+  lang="en"
+  hreflangs={hreflangsFor('/premium/3-oy')}
+>
+  <NavbarEn />
+  <VariantPage
+    accent="purple"
+    canonical={canonical}
+    homeLabel="Home"
+    hubLabel="Telegram Premium"
+    hubHref="/en/premium"
+    currentLabel="3 months"
+    eyebrow="Telegram Premium — 3 months"
+    h1="Buy Telegram Premium for 3 Months"
+    quickAnswer="Telegram Premium for 3 months costs 172,000 UZS, activated via @starsjoybot in about 10 seconds (Uzcard/Humo/Click)."
+    heroNote="The cheapest way to try Premium if you've never used it before."
+    siblingsTitle="Other terms"
+    siblings={siblings}
+    priceLabel="Price"
+    priceValue="172,000 UZS"
+    priceSubtext="~57,300 UZS/month"
+    ctaLabel="Buy Premium — 3 months"
+    ctaHref="https://telegram.me/starsjoybot"
+    forWhomTitle="Who is this for?"
+    forWhomText="The 3-month plan suits anyone trying Premium for the first time, or who doesn't want to commit to a longer term yet. For a small one-time payment you get the full Premium experience — 4 GB uploads, no ads, exclusive stickers."
+    trustItems={trustItems}
+    faqTitle="Questions about the 3-month plan"
+    faqSubtitle="The most common questions, answered"
+    faqs={faqs}
+    relatedTitle="More about Telegram Premium"
+    related={related}
+    finalCtaTitle="Ready for 3 months of Premium?"
+    finalCtaText="172,000 UZS, pay with Uzcard/Click, activated in about 10 seconds"
+    finalCtaLabel="Buy now"
+    schemaName="Telegram Premium — 3-month subscription"
+    schemaDescription={description}
+    priceAmount="172000"
+    breadcrumbSchema={[
+      { name: "Home", item: "https://starsjoy.uz/en" },
+      { name: "Telegram Premium", item: "https://starsjoy.uz/en/premium" },
+      { name: "3 months", item: canonical },
+    ]}
+  />
+  <FooterEn />
+</Layout>

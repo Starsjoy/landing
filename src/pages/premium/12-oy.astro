@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import VariantPage from '../../components/VariantPage.astro';
+import { hreflangsFor } from '../../lib/i18n';
+
+const canonical = "https://starsjoy.uz/premium/12-oy";
+const title = "Telegram Premium 12 oylik sotib olish — 422 000 so'm | StarsJoy";
+const description = "Telegram Premium 12 oylik (1 yillik) obuna narxi — 422 000 so'm, oyiga ~35 200 so'm — eng tejamkor tarif. Uzcard, Humo yoki Click orqali 10 soniyada faollashadi.";
+
+const faqs = [
+  {
+    q: "Telegram Premium 1 yillikni (12 oylik) eng arzon qayerdan sotib olsam bo'ladi?",
+    a: "StarsJoy — @starsjoybot orqali. 422 000 so'mni Uzcard, Humo yoki Click bilan to'lab, 10 soniyada faollashtirasiz. Bu 12 oylik uchun eng past oylik narx (~35 200 so'm/oy)."
+  },
+  {
+    q: "12 oylik nechchi foiz tejamkor, 3 oylikka nisbatan?",
+    a: "3 oylikda 1 oy ~57 300 so'm, 12 oylikda ~35 200 so'm — ya'ni 12 oylikni tanlab, oyiga taxminan 38% tejaysiz. Bir yil davomida Premium ishlatishni rejalashtirgan bo'lsangiz, eng arzon yo'l shu."
+  },
+  {
+    q: "12 oylik uchun katta summani (422 000 so'm) Uzcard/Humo bilan to'lashda e'tiborga olish kerak narsa bormi?",
+    a: "Ha — bank kartalarida kunlik/oylik tranzaksiya limiti bo'lishi mumkin. Agar bir martada 422 000 so'm o'tmasa, Click yoki Payme orqali to'lashni sinab ko'ring yoki bankingiz limitini oldindan tekshiring. Batafsil nuanslar 'Uzcard/Humo bilan 12 oylik' qo'llanmasida."
+  },
+  {
+    q: "12 oy oldindan to'lab, keyin foydalanishni to'xtatsam pul qaytariladimi?",
+    a: "Premium sizning haqiqiy Telegram akkauntingizga darhol biriktiriladi va bu qaytarib bo'lmaydigan bir martalik xizmat — 'foydalanmadim' sababi bilan qisman qaytarish yo'q. Pul faqat xizmat umuman yetkazilmasa yoki texnik xato bo'lsa 100% qaytariladi."
+  },
+  {
+    q: "12 oylik muddat tugagach avtomatik yangilanadimi?",
+    a: "Yo'q. Bu bir martalik to'lov, avtomatik yangilanish yoki kartadan qo'shimcha pul yechish yo'q. Muddat tugagach xohishga ko'ra qayta xarid qilasiz."
+  },
+  {
+    q: "12 oylikni do'stimga sovg'a qilsam narxi o'zgaradimi?",
+    a: "Yo'q, sovg'a qilish narxi oddiy 12 oylik xariddagi bilan bir xil (422 000 so'm) — qabul qiluvchi hech qanday to'lov qilmaydi."
+  }
+];
+
+const siblings = [
+  { href: "/premium/3-oy", label: "3 oylik" },
+  { href: "/premium/6-oy", label: "6 oylik" },
+  { href: "/premium/12-oy", label: "12 oylik", active: true },
+];
+
+const trustItems = [
+  { num: "8 000+", title: "Bajarilgan buyurtma", text: "Xizmat 1 yildan ortiq ishlaydi, buyurtmalar soni ochiq." },
+  { num: "10 son.", title: "Yetkazish vaqti", text: "To'lov tasdiqlangach Premium odatda 10 soniyada tushadi." },
+  { num: "100%", title: "Pul qaytarish", text: "Xizmat ko'rsatilmasa, to'langan summa to'liq qaytariladi." },
+];
+
+const related = [
+  { href: "/blog/telegram-premium-12-oylik-uzcard-humo-bilan", label: "12 oylikni Uzcard/Humo bilan to'lash — nuanslar" },
+  { href: "/blog/telegram-premium-paketlar-taqqoslash", label: "1, 3, 6 va 12 oylik paketlarni taqqoslash" },
+  { href: "/premium", label: "Barcha Premium tariflar" },
+  { href: "/narxlar", label: "Stars va Premium — barcha narxlar" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="Telegram Premium 12 oylik, Telegram Premium 1 yillik narxi, 12 oylik Premium sotib olish, Telegram Premium 12 oy Uzcard"
+  hreflangs={hreflangsFor('/premium/12-oy')}
+>
+  <Navbar />
+  <VariantPage
+    accent="purple"
+    canonical={canonical}
+    homeLabel="Bosh sahifa"
+    hubLabel="Telegram Premium"
+    hubHref="/premium"
+    currentLabel="12 oylik"
+    eyebrow="Telegram Premium — 12 oylik"
+    h1="Telegram Premium 12 oylik (1 yillik) sotib olish"
+    quickAnswer="Telegram Premium 12 oylik obuna narxi — 422 000 so'm (oyiga ~35 200 so'm) — eng tejamkor tarif, @starsjoybot orqali 10 soniyada faollashadi."
+    heroNote="Premium'ni doimiy ishlatadiganlar uchun eng arzon oylik narx — 3 oylikka nisbatan ~38% tejov."
+    siblingsTitle="Boshqa muddatlar"
+    siblings={siblings}
+    priceLabel="Narx"
+    priceValue="422 000 so'm"
+    priceSubtext="~35 200 so'm/oy — eng foydali"
+    ctaLabel="12 oylik Premium sotib olish"
+    ctaHref="https://telegram.me/starsjoybot"
+    forWhomTitle="Kimga mos?"
+    forWhomText="12 oylik tarif Premium'ni uzoq muddat, doimiy ishlatishni rejalashtirgan foydalanuvchilar uchun eng tejamkor variant — har oy yoki har 3-6 oyda qayta xarid qilish tashvishisiz, bir martalik to'lov bilan butun yilga yetadi."
+    trustItems={trustItems}
+    faqTitle="12 oylik Premium haqida savollar"
+    faqSubtitle="Eng ko'p so'raladigan savollarga javoblar"
+    faqs={faqs}
+    relatedTitle="12 oylik Premium haqida qo'shimcha"
+    related={related}
+    finalCtaTitle="12 oylik Premium'ga tayyor bo'ling"
+    finalCtaText="422 000 so'm, Uzcard/Click orqali, 10 soniyada faollashadi"
+    finalCtaLabel="Hozir sotib olish"
+    schemaName="Telegram Premium 12 oylik obuna"
+    schemaDescription={description}
+    priceAmount="422000"
+    breadcrumbSchema={[
+      { name: "Bosh sahifa", item: "https://starsjoy.uz" },
+      { name: "Telegram Premium", item: "https://starsjoy.uz/premium" },
+      { name: "12 oylik", item: canonical },
+    ]}
+  />
+  <Footer />
+</Layout>

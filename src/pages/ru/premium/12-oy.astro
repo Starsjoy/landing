@@ -1,0 +1,107 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+import VariantPage from '../../../components/VariantPage.astro';
+import { hreflangsFor } from '../../../lib/i18n';
+
+const canonical = "https://starsjoy.uz/ru/premium/12-oy";
+const title = "Telegram Premium на 12 месяцев — 422 000 сум | StarsJoy";
+const description = "Telegram Premium на 12 месяцев (год) — 422 000 сум, около 35 200 сум/мес — самый выгодный тариф. Оплата Uzcard, Humo или Click, активация за 10 секунд.";
+
+const faqs = [
+  {
+    q: "Где можно купить Telegram Premium на 12 месяцев (год) дешевле всего?",
+    a: "StarsJoy — через @starsjoybot. Оплатите 422 000 сум картой Uzcard, Humo или через Click, активация за 10 секунд. Это самая низкая цена в пересчёте на месяц (~35 200 сум/мес)."
+  },
+  {
+    q: "На сколько процентов 12 месяцев выгоднее 3 месяцев?",
+    a: "На 3-месячном тарифе месяц стоит ~57 300 сум, на 12-месячном — ~35 200 сум, то есть экономия в месяц около 38%. Если планируете пользоваться Premium весь год, это самый дешёвый вариант."
+  },
+  {
+    q: "Есть ли нюансы при оплате крупной суммы (422 000 сум) картой Uzcard/Humo?",
+    a: "Да — у банковских карт бывает дневной/месячный лимит на транзакции. Если сумма не проходит одним платежом, попробуйте оплату через Click или Payme, либо заранее уточните лимит в банке."
+  },
+  {
+    q: "Если оплатил на год вперёд, а потом перестал пользоваться — вернут деньги?",
+    a: "Premium привязывается к вашему реальному аккаунту Telegram сразу и это невозвратная разовая услуга — частичного возврата по причине 'не пользовался' нет. Полный возврат (100%) — только если услуга вообще не была оказана или произошла техническая ошибка."
+  },
+  {
+    q: "После 12 месяцев подписка продлевается автоматически?",
+    a: "Нет. Это разовая оплата без автопродления и без повторного списания средств. По истечении срока вы можете купить снова по желанию."
+  },
+  {
+    q: "Если подарю подписку на 12 месяцев другу, цена изменится?",
+    a: "Нет, цена подарка такая же, как при обычной покупке (422 000 сум) — получатель ничего не оплачивает."
+  }
+];
+
+const siblings = [
+  { href: "/ru/premium/3-oy", label: "3 месяца" },
+  { href: "/ru/premium/6-oy", label: "6 месяцев" },
+  { href: "/ru/premium/12-oy", label: "12 месяцев", active: true },
+];
+
+const trustItems = [
+  { num: "8 000+", title: "Выполненных заказов", text: "Сервис работает больше года, число заказов открыто." },
+  { num: "10 сек.", title: "Время доставки", text: "После подтверждения оплаты Premium приходит обычно за 10 секунд." },
+  { num: "100%", title: "Возврат средств", text: "Если услуга не оказана — сумма возвращается полностью." },
+];
+
+const related = [
+  { href: "/blog/telegram-premium-12-oylik-uzcard-humo-bilan", label: "Оплата 12 месяцев через Uzcard/Humo — нюансы" },
+  { href: "/blog/telegram-premium-paketlar-taqqoslash", label: "Сравнение тарифов 1, 3, 6 и 12 месяцев" },
+  { href: "/ru/premium", label: "Все тарифы Premium" },
+  { href: "/ru/narxlar", label: "Stars и Premium — все цены" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="Telegram Premium 12 месяцев, Telegram Premium цена на год, купить Telegram Premium 12 месяцев, Telegram Premium Uzcard"
+  lang="ru"
+  hreflangs={hreflangsFor('/premium/12-oy')}
+>
+  <NavbarRu />
+  <VariantPage
+    accent="purple"
+    canonical={canonical}
+    homeLabel="Главная"
+    hubLabel="Telegram Premium"
+    hubHref="/ru/premium"
+    currentLabel="12 месяцев"
+    eyebrow="Telegram Premium — 12 месяцев"
+    h1="Telegram Premium на 12 месяцев (год)"
+    quickAnswer="Telegram Premium на 12 месяцев — 422 000 сум (~35 200 сум/мес) — самый выгодный тариф, активация через @starsjoybot за 10 секунд."
+    heroNote="Для тех, кто пользуется Premium постоянно — самая низкая цена в пересчёте на месяц, экономия ~38% по сравнению с тарифом на 3 месяца."
+    siblingsTitle="Другие сроки"
+    siblings={siblings}
+    priceLabel="Цена"
+    priceValue="422 000 сум"
+    priceSubtext="~35 200 сум/мес — самый выгодный"
+    ctaLabel="Купить Premium на 12 месяцев"
+    ctaHref="https://telegram.me/starsjoybot"
+    forWhomTitle="Кому подойдёт?"
+    forWhomText="Тариф на 12 месяцев — самый экономичный вариант для тех, кто планирует пользоваться Premium весь год: одна оплата вместо повторных покупок каждые 3–6 месяцев."
+    trustItems={trustItems}
+    faqTitle="Вопросы о Premium на 12 месяцев"
+    faqSubtitle="Ответы на самые частые вопросы"
+    faqs={faqs}
+    relatedTitle="Дополнительно о Premium на 12 месяцев"
+    related={related}
+    finalCtaTitle="Готовы оформить Premium на 12 месяцев?"
+    finalCtaText="422 000 сум, оплата Uzcard/Click, активация за 10 секунд"
+    finalCtaLabel="Купить сейчас"
+    schemaName="Telegram Premium — подписка на 12 месяцев"
+    schemaDescription={description}
+    priceAmount="422000"
+    breadcrumbSchema={[
+      { name: "Главная", item: "https://starsjoy.uz/ru" },
+      { name: "Telegram Premium", item: "https://starsjoy.uz/ru/premium" },
+      { name: "12 месяцев", item: canonical },
+    ]}
+  />
+  <FooterRu />
+</Layout>
