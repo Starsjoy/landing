@@ -151,24 +151,31 @@ const enPath = UZ_TO_EN[uzPath];
   .has-dropdown { position: relative; }
   .has-dropdown > a { display: flex; align-items: center; gap: 4px; }
   .caret { font-size: 0.65rem; transition: transform 0.2s; }
-  .has-dropdown:hover .caret { transform: rotate(180deg); }
   .dropdown-menu {
     list-style: none;
     margin: 0; padding: 8px;
-    position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
     min-width: 160px;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-md);
-    opacity: 0; visibility: hidden; pointer-events: none;
-    transform: translateX(-50%) translateY(6px);
-    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
     z-index: 10;
   }
-  .has-dropdown:hover .dropdown-menu {
-    opacity: 1; visibility: visible; pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
+  /* Hover-reveal is for mouse pointers only — on touch, :hover can stick after a
+     tap and fight with the tap-to-expand accordion below, so it's fully scoped
+     out of touch/mobile here rather than relying on width alone. */
+  @media (hover: hover) and (pointer: fine) {
+    .has-dropdown:hover .caret { transform: rotate(180deg); }
+    .dropdown-menu {
+      position: absolute; top: 100%; left: 50%;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transform: translateX(-50%) translateY(6px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    }
+    .has-dropdown:hover .dropdown-menu {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
   }
   .dropdown-menu li { white-space: nowrap; }
   .dropdown-menu a {

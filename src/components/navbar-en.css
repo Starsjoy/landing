@@ -9,9 +9,12 @@
 #navbar .has-dropdown{position:relative}
 #navbar .has-dropdown>a{display:flex;align-items:center;gap:4px}
 #navbar .caret{font-size:.65rem;transition:transform .2s}
+#navbar .dropdown-menu{list-style:none;margin:0;padding:8px;min-width:160px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-md);z-index:10}
+@media (hover:hover) and (pointer:fine){
 #navbar .has-dropdown:hover .caret{transform:rotate(180deg)}
-#navbar .dropdown-menu{list-style:none;margin:0;padding:8px;position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:160px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-md);opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-50%) translateY(6px);transition:opacity .2s,transform .2s,visibility .2s;z-index:10}
+#navbar .dropdown-menu{position:absolute;top:100%;left:50%;opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-50%) translateY(6px);transition:opacity .2s,transform .2s,visibility .2s}
 #navbar .has-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+}
 #navbar .dropdown-menu li{white-space:nowrap}
 #navbar .dropdown-menu a{display:block;padding:8px 12px;border-radius:6px;font-size:.9rem;color:var(--text)}
 #navbar .dropdown-menu a:hover{background:var(--bg-alt);color:var(--primary)}
