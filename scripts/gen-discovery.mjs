@@ -102,6 +102,7 @@ const GROUPS = [
       'telegram-nft-gifts',
       'telegram-gift-collectible-upgrade',
       'eng-qimmat-telegram-sovgalari',
+      'telegram-sovga-sotish-fragment',
     ],
   },
   {

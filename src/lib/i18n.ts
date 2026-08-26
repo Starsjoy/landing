@@ -36,6 +36,7 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/blog/most-expensive-telegram-gifts': '/blog/eng-qimmat-telegram-sovgalari',
   '/en/blog/pay-for-telegram-ads-with-stars': '/blog/telegram-ads-stars-bilan',
   '/en/blog/telegram-stars-premium-statistics-2026': '/blog/telegram-stars-premium-statistika-2026',
+  '/en/blog/sell-telegram-gift-fragment': '/blog/telegram-sovga-sotish-fragment',
 };
 
 /** O'zbekcha sahifa → uning inglizcha ekvivalenti (yuqoridagining teskarisi) */

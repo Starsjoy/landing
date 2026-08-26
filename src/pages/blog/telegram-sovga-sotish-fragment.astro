@@ -1,0 +1,106 @@
+---
+import BlogPost from '../../layouts/BlogPostEn.astro';
+
+const title = "Telegram sovg‘asini qanday sotish mumkin?";
+const description = "Telegram sovg‘asini Marketplace yoki Fragment orqali sotish: Stars va TON farqi, listing bosqichlari, komissiya, xavfsizlik va pulga aylantirish.";
+const publishDate = "2026-08-26";
+const faqs = [
+  { q: "Telegram sovg'asini Stars'ga sotish mumkinmi?", a: "Ha, faqat collectible sovg'ani ochib Sell tugmasini bosasiz va Stars narxini belgilaysiz. Listing Telegram ichidagi Gift Marketplace'da chiqadi. Oddiy, upgrade qilinmagan sovg'ada Sell tugmasi bo'lmasligi mumkin." },
+  { q: "Sovg'ani Fragment'da sotish uchun nima kerak?", a: "Sovg'a collectible bo'lishi, blockchain'ga eksport qilishga ruxsat ochilgan bo'lishi, Telegram akkauntida ikki bosqichli parol va TON hamyon bo'lishi kerak. Profil > Gifts > sovg'a > Transfer > Send via Blockchain orqali Fragment oynasi ochiladi." },
+  { q: "Sotuvdan tushgan Stars'ni kartaga chiqarish mumkinmi?", a: "Marketplace savdosi Stars beradi, lekin shaxsiy balansdagi Stars uchun to'g'ridan-to'g'ri Uzcard/Humo yechimi Telegram tomonidan kafolatlanmagan. Blockchain/Fragment savdosi esa TON beradi; uni alohida kripto birja yoki P2P orqali so'mga aylantirish kerak va bu qo'shimcha xavf hamda komissiyaga ega." },
+  { q: "Oddiy sovg'ani ham sotish mumkinmi?", a: "Marketplace'da qayta sotish uchun sovg'a collectible bo'lishi kerak. Upgrade mavjud bo'lsa, avval uni Stars sarflab collectible qilasiz. Ayrim oddiy sovg'alarni faqat cheklangan muddat ichida Stars'ning bir qismiga konvertatsiya qilish mumkin; bu bozor savdosi emas va sovg'a yo'q qilinadi." },
+  { q: "Sotuv narxini qanday belgilash kerak?", a: "Bir xil kolleksiyadagi Model, Backdrop, Symbol va raqamga yaqin sovg'alarning amaldagi listinglarini solishtiring. Eng arzon listing — floor — faqat boshlang'ich mezon; kamyob trait va past raqam narxni oshirishi mumkin. Rekord savdoni odatiy bozor narxi deb olmang." },
+  { q: "Telegram sovg'a savdosida firibgarlikdan qanday saqlanaman?", a: "Telegram ichidagi Marketplace yoki fragment.com domenidan foydalaning. Seed phrase, SMS kod yoki 2FA parolini hech kimga bermang. Shaxsiy xabardagi 'escrow bot', soxta Fragment havolasi va oldindan komissiya talabiga ishonmang." }
+];
+---
+
+<BlogPost locale="uz" slug="telegram-sovga-sotish-fragment" title={title} heading="Telegram sovg'asini sotish: Marketplace va Fragment qo'llanmasi (2026)" crumb="Sovg'ani sotish" tag="Gifts" description={description} keywords="Telegram sovg'asini sotish, Fragment gift sotish, Telegram gift marketplace, collectible gift sotish, sovg'ani TON ga chiqarish" publishDate={publishDate} uzHref="https://starsjoy.uz/blog/telegram-sovga-sotish-fragment" ruHref="https://starsjoy.uz/ru/blog/telegram-sovga-sotish-fragment" enHref="https://starsjoy.uz/en/blog/sell-telegram-gift-fragment" faqs={faqs}>
+  <section><p class="post-lead"><strong>Qisqa javob:</strong> collectible Telegram sovg'asini ikki usulda sotasiz. Telegram ichidagi <strong>Gift Marketplace</strong>'da narxni Stars'da qo'yish eng oson yo'l. <strong>Fragment</strong> yo'lida esa sovg'ani TON blockchain'ga eksport qilib, kripto bozorida sotasiz. Birinchi usul Stars beradi; ikkinchisi TON hamyon, 2FA va kripto bilan ishlashni talab qiladi.</p></section>
+
+  <section>
+    <p>2025-yil mayidan Telegram collectible sovg'alarni ilovaning o'zida xavfsiz qayta sotish imkonini berdi. Shu sabab har bir sovg'ani Fragment'ga chiqarish shart emas. Qaysi yo'l to'g'ri ekanini maqsad belgilaydi: Telegram ichida boshqa gift yoki raqamli mahsulot olish uchun Stars kerak bo'lsa — Marketplace; aktivni blockchain hamyoniga olib chiqish kerak bo'lsa — Fragment.</p>
+    <p>Muhim: sovg'a narxi kafolatlangan daromad emas. Kolleksiya talabi, traits va TON kursi o'zgaradi. Bu qo'llanma savdo jarayonini tushuntiradi, investitsiya tavsiyasi bermaydi.</p>
+  </section>
+
+  <section>
+    <h2>Qaysi sovg'ani sotish mumkin?</h2>
+    <p>Qayta sotish uchun sovg'a <strong>collectible</strong> bo'lishi kerak. Uning noyob raqami va uchta xususiyati — Model, Backdrop va Symbol — mavjud bo'ladi. Oddiy sovg'a collectible'ga aylantirilmagan bo'lsa, avval <a href="/blog/telegram-gift-collectible-upgrade">upgrade qilish</a> talab qilinishi mumkin.</p>
+    <ul>
+      <li><strong>Sell ko'rinsa:</strong> sovg'ani Telegram Marketplace'da Stars'ga listing qilish mumkin.</li>
+      <li><strong>Transfer → Send via Blockchain ko'rinsa:</strong> eksport sanasi yetganidan keyin Fragment orqali TON hamyonga chiqarish mumkin.</li>
+      <li><strong>Convert to Stars ko'rinsa:</strong> bu savdo emas; Telegram sovg'ani yo'q qilib, xarid narxidan kamroq Stars qaytaradi. Funksiya faqat belgilangan muddat va mos sovg'alar uchun ishlaydi.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Marketplace'da sovg'ani Stars'ga qanday sotiladi?</h2>
+    <ol>
+      <li>Telegram'da <strong>My Profile → Gifts</strong> bo'limini oching.</li>
+      <li>Sotiladigan collectible sovg'ani tanlab, <strong>Sell</strong> tugmasini bosing.</li>
+      <li>Narxni Telegram Stars'da kiriting va yakuniy tushumni tasdiqlash oynasida tekshiring.</li>
+      <li>Listing'ni tasdiqlang. Sovg'ada <strong>Sale</strong> belgisi paydo bo'ladi va u Marketplace qidiruvida ko'rinadi.</li>
+      <li>Sotilmaguncha fikringiz o'zgarsa, <strong>Unlist</strong> orqali e'lonni bekor qiling.</li>
+    </ol>
+    <p>Telegram rasmiy hujjatida listing narxi <code>resell_stars</code>, sotuvchiga tushadigan summa esa alohida ko'rsatiladi. Demak, xaridor to'laydigan narxni o'zingizning sof tushumingiz deb hisoblamang — tasdiqlash ekranidagi yakuniy raqamni o'qing.</p>
+  </section>
+
+  <section>
+    <h2>Fragment orqali TON'ga qanday sotiladi?</h2>
+    <p>Fragment yo'li collectible'ni Telegram ichidan blockchain aktiviga chiqaradi. Rasmiy ketma-ketlik:</p>
+    <ol>
+      <li>Telegram'da 2 bosqichli himoyani yoqing va TON-compatible hamyon tayyorlang.</li>
+      <li><strong>Profile → Gifts</strong> ichidan collectible'ni oching.</li>
+      <li><strong>Transfer → Send via Blockchain</strong> ni tanlang.</li>
+      <li>Telegram ochgan rasmiy Fragment sahifasida hamyonni ulang va eksportni tasdiqlang.</li>
+      <li>NFT hamyonga tushgach, uni qo'llab-quvvatlanadigan marketplace'da listing yoki auksionga qo'ying.</li>
+    </ol>
+    <p>Ba'zi sovg'alarda <strong>can export at</strong> sanasi bo'ladi — shu vaqtgacha blockchain'ga chiqarib bo'lmaydi. Eksport va savdo uchun tarmoq to'lovlari ham bo'lishi mumkin. Fragment manzilini qo'lda ochsangiz, domen aynan <strong>fragment.com</strong> ekanini tekshiring.</p>
+  </section>
+
+  <section>
+    <h2>Marketplace va Fragment: qaysi biri yaxshiroq?</h2>
+    <div class="post-table-wrap"><table class="post-table"><thead><tr><th>Mezon</th><th>Telegram Marketplace</th><th>Fragment / blockchain</th></tr></thead><tbody>
+      <tr><td>Hisob-kitob</td><td>Telegram Stars</td><td>TON</td></tr>
+      <tr><td>Kerak bo'ladi</td><td>Telegram akkaunti</td><td>2FA, TON hamyon, kripto</td></tr>
+      <tr><td>Qulaylik</td><td>Ilova ichida eng oson</td><td>Ko'proq bosqich va komissiya</td></tr>
+      <tr><td>Asosiy maqsad</td><td>Stars'ni Telegram ichida ishlatish</td><td>Aktivni tashqi hamyonda boshqarish</td></tr>
+      <tr><td>Asosiy xavf</td><td>Noto'g'ri narx qo'yish</td><td>Soxta sayt, seed phrase o'g'irlanishi, kurs</td></tr>
+    </tbody></table></div>
+    <p>Ko'p foydalanuvchi uchun Marketplace yetarli. Fragment faqat blockchain egaligi yoki TON'da savdo aniq kerak bo'lganda mantiqli.</p>
+  </section>
+
+  <section>
+    <h2>Sotuv narxini qanday hisoblash kerak?</h2>
+    <p>Avval ayni kolleksiyaning <strong>floor price</strong>'ini, keyin o'xshash traits va raqamlarni tekshiring. Model, Backdrop va Symbol foizi qancha kichik bo'lsa, xususiyat shuncha kamyob. #1, #10, #100 kabi past yoki esda qoladigan raqamlar ham premium olishi mumkin.</p>
+    <ul>
+      <li>Faqat rekord savdoga qarab narx qo'ymang; u noodatiy trait kombinatsiyasi bo'lishi mumkin.</li>
+      <li>Listinglar — sotilgan narx emas. Imkon bo'lsa yakunlangan savdolar tarixini solishtiring.</li>
+      <li>Tez sotish uchun o'xshash aktivlar oralig'ining pastki qismi; kutishga tayyor bo'lsangiz o'rtacha narxdan boshlang.</li>
+      <li>Komissiya va TON kursini sof tushum hisobiga qo'shing.</li>
+    </ul>
+    <p>Bozorni tushunish uchun <a href="/blog/eng-qimmat-telegram-sovgalari">eng qimmat Telegram sovg'alari</a> va <a href="/blog/telegram-gifts-narxi-royxati">Gifts narxlari</a> maqolalarini ham ko'ring.</p>
+  </section>
+
+  <section>
+    <h2>Sotilgan sovg'ani so'mga qanday aylantirish mumkin?</h2>
+    <p><strong>Stars bilan sotuv:</strong> Stars Telegram ekotizimida gift, bot, Mini App, paid media va boshqa mahsulotlarga ishlatiladi. Shaxsiy Marketplace tushumini avtomatik Uzcard/Humo'ga chiqarish funksiyasi deb qaramang.</p>
+    <p><strong>TON bilan sotuv:</strong> NFT blockchain bozorida sotilsa, tushum TON hamyonga keladi. So'mga aylantirish uchun qonuniy xizmat ko'rsatuvchi kripto platforma yoki P2P kerak bo'lishi mumkin. Kurs, servis komissiyasi, shaxsni tasdiqlash va mahalliy qoidalarni tranzaksiyadan oldin tekshiring.</p>
+    <p>Agar maqsad boshqa Telegram sovg'asini olish bo'lsa, Stars yo'li odatda sodda. Balans yetmasa, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard/Humo bilan Stars to'ldirish mumkin.</p>
+  </section>
+
+  <section>
+    <h2>Xavfsizlik uchun 7 qoida</h2>
+    <ol>
+      <li>Faqat Telegram ichidagi Marketplace yoki <strong>fragment.com</strong>'dan foydalaning.</li>
+      <li>Seed phrase, SMS kod va 2FA parolini hech kimga bermang.</li>
+      <li>“Sotib olaman” deb yuborilgan havolani ochmang; xaridor rasmiy listingdan olsin.</li>
+      <li>Tranzaksiyani faqat ilova yoki blockchain explorer'da tasdiqlang.</li>
+      <li>Oldindan “unlock fee” so'ragan notanish botga to'lamang.</li>
+      <li>Hamyon manzili va tarmoqni ikki marta tekshiring.</li>
+      <li>Sovg'ani investment emas, narxi tushishi mumkin bo'lgan collectible deb baholang.</li>
+    </ol>
+    <p>Umumiy himoya qoidalari <a href="/blog/telegram-stars-firibgarlik-himoya">Telegram Stars firibgarligidan himoya</a> qo'llanmasida batafsil yozilgan.</p>
+  </section>
+
+  <section><h2>Xulosa</h2><p>Collectible sovg'ani Telegram Marketplace'da Stars'ga sotish — eng sodda yo'l. Fragment esa sovg'ani blockchain'ga eksport qilib TON'da savdo qilish imkonini beradi, lekin hamyon, 2FA, komissiya va kripto xavflarini talab qiladi. Avval maqsadni tanlang, keyin o'xshash sotuvlar asosida narx qo'ying va hech qachon login yoki seed phrase bermang.</p></section>
+</BlogPost>

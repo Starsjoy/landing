@@ -20,6 +20,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'sell-telegram-gift-fragment',
+    title: 'How to sell a Telegram gift on Marketplace or Fragment',
+    excerpt:
+      'Sell a collectible for Stars inside Telegram or export it through Fragment for TON — the exact steps, pricing method, fees and scam protection.',
+    date: '2026-08-26',
+    tag: 'Gifts',
+  },
+  {
     slug: 'telegram-stars-premium-statistics-2026',
     title: 'Telegram Stars & Premium Statistics 2026',
     excerpt:

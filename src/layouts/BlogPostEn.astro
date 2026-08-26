@@ -15,6 +15,10 @@
 import Layout from './Layout.astro';
 import NavbarEn from '../components/NavbarEn.astro';
 import FooterEn from '../components/FooterEn.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import NavbarRu from '../components/NavbarRu.astro';
+import FooterRu from '../components/FooterRu.astro';
 
 interface Faq { q: string; a: string; }
 
@@ -37,21 +41,29 @@ interface Props {
   /** Shu maqolaning o'zbekcha varianti bo'lsa — hreflang uchun */
   uzHref?: string;
   ruHref?: string;
+  enHref?: string;
+  locale?: 'en' | 'uz' | 'ru';
 }
 
 const {
   slug, title, description, keywords = '', publishDate,
-  heading, crumb, tag = 'Guide', faqs = [], uzHref, ruHref,
+  heading, crumb, tag = 'Guide', faqs = [], uzHref, ruHref, enHref, locale = 'en',
 } = Astro.props;
 
-const url = `https://starsjoy.uz/en/blog/${slug}`;
+const prefix = locale === 'en' ? '/en/blog' : locale === 'ru' ? '/ru/blog' : '/blog';
+const url = `https://starsjoy.uz${prefix}/${slug}`;
+const copy = locale === 'uz'
+  ? { home: 'Bosh sahifa', faq: "Ko'p so'raladigan savollar", cta: "Telegram Stars yoki Premium'ni O'zbekistonda oling", sub: "Uzcard yoki Humo bilan so'mda to'lang — Visa kerak emas, odatda 10 soniyada yetkaziladi.", button: '@starsjoybot’ni ochish' }
+  : locale === 'ru'
+    ? { home: 'Главная', faq: 'Частые вопросы', cta: 'Купите Telegram Stars или Premium в Узбекистане', sub: 'Оплата в сумах через Uzcard или Humo — без Visa, доставка обычно за 10 секунд.', button: 'Открыть @starsjoybot' }
+    : { home: 'Home', faq: 'Frequently asked questions', cta: 'Buy Telegram Stars or Premium in Uzbekistan', sub: 'Pay in Uzbek som with Uzcard or Humo — no Visa card needed, delivered in about 10 seconds.', button: 'Open @starsjoybot' };
 
 // hreflang faqat haqiqatan mavjud variantlar uchun — bo'lmagan URL'ga
 // hreflang berish Google Search Console'da xato sifatida chiqadi.
 const hreflangs = [
-  ...(uzHref ? [{ lang: 'uz', href: uzHref }] : []),
-  ...(ruHref ? [{ lang: 'ru', href: ruHref }] : []),
-  { lang: 'en', href: url },
+  ...(uzHref ? [{ lang: 'uz', href: uzHref }] : locale === 'uz' ? [{ lang: 'uz', href: url }] : []),
+  ...(ruHref ? [{ lang: 'ru', href: ruHref }] : locale === 'ru' ? [{ lang: 'ru', href: url }] : []),
+  ...(enHref ? [{ lang: 'en', href: enHref }] : locale === 'en' ? [{ lang: 'en', href: url }] : []),
 ];
 ---
 
@@ -60,11 +72,11 @@ const hreflangs = [
   description={description}
   canonical={url}
   keywords={keywords}
-  lang="en"
+  lang={locale}
   ogType="article"
   hreflangs={hreflangs}
 >
-  <NavbarEn />
+  {locale === 'uz' ? <Navbar /> : locale === 'ru' ? <NavbarRu /> : <NavbarEn />}
 
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -73,7 +85,7 @@ const hreflangs = [
     "description": description,
     "datePublished": publishDate,
     "dateModified": publishDate,
-    "inLanguage": "en-US",
+    "inLanguage": locale === 'uz' ? 'uz-UZ' : locale === 'ru' ? 'ru-RU' : 'en-US',
     "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
     "publisher": {
       "@type": "Organization",
@@ -112,9 +124,9 @@ const hreflangs = [
     <header class="post-hero">
       <div class="container">
         <nav class="breadcrumb">
-          <a href="/en">Home</a>
+          <a href={locale === 'en' ? '/en' : locale === 'ru' ? '/ru' : '/'}>{copy.home}</a>
           <span>/</span>
-          <a href="/en/blog">Blog</a>
+          <a href={locale === 'en' ? '/en/blog' : locale === 'ru' ? '/ru/blog' : '/blog'}>Blog</a>
           <span>/</span>
           <span>{crumb}</span>
         </nav>
@@ -134,7 +146,7 @@ const hreflangs = [
 
           {faqs.length > 0 && (
             <section class="post-faq">
-              <h2>Frequently asked questions</h2>
+              <h2>{copy.faq}</h2>
               {faqs.map((f) => (
                 <div class="post-faq-item">
                   <h3>{f.q}</h3>
@@ -145,16 +157,16 @@ const hreflangs = [
           )}
 
           <div class="post-cta-box">
-            <p><strong>Buy Telegram Stars or Premium in Uzbekistan</strong></p>
-            <p class="post-cta-sub">Pay in Uzbek som with Uzcard or Humo — no Visa card needed, delivered in about 10 seconds.</p>
-            <a href="https://telegram.me/starsjoybot" class="post-cta-btn" target="_blank" rel="noopener">Open @starsjoybot</a>
+            <p><strong>{copy.cta}</strong></p>
+            <p class="post-cta-sub">{copy.sub}</p>
+            <a href="https://telegram.me/starsjoybot" class="post-cta-btn" target="_blank" rel="noopener">{copy.button}</a>
           </div>
         </div>
       </div>
     </div>
   </article>
 
-  <FooterEn />
+  {locale === 'uz' ? <Footer /> : locale === 'ru' ? <FooterRu /> : <FooterEn />}
 </Layout>
 
 <style is:global>
