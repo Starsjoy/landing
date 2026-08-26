@@ -432,7 +432,8 @@ export async function deleteWithdrawal(id: number) {
 }
 
 // ───── UZGETS MAOSH (yordamchi admin) ─────
-// Foyda: uzgets_stars = 10%, uzgets_premium 3/6/12 oy = fixed 15 000 / 25 000 / 35 000.
+// Foyda: uzgets_stars = 10%, uzgets_premium 3/6/12 oy = fixed 15 000 / 25 000 / 35 000,
+// premium_send = 12% (faqat UZ_PS_TRACKING_START sanasidan keyingi buyurtmalar — retroaktiv emas).
 // Qoida: olish mumkin = (oldingi oylardan qoldiq) + (shu oy foydasi) − (shu oyda olingan).
 // Kuzatuv boshlangan oydan oldingi oylar umuman hisobga olinmaydi.
 
@@ -451,24 +452,39 @@ export async function ensureUzSalaryTable() {
   await sql`CREATE INDEX IF NOT EXISTS idx_uz_salary_ts ON uz_salary_withdrawals(timestamp)`;
 }
 
+// Premium Send Abdullohga shu sanadan boshlab tegishli — undan oldingi buyurtmalar
+// na Uzgets analitikasida, na maosh hisobida ko'rinmaydi (retroaktiv emas).
+const UZ_PS_TRACKING_START = '2026-08-26';
+
+export async function getUzPsTrackingStart(): Promise<string> {
+  const sql = getSQL();
+  const rows = await sql`SELECT value FROM settings WHERE key = 'uz_ps_tracking_start'`;
+  if (rows.length > 0 && /^\d{4}-\d{2}-\d{2}$/.test(rows[0].value)) return rows[0].value;
+  await sql`INSERT INTO settings (key, value) VALUES ('uz_ps_tracking_start', ${UZ_PS_TRACKING_START}) ON CONFLICT (key) DO NOTHING`;
+  return UZ_PS_TRACKING_START;
+}
+
 export async function getUzMonthProfit(month: string): Promise<number> {
   const sql = getSQL();
   const since = new Date(`${month}-01T00:00:00+05:00`).toISOString();
   const next = shiftMonth(month, 1);
   const until = new Date(`${next}-01T00:00:00+05:00`).toISOString();
+  const psSince = new Date(`${await getUzPsTrackingStart()}T00:00:00+05:00`).toISOString();
   const [r] = await sql`
     SELECT
       COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_stars'), 0) as uz_stars_rev,
       COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '3 oy') as uz3,
       COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy') as uz6,
-      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy') as uz12
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy') as uz12,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_send' AND timestamp >= ${psSince}), 0) as ps_rev
     FROM orders WHERE timestamp >= ${since} AND timestamp < ${until}
   `;
   return (
     Math.round(+r.uz_stars_rev * 0.10) +
     (+r.uz3 * 15000) +
     (+r.uz6 * 25000) +
-    (+r.uz12 * 35000)
+    (+r.uz12 * 35000) +
+    Math.round(+r.ps_rev * 0.12)
   );
 }
 
@@ -818,6 +834,8 @@ export async function getAnalyticsData(period: string, source: string = 'all', f
   const sql = getSQL();
   const since = from ? new Date(from + 'T00:00:00+05:00').toISOString() : getSince(period);
   const types = sourceFilter(source);
+  const psSinceISO = await getUzPsSinceISO(source);
+  const rowCond = uzgetsRowCondition(sql, source, types, psSinceISO);
 
   // ── Sales revenue grouped by period ──
   let salesByPeriod: Array<{ label: string; revenue: number; orders: number }>;
@@ -828,7 +846,7 @@ export async function getAnalyticsData(period: string, source: string = 'all', f
       SELECT EXTRACT(HOUR FROM timestamp AT TIME ZONE 'Asia/Tashkent')::INTEGER as hour,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
-      FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
+      FROM orders WHERE timestamp >= ${since} AND ${rowCond}
       GROUP BY hour ORDER BY hour ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -842,7 +860,7 @@ export async function getAnalyticsData(period: string, source: string = 'all', f
         TO_CHAR(timestamp AT TIME ZONE 'Asia/Tashkent', 'Mon') as month_name,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
-      FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
+      FROM orders WHERE timestamp >= ${since} AND ${rowCond}
       GROUP BY month, month_name ORDER BY month ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -854,7 +872,7 @@ export async function getAnalyticsData(period: string, source: string = 'all', f
       SELECT DATE_TRUNC('week', timestamp AT TIME ZONE 'Asia/Tashkent')::DATE as week_start,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
-      FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
+      FROM orders WHERE timestamp >= ${since} AND ${rowCond}
       GROUP BY week_start ORDER BY week_start ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -867,7 +885,7 @@ export async function getAnalyticsData(period: string, source: string = 'all', f
       SELECT DATE(timestamp AT TIME ZONE 'Asia/Tashkent') as date,
         COUNT(*) as orders,
         COALESCE(SUM(price), 0) as revenue
-      FROM orders WHERE timestamp >= ${since} AND type = ANY(${types})
+      FROM orders WHERE timestamp >= ${since} AND ${rowCond}
       GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent') ORDER BY date ASC
     `;
     salesByPeriod = rows.map(r => ({
@@ -971,9 +989,27 @@ function sourceFilter(source: string): string[] {
   return ['stars', 'gift', 'premium', 'premium_send', 'premium_1_12']; // all (uzgets'siz)
 }
 
+// 'uzgets' manbasi uchun qator shartini quradi: uzgets_stars/uzgets_premium har doim,
+// premium_send esa faqat UZ_PS_TRACKING_START sanasidan keyin (Abdullohga o'tgan sana).
+// Boshqa manbalar uchun oddiy type = ANY(...) — xatti-harakat o'zgarmaydi.
+// E'tibor: bu funksiya SYNC bo'lishi shart — sql`` natijasi thenable (PendingQuery)
+// bo'lgani uchun async funksiyadan qaytarilsa, JS uni avtomatik await qilib,
+// fragment o'rniga so'rov natijasini (qatorlarni) qaytarib yuboradi.
+function uzgetsRowCondition(sql: ReturnType<typeof getSQL>, source: string, types: string[], psSinceISO: string | null) {
+  if (source !== 'uzgets' || !psSinceISO) return sql`type = ANY(${types})`;
+  return sql`(type = ANY(${types}) OR (type = 'premium_send' AND timestamp >= ${psSinceISO}))`;
+}
+
+async function getUzPsSinceISO(source: string): Promise<string | null> {
+  if (source !== 'uzgets') return null;
+  return new Date(`${await getUzPsTrackingStart()}T00:00:00+05:00`).toISOString();
+}
+
 export async function getOrderStats(period: string, from?: string, to?: string, source: string = 'all') {
   const sql = getSQL();
   const types = sourceFilter(source);
+  const psSinceISO = await getUzPsSinceISO(source);
+  const rowCond = uzgetsRowCondition(sql, source, types, psSinceISO);
 
   let since: string;
   let until: string;
@@ -1021,13 +1057,13 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy'), 0) as uz_6_revenue,
       COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy') as uz_12_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy'), 0) as uz_12_revenue
-    FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
+    FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${rowCond}
   `;
 
   const recent = await sql`
     SELECT id, order_number, type, username, amount, price, transaction_id, status, timestamp
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${rowCond}
     ORDER BY timestamp DESC
     LIMIT 100
   `;
@@ -1037,7 +1073,7 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COUNT(*) as orders,
       COALESCE(SUM(price), 0) as revenue
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types})
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${rowCond}
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
@@ -1055,7 +1091,7 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COUNT(*) FILTER (WHERE type = 'uzgets_stars') as uz_stars_orders,
       COUNT(*) FILTER (WHERE type = 'uzgets_premium') as uz_premium_orders
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != '' AND type = ANY(${types})
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != '' AND ${rowCond}
     GROUP BY username
     ORDER BY total_spent DESC
     LIMIT 15
@@ -1068,7 +1104,7 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
         NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
       ), 0) as total_stars
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'stars' OR type = 'gift' OR type = 'uzgets_stars')
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${rowCond} AND (type = 'stars' OR type = 'gift' OR type = 'uzgets_stars')
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
@@ -1080,7 +1116,7 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
     ), 0) as total_stars
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'stars' OR type = 'gift' OR type = 'uzgets_stars')
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${rowCond} AND (type = 'stars' OR type = 'gift' OR type = 'uzgets_stars')
   `;
 
   // Daily premium months (for premium_send view)
@@ -1091,7 +1127,7 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
         NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER
       ), 0) as total_months
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${types}) AND (type = 'premium' OR type = 'premium_send' OR type = 'premium_1_12' OR type = 'uzgets_premium')
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${rowCond} AND (type = 'premium' OR type = 'premium_send' OR type = 'premium_1_12' OR type = 'uzgets_premium')
     GROUP BY DATE(timestamp AT TIME ZONE 'Asia/Tashkent')
     ORDER BY date DESC
     LIMIT 30
@@ -1181,12 +1217,14 @@ export async function getBuyerInsights(period: string, source: string = 'all', f
   const since = from ? new Date(from + 'T00:00:00+05:00').toISOString() : getSince(period);
   const until = to ? new Date(to + 'T23:59:59.999+05:00').toISOString() : new Date('2099-01-01').toISOString();
   const types = sourceFilter(source);
+  const psSinceISO = await getUzPsSinceISO(source);
+  const rowCond = uzgetsRowCondition(sql, source, types, psSinceISO);
 
   const periodBuyers = await sql`
     SELECT username, COUNT(*) as period_orders,
       MIN(timestamp) as first_in_period, MAX(timestamp) as last_in_period
     FROM orders
-    WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != '' AND type = ANY(${types})
+    WHERE timestamp >= ${since} AND timestamp <= ${until} AND username != '' AND ${rowCond}
     GROUP BY username
   `;
 
@@ -1200,7 +1238,7 @@ export async function getBuyerInsights(period: string, source: string = 'all', f
     SELECT username, COUNT(*) as total_orders,
       MIN(timestamp) as first_ever, MAX(timestamp) as last_ever
     FROM orders
-    WHERE username = ANY(${usernames}) AND type = ANY(${types})
+    WHERE username = ANY(${usernames}) AND ${rowCond}
     GROUP BY username
   `;
   const allTimeMap = new Map(allTimeOrders.map(r => [r.username, r]));
