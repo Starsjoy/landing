@@ -94,6 +94,11 @@ if (authenticated && !dbReady) {
 
           <div class="profit-cards pc-grid-all" id="uzQuickCards" hidden></div>
 
+          <div id="uzPsQuickWrap" hidden>
+            <div class="uz-ps-heading">Shundan Premium Send (alohida)</div>
+            <div class="profit-cards pc-grid-all" id="uzPsQuickCards"></div>
+          </div>
+
           <section class="uz-section" id="uzRangeSection" hidden>
             <div class="uz-section-head">
               <h2>Davr bo'yicha foyda</h2>
@@ -1305,12 +1310,13 @@ if (authenticated && !dbReady) {
     .pb-arrow { color: var(--text-4); font-size: 0.75rem; }
     .pb-profit { color: var(--green); font-weight: 700; }
 
-    /* ── "Umumiy" foyda: ikki silos (Starsjoy+PS va Uzgets) alohida ── */
+    /* ── "Umumiy" foyda: har bir yo'nalish alohida karta, Starsjoy va Uzgets+PS asosiy ustunlar ── */
     .profit-cards.pc-grid-all { grid-template-columns: repeat(3, 1fr); }
     .profit-uz { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.04); }
     .profit-uz .pc-value { color: #22d3ee; }
     .profit-total { border-color: rgba(250,204,21,0.3); background: rgba(250,204,21,0.04); }
     .profit-total .pc-value { color: #facc15; }
+    .profit-sub .pc-value { font-size: 1.9rem; color: #818cf8; }
     .pb-group {
       display: flex; align-items: center; gap: 10px; margin: 18px 0 4px;
       font-size: 0.7rem; font-weight: 700; color: var(--text-3);
@@ -1422,7 +1428,10 @@ if (authenticated && !dbReady) {
     .uz-month-total .umt-label { font-size: 0.8rem; font-weight: 600; color: var(--text-2); }
     .uz-month-total .umt-value { font-size: 1.7rem; font-weight: 900; color: #22d3ee; letter-spacing: -0.8px; }
     .uz-month-total .umt-sub { font-size: 0.75rem; color: var(--text-3); }
+    .uz-month-total.uz-ps-total { background: rgba(129,140,248,0.06); border-color: rgba(129,140,248,0.25); }
+    .uz-month-total.uz-ps-total .umt-value { color: #818cf8; }
     .uz-hint { font-size: 0.82rem; color: var(--text-3); padding: 14px 0; }
+    .uz-ps-heading { font-size: 0.72rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.8px; margin: 4px 0 10px; }
 
     /* ── Maosh ── */
     .usal-hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; margin-bottom: 16px; }
@@ -3129,7 +3138,8 @@ if (authenticated && !dbReady) {
         var premiumProfit = Math.round(ov.premiumRevenue * 0.10);
         var psProfit = Math.round(ov.psRevenue * 0.10);
         var p112Profit = (ov.p112OneCount * 18000) + (ov.p112TwelveCount * 48000);
-        var sjProfit = starsProfit + giftProfit + premiumProfit + psProfit + p112Profit;
+        var starsjoyProfit = starsProfit + giftProfit + premiumProfit;
+        var sjProfit = starsjoyProfit + psProfit + p112Profit;
         // 'uzgets' ko'rinishida ma'lumot orders ichida, 'all' da esa alohida so'rovdan
         var uz = calcUzgets(currentSource === 'uzgets' ? ov : uzgetsOv);
 
@@ -3146,8 +3156,18 @@ if (authenticated && !dbReady) {
           cardsEl.className = 'profit-cards pc-grid-all';
           cardsEl.innerHTML = `
             <div class="profit-card profit-main">
-              <div class="pc-label">Starsjoy + Premium Send</div>
-              <div class="pc-value">${fmtMoney(sjProfit)}</div>
+              <div class="pc-label">Starsjoy</div>
+              <div class="pc-value">${fmtMoney(starsjoyProfit)}</div>
+              <div class="pc-sub">so'm sof foyda</div>
+            </div>
+            <div class="profit-card profit-sub">
+              <div class="pc-label">Premium Send</div>
+              <div class="pc-value">${fmtMoney(psProfit)}</div>
+              <div class="pc-sub">so'm sof foyda (10%)</div>
+            </div>
+            <div class="profit-card profit-sub">
+              <div class="pc-label">Premium 1/12</div>
+              <div class="pc-value">${fmtMoney(p112Profit)}</div>
               <div class="pc-sub">so'm sof foyda</div>
             </div>
             <div class="profit-card profit-uz">
@@ -3163,15 +3183,15 @@ if (authenticated && !dbReady) {
             <div class="profit-card">
               <div class="pc-label">Umumiy daromad</div>
               <div class="pc-value pc-dim">${fmtMoney(revenue + uzExtraRevenue)}</div>
-              <div class="pc-sub">so'm — ikkala yo'nalish</div>
+              <div class="pc-sub">so'm — barcha yo'nalishlar</div>
             </div>
             <div class="profit-card">
               <div class="pc-label">Buyurtmalar</div>
               <div class="pc-value pc-dim">${ov.totalOrders + uzExtraOrders}</div>
-              <div class="pc-sub">ta — ikkala yo'nalish</div>
+              <div class="pc-sub">ta — barcha yo'nalishlar</div>
             </div>`;
         } else {
-          var profit = currentSource === 'starsjoy' ? starsProfit + giftProfit + premiumProfit
+          var profit = currentSource === 'starsjoy' ? starsjoyProfit
             : currentSource === 'premium_send' ? psProfit
             : currentSource === 'premium_1_12' ? p112Profit
             : uz.total;
@@ -3217,8 +3237,12 @@ if (authenticated && !dbReady) {
 
         var breakdownHTML = '<div class="pb-header">Tafsilot</div>';
         if (isAll) {
-          breakdownHTML += `<div class="pb-group">Starsjoy + Premium Send<span class="pb-group-sum">${fmtMoney(sjProfit)} so'm</span></div>`
-            + sjRows + psRows + p112Rows
+          breakdownHTML += `<div class="pb-group">Starsjoy<span class="pb-group-sum">${fmtMoney(starsjoyProfit)} so'm</span></div>`
+            + sjRows
+            + `<div class="pb-group">Premium Send<span class="pb-group-sum">${fmtMoney(psProfit)} so'm</span></div>`
+            + psRows
+            + `<div class="pb-group">Premium 1/12<span class="pb-group-sum">${fmtMoney(p112Profit)} so'm</span></div>`
+            + p112Rows
             + `<div class="pb-group">Uzgets + Premium Send<span class="pb-group-sum is-uz">${fmtMoney(uz.total)} so'm</span></div>`
             + uzRows;
         } else if (currentSource === 'starsjoy') {
@@ -4606,6 +4630,17 @@ if (authenticated && !dbReady) {
           + '</div>';
       }
 
+      // Premium Send'ning 12% komissiyasi — Uzgets umumiy foydasidan alohida ko'rinishi uchun.
+      function uzPsCard(label, p) {
+        var count = (p.ov && p.ov.psCount) || 0;
+        var rev = (p.ov && p.ov.psRevenue) || 0;
+        return '<div class="profit-card profit-sub">'
+          + '<div class="pc-label">' + label + '</div>'
+          + '<div class="pc-value">' + uzFmt(p.ps) + '</div>'
+          + '<div class="pc-sub">so\'m (12%) — ' + uzFmt(rev) + ' so\'m aylanma, ' + count + ' ta</div>'
+          + '</div>';
+      }
+
       function uzBreakdown(p) {
         return '<div class="profit-breakdown">'
           + '<div class="pb-header">Tafsilot</div>'
@@ -4639,6 +4674,14 @@ if (authenticated && !dbReady) {
             + uzCard('Kechagi foyda', results[1], '')
             + uzCard(UZ_MONTHS[t.m] + ' oyi foydasi', results[2], 'profit-total');
           box.hidden = false;
+
+          var psBox = document.getElementById('uzPsQuickCards');
+          psBox.innerHTML =
+            uzPsCard('Bugungi Premium Send', results[0])
+            + uzPsCard('Kechagi Premium Send', results[1])
+            + uzPsCard(UZ_MONTHS[t.m] + ' oyi Premium Send', results[2]);
+          document.getElementById('uzPsQuickWrap').hidden = false;
+
           document.getElementById('uzRangeSection').hidden = false;
           document.getElementById('uzLoading').style.display = 'none';
 
@@ -4825,6 +4868,11 @@ if (authenticated && !dbReady) {
             + '<span class="umt-label">' + uzEsc(label) + '</span>'
             + '<span class="umt-value">' + uzFmt(p.total) + " so'm</span>"
             + '<span class="umt-sub">' + p.orders + ' ta buyurtma · ' + uzFmt(p.revenue) + " so'm aylanma</span>"
+            + '</div>'
+            + '<div class="uz-month-total uz-ps-total">'
+            + '<span class="umt-label">Shundan Premium Send</span>'
+            + '<span class="umt-value">' + uzFmt(p.ps) + " so'm</span>"
+            + '<span class="umt-sub">' + ((p.ov && p.ov.psCount) || 0) + ' ta buyurtma · ' + uzFmt((p.ov && p.ov.psRevenue) || 0) + " so'm aylanma</span>"
             + '</div>'
             + uzBreakdown(p);
         } catch (e) {
