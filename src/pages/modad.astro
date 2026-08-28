@@ -94,11 +94,6 @@ if (authenticated && !dbReady) {
 
           <div class="profit-cards pc-grid-all" id="uzQuickCards" hidden></div>
 
-          <div id="uzPsQuickWrap" hidden>
-            <div class="uz-ps-heading">Shundan Premium Send (alohida)</div>
-            <div class="profit-cards pc-grid-all" id="uzPsQuickCards"></div>
-          </div>
-
           <section class="uz-section" id="uzRangeSection" hidden>
             <div class="uz-section-head">
               <h2>Davr bo'yicha foyda</h2>
@@ -236,8 +231,7 @@ if (authenticated && !dbReady) {
             <div class="sb-dropdown-menu" id="dd-sales">
               <a data-section="sales" data-source="starsjoy" onclick="showSection('sales','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="sales" data-source="premium_send" onclick="showSection('sales','premium_send')"><span class="dd-label">Premium Send</span></a>
-              <a data-section="sales" data-source="premium_1_12" onclick="showSection('sales','premium_1_12')"><span class="dd-label">Premium 1/12</span></a>
-              <a data-section="sales" data-source="uzgets" onclick="showSection('sales','uzgets')"><span class="dd-label">Uzgets + PS</span></a>
+              <a data-section="sales" data-source="uzgets" onclick="showSection('sales','uzgets')"><span class="dd-label">Uzgets</span></a>
               <a data-section="sales" data-source="all" onclick="showSection('sales','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -252,8 +246,7 @@ if (authenticated && !dbReady) {
             <div class="sb-dropdown-menu" id="dd-profit">
               <a data-section="profit" data-source="starsjoy" onclick="showSection('profit','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="profit" data-source="premium_send" onclick="showSection('profit','premium_send')"><span class="dd-label">Premium Send</span></a>
-              <a data-section="profit" data-source="premium_1_12" onclick="showSection('profit','premium_1_12')"><span class="dd-label">Premium 1/12</span></a>
-              <a data-section="profit" data-source="uzgets" onclick="showSection('profit','uzgets')"><span class="dd-label">Uzgets + PS</span></a>
+              <a data-section="profit" data-source="uzgets" onclick="showSection('profit','uzgets')"><span class="dd-label">Uzgets</span></a>
               <a data-section="profit" data-source="all" onclick="showSection('profit','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -292,8 +285,7 @@ if (authenticated && !dbReady) {
             <div class="sb-dropdown-menu" id="dd-buyers">
               <a data-section="buyers" data-source="starsjoy" onclick="showSection('buyers','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="buyers" data-source="premium_send" onclick="showSection('buyers','premium_send')"><span class="dd-label">Premium Send</span></a>
-              <a data-section="buyers" data-source="premium_1_12" onclick="showSection('buyers','premium_1_12')"><span class="dd-label">Premium 1/12</span></a>
-              <a data-section="buyers" data-source="uzgets" onclick="showSection('buyers','uzgets')"><span class="dd-label">Uzgets + PS</span></a>
+              <a data-section="buyers" data-source="uzgets" onclick="showSection('buyers','uzgets')"><span class="dd-label">Uzgets</span></a>
               <a data-section="buyers" data-source="all" onclick="showSection('buyers','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -308,8 +300,7 @@ if (authenticated && !dbReady) {
             <div class="sb-dropdown-menu" id="dd-analytics">
               <a data-section="analytics" data-source="starsjoy" onclick="showSection('analytics','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="analytics" data-source="premium_send" onclick="showSection('analytics','premium_send')"><span class="dd-label">Premium Send</span></a>
-              <a data-section="analytics" data-source="premium_1_12" onclick="showSection('analytics','premium_1_12')"><span class="dd-label">Premium 1/12</span></a>
-              <a data-section="analytics" data-source="uzgets" onclick="showSection('analytics','uzgets')"><span class="dd-label">Uzgets + PS</span></a>
+              <a data-section="analytics" data-source="uzgets" onclick="showSection('analytics','uzgets')"><span class="dd-label">Uzgets</span></a>
               <a data-section="analytics" data-source="all" onclick="showSection('analytics','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -1178,7 +1169,6 @@ if (authenticated && !dbReady) {
     .pill-gift { background: rgba(52, 211, 153, 0.1); color: #34d399; }
     .pill-premium { background: rgba(168, 85, 247, 0.1); color: #c084fc; }
     .pill-premium_send { background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
-    .pill-premium_1_12 { background: rgba(236, 72, 153, 0.1); color: #f472b6; }
     .pill-uzgets_stars { background: rgba(6, 182, 212, 0.12); color: #22d3ee; }
     .pill-uzgets_premium { background: rgba(20, 184, 166, 0.12); color: #2dd4bf; }
     .sales-cards.cols-6 { grid-template-columns: repeat(6, 1fr); }
@@ -1428,8 +1418,6 @@ if (authenticated && !dbReady) {
     .uz-month-total .umt-label { font-size: 0.8rem; font-weight: 600; color: var(--text-2); }
     .uz-month-total .umt-value { font-size: 1.7rem; font-weight: 900; color: #22d3ee; letter-spacing: -0.8px; }
     .uz-month-total .umt-sub { font-size: 0.75rem; color: var(--text-3); }
-    .uz-month-total.uz-ps-total { background: rgba(129,140,248,0.06); border-color: rgba(129,140,248,0.25); }
-    .uz-month-total.uz-ps-total .umt-value { color: #818cf8; }
     .uz-hint { font-size: 0.82rem; color: var(--text-3); padding: 14px 0; }
     .uz-ps-heading { font-size: 0.72rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.8px; margin: 4px 0 10px; }
 
@@ -2663,7 +2651,7 @@ if (authenticated && !dbReady) {
         renderTopBuyers();
         // Update daily chart title based on source
         var dsTitle = document.getElementById('dailyStarsTitle');
-        if (dsTitle) dsTitle.textContent = (currentSource === 'premium_send' || currentSource === 'premium_1_12') ? 'Kunlik premium miqdori' : 'Kunlik stars miqdori';
+        if (dsTitle) dsTitle.textContent = (currentSource === 'premium_send') ? 'Kunlik premium miqdori' : 'Kunlik stars miqdori';
         renderDailyStars();
       }
 
@@ -2840,13 +2828,12 @@ if (authenticated && !dbReady) {
         if (type === 'stars') return { pill: 'pill-stars', label: 'Stars' };
         if (type === 'gift') return { pill: 'pill-gift', label: 'Gift' };
         if (type === 'premium_send') return { pill: 'pill-premium_send', label: 'PS Premium' };
-        if (type === 'premium_1_12') return { pill: 'pill-premium_1_12', label: 'P 1/12' };
         if (type === 'uzgets_stars') return { pill: 'pill-uzgets_stars', label: 'UZ Stars' };
         if (type === 'uzgets_premium') return { pill: 'pill-uzgets_premium', label: 'UZ Premium' };
         return { pill: 'pill-premium', label: 'Premium' };
       }
 
-      var sourceLabels = { starsjoy: 'Starsjoy', premium_send: 'Premium Send', premium_1_12: 'Premium 1/12', uzgets: 'Uzgets + Premium Send', all: 'Umumiy' };
+      var sourceLabels = { starsjoy: 'Starsjoy', premium_send: 'Premium Send', uzgets: 'Uzgets', all: 'Umumiy' };
 
       function renderSales() {
         var o = statsData.orders;
@@ -2867,18 +2854,6 @@ if (authenticated && !dbReady) {
             <div class="sc-label">📤 Premium Send</div>
             <div class="sc-value">${ov.psTotalMonths} oy</div>
             <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.psRevenue)} so'm</span><span class="sc-divider"></span><span>${ov.psCount} ta sotildi</span></div>
-          </div>`;
-        } else if (currentSource === 'premium_1_12') {
-          cards += `
-          <div class="stat-card">
-            <div class="sc-label">💎 1 oy</div>
-            <div class="sc-value">${ov.p112OneCount}</div>
-            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.p112OneRevenue)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney(ov.p112OneCount * 18000)}</span></div>
-          </div>
-          <div class="stat-card">
-            <div class="sc-label">💎 12 oy</div>
-            <div class="sc-value">${ov.p112TwelveCount}</div>
-            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.p112TwelveRevenue)} so'm</span><span class="sc-divider"></span><span>foyda ${fmtMoney(ov.p112TwelveCount * 48000)}</span></div>
           </div>`;
         } else if (currentSource === 'uzgets') {
           var uzStarsProfit = Math.round((ov.uzStarsRevenue || 0) * 0.10);
@@ -2937,19 +2912,12 @@ if (authenticated && !dbReady) {
             <div class="sc-label">📤 Premium Send</div>
             <div class="sc-value">${ov.psTotalMonths} oy</div>
             <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.psRevenue)} so'm</span><span class="sc-divider"></span><span>${ov.psCount} ta</span></div>
-          </div>
-          <div class="stat-card">
-            <div class="sc-label">💎 Premium 1/12</div>
-            <div class="sc-value">${ov.p112TotalMonths} oy</div>
-            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.p112Revenue)} so'm</span><span class="sc-divider"></span><span>${ov.p112Count} ta</span></div>
           </div>`;
         }
         var salesCardsEl = document.getElementById('salesCards');
         var colsClass = '';
         if (currentSource === 'premium_send') colsClass = ' cols-2';
-        else if (currentSource === 'premium_1_12') colsClass = ' cols-3';
         else if (currentSource === 'uzgets') colsClass = ' cols-5';
-        else if (currentSource === 'all') colsClass = ' cols-5';
         salesCardsEl.className = 'stat-cards sales-cards' + colsClass;
         salesCardsEl.innerHTML = cards;
 
@@ -2988,7 +2956,6 @@ if (authenticated && !dbReady) {
             if (b.giftOrders) details.push('🎁' + b.giftOrders);
             if (b.premiumOrders) details.push('👑' + b.premiumOrders);
             if (b.psOrders) details.push('📤' + b.psOrders);
-            if (b.p112Orders) details.push('💎' + b.p112Orders);
             if (b.uzStarsOrders) details.push('UZ⭐' + b.uzStarsOrders);
             if (b.uzPremiumOrders) details.push('UZ👑' + b.uzPremiumOrders);
             return '<tr>' +
@@ -3003,8 +2970,8 @@ if (authenticated && !dbReady) {
 
       function renderDailyStars() {
         var o = statsData.orders;
-        // For premium_send va premium_1_12, show daily months instead of stars
-        if (currentSource === 'premium_send' || currentSource === 'premium_1_12') {
+        // For premium_send, show daily months instead of stars
+        if (currentSource === 'premium_send') {
           if (!o || !o.dailyMonths || !o.dailyMonths.length) {
             document.getElementById('dailyStars').innerHTML = '<div class="empty">Ma\'lumot yo\'q</div>';
             return;
@@ -3111,19 +3078,17 @@ if (authenticated && !dbReady) {
         } catch (e) { console.error('Uzgets profit fetch error:', e); }
       }
 
+      // Uzgets — sof, Premium Send bilan aralashmagan holda.
       function calcUzgets(ov) {
         var o = ov || {};
         var starsProfit = Math.round((o.uzStarsRevenue || 0) * 0.10);
         var p3 = (o.uz3Count || 0) * 15000;
         var p6 = (o.uz6Count || 0) * 25000;
         var p12 = (o.uz12Count || 0) * 35000;
-        // Premium Send — Abdullohga tegishli sana (UZ_PS_TRACKING_START)dan keyingi buyurtmalar,
-        // backend allaqachon filterlab beradi (o.psRevenue shu davrga tegishli qismgina).
-        var psProfit = Math.round((o.psRevenue || 0) * 0.12);
         return {
           ov: o,
-          starsProfit: starsProfit, p3: p3, p6: p6, p12: p12, psProfit: psProfit,
-          total: starsProfit + p3 + p6 + p12 + psProfit,
+          starsProfit: starsProfit, p3: p3, p6: p6, p12: p12,
+          total: starsProfit + p3 + p6 + p12,
           revenue: o.totalRevenue || 0,
           orders: o.totalOrders || 0,
         };
@@ -3137,11 +3102,10 @@ if (authenticated && !dbReady) {
         var giftProfit = Math.round(ov.giftRevenue * 0.12);
         var premiumProfit = Math.round(ov.premiumRevenue * 0.10);
         var psProfit = Math.round(ov.psRevenue * 0.10);
-        var p112Profit = (ov.p112OneCount * 18000) + (ov.p112TwelveCount * 48000);
         var starsjoyProfit = starsProfit + giftProfit + premiumProfit;
-        var sjProfit = starsjoyProfit + psProfit + p112Profit;
         // 'uzgets' ko'rinishida ma'lumot orders ichida, 'all' da esa alohida so'rovdan
         var uz = calcUzgets(currentSource === 'uzgets' ? ov : uzgetsOv);
+        var jamiProfit = starsjoyProfit + uz.total + psProfit;
 
         var isAll = currentSource === 'all';
         var cardsEl = document.querySelector('.profit-cards');
@@ -3160,25 +3124,20 @@ if (authenticated && !dbReady) {
               <div class="pc-value">${fmtMoney(starsjoyProfit)}</div>
               <div class="pc-sub">so'm sof foyda</div>
             </div>
-            <div class="profit-card profit-sub">
-              <div class="pc-label">Premium Send</div>
-              <div class="pc-value">${fmtMoney(psProfit)}</div>
-              <div class="pc-sub">so'm sof foyda (10%)</div>
-            </div>
-            <div class="profit-card profit-sub">
-              <div class="pc-label">Premium 1/12</div>
-              <div class="pc-value">${fmtMoney(p112Profit)}</div>
-              <div class="pc-sub">so'm sof foyda</div>
-            </div>
             <div class="profit-card profit-uz">
-              <div class="pc-label">Uzgets + Premium Send</div>
+              <div class="pc-label">Uzgets</div>
               <div class="pc-value">${fmtMoney(uz.total)}</div>
               <div class="pc-sub">so'm sof foyda</div>
             </div>
             <div class="profit-card profit-total">
               <div class="pc-label">Jami sof foyda</div>
-              <div class="pc-value">${fmtMoney(sjProfit + uz.total)}</div>
+              <div class="pc-value">${fmtMoney(jamiProfit)}</div>
               <div class="pc-sub">so'm</div>
+            </div>
+            <div class="profit-card profit-sub">
+              <div class="pc-label">Premium Send</div>
+              <div class="pc-value">${fmtMoney(psProfit)}</div>
+              <div class="pc-sub">so'm sof foyda (10%)</div>
             </div>
             <div class="profit-card">
               <div class="pc-label">Umumiy daromad</div>
@@ -3193,11 +3152,9 @@ if (authenticated && !dbReady) {
         } else {
           var profit = currentSource === 'starsjoy' ? starsjoyProfit
             : currentSource === 'premium_send' ? psProfit
-            : currentSource === 'premium_1_12' ? p112Profit
             : uz.total;
           var profitLabel = currentSource === 'premium_send' ? 'Sof foyda (10%)' :
-            currentSource === 'premium_1_12' ? 'Sof foyda (fixed)' :
-            currentSource === 'starsjoy' ? 'Sof foyda (12%/10%)' : 'Sof foyda (10% + fixed + PS 12%)';
+            currentSource === 'starsjoy' ? 'Sof foyda (12%/10%)' : 'Sof foyda (10% + fixed)';
           cardsEl.className = 'profit-cards';
           cardsEl.innerHTML = `
             <div class="profit-card profit-main">
@@ -3224,33 +3181,25 @@ if (authenticated && !dbReady) {
             <div class="pb-row"><span class="pb-dot" style="background:#c084fc"></span><span class="pb-name">Premium</span><span class="pb-revenue">${fmtMoney(ov.premiumRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(premiumProfit)} so'm (10%)</span></div>`;
         var psRows = `
             <div class="pb-row"><span class="pb-dot" style="background:#60a5fa"></span><span class="pb-name">PS Premium</span><span class="pb-revenue">${fmtMoney(ov.psRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(psProfit)} so'm (10%)</span></div>`;
-        var p112Rows = `
-            <div class="pb-row"><span class="pb-dot" style="background:#f472b6"></span><span class="pb-name">P 1 oy</span><span class="pb-revenue">${ov.p112OneCount} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(ov.p112OneCount * 18000)} so'm</span></div>
-            <div class="pb-row"><span class="pb-dot" style="background:#f472b6"></span><span class="pb-name">P 12 oy</span><span class="pb-revenue">${ov.p112TwelveCount} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(ov.p112TwelveCount * 48000)} so'm</span></div>`;
         var uzCls = isAll ? ' is-uz' : '';
         var uzRows = `
             <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#22d3ee"></span><span class="pb-name">UZ Stars</span><span class="pb-revenue">${fmtMoney(uz.ov.uzStarsRevenue || 0)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.starsProfit)} so'm (10%)</span></div>
             <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 3 oy</span><span class="pb-revenue">${uz.ov.uz3Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.p3)} so'm (15 000 × ta)</span></div>
             <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 6 oy</span><span class="pb-revenue">${uz.ov.uz6Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.p6)} so'm (25 000 × ta)</span></div>
-            <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 12 oy</span><span class="pb-revenue">${uz.ov.uz12Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.p12)} so'm (35 000 × ta)</span></div>
-            <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#818cf8"></span><span class="pb-name">Premium Send</span><span class="pb-revenue">${fmtMoney(uz.ov.psRevenue || 0)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.psProfit)} so'm (12%)</span></div>`;
+            <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 12 oy</span><span class="pb-revenue">${uz.ov.uz12Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.p12)} so'm (35 000 × ta)</span></div>`;
 
         var breakdownHTML = '<div class="pb-header">Tafsilot</div>';
         if (isAll) {
           breakdownHTML += `<div class="pb-group">Starsjoy<span class="pb-group-sum">${fmtMoney(starsjoyProfit)} so'm</span></div>`
             + sjRows
+            + `<div class="pb-group">Uzgets<span class="pb-group-sum is-uz">${fmtMoney(uz.total)} so'm</span></div>`
+            + uzRows
             + `<div class="pb-group">Premium Send<span class="pb-group-sum">${fmtMoney(psProfit)} so'm</span></div>`
-            + psRows
-            + `<div class="pb-group">Premium 1/12<span class="pb-group-sum">${fmtMoney(p112Profit)} so'm</span></div>`
-            + p112Rows
-            + `<div class="pb-group">Uzgets + Premium Send<span class="pb-group-sum is-uz">${fmtMoney(uz.total)} so'm</span></div>`
-            + uzRows;
+            + psRows;
         } else if (currentSource === 'starsjoy') {
           breakdownHTML += sjRows;
         } else if (currentSource === 'premium_send') {
           breakdownHTML += psRows;
-        } else if (currentSource === 'premium_1_12') {
-          breakdownHTML += p112Rows;
         } else if (currentSource === 'uzgets') {
           breakdownHTML += uzRows;
         }
@@ -4473,19 +4422,17 @@ if (authenticated && !dbReady) {
       };
 
       // Foyda hisobi renderProfit bilan bir xil qoidada, tanlangan source bo'yicha.
-      // 'all' = Starsjoy + Premium Send + Premium 1/12 + Uzgets (jami sof foyda).
+      // 'all' = Starsjoy + Premium Send + Uzgets (jami sof foyda).
       function mqsProfitOf(ov, uzOv) {
         if (!ov) return 0;
         var starsProfit = Math.round((ov.starsRevenue || 0) * 0.12);
         var giftProfit = Math.round((ov.giftRevenue || 0) * 0.12);
         var premiumProfit = Math.round((ov.premiumRevenue || 0) * 0.10);
         var psProfit = Math.round((ov.psRevenue || 0) * 0.10);
-        var p112Profit = ((ov.p112OneCount || 0) * 18000) + ((ov.p112TwelveCount || 0) * 48000);
         if (currentSource === 'starsjoy') return starsProfit + giftProfit + premiumProfit;
         if (currentSource === 'premium_send') return psProfit;
-        if (currentSource === 'premium_1_12') return p112Profit;
         if (currentSource === 'uzgets') return calcUzgets(ov).total;
-        return starsProfit + giftProfit + premiumProfit + psProfit + p112Profit + calcUzgets(uzOv).total;
+        return starsProfit + giftProfit + premiumProfit + psProfit + calcUzgets(uzOv).total;
       }
 
       function mqsOrdersOf(ov, uzOv) {
@@ -4622,22 +4569,25 @@ if (authenticated && !dbReady) {
         return 'salesFrom=' + from + '&salesTo=' + to;
       }
 
-      function uzCard(label, p, cls) {
-        return '<div class="profit-card ' + cls + '">'
-          + '<div class="pc-label">' + label + '</div>'
+      // Uzgets / Premium Send / Umumiy — har doim shu uch karta, bitta davr uchun.
+      function uzCategoryCards(p) {
+        var uzOnly = p.total - p.ps;
+        var psRev = (p.ov && p.ov.psRevenue) || 0;
+        var psCount = (p.ov && p.ov.psCount) || 0;
+        return '<div class="profit-card profit-uz">'
+          + '<div class="pc-label">Uzgets foyda</div>'
+          + '<div class="pc-value">' + uzFmt(uzOnly) + '</div>'
+          + '<div class="pc-sub">so\'m</div>'
+          + '</div>'
+          + '<div class="profit-card profit-sub">'
+          + '<div class="pc-label">Premium Send foyda</div>'
+          + '<div class="pc-value">' + uzFmt(p.ps) + '</div>'
+          + '<div class="pc-sub">so\'m (12%) — ' + uzFmt(psRev) + ' so\'m aylanma, ' + psCount + ' ta</div>'
+          + '</div>'
+          + '<div class="profit-card profit-total">'
+          + '<div class="pc-label">Umumiy foyda</div>'
           + '<div class="pc-value">' + uzFmt(p.total) + '</div>'
           + '<div class="pc-sub">so\'m — ' + p.orders + ' ta buyurtma</div>'
-          + '</div>';
-      }
-
-      // Premium Send'ning 12% komissiyasi — Uzgets umumiy foydasidan alohida ko'rinishi uchun.
-      function uzPsCard(label, p) {
-        var count = (p.ov && p.ov.psCount) || 0;
-        var rev = (p.ov && p.ov.psRevenue) || 0;
-        return '<div class="profit-card profit-sub">'
-          + '<div class="pc-label">' + label + '</div>'
-          + '<div class="pc-value">' + uzFmt(p.ps) + '</div>'
-          + '<div class="pc-sub">so\'m (12%) — ' + uzFmt(rev) + ' so\'m aylanma, ' + count + ' ta</div>'
           + '</div>';
       }
 
@@ -4648,39 +4598,19 @@ if (authenticated && !dbReady) {
           + '<div class="pb-row is-uz"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">Premium 3 oy</span><span class="pb-revenue">' + (p.ov.uz3Count || 0) + ' ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">' + uzFmt(p.p3) + ' so\'m</span></div>'
           + '<div class="pb-row is-uz"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">Premium 6 oy</span><span class="pb-revenue">' + (p.ov.uz6Count || 0) + ' ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">' + uzFmt(p.p6) + ' so\'m</span></div>'
           + '<div class="pb-row is-uz"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">Premium 12 oy</span><span class="pb-revenue">' + (p.ov.uz12Count || 0) + ' ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">' + uzFmt(p.p12) + ' so\'m</span></div>'
-          + '<div class="pb-row is-uz"><span class="pb-dot" style="background:#818cf8"></span><span class="pb-name">Premium Send</span><span class="pb-revenue">' + uzFmt(p.ov.psRevenue || 0) + ' so\'m</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">' + uzFmt(p.ps) + ' so\'m (12%)</span></div>'
           + '</div>';
       }
 
-      // ───── Bugun / Kecha / Bu oy ─────
+      // ───── Bugungi foyda: Uzgets / Premium Send / Umumiy ─────
       async function uzLoadQuick() {
-        var t = uzToday();
-        var yest = new Date(Date.UTC(t.y, t.m, t.d - 1));
-        var ys = uzDateStr(yest.getUTCFullYear(), yest.getUTCMonth(), yest.getUTCDate());
-        var monthFrom = uzDateStr(t.y, t.m, 1);
-        var monthTo = uzDateStr(t.y, t.m, new Date(t.y, t.m + 1, 0).getDate());
-
         try {
-          var results = await Promise.all([
-            uzFetch('period=today'),
-            uzFetch(uzRangeQuery(ys, ys)),
-            uzFetch(uzRangeQuery(monthFrom, monthTo)),
-          ]);
-          if (results.some(function (r) { return r === null; })) return;
+          var today = await uzFetch('period=today');
+          if (!today) return;
 
           var box = document.getElementById('uzQuickCards');
-          box.innerHTML =
-            uzCard('Bugungi foyda', results[0], 'profit-main')
-            + uzCard('Kechagi foyda', results[1], '')
-            + uzCard(UZ_MONTHS[t.m] + ' oyi foydasi', results[2], 'profit-total');
+          box.className = 'profit-cards pc-grid-all';
+          box.innerHTML = uzCategoryCards(today);
           box.hidden = false;
-
-          var psBox = document.getElementById('uzPsQuickCards');
-          psBox.innerHTML =
-            uzPsCard('Bugungi Premium Send', results[0])
-            + uzPsCard('Kechagi Premium Send', results[1])
-            + uzPsCard(UZ_MONTHS[t.m] + ' oyi Premium Send', results[2]);
-          document.getElementById('uzPsQuickWrap').hidden = false;
 
           document.getElementById('uzRangeSection').hidden = false;
           document.getElementById('uzLoading').style.display = 'none';
@@ -4864,16 +4794,8 @@ if (authenticated && !dbReady) {
           var p = await uzFetch(query);
           if (seq !== uzRangeSeq || !p) return;
           box.innerHTML =
-            '<div class="uz-month-total">'
-            + '<span class="umt-label">' + uzEsc(label) + '</span>'
-            + '<span class="umt-value">' + uzFmt(p.total) + " so'm</span>"
-            + '<span class="umt-sub">' + p.orders + ' ta buyurtma · ' + uzFmt(p.revenue) + " so'm aylanma</span>"
-            + '</div>'
-            + '<div class="uz-month-total uz-ps-total">'
-            + '<span class="umt-label">Shundan Premium Send</span>'
-            + '<span class="umt-value">' + uzFmt(p.ps) + " so'm</span>"
-            + '<span class="umt-sub">' + ((p.ov && p.ov.psCount) || 0) + ' ta buyurtma · ' + uzFmt((p.ov && p.ov.psRevenue) || 0) + " so'm aylanma</span>"
-            + '</div>'
+            '<div class="uz-ps-heading">' + uzEsc(label) + '</div>'
+            + '<div class="profit-cards pc-grid-all">' + uzCategoryCards(p) + '</div>'
             + uzBreakdown(p);
         } catch (e) {
           if (seq !== uzRangeSeq) return;
