@@ -20,6 +20,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'is-starsjoy-legit',
+    title: 'Is StarsJoy Legit? Reviews and Guarantees (2026)',
+    excerpt:
+      '8,000+ confirmed orders, 78 dated customer reviews averaging 4.9/5, and a 100% refund guarantee if delivery fails — every proof point and how to verify it yourself.',
+    date: '2026-09-03',
+    tag: 'Guide',
+  },
+  {
     slug: 'sell-telegram-gift-fragment',
     title: 'How to sell a Telegram gift on Marketplace or Fragment',
     excerpt:

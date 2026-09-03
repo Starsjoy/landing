@@ -33,6 +33,7 @@ export const EN_TO_UZ: Record<string, string> = {
   // Blog maqolalari — EN slug o'zbekchadan farq qiladi, shuning uchun har biri
   // alohida yoziladi. Yozuv bo'lmasa NavbarEn dagi 🇺🇿 tugmasi o'quvchini
   // maqolaga emas, bosh sahifaga tashlaydi.
+  '/en/blog/is-starsjoy-legit': '/blog/starsjoy-ishonchli-sharhlar-kafolat',
   '/en/blog/most-expensive-telegram-gifts': '/blog/eng-qimmat-telegram-sovgalari',
   '/en/blog/pay-for-telegram-ads-with-stars': '/blog/telegram-ads-stars-bilan',
   '/en/blog/telegram-stars-premium-statistics-2026': '/blog/telegram-stars-premium-statistika-2026',
