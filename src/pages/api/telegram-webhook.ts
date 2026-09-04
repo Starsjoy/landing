@@ -194,9 +194,11 @@ export const POST: APIRoute = async ({ request }) => {
 
     console.log('[WEBHOOK] parsed:', JSON.stringify(order));
 
-    // Premium Send kanalidan kelgan buyurtmalar — type ni premium_send ga o'zgartirish
+    // Premium Send kanalidan kelgan buyurtmalar: Stars xabari bo'lsa 'premium_send_stars'
+    // (yangi — 50 stars/15 000 so'm, foyda 2 admin o'rtasida 50/50), aks holda (Premium
+    // obuna komissiyasi) eskicha 'premium_send' bo'lib qoladi.
     if (isPremiumSend) {
-      order.type = 'premium_send' as any;
+      order.type = (order.type === 'stars' ? 'premium_send_stars' : 'premium_send') as any;
     }
 
     // Uzgets kanalidan kelgan buyurtmalar — type'ga 'uzgets_' prefiks; gift qo'llab quvvatlanmaydi
