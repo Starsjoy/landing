@@ -20,6 +20,22 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'cancel-telegram-premium-auto-renewal',
+    title: 'How to Turn Off Telegram Premium Auto-Renewal (2026)',
+    excerpt:
+      'Step-by-step for iOS, Android and @PremiumBot, what happens to your remaining days after cancelling, and what to do if the cancel option is missing.',
+    date: '2026-09-06',
+    tag: 'Premium',
+  },
+  {
+    slug: 'telegram-stars-glossary',
+    title: 'Telegram Stars Glossary: 18 Key Terms Explained (2026)',
+    excerpt:
+      'Stars, Fragment, Collectible, TON, withdraw and refund explained in plain English — one glossary to understand any Telegram Stars guide.',
+    date: '2026-09-06',
+    tag: 'Stars',
+  },
+  {
     slug: 'is-starsjoy-legit',
     title: 'Is StarsJoy Legit? Reviews and Guarantees (2026)',
     excerpt:

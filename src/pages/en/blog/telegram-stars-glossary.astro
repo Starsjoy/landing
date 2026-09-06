@@ -1,0 +1,96 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const terms = [
+  {
+    group: "Core concepts: Stars, Premium, TON, Fragment",
+    items: [
+      { q: "What is Telegram Stars?", a: "Telegram Stars is a digital currency that works inside the Telegram app. It is used to buy gifts, pay bots and channels, unlock paid content, and pay for Premium. Stars are topped up through the App Store, Google Play, or a local reseller bot such as @starsjoybot." },
+      { q: "What is Telegram Premium?", a: "Telegram Premium is a monthly or yearly subscription that unlocks extra features: 4 GB file uploads, faster downloads, premium emoji, an animated profile picture, and ad-free public channels. Stars are a currency; Premium is a service that can be paid for either with Stars or directly with money." },
+      { q: "What is TON (Toncoin)?", a: "TON is the cryptocurrency of an independent blockchain network connected to the Telegram ecosystem. Stars are a closed currency inside Telegram that cannot be exchanged for money directly — only after converting them to TON through Fragment can they be sold on outside crypto exchanges." },
+      { q: "What is Fragment?", a: "Fragment (fragment.com) is Telegram's official platform where Stars are converted into TON, and where rare usernames and phone numbers are sold at auction. Fragment is the bridge between Stars and TON." },
+    ],
+  },
+  {
+    group: "Gift and NFT terms",
+    items: [
+      { q: "What is a Gift?", a: "A Gift is a digital present sent to another user for Stars (for example, a Teddy Bear or a Diamond). A regular gift shows on the recipient's profile but cannot be resold — it first has to be upgraded into a Collectible." },
+      { q: "What is a Collectible (NFT gift)?", a: "A Collectible is a regular gift turned into a unique digital version (an NFT on the blockchain) by paying Stars. Each one has its own mint number and Model, Backdrop and Symbol traits, which is what makes it resellable on the Marketplace or through Fragment." },
+      { q: "What are Model, Backdrop and Symbol?", a: "These are the three visual traits randomly assigned to every Collectible gift. The rarer the combination, the higher the gift is typically valued in the market — this is the core mechanism behind its price." },
+      { q: "What is the Marketplace?", a: "The Marketplace is Telegram's built-in trading venue where Collectible gifts are bought and sold for Stars. It has worked since May 2025 and lets owners trade faster without exporting to Fragment." },
+      { q: "What is an Upgrade?", a: "An Upgrade is the process of turning a regular gift into a Collectible, usually by paying a set amount of Stars. Only after the upgrade can a gift be listed on the Marketplace or exported to the blockchain through Fragment." },
+    ],
+  },
+  {
+    group: "Bot, payment and purchase terms",
+    items: [
+      { q: "What is a provider / reseller bot?", a: "A provider is a service that delivers Stars or Premium to a user, usually a bot that accepts local payment methods such as Uzcard, Humo, Click or Payme. StarsJoy is one such reseller — an independent service, not an official Telegram partner." },
+      { q: "What is a Mini App?", a: "A Mini App is a full web application that opens inside Telegram without installing a separate program. Many bots, including @starsjoybot, are really just the entry point into a Mini App rather than the chat itself." },
+      { q: "What is an invoice?", a: "An invoice is the payment request a bot shows: a screen with the amount, the item, and the payment method. The user confirms the payment based on what that screen shows." },
+      { q: "What is paid media?", a: "Paid media is a post — a photo or video — that a channel owner locks behind a Stars payment before it can be viewed. Channels with more than 1,000 subscribers can turn this feature on." },
+    ],
+  },
+  {
+    group: "Money and troubleshooting terms",
+    items: [
+      { q: "What is your Stars balance?", a: "Your balance is the amount of Stars you currently hold, visible under Settings > Telegram Stars. Stars in your balance never expire and stay there until you spend them." },
+      { q: "What does withdraw mean?", a: "Withdraw is the process a creator or channel owner uses to convert Stars they earned into TON through Fragment, then into local currency through an outside service. The minimum is 1,000 Stars, and newly received Stars only become eligible for withdrawal 21 days after they arrive." },
+      { q: "What is a refund?", a: "A refund means getting spent Stars back. Under Telegram's official terms, a Stars purchase is final and non-refundable; the one exception is when a bot fails to deliver what was paid for, which can be disputed through /paysupport." },
+      { q: "What is a chargeback?", a: "A chargeback is when a user disputes a payment through their bank instead of through Telegram. Telegram reserves the right to freeze or permanently remove the Stars balance in that case, which is why this route is not recommended." },
+      { q: "What does /paysupport do?", a: "/paysupport is the command used inside a bot chat to escalate a payment dispute to Telegram. The user needs to provide the transaction ID, but a resolution is not guaranteed." },
+    ],
+  },
+];
+
+const faqs = terms.flatMap((g) => g.items).map((t) => ({ q: t.q, a: t.a }));
+---
+<BlogPostEn
+  slug="telegram-stars-glossary"
+  title="Telegram Stars Glossary: 18 Key Terms Explained (2026)"
+  heading="Telegram Stars glossary: 18 key terms explained (2026)"
+  crumb="Stars glossary"
+  tag="Stars"
+  description="Stars, Fragment, Collectible, TON, withdraw and refund explained in plain English — one glossary to understand any Telegram Stars guide."
+  keywords="telegram stars glossary, what is fragment telegram, what is a collectible gift, what is ton, telegram stars terms"
+  publishDate="2026-09-06"
+  uzHref="https://starsjoy.uz/blog/telegram-stars-atamalar-lugati"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-stars-atamalar-lugati"
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "en-US",
+    "mainEntity": faqs.map((f) => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  })} />
+
+  <section>
+    <p class="post-lead"><strong>Short answer:</strong> Telegram Stars is the app's internal virtual currency, used to pay for gifts, subscriptions and content. Terms like Fragment, Collectible, TON and withdraw show up in other guides with no explanation — below, all of them are explained in plain language, grouped by topic.</p>
+  </section>
+
+  <section>
+    <p>This is a complete glossary of the 18 most common terms in the Stars ecosystem. Each term is its own heading, so use your browser's find-on-page (Ctrl+F, or "Find in page" on mobile) to jump straight to the word you need.</p>
+  </section>
+
+  {terms.map((group) => (
+    <section>
+      <h2>{group.group}</h2>
+      {group.items.map((t) => (
+        <Fragment>
+          <h3>{t.q}</h3>
+          <p>{t.a}</p>
+        </Fragment>
+      ))}
+    </section>
+  ))}
+
+  <section>
+    <h2>The takeaway</h2>
+    <p>This glossary brings together the most important terms in the Stars ecosystem in one place. The next time a guide uses a word you don't recognize, come back here and search for the relevant section.</p>
+    <p>For hands-on guides, see <a href="/en/blog/sell-telegram-gift-fragment">how to sell a gift on Marketplace or Fragment</a>, <a href="/en/blog/most-expensive-telegram-gifts">the most expensive Telegram gifts</a>, <a href="/en/blog/cash-out-telegram-stars">how to cash out Stars in Uzbekistan</a>, and <a href="/en/blog/is-buying-telegram-stars-safe">how to spot a Stars scam</a>.</p>
+    <p>Ready to buy? See <a href="/en/stars">Telegram Stars pricing</a> or open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> directly.</p>
+  </section>
+</BlogPostEn>

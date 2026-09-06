@@ -1,0 +1,210 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+
+const title = "Глоссарий терминов Telegram Stars: 18 главных слов (2026) | StarsJoy";
+const description = "Stars, Fragment, Collectible, TON, withdraw и refund простым языком — полный глоссарий, чтобы понимать любую статью о Telegram Stars.";
+const publishDate = "2026-09-06";
+const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-atamalar-lugati";
+
+const terms = [
+  {
+    group: "Базовые понятия: Stars, Premium, TON, Fragment",
+    items: [
+      { q: "Что такое Telegram Stars?", a: "Telegram Stars — цифровая валюta внутри Telegram. С её помощью покупают подарки, оплачивают каналы и ботов, открывают платный контент и оформляют подписку Premium. Stars пополняются через App Store, Google Play или локального реселлера, например @starsjoybot." },
+      { q: "Что такое Telegram Premium?", a: "Telegram Premium — платная подписка (на месяц или год), открывающая расширенные функции: загрузку файлов до 4 ГБ, ускоренную загрузку, premium-эмодзи, анимированный аватар и просмотр каналов без рекламы. Stars — валюта, а Premium — услуга, которую можно оплатить этой валютой или напрямую деньгами." },
+      { q: "Что такое TON (Toncoin)?", a: "TON — криптовалюта независимого блокчейна, связанного с экосистемой Telegram. Stars — закрытая валюta внутри Telegram, которую нельзя напрямую обменять на деньги; сделать это можно только через Fragment, конвертировав Stars в TON." },
+      { q: "Что такое Fragment?", a: "Fragment (fragment.com) — официальная платформа Telegram, где Stars конвертируются в TON, а также продаются на аукционе уникальные username и номера телефонов. Fragment служит мостом между Stars и TON." },
+    ],
+  },
+  {
+    group: "Термины подарков и NFT",
+    items: [
+      { q: "Что такое Gift (подарок)?", a: "Gift — цифровой подарок, который отправляют другому пользователю за Stars (например, Teddy Bear или Diamond). Обычный подарок отображается в профиле, но его нельзя перепродать — для этого его сначала нужно превратить в Collectible." },
+      { q: "Что такое Collectible (NFT-подарок)?", a: "Collectible — уникальная цифровая версия обычного подарка (NFT в блокчейне), созданная за Stars. У каждого экземпляра свой порядковый номер и характеристики Model/Backdrop/Symbol, поэтому его можно перепродать на Marketplace или через Fragment." },
+      { q: "Что такое Model, Backdrop, Symbol?", a: "Это три визуальных признака (trait), случайно присваиваемых каждому Collectible-подарку. Чем реже встречается комбинация, тем выше рыночная оценка подарка — это основной механизм формирования цены." },
+      { q: "Что такое Marketplace?", a: "Marketplace — официальная торговая площадка внутри Telegram, где Collectible-подарки продаются и покупаются за Stars. Работает с мая 2025 года и позволяет торговать быстрее, не выходя на Fragment." },
+      { q: "Что такое Upgrade (апгрейд)?", a: "Upgrade — процесс превращения обычного подарка в Collectible, обычно за определённое количество Stars. Только после апгрейда подарок можно продать на Marketplace или экспортировать в блокчейн через Fragment." },
+    ],
+  },
+  {
+    group: "Термины ботов, оплаты и покупки",
+    items: [
+      { q: "Что такое Provider / реселлер-бот?", a: "Provider (поставщик) — сервис, который доставляет Stars или Premium пользователю, обычно бот, принимающий локальную оплату (Uzcard, Humo, Click, Payme). StarsJoy — такой же реселлер: не официальный партнёр Telegram, а независимый сервис." },
+      { q: "Что такое Mini App?", a: "Mini App — полноценное веб-приложение, открывающееся прямо внутри Telegram, без установки отдельной программы. Многие боты, включая @starsjoybot, служат лишь «ключом» для входа в такой Mini App, а не самим чатом." },
+      { q: "Что такое Invoice?", a: "Invoice — платёжный запрос (счёт), который показывает бот: окно с суммой, товаром и способом оплаты. Пользователь подтверждает платёж на основании этого окна." },
+      { q: "Что такое Paid post / paid media?", a: "Paid media — пост владельца канала (фото или видео), для просмотра которого нужно заплатить Stars. Эту функцию могут включить каналы с более чем 1000 подписчиков." },
+    ],
+  },
+  {
+    group: "Термины, связанные с деньгами и проблемами",
+    items: [
+      { q: "Что такое Balance (баланс)?", a: "Balance — ваше текущее количество Stars, видно в Настройки &gt; Ваши Stars. Stars на балансе не сгорают, пока не потрачены, и не имеют ограниченного срока действия." },
+      { q: "Что такое Withdraw / вывод на карту?", a: "Withdraw — процесс, при котором создатель контента или владелец канала конвертирует заработанные Stars в TON через Fragment, а затем — во внешнем сервисе в сумы. Минимальный порог — 1000 Stars, а новые Stars становятся доступны для вывода только через 21 день." },
+      { q: "Что такое Refund (возврат)?", a: "Refund — возврат потраченных Stars. По официальным правилам Telegram покупка Stars окончательна и не подлежит возврату; исключение — если бот не оказал услугу, тогда можно обратиться через /paysupport." },
+      { q: "Что такое Chargeback?", a: "Chargeback — попытка пользователя отменить платёж через банк. В этом случае Telegram оставляет за собой право временно или навсегда заблокировать баланс, поэтому такой путь не рекомендуется." },
+      { q: "Что такое /paysupport?", a: "/paysupport — специальная команда для передачи Telegram спора об оплате внутри бота. При обращении нужно указать ID транзакции, но результат не гарантирован." },
+    ],
+  },
+];
+
+const faqEntities = terms.flatMap((g) => g.items).map((t) => ({
+  "@type": "Question",
+  "name": t.q,
+  "acceptedAnswer": { "@type": "Answer", "text": t.a.replace(/&gt;/g, '>') }
+}));
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="глоссарий telegram stars, что такое fragment, что такое collectible, что такое ton, термины telegram stars"
+  lang="ru"
+  ogType="article"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-stars-atamalar-lugati" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-stars-atamalar-lugati" },
+    { lang: "en", href: "https://starsjoy.uz/en/blog/telegram-stars-glossary" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Глоссарий терминов Telegram Stars: 18 главных слов (2026)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": publishDate,
+    "inLanguage": "ru-RU",
+    "articleSection": "Stars",
+    "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png" }
+    },
+    "mainEntityOfPage": canonical,
+    "image": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png", "width": 512, "height": 512 }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Глоссарий Stars", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqEntities
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <a href="/ru/blog">Блог</a>
+          <span>/</span>
+          <span>Глоссарий Stars</span>
+        </nav>
+        <div class="post-tag">Stars</div>
+        <h1 class="post-title">Глоссарий терминов Telegram Stars: 18 главных слов (2026)</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <section>
+            <p class="post-lead"><strong>Короткий ответ:</strong> Telegram Stars — это внутренняя виртуальная валюта приложения, которой оплачивают подарки, подписки и контент. Термины вроде Fragment, Collectible, TON, withdraw часто используются в других статьях без объяснения — ниже все они разобраны простым языком по тематическим группам.</p>
+          </section>
+
+          <section>
+            <p>Это полный глоссарий 18 самых частых терминов экосистемы Stars. Каждый термин оформлен как отдельный вопрос — используйте Ctrl+F (или поиск по странице на телефоне), чтобы быстро найти нужное слово.</p>
+          </section>
+
+          {terms.map((group) => (
+            <section>
+              <h2>{group.group}</h2>
+              {group.items.map((t) => (
+                <Fragment>
+                  <h3>{t.q}</h3>
+                  <p set:html={t.a} />
+                </Fragment>
+              ))}
+            </section>
+          ))}
+
+          <section>
+            <div class="post-cta-box">
+              <a href="https://telegram.me/starsjoybot" target="_blank" class="post-cta-btn">Купить Stars &rarr;</a>
+              <span class="post-cta-sub">telegram.me/starsjoybot</span>
+            </div>
+          </section>
+
+          <section>
+            <h2>Итог</h2>
+            <p>Этот глоссарий собрал главные термины экосистемы Stars в одном месте. Если при чтении другой статьи встретится непонятное слово — возвращайтесь на эту страницу и ищите нужный раздел.</p>
+            <p>Практические руководства по темам: <a href="/ru/blog/telegram-stars-fragment-alternativa">что делать, если Fragment не работает</a>, <a href="/ru/blog/telegram-gift-collectible-upgrade">превращение подарка в Collectible</a>, <a href="/ru/blog/telegram-sovga-sotish-fragment">продажа подарка на Marketplace</a>, <a href="/ru/blog/telegram-ton-va-stars-farqi">разница между TON и Stars</a>, <a href="/ru/blog/telegram-stars-kartaga-chiqarish">вывод Stars на карту</a> и <a href="/ru/blog/telegram-stars-refund-qaytarish">политика возврата</a>.</p>
+            <p>Чтобы купить Stars, перейдите на <a href="/ru/stars">страницу цен Stars</a> или напрямую в <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>.</p>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .post-hero { padding: 120px 24px 48px; background: #F8F6FF; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; flex-wrap: wrap; }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .post-tag { display: inline-block; padding: 4px 12px; background: rgba(124, 58, 237, 0.08); border-radius: 50px; color: var(--primary); font-size: 0.78rem; font-weight: 600; margin-bottom: 16px; }
+  .post-title { font-size: 2.2rem; font-weight: 900; color: var(--text); margin-bottom: 16px; line-height: 1.2; max-width: 800px; }
+  .post-meta { display: flex; align-items: center; gap: 16px; font-size: 0.9rem; color: var(--text-muted); }
+  .post-body { padding: 60px 24px; }
+  .post-content { max-width: 760px; margin: 0 auto; }
+  .post-content section { padding: 0; margin: 0; }
+  .post-lead { font-size: 1.08rem !important; color: var(--text) !important; background: #F8F6FF; border-left: 3px solid var(--primary); border-radius: 8px; padding: 18px 20px; line-height: 1.75 !important; }
+  .post-content h2 { font-size: 1.4rem; font-weight: 800; color: var(--text); margin: 32px 0 8px; line-height: 1.3; }
+  .post-content h3 { font-size: 1.05rem; font-weight: 700; color: var(--primary); margin: 18px 0 4px; }
+  .post-content p { font-size: 1rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 10px; }
+  .post-content a { color: var(--primary); text-decoration: none; }
+  .post-content a:hover { text-decoration: underline; }
+  .post-content a.post-cta-btn { text-decoration: none; }
+  .post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 14px; }
+  .post-content li { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 6px; }
+  .post-cta-box { margin: 16px 0; padding: 0; background: none; border: none; }
+  .post-cta-btn { display: inline-block; padding: 8px 20px; background: rgba(124, 58, 237, 0.06); color: var(--primary); font-weight: 600; font-size: 0.9rem; border-radius: 8px; text-decoration: none; border: 1px solid rgba(124, 58, 237, 0.15); transition: background 0.2s, border-color 0.2s; }
+  .post-cta-btn:hover { background: rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.3); }
+  .post-cta-sub { display: inline; margin-left: 10px; font-size: 0.82rem; color: var(--text-light); }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.5rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.2rem; margin-top: 28px; }
+    .post-content h3 { font-size: 1rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .breadcrumb { font-size: 0.8rem; }
+  }
+</style>

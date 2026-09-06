@@ -1,0 +1,134 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  { q: "If I turn off auto-renew, does Premium stop right away?", a: "No. Turning off auto-renew only stops the next charge — the period you already paid for runs all the way to its end date. If you have 15 days left, every Premium feature keeps working for those 15 days." },
+  { q: "Do I get a partial refund for the days I don't use?", a: "No. Under standard App Store and Google Play terms, cancelling mid-period does not trigger a partial refund — the amount you paid covers the full period regardless of when you cancel." },
+  { q: "What if the cancel option is greyed out or missing?", a: "This is usually a device or account mismatch: if you subscribed on Android and later switched to an iPhone, the subscription is still managed by Google Play, so you need to sign into that same Google account (on any device or browser) to cancel it. Telegram Desktop and Web also generally do not show a cancel button for a subscription bought on mobile." },
+  { q: "Do I need to cancel Premium bought through StarsJoy?", a: "No. A StarsJoy purchase is a one-off Stars or card payment, not a recurring subscription that charges your card automatically. There is nothing to cancel — when the term ends, you simply buy again only if you want to." },
+  { q: "How do I cancel a subscription paid with Stars through @PremiumBot?", a: "A monthly subscription set up through Telegram's own @PremiumBot with Stars also auto-renews and deducts Stars from your balance each month. Open the chat with @PremiumBot and send the /stop command to cancel it." },
+  { q: "Can I turn auto-renew back on after cancelling?", a: "Yes. A subscription cancelled in the App Store or Google Play can be re-enabled at any point before the current term ends, with no penalty. If the term has already expired, you simply buy it again as a new purchase." }
+];
+---
+<BlogPostEn
+  slug="cancel-telegram-premium-auto-renewal"
+  title="How to Turn Off Telegram Premium Auto-Renewal (2026)"
+  heading="How to cancel Telegram Premium auto-renewal (2026)"
+  crumb="Cancel Premium auto-renew"
+  tag="Premium"
+  description="Step-by-step: turn off Telegram Premium auto-renewal on iOS, Android and through the bot, what happens to your remaining days after cancelling, and what to do if the cancel option is missing."
+  keywords="cancel telegram premium, turn off telegram premium auto-renewal, stop telegram premium subscription, telegram premium cancel button missing"
+  publishDate="2026-09-06"
+  uzHref="https://starsjoy.uz/blog/telegram-premium-obunani-bekor-qilish"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-premium-obunani-bekor-qilish"
+  faqs={faqs}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to turn off Telegram Premium auto-renewal",
+    "description": "Steps to cancel Telegram Premium auto-renewal on iOS, Android, or through @PremiumBot, depending on where the subscription was purchased.",
+    "totalTime": "PT3M",
+    "step": [
+      { "@type": "HowToStep", "name": "Identify the payment source", "text": "Recall whether Premium was bought through the App Store, Google Play, @PremiumBot with Stars, or a reseller bot — cancellation happens in whichever of these you used." },
+      { "@type": "HowToStep", "name": "On iOS", "text": "Settings > your name (Apple ID) > Subscriptions > Telegram Premium > Cancel Subscription." },
+      { "@type": "HowToStep", "name": "On Android", "text": "Google Play app > profile icon > Payments & subscriptions > Subscriptions > Telegram > Cancel subscription." },
+      { "@type": "HowToStep", "name": "Through @PremiumBot", "text": "Open the chat with @PremiumBot and send the /stop command." },
+      { "@type": "HowToStep", "name": "Confirm", "text": "Confirm the final prompt in whichever system you used — Premium keeps working until the current paid period ends." }
+    ]
+  })} />
+
+  <section>
+    <p class="post-lead"><strong>Short answer:</strong> to turn off Telegram Premium auto-renewal, you need to know how it was paid for. On iOS: <strong>Settings &gt; your name &gt; Subscriptions</strong>. On Android: <strong>Google Play &gt; Payments &amp; subscriptions</strong>. Paid with Stars through Telegram's own @PremiumBot: send <strong>/stop</strong> in that chat. Premium bought through a reseller bot like StarsJoy never auto-renews in the first place, so there's nothing to cancel.</p>
+  </section>
+
+  <section>
+    <p>This guide is not about what happens when Premium <strong>runs out on its own</strong> — that's covered in <a href="/en/blog/telegram-premium-expired">what happens when Telegram Premium expires</a>. This is about <strong>actively turning off</strong> the recurring charge, so your card isn't billed again next month.</p>
+  </section>
+
+  <section>
+    <h2>Why turn off auto-renewal in the first place?</h2>
+    <p>The most common reasons: deciding to stop using Premium, switching to a different payment method, or simply wanting control over what gets charged to a card every month. Whatever the reason, the process depends on exactly where the subscription was purchased — Telegram itself cannot manage these charges directly, because they run through the App Store or Google Play.</p>
+  </section>
+
+  <section>
+    <h2>How to cancel on iOS (App Store)</h2>
+    <ol>
+      <li>Open <strong>Settings</strong> on your iPhone.</li>
+      <li>Tap your name (<strong>Apple ID</strong>) at the top.</li>
+      <li>Go to <strong>Subscriptions</strong>.</li>
+      <li>Find <strong>Telegram Premium</strong> in the list and tap it.</li>
+      <li>Tap <strong>Cancel Subscription</strong> and confirm.</li>
+    </ol>
+    <p>Alternative route: open the App Store app, tap your profile icon in the top-right corner, choose <strong>Subscriptions</strong>, find Telegram in the list, and cancel there.</p>
+  </section>
+
+  <section>
+    <h2>How to cancel on Android (Google Play)</h2>
+    <ol>
+      <li>Open the <strong>Google Play</strong> app.</li>
+      <li>Tap your profile icon in the top-right corner.</li>
+      <li>Choose <strong>Payments &amp; subscriptions &gt; Subscriptions</strong>.</li>
+      <li>Find <strong>Telegram</strong> in the list.</li>
+      <li>Tap <strong>Cancel subscription</strong> and confirm.</li>
+    </ol>
+    <p>After cancelling, Google Play still shows the end date — that just means Premium keeps working until the current paid period is over.</p>
+  </section>
+
+  <section>
+    <h2>What if I subscribed with Stars through @PremiumBot?</h2>
+    <p>A Premium subscription set up as a monthly plan through Telegram's own official <strong>@PremiumBot</strong>, paid with Stars, also auto-renews — it deducts the right amount of Stars from your balance every month. To turn this off, open the chat with <strong>@PremiumBot</strong> and send the <strong>/stop</strong> command.</p>
+  </section>
+
+  <section>
+    <h2>Can I cancel from Desktop or Web?</h2>
+    <p>Telegram Desktop and Telegram Web show your Premium status, but they generally do not show a cancel button for a subscription bought on mobile (App Store/Google Play) — only the system that actually took the payment can manage it. So cancelling always happens on whichever platform you originally paid through: your phone's settings, or the bot chat.</p>
+  </section>
+
+  <section>
+    <div class="post-cta-box">
+      <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener" class="post-cta-btn">Get Premium as a one-off payment &rarr;</a>
+      <span class="post-cta-sub">telegram.me/starsjoybot</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>What happens to your remaining days after cancelling?</h2>
+    <p>Turning off auto-renewal does not stop Premium <strong>immediately</strong>. It only <strong>prevents the next charge</strong>. The period you've already paid for (say, through the end of the month) plays out in full — 4 GB uploads, custom emoji, the animated avatar, all of it stays until the term ends.</p>
+    <p>What happens once that term actually ends is covered in detail in <a href="/en/blog/telegram-premium-expired">Telegram Premium expired: what you lose and how to renew</a> — the short version: your account and messages are untouched, only the Premium features stop.</p>
+  </section>
+
+  <section>
+    <h2>Do you get a partial refund for cancelling early?</h2>
+    <p>No. Under standard App Store and Google Play terms, cancelling in the middle of a billing period does <strong>not</strong> produce a partial refund — the amount you paid is treated as covering the entire period, with no credit for unused days. That makes it financially sensible to cancel closer to the end of a term, once you've actually used what you paid for.</p>
+  </section>
+
+  <section>
+    <h2>What to do if the cancel button is missing or greyed out</h2>
+    <p>This is the most common snag. The usual causes:</p>
+    <ul>
+      <li><strong>You switched devices.</strong> Subscribed on Android, then moved to an iPhone? The subscription is still managed by Google Play. Fix: sign into that same Google account on any device or browser via play.google.com/store/account and cancel there.</li>
+      <li><strong>Desktop/Web limitation.</strong> Telegram Desktop or Web simply doesn't display a cancel button for a subscription bought on mobile. Cancellation only works on the device or platform where the payment actually happened.</li>
+      <li><strong>Premium was a gift.</strong> If someone else gifted you Premium, the subscription (if any) is managed by whoever bought it, not by you.</li>
+      <li><strong>Bought through a reseller bot.</strong> Premium bought through bots like StarsJoy isn't a subscription at all — it's a one-time activation, so there's no cancel button because there's nothing recurring to cancel.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How is this different from Premium bought through StarsJoy?</h2>
+    <p>This is one of the real advantages of buying through StarsJoy: paying via <strong>@starsjoybot</strong> is a one-off Stars or card payment — no recurring subscription gets set up at all. In practice that means:</p>
+    <ul>
+      <li>No surprise charge hits your card next month;</li>
+      <li>There's no cancellation step required, because there's nothing to cancel;</li>
+      <li>When the term ends, you either buy again if you want to, or it simply stops — no action needed either way;</li>
+      <li>You pick the term (3, 6 or 12 months) every time; nothing auto-extends.</li>
+    </ul>
+    <p>That's a fundamentally different model from an auto-renewing App Store or Google Play subscription. For pricing and term comparisons, see <a href="/en/premium">Telegram Premium plans and pricing</a>.</p>
+  </section>
+
+  <section>
+    <h2>The takeaway</h2>
+    <p>Turning off auto-renewal is a simple, few-step process in the App Store or Google Play, but it doesn't stop Premium immediately and it doesn't refund anything partially. If you'd rather not manage any of that, buying Premium as a one-off payment through a reseller bot like StarsJoy means there's never a recurring charge to think about in the first place.</p>
+    <p>See <a href="/en/premium">Telegram Premium prices</a> or open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> to buy or renew.</p>
+  </section>
+</BlogPostEn>

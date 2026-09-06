@@ -59,13 +59,14 @@ Layout + Navbar/NavbarRu + Footer/FooterRu, sana formati YYYY-MM-DD, tag mavjud 
 ---
 
 ## Yo'l xaritasi — TOP 10 maqola
-1. StarsJoy ishonchlimi? Sharhlar/kafolat — `starsjoy-ishonchli-sharhlar` (Xavfsizlik) — *user input kerak*
+1. ~~StarsJoy ishonchlimi? Sharhlar/kafolat~~ — BAJARILDI (2026-09-03) — `starsjoy-ishonchli-sharhlar-kafolat` (Xavfsizlik)
 2. Eng arzon Stars provayderlar reytingi — `telegram-stars-eng-arzon-provayderlar` (Stars) ⬅️ **BIRINCHI**
 3. Premium'ni boshqaga sovg'a qilish — `telegram-premium-sovga-qilish` (Premium)
-4. Stars refund/qaytarish — `telegram-stars-refund-qaytarish` (Stars)
-5. Eng qimmat/noyob sovg'alar TOP — `eng-qimmat-telegram-sovgalari` (Gifts)
+4. ~~Stars refund/qaytarish~~ — BAJARILDI (2026-07-12) — `telegram-stars-refund-qaytarish` (Stars)
+5. ~~Eng qimmat/noyob sovg'alar TOP~~ — BAJARILDI (2026-08-12) — `eng-qimmat-telegram-sovgalari` (Gifts)
 6. Telegram Ads Stars bilan — `telegram-ads-stars-bilan` (Biznes)
 7. ~~Stars/Premium statistika 2026~~ — BAJARILDI (2026-08-23) — `telegram-stars-premium-statistika-2026` (Stars)
-8. Stars atamalari lug'ati — `telegram-stars-atamalar-lugati` (Stars)
+8. ~~Stars atamalari lug'ati~~ — BAJARILDI (2026-09-06) — `telegram-stars-atamalar-lugati` (Stars)
 9. Sovg'ani sotish/Fragment — `telegram-sovga-sotish-fragment` (Gifts)
 10. Stars yoki Premium — qaysi biri — `telegram-stars-yoki-premium` (Premium)
+11. ~~Premium avtomatik yangilanishini o'chirish~~ — BAJARILDI (2026-09-06) — `telegram-premium-obunani-bekor-qilish` (Premium)

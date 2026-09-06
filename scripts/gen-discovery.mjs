@@ -34,6 +34,7 @@ const GROUPS = [
       'telegram-stars-tez-toldirish',
       'telegram-stars-eng-arzon-provayderlar',
       'telegram-stars-premium-statistika-2026',
+      'telegram-stars-atamalar-lugati',
     ],
   },
   {
@@ -91,6 +92,7 @@ const GROUPS = [
       'telegram-premium-funksiyalari',
       'telegram-premium-sovga-qilish',
       'telegram-premium-muddati-tugadi',
+      'telegram-premium-obunani-bekor-qilish',
       'telegram-business-vs-premium',
       'telegram-stars-yoki-premium',
     ],
