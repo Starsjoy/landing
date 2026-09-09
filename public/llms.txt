@@ -25,6 +25,8 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Blog index (English guides): https://starsjoy.uz/en/blog
 
 ### English guides
+- How Telegram's paid channel subscriptions work with Stars: https://starsjoy.uz/en/blog/telegram-channel-subscription-stars — How to set up a recurring monthly paid subscription for a Telegram channel using Stars, and how subscribers join or cancel: pricing, where the Stars go, and how it differs from a paid post.
+- How to activate a Telegram Premium gift code: https://starsjoy.uz/en/blog/activate-telegram-premium-gift-code — How to activate a Telegram Premium gift code won in a channel giveaway or received via a link: the steps, how long codes stay valid, and what happens if you already have Premium.
 - How to Turn Off Telegram Premium Auto-Renewal (2026): https://starsjoy.uz/en/blog/cancel-telegram-premium-auto-renewal — Step-by-step for iOS, Android and @PremiumBot, what happens to your remaining days after cancelling, and what to do if the cancel option is missing.
 - Telegram Stars Glossary: 18 Key Terms Explained (2026): https://starsjoy.uz/en/blog/telegram-stars-glossary — Stars, Fragment, Collectible, TON, withdraw and refund explained in plain English — one glossary to understand any Telegram Stars guide.
 - Is StarsJoy Legit? Reviews and Guarantees (2026): https://starsjoy.uz/en/blog/is-starsjoy-legit — 8,000+ confirmed orders, 78 dated customer reviews averaging 4.9/5, and a 100% refund guarantee if delivery fails — every proof point and how to verify it yourself.
@@ -47,7 +49,7 @@ Har bir sahifada: meta title/description, canonical, hreflang (uz/ru), Open Grap
 ## Tajriba va ishonch (tekshirsa bo'ladigan ma'lumotlar)
 
 - 8,000+ ta muvaffaqiyatli bajarilgan buyurtma.
-- https://starsjoy.uz/sharhlar — mijozlar sharhlari sahifasi: har bir sharhda muallif, ball va aniq sana ko'rsatilgan.
+- https://starsjoy.uz/sharhlar — hozirda 82 ta tasdiqlangan sharh, o'rtacha ball 4.9/5. Har bir sharhda muallif, ball va aniq sana ko'rsatilgan.
 - Sharhlar moderatsiyadan o'tadi, lekin o'chirilmaydi yoki o'zgartirilmaydi; umumiy o'rtacha ball sahifada ochiq turadi va AggregateRating schema sifatida bosh sahifada hamda /sharhlar da beriladi.
 - Sharh qoldirish ochiq: https://starsjoy.uz/sharh-qoldirish
 - Kompaniya va shartlar: https://starsjoy.uz/info | Ommaviy oferta: https://starsjoy.uz/oferta
@@ -119,7 +121,7 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 ## Referral dasturi
 Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
 
-## Maqolalar (58 ta mavzu, har biri o'zbek va rus tilida)
+## Maqolalar (60 ta mavzu, har biri o'zbek va rus tilida)
 
 ### Telegram Stars — asoslar, narx va xarid
 
@@ -161,6 +163,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - Telegram ekotizimida TON va Stars o'rtasidagi farq nima? (2026): https://starsjoy.uz/blog/telegram-ton-va-stars-farqi (RU: https://starsjoy.uz/ru/blog/telegram-ton-va-stars-farqi) — Telegramda TON va Stars o'rtasidagi farq nima? Qaysi biri kripto, qaysi biri ichki valyuta? Qaysini qachon ishlatish kerak — to'liq tushuntirish.
 - Telegram Mini App'da Stars bilan to'lov: qanday ishlaydi va xavfsizmi? (2026): https://starsjoy.uz/blog/telegram-mini-app-stars-tolov (RU: https://starsjoy.uz/ru/blog/telegram-mini-app-stars-tolov) — Telegram Mini App'da Stars bilan to'lov nima, qanday ishlaydi, qaysi mashhur Mini App'lar Stars qabul qiladi va to'lov bosqichlari — to'liq qo'llanma 2026.
 - Telegram Ads'ni Stars bilan to'lash: qo'llanma 2026: https://starsjoy.uz/blog/telegram-ads-stars-bilan (RU: https://starsjoy.uz/ru/blog/telegram-ads-stars-bilan) — Telegram Ads'ni Stars bilan kim to'lay oladi? 30% chegirma, Balance → Buy Ads bosqichlari, cheklovlar va kanal reklamasini ishga tushirish qo'llanmasi.
+- Telegramda kanalga pullik obuna: Stars bilan qanday ishlaydi (2026): https://starsjoy.uz/blog/telegram-kanal-pullik-obuna-stars (RU: https://starsjoy.uz/ru/blog/telegram-kanal-pullik-obuna-stars) — Telegram kanaliga oylik pullik obuna (channel subscription) Stars orqali qanday sozlanadi va qanday obuna bo'linadi: narx belgilash, bekor qilish, Stars…
 
 ### Telegram Premium — narx, paketlar va sotib olish
 
@@ -179,6 +182,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 
 - Telegram Premium nima beradi: 30+ funksiya batafsil ro'yxati (2026): https://starsjoy.uz/blog/telegram-premium-funksiyalari (RU: https://starsjoy.uz/ru/blog/telegram-premium-funksiyalari) — Telegram Premium barcha funksiyalari — 4 GB fayl, premium emoji, animatsiyali profil, voice-to-text, 1 000 kanal va boshqa 30+ imkoniyat.
 - Telegram Premium sovg'a qilish 2026 — do'stga Uzcard/Humo bilan: https://starsjoy.uz/blog/telegram-premium-sovga-qilish (RU: https://starsjoy.uz/ru/blog/telegram-premium-sovga-qilish) — Telegram Premium'ni do'stingizga sovg'a qilmoqchimisiz? Rasmiy yo'lda o'zingiz Premium bo'lishingiz shart, StarsJoy orqali esa faqat username + Uzcard/Humo…
+- Telegram Premium sovg'a kodini qanday faollashtirish kerak? (2026): https://starsjoy.uz/blog/telegram-premium-sovga-kodini-faollashtirish (RU: https://starsjoy.uz/ru/blog/telegram-premium-sovga-kodini-faollashtirish) — Kanal giveaway'da yutgan yoki link orqali kelgan Telegram Premium gift code'ni qanday faollashtirish kerak: qadamlar, kod muddati va sizda allaqachon Premium…
 - Telegram Premium muddati tugadi: yangilash yo'llari va nima qilish kerak (2026): https://starsjoy.uz/blog/telegram-premium-muddati-tugadi (RU: https://starsjoy.uz/ru/blog/telegram-premium-muddati-tugadi) — Telegram Premium muddati tugagach nima bo'ladi, qachon tugashini qanday tekshirish va Uzcard/Humo orqali tezda yangilash bosqichlari — to'liq qo'llanma.
 - Telegram Premium avtomatik yangilanishini qanday o'chirish mumkin? (2026): https://starsjoy.uz/blog/telegram-premium-obunani-bekor-qilish (RU: https://starsjoy.uz/ru/blog/telegram-premium-obunani-bekor-qilish) — Telegram Premium auto-renewni iOS, Android va botda o'chirish bosqichlari, bekor qilgandan keyin qolgan kunlar bilan nima bo'lishi va tugma ko'rinmasa nima…
 - Telegram Business vs Telegram Premium: alohida obunami yoki bitta? (2026 to'liq farq): https://starsjoy.uz/blog/telegram-business-vs-premium (RU: https://starsjoy.uz/ru/blog/telegram-business-vs-premium) — Telegram Business va Telegram Premium — alohida obunami? 2026-da javob: yo'q, bitta obuna ichida ikkita rejim.

@@ -1,0 +1,103 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  {
+    q: "How does a paid Telegram channel subscription work?",
+    a: "The channel owner sets a monthly price in Stars. A subscriber pays that price and gets access to exclusive (locked) content. The amount is auto-deducted from their Stars balance every month, and they can cancel at any time."
+  },
+  {
+    q: "How is a channel subscription different from a paid post?",
+    a: "A paid post is a one-time payment for a single message. A channel subscription is a recurring monthly payment that grants ongoing access. A channel can use both at the same time."
+  },
+  {
+    q: "What price should a subscription be set at?",
+    a: "Common practice is 50 to 500 Stars/month (about $0.75-$7.50 depending on how Stars were bought). Smaller or newer channels tend to start low and raise the price gradually based on results."
+  },
+  {
+    q: "How do Stars from a channel subscription turn into money?",
+    a: "100% of the Stars a subscriber pays go to the channel's balance — this is admin-to-channel monetization, so Telegram takes no platform cut. The channel owner then converts Stars to TON via Fragment and exchanges that for fiat."
+  },
+  {
+    q: "What happens if a subscriber doesn't have enough Stars?",
+    a: "If their Stars balance is too low next month, the subscription doesn't auto-renew and they lose access to the exclusive content — nothing is charged beyond their balance."
+  }
+];
+---
+
+<BlogPostEn
+  slug="telegram-channel-subscription-stars"
+  title="How Telegram's paid channel subscriptions work with Stars"
+  description="How to set up a recurring monthly paid subscription for a Telegram channel using Stars, and how subscribers join or cancel: pricing, where the Stars go, and how it differs from a paid post."
+  keywords="telegram channel subscription, telegram paid subscription stars, telegram monthly channel subscription, telegram stars channel monetization"
+  publishDate="2026-09-09"
+  heading="How Telegram's paid channel subscriptions work"
+  crumb="Channel subscriptions"
+  tag="Stars"
+  faqs={faqs}
+  uzHref="https://starsjoy.uz/blog/telegram-kanal-pullik-obuna-stars"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-kanal-pullik-obuna-stars"
+  locale="en"
+>
+  <p class="post-lead"><strong>Short answer:</strong> A Telegram channel owner can set a <strong>monthly price in Stars</strong> and unlock exclusive content only for paying subscribers. This differs from a <a href="/en/blog/what-you-can-do-with-telegram-stars">paid post</a> — that's a one-time payment, while a subscription is charged automatically every month. The typical price range is 50–500 Stars/month, and 100% of the Stars go to the channel's balance.</p>
+
+  <section>
+    <h2>How is a channel subscription different from a paid post?</h2>
+    <p>Both are Telegram content-monetization tools, but the mechanics differ:</p>
+    <div class="post-table-wrap">
+      <table class="post-table">
+        <thead><tr><th>Feature</th><th>Paid post</th><th>Channel subscription</th></tr></thead>
+        <tbody>
+          <tr><td>Payment type</td><td>One-time</td><td>Recurring monthly</td></tr>
+          <tr><td>What it unlocks</td><td>A single message/media</td><td>An ongoing exclusive section</td></tr>
+          <tr><td>Cancellation</td><td>Not needed (one-time)</td><td>Any time</td></tr>
+          <tr class="highlight-row"><td>Typical price</td><td>10–500 Stars/post</td><td>50–500 Stars/month</td></tr>
+          <tr><td>Channel's cut</td><td>100%, no platform fee</td><td>100%, no platform fee</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Many channels use both: an occasional paid post for the wider audience, and a monthly subscription for regular followers.</p>
+  </section>
+
+  <section>
+    <h2>How does a channel owner set it up?</h2>
+    <ol>
+      <li><strong>Open channel settings</strong> — go to your channel's profile and choose "Edit" or "Manage Channel" from the three-dot menu.</li>
+      <li><strong>Find the Subscriptions section</strong> — enable the subscription feature in the channel settings.</li>
+      <li><strong>Set the monthly price in Stars</strong> — typically between 50 and 500 Stars/month.</li>
+      <li><strong>Mark exclusive content</strong> — create a locked post or section visible only to subscribers, while keeping some open content to attract new ones.</li>
+    </ol>
+    <p>The feature is turned on and configured only from the channel owner's side — subscribers need no extra setup, just tapping "Subscribe" with enough Stars balance.</p>
+  </section>
+
+  <section>
+    <h2>How do subscribers join and cancel?</h2>
+    <p>A "Subscribe" button appears on the channel's profile, with the price shown in Stars. Tapping it immediately deducts the first month from the subscriber's Stars balance and grants access to the exclusive section. In following months, the charge is deducted automatically as long as the Stars balance is sufficient.</p>
+    <p>Cancelling is available any time from the subscription settings on the channel profile — access stays active until the end of the already-paid month, and no charge is taken the next month.</p>
+  </section>
+
+  <section>
+    <h2>How do Stars from a subscription turn into money?</h2>
+    <p>Stars a subscriber pays go to the channel's balance <strong>at 100%</strong> — since this is admin-to-channel monetization, Telegram takes no separate cut here (that kind of cut only applies on the App Store/Google Play side, when a user buys Stars for their own personal balance). A channel owner can put the accumulated Stars to use in two ways:</p>
+    <ul>
+      <li><strong>Convert to TON via Fragment</strong> — then exchange for fiat through a crypto exchange (see <a href="/en/blog/cash-out-telegram-stars">how to cash out Telegram Stars</a>);</li>
+      <li><strong>Fund Telegram Ads</strong> — to grow the channel further (see <a href="/en/blog/pay-for-telegram-ads-with-stars">how to pay for Telegram Ads with Stars</a>).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What happens if a subscriber doesn't have enough Stars?</h2>
+    <p>If their Stars balance is too low next month, the subscription simply doesn't renew — the subscriber loses access to the exclusive section, but nothing is charged into debt or a negative balance. To resubscribe, they first need to top up their Stars balance.</p>
+  </section>
+
+  <section>
+    <h2>Bottom line</h2>
+    <ul>
+      <li>🔁 A <strong>channel subscription</strong> is a recurring monthly Stars payment for ongoing access to exclusive content;</li>
+      <li>💰 The <strong>typical price</strong> is 50–500 Stars/month, set by the channel owner;</li>
+      <li>📢 Unlike a paid post, it's charged <strong>automatically every month</strong>, not once;</li>
+      <li>🏦 <strong>100% of the Stars</strong> go to the channel's balance — Telegram takes no cut.</li>
+    </ul>
+    <p>For other ways to monetize a channel, see <a href="/en/blog/what-you-can-do-with-telegram-stars">what you can do with Telegram Stars</a>.</p>
+  </section>
+</BlogPostEn>

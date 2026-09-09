@@ -69,6 +69,7 @@ const GROUPS = [
       'telegram-ton-va-stars-farqi',
       'telegram-mini-app-stars-tolov',
       'telegram-ads-stars-bilan',
+      'telegram-kanal-pullik-obuna-stars',
     ],
   },
   {
@@ -91,6 +92,7 @@ const GROUPS = [
     slugs: [
       'telegram-premium-funksiyalari',
       'telegram-premium-sovga-qilish',
+      'telegram-premium-sovga-kodini-faollashtirish',
       'telegram-premium-muddati-tugadi',
       'telegram-premium-obunani-bekor-qilish',
       'telegram-business-vs-premium',

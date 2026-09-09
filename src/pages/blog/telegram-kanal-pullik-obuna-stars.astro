@@ -1,0 +1,244 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Telegramda kanalga pullik obuna: Stars bilan qanday ishlaydi (2026) | StarsJoy Blog";
+const description = "Telegram kanaliga oylik pullik obuna (channel subscription) Stars orqali qanday sozlanadi va qanday obuna bo'linadi: narx belgilash, bekor qilish, Stars qayerga tushadi va paid postdan farqi.";
+const publishDate = "2026-09-09";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/blog/telegram-kanal-pullik-obuna-stars"
+  keywords="telegram kanal obuna stars, telegram channel subscription, telegramda pullik obuna, kanalga oylik obuna, telegram stars kanal monetizatsiya"
+  ogType="article"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-kanal-pullik-obuna-stars" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-kanal-pullik-obuna-stars" },
+    { lang: "en", href: "https://starsjoy.uz/en/blog/telegram-channel-subscription-stars" }
+  ]}
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Telegramda kanalga pullik obuna: Stars bilan qanday ishlaydi (2026)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": publishDate,
+    "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png" }
+    },
+    "mainEntityOfPage": "https://starsjoy.uz/blog/telegram-kanal-pullik-obuna-stars",
+    "image": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png", "width": 512, "height": 512 }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://starsjoy.uz/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Kanalga pullik obuna", "item": "https://starsjoy.uz/blog/telegram-kanal-pullik-obuna-stars" }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram kanalida pullik obuna (channel subscription) sozlash",
+    "description": "Kanal egasi uchun Stars asosidagi oylik obuna narxini sozlash bosqichlari.",
+    "step": [
+      { "@type": "HowToStep", "name": "Kanal sozlamalarini oching", "text": "O'z kanalingiz profiliga kiring, uch nuqta menyudan \"Edit\" yoki \"Manage Channel\" bo'limini tanlang." },
+      { "@type": "HowToStep", "name": "Subscriptions (Obunalar) bo'limini toping", "text": "Kanal sozlamalarida \"Subscriptions\" (Obunalar) yoki shunga o'xshash bo'limni oching va uni yoqing." },
+      { "@type": "HowToStep", "name": "Oylik narxni Stars'da belgilang", "text": "Obunachi har oy to'laydigan Stars miqdorini kiriting — odatda 50 dan 500 Stars/oy oralig'ida." },
+      { "@type": "HowToStep", "name": "Eksklyuziv kontentni belgilang", "text": "Faqat obunachilarga ko'rinadigan yopiq post yoki bo'lim yarating, oddiy obunachilarga esa ochiq qism qoldiring." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Telegram kanaliga pullik obuna qanday ishlaydi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Kanal egasi oylik narxni Stars'da belgilaydi. Obunachi shu narxni to'laydi va eksklyuziv (yopiq) kontentga kirish huquqi oladi. Har oy Stars balansidan avtomatik yechiladi, xohlagan payt bekor qilish mumkin." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kanal obunasi paid postdan nimasi bilan farq qiladi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Paid post — bitta xabar uchun bir martalik to'lov. Kanal obunasi — oylik takrorlanuvchi to'lov, doimiy kirish huquqi beradi. Ikkalasini bir kanalda parallel ishlatish mumkin." }
+      },
+      {
+        "@type": "Question",
+        "name": "Obuna narxini qancha qilib belgilash kerak?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Odatiy amaliyot — 50 dan 500 Stars/oygacha (12 000 – 120 000 so'm). Kichik auditoriya yoki yangi kanal uchun past narxdan boshlash, natijaga qarab asta oshirish tavsiya etiladi." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kanaldan tushgan Stars qanday pulga aylanadi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Obunachi to'lagan Stars 100% kanal hisobiga tushadi — bu admin-to-channel monetizatsiya, Telegram komissiya olmaydi. Kanal egasi Stars'ni Fragment orqali TON'ga, so'ng fiat pulga aylantiradi." }
+      },
+      {
+        "@type": "Question",
+        "name": "Obunachining Stars balansi yetmasa nima bo'ladi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Keyingi oy uchun yetarli Stars bo'lmasa, obuna avtomatik yangilanmaydi va obunachi eksklyuziv kontentga kirish huquqini yo'qotadi — hisobidan ortiqcha yechilmaydi." }
+      }
+    ]
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/">Bosh sahifa</a>
+          <span>/</span>
+          <a href="/blog">Blog</a>
+          <span>/</span>
+          <span>Kanalga pullik obuna</span>
+        </nav>
+        <div class="post-tag">Stars</div>
+        <h1 class="post-title">Telegramda kanalga pullik obuna: Stars bilan qanday ishlaydi</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <section>
+            <p class="post-lead"><strong>Qisqa javob:</strong> Telegram kanal egasi <strong>oylik narxni Stars'da</strong> belgilab, eksklyuziv kontentni faqat pullik obunachilarga ochishi mumkin. Bu <a href="/blog/telegram-channel-paid-post-yaratish">paid post</a>dan farq qiladi — u bir martalik to'lov, obuna esa har oy avtomatik yechiladigan takrorlanuvchi to'lov. Odatiy narx oralig'i — 50–500 Stars/oy (12 000–120 000 so'm), Stars 100% kanal hisobiga tushadi.</p>
+          </section>
+
+          <section>
+            <h2>Kanal obunasi paid postdan nimasi bilan farq qiladi?</h2>
+            <p>Ikkalasi ham Telegram'ning kontent monetizatsiya vositalari, lekin mexanizmi boshqacha:</p>
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead><tr><th>Xususiyat</th><th>Paid post</th><th>Kanal obunasi</th></tr></thead>
+                <tbody>
+                  <tr><td>To'lov turi</td><td>Bir martalik</td><td>Oylik takrorlanuvchi</td></tr>
+                  <tr><td>Nimaga kirish beradi</td><td>Bitta xabar/media</td><td>Doimiy eksklyuziv bo'lim</td></tr>
+                  <tr><td>Bekor qilish</td><td>Kerak emas (bir martalik)</td><td>Istalgan payt mumkin</td></tr>
+                  <tr class="highlight-row"><td>Odatiy narx</td><td>10–500 Stars/post</td><td>50–500 Stars/oy</td></tr>
+                  <tr><td>Kanal daromadi</td><td>100%, komissiyasiz</td><td>100%, komissiyasiz</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Ko'p kanal ikkalasini birga ishlatadi: umumiy auditoriya uchun vaqti-vaqti bilan paid post, doimiy izdoshlar uchun esa oylik obuna.</p>
+          </section>
+
+          <section>
+            <h2>Kanal egasi obunani qanday sozlaydi?</h2>
+            <ol>
+              <li><strong>Kanal sozlamalarini oching</strong> — o'z kanalingiz profiliga kiring, "Edit" yoki "Manage Channel" bo'limini tanlang.</li>
+              <li><strong>Subscriptions bo'limini toping</strong> — kanal sozlamalarida obuna funksiyasini yoqing.</li>
+              <li><strong>Oylik narxni Stars'da belgilang</strong> — odatda 50–500 Stars/oy oralig'ida.</li>
+              <li><strong>Eksklyuziv kontentni belgilang</strong> — faqat obunachilarga ko'rinadigan yopiq post yoki bo'lim yarating, ochiq qismni ham qoldiring (yangi obunachilarni jalb qilish uchun).</li>
+            </ol>
+            <p>Funksiya kanal egasi tomonidan ochiladi va yopiladi — obunachi tomonida hech qanday qo'shimcha sozlama kerak emas, faqat "Subscribe" tugmasini bosish va Stars balansi yetarli bo'lishi.</p>
+          </section>
+
+          <section>
+            <h2>Obunachi qanday obuna bo'ladi va bekor qiladi?</h2>
+            <p>Kanal profilida "Subscribe" (Obuna bo'lish) tugmasi ko'rinadi, narx Stars'da ko'rsatiladi. Bosilgach, birinchi oy uchun Stars balansidan darhol yechiladi va obunachi eksklyuziv bo'limga kirish huquqi oladi. Keyingi oylar uchun to'lov Stars balansi yetarli bo'lsa avtomatik yechiladi.</p>
+            <p>Bekor qilish kanal profilidagi obuna sozlamalaridan istalgan payt mumkin — joriy to'langan oy oxirigacha kirish saqlanadi, keyingi oyda to'lov olinmaydi.</p>
+          </section>
+
+          <section>
+            <div class="post-cta-box">
+              <a href="https://telegram.me/starsjoybot" target="_blank" class="post-cta-btn">@starsjoybot'ni ochish &rarr;</a>
+              <span class="post-cta-sub">telegram.me/starsjoybot</span>
+            </div>
+          </section>
+
+          <section>
+            <h2>Stars qanday kanalga tushadi va pulga aylanadi?</h2>
+            <p>Obunachi to'lagan Stars <strong>100% kanal hisobiga</strong> tushadi — bu admin-to-channel monetizatsiya bo'lgani uchun Telegram alohida komissiya olmaydi (bunday komissiya faqat foydalanuvchi shaxsiy hisobiga Stars sotib olayotganda, App Store/Google Play tarafida ishlaydi). Kanal egasi to'plangan Stars'ni ikki yo'l bilan ishlatishi mumkin:</p>
+            <ul>
+              <li><strong>Fragment orqali TON'ga konvertatsiya</strong> — keyin crypto exchange orqali fiat pulga aylantirish (batafsil: <a href="/blog/telegram-stars-kartaga-chiqarish">Stars'ni kartaga qanday chiqarish mumkin</a>);</li>
+              <li><strong>Telegram Ads byudjeti sifatida</strong> — kanalni yanada kengaytirish uchun (batafsil: <a href="/blog/telegram-ads-stars-bilan">Telegram Ads'ni Stars bilan to'lash</a>).</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Obunachining Stars balansi yetmasa nima bo'ladi?</h2>
+            <p>Agar keyingi oy uchun Stars balansi yetarli bo'lmasa, obuna avtomatik yangilanmaydi — obunachi eksklyuziv bo'limga kirish huquqini yo'qotadi, lekin hisobidan qarzga yoki manfiy balansga o'tilmaydi. Qayta obuna bo'lish uchun avval Stars balansini to'ldirish kerak (batafsil: <a href="/blog/telegram-stars-tez-toldirish">Stars'ni tez to'ldirish</a>).</p>
+          </section>
+
+          <section>
+            <h2>Xulosa</h2>
+            <ul>
+              <li>🔁 <strong>Kanal obunasi</strong> — oylik takrorlanuvchi Stars to'lovi, doimiy eksklyuziv kontentga kirish uchun;</li>
+              <li>💰 <strong>Odatiy narx</strong> — 50–500 Stars/oy, kanal egasi belgilaydi;</li>
+              <li>📢 <strong>Paid postdan farqi</strong> — bir martalik emas, har oy avtomatik yechiladi;</li>
+              <li>🏦 <strong>Stars 100%</strong> kanal hisobiga tushadi, Telegram komissiya olmaydi.</li>
+            </ul>
+            <p>Kanal kontent monetizatsiyasining boshqa yo'llari haqida — <a href="/blog/telegram-channel-paid-post-yaratish">paid post yaratish</a> va <a href="/blog/telegram-stars-bilan-nima-qilish-mumkin">Stars bilan nima qilish mumkin</a> maqolalarini o'qing.</p>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  .post-hero { padding: 120px 24px 48px; background: #F8F6FF; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; flex-wrap: wrap; }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .post-tag { display: inline-block; padding: 4px 12px; background: rgba(124, 58, 237, 0.08); border-radius: 50px; color: var(--primary); font-size: 0.78rem; font-weight: 600; margin-bottom: 16px; }
+  .post-title { font-size: 2.4rem; font-weight: 900; color: var(--text); margin-bottom: 16px; line-height: 1.2; max-width: 760px; }
+  .post-meta { display: flex; align-items: center; gap: 16px; font-size: 0.9rem; color: var(--text-muted); }
+  .post-body { padding: 60px 24px; }
+  .post-content { max-width: 760px; margin: 0 auto; }
+  .post-content section { padding: 0; margin: 0; }
+  .post-lead { font-size: 1.08rem !important; color: var(--text) !important; background: #F8F6FF; border-left: 3px solid var(--primary); border-radius: 8px; padding: 18px 20px; line-height: 1.75 !important; }
+  .post-content h2 { font-size: 1.5rem; font-weight: 800; color: var(--text); margin: 28px 0 12px; line-height: 1.3; }
+  .post-content h3 { font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 18px 0 8px; }
+  .post-content p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
+  .post-content a { color: var(--primary); text-decoration: none; }
+  .post-content a:hover { text-decoration: underline; }
+  .post-content a.post-cta-btn { text-decoration: none; }
+  .post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 14px; }
+  .post-content li { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 6px; }
+  .post-cta-box { margin: 16px 0; padding: 0; background: none; border: none; }
+  .post-cta-btn { display: inline-block; padding: 8px 20px; background: rgba(124, 58, 237, 0.06); color: var(--primary); font-weight: 600; font-size: 0.9rem; border-radius: 8px; text-decoration: none; border: 1px solid rgba(124, 58, 237, 0.15); transition: background 0.2s, border-color 0.2s; }
+  .post-cta-btn:hover { background: rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.3); }
+  .post-cta-sub { display: inline; margin-left: 10px; font-size: 0.82rem; color: var(--text-light); }
+  .post-table-wrap { overflow-x: auto; margin: 20px 0; border-radius: 12px; border: 1px solid rgba(124, 58, 237, 0.12); }
+  .post-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .post-table th { background: rgba(124, 58, 237, 0.06); color: var(--text); font-weight: 700; padding: 14px 18px; text-align: left; border-bottom: 1px solid rgba(124, 58, 237, 0.1); }
+  .post-table td { padding: 12px 18px; color: var(--text-muted); border-bottom: 1px solid rgba(124, 58, 237, 0.06); }
+  .post-table tr:last-child td { border-bottom: none; }
+  .post-table .highlight-row { background: rgba(124, 58, 237, 0.04); }
+  .post-table .highlight-row td { color: var(--primary); font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.6rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.05rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .breadcrumb { font-size: 0.8rem; }
+    .post-table th { padding: 10px 12px; font-size: 0.85rem; }
+    .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+  }
+</style>

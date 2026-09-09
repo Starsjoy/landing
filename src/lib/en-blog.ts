@@ -20,6 +20,22 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'telegram-channel-subscription-stars',
+    title: "How Telegram's paid channel subscriptions work with Stars",
+    excerpt:
+      'How to set up a recurring monthly paid subscription for a Telegram channel using Stars, and how subscribers join or cancel: pricing, where the Stars go, and how it differs from a paid post.',
+    date: '2026-09-09',
+    tag: 'Stars',
+  },
+  {
+    slug: 'activate-telegram-premium-gift-code',
+    title: 'How to activate a Telegram Premium gift code',
+    excerpt:
+      'How to activate a Telegram Premium gift code won in a channel giveaway or received via a link: the steps, how long codes stay valid, and what happens if you already have Premium.',
+    date: '2026-09-09',
+    tag: 'Premium',
+  },
+  {
     slug: 'cancel-telegram-premium-auto-renewal',
     title: 'How to Turn Off Telegram Premium Auto-Renewal (2026)',
     excerpt:
