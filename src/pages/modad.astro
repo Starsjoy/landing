@@ -1533,10 +1533,12 @@ if (authenticated && !dbReady) {
     .udet-date { color: var(--text-1); font-size: 0.82rem; font-weight: 600; font-variant-numeric: tabular-nums; }
     .udet-daylabel { color: var(--text-3); font-size: 0.7rem; font-weight: 500; }
     .udet-rate { flex-shrink: 0; }
-    .udet-nums { flex: 1; min-width: 0; display: flex; align-items: baseline; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+    .udet-nums { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
     .udet-profit { color: var(--text-3); font-size: 0.8rem; white-space: nowrap; }
     .udet-arrow { color: var(--text-4); font-size: 0.78rem; }
+    .udet-salary-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
     .udet-salary { font-weight: 800; color: var(--text-0); white-space: nowrap; }
+    .udet-diff { font-size: 0.68rem; color: var(--orange); font-weight: 600; white-space: nowrap; }
 
     @media (max-width: 640px) {
       .uz-topbar { padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
@@ -5090,6 +5092,7 @@ if (authenticated && !dbReady) {
           var ds = dp[2] + '.' + dp[1] + '.' + dp[0];
           var dayLabel = r.date === todayStr ? 'Bugun' : (r.date === yesterdayStr ? 'Kecha' : '');
           var pillClass = r.rate === 100 ? 'udet-pill-100' : 'udet-pill-50';
+          var diff = r.totalProfit - r.salaryProfit;
           return '<div class="udet-row">'
             + '<div class="udet-date-wrap"><span class="udet-date">' + ds + '</span>'
             + (dayLabel ? '<span class="udet-daylabel">' + dayLabel + '</span>' : '') + '</div>'
@@ -5097,7 +5100,10 @@ if (authenticated && !dbReady) {
             + '<div class="udet-nums">'
             + '<span class="udet-profit">' + uzFmt(r.totalProfit) + " so'm</span>"
             + '<span class="udet-arrow">&rarr;</span>'
+            + '<div class="udet-salary-wrap">'
             + '<span class="udet-salary">' + uzFmt(r.salaryProfit) + " so'm</span>"
+            + (diff > 0 ? '<span class="udet-diff">−' + uzFmt(diff) + " so'm qolgan</span>" : '')
+            + '</div>'
             + '</div>'
             + '</div>';
         }).join('');
