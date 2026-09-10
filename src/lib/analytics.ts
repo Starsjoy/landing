@@ -544,6 +544,50 @@ export async function getUzMonthSalaryProfit(month: string): Promise<number> {
   );
 }
 
+// "Batafsil" bo'limi uchun kunlik tafsilot: har bir kun uchun to'liq (100%) foyda
+// va maosh pot'iga real qo'shilgan summa (UZ_HALF_RATE_START'dan boshlab uzgets
+// ulushi 50%). Faqat buyurtma bo'lgan kunlar qaytadi, eng yangisidan boshlab.
+export async function getUzDailyBreakdown(limit: number = 60): Promise<Array<{
+  date: string;
+  uzgetsProfit: number;
+  psProfit: number;
+  totalProfit: number;
+  rate: number;
+  salaryProfit: number;
+}>> {
+  const sql = getSQL();
+  const halfRateStart = await getUzHalfRateStart();
+  const psSince = new Date(`${await getUzPsTrackingStart()}T00:00:00+05:00`).toISOString();
+  const rows = await sql`
+    SELECT TO_CHAR(timestamp AT TIME ZONE 'Asia/Tashkent', 'YYYY-MM-DD') as date,
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_stars'), 0) as uz_stars_rev,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '3 oy') as uz3,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy') as uz6,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy') as uz12,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_send' AND timestamp >= ${psSince}), 0) as ps_rev,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_send_stars'), 0) as ps_stars_rev
+    FROM orders
+    WHERE type = ANY(ARRAY['uzgets_stars', 'uzgets_premium', 'premium_send', 'premium_send_stars'])
+    GROUP BY TO_CHAR(timestamp AT TIME ZONE 'Asia/Tashkent', 'YYYY-MM-DD')
+    ORDER BY date DESC
+    LIMIT ${limit}
+  `;
+  return rows.map((r: any) => {
+    const uzgetsProfit = Math.round(+r.uz_stars_rev * 0.10) + (+r.uz3 * 15000) + (+r.uz6 * 25000) + (+r.uz12 * 35000);
+    const psProfit = Math.round(+r.ps_rev * 0.12) + Math.round(+r.ps_stars_rev / 6);
+    const rate = r.date >= halfRateStart ? 50 : 100;
+    const salaryProfit = (rate === 100 ? uzgetsProfit : Math.round(uzgetsProfit * 0.5)) + psProfit;
+    return {
+      date: r.date,
+      uzgetsProfit,
+      psProfit,
+      totalProfit: uzgetsProfit + psProfit,
+      rate,
+      salaryProfit,
+    };
+  });
+}
+
 export async function sumUzWithdrawalsForMonth(month: string): Promise<number> {
   const sql = getSQL();
   const [r] = await sql`SELECT COALESCE(SUM(amount), 0) as total FROM uz_salary_withdrawals WHERE attributed_month = ${month}`;

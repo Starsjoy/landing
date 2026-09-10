@@ -6,6 +6,8 @@ import {
   ensureUzSalaryTable,
   getUzMonthProfit,
   getUzMonthSalaryProfit,
+  getUzDailyBreakdown,
+  getUzHalfRateStart,
   sumUzWithdrawalsForMonth,
   getUzRolloverInto,
   getUzTrackingStartMonth,
@@ -63,8 +65,18 @@ export const GET: APIRoute = async ({ request, cookies }) => {
   if (!await allowed(token)) return new Response('unauthorized', { status: 401 });
   await ensure();
 
-  const t = tashkentParts();
   const url = new URL(request.url);
+
+  // "Batafsil" bo'limi — kunlik tafsilot, oy konteksti bilan bog'liq emas
+  if (url.searchParams.get('detail') === '1') {
+    const daily = await getUzDailyBreakdown(60);
+    const halfRateStart = await getUzHalfRateStart();
+    return new Response(JSON.stringify({ daily, halfRateStart }), {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const t = tashkentParts();
   const asked = url.searchParams.get('month') || '';
   const month = /^\d{4}-\d{2}$/.test(asked) ? asked : fmtMonth(t.y, t.m);
 

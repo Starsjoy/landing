@@ -74,6 +74,7 @@ if (authenticated && !dbReady) {
         <nav class="uz-tabs">
           <button type="button" class="uz-tab active" data-tab="foyda" onclick="uzTab('foyda')">Foyda</button>
           <button type="button" class="uz-tab" data-tab="maosh" onclick="uzTab('maosh')">Maosh</button>
+          <button type="button" class="uz-tab" data-tab="batafsil" onclick="uzTab('batafsil')">Batafsil</button>
         </nav>
         <div class="uz-topbar-right">
           <div class="tb-live" title="Har 60s yangilanadi">
@@ -181,6 +182,29 @@ if (authenticated && !dbReady) {
             <section class="uz-section">
               <div class="uz-section-head"><h2>Olingan summalar</h2></div>
               <div id="uzSalList"></div>
+            </section>
+          </div>
+        </div>
+
+        <!-- ───── BATAFSIL ───── -->
+        <div id="uzTabBatafsil" hidden>
+          <div id="uzDetLoading" class="loading-state">
+            <div class="loading-spinner"></div>
+            <span>Yuklanmoqda...</span>
+          </div>
+
+          <div id="uzDetBody" hidden>
+            <section class="uz-section">
+              <div class="uz-section-head">
+                <h2>Kunlik tafsilot</h2>
+                <span class="uz-hint" id="uzDetHint" style="padding:0"></span>
+              </div>
+              <div class="udet-legend">
+                <span class="udet-pill udet-pill-100">100%</span> — <span id="uzDetBeforeLabel">2026-09-10</span>gacha
+                <span class="udet-legend-sep"></span>
+                <span class="udet-pill udet-pill-50">50%</span> — shu sanadan boshlab
+              </div>
+              <div id="uzDetList"></div>
             </section>
           </div>
         </div>
@@ -1487,6 +1511,33 @@ if (authenticated && !dbReady) {
     }
     .usal-row-del:hover { border-color: rgba(239,68,68,0.4); color: var(--red); }
 
+    /* ── Batafsil ── */
+    .udet-legend {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;
+      font-size: 0.78rem; color: var(--text-3); font-weight: 500;
+    }
+    .udet-legend-sep { width: 1px; height: 14px; background: var(--border); }
+    .udet-pill {
+      display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 99px;
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2px;
+    }
+    .udet-pill-100 { background: rgba(34,211,238,0.14); color: #22d3ee; }
+    .udet-pill-50 { background: rgba(245,158,11,0.14); color: var(--orange); }
+
+    .udet-row {
+      display: flex; align-items: center; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--border); font-size: 0.85rem;
+    }
+    .udet-row:last-child { border-bottom: none; }
+    .udet-date-wrap { width: 108px; flex-shrink: 0; display: flex; flex-direction: column; gap: 1px; }
+    .udet-date { color: var(--text-1); font-size: 0.82rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .udet-daylabel { color: var(--text-3); font-size: 0.7rem; font-weight: 500; }
+    .udet-rate { flex-shrink: 0; }
+    .udet-nums { flex: 1; min-width: 0; display: flex; align-items: baseline; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+    .udet-profit { color: var(--text-3); font-size: 0.8rem; white-space: nowrap; }
+    .udet-arrow { color: var(--text-4); font-size: 0.78rem; }
+    .udet-salary { font-weight: 800; color: var(--text-0); white-space: nowrap; }
+
     @media (max-width: 640px) {
       .uz-topbar { padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
       .uz-tabs { order: 3; width: 100%; }
@@ -1509,6 +1560,9 @@ if (authenticated && !dbReady) {
       .usf-grid { grid-template-columns: 1fr; }
       .usal-row-date { width: 74px; }
       .usal-row-note { display: none; }
+      .udet-date-wrap { width: 76px; }
+      .udet-profit { display: none; }
+      .udet-arrow { display: none; }
     }
 
     /* ───── ANALYTICS TABS ───── */
@@ -4841,11 +4895,14 @@ if (authenticated && !dbReady) {
         });
         document.getElementById('uzTabFoyda').hidden = name !== 'foyda';
         document.getElementById('uzTabMaosh').hidden = name !== 'maosh';
+        document.getElementById('uzTabBatafsil').hidden = name !== 'batafsil';
         if (name === 'maosh') uzSalLoad();
+        if (name === 'batafsil') uzDetLoad();
       }
 
       // ───── Maosh ─────
       var uzSalData = null;
+      var uzDetData = null;
 
       function uzEsc(s) {
         return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -4995,6 +5052,57 @@ if (authenticated && !dbReady) {
         } catch (e) { console.error('Uzgets maosh delete error:', e); }
       }
 
+      // ───── Batafsil ─────
+      async function uzDetLoad() {
+        try {
+          var res = await fetch('/api/uz-salary?detail=1');
+          if (res.status === 401) { location.reload(); return; }
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          uzDetData = await res.json();
+          uzDetRender();
+        } catch (e) {
+          console.error('Uzgets batafsil error:', e);
+          document.getElementById('uzDetLoading').innerHTML = '<span style="color:var(--red)">Ma\'lumotni yuklab bo\'lmadi</span>';
+        }
+      }
+
+      function uzDetRender() {
+        var d = uzDetData;
+        if (!d || !d.daily) return;
+        document.getElementById('uzDetLoading').style.display = 'none';
+        document.getElementById('uzDetBody').hidden = false;
+
+        var hp = d.halfRateStart.split('-');
+        document.getElementById('uzDetBeforeLabel').textContent = hp[2] + '.' + hp[1] + '.' + hp[0];
+
+        var t = uzToday();
+        var todayStr = uzDateStr(t.y, t.m, t.d);
+        var y = new Date(t.y, t.m, t.d - 1);
+        var yesterdayStr = uzDateStr(y.getFullYear(), y.getMonth(), y.getDate());
+
+        var list = document.getElementById('uzDetList');
+        if (!d.daily.length) {
+          list.innerHTML = '<div class="uz-hint">Hozircha ma\'lumot yo\'q</div>';
+          return;
+        }
+        list.innerHTML = d.daily.map(function (r) {
+          var dp = r.date.split('-');
+          var ds = dp[2] + '.' + dp[1] + '.' + dp[0];
+          var dayLabel = r.date === todayStr ? 'Bugun' : (r.date === yesterdayStr ? 'Kecha' : '');
+          var pillClass = r.rate === 100 ? 'udet-pill-100' : 'udet-pill-50';
+          return '<div class="udet-row">'
+            + '<div class="udet-date-wrap"><span class="udet-date">' + ds + '</span>'
+            + (dayLabel ? '<span class="udet-daylabel">' + dayLabel + '</span>' : '') + '</div>'
+            + '<span class="udet-rate udet-pill ' + pillClass + '">' + r.rate + '%</span>'
+            + '<div class="udet-nums">'
+            + '<span class="udet-profit">' + uzFmt(r.totalProfit) + " so'm</span>"
+            + '<span class="udet-arrow">&rarr;</span>'
+            + '<span class="udet-salary">' + uzFmt(r.salaryProfit) + " so'm</span>"
+            + '</div>'
+            + '</div>';
+        }).join('');
+      }
+
       // ───── Init ─────
       (function () {
         var t = uzToday();
@@ -5006,7 +5114,8 @@ if (authenticated && !dbReady) {
       setInterval(function () {
         uzLoadQuick();
         if (uzActiveTab === 'foyda') uzReloadRange();
-        else uzSalLoad();
+        else if (uzActiveTab === 'maosh') uzSalLoad();
+        else uzDetLoad();
       }, 60000);
     </script>
   )}
