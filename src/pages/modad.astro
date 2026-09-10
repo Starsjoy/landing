@@ -5092,7 +5092,6 @@ if (authenticated && !dbReady) {
           var ds = dp[2] + '.' + dp[1] + '.' + dp[0];
           var dayLabel = r.date === todayStr ? 'Bugun' : (r.date === yesterdayStr ? 'Kecha' : '');
           var pillClass = r.rate === 100 ? 'udet-pill-100' : 'udet-pill-50';
-          var diff = r.totalProfit - r.salaryProfit;
           return '<div class="udet-row">'
             + '<div class="udet-date-wrap"><span class="udet-date">' + ds + '</span>'
             + (dayLabel ? '<span class="udet-daylabel">' + dayLabel + '</span>' : '') + '</div>'
@@ -5102,7 +5101,7 @@ if (authenticated && !dbReady) {
             + '<span class="udet-arrow">&rarr;</span>'
             + '<div class="udet-salary-wrap">'
             + '<span class="udet-salary">' + uzFmt(r.salaryProfit) + " so'm</span>"
-            + (diff > 0 ? '<span class="udet-diff">−' + uzFmt(diff) + " so'm qolgan</span>" : '')
+            + (r.rate < 100 ? '<span class="udet-diff">asl foyda: ' + uzFmt(r.totalProfit) + " so'm dan 50%</span>" : '')
             + '</div>'
             + '</div>'
             + '</div>';
