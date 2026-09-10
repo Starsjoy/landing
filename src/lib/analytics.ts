@@ -440,9 +440,11 @@ export async function deleteWithdrawal(id: number) {
 // Kuzatuv boshlangan oydan oldingi oylar umuman hisobga olinmaydi.
 //
 // UZ_HALF_RATE_START dan boshlab (retroaktiv emas): faqat uzgets_stars/uzgets_premium
-// buyurtmalarining maosh pot'iga qo'shiladigan ulushi 50% ga tushadi — "Foyda" sahifasidagi
-// ko'rsatiladigan (getUzMonthProfit) qiymat 100% bo'lib qolaveradi, faqat maosh hisob-kitobida
-// (getUzMonthSalaryProfit) ishlatiladi. Premium Send bu qoidaga kirmaydi, o'z formulasida qoladi.
+// buyurtmalarining maosh pot'iga qo'shiladigan ulushi 50% ga tushadi. premium_send (12%)
+// va premium_send_stars (price/6 — bu formula allaqachon 2 admin o'rtasidagi 50/50
+// taqsimotni o'z ichiga oladi) bu qoidaga kirmaydi — har doim o'zgarishsiz. "Foyda"
+// sahifasidagi ko'rsatiladigan (getUzMonthProfit) qiymat 100% bo'lib qolaveradi,
+// 50% qoidasi faqat maosh hisob-kitobida (getUzMonthSalaryProfit) ishlatiladi.
 
 export async function ensureUzSalaryTable() {
   const sql = getSQL();
@@ -510,8 +512,11 @@ export async function getUzMonthProfit(month: string): Promise<number> {
 }
 
 // Maosh pot'iga qo'shiladigan foyda — getUzMonthProfit'dan farqi: UZ_HALF_RATE_START'dan
-// boshlab uzgets_stars/uzgets_premium buyurtmalari 50% ulush bilan hisoblanadi (undan oldingilari 100%).
-// "Foyda" sahifasidagi ko'rsatkich (getUzMonthProfit) buning ta'sirida emas — 100% bo'lib qolaveradi.
+// boshlab uzgets_stars/uzgets_premium buyurtmalarining ulushi 50% ga tushadi (undan oldingilari 100%).
+// premium_send (12%) va premium_send_stars (price/6 — bu formula allaqachon 2 admin
+// o'rtasidagi 50/50 taqsimotni o'z ichiga oladi) bu qoidaga kirmaydi — har doim o'z
+// formulasi bo'yicha, o'zgarishsiz qoladi. "Foyda" sahifasidagi ko'rsatiladigan qiymat
+// (getUzMonthProfit) buning ta'sirida emas — 100% bo'lib qolaveradi.
 export async function getUzMonthSalaryProfit(month: string): Promise<number> {
   const sql = getSQL();
   const since = new Date(`${month}-01T00:00:00+05:00`).toISOString();
@@ -544,15 +549,21 @@ export async function getUzMonthSalaryProfit(month: string): Promise<number> {
   );
 }
 
-// "Batafsil" bo'limi uchun kunlik tafsilot: har bir kun uchun to'liq (100%) foyda
-// va maosh pot'iga real qo'shilgan summa (UZ_HALF_RATE_START'dan boshlab uzgets
-// ulushi 50%). Faqat buyurtma bo'lgan kunlar qaytadi, eng yangisidan boshlab.
+// "Batafsil" bo'limi uchun kunlik tafsilot: har bir kun uchun uch turdagi foyda
+// (Uzgets, Premium Send/premium, Premium Send/stars) alohida — to'liq (100%) va
+// maosh pot'iga real qo'shiladigan (UZ_HALF_RATE_START'dan boshlab faqat Uzgets 50%;
+// PS Premium va PS Stars har doim o'z formulasi bo'yicha, o'zgarishsiz) qiymatlari bilan.
+// Faqat buyurtma bo'lgan kunlar qaytadi, eng yangisidan boshlab.
 export async function getUzDailyBreakdown(limit: number = 60): Promise<Array<{
   date: string;
-  uzgetsProfit: number;
-  psProfit: number;
-  totalProfit: number;
   rate: number;
+  uzgetsProfit: number;
+  uzgetsSalary: number;
+  psPremiumProfit: number;
+  psPremiumSalary: number;
+  psStarsProfit: number;
+  psStarsSalary: number;
+  totalProfit: number;
   salaryProfit: number;
 }>> {
   const sql = getSQL();
@@ -573,17 +584,29 @@ export async function getUzDailyBreakdown(limit: number = 60): Promise<Array<{
     LIMIT ${limit}
   `;
   return rows.map((r: any) => {
-    const uzgetsProfit = Math.round(+r.uz_stars_rev * 0.10) + (+r.uz3 * 15000) + (+r.uz6 * 25000) + (+r.uz12 * 35000);
-    const psProfit = Math.round(+r.ps_rev * 0.12) + Math.round(+r.ps_stars_rev / 6);
     const rate = r.date >= halfRateStart ? 50 : 100;
-    const salaryProfit = (rate === 100 ? uzgetsProfit : Math.round(uzgetsProfit * 0.5)) + psProfit;
+    const half = rate === 50;
+
+    const uzgetsProfit = Math.round(+r.uz_stars_rev * 0.10) + (+r.uz3 * 15000) + (+r.uz6 * 25000) + (+r.uz12 * 35000);
+    const uzgetsSalary = half ? Math.round(uzgetsProfit * 0.5) : uzgetsProfit;
+
+    const psPremiumProfit = Math.round(+r.ps_rev * 0.12);
+    const psPremiumSalary = psPremiumProfit; // har doim 100%
+
+    const psStarsProfit = Math.round(+r.ps_stars_rev / 6);
+    const psStarsSalary = psStarsProfit; // har doim o'z formulasi bo'yicha (allaqachon 50/50 taqsimotni o'z ichiga oladi)
+
     return {
       date: r.date,
-      uzgetsProfit,
-      psProfit,
-      totalProfit: uzgetsProfit + psProfit,
       rate,
-      salaryProfit,
+      uzgetsProfit,
+      uzgetsSalary,
+      psPremiumProfit,
+      psPremiumSalary,
+      psStarsProfit,
+      psStarsSalary,
+      totalProfit: uzgetsProfit + psPremiumProfit + psStarsProfit,
+      salaryProfit: uzgetsSalary + psPremiumSalary + psStarsSalary,
     };
   });
 }

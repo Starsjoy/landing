@@ -194,18 +194,16 @@ if (authenticated && !dbReady) {
           </div>
 
           <div id="uzDetBody" hidden>
-            <section class="uz-section">
-              <div class="uz-section-head">
-                <h2>Kunlik tafsilot</h2>
-                <span class="uz-hint" id="uzDetHint" style="padding:0"></span>
-              </div>
-              <div class="udet-legend">
-                <span class="udet-pill udet-pill-100">100%</span> — <span id="uzDetBeforeLabel">2026-09-10</span>gacha
-                <span class="udet-legend-sep"></span>
-                <span class="udet-pill udet-pill-50">50%</span> — shu sanadan boshlab
-              </div>
-              <div id="uzDetList"></div>
-            </section>
+            <div class="uz-section-head">
+              <h2>Kunlik tafsilot</h2>
+            </div>
+            <div class="udet-legend">
+              <span class="udet-pill udet-pill-100">100%</span> Uzgets ulushi — <span id="uzDetBeforeLabel">10.09.2026</span>gacha
+              <span class="udet-legend-sep"></span>
+              <span class="udet-pill udet-pill-50">50%</span> Uzgets ulushi — shu sanadan boshlab
+              <span class="udet-legend-note">(Premium Send bu qoidaga kirmaydi, o'zgarishsiz qoladi)</span>
+            </div>
+            <div id="uzDetList" class="udet-grid"></div>
           </div>
         </div>
       </main>
@@ -1513,10 +1511,11 @@ if (authenticated && !dbReady) {
 
     /* ── Batafsil ── */
     .udet-legend {
-      display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
       font-size: 0.78rem; color: var(--text-3); font-weight: 500;
     }
     .udet-legend-sep { width: 1px; height: 14px; background: var(--border); }
+    .udet-legend-note { color: var(--text-4); font-weight: 400; }
     .udet-pill {
       display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 99px;
       font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2px;
@@ -1524,21 +1523,39 @@ if (authenticated && !dbReady) {
     .udet-pill-100 { background: rgba(34,211,238,0.14); color: #22d3ee; }
     .udet-pill-50 { background: rgba(245,158,11,0.14); color: var(--orange); }
 
-    .udet-row {
-      display: flex; align-items: center; gap: 12px; padding: 12px 0;
-      border-bottom: 1px solid var(--border); font-size: 0.85rem;
+    /* Kunlik kartalar */
+    .udet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+    .udet-card {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px 24px; display: flex; flex-direction: column;
     }
-    .udet-row:last-child { border-bottom: none; }
-    .udet-date-wrap { width: 108px; flex-shrink: 0; display: flex; flex-direction: column; gap: 1px; }
-    .udet-date { color: var(--text-1); font-size: 0.82rem; font-weight: 600; font-variant-numeric: tabular-nums; }
-    .udet-daylabel { color: var(--text-3); font-size: 0.7rem; font-weight: 500; }
-    .udet-rate { flex-shrink: 0; }
-    .udet-nums { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
-    .udet-profit { color: var(--text-3); font-size: 0.8rem; white-space: nowrap; }
-    .udet-arrow { color: var(--text-4); font-size: 0.78rem; }
-    .udet-salary-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
-    .udet-salary { font-weight: 800; color: var(--text-0); white-space: nowrap; }
-    .udet-diff { font-size: 0.68rem; color: var(--orange); font-weight: 600; white-space: nowrap; }
+    .udet-card-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px; }
+    .udet-date { color: var(--text-0); font-size: 1.05rem; font-weight: 800; letter-spacing: -0.2px; font-variant-numeric: tabular-nums; }
+    .udet-daylabel { color: var(--text-3); font-size: 0.78rem; font-weight: 600; }
+
+    .udc-row {
+      display: flex; align-items: center; gap: 10px; padding: 11px 0;
+      border-bottom: 1px solid var(--border); font-size: 0.86rem;
+    }
+    .udet-card-body .udc-row:last-child { border-bottom: none; }
+    .udc-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .udc-name { font-weight: 700; color: var(--text-1); width: 92px; flex-shrink: 0; }
+    .udc-badge {
+      flex-shrink: 0; padding: 1px 7px; border-radius: 99px; font-size: 0.66rem; font-weight: 800;
+    }
+    .udc-badge-fixed { background: var(--bg-4); color: var(--text-3); }
+    .udc-nums { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; text-align: right; }
+    .udc-orig { color: var(--text-3); font-weight: 500; white-space: nowrap; }
+    .udc-arrow { color: var(--text-4); font-size: 0.78rem; }
+    .udc-salary { color: var(--text-0); font-weight: 800; white-space: nowrap; }
+
+    .udet-card-foot {
+      display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px;
+      margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border);
+    }
+    .udet-card-foot-label { font-size: 0.8rem; color: var(--text-3); font-weight: 600; }
+    .udet-card-foot-value { font-size: 1.45rem; font-weight: 900; color: #22d3ee; letter-spacing: -0.5px; margin-left: auto; }
+    .udet-card-foot-sub { width: 100%; font-size: 0.72rem; color: var(--text-4); text-align: right; }
 
     @media (max-width: 640px) {
       .uz-topbar { padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
@@ -1562,9 +1579,11 @@ if (authenticated && !dbReady) {
       .usf-grid { grid-template-columns: 1fr; }
       .usal-row-date { width: 74px; }
       .usal-row-note { display: none; }
-      .udet-date-wrap { width: 76px; }
-      .udet-profit { display: none; }
-      .udet-arrow { display: none; }
+      .udet-grid { grid-template-columns: 1fr; }
+      .udet-card { padding: 18px; }
+      .udc-name { width: 74px; }
+      .udc-orig, .udc-arrow { display: none; }
+      .udet-card-foot-value { font-size: 1.25rem; }
     }
 
     /* ───── ANALYTICS TABS ───── */
@@ -5082,6 +5101,19 @@ if (authenticated && !dbReady) {
         var y = new Date(t.y, t.m, t.d - 1);
         var yesterdayStr = uzDateStr(y.getFullYear(), y.getMonth(), y.getDate());
 
+        function udcRow(dot, name, orig, salary, badgeText, badgeClass) {
+          return '<div class="udc-row">'
+            + '<span class="udc-dot" style="background:' + dot + '"></span>'
+            + '<span class="udc-name">' + name + '</span>'
+            + '<span class="udc-badge ' + badgeClass + '">' + badgeText + '</span>'
+            + '<div class="udc-nums">'
+            + '<span class="udc-orig">' + uzFmt(orig) + " so'm</span>"
+            + '<span class="udc-arrow">&rarr;</span>'
+            + '<span class="udc-salary">' + uzFmt(salary) + " so'm</span>"
+            + '</div>'
+            + '</div>';
+        }
+
         var list = document.getElementById('uzDetList');
         if (!d.daily.length) {
           list.innerHTML = '<div class="uz-hint">Hozircha ma\'lumot yo\'q</div>';
@@ -5091,18 +5123,26 @@ if (authenticated && !dbReady) {
           var dp = r.date.split('-');
           var ds = dp[2] + '.' + dp[1] + '.' + dp[0];
           var dayLabel = r.date === todayStr ? 'Bugun' : (r.date === yesterdayStr ? 'Kecha' : '');
-          var pillClass = r.rate === 100 ? 'udet-pill-100' : 'udet-pill-50';
-          return '<div class="udet-row">'
-            + '<div class="udet-date-wrap"><span class="udet-date">' + ds + '</span>'
-            + (dayLabel ? '<span class="udet-daylabel">' + dayLabel + '</span>' : '') + '</div>'
-            + '<span class="udet-rate udet-pill ' + pillClass + '">' + r.rate + '%</span>'
-            + '<div class="udet-nums">'
-            + '<span class="udet-profit">' + uzFmt(r.totalProfit) + " so'm</span>"
-            + '<span class="udet-arrow">&rarr;</span>'
-            + '<div class="udet-salary-wrap">'
-            + '<span class="udet-salary">' + uzFmt(r.salaryProfit) + " so'm</span>"
-            + (r.rate < 100 ? '<span class="udet-diff">asl foyda: ' + uzFmt(r.totalProfit) + " so'm dan 50%</span>" : '')
+          var uzBadgeClass = r.rate === 100 ? 'udet-pill-100' : 'udet-pill-50';
+
+          var rows = udcRow('#2dd4bf', 'Uzgets', r.uzgetsProfit, r.uzgetsSalary, r.rate + '%', uzBadgeClass)
+            + udcRow('#60a5fa', 'PS Premium', r.psPremiumProfit, r.psPremiumSalary, '100%', 'udc-badge-fixed')
+            + udcRow('#facc15', 'PS Stars', r.psStarsProfit, r.psStarsSalary, '100%', 'udc-badge-fixed');
+
+          var footSub = r.totalProfit !== r.salaryProfit
+            ? '<span class="udet-card-foot-sub">asl jami foyda: ' + uzFmt(r.totalProfit) + " so'm</span>"
+            : '';
+
+          return '<div class="udet-card">'
+            + '<div class="udet-card-head">'
+            + '<span class="udet-date">' + ds + '</span>'
+            + (dayLabel ? '<span class="udet-daylabel">' + dayLabel + '</span>' : '')
             + '</div>'
+            + '<div class="udet-card-body">' + rows + '</div>'
+            + '<div class="udet-card-foot">'
+            + '<span class="udet-card-foot-label">Jami maoshga qo\'shildi</span>'
+            + '<span class="udet-card-foot-value">' + uzFmt(r.salaryProfit) + " so'm</span>"
+            + footSub
             + '</div>'
             + '</div>';
         }).join('');
