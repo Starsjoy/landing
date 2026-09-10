@@ -82,13 +82,18 @@ const {
   "@type": "Product",
   "name": schemaName,
   "description": schemaDescription,
+  "image": "https://starsjoy.uz/og-image.png",
   "brand": { "@type": "Brand", "name": "StarsJoy" },
   "offers": {
     "@type": "Offer",
     "price": priceAmount,
     "priceCurrency": priceCurrency,
     "availability": "https://schema.org/InStock",
-    "url": canonical
+    "url": canonical,
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+    }
   }
 })} />
 
