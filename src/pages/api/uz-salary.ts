@@ -5,6 +5,7 @@ import {
   getRole,
   ensureUzSalaryTable,
   getUzMonthProfit,
+  getUzMonthSalaryProfit,
   sumUzWithdrawalsForMonth,
   getUzRolloverInto,
   getUzTrackingStartMonth,
@@ -28,6 +29,8 @@ async function ensure() {
 
 /**
  * Berilgan oy uchun: foyda, oldingi qoldiq, olingan va olish mumkin bo'lgan summa.
+ * `profit` — ko'rsatish uchun to'liq (100%) foyda. Pot/available esa `salaryProfit`
+ * asosida hisoblanadi — UZ_HALF_RATE_START'dan boshlab uzgets buyurtmalari 50% ulush bilan qo'shiladi.
  * `available` manfiy bo'lishi mumkin — foydadan ortiq olinsa qarz sifatida qoladi
  * va keyingi oyga o'tadi.
  */
@@ -39,9 +42,10 @@ async function monthContext(month: string) {
     return { month, profit, rollover: 0, pot: 0, withdrawn: 0, available: 0, over: 0, tracked: false };
   }
   const profit = await getUzMonthProfit(month);
+  const salaryProfit = await getUzMonthSalaryProfit(month);
   const rollover = await getUzRolloverInto(month);
   const withdrawn = await sumUzWithdrawalsForMonth(month);
-  const pot = profit + rollover;
+  const pot = salaryProfit + rollover;
   return {
     month,
     profit,

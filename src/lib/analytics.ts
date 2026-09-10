@@ -438,6 +438,11 @@ export async function deleteWithdrawal(id: number) {
 // premium_send = 12% (faqat UZ_PS_TRACKING_START sanasidan keyingi buyurtmalar — retroaktiv emas).
 // Qoida: olish mumkin = (oldingi oylardan qoldiq) + (shu oy foydasi) − (shu oyda olingan).
 // Kuzatuv boshlangan oydan oldingi oylar umuman hisobga olinmaydi.
+//
+// UZ_HALF_RATE_START dan boshlab (retroaktiv emas): faqat uzgets_stars/uzgets_premium
+// buyurtmalarining maosh pot'iga qo'shiladigan ulushi 50% ga tushadi — "Foyda" sahifasidagi
+// ko'rsatiladigan (getUzMonthProfit) qiymat 100% bo'lib qolaveradi, faqat maosh hisob-kitobida
+// (getUzMonthSalaryProfit) ishlatiladi. Premium Send bu qoidaga kirmaydi, o'z formulasida qoladi.
 
 export async function ensureUzSalaryTable() {
   const sql = getSQL();
@@ -466,6 +471,18 @@ export async function getUzPsTrackingStart(): Promise<string> {
   return UZ_PS_TRACKING_START;
 }
 
+// Shu sanadan boshlab uzgets_stars/uzgets_premium buyurtmalarining maosh pot'iga
+// qo'shiladigan ulushi 50% ga tushadi — undan oldingi buyurtmalar 100% bo'lib qoladi (retroaktiv emas).
+const UZ_HALF_RATE_START = '2026-09-10';
+
+export async function getUzHalfRateStart(): Promise<string> {
+  const sql = getSQL();
+  const rows = await sql`SELECT value FROM settings WHERE key = 'uz_half_rate_start'`;
+  if (rows.length > 0 && /^\d{4}-\d{2}-\d{2}$/.test(rows[0].value)) return rows[0].value;
+  await sql`INSERT INTO settings (key, value) VALUES ('uz_half_rate_start', ${UZ_HALF_RATE_START}) ON CONFLICT (key) DO NOTHING`;
+  return UZ_HALF_RATE_START;
+}
+
 export async function getUzMonthProfit(month: string): Promise<number> {
   const sql = getSQL();
   const since = new Date(`${month}-01T00:00:00+05:00`).toISOString();
@@ -489,6 +506,41 @@ export async function getUzMonthProfit(month: string): Promise<number> {
     (+r.uz12 * 35000) +
     Math.round(+r.ps_rev * 0.12) +
     Math.round(+r.ps_stars_rev / 6) // Premium Send Stars: narxning 1/3 foyda, 2 admin o'rtasida 50/50 — Abdulloh ulushi 1/6, retroaktiv emas muammosi yo'q (yangi tur)
+  );
+}
+
+// Maosh pot'iga qo'shiladigan foyda — getUzMonthProfit'dan farqi: UZ_HALF_RATE_START'dan
+// boshlab uzgets_stars/uzgets_premium buyurtmalari 50% ulush bilan hisoblanadi (undan oldingilari 100%).
+// "Foyda" sahifasidagi ko'rsatkich (getUzMonthProfit) buning ta'sirida emas — 100% bo'lib qolaveradi.
+export async function getUzMonthSalaryProfit(month: string): Promise<number> {
+  const sql = getSQL();
+  const since = new Date(`${month}-01T00:00:00+05:00`).toISOString();
+  const next = shiftMonth(month, 1);
+  const until = new Date(`${next}-01T00:00:00+05:00`).toISOString();
+  const halfSince = new Date(`${await getUzHalfRateStart()}T00:00:00+05:00`).toISOString();
+  const psSince = new Date(`${await getUzPsTrackingStart()}T00:00:00+05:00`).toISOString();
+  const [r] = await sql`
+    SELECT
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_stars' AND timestamp < ${halfSince}), 0) as uz_stars_rev_full,
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_stars' AND timestamp >= ${halfSince}), 0) as uz_stars_rev_half,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '3 oy' AND timestamp < ${halfSince}) as uz3_full,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '3 oy' AND timestamp >= ${halfSince}) as uz3_half,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy' AND timestamp < ${halfSince}) as uz6_full,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy' AND timestamp >= ${halfSince}) as uz6_half,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy' AND timestamp < ${halfSince}) as uz12_full,
+      COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy' AND timestamp >= ${halfSince}) as uz12_half,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_send' AND timestamp >= ${psSince}), 0) as ps_rev,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium_send_stars'), 0) as ps_stars_rev
+    FROM orders WHERE timestamp >= ${since} AND timestamp < ${until}
+  `;
+  return (
+    Math.round(+r.uz_stars_rev_full * 0.10) +
+    Math.round(+r.uz_stars_rev_half * 0.10 * 0.5) +
+    (+r.uz3_full * 15000) + Math.round(+r.uz3_half * 15000 * 0.5) +
+    (+r.uz6_full * 25000) + Math.round(+r.uz6_half * 25000 * 0.5) +
+    (+r.uz12_full * 35000) + Math.round(+r.uz12_half * 35000 * 0.5) +
+    Math.round(+r.ps_rev * 0.12) +
+    Math.round(+r.ps_stars_rev / 6)
   );
 }
 
@@ -519,7 +571,7 @@ export async function getUzRolloverInto(month: string): Promise<number> {
   let leftover = 0;
   for (let i = 0; i < 24; i++) {
     if (cursor >= month) break;
-    const profit = await getUzMonthProfit(cursor);
+    const profit = await getUzMonthSalaryProfit(cursor);
     const withdrawn = await sumUzWithdrawalsForMonth(cursor);
     leftover = profit + leftover - withdrawn;
     cursor = shiftMonth(cursor, 1);
