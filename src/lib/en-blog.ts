@@ -20,6 +20,22 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'telegram-star-messages',
+    title: 'Telegram Star Messages: Get Paid for Messages From Strangers (2026)',
+    excerpt:
+      'Telegram Premium users can charge 1-10,000 Stars for a message from someone outside their contacts: how to turn it on, what percentage you keep, and how to refund it.',
+    date: '2026-09-10',
+    tag: 'Stars',
+  },
+  {
+    slug: 'telegram-stars-giveaway',
+    title: 'How to Run a Telegram Stars Giveaway (2026)',
+    excerpt:
+      "Steps to run a Stars-prize giveaway in a channel or group: who's eligible, how winners are picked, and where to buy Stars cheaply enough to fund a large prize pool.",
+    date: '2026-09-10',
+    tag: 'Guide',
+  },
+  {
     slug: 'telegram-channel-subscription-stars',
     title: "How Telegram's paid channel subscriptions work with Stars",
     excerpt:

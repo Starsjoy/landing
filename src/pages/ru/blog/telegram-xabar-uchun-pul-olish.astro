@@ -1,0 +1,295 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+
+const title = "Как получать Stars за сообщения от незнакомцев в Telegram (2026) | StarsJoy Blog";
+const description = "Telegram Premium позволяет установить цену 1–10 000 Stars за сообщение от людей вне контактов: как включить, какой процент вам достаётся и когда можно вернуть деньги.";
+const publishDate = "2026-09-10";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/ru/blog/telegram-xabar-uchun-pul-olish"
+  keywords="telegram деньги за сообщение, star messages telegram, telegram платные сообщения stars, оплата за сообщение telegram, telegram premium цена сообщения"
+  ogType="article"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-xabar-uchun-pul-olish" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-xabar-uchun-pul-olish" },
+    { lang: "en", href: "https://starsjoy.uz/en/blog/telegram-star-messages" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Как получать Stars за сообщения от незнакомцев в Telegram (2026)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": publishDate,
+    "inLanguage": "ru-RU",
+    "articleSection": "Stars",
+    "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png" }
+    },
+    "mainEntityOfPage": "https://starsjoy.uz/ru/blog/telegram-xabar-uchun-pul-olish",
+    "image": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png", "width": 512, "height": 512 }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Деньги за сообщение", "item": "https://starsjoy.uz/ru/blog/telegram-xabar-uchun-pul-olish" }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Включить оплату за сообщения в Telegram (Star Messages)",
+    "description": "Шаги для установки цены в Stars за сообщения от незнакомцев в личных сообщениях.",
+    "totalTime": "PT2M",
+    "step": [
+      { "@type": "HowToStep", "name": "Оформите Premium", "text": "Функция в личных чатах доступна только пользователям Telegram Premium." },
+      { "@type": "HowToStep", "name": "Откройте настройки", "text": "Settings (Настройки) > Privacy and Security (Конфиденциальность) > Messages (Сообщения)." },
+      { "@type": "HowToStep", "name": "Включите оплату за сообщения", "text": "Активируйте \"Charge for messages\"." },
+      { "@type": "HowToStep", "name": "Установите цену", "text": "Выберите цену от 1 до 10 000 Stars за одно сообщение." },
+      { "@type": "HowToStep", "name": "Добавьте исключения (опционально)", "text": "Внесите людей или участников группы, которые могут писать бесплатно." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Кто может включить Star Messages?",
+        "acceptedAnswer": { "@type": "Answer", "text": "В личном чате — только пользователи Telegram Premium. В группе — владелец или администратор через раздел \"Permissions\", включает \"Charge Stars for Messages\"; Premium в этом случае не требуется." }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько Stars можно просить за сообщение?",
+        "acceptedAnswer": { "@type": "Answer", "text": "От 1 до 10 000 Stars (примерно от 240 до 2 400 000 сум по курсу 240 сум/star) — цену устанавливаете сами. Многие рекомендуют начинать с низкой цены, например 5-20 Stars." }
+      },
+      {
+        "@type": "Question",
+        "name": "Какой процент от полученных Stars достаётся мне?",
+        "acceptedAnswer": { "@type": "Answer", "text": "85%. Остальные 15% удерживает Telegram в качестве комиссии — этот процент отличается от других способов монетизации Stars, например подписки на канал, где владельцу поступает 100%." }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно ли вернуть деньги, уже прочитав сообщение?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Да. После получения сообщения полученные Stars можно мгновенно вернуть отправителю одним нажатием — например, если сообщение оказалось спамом." }
+      },
+      {
+        "@type": "Question",
+        "name": "Должны ли платить мои контакты?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Нет. Функция действует только для людей, которых нет в вашем списке контактов. Друзья и родственники пишут вам как обычно, бесплатно. Любого человека или участников группы можно добавить в отдельный бесплатный список." }
+      },
+      {
+        "@type": "Question",
+        "name": "Когда можно обналичить накопленные Stars?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Так же, как и любые другие заработанные Stars — через Fragment в TON, затем в фиатные деньги. Вывод обычно открывается через 21 день после зачисления Stars на баланс." }
+      }
+    ]
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <a href="/ru/blog">Блог</a>
+          <span>/</span>
+          <span>Деньги за сообщение</span>
+        </nav>
+        <div class="post-tag">Stars</div>
+        <h1 class="post-title">Как получать Stars за сообщения от незнакомцев в Telegram</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <section>
+            <p class="post-lead"><strong>Короткий ответ:</strong> пользователи Telegram Premium через функцию <strong>Star Messages</strong> могут установить цену <strong>1–10 000 Stars</strong> за сообщение от людей вне списка контактов. Включается в <strong>Settings &gt; Privacy and Security &gt; Messages</strong>, из полученных Stars вам достаётся <strong>85%</strong>, остальное — комиссия Telegram. Прочитанное сообщение можно вернуть отправителю в любой момент.</p>
+          </section>
+
+          <section>
+            <h2>Что такое Star Messages и зачем это нужно?</h2>
+            <p>Star Messages — функция Telegram, которая делает платными входящие сообщения от незнакомцев (людей вне списка контактов). Цель двойная: защитить популярные или открытые профили от спама и ненужной переписки, и одновременно дать возможность зарабатывать на действительно заинтересованных собеседниках.</p>
+            <p>Это отличается от <a href="/ru/blog/telegram-kanal-pullik-obuna-stars">платной подписки на канал</a> или <a href="/ru/blog/telegram-channel-paid-post-yaratish">paid post</a> — те монетизируют аудиторию канала, а Star Messages касается входящих сообщений именно в ваш личный чат или группу.</p>
+          </section>
+
+          <section>
+            <h2>Кто может этим пользоваться?</h2>
+            <p>В личном чате функцию может включить только пользователь <strong>Telegram Premium</strong>. В группах иначе: владелец или администратор группы включает <strong>"Charge Stars for Messages"</strong> в разделе настроек <strong>Permissions</strong> — отдельный Premium в этом случае не требуется, так как оплата берётся за право написать в группу или её раздел.</p>
+          </section>
+
+          <section>
+            <h2>Как включить в личном чате?</h2>
+            <ol>
+              <li>Убедитесь, что у вас есть Telegram Premium.</li>
+              <li>Перейдите в <strong>Settings (Настройки)</strong> &gt; <strong>Privacy and Security (Конфиденциальность)</strong> &gt; <strong>Messages (Сообщения)</strong>.</li>
+              <li>Включите <strong>"Charge for messages"</strong>.</li>
+              <li>Выберите цену от <strong>1 до 10 000 Stars</strong> за одно сообщение.</li>
+              <li>При необходимости добавьте конкретных людей или участников группы в список исключений, которые могут писать бесплатно.</li>
+            </ol>
+          </section>
+
+          <section>
+            <h2>Как включить в группе?</h2>
+            <p>Владелец или администратор группы открывает раздел <strong>Permissions</strong> в настройках группы и включает <strong>"Charge Stars for Messages"</strong>. Это удобный инструмент для больших открытых групп, где нужно снизить количество спам-сообщений от незнакомцев.</p>
+          </section>
+
+          <section>
+            <div class="post-cta-box">
+              <a href="https://telegram.me/starsjoybot" target="_blank" class="post-cta-btn">Купить Premium &rarr;</a>
+              <span class="post-cta-sub">telegram.me/starsjoybot</span>
+            </div>
+          </section>
+
+          <section>
+            <h2>Какой процент от полученных Stars достаётся вам?</h2>
+            <p>Из Stars, уплаченных за сообщение, вам достаётся <strong>85%</strong>, оставшиеся <strong>15%</strong> удерживает Telegram в качестве комиссии. Этот процент отличается от монетизации канала (подписка, paid post), где на баланс канала поступает 100%, поскольку Star Messages работает на личном уровне и одновременно служит спам-фильтром.</p>
+          </section>
+
+          <section>
+            <h2>Можно ли вернуть деньги после прочтения сообщения?</h2>
+            <p>Да. Даже после того как сообщение пришло и вы его прочитали, полученные Stars можно мгновенно вернуть отправителю одним нажатием — например, если сообщение оказалось спамом или вы не хотите продолжать переписку.</p>
+          </section>
+
+          <section>
+            <h2>Какую информацию вы видите о незнакомом отправителе?</h2>
+            <p>Вместе со Star Messages Telegram показывает дополнительную информацию о незнакомом отправителе — это также полезно для защиты от мошенников:</p>
+            <ul>
+              <li><strong>Страну</strong> отправителя (по номеру телефона);</li>
+              <li>Есть ли у вас <strong>общие группы</strong>;</li>
+              <li><strong>Дату регистрации</strong> в Telegram;</li>
+              <li>Когда <strong>последний раз менялись</strong> фото профиля или username;</li>
+              <li><strong>Статус верификации</strong> (официально подтверждённый аккаунт или нет).</li>
+            </ul>
+            <p>Полное руководство по безопасности: <a href="/ru/blog/telegram-stars-firibgarlik-himoya">защита от мошенничества с Telegram Stars</a>.</p>
+          </section>
+
+          <section>
+            <h2>Должны ли мои контакты платить?</h2>
+            <p>Нет. Функция работает только в отношении людей, которых <strong>нет</strong> в вашем списке контактов. Друзья, родственники и остальные существующие контакты пишут вам как обычно, бесплатно. Кроме того, любого человека или участников группы можно добавить в отдельный список "может писать бесплатно".</p>
+          </section>
+
+          <section>
+            <h2>Как превратить накопленные Stars в деньги?</h2>
+            <p>Stars, заработанные через Star Messages, работают в той же системе, что и Stars от подписки на канал, paid post или продажи подарков: конвертация в TON через Fragment, затем — в фиатные деньги. Вывод обычно открывается <strong>через 21 день</strong> после зачисления Stars на баланс. Подробные шаги: <a href="/ru/blog/telegram-stars-kartaga-chiqarish">как вывести Stars на карту</a>.</p>
+          </section>
+
+          <section>
+            <h2>Работает ли это с Premium, купленным через StarsJoy?</h2>
+            <p>Да. Premium, купленный через <strong>@starsjoybot</strong> на StarsJoy, — это точно такой же полноценный Telegram Premium, как и купленный через App Store или Google Play. Star Messages и все остальные функции Premium работают одинаково, разница только в способе оплаты — у StarsJoy это разовый платёж без необходимости в зарубежной карте. Полный список функций: <a href="/ru/blog/telegram-premium-funksiyalari">функции Telegram Premium</a>.</p>
+          </section>
+
+          <section>
+            <h2>Часто задаваемые вопросы</h2>
+            <div class="post-faq">
+              <div class="post-faq-item">
+                <h3>Кто может включить Star Messages?</h3>
+                <p>В личном чате — только пользователи Premium; в группе — владелец или администратор через Permissions.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Сколько Stars можно просить за сообщение?</h3>
+                <p>От 1 до 10 000 Stars, цену устанавливаете сами.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Какой процент от Stars достаётся мне?</h3>
+                <p>85%. Остальные 15% — комиссия Telegram.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Можно ли вернуть деньги, уже прочитав сообщение?</h3>
+                <p>Да, можно мгновенно вернуть одним нажатием.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Должны ли платить мои контакты?</h3>
+                <p>Нет, только люди вне списка контактов.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Когда можно обналичить накопленные Stars?</h3>
+                <p>Через Fragment, спустя 21 день после зачисления.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2>Итог</h2>
+            <ul>
+              <li>💬 <strong>Star Messages</strong> — функция установки цены 1-10 000 Stars за сообщения от незнакомцев;</li>
+              <li>👤 В личном чате требует <strong>Premium</strong>, в группе — включает владелец через Permissions;</li>
+              <li>💰 Из полученных Stars вам достаётся <strong>85%</strong>, 15% — комиссия Telegram;</li>
+              <li>↩️ Прочитанное сообщение можно <strong>мгновенно вернуть</strong>.</li>
+            </ul>
+            <p>Купить или продлить Premium — на <a href="/ru/premium">странице цен Premium</a> или откройте <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>.</p>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .post-hero { padding: 120px 24px 48px; background: #F8F6FF; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; flex-wrap: wrap; }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .post-tag { display: inline-block; padding: 4px 12px; background: rgba(124, 58, 237, 0.08); border-radius: 50px; color: var(--primary); font-size: 0.78rem; font-weight: 600; margin-bottom: 16px; }
+  .post-title { font-size: 2.1rem; font-weight: 900; color: var(--text); margin-bottom: 16px; line-height: 1.25; max-width: 820px; }
+  .post-meta { display: flex; align-items: center; gap: 16px; font-size: 0.9rem; color: var(--text-muted); }
+  .post-body { padding: 60px 24px; }
+  .post-content { max-width: 760px; margin: 0 auto; }
+  .post-content section { padding: 0; margin: 0; }
+  .post-lead { font-size: 1.08rem !important; color: var(--text) !important; background: #F8F6FF; border-left: 3px solid var(--primary); border-radius: 8px; padding: 18px 20px; line-height: 1.75 !important; }
+  .post-content h2 { font-size: 1.4rem; font-weight: 800; color: var(--text); margin: 32px 0 12px; line-height: 1.3; }
+  .post-content h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 18px 0 8px; }
+  .post-content p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
+  .post-content a { color: var(--primary); text-decoration: none; }
+  .post-content a:hover { text-decoration: underline; }
+  .post-content a.post-cta-btn { text-decoration: none; }
+  .post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 14px; }
+  .post-content li { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 6px; }
+  .post-cta-box { margin: 16px 0; padding: 0; background: none; border: none; }
+  .post-cta-btn { display: inline-block; padding: 8px 20px; background: rgba(124, 58, 237, 0.06); color: var(--primary); font-weight: 600; font-size: 0.9rem; border-radius: 8px; text-decoration: none; border: 1px solid rgba(124, 58, 237, 0.15); transition: background 0.2s, border-color 0.2s; }
+  .post-cta-btn:hover { background: rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.3); }
+  .post-cta-sub { display: inline; margin-left: 10px; font-size: 0.82rem; color: var(--text-light); }
+  .post-faq { margin: 24px 0; }
+  .post-faq-item { background: #F8F6FF; border: 1px solid rgba(124, 58, 237, 0.1); border-radius: 12px; padding: 24px; margin-bottom: 12px; }
+  .post-faq-item h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 0 0 8px; }
+  .post-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.5rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.22rem; margin-top: 28px; }
+    .post-content h3 { font-size: 1.02rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+  }
+</style>

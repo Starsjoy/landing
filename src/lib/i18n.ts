@@ -42,6 +42,8 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/blog/telegram-stars-glossary': '/blog/telegram-stars-atamalar-lugati',
   '/en/blog/telegram-channel-subscription-stars': '/blog/telegram-kanal-pullik-obuna-stars',
   '/en/blog/activate-telegram-premium-gift-code': '/blog/telegram-premium-sovga-kodini-faollashtirish',
+  '/en/blog/telegram-star-messages': '/blog/telegram-xabar-uchun-pul-olish',
+  '/en/blog/telegram-stars-giveaway': '/blog/telegram-stars-giveaway-otkazish',
 };
 
 /** O'zbekcha sahifa → uning inglizcha ekvivalenti (yuqoridagining teskarisi) */

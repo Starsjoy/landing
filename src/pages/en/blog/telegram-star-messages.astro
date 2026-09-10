@@ -1,0 +1,127 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  { q: "Who can turn on Star Messages?", a: "In a private chat, only Telegram Premium users can turn it on. In a group, the owner or an admin enables \"Charge Stars for Messages\" under Permissions — Premium isn't required there." },
+  { q: "How many Stars can I charge per message?", a: "Anywhere from 1 to 10,000 Stars (roughly 240 to 2,400,000 UZS at 240 UZS/Star) — you set the price. Many people start low, around 5-20 Stars, and adjust from there." },
+  { q: "What percentage of the Stars do I actually keep?", a: "85%. Telegram keeps the remaining 15% as commission — a different split from admin-to-audience tools like channel subscriptions, where the channel keeps 100%." },
+  { q: "Can I refund a message after I've already read it?", a: "Yes. At any point after a message arrives, you can instantly refund the Stars to the sender with a single tap — useful if the message turns out to be spam." },
+  { q: "Do my existing contacts have to pay to message me?", a: "No. This only applies to people outside your contact list. Friends, family and anyone already in your contacts message you for free as usual, and you can add specific people or group members to a free-to-message exception list." },
+  { q: "When can I cash out Stars earned this way?", a: "The same way as any other Stars earned on Telegram — through Fragment into TON, then into fiat. Withdrawals typically open up 21 days after the Stars land in your balance." }
+];
+---
+<BlogPostEn
+  slug="telegram-star-messages"
+  title="Telegram Star Messages: Get Paid for Messages From Strangers (2026)"
+  heading="How to get paid for messages on Telegram (Star Messages, 2026)"
+  crumb="Star Messages"
+  tag="Stars"
+  description="Telegram Premium users can charge 1-10,000 Stars for a message from someone outside their contacts: how to turn it on, what percentage you keep, and how to refund it."
+  keywords="telegram star messages, get paid for telegram messages, charge stars for messages, telegram premium message price, telegram paid messages strangers"
+  publishDate="2026-09-10"
+  uzHref="https://starsjoy.uz/blog/telegram-xabar-uchun-pul-olish"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-xabar-uchun-pul-olish"
+  faqs={faqs}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Turn on Star Messages in a private Telegram chat",
+    "description": "Steps to set a Stars price for messages from people outside your contacts.",
+    "totalTime": "PT2M",
+    "step": [
+      { "@type": "HowToStep", "name": "Get Telegram Premium", "text": "This feature in private chats is only available to Telegram Premium subscribers." },
+      { "@type": "HowToStep", "name": "Open settings", "text": "Go to Settings > Privacy and Security > Messages." },
+      { "@type": "HowToStep", "name": "Turn on charging for messages", "text": "Enable \"Charge for messages\"." },
+      { "@type": "HowToStep", "name": "Set your price", "text": "Choose a price between 1 and 10,000 Stars per message." },
+      { "@type": "HowToStep", "name": "Add exceptions (optional)", "text": "Add specific people or group members who can message you for free." }
+    ]
+  })} />
+
+  <section>
+    <p class="post-lead"><strong>Short answer:</strong> Telegram Premium users can use <strong>Star Messages</strong> to charge <strong>1-10,000 Stars</strong> for a message from anyone outside their contact list. It's turned on under <strong>Settings &gt; Privacy and Security &gt; Messages</strong>, you keep <strong>85%</strong> of what's paid, and you can refund a message with one tap even after reading it.</p>
+  </section>
+
+  <section>
+    <h2>What is Star Messages, and why does it exist?</h2>
+    <p>Star Messages is Telegram's feature for making incoming messages from strangers — people outside your contact list — cost something. It does two things at once: it protects popular or public-facing accounts from spam and unwanted messages, and it lets you earn a small amount from people who are genuinely willing to pay to reach you.</p>
+    <p>It's different from a <a href="/en/blog/telegram-channel-subscription-stars">paid channel subscription</a> or a paid post — those monetize a channel's audience. Star Messages is about messages landing in your own personal chat or group.</p>
+  </section>
+
+  <section>
+    <h2>Who can actually use it?</h2>
+    <p>In a private chat, only a <strong>Telegram Premium</strong> subscriber can turn this on. In groups it works differently: the group owner or an admin enables <strong>"Charge Stars for Messages"</strong> under the group's <strong>Permissions</strong> settings — no separate Premium subscription is required there, since the charge applies to the right to message the group itself.</p>
+  </section>
+
+  <section>
+    <h2>How to turn it on in a private chat</h2>
+    <ol>
+      <li>Make sure you have Telegram Premium.</li>
+      <li>Go to <strong>Settings</strong> &gt; <strong>Privacy and Security</strong> &gt; <strong>Messages</strong>.</li>
+      <li>Turn on <strong>"Charge for messages."</strong></li>
+      <li>Set a price between <strong>1 and 10,000 Stars</strong> per message.</li>
+      <li>Optionally, add specific people or group members to an exception list who can message you for free.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>How to turn it on in a group</h2>
+    <p>The group owner or an admin opens the group's <strong>Permissions</strong> settings and enables <strong>"Charge Stars for Messages."</strong> This is a useful way to cut down on spam from strangers in large, open groups.</p>
+  </section>
+
+  <section>
+    <div class="post-cta-box">
+      <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener" class="post-cta-btn">Buy Telegram Premium &rarr;</a>
+      <span class="post-cta-sub">telegram.me/starsjoybot</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>What percentage of the Stars do you actually keep?</h2>
+    <p>You keep <strong>85%</strong> of the Stars paid for a message; Telegram keeps the remaining <strong>15%</strong> as commission. That's a different split from admin-to-audience monetization like a channel subscription or paid post, where the channel keeps 100% — Star Messages operates at the personal level and doubles as a spam filter.</p>
+  </section>
+
+  <section>
+    <h2>Can you refund a message after reading it?</h2>
+    <p>Yes. Even after a message has arrived and you've read it, you can instantly refund the Stars to the sender with a single tap — handy if it turns out to be spam, or you simply don't want to continue the conversation.</p>
+  </section>
+
+  <section>
+    <h2>What do you see about an unknown sender?</h2>
+    <p>Alongside Star Messages, Telegram shows extra information about an unfamiliar sender — useful for spotting scams too:</p>
+    <ul>
+      <li>The sender's <strong>country</strong> (based on their phone number);</li>
+      <li>Whether you share any <strong>mutual groups</strong>;</li>
+      <li>Their Telegram <strong>registration date</strong>;</li>
+      <li>When their <strong>profile photo or username last changed</strong>;</li>
+      <li>Their <strong>verification status</strong>.</li>
+    </ul>
+    <p>Full safety guide: <a href="/en/blog/is-buying-telegram-stars-safe">is buying Telegram Stars safe?</a></p>
+  </section>
+
+  <section>
+    <h2>Do your existing contacts have to pay?</h2>
+    <p>No. This only applies to people who are <strong>not</strong> in your contact list. Friends, family and everyone else already in your contacts keep messaging you for free as always, and you can also add any specific person or group's members to a separate free-to-message list.</p>
+  </section>
+
+  <section>
+    <h2>How do you turn earned Stars into money?</h2>
+    <p>Stars earned through Star Messages sit in the same system as Stars from a channel subscription, a paid post, or selling a gift: they convert to TON through Fragment, then to fiat. Withdrawals typically open <strong>21 days after</strong> the Stars land in your balance. Full steps: <a href="/en/blog/cash-out-telegram-stars">how to cash out Telegram Stars in Uzbekistan</a>.</p>
+  </section>
+
+  <section>
+    <h2>Does this work with Premium bought through StarsJoy?</h2>
+    <p>Yes. Premium bought through <strong>@starsjoybot</strong> on StarsJoy is the exact same, fully-featured Telegram Premium as one bought through the App Store or Google Play. Star Messages and every other Premium feature work identically — the only difference is payment: StarsJoy is a one-off payment, no international card needed. Full feature list: <a href="/en/blog/telegram-premium-features">what Telegram Premium actually gives you</a>.</p>
+  </section>
+
+  <section>
+    <h2>The takeaway</h2>
+    <ul>
+      <li>💬 <strong>Star Messages</strong> lets you charge 1-10,000 Stars for a message from someone outside your contacts;</li>
+      <li>👤 Requires <strong>Premium</strong> in private chats; a group owner turns it on via Permissions;</li>
+      <li>💰 You keep <strong>85%</strong> of the Stars paid; Telegram takes 15%;</li>
+      <li>↩️ A message can be <strong>refunded instantly</strong>, even after you've read it.</li>
+    </ul>
+    <p>See <a href="/en/premium">Telegram Premium prices</a> or open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> to buy or renew.</p>
+  </section>
+</BlogPostEn>

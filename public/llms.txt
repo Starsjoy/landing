@@ -25,6 +25,8 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Blog index (English guides): https://starsjoy.uz/en/blog
 
 ### English guides
+- Telegram Star Messages: Get Paid for Messages From Strangers (2026): https://starsjoy.uz/en/blog/telegram-star-messages — Telegram Premium users can charge 1-10,000 Stars for a message from someone outside their contacts: how to turn it on, what percentage you keep, and how to refund it.
+- How to Run a Telegram Stars Giveaway (2026): https://starsjoy.uz/en/blog/telegram-stars-giveaway — Steps to run a Stars-prize giveaway in a channel or group: who's eligible, how winners are picked, and where to buy Stars cheaply enough to fund a large prize pool.
 - How Telegram's paid channel subscriptions work with Stars: https://starsjoy.uz/en/blog/telegram-channel-subscription-stars — How to set up a recurring monthly paid subscription for a Telegram channel using Stars, and how subscribers join or cancel: pricing, where the Stars go, and how it differs from a paid post.
 - How to activate a Telegram Premium gift code: https://starsjoy.uz/en/blog/activate-telegram-premium-gift-code — How to activate a Telegram Premium gift code won in a channel giveaway or received via a link: the steps, how long codes stay valid, and what happens if you already have Premium.
 - How to Turn Off Telegram Premium Auto-Renewal (2026): https://starsjoy.uz/en/blog/cancel-telegram-premium-auto-renewal — Step-by-step for iOS, Android and @PremiumBot, what happens to your remaining days after cancelling, and what to do if the cancel option is missing.
@@ -121,7 +123,7 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 ## Referral dasturi
 Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
 
-## Maqolalar (60 ta mavzu, har biri o'zbek va rus tilida)
+## Maqolalar (62 ta mavzu, har biri o'zbek va rus tilida)
 
 ### Telegram Stars — asoslar, narx va xarid
 
@@ -164,6 +166,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - Telegram Mini App'da Stars bilan to'lov: qanday ishlaydi va xavfsizmi? (2026): https://starsjoy.uz/blog/telegram-mini-app-stars-tolov (RU: https://starsjoy.uz/ru/blog/telegram-mini-app-stars-tolov) — Telegram Mini App'da Stars bilan to'lov nima, qanday ishlaydi, qaysi mashhur Mini App'lar Stars qabul qiladi va to'lov bosqichlari — to'liq qo'llanma 2026.
 - Telegram Ads'ni Stars bilan to'lash: qo'llanma 2026: https://starsjoy.uz/blog/telegram-ads-stars-bilan (RU: https://starsjoy.uz/ru/blog/telegram-ads-stars-bilan) — Telegram Ads'ni Stars bilan kim to'lay oladi? 30% chegirma, Balance → Buy Ads bosqichlari, cheklovlar va kanal reklamasini ishga tushirish qo'llanmasi.
 - Telegramda kanalga pullik obuna: Stars bilan qanday ishlaydi (2026): https://starsjoy.uz/blog/telegram-kanal-pullik-obuna-stars (RU: https://starsjoy.uz/ru/blog/telegram-kanal-pullik-obuna-stars) — Telegram kanaliga oylik pullik obuna (channel subscription) Stars orqali qanday sozlanadi va qanday obuna bo'linadi: narx belgilash, bekor qilish, Stars…
+- Telegramda xabar uchun qanday pul olish mumkin? (2026): https://starsjoy.uz/blog/telegram-xabar-uchun-pul-olish (RU: https://starsjoy.uz/ru/blog/telegram-xabar-uchun-pul-olish) — Telegram Premium'da notanish odamlardan kelgan xabar uchun 1–10 000 Stars narx belgilash mumkin: qanday yoqiladi, necha foizi tushadi va qachon qaytariladi.
 
 ### Telegram Premium — narx, paketlar va sotib olish
 
@@ -204,6 +207,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - Stars/Premium savdo boti yasash: 4 ta yo'l va narxi (2026): https://starsjoy.uz/blog/stars-savdo-boti-yasash-yollari-narxi (RU: https://starsjoy.uz/ru/blog/stars-savdo-boti-yasash-yollari-narxi) — Telegram Stars, Premium va Gifts savdo (reseller) boti yasashning 4 ta yo'li: o'zi yasash, no-code platforma, freelancer'ga zakaz va tayyor white-label paket.
 - Telegram'da Stars, Premium va Gifts savdo biznesi: 2026 reseller modeli to'liq tushuntirish: https://starsjoy.uz/blog/telegram-stars-premium-gifts-savdo-biznesi (RU: https://starsjoy.uz/ru/blog/telegram-stars-premium-gifts-savdo-biznesi) — Telegram Stars, Premium va Gifts qayta sotish (reseller) biznesi qanday ishlaydi: daromad mantig'i, mahsulotlar, O'zbekistonda boshlash shartlari va Starsjoy…
 - Telegram kanalda paid post yaratish: 2026 to'liq qo'llanma (Stars qabul qilish): https://starsjoy.uz/blog/telegram-channel-paid-post-yaratish (RU: https://starsjoy.uz/ru/blog/telegram-channel-paid-post-yaratish) — Telegram kanalda pulli post (paid media) qanday yaratiladi: 5 bosqichli amaliy qo'llanma, kerakli shartlar (1000+ obunachi), narx belgilash, Stars'ni TON yoki…
+- Telegram Stars bilan giveaway qanday o'tkaziladi? (2026): https://starsjoy.uz/blog/telegram-stars-giveaway-otkazish (RU: https://starsjoy.uz/ru/blog/telegram-stars-giveaway-otkazish) — Kanal yoki guruhda Stars sovrinli giveaway o'tkazish bosqichlari: kim o'tkaza oladi, g'oliblar qanday tanlanadi va katta giveaway uchun Stars'ni qayerdan arzon…
 
 ### StarsJoy platformasi va boshqa qo‘llanmalar
 

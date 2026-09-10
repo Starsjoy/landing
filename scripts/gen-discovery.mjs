@@ -70,6 +70,7 @@ const GROUPS = [
       'telegram-mini-app-stars-tolov',
       'telegram-ads-stars-bilan',
       'telegram-kanal-pullik-obuna-stars',
+      'telegram-xabar-uchun-pul-olish',
     ],
   },
   {
@@ -118,6 +119,7 @@ const GROUPS = [
       'stars-savdo-boti-yasash-yollari-narxi',
       'telegram-stars-premium-gifts-savdo-biznesi',
       'telegram-channel-paid-post-yaratish',
+      'telegram-stars-giveaway-otkazish',
     ],
   },
   {

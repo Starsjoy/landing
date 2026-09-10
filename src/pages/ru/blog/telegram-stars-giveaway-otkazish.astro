@@ -1,0 +1,268 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+
+const title = "Как провести giveaway со Stars в Telegram? (2026) | StarsJoy Blog";
+const description = "Шаги для розыгрыша с призами в Stars в канале или группе: кто может его запустить, как выбираются победители и где дешевле купить Stars для крупного giveaway.";
+const publishDate = "2026-09-10";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="https://starsjoy.uz/ru/blog/telegram-stars-giveaway-otkazish"
+  keywords="telegram stars giveaway, розыгрыш telegram stars, giveaway в телеграм канале, telegram giveaway как провести, конкурс stars телеграм"
+  ogType="article"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-stars-giveaway-otkazish" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-stars-giveaway-otkazish" },
+    { lang: "en", href: "https://starsjoy.uz/en/blog/telegram-stars-giveaway" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Как провести giveaway со Stars в Telegram? (2026)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": publishDate,
+    "inLanguage": "ru-RU",
+    "articleSection": "Бизнес",
+    "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png" }
+    },
+    "mainEntityOfPage": "https://starsjoy.uz/ru/blog/telegram-stars-giveaway-otkazish",
+    "image": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png", "width": 512, "height": 512 }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Giveaway со Stars", "item": "https://starsjoy.uz/ru/blog/telegram-stars-giveaway-otkazish" }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Настройка Stars giveaway в Telegram-канале",
+    "description": "Шаги для владельца канала или группы по запуску розыгрыша с призами в Stars.",
+    "totalTime": "PT5M",
+    "step": [
+      { "@type": "HowToStep", "name": "Проверьте требования", "text": "Канал должен иметь не менее 50 подписчиков, группа — не менее 500 участников." },
+      { "@type": "HowToStep", "name": "Откройте раздел статистики", "text": "В настройках канала: \"Statistics\" > \"Boosts\" (в группе: \"Group Info\" > \"Statistics\" > \"Boosts\")." },
+      { "@type": "HowToStep", "name": "Выберите \"Start a Giveaway\"", "text": "Нажмите кнопку создания нового giveaway." },
+      { "@type": "HowToStep", "name": "Укажите приз", "text": "Введите общую сумму Stars и количество победителей — оплачивается заранее." },
+      { "@type": "HowToStep", "name": "Установите срок и опубликуйте", "text": "Выберите дату окончания giveaway и опубликуйте его в канале — для участия нужно сделать \"boost\" канала." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Кто может провести Stars giveaway?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Каналы минимум с 50 подписчиками и группы минимум с 500 участниками. Владельцам меньших каналов и групп сначала нужно вырастить аудиторию до этого порога." }
+      },
+      {
+        "@type": "Question",
+        "name": "Как выбираются победители?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Через стандартную систему Telegram на основе boost: для участия достаточно сделать \"boost\" канала или группы, отдельная заявка не нужна. После окончания giveaway победители выбираются случайно среди тех, кто сделал boost." }
+      },
+      {
+        "@type": "Question",
+        "name": "Как оплачивается приз giveaway?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Полностью заранее (prepaid) — вся сумма Stars оплачивается организатором до начала giveaway. Поэтому отменить или отложить оплату невозможно." }
+      },
+      {
+        "@type": "Question",
+        "name": "На что победитель может потратить выигранные Stars?",
+        "acceptedAnswer": { "@type": "Answer", "text": "На что угодно внутри Telegram: платные медиа и подарки, подписки на каналы, игры, мини-приложения и другие сервисы, оплачиваемые Stars." }
+      },
+      {
+        "@type": "Question",
+        "name": "Где дешевле купить большое количество Stars для giveaway?",
+        "acceptedAnswer": { "@type": "Answer", "text": "При покупке Stars на личный счёт через App Store или Google Play около 30% суммы уходит Apple/Google, плюс есть ограничения на размер разовой покупки. Через местного реселлера вроде StarsJoy Stars покупаются по 240 сум/star, без ограничений по объёму и напрямую картой Uzcard или Humo." }
+      },
+      {
+        "@type": "Question",
+        "name": "Чем Stars giveaway отличается от Premium giveaway?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Оба работают по одинаковому механизму на основе boost, разница только в призе: в Premium giveaway победители получают подписку Premium, в Stars giveaway — напрямую баланс Stars." }
+      }
+    ]
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <a href="/ru/blog">Блог</a>
+          <span>/</span>
+          <span>Giveaway со Stars</span>
+        </nav>
+        <div class="post-tag">Бизнес</div>
+        <h1 class="post-title">Как провести giveaway со Stars в Telegram?</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <section>
+            <p class="post-lead"><strong>Короткий ответ:</strong> владелец канала минимум с <strong>50 подписчиками</strong> или группы минимум с <strong>500 участниками</strong> может провести giveaway с призом в Stars через раздел <strong>Statistics &gt; Boosts</strong>. Приз оплачивается заранее, для участия участники делают "boost" канала, а победители выбираются случайно среди них. Для крупного giveaway Stars выгоднее покупать через местного реселлера вроде StarsJoy — это позволяет избежать комиссии ~30% у App Store/Google Play.</p>
+          </section>
+
+          <section>
+            <h2>Что такое Stars giveaway и зачем он нужен?</h2>
+            <p>Stars giveaway — это розыгрыш, при котором владелец канала или группы распределяет призовые Stars среди участников, чтобы стимулировать рост аудитории. Механизм основан на уже знакомой системе Premium giveaway — разница в том, что победители получают напрямую баланс Stars вместо подписки Premium.</p>
+            <p>Для роста канала это — альтернатива или дополнение к <a href="/ru/blog/telegram-ads-stars-bilan">Telegram Ads</a>: вместо рекламы вы вознаграждаете уже существующую аудиторию, побуждая её продвигать канал через boost.</p>
+          </section>
+
+          <section>
+            <h2>Кто может провести giveaway?</h2>
+            <p>Порог входа довольно низкий: канал должен иметь минимум <strong>50 подписчиков</strong>, группа — минимум <strong>500 участников</strong>. Более мелким каналам и группам сначала нужно нарастить аудиторию до этого уровня.</p>
+          </section>
+
+          <section>
+            <h2>Как настроить — пошагово</h2>
+            <ol>
+              <li><strong>Проверьте соответствие требованиям</strong> — канал 50+ подписчиков, группа 500+ участников.</li>
+              <li><strong>Откройте раздел статистики</strong> — в канале "Channel Settings" &gt; "Statistics" &gt; "Boosts" (в группе "Group Info" &gt; "Statistics" &gt; "Boosts").</li>
+              <li><strong>Выберите "Start a Giveaway"</strong> — откроется окно настройки нового giveaway.</li>
+              <li><strong>Укажите приз</strong> — введите общую сумму Stars и количество победителей.</li>
+              <li><strong>Установите срок и опубликуйте</strong> — выберите дату окончания и опубликуйте giveaway в канале.</li>
+            </ol>
+          </section>
+
+          <section>
+            <h2>Как выбираются победители?</h2>
+            <p>Stars giveaway работает по стандартному механизму Telegram на основе <strong>boost</strong> — той же системе, что уже используется в Premium giveaway. Для участия не нужно подавать отдельную заявку — достаточно сделать "boost" канала или группы. После окончания срока giveaway победители выбираются случайно среди тех, кто сделал boost, и весь процесс полностью прозрачен — результаты может проверить любой.</p>
+          </section>
+
+          <section>
+            <div class="post-cta-box">
+              <a href="https://telegram.me/starsjoybot" target="_blank" class="post-cta-btn">Купить Stars для giveaway &rarr;</a>
+              <span class="post-cta-sub">telegram.me/starsjoybot</span>
+            </div>
+          </section>
+
+          <section>
+            <h2>Как оплачивается приз?</h2>
+            <p>Giveaway оплачивается <strong>полностью заранее (prepaid)</strong> — вся сумма Stars вносится организатором ещё до начала розыгрыша. Это обеспечивает прозрачность: все уверены, что объявленный приз реально существует, а отложить или отменить оплату невозможно.</p>
+          </section>
+
+          <section>
+            <h2>На что победитель тратит выигранные Stars?</h2>
+            <p>Выигранные Stars — это обычный баланс Stars, который можно потратить на что угодно внутри Telegram: <a href="/ru/blog/telegram-gifts-bot-orqali">платные медиа и подарки</a>, подписки на каналы, игры, мини-приложения и другие сервисы с оплатой Stars.</p>
+          </section>
+
+          <section>
+            <h2>Где дешевле купить большое количество Stars для giveaway?</h2>
+            <p>Это — самая большая статья расходов при организации giveaway. При покупке Stars на личный счёт через App Store или Google Play примерно <strong>30%</strong> суммы уходит в комиссию Apple/Google, к тому же есть ограничения на размер разовой покупки — это неудобно для крупного giveaway.</p>
+            <p>Через местного реселлера вроде StarsJoy Stars покупаются по <strong>240 сум/star</strong>, без ограничений по объёму и напрямую картой Uzcard или Humo — без зарубежной карты и дополнительных комиссий. Полное руководство по накоплению большого объёма Stars дёшево: <a href="/ru/blog/telegram-stars-koplab-arzon">купить много Stars дёшево</a>.</p>
+          </section>
+
+          <section>
+            <h2>Чем Stars giveaway отличается от Premium giveaway?</h2>
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead><tr><th>Параметр</th><th>Premium giveaway</th><th>Stars giveaway</th></tr></thead>
+                <tbody>
+                  <tr><td>Приз</td><td>Подписка Telegram Premium</td><td>Баланс Stars</td></tr>
+                  <tr><td>Механизм отбора</td><td>На основе boost</td><td>На основе boost</td></tr>
+                  <tr><td>Оплата</td><td>Заранее (prepaid)</td><td>Заранее (prepaid)</td></tr>
+                  <tr class="highlight-row"><td>Что получает победитель</td><td>Подписку на несколько месяцев</td><td>Баланс на любой сервис Stars</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Оба вида можно использовать поочерёдно в одном канале — например, Premium giveaway для привлечения новых подписчиков, а Stars giveaway — для поощрения активной аудитории.</p>
+          </section>
+
+          <section>
+            <h2>Итог</h2>
+            <ul>
+              <li>🎁 <strong>Stars giveaway</strong> — распределение призовых Stars среди участников канала/группы;</li>
+              <li>📊 Канал должен иметь <strong>50+ подписчиков</strong>, группа — <strong>500+ участников</strong>;</li>
+              <li>🚀 Для участия делается <strong>boost</strong>, победители выбираются случайно;</li>
+              <li>💰 Для крупного giveaway Stars через <strong>StarsJoy</strong> дешевле, чем через App Store/Google Play.</li>
+            </ul>
+            <p>О других способах монетизации канала — читайте <a href="/ru/blog/telegram-kanal-pullik-obuna-stars">платная подписка на канал</a> и <a href="/ru/blog/telegram-ads-stars-bilan">оплата Telegram Ads звёздами</a>, а для крупных объёмов Stars — страница <a href="/ru/biznes">бизнес/API</a>.</p>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .post-hero { padding: 120px 24px 48px; background: #F8F6FF; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; flex-wrap: wrap; }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .post-tag { display: inline-block; padding: 4px 12px; background: rgba(124, 58, 237, 0.08); border-radius: 50px; color: var(--primary); font-size: 0.78rem; font-weight: 600; margin-bottom: 16px; }
+  .post-title { font-size: 2.1rem; font-weight: 900; color: var(--text); margin-bottom: 16px; line-height: 1.25; max-width: 820px; }
+  .post-meta { display: flex; align-items: center; gap: 16px; font-size: 0.9rem; color: var(--text-muted); }
+  .post-body { padding: 60px 24px; }
+  .post-content { max-width: 760px; margin: 0 auto; }
+  .post-content section { padding: 0; margin: 0; }
+  .post-lead { font-size: 1.08rem !important; color: var(--text) !important; background: #F8F6FF; border-left: 3px solid var(--primary); border-radius: 8px; padding: 18px 20px; line-height: 1.75 !important; }
+  .post-content h2 { font-size: 1.4rem; font-weight: 800; color: var(--text); margin: 32px 0 12px; line-height: 1.3; }
+  .post-content h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 18px 0 8px; }
+  .post-content p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
+  .post-content a { color: var(--primary); text-decoration: none; }
+  .post-content a:hover { text-decoration: underline; }
+  .post-content a.post-cta-btn { text-decoration: none; }
+  .post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 14px; }
+  .post-content li { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 6px; }
+  .post-cta-box { margin: 16px 0; padding: 0; background: none; border: none; }
+  .post-cta-btn { display: inline-block; padding: 8px 20px; background: rgba(124, 58, 237, 0.06); color: var(--primary); font-weight: 600; font-size: 0.9rem; border-radius: 8px; text-decoration: none; border: 1px solid rgba(124, 58, 237, 0.15); transition: background 0.2s, border-color 0.2s; }
+  .post-cta-btn:hover { background: rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.3); }
+  .post-cta-sub { display: inline; margin-left: 10px; font-size: 0.82rem; color: var(--text-light); }
+  .post-table-wrap { overflow-x: auto; margin: 20px 0; border-radius: 12px; border: 1px solid rgba(124, 58, 237, 0.12); }
+  .post-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .post-table th { background: rgba(124, 58, 237, 0.06); color: var(--text); font-weight: 700; padding: 14px 18px; text-align: left; border-bottom: 1px solid rgba(124, 58, 237, 0.1); }
+  .post-table td { padding: 12px 18px; color: var(--text-muted); border-bottom: 1px solid rgba(124, 58, 237, 0.06); }
+  .post-table tr:last-child td { border-bottom: none; }
+  .post-table .highlight-row { background: rgba(124, 58, 237, 0.04); }
+  .post-table .highlight-row td { color: var(--primary); font-weight: 600; }
+  .post-faq { margin: 24px 0; }
+  .post-faq-item { background: #F8F6FF; border: 1px solid rgba(124, 58, 237, 0.1); border-radius: 12px; padding: 24px; margin-bottom: 12px; }
+  .post-faq-item h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 0 0 8px; }
+  .post-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.5rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.22rem; margin-top: 28px; }
+    .post-content h3 { font-size: 1.02rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .post-table th { padding: 10px 12px; font-size: 0.85rem; }
+    .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+  }
+</style>
