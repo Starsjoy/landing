@@ -550,9 +550,12 @@ export async function getUzMonthSalaryProfit(month: string): Promise<number> {
 }
 
 // "Batafsil" bo'limi uchun kunlik tafsilot: har bir kun uchun uch turdagi foyda
-// (Uzgets, Premium Send/premium, Premium Send/stars) alohida — to'liq (100%) va
-// maosh pot'iga real qo'shiladigan (UZ_HALF_RATE_START'dan boshlab faqat Uzgets 50%;
-// PS Premium va PS Stars har doim o'z formulasi bo'yicha, o'zgarishsiz) qiymatlari bilan.
+// (Uzgets, Premium Send/premium, Premium Send/stars) alohida — "Profit" = jami (asl)
+// foyda, "Salary" = maosh pot'iga real qo'shiladigan summa:
+//  - Uzgets: UZ_HALF_RATE_START'dan boshlab 50%, undan oldin 100% (bitta admin, sana bog'liq)
+//  - PS Premium: har doim 100% (bitta admin)
+//  - PS Stars: Profit = jami 2 admin foydasi (narx/3), Salary = Abdulloh ulushi (narx/6) —
+//    bu 50% DOIMIY hamkorlik taqsimoti, UZ_HALF_RATE_START qoidasiga aloqasi yo'q
 // Faqat buyurtma bo'lgan kunlar qaytadi, eng yangisidan boshlab.
 export async function getUzDailyBreakdown(limit: number = 60): Promise<Array<{
   date: string;
@@ -593,8 +596,10 @@ export async function getUzDailyBreakdown(limit: number = 60): Promise<Array<{
     const psPremiumProfit = Math.round(+r.ps_rev * 0.12);
     const psPremiumSalary = psPremiumProfit; // har doim 100%
 
-    const psStarsProfit = Math.round(+r.ps_stars_rev / 6);
-    const psStarsSalary = psStarsProfit; // har doim o'z formulasi bo'yicha (allaqachon 50/50 taqsimotni o'z ichiga oladi)
+    // Jami (2 admin birgalikda) foyda = narxning 1/3; Abdulloh ulushi doimiy 50% = narxning 1/6.
+    // Bu 50% UZ_HALF_RATE_START qoidasiga aloqasi yo'q — doimiy hamkorlik taqsimoti.
+    const psStarsProfit = Math.round(+r.ps_stars_rev / 3);
+    const psStarsSalary = Math.round(+r.ps_stars_rev / 6);
 
     return {
       date: r.date,

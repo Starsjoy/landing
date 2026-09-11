@@ -201,7 +201,7 @@ if (authenticated && !dbReady) {
               <span class="udet-pill udet-pill-100">100%</span> Uzgets ulushi — <span id="uzDetBeforeLabel">10.09.2026</span>gacha
               <span class="udet-legend-sep"></span>
               <span class="udet-pill udet-pill-50">50%</span> Uzgets ulushi — shu sanadan boshlab
-              <span class="udet-legend-note">(Premium Send bu qoidaga kirmaydi, o'zgarishsiz qoladi)</span>
+              <span class="udet-legend-note">(PS Premium/PS Stars qatorlaridagi belgi bu qoidaga umuman bog'liq emas — PS Premium doim 100%, PS Stars esa doimiy 2 admin 50/50 hamkorlik ulushi)</span>
             </div>
             <div id="uzDetList" class="udet-grid"></div>
           </div>
@@ -5127,7 +5127,7 @@ if (authenticated && !dbReady) {
 
           var rows = udcRow('#2dd4bf', 'Uzgets', r.uzgetsProfit, r.uzgetsSalary, r.rate + '%', uzBadgeClass)
             + udcRow('#60a5fa', 'PS Premium', r.psPremiumProfit, r.psPremiumSalary, '100%', 'udc-badge-fixed')
-            + udcRow('#facc15', 'PS Stars', r.psStarsProfit, r.psStarsSalary, '100%', 'udc-badge-fixed');
+            + udcRow('#f472b6', 'PS Stars', r.psStarsProfit, r.psStarsSalary, '50%', 'udc-badge-fixed');
 
           var footSub = r.totalProfit !== r.salaryProfit
             ? '<span class="udet-card-foot-sub">asl jami foyda: ' + uzFmt(r.totalProfit) + " so'm</span>"
