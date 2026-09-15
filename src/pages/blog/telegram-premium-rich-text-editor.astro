@@ -1,0 +1,267 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Telegram Premium Rich Text Editor: uzun post qanday yoziladi? (2026) | StarsJoy Blog";
+const description = "Telegram'ning yangi Rich Text Editor funksiyasi: jadval, sarlavha va kod bloki bilan 32 000 belgigacha post yozish, qanday ochiladi, AI yordamchisi va bu nega faqat Premium'da.";
+const publishDate = "2026-09-15";
+const canonical = "https://starsjoy.uz/blog/telegram-premium-rich-text-editor";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="telegram rich text editor, telegram premium yangi funksiya, telegram uzun post yozish, telegram matn muharriri, telegram 32000 belgi"
+  ogType="article"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-premium-rich-text-editor" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-premium-rich-text-editor" },
+    { lang: "en", href: "https://starsjoy.uz/en/blog/telegram-premium-rich-text-editor" }
+  ]}
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Telegram Premium Rich Text Editor: uzun post qanday yoziladi? (2026)",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": publishDate,
+    "inLanguage": "uz-UZ",
+    "articleSection": "Premium",
+    "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png" }
+    },
+    "mainEntityOfPage": canonical,
+    "image": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png", "width": 512, "height": 512 }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://starsjoy.uz/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Premium Rich Text Editor", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram'da Rich Text Editor'ni ochish",
+    "description": "Premium obunachi uzun, formatlangan post yozish uchun Rich Text Editor'ni qanday ochadi.",
+    "totalTime": "PT1M",
+    "step": [
+      { "@type": "HowToStep", "name": "Premium obunangizni tekshiring", "text": "Rich Text Editor faqat faol Telegram Premium obunasi bo'lgan foydalanuvchilarga ochiq." },
+      { "@type": "HowToStep", "name": "Xabar yozishni boshlang", "text": "Istalgan chat, guruh yoki kanalda odatdagidek matn kiritishni boshlang." },
+      { "@type": "HowToStep", "name": "Kengaytirish belgisini bosing", "text": "3 qatordan ortiq matn kiritganingizda matn maydonida paydo bo'ladigan ⛶ belgisini bosing — bu to'liq ekranli muharrirni ochadi." },
+      { "@type": "HowToStep", "name": "Elementlarni qo'shing", "text": "Sarlavha, jadval, ro'yxat, iqtibos, kod bloki yoki formulani tanlab qo'shing; rasm va videoni matn ichidagi istalgan joyga joylashtiring." },
+      { "@type": "HowToStep", "name": "Postni yuboring", "text": "Tayyor bo'lgach yuboring — xabar to'liq formatlangan holda ko'rinadi, hajmi 32 000 belgigacha bo'lishi mumkin." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Telegram Rich Text Editor nima?",
+        "acceptedAnswer": { "@type": "Answer", "text": "2026-yil 14-iyulda chiqqan funksiya — Telegram ichida sarlavha, jadval, ro'yxat, iqtibos, kod bloki va formula bilan uzun, to'liq formatlangan post yozish imkonini beradi. Rasm va videoni matn ichidagi istalgan joyga joylashtirish mumkin, oddiy xabarlardagi kabi faqat boshida yoki oxirida emas." }
+      },
+      {
+        "@type": "Question",
+        "name": "Rich Text Editor'dan kimlar foydalana oladi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Faqat faol Telegram Premium obunasi bo'lgan foydalanuvchilar. Pavel Durov buni rasman shunday izohladi: \"Premium'siz uni 'Poor Text Editor' deb atashimizga to'g'ri kelardi.\"" }
+      },
+      {
+        "@type": "Question",
+        "name": "Qanday ochiladi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Istalgan chatda matn yozishni boshlang. 3 qatordan ortiq matn kiritilganda matn maydonida ⛶ (kengaytirish) belgisi paydo bo'ladi — uni bosish to'liq ekranli muharrirni ochadi." }
+      },
+      {
+        "@type": "Question",
+        "name": "Bitta xabarga necha belgigacha yozish mumkin?",
+        "acceptedAnswer": { "@type": "Answer", "text": "32 000 belgigacha. Bu Telegram'ning oddiy xabar chegarasi (4 096 belgi)dan sakkiz baravar ko'p, ya'ni to'liq maqola yoki qo'llanmani bitta xabarga sig'dirish mumkin." }
+      },
+      {
+        "@type": "Question",
+        "name": "Cocoon AI yordamchisi nima qiladi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Rich Text Editor Telegram'ning Cocoon texnologiyasiga asoslangan AI vositalarini o'z ichiga oladi — matn, formula va jadvallarni generatsiya qilish yoki tahrirlashda yordam beradi, bunda foydalanuvchi ma'lumotlarining maxfiyligiga alohida urg'u berilgan." }
+      },
+      {
+        "@type": "Question",
+        "name": "Bu funksiya kanal postlariga ham tegishlimi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ha. Kanal yoki guruhda post joylashtirayotganda ham xuddi shu tarzda ishlaydi — bu uni e'lonlar, katalog va qo'llanma-uslubidagi kontent joylashtiruvchi biznes kanallari uchun ayniqsa foydali qiladi." }
+      }
+    ]
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/">Bosh sahifa</a>
+          <span>/</span>
+          <a href="/blog">Blog</a>
+          <span>/</span>
+          <span>Premium Rich Text Editor</span>
+        </nav>
+        <div class="post-tag">Premium</div>
+        <h1 class="post-title">Telegram Premium Rich Text Editor: uzun post qanday yoziladi? (2026)</h1>
+        <div class="post-meta">
+          <span class="post-date">{publishDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <section>
+            <p class="post-lead"><strong>Qisqa javob:</strong> 2026-yil 14-iyulda Telegram <strong>Rich Text Editor</strong>ni chiqardi — faqat <strong>Premium</strong> obunachilar uchun. U bilan sarlavha, jadval, ro'yxat, kod bloki va formula bilan <strong>32 000 belgigacha</strong> to'liq formatlangan post yozish mumkin, rasm/video esa matn ichidagi istalgan joyga joylashtiriladi. Ochish uchun 3 qatordan ortiq matn yozing — paydo bo'lgan ⛶ belgisini bosing. Premium'ingiz bo'lmasa, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard/Humo bilan sotib olasiz.</p>
+          </section>
+
+          <section>
+            <h2>Rich Text Editor nima va nega paydo bo'ldi?</h2>
+            <p>Rich Text Editor — Telegram'ning Communities, Ephemeral Bot Messages va 350 million GIF qidiruvi bilan bir qatorda e'lon qilingan yirik yangilanishning bir qismi. Vazifasi aniq: uzun, tuzilgan matnni (e'lon, qo'llanma, ichki hujjat yoki maqola-uslubidagi post) tashqi vositalarsiz, to'g'ridan-to'g'ri Telegram ichida yozish.</p>
+            <p>Buni oddiy formatlash (qalin, kursiv, spoyler)dan farqlash kerak — bu to'liq vizual muharrir bo'lib, sarlavhalar, jadvallar va rasm-videoni matn oqimi ichiga joylashtirish imkonini beradi. Umumiy funksiyalar ro'yxati uchun <a href="/blog/telegram-premium-funksiyalari">Telegram Premium'ning 30+ funksiyasi</a> maqolasiga qarang — u yozilgan paytda (2026-may) bu funksiya hali chiqmagan edi.</p>
+          </section>
+
+          <section>
+            <h2>Qanday elementlarni qo'shish mumkin?</h2>
+            <ul>
+              <li><strong>Sarlavhalar</strong> — matnni bo'limlarga ajratish uchun;</li>
+              <li><strong>Jadvallar</strong> — narx, taqqoslash yoki jadval ma'lumotlari uchun;</li>
+              <li><strong>Ro'yxatlar</strong> — nomerlangan va belgili;</li>
+              <li><strong>Iqtiboslar va kod bloklari</strong> — texnik yoki hujjat-uslubidagi kontent uchun;</li>
+              <li><strong>Formulalar</strong> — matematik yoki ilmiy kontent uchun;</li>
+              <li><strong>Rasm va videolar</strong> — matn ichidagi istalgan joyga, faqat boshida yoki oxirida emas.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Qanday ochiladi — bosqichma-bosqich</h2>
+            <ol>
+              <li><strong>Premium obunangizni tekshiring</strong> — funksiya faqat faol Premium'ga ochiq.</li>
+              <li><strong>Xabar yozishni boshlang</strong> — istalgan chat, guruh yoki kanalda.</li>
+              <li><strong>⛶ belgisini bosing</strong> — 3 qatordan ortiq matn kiritganingizda matn maydonida paydo bo'ladi, u to'liq ekranli muharrirni ochadi.</li>
+              <li><strong>Elementlarni qo'shing</strong> — sarlavha, jadval, ro'yxat yoki kod blokini tanlang, rasm-video'ni matn ichiga joylashtiring.</li>
+              <li><strong>Yuboring</strong> — xabar to'liq formatlangan holda jo'natiladi.</li>
+            </ol>
+          </section>
+
+          <section>
+            <h2>Cocoon AI yordamchisi qanday ishlaydi?</h2>
+            <p>Muharrir ichida Telegram'ning <strong>Cocoon</strong> texnologiyasiga asoslangan AI vositalari mavjud — ular matn, jadval yoki formulani generatsiya qilishda yoki tahrirlashda yordam beradi. Rasman ta'kidlanishicha, bu vositalar maxfiylikka alohida e'tibor bilan qurilgan — ya'ni matningiz tashqi serverlarda saqlanib qolmaydi.</p>
+          </section>
+
+          <section>
+            <div class="post-cta-box">
+              <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener" class="post-cta-btn">Premium'ni eng arzon narxda oling &rarr;</a>
+              <span class="post-cta-sub">telegram.me/starsjoybot</span>
+            </div>
+          </section>
+
+          <section>
+            <h2>Oddiy xabar bilan solishtirganda farqi qanday?</h2>
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead><tr><th>Xususiyat</th><th>Oddiy xabar</th><th>Rich Text Editor</th></tr></thead>
+                <tbody>
+                  <tr><td>Belgilar chegarasi</td><td>4 096</td><td>32 000</td></tr>
+                  <tr><td>Sarlavha, jadval, kod bloki</td><td>Yo'q</td><td>Bor</td></tr>
+                  <tr><td>Rasm/video joylashuvi</td><td>Faqat boshida/oxirida</td><td>Matn ichidagi istalgan joyda</td></tr>
+                  <tr><td>AI generatsiya (Cocoon)</td><td>Yo'q</td><td>Bor</td></tr>
+                  <tr class="highlight-row"><td>Kimga ochiq</td><td>Barcha foydalanuvchilar</td><td>Faqat Premium</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section>
+            <h2>Bu kanal va biznes egalari uchun nega foydali?</h2>
+            <p>Kanal orqali sotuv qiladigan yoki xizmat ko'rsatadigan bizneslar uchun bu — tashqi saytga link berish o'rniga, to'liq katalog, narxlar jadvali yoki batafsil e'lonni to'g'ridan-to'g'ri kanalda joylashtirish imkoni. Kanal va Biznes obunasi farqlari haqida: <a href="/blog/telegram-business-vs-premium">Telegram Business vs Premium</a>.</p>
+            <p>Premium qaysi muddatga arzonroq turishi haqida: <a href="/blog/telegram-premium-paketlar-taqqoslash">1 vs 3 vs 6 vs 12 oy taqqoslash</a> maqolasini o'qing.</p>
+          </section>
+
+          <section>
+            <h2>Xulosa</h2>
+            <ul>
+              <li>✍️ <strong>Rich Text Editor</strong> — 2026-yil 14-iyulda chiqqan, faqat Premium'ga ochiq funksiya;</li>
+              <li>📏 Bitta xabarga <strong>32 000 belgigacha</strong>, jadval, sarlavha, kod bloki va formula bilan;</li>
+              <li>🖼️ Rasm/video matn ichidagi istalgan joyga joylashtiriladi;</li>
+              <li>🤖 <strong>Cocoon AI</strong> matn, jadval va formula generatsiyasida yordam beradi;</li>
+              <li>💎 Faollashtirish uchun faqat faol <strong>Telegram Premium</strong> kerak.</li>
+            </ul>
+            <p>Premium'ning boshqa imkoniyatlari haqida <a href="/blog/telegram-premium-funksiyalari">30+ funksiya ro'yxati</a>ni o'qing, yoki eng arzon narxda Premium sotib olish uchun <a href="/premium">Premium narxlari sahifasi</a>ga o'ting.</p>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  .post-hero { padding: 120px 24px 48px; background: #F8F6FF; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; flex-wrap: wrap; }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .post-tag { display: inline-block; padding: 4px 12px; background: rgba(124, 58, 237, 0.08); border-radius: 50px; color: var(--primary); font-size: 0.78rem; font-weight: 600; margin-bottom: 16px; }
+  .post-title { font-size: 2.1rem; font-weight: 900; color: var(--text); margin-bottom: 16px; line-height: 1.25; max-width: 820px; }
+  .post-meta { display: flex; align-items: center; gap: 16px; font-size: 0.9rem; color: var(--text-muted); }
+  .post-body { padding: 60px 24px; }
+  .post-content { max-width: 760px; margin: 0 auto; }
+  .post-content section { padding: 0; margin: 0; }
+  .post-lead { font-size: 1.08rem !important; color: var(--text) !important; background: #F8F6FF; border-left: 3px solid var(--primary); border-radius: 8px; padding: 18px 20px; line-height: 1.75 !important; }
+  .post-content h2 { font-size: 1.4rem; font-weight: 800; color: var(--text); margin: 32px 0 12px; line-height: 1.3; }
+  .post-content h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 18px 0 8px; }
+  .post-content p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
+  .post-content a { color: var(--primary); text-decoration: none; }
+  .post-content a:hover { text-decoration: underline; }
+  .post-content a.post-cta-btn { text-decoration: none; }
+  .post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 14px; }
+  .post-content li { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 6px; }
+  .post-cta-box { margin: 16px 0; padding: 0; background: none; border: none; }
+  .post-cta-btn { display: inline-block; padding: 8px 20px; background: rgba(124, 58, 237, 0.06); color: var(--primary); font-weight: 600; font-size: 0.9rem; border-radius: 8px; text-decoration: none; border: 1px solid rgba(124, 58, 237, 0.15); transition: background 0.2s, border-color 0.2s; }
+  .post-cta-btn:hover { background: rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.3); }
+  .post-cta-sub { display: inline; margin-left: 10px; font-size: 0.82rem; color: var(--text-light); }
+  .post-table-wrap { overflow-x: auto; margin: 20px 0; border-radius: 12px; border: 1px solid rgba(124, 58, 237, 0.12); }
+  .post-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .post-table th { background: rgba(124, 58, 237, 0.06); color: var(--text); font-weight: 700; padding: 14px 18px; text-align: left; border-bottom: 1px solid rgba(124, 58, 237, 0.1); }
+  .post-table td { padding: 12px 18px; color: var(--text-muted); border-bottom: 1px solid rgba(124, 58, 237, 0.06); }
+  .post-table tr:last-child td { border-bottom: none; }
+  .post-table .highlight-row { background: rgba(124, 58, 237, 0.04); }
+  .post-table .highlight-row td { color: var(--primary); font-weight: 600; }
+  .post-faq { margin: 24px 0; }
+  .post-faq-item { background: #F8F6FF; border: 1px solid rgba(124, 58, 237, 0.1); border-radius: 12px; padding: 24px; margin-bottom: 12px; }
+  .post-faq-item h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 0 0 8px; }
+  .post-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.5rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.22rem; margin-top: 28px; }
+    .post-content h3 { font-size: 1.02rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .post-table th { padding: 10px 12px; font-size: 0.85rem; }
+    .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+  }
+</style>

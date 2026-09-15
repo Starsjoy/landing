@@ -98,6 +98,7 @@ const GROUPS = [
       'telegram-premium-obunani-bekor-qilish',
       'telegram-business-vs-premium',
       'telegram-stars-yoki-premium',
+      'telegram-premium-rich-text-editor',
     ],
   },
   {
@@ -109,6 +110,7 @@ const GROUPS = [
       'telegram-gift-collectible-upgrade',
       'eng-qimmat-telegram-sovgalari',
       'telegram-sovga-sotish-fragment',
+      'telegram-gift-crafting',
     ],
   },
   {

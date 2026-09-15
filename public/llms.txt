@@ -25,6 +25,8 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Blog index (English guides): https://starsjoy.uz/en/blog
 
 ### English guides
+- Telegram Gift Crafting: Combine Gifts Into a Rare One (2026): https://starsjoy.uz/en/blog/telegram-gift-crafting — Telegram\'s Gift Crafting feature: combine up to 4 collectible gifts into a new Rare or Legendary gift, how the success odds work, and the risk of losing everything you put in.
+- Telegram Premium Rich Text Editor: How to Write Long Posts (2026): https://starsjoy.uz/en/blog/telegram-premium-rich-text-editor — Telegram's new Rich Text Editor: write posts up to 32,000 characters with tables, headings and code blocks, how to open it, the AI assistant, and why it's Premium-only.
 - Telegram Star Messages: Get Paid for Messages From Strangers (2026): https://starsjoy.uz/en/blog/telegram-star-messages — Telegram Premium users can charge 1-10,000 Stars for a message from someone outside their contacts: how to turn it on, what percentage you keep, and how to refund it.
 - How to Run a Telegram Stars Giveaway (2026): https://starsjoy.uz/en/blog/telegram-stars-giveaway — Steps to run a Stars-prize giveaway in a channel or group: who's eligible, how winners are picked, and where to buy Stars cheaply enough to fund a large prize pool.
 - How Telegram's paid channel subscriptions work with Stars: https://starsjoy.uz/en/blog/telegram-channel-subscription-stars — How to set up a recurring monthly paid subscription for a Telegram channel using Stars, and how subscribers join or cancel: pricing, where the Stars go, and how it differs from a paid post.
@@ -123,7 +125,7 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 ## Referral dasturi
 Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
 
-## Maqolalar (62 ta mavzu, har biri o'zbek va rus tilida)
+## Maqolalar (64 ta mavzu, har biri o'zbek va rus tilida)
 
 ### Telegram Stars — asoslar, narx va xarid
 
@@ -190,6 +192,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - Telegram Premium avtomatik yangilanishini qanday o'chirish mumkin? (2026): https://starsjoy.uz/blog/telegram-premium-obunani-bekor-qilish (RU: https://starsjoy.uz/ru/blog/telegram-premium-obunani-bekor-qilish) — Telegram Premium auto-renewni iOS, Android va botda o'chirish bosqichlari, bekor qilgandan keyin qolgan kunlar bilan nima bo'lishi va tugma ko'rinmasa nima…
 - Telegram Business vs Telegram Premium: alohida obunami yoki bitta? (2026 to'liq farq): https://starsjoy.uz/blog/telegram-business-vs-premium (RU: https://starsjoy.uz/ru/blog/telegram-business-vs-premium) — Telegram Business va Telegram Premium — alohida obunami? 2026-da javob: yo'q, bitta obuna ichida ikkita rejim.
 - Telegram Stars yoki Premium — qaysi birini tanlash kerak? (2026): https://starsjoy.uz/blog/telegram-stars-yoki-premium (RU: https://starsjoy.uz/ru/blog/telegram-stars-yoki-premium) — Telegram Stars va Premium — ikkita mustaqil mahsulot. Qaysi biri sizga kerak, ikkalasini birga ishlatish mumkinmi va farqlari nimada — aniq taqqoslash va…
+- Telegram Premium Rich Text Editor: uzun post qanday yoziladi? (2026): https://starsjoy.uz/blog/telegram-premium-rich-text-editor (RU: https://starsjoy.uz/ru/blog/telegram-premium-rich-text-editor) — Telegram'ning yangi Rich Text Editor funksiyasi: jadval, sarlavha va kod bloki bilan 32 000 belgigacha post yozish, qanday ochiladi, AI yordamchisi va bu nega…
 
 ### Telegram Gifts va NFT sovg‘alar
 
@@ -199,6 +202,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - Telegram sovg'asini Collectible (NFT)ga upgrade qilish: Stars narxi va mexanizmi (2026): https://starsjoy.uz/blog/telegram-gift-collectible-upgrade (RU: https://starsjoy.uz/ru/blog/telegram-gift-collectible-upgrade) — Telegram Gift'ni Collectible (NFT)ga qanday upgrade qilish: Stars qancha turadi, 20 000 dan tushuvchi narx mexanizmi, nodir traits va tartib raqami.
 - Eng qimmat Telegram sovg'alari 2026: TOP-10 va rekord narxlar: https://starsjoy.uz/blog/eng-qimmat-telegram-sovgalari (RU: https://starsjoy.uz/ru/blog/eng-qimmat-telegram-sovgalari) — Fragment'da qayd etilgan eng qimmat Telegram sovg'alari: TOP-10 kollektsiya, rekord sotuvlar, nodirlik mexanikasi va so'mdagi taxminiy qiymati (2026-yil…
 - Telegram sovg‘asini qanday sotish mumkin?: https://starsjoy.uz/blog/telegram-sovga-sotish-fragment (RU: https://starsjoy.uz/ru/blog/telegram-sovga-sotish-fragment) — Telegram sovg‘asini Marketplace yoki Fragment orqali sotish: Stars va TON farqi, listing bosqichlari, komissiya, xavfsizlik va pulga aylantirish.
+- Telegram Gift Crafting: sovg'alarni birlashtirib noyob sovg'a yasash (2026): https://starsjoy.uz/blog/telegram-gift-crafting (RU: https://starsjoy.uz/ru/blog/telegram-gift-crafting) — Telegram Gift Crafting funksiyasi: 4 tagacha collectible sovg'ani birlashtirib Rare yoki Legendary darajali yangi sovg'a yasash, muvaffaqiyat ehtimoli va…
 
 ### Biznes, reseller va API
 

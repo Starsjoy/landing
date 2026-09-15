@@ -44,6 +44,8 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/blog/activate-telegram-premium-gift-code': '/blog/telegram-premium-sovga-kodini-faollashtirish',
   '/en/blog/telegram-star-messages': '/blog/telegram-xabar-uchun-pul-olish',
   '/en/blog/telegram-stars-giveaway': '/blog/telegram-stars-giveaway-otkazish',
+  '/en/blog/telegram-gift-crafting': '/blog/telegram-gift-crafting',
+  '/en/blog/telegram-premium-rich-text-editor': '/blog/telegram-premium-rich-text-editor',
 };
 
 /** O'zbekcha sahifa → uning inglizcha ekvivalenti (yuqoridagining teskarisi) */

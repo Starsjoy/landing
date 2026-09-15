@@ -1,0 +1,110 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  { q: "What is Gift Crafting?", a: "A feature released on February 8, 2026, that lets you combine up to 4 collectible gifts into one new, unique gift at Uncommon, Rare, Epic, or Legendary rarity. Each tier gets its own artwork and visual effects." },
+  { q: "How much does crafting cost in Stars?", a: "Crafting itself doesn't charge a separate Stars fee — the \"cost\" is the collectible gifts you feed into it. If the result later needs to be formalized as an on-chain NFT, that can require a separate upgrade payment." },
+  { q: "How do you improve the success chance?", a: "Two ways: (1) adding more gifts (up to 4) and using higher-rarity ones both raise the odds; (2) using gifts that share attributes increases the chance those attributes carry over into the crafted result." },
+  { q: "What happens if a craft fails?", a: "Every gift you put in is destroyed completely — there's no refund or partial compensation. Telegram describes this openly as a risk-based mechanic, so only feed in gifts you can afford to lose." },
+  { q: "Are Gift Crafting and Gift Upgrade the same thing?", a: "No, they're completely different mechanics. Upgrade converts one ordinary gift into a collectible (NFT) for a Stars fee. Crafting combines several gifts that are already collectibles into one new, rarer gift." },
+  { q: "Can you sell a crafted Legendary gift?", a: "Yes — the result is a full collectible gift, sellable on Telegram's Gift Marketplace or through Fragment. Higher-rarity crafted gifts typically command significantly higher prices." }
+];
+---
+<BlogPostEn
+  slug="telegram-gift-crafting"
+  title="Telegram Gift Crafting: Combine Gifts Into a Rare One (2026)"
+  heading="Telegram Gift Crafting: how to combine gifts into a rare one (2026)"
+  crumb="Gift Crafting"
+  tag="Gifts"
+  description="Telegram's Gift Crafting feature: combine up to 4 collectible gifts into a new Rare or Legendary gift, how the success odds work, and the risk of losing everything you put in."
+  keywords="telegram gift crafting, combine telegram gifts, telegram legendary gift, create rare gift telegram, craft collectible telegram"
+  publishDate="2026-09-15"
+  uzHref="https://starsjoy.uz/blog/telegram-gift-crafting"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-gift-crafting"
+  faqs={faqs}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to use Gift Crafting in Telegram",
+    "description": "Steps to combine collectible gifts into a new, higher-rarity gift.",
+    "totalTime": "PT2M",
+    "step": [
+      { "@type": "HowToStep", "name": "Open the Gifts section in your profile", "text": "You need at least 2 collectible (NFT-converted) gifts to start." },
+      { "@type": "HowToStep", "name": "Switch to Crafting mode", "text": "From your gift list, open the crafting section." },
+      { "@type": "HowToStep", "name": "Pick 2-4 gifts", "text": "The more gifts you add, and the higher their rarity, the better your odds." },
+      { "@type": "HowToStep", "name": "Check the success odds", "text": "The system shows a success percentage and the possible resulting rarity (Uncommon/Rare/Epic/Legendary)." },
+      { "@type": "HowToStep", "name": "Confirm the craft", "text": "On success you get a brand-new, unique gift. On failure, every gift you put in is destroyed." }
+    ]
+  })} />
+
+  <section>
+    <p class="post-lead"><strong>Short answer:</strong> on February 8, 2026, Telegram launched <strong>Gift Crafting</strong> — combine up to 4 collectible gifts into a new one at <strong>Uncommon, Rare, Epic, or Legendary</strong> rarity. More gifts, and higher-rarity ones, raise your odds of success — but on failure, <strong>every gift you put in is destroyed</strong>. This is a completely different mechanic from upgrade, which turns an ordinary gift into a collectible.</p>
+  </section>
+
+  <section>
+    <h2>What is Gift Crafting?</h2>
+    <p>Gift Crafting shipped alongside Telegram's biggest-ever Android redesign: the ability to combine several gifts that are already collectibles (converted to NFTs) into a single new gift at a higher rarity tier. The result is a unique item with its own artwork and visual effects.</p>
+    <p>If you're not sure what a collectible gift actually is, the concept is covered in Telegram's own gift documentation — a regular gift becomes a collectible through the separate "upgrade" process, which pays a Stars fee to mint it on-chain.</p>
+  </section>
+
+  <section>
+    <h2>How it works, step by step</h2>
+    <ol>
+      <li><strong>Open the Gifts section</strong> — you need at least 2 collectible gifts.</li>
+      <li><strong>Switch to Crafting mode</strong> — find the crafting section in your gift list.</li>
+      <li><strong>Pick 2-4 gifts</strong> — the more you add, the better your odds.</li>
+      <li><strong>Check the success odds</strong> — the system shows a success percentage and the possible resulting rarity.</li>
+      <li><strong>Confirm</strong> — success gets you a new gift; failure destroys everything you put in.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>What determines the success chance?</h2>
+    <p>Two main factors. First, <strong>quantity and rarity</strong>: adding more gifts (up to a maximum of 4) and using higher-rarity ones both raise your odds. Second, <strong>matching attributes</strong>: feeding in gifts that share the same Model, Backdrop, or Symbol increases the chance those specific attributes carry over into the final crafted gift. So the outcome isn't purely random — which gifts you choose partially shapes the result.</p>
+  </section>
+
+  <section>
+    <div class="post-cta-box">
+      <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener" class="post-cta-btn">Buy Stars for gifts &rarr;</a>
+      <span class="post-cta-sub">telegram.me/starsjoybot</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>The risk: why is this a "lottery"?</h2>
+    <p>Crafting is a genuine gamble. A failed attempt <strong>destroys every gift you put in</strong>, with no refund and no partial compensation. Telegram describes this openly as a risk-based mechanic, so only feed in gifts that are low-value or that you're genuinely willing to lose — think carefully before risking anything rare or expensive.</p>
+  </section>
+
+  <section>
+    <h2>Crafting vs. Upgrade — what's the difference?</h2>
+    <div class="post-table-wrap">
+      <table class="post-table">
+        <thead><tr><th>Feature</th><th>Upgrade</th><th>Crafting</th></tr></thead>
+        <tbody>
+          <tr><td>Input</td><td>1 ordinary gift</td><td>2-4 collectible gifts</td></tr>
+          <tr><td>Cost</td><td>Stars (on-chain fee)</td><td>The gifts you feed in</td></tr>
+          <tr><td>Result</td><td>A collectible (NFT) version of that same gift</td><td>A brand-new, higher-rarity gift</td></tr>
+          <tr class="highlight-row"><td>Failure risk</td><td>None — always produces a collectible</td><td>Real — all input gifts can be lost</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Can you sell a crafted gift?</h2>
+    <p>Yes — the result is a full collectible gift, sellable on Telegram's Gift Marketplace or through Fragment. Higher-rarity gifts tend to sell for significantly more: see <a href="/en/blog/most-expensive-telegram-gifts">the most expensive Telegram gifts</a> for record sale prices. For how the selling process works, read <a href="/en/blog/sell-telegram-gift-fragment">how to sell a Telegram gift on Fragment</a>.</p>
+  </section>
+
+  <section>
+    <h2>The takeaway</h2>
+    <ul>
+      <li>🔨 <strong>Gift Crafting</strong> launched February 8, 2026 — combine up to 4 collectible gifts;</li>
+      <li>⭐ The result is a new gift at <strong>Uncommon, Rare, Epic, or Legendary</strong> rarity;</li>
+      <li>🎯 More gifts, higher rarity, and matching attributes all raise the success odds;</li>
+      <li>⚠️ On failure, <strong>every gift you used is destroyed</strong> — unlike upgrade, this is a real gamble;</li>
+      <li>💰 A crafted high-rarity gift can later be resold on the Marketplace or Fragment.</li>
+    </ul>
+    <p>For more on gifts, see <a href="/en/blog/most-expensive-telegram-gifts">what the rarest Telegram gifts actually sell for</a>, or open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> to buy Stars for your next gift.</p>
+  </section>
+</BlogPostEn>

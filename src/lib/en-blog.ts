@@ -20,6 +20,22 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'telegram-gift-crafting',
+    title: 'Telegram Gift Crafting: Combine Gifts Into a Rare One (2026)',
+    excerpt:
+      'Telegram\'s Gift Crafting feature: combine up to 4 collectible gifts into a new Rare or Legendary gift, how the success odds work, and the risk of losing everything you put in.',
+    date: '2026-09-15',
+    tag: 'Gifts',
+  },
+  {
+    slug: 'telegram-premium-rich-text-editor',
+    title: 'Telegram Premium Rich Text Editor: How to Write Long Posts (2026)',
+    excerpt:
+      "Telegram's new Rich Text Editor: write posts up to 32,000 characters with tables, headings and code blocks, how to open it, the AI assistant, and why it's Premium-only.",
+    date: '2026-09-15',
+    tag: 'Premium',
+  },
+  {
     slug: 'telegram-star-messages',
     title: 'Telegram Star Messages: Get Paid for Messages From Strangers (2026)',
     excerpt:

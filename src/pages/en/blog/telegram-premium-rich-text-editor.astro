@@ -1,0 +1,119 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  { q: "What is the Telegram Rich Text Editor?", a: "A feature released on July 14, 2026, that lets you write long, fully formatted posts inside Telegram — with headings, tables, lists, quotes, code blocks, and formulas. Photos and videos can be placed anywhere inside the text, not just at the start or end like in regular messages." },
+  { q: "Who can use the Rich Text Editor?", a: "Only users with an active Telegram Premium subscription. Pavel Durov commented on this directly: \"Available only to Premium subscribers, because otherwise we'd have to call it Poor Text Editor.\"" },
+  { q: "How do you open it?", a: "Start typing a message in any chat. Once you type more than 3 lines of text, an expand icon (⛶) appears in the text field — tapping it opens the full-screen editor." },
+  { q: "How many characters fit in one message?", a: "Up to 32,768 characters. That's eight times Telegram's standard message limit of 4,096 characters — enough to fit a full article or guide into a single message." },
+  { q: "What does the Cocoon AI assistant do?", a: "The editor includes AI tools built on Telegram's Cocoon technology, which help generate or edit text, formulas, and tables — with a stated emphasis on keeping user data private." },
+  { q: "Does this work in channel posts too?", a: "Yes. It works exactly the same way when posting to a channel or group, which makes it especially useful for business channels publishing announcements, catalogs, or guide-style content." }
+];
+---
+<BlogPostEn
+  slug="telegram-premium-rich-text-editor"
+  title="Telegram Premium Rich Text Editor: How to Write Long Posts (2026)"
+  heading="Telegram Premium Rich Text Editor: how to write long posts (2026)"
+  crumb="Premium Rich Text Editor"
+  tag="Premium"
+  description="Telegram's new Rich Text Editor: write posts up to 32,000 characters with tables, headings and code blocks, how to open it, the AI assistant, and why it's Premium-only."
+  keywords="telegram rich text editor, telegram premium new feature, write long post telegram, telegram text editor, telegram 32000 characters"
+  publishDate="2026-09-15"
+  uzHref="https://starsjoy.uz/blog/telegram-premium-rich-text-editor"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-premium-rich-text-editor"
+  faqs={faqs}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Open the Rich Text Editor in Telegram",
+    "description": "How a Premium subscriber opens the Rich Text Editor to write a long, formatted post.",
+    "totalTime": "PT1M",
+    "step": [
+      { "@type": "HowToStep", "name": "Check your Premium subscription", "text": "The Rich Text Editor is only available to users with an active Telegram Premium subscription." },
+      { "@type": "HowToStep", "name": "Start typing a message", "text": "In any chat, group, or channel, start typing text as usual." },
+      { "@type": "HowToStep", "name": "Tap the expand icon", "text": "Once you type more than 3 lines, an ⛶ icon appears in the text field — tap it to open the full-screen editor." },
+      { "@type": "HowToStep", "name": "Add elements", "text": "Choose a heading, table, list, quote, code block, or formula; drop photos and videos anywhere inside the text." },
+      { "@type": "HowToStep", "name": "Send the post", "text": "Send it once ready — it appears fully formatted, up to 32,768 characters long." }
+    ]
+  })} />
+
+  <section>
+    <p class="post-lead"><strong>Short answer:</strong> on July 14, 2026, Telegram launched the <strong>Rich Text Editor</strong> — Premium subscribers only. It lets you write fully formatted posts up to <strong>32,768 characters</strong> with headings, tables, lists, code blocks, and formulas, and place photos or videos anywhere inside the text. To open it, type more than 3 lines and tap the ⛶ icon that appears. No Premium yet? Get it through <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, paid with an Uzcard or Humo card.</p>
+  </section>
+
+  <section>
+    <h2>What is the Rich Text Editor, and why now?</h2>
+    <p>The Rich Text Editor shipped as part of a larger Telegram update announced alongside Communities, Ephemeral Bot Messages, and search across 350 million GIFs. Its purpose is straightforward: let people write long, structured text — an announcement, a guide, internal documentation, or an article-style post — directly inside Telegram, without reaching for an outside tool.</p>
+    <p>This isn't the same as Telegram's older basic formatting (bold, italic, spoilers) — it's a full visual editor that supports headings, tables, and inline media placed directly inside the text flow. For the fuller feature list, see <a href="/en/blog/telegram-premium-features">what Telegram Premium actually gives you</a> — that guide was written in May 2026, before this feature existed.</p>
+  </section>
+
+  <section>
+    <h2>What elements can you add?</h2>
+    <ul>
+      <li><strong>Headings</strong> — to break text into sections;</li>
+      <li><strong>Tables</strong> — for pricing, comparisons, or tabular data;</li>
+      <li><strong>Lists</strong> — numbered and bulleted;</li>
+      <li><strong>Quotes and code blocks</strong> — for technical or documentation-style content;</li>
+      <li><strong>Formulas</strong> — for math or scientific content;</li>
+      <li><strong>Photos and videos</strong> — anywhere inside the text, not just at the start or end.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How to open it, step by step</h2>
+    <ol>
+      <li><strong>Check your Premium subscription</strong> — the feature only unlocks with an active subscription.</li>
+      <li><strong>Start typing a message</strong> — in any chat, group, or channel.</li>
+      <li><strong>Tap the ⛶ icon</strong> — it appears in the text field once you've typed more than 3 lines, and opens the full-screen editor.</li>
+      <li><strong>Add elements</strong> — pick a heading, table, list, or code block, and drop photos or videos into the text.</li>
+      <li><strong>Send it</strong> — the message goes out fully formatted.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>How does the Cocoon AI assistant work?</h2>
+    <p>Built into the editor are AI tools based on Telegram's <strong>Cocoon</strong> technology, which help generate or edit text, tables, and formulas. Telegram states these tools are designed with a particular focus on privacy — meaning your text isn't left sitting on third-party servers.</p>
+  </section>
+
+  <section>
+    <div class="post-cta-box">
+      <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener" class="post-cta-btn">Get Premium at the best price &rarr;</a>
+      <span class="post-cta-sub">telegram.me/starsjoybot</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>How does it compare to a regular message?</h2>
+    <div class="post-table-wrap">
+      <table class="post-table">
+        <thead><tr><th>Feature</th><th>Regular message</th><th>Rich Text Editor</th></tr></thead>
+        <tbody>
+          <tr><td>Character limit</td><td>4,096</td><td>32,768</td></tr>
+          <tr><td>Headings, tables, code blocks</td><td>No</td><td>Yes</td></tr>
+          <tr><td>Photo/video placement</td><td>Start or end only</td><td>Anywhere in the text</td></tr>
+          <tr><td>AI generation (Cocoon)</td><td>No</td><td>Yes</td></tr>
+          <tr class="highlight-row"><td>Who can use it</td><td>All users</td><td>Premium only</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why it matters for channel owners and businesses</h2>
+    <p>For a business selling through a channel, this means posting a full catalog, a pricing table, or a detailed announcement directly in the channel instead of linking out to an external site. For how a channel compares to a Business subscription, see <a href="/en/blog/telegram-business-vs-premium">Telegram Business vs Premium</a>.</p>
+    <p>To see which subscription length is the best value, read <a href="/en/blog/telegram-premium-features">the full Premium feature list</a> or compare plans on the pricing page below.</p>
+  </section>
+
+  <section>
+    <h2>The takeaway</h2>
+    <ul>
+      <li>✍️ The <strong>Rich Text Editor</strong> launched July 14, 2026, Premium-only;</li>
+      <li>📏 Up to <strong>32,768 characters</strong> per message, with tables, headings, code, and formulas;</li>
+      <li>🖼️ Photos and videos can go anywhere inside the text;</li>
+      <li>🤖 <strong>Cocoon AI</strong> helps generate text, tables, and formulas;</li>
+      <li>💎 All it takes to unlock it is an active <strong>Telegram Premium</strong> subscription.</li>
+    </ul>
+    <p>For more on what Premium unlocks, see <a href="/en/blog/telegram-premium-features">the full feature list</a>, or open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> to get Premium at the best price.</p>
+  </section>
+</BlogPostEn>
