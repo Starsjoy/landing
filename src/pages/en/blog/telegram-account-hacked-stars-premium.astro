@@ -1,0 +1,121 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+
+const faqs = [
+  {
+    q: "If my Telegram account gets hacked, will my Stars balance disappear?",
+    a: "It won't vanish by itself, but it becomes exposed. Whoever controls the account can spend the Stars or gift them to another account they own, and once that happens it cannot be reversed."
+  },
+  {
+    q: "Does my Premium subscription get cancelled if my account is hacked?",
+    a: "The subscription itself isn't cancelled instantly, but an attacker can use Premium's capabilities under your name — for example sending fake 'I gifted you Premium' links to your contacts."
+  },
+  {
+    q: "Can I get stolen Stars or Premium back?",
+    a: "Almost never. Telegram Stars purchases are final and not refundable, and that doesn't change because the account was compromised — the system sees the action as something 'you' did. A reseller's delivery guarantee only covers an order that was never delivered, not a later account takeover."
+  },
+  {
+    q: "What's the fastest way to recover a hacked Telegram account?",
+    a: "If you can still log in from another device, go to Settings → Devices and terminate every other session immediately. If you're locked out and never set a Two-Step Verification password, Telegram reopens the account to you automatically 7 days after a new device logs in."
+  },
+  {
+    q: "How does Two-Step Verification (2FA) actually help?",
+    a: "It adds a password on top of the SMS code. An attacker who only has your login code still can't get in without that password — this single setting stops most account takeovers."
+  },
+  {
+    q: "Does buying through a reseller like StarsJoy put my account at risk?",
+    a: "No, as long as the reseller only ever asks for your public username. Delivery runs through Telegram's own gift mechanism — nobody involved needs your password, SMS code, or any access to your account."
+  }
+];
+---
+
+<BlogPostEn
+  slug="telegram-account-hacked-stars-premium"
+  title="Telegram Account Hacked: What Happens to Your Stars and Premium? (2026)"
+  heading="Telegram account hacked: what happens to your Stars and Premium?"
+  crumb="Account hacked: Stars/Premium"
+  tag="Stars"
+  description="If your Telegram account is hacked, what happens to your Stars balance and Premium subscription? What to do in the first few minutes, how 2FA prevents it, and whether stolen Stars can be recovered."
+  keywords="telegram account hacked, telegram stars stolen, telegram premium stolen, telegram account recovery, telegram 2fa, telegram account security"
+  publishDate="2026-09-16"
+  uzHref="https://starsjoy.uz/blog/telegram-akkaunt-buzib-olinsa-stars-premium"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-akkaunt-buzib-olinsa-stars-premium"
+  faqs={faqs}
+>
+  <section>
+    <p class="post-lead"><strong>Short answer:</strong> a hacked Telegram account doesn't erase your Stars balance or Premium subscription — it hands control of them to whoever broke in. They can spend your Stars, gift them to another account, or send fake Premium-gift links to your contacts, and none of it can be undone. This falls outside any reseller's delivery guarantee, because the failure isn't delivery — it's account security. The fix that actually works is prevention: Two-Step Verification (2FA), set before anything happens.</p>
+  </section>
+
+  <section>
+    <h2>What actually happens when the account is taken over</h2>
+    <p>Once someone controls your Telegram account, Telegram treats every action they take as coming from you — there's no separate "hacked" state that blocks spending.</p>
+    <ul>
+      <li><strong>The Stars balance gets spent.</strong> Settings → Stars shows the balance in plain view. It can be gifted to another account the attacker controls, or spent on a paid post or bot, in seconds.</li>
+      <li><strong>Premium gets used to scam your contacts.</strong> A common pattern: a message goes out to your entire contact list claiming "I gifted you a year of Premium, click here." Anyone who clicks loses their own account the same way — that's how it spreads.</li>
+      <li><strong>Any linked payment method is exposed.</strong> If a card or auto-renew is attached to the account, the attacker can buy more Stars or Premium and move it out before you notice.</li>
+    </ul>
+    <p>This is a different problem from <a href="/en/blog/is-buying-telegram-stars-safe">being scammed by a fake reselling bot</a>. There, the mistake is picking the wrong service. Here, the account itself has been taken — the service you bought from is irrelevant.</p>
+  </section>
+
+  <section>
+    <h2>How accounts actually get taken over</h2>
+    <p>Almost none of this happens by guessing a password. It happens because someone gets the SMS login code.</p>
+    <table>
+      <thead>
+        <tr><th>Method</th><th>How it works</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Phishing page</td><td>A fake site styled like Telegram's login screen. Whatever code you type there goes straight to the attacker.</td></tr>
+        <tr><td>"Forward me the code" trick</td><td>A message, often from a compromised contact, says "I got a code by mistake, can you forward it" — it's actually your own login code.</td></tr>
+        <tr><td>SIM swap</td><td>The attacker convinces a mobile carrier to move your number to their SIM, so the SMS code arrives on their phone directly.</td></tr>
+        <tr><td>Session hijacking</td><td>Malware or an unattended Telegram Web session lets an attacker lift an active session token without ever seeing a code.</td></tr>
+      </tbody>
+    </table>
+    <p>If codes simply aren't arriving at all — a different, more common problem — see <a href="/en/blog/telegram-sms-code-not-arriving">Telegram SMS code not arriving</a>.</p>
+  </section>
+
+  <section>
+    <h2>What to do in the first few minutes</h2>
+    <ol>
+      <li><strong>Terminate every other session.</strong> If you can still log in from any device, go to <strong>Settings → Devices</strong> and end all other sessions immediately. This removes the attacker on the spot.</li>
+      <li><strong>Set a new Two-Step password right away.</strong> Settings → Privacy and Security → Two-Step Verification.</li>
+      <li><strong>Check Stars and payment activity.</strong> Settings → Stars — an unexpected gift sent out or a purchase you didn't make is the clearest sign something happened.</li>
+      <li><strong>Warn your contacts.</strong> If the account was compromised even briefly, a fake message may already be sitting in dozens of chats. Tell people not to click it.</li>
+      <li><strong>Contact Telegram support if you're locked out.</strong> On the "Log in with SMS" screen, use "Report a login problem," or message <strong>@SpamBot</strong> directly — that's Telegram's own support channel.</li>
+    </ol>
+    <p><strong>One detail worth knowing:</strong> if you never set a Two-Step password, Telegram's own policy reopens the account to you automatically 7 days after a new device logs in, even without support intervening. With a 2FA password already set, that window can extend — which is exactly why setting it in advance matters.</p>
+  </section>
+
+  <section>
+    <h2>Can stolen Stars or Premium be recovered?</h2>
+    <p>Realistically, no. <a href="/en/blog/telegram-stars-or-premium">Telegram Stars purchases are final</a> by design, and account compromise doesn't change that — from the system's point of view, the spend came from "you." The same applies to Premium activated or gifted away under your name.</p>
+    <p>This is also why a reseller's 100% guarantee — including StarsJoy's — applies specifically to an order that <strong>never got delivered</strong> (see <a href="/en/blog/is-starsjoy-legit">is StarsJoy legit</a>). If Stars or Premium arrived successfully and the account was compromised afterward through phishing or a SIM swap, that's outside what any delivery guarantee can cover — the failure happened after delivery, not during it.</p>
+    <p>Which is the whole argument for prevention over recovery: there is close to no recovery path once it's gone.</p>
+  </section>
+
+  <section>
+    <h2>Setting up Two-Step Verification</h2>
+    <ol>
+      <li>Open Telegram → <strong>Settings → Privacy and Security</strong></li>
+      <li>Tap <strong>Two-Step Verification</strong></li>
+      <li>Set a password you don't reuse anywhere else</li>
+      <li>Add a recovery email — you'll need it if you ever forget the password</li>
+    </ol>
+    <p>With this on, an attacker holding only your SMS code still can't get in — they need the password too. It's free, takes under a minute, and blocks the method behind most account takeovers.</p>
+  </section>
+
+  <section>
+    <h2>Does buying Stars or Premium through a reseller put the account at risk?</h2>
+    <p>Not when the reseller only asks for a username. <a href="https://starsjoy.uz/en" target="_blank">StarsJoy</a> works as a Telegram Mini App: delivery uses Telegram's own gift mechanism, triggered by nothing more than the recipient's public username. No password, SMS code, or account access is ever part of the transaction — so a purchase itself carries no exposure. The risk described in this article comes entirely from phishing, SIM swaps and session theft, not from buying Stars.</p>
+    <p>For the warning signs that do apply when choosing where to buy, see <a href="/en/blog/is-buying-telegram-stars-safe">is buying Telegram Stars safe</a>.</p>
+  </section>
+
+  <section>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/en/blog/telegram-sms-code-not-arriving">Telegram SMS code not arriving</a></li>
+      <li><a href="/en/blog/is-buying-telegram-stars-safe">Is buying Telegram Stars safe? How to spot a scam</a></li>
+      <li><a href="/en/about">About StarsJoy</a> — what we are, and what we are not</li>
+    </ul>
+  </section>
+</BlogPostEn>

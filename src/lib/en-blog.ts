@@ -20,6 +20,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'telegram-account-hacked-stars-premium',
+    title: 'Telegram Account Hacked: What Happens to Your Stars and Premium? (2026)',
+    excerpt:
+      "If your Telegram account is hacked, what happens to your Stars balance and Premium subscription? What to do in the first few minutes, how 2FA prevents it, and whether stolen Stars can be recovered.",
+    date: '2026-09-16',
+    tag: 'Stars',
+  },
+  {
     slug: 'telegram-gift-crafting',
     title: 'Telegram Gift Crafting: Combine Gifts Into a Rare One (2026)',
     excerpt:

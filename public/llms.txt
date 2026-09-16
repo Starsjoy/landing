@@ -25,6 +25,7 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Blog index (English guides): https://starsjoy.uz/en/blog
 
 ### English guides
+- Telegram Account Hacked: What Happens to Your Stars and Premium? (2026): https://starsjoy.uz/en/blog/telegram-account-hacked-stars-premium — If your Telegram account is hacked, what happens to your Stars balance and Premium subscription? What to do in the first few minutes, how 2FA prevents it, and whether stolen Stars can be recovered.
 - Telegram Gift Crafting: Combine Gifts Into a Rare One (2026): https://starsjoy.uz/en/blog/telegram-gift-crafting — Telegram\'s Gift Crafting feature: combine up to 4 collectible gifts into a new Rare or Legendary gift, how the success odds work, and the risk of losing everything you put in.
 - Telegram Premium Rich Text Editor: How to Write Long Posts (2026): https://starsjoy.uz/en/blog/telegram-premium-rich-text-editor — Telegram's new Rich Text Editor: write posts up to 32,000 characters with tables, headings and code blocks, how to open it, the AI assistant, and why it's Premium-only.
 - Telegram Star Messages: Get Paid for Messages From Strangers (2026): https://starsjoy.uz/en/blog/telegram-star-messages — Telegram Premium users can charge 1-10,000 Stars for a message from someone outside their contacts: how to turn it on, what percentage you keep, and how to refund it.
@@ -53,7 +54,7 @@ Har bir sahifada: meta title/description, canonical, hreflang (uz/ru), Open Grap
 ## Tajriba va ishonch (tekshirsa bo'ladigan ma'lumotlar)
 
 - 8,000+ ta muvaffaqiyatli bajarilgan buyurtma.
-- https://starsjoy.uz/sharhlar — hozirda 82 ta tasdiqlangan sharh, o'rtacha ball 4.9/5. Har bir sharhda muallif, ball va aniq sana ko'rsatilgan.
+- https://starsjoy.uz/sharhlar — mijozlar sharhlari sahifasi: har bir sharhda muallif, ball va aniq sana ko'rsatilgan.
 - Sharhlar moderatsiyadan o'tadi, lekin o'chirilmaydi yoki o'zgartirilmaydi; umumiy o'rtacha ball sahifada ochiq turadi va AggregateRating schema sifatida bosh sahifada hamda /sharhlar da beriladi.
 - Sharh qoldirish ochiq: https://starsjoy.uz/sharh-qoldirish
 - Kompaniya va shartlar: https://starsjoy.uz/info | Ommaviy oferta: https://starsjoy.uz/oferta
@@ -125,7 +126,7 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 ## Referral dasturi
 Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
 
-## Maqolalar (64 ta mavzu, har biri o'zbek va rus tilida)
+## Maqolalar (65 ta mavzu, har biri o'zbek va rus tilida)
 
 ### Telegram Stars — asoslar, narx va xarid
 
@@ -151,6 +152,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 
 ### Telegram Stars — xavfsizlik, refund va muammolar
 
+- Telegram akkaunt buzib olinsa: Stars va Premium bilan nima bo'ladi? (2026): https://starsjoy.uz/blog/telegram-akkaunt-buzib-olinsa-stars-premium (RU: https://starsjoy.uz/ru/blog/telegram-akkaunt-buzib-olinsa-stars-premium) — Telegram akkauntingiz buzilsa (hack qilinsa), undagi Stars balansi va Premium obunasi bilan nima bo'ladi?
 - StarsJoy ishonchlimi? Sharhlar va kafolat (2026): https://starsjoy.uz/blog/starsjoy-ishonchli-sharhlar-kafolat (RU: https://starsjoy.uz/ru/blog/starsjoy-ishonchli-sharhlar-kafolat) — StarsJoy ishonchlimi? 8000+ buyurtma, 78 ta sanali mijoz sharhi (4.9/5), xizmat ko'rsatilmasa 100% pul qaytarish kafolati — barcha dalillar va tekshirish…
 - Telegram Stars firibgarlikdan himoya: xavfsiz sotib olish (2026): https://starsjoy.uz/blog/telegram-stars-firibgarlik-himoya (RU: https://starsjoy.uz/ru/blog/telegram-stars-firibgarlik-himoya) — Telegram Stars sotib olishda firibgarlardan qanday himoyalanish mumkin? Soxta botlarni aniqlash, xavfsiz to'lov usullari va aldanganida nima qilish kerak —…
 - Telegram Stars sotib olishda xatoga yo'l qo'ymaslik uchun eng yaxshi variant (2026): https://starsjoy.uz/blog/telegram-stars-sotib-olishda-xatolar (RU: https://starsjoy.uz/ru/blog/telegram-stars-sotib-olishda-xatolar) — Telegram Stars sotib olayotganda aldov va xatolardan qanday saqlanish mumkin? Xavfsiz to'lov, ishonchli bot tanlash va eng yaxshi variant — to'liq qo'llanma.

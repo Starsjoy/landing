@@ -51,6 +51,7 @@ const GROUPS = [
   {
     title: 'Telegram Stars — xavfsizlik, refund va muammolar',
     slugs: [
+      'telegram-akkaunt-buzib-olinsa-stars-premium',
       'starsjoy-ishonchli-sharhlar-kafolat',
       'telegram-stars-firibgarlik-himoya',
       'telegram-stars-sotib-olishda-xatolar',
