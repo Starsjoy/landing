@@ -46,6 +46,7 @@ const GROUPS = [
       'telegram-stars-naqd-pul-bilan-sotib-olish',
       'telegram-stars-visa-kartasiz',
       'telegram-stars-fragment-alternativa',
+      'chet-elda-telegram-stars-premium-sotib-olish',
     ],
   },
   {

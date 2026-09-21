@@ -20,6 +20,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'buy-telegram-stars-premium-from-abroad',
+    title: 'Can Uzbeks Abroad Buy Telegram Stars or Premium? (2026)',
+    excerpt:
+      "Uzbeks living in Russia, Turkey, Korea or any other country can still buy Telegram Stars or Premium: how paying through @starsjoysupport with an Uzcard, Humo or Visa card works, with delivery in about 10 minutes.",
+    date: '2026-09-21',
+    tag: 'Stars',
+  },
+  {
     slug: 'telegram-account-hacked-stars-premium',
     title: 'Telegram Account Hacked: What Happens to Your Stars and Premium? (2026)',
     excerpt:

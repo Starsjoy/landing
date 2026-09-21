@@ -25,6 +25,7 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Blog index (English guides): https://starsjoy.uz/en/blog
 
 ### English guides
+- Can Uzbeks Abroad Buy Telegram Stars or Premium? (2026): https://starsjoy.uz/en/blog/buy-telegram-stars-premium-from-abroad — Uzbeks living in Russia, Turkey, Korea or any other country can still buy Telegram Stars or Premium: how paying through @starsjoysupport with an Uzcard, Humo or Visa card works, with delivery in about 10 minutes.
 - Telegram Account Hacked: What Happens to Your Stars and Premium? (2026): https://starsjoy.uz/en/blog/telegram-account-hacked-stars-premium — If your Telegram account is hacked, what happens to your Stars balance and Premium subscription? What to do in the first few minutes, how 2FA prevents it, and whether stolen Stars can be recovered.
 - Telegram Gift Crafting: Combine Gifts Into a Rare One (2026): https://starsjoy.uz/en/blog/telegram-gift-crafting — Telegram\'s Gift Crafting feature: combine up to 4 collectible gifts into a new Rare or Legendary gift, how the success odds work, and the risk of losing everything you put in.
 - Telegram Premium Rich Text Editor: How to Write Long Posts (2026): https://starsjoy.uz/en/blog/telegram-premium-rich-text-editor — Telegram's new Rich Text Editor: write posts up to 32,000 characters with tables, headings and code blocks, how to open it, the AI assistant, and why it's Premium-only.
@@ -126,7 +127,7 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 ## Referral dasturi
 Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
 
-## Maqolalar (65 ta mavzu, har biri o'zbek va rus tilida)
+## Maqolalar (66 ta mavzu, har biri o'zbek va rus tilida)
 
 ### Telegram Stars — asoslar, narx va xarid
 
@@ -149,6 +150,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - Telegram Stars'ni naqd pul bilan sotib olish (2026, terminal va bankomat orqali): https://starsjoy.uz/blog/telegram-stars-naqd-pul-bilan-sotib-olish (RU: https://starsjoy.uz/ru/blog/telegram-stars-naqd-pul-bilan-sotib-olish) — Telegram Stars'ni naqd pul bilan to'g'ridan-to'g'ri olib bo'lmaydi — yagona yo'l: avval Uzcard yoki Humo kartani naqd bilan to'ldirish (Paynet, bank kassasi,…
 - Telegram Stars ni Visa kartasiz sotib olish (2026): eng oson usullar: https://starsjoy.uz/blog/telegram-stars-visa-kartasiz (RU: https://starsjoy.uz/ru/blog/telegram-stars-visa-kartasiz) — Telegram Stars ni Visa kartasiz sotib olish mumkinmi? O'zbekistonda Uzcard, Humo, Payme va Click orqali Stars xarid qilishning eng oson va xavfsiz usullari.
 - Telegram Starsni Fragmentdan tashqari qayerdan sotib olish mumkin? (O'zbekiston 2026): https://starsjoy.uz/blog/telegram-stars-fragment-alternativa (RU: https://starsjoy.uz/ru/blog/telegram-stars-fragment-alternativa) — Fragment ishlamayaptimi? O'zbekistonda Telegram Stars sotib olishning eng qulay muqobil yo'llari — Uzcard, Click, Humo orqali, narxlar taqqoslanishi va…
+- Chet elda o'zbeklar Telegram Stars/Premium sotib oladimi? (2026): https://starsjoy.uz/blog/chet-elda-telegram-stars-premium-sotib-olish (RU: https://starsjoy.uz/ru/blog/chet-elda-telegram-stars-premium-sotib-olish) — Chet eldagi o'zbeklar Telegram Stars yoki Premium sotib ola oladimi? Ha — @starsjoysupport orqali, Uzcard/Humo/Visa bilan 10 daqiqada yetkaziladi.
 
 ### Telegram Stars — xavfsizlik, refund va muammolar
 
