@@ -1207,7 +1207,11 @@ if (authenticated && !dbReady) {
     .empty { text-align: center; padding: 48px 24px; color: var(--text-4); font-size: 0.85rem; }
 
     /* ───── AI TRAFIK ───── */
-    .ai-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 20px; }
+    .ai-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 20px; }
+    .ai-card-split { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 6px; font-size: 0.78rem; color: var(--text-2); }
+    .ai-card-split div { display: flex; align-items: center; gap: 6px; }
+    .ai-card-split b { color: var(--text-0); font-weight: 800; font-variant-numeric: tabular-nums; }
+    .ai-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .ai-card {
       background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 22px 24px; border-top: 3px solid var(--ai-c, var(--border-light));
@@ -2950,16 +2954,14 @@ if (authenticated && !dbReady) {
             <div class="ai-card-hint">ChatGPT, Perplexity, Gemini va boshqa AI javobidagi havolani bosib saytga kirgan real odamlar (${label.toLowerCase()}).</div>
           </div>
           <div class="ai-card" style="--ai-c:#a855f7">
-            <div class="ai-card-label">AI so'rov bo'yicha o'qidi</div>
-            <div class="ai-card-value">${t.user.views}<span class="ai-card-unit">marta</span></div>
-            <div class="ai-card-sub">${t.user.sessions} ta sessiya</div>
-            <div class="ai-card-hint">Kimdir AI'ga savol berganda AI javob tayyorlash uchun saytni o'sha zahoti o'qigan (ChatGPT-User, Perplexity-User, Claude-User).</div>
-          </div>
-          <div class="ai-card" style="--ai-c:#f59e0b">
-            <div class="ai-card-label">AI botlar jami kirishi</div>
+            <div class="ai-card-label">AI saytga kirdi</div>
             <div class="ai-card-value">${t.all.views}<span class="ai-card-unit">marta</span></div>
-            <div class="ai-card-sub">So'rov: ${t.user.views} · Indeks: ${t.search.views} · O'qitish: ${t.train.views}</div>
-            <div class="ai-card-hint">Barcha AI botlar: foydalanuvchi so'rovi, AI qidiruv indeksi (OAI-SearchBot…) va model o'qitish (GPTBot, ClaudeBot…).</div>
+            <div class="ai-card-split">
+              <div><span class="ai-dot" style="background:#a855f7"></span>AI so'rovi<b>${t.user.views}</b></div>
+              <div><span class="ai-dot" style="background:#3b82f6"></span>AI qidiruv indeksi<b>${t.search.views}</b></div>
+              <div><span class="ai-dot" style="background:#f59e0b"></span>AI o'qitish<b>${t.train.views}</b></div>
+            </div>
+            <div class="ai-card-hint">Barcha AI botlar kirishi: kimdir AI'ga savol berganda (ChatGPT, Claude), AI qidiruv bazasini yangilaganda (ChatGPT qidiruvi, Perplexity) va model o'qitishda (TikTok, GPTBot…).</div>
           </div>
         `;
 
