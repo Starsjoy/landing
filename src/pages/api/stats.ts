@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { getRole, getFilteredStats, getAllVisits, getOrderStats, getAnalyticsData, getBuyerInsights, deleteOrder, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
+import { getRole, getFilteredStats, getAllVisits, getOrderStats, getAnalyticsData, getBuyerInsights, getAiStats, deleteOrder, setPassword, getPassword, generateToken, initDB } from '../../lib/analytics';
 
 let dbReady = false;
 
@@ -45,13 +45,15 @@ export const GET: APIRoute = async ({ request, cookies }) => {
 
   // Agar salesFrom bor bo'lsa, visits va buyers ham shu diapazon bo'yicha filter qilinadi
   const effectivePeriod = salesFrom ? 'custom' : period;
-  const [stats, orders, analytics, buyerInsights] = await Promise.all([
+  const [stats, orders, analytics, buyerInsights, ai] = await Promise.all([
     getFilteredStats(effectivePeriod, salesFrom, salesTo),
     getOrderStats(period, salesFrom, salesTo, source),
     getAnalyticsData(salesFrom ? 'month' : analyticsPeriod, source, salesFrom, salesTo),
     getBuyerInsights(effectivePeriod, source, salesFrom, salesTo),
+    // AI bloki xato bersa ham qolgan dashboard ishlashda davom etadi
+    getAiStats(effectivePeriod, salesFrom, salesTo).catch(e => { console.error('AI stats error:', e); return null; }),
   ]);
-  return new Response(JSON.stringify({ ...stats, orders, analytics, buyerInsights }), {
+  return new Response(JSON.stringify({ ...stats, orders, analytics, buyerInsights, ai }), {
     headers: { 'Content-Type': 'application/json' },
   });
 };

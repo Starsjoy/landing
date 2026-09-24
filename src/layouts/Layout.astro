@@ -104,7 +104,7 @@ const {
         fetch('/api/track', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ vid: vid, sid: sid, path: location.pathname, ref: document.referrer })
+          body: JSON.stringify({ vid: vid, sid: sid, path: location.pathname, ref: document.referrer, utm: new URLSearchParams(location.search).get('utm_source') || '' })
         }).catch(function(){});
         document.addEventListener('visibilitychange', function() {
           if (document.visibilityState === 'hidden') {

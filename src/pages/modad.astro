@@ -228,6 +228,12 @@ if (authenticated && !dbReady) {
             </span>
             <span>Umumiy</span>
           </a>
+          <a data-section="ai" onclick="showSection('ai')">
+            <span class="sb-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+            </span>
+            <span>AI trafik</span>
+          </a>
           <div class="sb-dropdown">
             <a class="sb-dropdown-toggle" data-section="trafik" onclick="toggleDropdown('trafik')">
               <span class="sb-icon">
@@ -426,6 +432,44 @@ if (authenticated && !dbReady) {
                 </div>
               </div>
               <div class="panel-body" id="recentTable"></div>
+            </div>
+          </div>
+
+          <!-- AI trafik -->
+          <div id="section-ai" class="section-content" hidden>
+            <div class="ai-cards" id="aiCards"></div>
+
+            <div class="chart-panel ai-chart-panel">
+              <div class="chart-header">
+                <h2>AI trafik dinamikasi</h2>
+                <div class="chart-legend">
+                  <span class="cl-item"><span class="cl-dot" style="background:#10b981"></span> AI havolasidan kelgan odamlar</span>
+                  <span class="cl-item"><span class="cl-dot" style="background:#a855f7"></span> AI so'rov bo'yicha o'qidi</span>
+                  <span class="cl-item"><span class="cl-dot" style="background:#f59e0b"></span> AI crawler</span>
+                </div>
+              </div>
+              <div class="chart-body chart-body-lg" id="aiChart"></div>
+            </div>
+
+            <div class="grid-2">
+              <div class="panel">
+                <div class="panel-header"><h2>Qaysi AI'dan kelishdi (odamlar)</h2></div>
+                <div class="panel-body panel-pad" id="aiSources"></div>
+              </div>
+              <div class="panel">
+                <div class="panel-header"><h2>AI eng ko'p o'qigan sahifalar</h2></div>
+                <div class="panel-body" id="aiPages"></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header"><h2>AI havolasini bosib kirganlar — oxirgilari</h2></div>
+              <div class="panel-body" id="aiLandings"></div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header"><h2>Saytni o'qigan AI botlar</h2></div>
+              <div class="panel-body" id="aiBots"></div>
             </div>
           </div>
 
@@ -1153,6 +1197,36 @@ if (authenticated && !dbReady) {
     .pill-bot-lime { background: rgba(132, 204, 22, 0.1); color: #a3e635; }
 
     .empty { text-align: center; padding: 48px 24px; color: var(--text-4); font-size: 0.85rem; }
+
+    /* ───── AI TRAFIK ───── */
+    .ai-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 20px; }
+    .ai-card {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px 24px; border-top: 3px solid var(--ai-c, var(--border-light));
+    }
+    .ai-card-label { font-size: 0.72rem; font-weight: 700; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.7px; }
+    .ai-card-value { font-size: 2.6rem; font-weight: 900; color: var(--ai-c); letter-spacing: -1.2px; line-height: 1.05; margin: 10px 0 4px; font-variant-numeric: tabular-nums; }
+    .ai-card-unit { font-size: 0.8rem; font-weight: 600; color: var(--text-3); margin-left: 6px; letter-spacing: 0; }
+    .ai-card-sub { font-size: 0.78rem; color: var(--text-1); font-weight: 500; }
+    .ai-card-hint { font-size: 0.72rem; color: var(--text-3); line-height: 1.45; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+    .ai-chart-panel { margin-bottom: 20px; }
+    #section-ai .grid-2 { grid-template-columns: 1fr 1.4fr; margin-bottom: 20px; }
+    #section-ai .panel { margin-bottom: 20px; }
+    .ai-cat { display: inline-block; padding: 3px 9px; border-radius: var(--radius-pill); font-size: 0.68rem; font-weight: 700; white-space: nowrap; }
+    .ai-cat-ai_user { background: rgba(168, 85, 247, 0.12); color: #c084fc; }
+    .ai-cat-ai_search { background: rgba(59, 130, 246, 0.12); color: #60a5fa; }
+    .ai-cat-ai_train { background: rgba(245, 158, 11, 0.12); color: #fbbf24; }
+    .ai-cat-search, .ai-cat-social, .ai-cat-seo, .ai-cat-tool, .ai-cat-other { background: var(--bg-4); color: var(--text-2); }
+    .ai-src { display: inline-block; padding: 3px 9px; border-radius: var(--radius-pill); font-size: 0.7rem; font-weight: 700; background: rgba(16, 185, 129, 0.12); color: #34d399; white-space: nowrap; }
+    .ai-src-row .c-code { width: 84px; }
+    .ai-src-row .c-bar { background: linear-gradient(90deg, #059669, #10b981); }
+    .ai-num-user { color: #c084fc; }
+    .ai-num-crawl { color: var(--text-2); }
+    @media (max-width: 900px) {
+      .ai-cards { grid-template-columns: 1fr; gap: 12px; }
+      #section-ai .grid-2 { grid-template-columns: 1fr; }
+      .ai-card-value { font-size: 2.1rem; }
+    }
 
     /* ───── SALES ───── */
     .sales-filter {
@@ -2444,6 +2518,11 @@ if (authenticated && !dbReady) {
           fetchReviews();
         }
 
+        // AI grafigi yashirin bo'limda chizilsa kengligi noto'g'ri bo'ladi — ko'rinadigan bo'lganda qayta chizamiz
+        if (name === 'ai' && typeof renderAi === 'function') {
+          renderAi();
+        }
+
         // Mobile quick stats faqat Umumiy (overview) bo'limida ko'rinadi
         if (typeof renderMobileQuickStats === 'function') renderMobileQuickStats();
         if (name === 'overview' && typeof fetchMqsYesterday === 'function') fetchMqsYesterday();
@@ -2736,6 +2815,7 @@ if (authenticated && !dbReady) {
         renderStatCards();
         renderRecent();
         renderBots();
+        renderAi();
         renderUsers();
         renderCountries();
         renderPages();
@@ -2812,9 +2892,10 @@ if (authenticated && !dbReady) {
           return;
         }
         document.getElementById('botTable').innerHTML = `<table>
-          <thead><tr><th>Bot</th><th>Sahifalar</th><th>Sessiyalar</th><th>Oxirgi</th><th>User-Agent</th><th>Sahifalar</th></tr></thead>
+          <thead><tr><th>Bot</th><th>Turi</th><th>Sahifalar</th><th>Sessiyalar</th><th>Oxirgi</th><th>User-Agent</th><th>Sahifalar</th></tr></thead>
           <tbody>${rows.map(b => `<tr>
             <td><span class="${botPillClass(b.name)}">${b.name}</span></td>
+            <td>${aiCatPill(b.category)}</td>
             <td class="td-num">${b.pagesCrawled}</td>
             <td class="td-num">${b.sessions}</td>
             <td style="color:var(--text-3)">${timeAgo(b.lastSeen)}</td>
@@ -2822,6 +2903,108 @@ if (authenticated && !dbReady) {
             <td>${b.pages.slice(0, 3).map(p => '<span class="path-chip">' + fmtPath(p) + '</span> ').join('')}${b.pages.length > 3 ? '<span class="na">+' + (b.pages.length - 3) + '</span>' : ''}</td>
           </tr>`).join('')}</tbody>
         </table>`;
+      }
+
+      var aiCatLabels = {
+        ai_user: "AI so'rovi", ai_search: 'AI qidiruv indeksi', ai_train: "AI o'qitish",
+        search: 'Qidiruv tizimi', social: 'Ijtimoiy tarmoq', seo: 'SEO', tool: 'Asbob', other: 'Boshqa'
+      };
+      function aiCatPill(cat) {
+        return '<span class="ai-cat ai-cat-' + (cat || 'other') + '">' + (aiCatLabels[cat] || aiCatLabels.other) + '</span>';
+      }
+      function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"]/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
+      }
+
+      function renderAi() {
+        if (!statsData) return;
+        var ai = statsData.ai;
+        var cards = document.getElementById('aiCards');
+        if (!cards) return;
+        if (!ai) {
+          cards.innerHTML = '<div class="empty" style="grid-column:1/-1">AI ma\'lumotini yuklab bo\'lmadi</div>';
+          ['aiSources', 'aiPages', 'aiLandings', 'aiBots', 'aiChart'].forEach(function(id) { document.getElementById(id).innerHTML = ''; });
+          return;
+        }
+        var h = ai.humans, t = ai.totals;
+        var label = periodLabels[currentPeriod] || currentPeriod;
+
+        cards.innerHTML = `
+          <div class="ai-card" style="--ai-c:#10b981">
+            <div class="ai-card-label">AI havolasidan kelgan odamlar</div>
+            <div class="ai-card-value">${h.sessions}<span class="ai-card-unit">kishi</span></div>
+            <div class="ai-card-sub">${h.pageViews} sahifa ko'rildi · o'rtacha ${h.avgPages} sahifa${fmtDur(h.avgDuration) ? ', ' + fmtDur(h.avgDuration) : ''}</div>
+            <div class="ai-card-hint">ChatGPT, Perplexity, Gemini va boshqa AI javobidagi havolani bosib saytga kirgan real odamlar (${label.toLowerCase()}).</div>
+          </div>
+          <div class="ai-card" style="--ai-c:#a855f7">
+            <div class="ai-card-label">AI so'rov bo'yicha o'qidi</div>
+            <div class="ai-card-value">${t.user.views}<span class="ai-card-unit">marta</span></div>
+            <div class="ai-card-sub">${t.user.sessions} ta sessiya</div>
+            <div class="ai-card-hint">Kimdir AI'ga savol berganda AI javob tayyorlash uchun saytni o'sha zahoti o'qigan (ChatGPT-User, Perplexity-User, Claude-User).</div>
+          </div>
+          <div class="ai-card" style="--ai-c:#f59e0b">
+            <div class="ai-card-label">AI botlar jami kirishi</div>
+            <div class="ai-card-value">${t.all.views}<span class="ai-card-unit">marta</span></div>
+            <div class="ai-card-sub">So'rov: ${t.user.views} · Indeks: ${t.search.views} · O'qitish: ${t.train.views}</div>
+            <div class="ai-card-hint">Barcha AI botlar: foydalanuvchi so'rovi, AI qidiruv indeksi (OAI-SearchBot…) va model o'qitish (GPTBot, ClaudeBot…).</div>
+          </div>
+        `;
+
+        buildLineChart('aiChart', [
+          { label: 'AI havolasidan odamlar', color: '#10b981', data: ai.series.map(d => ({ date: d.label, value: d.humans })) },
+          { label: "AI so'rovi", color: '#a855f7', data: ai.series.map(d => ({ date: d.label, value: d.aiUser })) },
+          { label: 'AI crawler', color: '#f59e0b', data: ai.series.map(d => ({ date: d.label, value: d.aiCrawl })) },
+        ], {});
+
+        var src = h.bySource;
+        document.getElementById('aiSources').innerHTML = !src.length
+          ? '<div class="empty">Bu davrda AI havolasidan kirganlar yo\'q</div>'
+          : src.map(s => `
+            <div class="c-row ai-src-row">
+              <div class="c-code">${esc(s.name)}</div>
+              <div class="c-bar-bg"><div class="c-bar" style="width:${Math.max((s.sessions / src[0].sessions) * 100, 4)}%"></div></div>
+              <div class="c-val">${s.sessions}</div>
+            </div>`).join('');
+
+        document.getElementById('aiPages').innerHTML = !ai.topPages.length
+          ? '<div class="empty">AI hali sahifalarni o\'qimagan</div>'
+          : `<table>
+            <thead><tr><th>Sahifa</th><th title="Foydalanuvchi so'rovi bo'yicha">So'rov</th><th title="Indeks + o'qitish">Crawler</th><th>Jami</th></tr></thead>
+            <tbody>${ai.topPages.map(p => `<tr>
+              <td><span class="path-chip">${esc(fmtPath(p.path))}</span></td>
+              <td class="td-num ai-num-user">${p.user}</td>
+              <td class="td-num ai-num-crawl">${p.crawl}</td>
+              <td class="td-num">${p.total}</td>
+            </tr>`).join('')}</tbody>
+          </table>`;
+
+        document.getElementById('aiLandings').innerHTML = !h.recent.length
+          ? '<div class="empty">Bu davrda AI havolasidan kirganlar yo\'q</div>'
+          : `<table>
+            <thead><tr><th>Manba</th><th>Kirgan sahifa</th><th>Mamlakat</th><th>Vaqt</th><th>Davomiylik</th><th>Sahifalar</th></tr></thead>
+            <tbody>${h.recent.map(r => `<tr>
+              <td><span class="ai-src">${esc(r.source)}</span></td>
+              <td><span class="path-chip">${esc(fmtPath(r.path))}</span></td>
+              <td>${r.country && r.country !== 'Local' && r.country !== '—' ? '<span class="country-cell"><span class="flag">' + countryFlag(r.country) + '</span><span class="name">' + esc(r.country) + '</span></span>' : '<span class="na"></span>'}</td>
+              <td style="color:var(--text-3)">${timeAgo(r.timestamp)}</td>
+              <td>${fmtDur(r.duration) ? '<span class="dur">' + fmtDur(r.duration) + '</span>' : '<span class="na"></span>'}</td>
+              <td class="td-num">${r.pages}</td>
+            </tr>`).join('')}</tbody>
+          </table>`;
+
+        document.getElementById('aiBots').innerHTML = !ai.bots.length
+          ? '<div class="empty">Bu davrda AI botlar kirmagan</div>'
+          : `<table>
+            <thead><tr><th>Bot</th><th>Turi</th><th>Kirishlar</th><th>Sessiyalar</th><th>Oxirgi</th><th>Ko'p o'qigan sahifalar</th></tr></thead>
+            <tbody>${ai.bots.map(b => `<tr>
+              <td><span class="${botPillClass(b.name)}" title="${esc(b.sampleUA)}">${esc(b.name)}</span></td>
+              <td>${aiCatPill(b.category)}</td>
+              <td class="td-num">${b.views}</td>
+              <td class="td-num">${b.sessions}</td>
+              <td style="color:var(--text-3)">${timeAgo(b.lastSeen)}</td>
+              <td>${b.topPages.map(p => '<span class="path-chip">' + esc(fmtPath(p.path)) + '</span> ').join('')}${b.pageCount > 3 ? '<span class="na">+' + (b.pageCount - 3) + '</span>' : ''}</td>
+            </tr>`).join('')}</tbody>
+          </table>`;
       }
 
       function renderUsers() {

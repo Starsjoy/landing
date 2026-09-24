@@ -39,17 +39,20 @@ export const onRequest = defineMiddleware(async (context, next) => {
         const vid = 'bot-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
         const sid = 'bot-' + botName.toLowerCase().replace(/[^a-z0-9]/g, '') + '-' + ip.replace(/[^a-z0-9]/gi, '-');
 
-        sql`
+        const insert = sql`
           INSERT INTO visits (id, session_id, path, user_agent, ip, is_bot, bot_name, referrer)
           VALUES (${vid}, ${sid}, ${path}, ${ua}, ${ip}, true, ${botName}, '')
         `.then(() => {
           if (ip !== '127.0.0.1' && ip !== '::1') {
             fetch(`http://ip-api.com/json/${ip}?fields=countryCode`, { signal: AbortSignal.timeout(3000) })
               .then(r => r.json())
-              .then(j => { if (j.countryCode) sql`UPDATE visits SET country = ${j.countryCode} WHERE id = ${vid}`; })
+              .then(j => { if (j.countryCode) sql`UPDATE visits SET country = ${j.countryCode} WHERE id = ${vid}`.catch(() => {}); })
               .catch(() => {});
           }
         }).catch(() => {});
+        // Serverless funksiya javobdan keyin muzlatilishi mumkin — INSERT tugashini kutamiz,
+        // lekin DB sekin bo'lsa bot so'rovini 1.5s dan ortiq ushlab turmaymiz.
+        await Promise.race([insert, new Promise(r => setTimeout(r, 1500))]);
       } catch {}
     }
   }

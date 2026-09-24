@@ -1,6 +1,6 @@
 import postgres from 'postgres';
 import { createHmac, timingSafeEqual } from 'node:crypto';
-import { detectBot } from './bots';
+import { detectBot, detectAiReferrer, botCategory, AI_BOT_PATTERNS, AI_REFERRERS, type BotCategory } from './bots';
 
 // DigitalOcean Postgres + pgBouncer (transaction mode → prepare:false).
 let _sql: ReturnType<typeof postgres> | null = null;
@@ -33,6 +33,8 @@ export async function initDB() {
   await sql`CREATE INDEX IF NOT EXISTS idx_visits_is_bot ON visits(is_bot)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_visits_path ON visits(path)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_visits_session ON visits(session_id)`;
+  // AI havolasidan kelganlarni aniqlash uchun (ChatGPT ?utm_source=chatgpt.com qo'shadi)
+  await sql`ALTER TABLE visits ADD COLUMN IF NOT EXISTS utm_source TEXT DEFAULT ''`;
   await sql`
     CREATE TABLE IF NOT EXISTS settings (
       key TEXT PRIMARY KEY,
@@ -64,6 +66,7 @@ export async function addVisit(params: {
   userAgent: string;
   ip: string;
   referrer: string;
+  utmSource?: string;
   vid: string;
   sessionId: string;
 }) {
@@ -71,8 +74,8 @@ export async function addVisit(params: {
   const { isBot, botName } = detectBot(params.userAgent);
 
   await sql`
-    INSERT INTO visits (id, session_id, path, user_agent, ip, is_bot, bot_name, referrer)
-    VALUES (${params.vid}, ${params.sessionId}, ${params.path}, ${params.userAgent}, ${params.ip}, ${isBot}, ${botName}, ${params.referrer})
+    INSERT INTO visits (id, session_id, path, user_agent, ip, is_bot, bot_name, referrer, utm_source)
+    VALUES (${params.vid}, ${params.sessionId}, ${params.path}, ${params.userAgent}, ${params.ip}, ${isBot}, ${botName}, ${params.referrer}, ${params.utmSource || ''})
     ON CONFLICT (id) DO NOTHING
   `;
 
@@ -204,7 +207,7 @@ export async function getFilteredStats(period: string = 'today', from?: string, 
       botSessions: +overview.bot_sessions,
       humanSessions: +overview.human_sessions,
     },
-    botTraffic: botTraffic.map(b => ({ name: b.name, pagesCrawled: +b.pages_crawled, sessions: +b.sessions, lastSeen: b.last_seen, pages: b.pages, sampleUA: b.sample_ua || '' })),
+    botTraffic: botTraffic.map(b => ({ name: b.name, category: botCategory(b.name), pagesCrawled: +b.pages_crawled, sessions: +b.sessions, lastSeen: b.last_seen, pages: b.pages, sampleUA: b.sample_ua || '' })),
     realUsers: realUsers.map(r => ({
       id: r.id, path: r.path, ip: r.ip, country: r.country, sessionId: r.session_id,
       timestamp: r.timestamp, referrer: r.referrer, duration: +r.duration, userAgent: r.user_agent,
@@ -219,6 +222,193 @@ export async function getFilteredStats(period: string = 'today', from?: string, 
       botViews: +p.bot_views, humanViews: +p.human_views,
     })),
     countries: countries.map(c => ({ country: c.country, sessions: +c.sessions, views: +c.views })),
+  };
+}
+
+// ───── AI TRAFIK ─────
+// Ikki xil signal:
+//  1) AI botlar saytni o'qishi — User-Agent bo'yicha, so'rov vaqtida qayta tasniflanadi
+//     (bots.ts'dagi yangi patternlar eski yozuvlarga ham qo'llanadi).
+//  2) Odamlar AI javobidagi havolani bosib kirishi — referrer host'i yoki utm_source bo'yicha.
+
+// SQL'da keng oldindan filtr (^/$ olib tashlanadi), aniq tekshiruv JS'da detectAiReferrer bilan
+const AI_REF_PREFILTER_RE = AI_REFERRERS.map(r => r.pattern.source.replace(/[\^$]/g, '')).join('|');
+
+function tashkentKey(d: Date, hourly: boolean): string {
+  const t = new Date(d.getTime() + TZ_OFFSET * 60 * 60 * 1000).toISOString();
+  return hourly ? t.slice(11, 13) : t.slice(0, 10);
+}
+
+export async function getAiStats(period: string = 'today', from?: string, to?: string) {
+  const sql = getSQL();
+  const since = from ? new Date(from + 'T00:00:00+05:00').toISOString() : getSince(period);
+  const untilDate = to ? new Date(to + 'T23:59:59.999+05:00') : new Date();
+  const until = untilDate.toISOString();
+  const hourly = untilDate.getTime() - new Date(since).getTime() <= 24 * 60 * 60 * 1000;
+  const bucketFmt = hourly ? 'HH24' : 'YYYY-MM-DD';
+
+  // Botlarda xilma-xil User-Agent kam (yilda ~200 ta) — ularni bir marta JS'da tasniflab,
+  // keyin SQL'da oddiy tenglik bilan join qilamiz (har bir qatorda regex ishlatish sekin).
+  // AI botlar doim is_bot=true: ular JS ishlatmaydi va faqat middleware orqali yoziladi.
+  const uaRows = await sql`
+    SELECT DISTINCT user_agent FROM visits
+    WHERE is_bot AND timestamp >= ${since} AND timestamp <= ${until}
+  `;
+  const uaList: string[] = [], uaNames: string[] = [], uaCats: string[] = [];
+  for (const r of uaRows as any[]) {
+    const bot = AI_BOT_PATTERNS.find(b => b.pattern.test(r.user_agent || ''));
+    if (bot) { uaList.push(r.user_agent); uaNames.push(bot.name); uaCats.push(bot.category); }
+  }
+
+  const aiRows = `
+    SELECT v.path, v.ip, v.timestamp, v.user_agent, m.ai_name, m.ai_cat
+    FROM visits v
+    JOIN unnest($3::text[], $4::text[], $5::text[]) AS m(user_agent, ai_name, ai_cat) ON m.user_agent = v.user_agent
+    WHERE v.is_bot AND v.timestamp >= $1::timestamptz AND v.timestamp <= $2::timestamptz
+  `;
+  const params = [since, until, uaList, uaNames, uaCats];
+  const none = Promise.resolve([] as any[]);
+
+  const [botRows, pageRows, seriesRows, refRows] = await Promise.all([
+    !uaList.length ? none : sql.unsafe(`
+      WITH v AS (${aiRows})
+      SELECT ai_name, ai_cat, COUNT(*) AS views,
+        COUNT(DISTINCT (ip || '-' || FLOOR(EXTRACT(EPOCH FROM timestamp) / 900)::text)) AS sessions,
+        MAX(timestamp) AS last_seen,
+        (ARRAY_AGG(user_agent ORDER BY timestamp DESC))[1] AS sample_ua
+      FROM v GROUP BY ai_name, ai_cat ORDER BY views DESC
+    `, params as any),
+    !uaList.length ? none : sql.unsafe(`
+      WITH v AS (${aiRows})
+      SELECT ai_name, ai_cat, path, COUNT(*) AS views FROM v GROUP BY ai_name, ai_cat, path
+    `, params as any),
+    !uaList.length ? none : sql.unsafe(`
+      WITH v AS (${aiRows})
+      SELECT TO_CHAR(timestamp AT TIME ZONE 'Asia/Tashkent', '${bucketFmt}') AS bucket,
+        COUNT(*) FILTER (WHERE ai_cat = 'ai_user') AS ai_user,
+        COUNT(*) FILTER (WHERE ai_cat <> 'ai_user') AS ai_crawl
+      FROM v GROUP BY bucket
+    `, params as any),
+    sql`
+      SELECT id, session_id, path, referrer, utm_source, country, timestamp, duration
+      FROM visits
+      WHERE NOT is_bot AND timestamp >= ${since} AND timestamp <= ${until}
+        AND (referrer ~* ${AI_REF_PREFILTER_RE} OR utm_source ~* ${AI_REF_PREFILTER_RE})
+      ORDER BY timestamp DESC
+      LIMIT 5000
+    `,
+  ]);
+
+  // ── AI botlar ──
+  const pagesByBot = new Map<string, { path: string; views: number }[]>();
+  const pageTotals = new Map<string, { path: string; user: number; crawl: number }>();
+  for (const r of pageRows as any[]) {
+    const list = pagesByBot.get(r.ai_name) || [];
+    list.push({ path: r.path, views: +r.views });
+    pagesByBot.set(r.ai_name, list);
+    const p = pageTotals.get(r.path) || { path: r.path, user: 0, crawl: 0 };
+    if (r.ai_cat === 'ai_user') p.user += +r.views; else p.crawl += +r.views;
+    pageTotals.set(r.path, p);
+  }
+  const bots = (botRows as any[]).map(b => ({
+    name: b.ai_name as string,
+    category: b.ai_cat as BotCategory,
+    views: +b.views,
+    sessions: +b.sessions,
+    lastSeen: b.last_seen,
+    sampleUA: b.sample_ua || '',
+    topPages: (pagesByBot.get(b.ai_name) || []).sort((a, c) => c.views - a.views).slice(0, 3),
+    pageCount: (pagesByBot.get(b.ai_name) || []).length,
+  }));
+  const sumCat = (c: BotCategory) => bots.filter(b => b.category === c)
+    .reduce((acc, b) => ({ views: acc.views + b.views, sessions: acc.sessions + b.sessions }), { views: 0, sessions: 0 });
+  const topPages = [...pageTotals.values()]
+    .map(p => ({ ...p, total: p.user + p.crawl }))
+    .sort((a, b) => b.user - a.user || b.total - a.total)
+    .slice(0, 15);
+
+  // ── AI havolasidan kelgan odamlar ──
+  const landings = (refRows as any[])
+    .map(r => ({ ...r, source: detectAiReferrer(r.referrer, r.utm_source) }))
+    .filter(r => r.source);
+  const sessKey = (r: any) => r.session_id || r.id;
+  const sessionSource = new Map<string, string>();
+  for (const r of landings) if (!sessionSource.has(sessKey(r))) sessionSource.set(sessKey(r), r.source);
+
+  const sessionIds = [...new Set(landings.map(r => r.session_id).filter(Boolean))];
+  const sessStats = new Map<string, { views: number; duration: number }>();
+  if (sessionIds.length) {
+    const rows = await sql`
+      SELECT session_id, COUNT(*) AS views, COALESCE(SUM(duration), 0) AS duration
+      FROM visits WHERE NOT is_bot AND session_id = ANY(${sessionIds})
+      GROUP BY session_id
+    `;
+    rows.forEach((r: any) => sessStats.set(r.session_id, { views: +r.views, duration: +r.duration }));
+  }
+  // session_id bo'lmagan (eski) yozuvlar uchun — faqat landing qatorining o'zi
+  const ownBySess = new Map<string, { views: number; duration: number }>();
+  for (const r of landings) {
+    const o = ownBySess.get(sessKey(r)) || { views: 0, duration: 0 };
+    o.views += 1; o.duration += +r.duration || 0;
+    ownBySess.set(sessKey(r), o);
+  }
+  let totalViews = 0, totalDuration = 0;
+  for (const key of sessionSource.keys()) {
+    const s = sessStats.get(key) || ownBySess.get(key)!;
+    totalViews += s.views;
+    totalDuration += s.duration;
+  }
+  const bySourceMap = new Map<string, number>();
+  for (const src of sessionSource.values()) bySourceMap.set(src, (bySourceMap.get(src) || 0) + 1);
+  const humanSessions = sessionSource.size;
+
+  // ── Grafik: bo'sh kun/soatlar ham 0 bilan to'ldiriladi ──
+  const series = new Map<string, { aiUser: number; aiCrawl: number; humans: number }>();
+  const step = hourly ? 60 * 60 * 1000 : 24 * 60 * 60 * 1000;
+  const endMs = Math.min(untilDate.getTime(), Date.now());
+  for (let t = new Date(since).getTime(); t <= endMs; t += step) {
+    series.set(tashkentKey(new Date(t), hourly), { aiUser: 0, aiCrawl: 0, humans: 0 });
+  }
+  for (const r of seriesRows as any[]) {
+    const s = series.get(r.bucket) || { aiUser: 0, aiCrawl: 0, humans: 0 };
+    s.aiUser += +r.ai_user; s.aiCrawl += +r.ai_crawl;
+    series.set(r.bucket, s);
+  }
+  const seenSess = new Set<string>();
+  for (const r of [...landings].reverse()) {
+    if (seenSess.has(sessKey(r))) continue;
+    seenSess.add(sessKey(r));
+    const key = tashkentKey(new Date(r.timestamp), hourly);
+    const s = series.get(key) || { aiUser: 0, aiCrawl: 0, humans: 0 };
+    s.humans += 1;
+    series.set(key, s);
+  }
+
+  return {
+    humans: {
+      sessions: humanSessions,
+      pageViews: totalViews,
+      avgPages: humanSessions ? +(totalViews / humanSessions).toFixed(1) : 0,
+      avgDuration: humanSessions ? Math.round(totalDuration / humanSessions) : 0,
+      bySource: [...bySourceMap.entries()].map(([name, sessions]) => ({ name, sessions })).sort((a, b) => b.sessions - a.sessions),
+      recent: landings.slice(0, 50).map(r => ({
+        source: r.source, path: r.path, country: r.country, timestamp: r.timestamp,
+        duration: +r.duration || 0, pages: sessStats.get(r.session_id)?.views || 1,
+      })),
+    },
+    bots,
+    totals: {
+      user: sumCat('ai_user'),
+      search: sumCat('ai_search'),
+      train: sumCat('ai_train'),
+      all: { views: bots.reduce((a, b) => a + b.views, 0), sessions: bots.reduce((a, b) => a + b.sessions, 0) },
+    },
+    topPages,
+    hourly,
+    series: [...series.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([k, v]) => ({
+      label: hourly ? k + ':00' : k.slice(8, 10) + '.' + k.slice(5, 7),
+      ...v,
+    })),
   };
 }
 

@@ -33,9 +33,11 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response('skip', { status: 200 });
     }
 
-    // Skip ignored bots (Vercel screenshot, HeadlessChrome, etc.)
-    const { isIgnored } = detectBot(ua);
-    if (isIgnored) {
+    // Skip ignored bots (Vercel screenshot, HeadlessChrome, etc.).
+    // Boshqa botlarni middleware sahifa so'rovining o'zida yozib bo'lgan — JS ishlatadigan
+    // bot (masalan Googlebot) bu yerda ikkinchi marta yozilmasligi uchun o'tkazib yuboramiz.
+    const { isBot } = detectBot(ua);
+    if (isBot) {
       return new Response('skip', { status: 200 });
     }
 
@@ -43,7 +45,8 @@ export const POST: APIRoute = async ({ request }) => {
       path: body.path,
       userAgent: ua,
       ip,
-      referrer: body.ref || '',
+      referrer: String(body.ref || '').slice(0, 1000),
+      utmSource: String(body.utm || '').slice(0, 100),
       vid: body.vid,
       sessionId: body.sid || '',
     });
