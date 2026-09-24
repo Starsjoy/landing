@@ -55,7 +55,58 @@ export const onRequest = defineMiddleware(async (context, next) => {
         await Promise.race([insert, new Promise(r => setTimeout(r, 1500))]);
       } catch {}
     }
+    return next();
   }
 
-  return next();
+  // Bot deb tanilmagan so'rov — odam yoki o'zini brauzer qilib ko'rsatadigan fetcher (masalan Gemini).
+  // Odamlar visits'ga JS orqali (/api/track) yoziladi; JS ishlatmaydigan fetcher esa u yerga tushmaydi.
+  // Shuning uchun har bir so'rovni request_log'ga ham yozamiz — /modad "JS ishlamagan so'rovlar"
+  // ro'yxati shu ikkisini solishtirib, yashirin AI fetcher'larni ko'rsatadi.
+  const sql = getSQL();
+  let logWrite: Promise<unknown> | null = null;
+  if (sql) {
+    const h = context.request.headers;
+    const ip = h.get('x-vercel-forwarded-for')?.split(',')[0]?.trim()
+      || h.get('x-forwarded-for')?.split(',')[0]?.trim()
+      || h.get('x-real-ip')
+      || '';
+    logWrite = ensureRequestLog(sql)
+      .then(() => sql`
+        INSERT INTO request_log (path, user_agent, ip, referrer, sec_fetch_mode, accept_language)
+        VALUES (${path}, ${ua.slice(0, 500)}, ${ip}, ${(h.get('referer') || '').slice(0, 500)},
+          ${h.get('sec-fetch-mode') || ''}, ${(h.get('accept-language') || '').slice(0, 100)})
+      `)
+      .then(() => {
+        // Jadval cheksiz o'smasin — ~1% so'rovda 30 kundan eskisini tozalaymiz
+        if (Math.random() < 0.01) sql`DELETE FROM request_log WHERE timestamp < NOW() - interval '30 days'`.catch(() => {});
+      })
+      .catch(() => {});
+  }
+
+  // Yozuv sahifa render bo'layotganda parallel ketadi — foydalanuvchini kuttirmaymiz
+  const response = await next();
+  if (logWrite) await Promise.race([logWrite, new Promise(r => setTimeout(r, 300))]);
+  return response;
 });
+
+let requestLogReady: Promise<unknown> | null = null;
+function ensureRequestLog(sql: NonNullable<ReturnType<typeof getSQL>>) {
+  if (!requestLogReady) {
+    requestLogReady = (async () => {
+      await sql`
+        CREATE TABLE IF NOT EXISTS request_log (
+          id BIGSERIAL PRIMARY KEY,
+          timestamp TIMESTAMPTZ DEFAULT NOW(),
+          path TEXT NOT NULL,
+          user_agent TEXT DEFAULT '',
+          ip TEXT DEFAULT '',
+          referrer TEXT DEFAULT '',
+          sec_fetch_mode TEXT DEFAULT '',
+          accept_language TEXT DEFAULT ''
+        )
+      `;
+      await sql`CREATE INDEX IF NOT EXISTS idx_request_log_ts ON request_log(timestamp)`;
+    })().catch(e => { requestLogReady = null; throw e; });
+  }
+  return requestLogReady;
+}

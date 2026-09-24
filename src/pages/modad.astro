@@ -471,6 +471,14 @@ if (authenticated && !dbReady) {
               <div class="panel-header"><h2>Saytni o'qigan AI botlar</h2></div>
               <div class="panel-body" id="aiBots"></div>
             </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <h2>JS ishlamagan so'rovlar — yashirin fetcher'lar</h2>
+                <div class="ai-panel-note">Sahifani ochgan, lekin JavaScript ishlatmagan so'rovlar. O'zini brauzer qilib ko'rsatadigan AI (masalan Gemini) shu yerda chiqadi. <b>"Bot belgisi"</b> — brauzer odatda yuboradigan Sec-Fetch header'i yo'q; bunday qatorlar deyarli aniq bot. Qolganlari JS yuklanmasdan sahifani yopgan odamlar bo'lishi mumkin.</div>
+              </div>
+              <div class="panel-body" id="aiNoJs"></div>
+            </div>
           </div>
 
           <!-- Bots -->
@@ -1222,6 +1230,11 @@ if (authenticated && !dbReady) {
     .ai-src-row .c-bar { background: linear-gradient(90deg, #059669, #10b981); }
     .ai-num-user { color: #c084fc; }
     .ai-num-crawl { color: var(--text-2); }
+    .ai-panel-note { font-size: 0.74rem; color: var(--text-3); line-height: 1.5; margin-top: 6px; max-width: 820px; }
+    .ai-panel-note b { color: var(--text-2); }
+    .ai-ua-full { font-family: 'SF Mono', 'Cascadia Code', monospace; font-size: 0.7rem; color: var(--text-2); word-break: break-all; max-width: 460px; }
+    .ai-flag-bot { background: rgba(239, 68, 68, 0.12); color: #f87171; }
+    .ai-flag-maybe { background: var(--bg-4); color: var(--text-3); }
     @media (max-width: 900px) {
       .ai-cards { grid-template-columns: 1fr; gap: 12px; }
       #section-ai .grid-2 { grid-template-columns: 1fr; }
@@ -2923,7 +2936,7 @@ if (authenticated && !dbReady) {
         if (!cards) return;
         if (!ai) {
           cards.innerHTML = '<div class="empty" style="grid-column:1/-1">AI ma\'lumotini yuklab bo\'lmadi</div>';
-          ['aiSources', 'aiPages', 'aiLandings', 'aiBots', 'aiChart'].forEach(function(id) { document.getElementById(id).innerHTML = ''; });
+          ['aiSources', 'aiPages', 'aiLandings', 'aiBots', 'aiNoJs', 'aiChart'].forEach(function(id) { document.getElementById(id).innerHTML = ''; });
           return;
         }
         var h = ai.humans, t = ai.totals;
@@ -3003,6 +3016,20 @@ if (authenticated && !dbReady) {
               <td class="td-num">${b.sessions}</td>
               <td style="color:var(--text-3)">${timeAgo(b.lastSeen)}</td>
               <td>${b.topPages.map(p => '<span class="path-chip">' + esc(fmtPath(p.path)) + '</span> ').join('')}${b.pageCount > 3 ? '<span class="na">+' + (b.pageCount - 3) + '</span>' : ''}</td>
+            </tr>`).join('')}</tbody>
+          </table>`;
+
+        var nj = ai.noJs || [];
+        document.getElementById('aiNoJs').innerHTML = !nj.length
+          ? '<div class="empty">Bu davrda JS ishlamagan so\'rovlar yo\'q (ma\'lumot yig\'ilishi 24.09.2026 dan boshlangan)</div>'
+          : `<table>
+            <thead><tr><th>Belgi</th><th>User-Agent</th><th>So'rovlar</th><th>Sahifalar</th><th>Oxirgi</th></tr></thead>
+            <tbody>${nj.map(r => `<tr>
+              <td>${r.noSecFetch > 0 ? '<span class="ai-cat ai-flag-bot">Bot belgisi</span>' : '<span class="ai-cat ai-flag-maybe">Odam bo\'lishi mumkin</span>'}</td>
+              <td><div class="ai-ua-full">${esc(r.userAgent || '(bo\'sh)')}</div>${r.referrer ? '<div style="font-size:0.68rem;color:var(--text-4);margin-top:3px">ref: ' + esc(r.referrer.slice(0, 60)) + '</div>' : ''}</td>
+              <td class="td-num">${r.views}</td>
+              <td>${r.pages.slice(0, 3).map(p => '<span class="path-chip">' + esc(fmtPath(p)) + '</span> ').join('')}</td>
+              <td style="color:var(--text-3)">${timeAgo(r.lastSeen)}</td>
             </tr>`).join('')}</tbody>
           </table>`;
       }

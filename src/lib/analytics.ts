@@ -299,6 +299,30 @@ export async function getAiStats(period: string = 'today', from?: string, to?: s
     `,
   ]);
 
+  // ── JS ishlamagan so'rovlar ──
+  // Middleware bot deb tanimagan har bir so'rovni request_log'ga yozadi. Agar o'sha IP+sahifa
+  // uchun visits'da (JS orqali) yozuv bo'lmasa — so'rov sahifani ochgan, lekin JS ishlatmagan:
+  // o'zini brauzer qilib ko'rsatgan fetcher (masalan Gemini) yoki JS yuklanmasdan yopgan odam.
+  // Sec-Fetch-Mode header'ini zamonaviy brauzerlar doim yuboradi, fetcher'lar odatda yo'q.
+  const noJs = await sql`
+    SELECT r.user_agent,
+      COUNT(*) AS views,
+      MAX(r.timestamp) AS last_seen,
+      (ARRAY_AGG(DISTINCT r.path))[1:5] AS pages,
+      COUNT(*) FILTER (WHERE r.sec_fetch_mode = '') AS no_sec_fetch,
+      (ARRAY_AGG(r.referrer ORDER BY r.timestamp DESC))[1] AS referrer
+    FROM request_log r
+    WHERE r.timestamp >= ${since} AND r.timestamp <= ${until}
+      AND NOT EXISTS (
+        SELECT 1 FROM visits v
+        WHERE v.ip = r.ip AND v.path = r.path
+          AND v.timestamp BETWEEN r.timestamp - interval '10 seconds' AND r.timestamp + interval '5 minutes'
+      )
+    GROUP BY r.user_agent
+    ORDER BY no_sec_fetch DESC, views DESC
+    LIMIT 40
+  `.catch(() => [] as any[]);
+
   // ── AI botlar ──
   const pagesByBot = new Map<string, { path: string; views: number }[]>();
   const pageTotals = new Map<string, { path: string; user: number; crawl: number }>();
@@ -404,6 +428,14 @@ export async function getAiStats(period: string = 'today', from?: string, to?: s
       all: { views: bots.reduce((a, b) => a + b.views, 0), sessions: bots.reduce((a, b) => a + b.sessions, 0) },
     },
     topPages,
+    noJs: (noJs as any[]).map(r => ({
+      userAgent: r.user_agent || '',
+      views: +r.views,
+      lastSeen: r.last_seen,
+      pages: r.pages || [],
+      noSecFetch: +r.no_sec_fetch,
+      referrer: r.referrer || '',
+    })),
     hourly,
     series: [...series.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([k, v]) => ({
       label: hourly ? k + ':00' : k.slice(8, 10) + '.' + k.slice(5, 7),

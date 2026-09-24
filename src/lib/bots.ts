@@ -14,6 +14,9 @@ export const BOT_PATTERNS: { name: string; pattern: RegExp; category: BotCategor
   { name: 'MistralAI-User', pattern: /MistralAI-User/i, category: 'ai_user' },
   { name: 'Meta-ExternalFetcher', pattern: /Meta-ExternalFetcher/i, category: 'ai_user' },
   { name: 'DuckAssistBot', pattern: /DuckAssistBot/i, category: 'ai_user' },
+  // Google'ning foydalanuvchi so'rovi bilan ishlaydigan AI fetcher'lari (Gemini Deep Research, NotebookLM)
+  { name: 'Gemini', pattern: /Gemini/i, category: 'ai_user' },
+  { name: 'NotebookLM', pattern: /Google-NotebookLM/i, category: 'ai_user' },
 
   // AI — qidiruv indeksi
   { name: 'OAI-SearchBot', pattern: /OAI-SearchBot/i, category: 'ai_search' },
