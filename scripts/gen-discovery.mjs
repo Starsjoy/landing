@@ -30,6 +30,7 @@ const GROUPS = [
       'telegram-stars-narxi',
       'telegram-stars-paketlari-taqqoslash',
       'telegram-1000-stars-sotib-olish',
+      'telegram-stars-10000-narxi',
       'telegram-stars-koplab-arzon',
       'telegram-stars-tez-toldirish',
       'telegram-stars-eng-arzon-provayderlar',

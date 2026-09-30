@@ -25,6 +25,7 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Blog index (English guides): https://starsjoy.uz/en/blog
 
 ### English guides
+- 10,000 Telegram Stars Price in 2026 (UZS, App, Fragment): https://starsjoy.uz/en/blog/10000-telegram-stars-price — 10,000 Telegram Stars cost 2,400,000 UZS at StarsJoy (240 UZS per Star): an honest comparison with the in-app and Fragment price, how to pay a large sum despite card limits, and delivery in about 10 seconds.
 - Can Uzbeks Abroad Buy Telegram Stars or Premium? (2026): https://starsjoy.uz/en/blog/buy-telegram-stars-premium-from-abroad — Uzbeks living in Russia, Turkey, Korea or any other country can still buy Telegram Stars or Premium: how paying through @starsjoysupport with an Uzcard, Humo or Visa card works, with delivery in about 10 minutes.
 - Telegram Account Hacked: What Happens to Your Stars and Premium? (2026): https://starsjoy.uz/en/blog/telegram-account-hacked-stars-premium — If your Telegram account is hacked, what happens to your Stars balance and Premium subscription? What to do in the first few minutes, how 2FA prevents it, and whether stolen Stars can be recovered.
 - Telegram Gift Crafting: Combine Gifts Into a Rare One (2026): https://starsjoy.uz/en/blog/telegram-gift-crafting — Telegram\'s Gift Crafting feature: combine up to 4 collectible gifts into a new Rare or Legendary gift, how the success odds work, and the risk of losing everything you put in.
@@ -127,7 +128,7 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 ## Referral dasturi
 Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
 
-## Maqolalar (66 ta mavzu, har biri o'zbek va rus tilida)
+## Maqolalar (67 ta mavzu, har biri o'zbek va rus tilida)
 
 ### Telegram Stars — asoslar, narx va xarid
 
@@ -136,6 +137,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - Telegram Stars narxi 2026: O'zbekistonda eng arzon narxda sotib olish: https://starsjoy.uz/blog/telegram-stars-narxi (RU: https://starsjoy.uz/ru/blog/telegram-stars-narxi) — Telegram Stars narxi 2026-yilda qancha? Telegram Stars kursi so'mda, narxlar taqqoslanishi, Uzcard va Humo orqali arzon sotib olish usullari.
 - Telegram Stars paketlari: 50, 100, 500, 1000 — qaysi paket arzon va qaysi qachon mos? (2026): https://starsjoy.uz/blog/telegram-stars-paketlari-taqqoslash (RU: https://starsjoy.uz/ru/blog/telegram-stars-paketlari-taqqoslash) — Telegram Stars paketlarini taqqoslash: 50, 100, 500, 1000 Stars narxlari so'mda, birlik narxi, qaysi paket qaysi maqsad uchun mos va O'zbekistonda eng arzon…
 - 1000 Telegram Stars sotib olish: narxi 240 000 so'm, 10 soniyada (2026): https://starsjoy.uz/blog/telegram-1000-stars-sotib-olish (RU: https://starsjoy.uz/ru/blog/telegram-1000-stars-sotib-olish) — 1000 Telegram Stars — eng mashhur paket. Aniq narxi so'mda (240 000), Uzcard/Humo bilan Click yoki Payme orqali 10 soniyada.
+- 10 000 Telegram Stars narxi 2026 — qancha so'm?: https://starsjoy.uz/blog/telegram-stars-10000-narxi (RU: https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi) — 10 000 Telegram Stars narxi — 2 400 000 so'm (240 so'm/star). Ilova va Fragment narxi bilan taqqoslash, katta summani to'lash va 10 soniyada olish.
 - Telegram Stars'ni ko'p miqdorda arzon olish (5000+, kanal va biznes uchun): https://starsjoy.uz/blog/telegram-stars-koplab-arzon (RU: https://starsjoy.uz/ru/blog/telegram-stars-koplab-arzon) — 5000, 10 000 yoki 50 000 Stars'ni O'zbekistondan ko'p miqdorda olish: paid post va Telegram Ads uchun real narx, in-app va Fragment bilan taqqoslash, mahalliy…
 - Telegram Stars'ni 5 daqiqada to'ldirish — 2026 tezkor qo'llanma: https://starsjoy.uz/blog/telegram-stars-tez-toldirish (RU: https://starsjoy.uz/ru/blog/telegram-stars-tez-toldirish) — Telegram Stars'ni 5 daqiqada qanday to'ldirish mumkin? Eng tez yo'l, oldindan tayyorgarlik, Click va Payme bilan tezkor sxema, kechikishni kamaytirish…
 - Eng arzon Telegram Stars qayerdan? Provayderlar reytingi 2026: https://starsjoy.uz/blog/telegram-stars-eng-arzon-provayderlar (RU: https://starsjoy.uz/ru/blog/telegram-stars-eng-arzon-provayderlar) — Telegram Stars'ni eng arzon qayerdan olish mumkin? App Store, rasmiy bot, Fragment va mahalliy botlar (StarsJoy, Uzcard/Humo) — 2026 narx va to'lov usullari…
