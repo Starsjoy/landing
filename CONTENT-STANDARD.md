@@ -86,8 +86,8 @@ Layout + Navbar/NavbarRu + Footer/FooterRu, sana formati YYYY-MM-DD, tag mavjud 
 | # | Sarlavha (UZ) | UZ/RU slug → EN slug | Kalit so'z | Pul sahifasi | Holat |
 |---|---|---|---|---|---|
 | 1 | 10 000 Telegram Stars narxi 2026 — qancha so'm? | `telegram-stars-10000-narxi` → `10000-telegram-stars-price` | 10000 stars narxi | /stars/10000 | ✅ BAJARILDI (2026-09-30) UZ+RU+EN |
-| 2 | Telegram Premium 6 oylik narxi 2026 — 232 000 so'm | `telegram-premium-6-oylik-narxi` → `telegram-premium-6-months-price` | 6 oylik premium narxi | /premium/6-oy | Yangi |
-| 3 | 5000 Telegram Stars narxi 2026 — qancha so'm? | `telegram-stars-5000-narxi` → `5000-telegram-stars-price` | 5000 stars narxi | /stars/5000 | Yangi |
+| 2 | Telegram Premium 6 oylik narxi 2026 — 232 000 so'm | `telegram-premium-6-oylik-narxi` → `telegram-premium-6-months-price` | 6 oylik premium narxi | /premium/6-oy | ✅ BAJARILDI (2026-10-07) UZ+RU+EN |
+| 3 | 5000 Telegram Stars narxi 2026 — qancha so'm? | `telegram-stars-5000-narxi` → `5000-telegram-stars-price` | 5000 stars narxi | /stars/5000 | ✅ BAJARILDI (2026-10-07) UZ+RU+EN |
 | 4 | Telegram Premium'ni Click va Payme orqali olish (2026) | `telegram-premium-click-payme` → `buy-telegram-premium-with-click-payme` | premium click / payme | /premium/12-oy, 6-oy, 3-oy | Yangi |
 | 5 | 500 Telegram Stars narxi 2026 — 120 000 so'm | `telegram-stars-500-narxi` → `500-telegram-stars-price` | 500 stars narxi | /stars/500-ta | Yangi |
 | 6 | Telegram Premium 12 oylik narxi 2026 — 422 000 so'm | `telegram-premium-12-oylik` (o'zgarmaydi) + EN qo'shiladi | 12 oylik premium narxi | /premium/12-oy | Qayta yozish |

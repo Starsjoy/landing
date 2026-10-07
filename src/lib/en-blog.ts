@@ -20,6 +20,22 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: '5000-telegram-stars-price',
+    title: '5,000 Telegram Stars Price in 2026 (UZS, App, Fragment)',
+    excerpt:
+      "5,000 Telegram Stars cost 1,200,000 UZS at StarsJoy (240 UZS per Star): an honest comparison with the in-app and Fragment price, what 5,000 Stars can actually buy, and delivery in about 10 seconds.",
+    date: '2026-10-07',
+    tag: 'Stars',
+  },
+  {
+    slug: 'telegram-premium-6-months-price',
+    title: 'Telegram Premium 6 Months Price in 2026 (UZS, App, Fragment)',
+    excerpt:
+      "Telegram Premium for 6 months costs 232,000 UZS at StarsJoy (about 38,700 UZS per month): compared with the 3- and 12-month plans, the in-app and Fragment price, and how to pay with a local card.",
+    date: '2026-10-07',
+    tag: 'Premium',
+  },
+  {
     slug: '10000-telegram-stars-price',
     title: '10,000 Telegram Stars Price in 2026 (UZS, App, Fragment)',
     excerpt:

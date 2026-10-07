@@ -49,6 +49,8 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/blog/telegram-account-hacked-stars-premium': '/blog/telegram-akkaunt-buzib-olinsa-stars-premium',
   '/en/blog/buy-telegram-stars-premium-from-abroad': '/blog/chet-elda-telegram-stars-premium-sotib-olish',
   '/en/blog/10000-telegram-stars-price': '/blog/telegram-stars-10000-narxi',
+  '/en/blog/telegram-premium-6-months-price': '/blog/telegram-premium-6-oylik-narxi',
+  '/en/blog/5000-telegram-stars-price': '/blog/telegram-stars-5000-narxi',
 };
 
 /** O'zbekcha sahifa → uning inglizcha ekvivalenti (yuqoridagining teskarisi) */
