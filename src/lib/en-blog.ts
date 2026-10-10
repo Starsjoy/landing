@@ -20,6 +20,22 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: '500-telegram-stars-price',
+    title: '500 Telegram Stars Price in 2026 (UZS, App, Fragment)',
+    excerpt:
+      "500 Telegram Stars cost 120,000 UZS at StarsJoy (240 UZS per Star): an honest comparison with the in-app and Fragment price, how many gifts 500 Stars buy, and delivery in about 10 seconds.",
+    date: '2026-10-10',
+    tag: 'Stars',
+  },
+  {
+    slug: 'buy-telegram-premium-with-click-payme',
+    title: 'Pay for Telegram Premium with Click or Payme (2026 Guide)',
+    excerpt:
+      "How paying for Telegram Premium with Click or Payme works in Uzbekistan: prices for 3, 6 and 12 months, card-to-card transfer fees, step-by-step instructions and what to do if a payment fails.",
+    date: '2026-10-10',
+    tag: 'Premium',
+  },
+  {
     slug: '5000-telegram-stars-price',
     title: '5,000 Telegram Stars Price in 2026 (UZS, App, Fragment)',
     excerpt:
