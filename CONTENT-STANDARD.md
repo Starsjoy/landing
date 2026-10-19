@@ -77,6 +77,8 @@ Layout + Navbar/NavbarRu + Footer/FooterRu, sana formati YYYY-MM-DD, tag mavjud 
 
 ## Yo'l xaritasi 2 — Sotuvchi paket bloglari (2026-09-30 tasdiqlangan)
 
+> ⚠️ **Yopilgan (2026-10-19).** 1–5 bajarildi; 6–8 "Yo'l xaritasi 3" ga ko'chirildi. Yangi maqolalar faqat **Yo'l xaritasi 3** bo'yicha yoziladi.
+
 **Maqsad:** eng katta sotuvlar — Premium 12/6/3 oy va Stars 10 000/5000/1000/500 — uchun sotuv intentli, GEO'ga moslangan bloglar.
 
 **Kannibalizatsiya qoidasi:** har paketning sotuv sahifasi bor (`/premium/12-oy`, `/stars/5000` va h.k.) va u **"X sotib olish"** so'rovini oladi. Blog esa **"X narxi / qancha so'm"** so'rovini oladi — to'liq xaridor qo'llanmasi — va sotuv sahifasiga yo'naltiradi. Blog sarlavhasi/H1 "sotib olish" bilan boshlanmaydi.
@@ -110,3 +112,93 @@ Narxlar sotuv sahifalaridan olingan (2026-09-30) — har blogdan oldin qayta tek
 **Qo'shimcha (bloglardan tashqari):** 8 ta sotuv sahifasini (`/premium/*`, `/stars/*`) GEO uchun kuchaytirish — narx jadvali, ilova narxi bilan solishtirish, 10–12 FAQ.
 
 **Mavzu cheklovlari:** Starsjoy qoidalariga (oferta) zid mavzu yo'q; diniy jihatdan munozarali bayramlar (masalan 8-mart) haqida yozilmaydi.
+
+---
+
+## Yo'l xaritasi 3 — Premium + Stars sotuv bloglari (2026-10-19, AKTIV)
+
+**Bu yagona aktiv reja.** Har safar "blog yoz" deyilganda ro'yxatdagi birinchi bajarilmagan band olinadi, yozilgach `Holat` ustuni `✅ BAJARILDI (sana) UZ+RU+EN` ga o'zgartiriladi.
+
+**Fokus:** faqat Telegram **Premium** (asosiy) va **Stars** sotuvi. Gifts/NFT mavzulari bu rejaga kirmaydi.
+
+**Dublikat tekshiruvi (2026-10-19):** 70 ta mavjud UZ/RU maqolaning H1'i bilan solishtirilgan. Har bir band yangi search intent yoki mavjud maqolani qayta yozish (slug saqlanadi). Yozishdan oldin `ls src/pages/blog/` bilan qayta tekshiriladi.
+
+### Sotuv intenti qoidalari
+1. **Har maqola bitta pul sahifasiga xizmat qiladi** (`/premium/12-oy`, `/premium/6-oy`, `/premium/3-oy`, `/stars/100`, `/500-ta`, `/1000`, `/5000`, `/10000`): kamida 3 ta kontekst link + yuqorida va pastda CTA.
+2. **Kannibalizatsiya:** pul sahifasi "X sotib olish" so'rovini oladi, blog esa "X narxi / qayerdan / arziydimi" kabi qaror bosqichidagi so'rovlarni oladi. H1 "sotib olish" bilan boshlanmaydi.
+3. **Birinchi ekranda** narx (so'mda) + "@starsjoybot orqali, faqat username" + CTA tugmasi.
+4. Narxlar yozishdan oldin pul sahifalaridan qayta olinadi, taxmin qilinmaydi.
+5. **Uzcard / Humo — asosiy intent.** Premium va Stars maqolalarida title, H1, description va qisqa javobda "Uzcard va Humo bilan" bo'lishi shart. Uni boshqa maqola bilan kannibalizatsiya bahonasida olib tashlash mumkin emas.
+6. **Manba sir saqlanadi.** Fragment, TON orqali xarid va Telegram'ning sovg'a (Gift) obunalaridagi chegirmalar **tilga olinmaydi** — na taqqoslash jadvalida, na matnda. Faqat Telegram ilovasi (App Store / Google Play) narxi bilan solishtiriladi.
+7. **Yangilanish izohi yozilmaydi.** Maqolada "nima yangilangani" haqida matn bo'lmaydi; faqat sana ("Yangilangan: YYYY-MM-DD" va "Narxlar YYYY-MM-DD holatiga").
+
+### GEO (AI-javob) qoidalari
+1. **Qisqa javob bloki** (40–60 so'z): AI to'g'ridan-to'g'ri iqtibos qila oladigan, narx + usul + muddat bor bitta mustaqil paragraf.
+2. **Raqamli faktlar jadvali**: paket, so'mdagi narx, 1 oy / 1 star narxi, Telegram ilovasidagi narx bilan farq. Har bir raqamning manbasi va sanasi ko'rsatiladi.
+3. **Savol shaklidagi H2'lar** ("... qancha turadi?", "... qayerdan arzon?"), har biri birinchi gapida to'g'ridan-to'g'ri javob beradi.
+4. **8–10 ta FAQ** + `FAQPage`, `Article`, `BreadcrumbList` (narx bo'lsa `Product`/`Offer`) JSON-LD.
+5. **Entity izchilligi**: "StarsJoy", "@starsjoybot", "starsjoy.uz" doim bir xil yoziladi; muallif va "yangilangan sana" ko'rinadi.
+6. `llms.txt`, `rss.xml`, `gen-discovery.mjs`, blog index'lar (uz/ru) va `en-blog.ts` yangilanadi.
+
+### Qayta yozish protokoli (xavfsiz, faqat foyda) — MAJBURIY
+
+Mavjud maqola qayta yozilganda quyidagi 4 bosqich to'liq bajariladi. Bitta mezon ham bajarilmasa, maqola chop etilmaydi.
+
+**A. Oldin — baseline (o'lchamasdan o'zgartirilmaydi)**
+1. Google Search Console: oxirgi 28 kunlik ma'lumotlar (URL bo'yicha) — top so'rovlar, kliklar, ko'rinishlar va o'rtacha pozitsiya — pastdagi **Qayta yozish jurnali**ga yoziladi. GSC'ga kirish bo'lmasa, foydalanuvchidan eksport so'raladi.
+2. **10+ ko'rinishga ega har bir so'rov "himoyalangan so'rov" hisoblanadi** va yangi matnda saqlanadi (title, H2 yoki FAQ'da).
+3. Sahifa biror pul so'rovida **top-3** da bo'lsa, faqat **yumshoq rejim** ishlatiladi: matn tanasi saqlanadi va faqat qo'shiladi; title, H1, meta, qisqa javob, narxlar, linklar va EN yangilanadi.
+
+**B. Saqlanadigan narsalar (ranking signallari yo'qolmasin)**
+1. Slug, canonical, `datePublished`, RU/UZ juftligi va mavjud `hreflang` o'zgarmaydi.
+2. Matn **qisqarmaydi**: so'zlar soni ≥ eskisi. Ranking olib kelayotgan bo'limlar o'chirilmaydi, faqat yangilanadi yoki pastga suriladi.
+3. Mavjud H2 `id` lari (anchor) va rasmlar (`src` + `alt`) saqlanadi.
+4. Title'da eski asosiy kalit so'z qoladi, faqat tartibi o'zgaradi. Masalan: "1000 Telegram Stars narxi 2026 — 240 000 so'm, 10 soniyada". H1 sotuv sahifasi bilan raqobatlashmasligi uchun "sotib olish" bilan boshlanmaydi, lekin bu so'z matnda va FAQ'da qoladi.
+5. Mavjud JSON-LD o'chirilmaydi, faqat to'ldiriladi.
+
+**C. Majburiy foyda (har biri bo'lishi shart)**
+1. **Yangi narxlar**: sotuv sahifasidan olinadi, ko'rinadigan "Narxlar YYYY-MM-DD holatiga" yozuvi bilan.
+2. **Qisqa javob** (40–60 so'z): birinchi ekranda turadi, narx + usul + muddat.
+3. **Faktlar jadvali**: so'm narxi, 1 star / 1 oy narxi, Telegram ilovasidagi narx bilan farq.
+4. **Information gain**: raqobatchilarda yo'q kamida 1 ta noyob fakt yoki hisob (masalan, kunlik narx yoki ilova narxi bilan aniq foiz farqi).
+5. **Savol shaklidagi H2'lar** + 8–10 FAQ (`FAQPage`), `Article` (`dateModified` faqat haqiqiy o'zgarishda yangilanadi), `BreadcrumbList`, narx bo'lsa `Offer`.
+6. **Ichki linklar**: sotuv sahifasiga 3+ link; 2+ boshqa maqoladan shu maqolaga **kiruvchi** link qo'shiladi; raqobatlashgan maqolalar bilan anchor matnlari ajratiladi (har biri o'z so'rovi bilan).
+7. **EN versiya** + uch tomonlama `hreflang` (uz/ru/en, x-default).
+8. Muallif, "Yangilangan" sanasi va manbalar ko'rinib turadi (E-E-A-T, GEO ishonchi uchun).
+
+**D. 301 redirect qoidasi (faqat birlashtirishda)**
+1. Avval yo'naltiriladigan sahifaning himoyalangan so'rovlari va noyob kontenti maqsad sahifaga ko'chiriladi, keyin 301 qilinadi.
+2. Redirect uz va ru uchun alohida qilinadi (`vercel.json` → `redirects`, `permanent: true`), zanjirsiz (A→B, A→B→C emas).
+3. Eski URL'ga ichki linklar yangi URL'ga almashtiriladi; eski URL sitemap, `llms.txt`, `rss.xml`, `gen-discovery.mjs` va blog index'lardan olib tashlanadi.
+
+**E. Keyin — nazorat va qaytarish**
+1. `npm run build` → sahifa ko'zda tekshiriladi → Rich Results Test → GSC'da "Request indexing".
+2. **14 va 28-kun** tekshiruvi: jurnalga yangi ko'rsatkichlar yoziladi.
+3. **Qaytarish qoidasi:** 28-kunda himoyalangan so'rovlar bo'yicha kliklar baseline'dan **20%+ past** bo'lsa (mavsumiylik hisobga olinadi) → title, H1 va meta eski versiyaga qaytariladi (`git show <commit>:<fayl>`), qo'shilgan foydali bloklar esa qoldiriladi.
+4. Bir klasterda (masalan, Premium paketlari) bir vaqtda **faqat bitta** qayta yozish: natija aniq o'lchanishi uchun keyingisi 14 kundan keyin.
+5. Baseline va nazorat GSC API orqali olinadi (`scripts/gsc/service-account.json`, property `sc-domain:starsjoy.uz`): `searchAnalytics/query`, `page equals <URL>` filtri, `query` o'lchami bo'yicha, oxirgi 3 kun (GSC kechikishi) hisobga olinmaydi.
+
+#### Qayta yozish jurnali
+
+| Slug | Sana | Rejim | Baseline (28 kun: klik / ko'rinish / poz.) | Himoyalangan so'rovlar | 14-kun | 28-kun | Xulosa |
+|---|---|---|---|---|---|---|---|
+| `telegram-premium-12-oylik` (uz/ru) + EN yangi | 2026-10-19 | Yumshoq (top-3: "telegram premium narxi 2026" poz 2.5) | 19.09–16.10: UZ 14 / 420 / 5.1 · RU 9 / 640 / 6.7 · `/premium/12-oy` 1 / 60 / 4.8 | "telegram premium narxi 2026" (11 ko'r., poz 2.5), "telegram premium narxi" (20 ko'r., poz 9.8) — ikkalasi title'da saqlandi | 2026-11-02 | 2026-11-16 | Kutilmoqda. Tuzatildi: to'lov oqimi (kartaga o'tkazma), pinned chat 20→10, "SMS ustuvorligi" olib tashlandi. Qo'shildi: narx faktlari bloki, ilova narxi bilan taqqoslash, kunlik narx, kafolat, CTA, 10 FAQ, EN. So'zlar: UZ 1687→2271, RU 1541→2238 |
+
+### Reja (yozish tartibi bo'yicha)
+
+| # | Sarlavha (UZ) | Slug (UZ/RU → EN) | Asosiy so'rov | Pul sahifasi | Turi | Dublikatdan ajratish | Holat |
+|---|---|---|---|---|---|---|---|
+| 1 | Telegram Premium 12 oylik narxi 2026 — 422 000 so'm | `telegram-premium-12-oylik` → `telegram-premium-12-months-price` | 12 oylik premium narxi | /premium/12-oy | Qayta yozish | Narx + Uzcard/Humo title'da; karta limiti nuanslari `telegram-premium-12-oylik-uzcard-humo-bilan` ga link qilinadi | ✅ BAJARILDI (2026-10-19) UZ+RU+EN — nazorat: 02.11 / 16.11 |
+| 2 | 1000 Telegram Stars narxi 2026 — 240 000 so'm | `telegram-1000-stars-sotib-olish` → `1000-telegram-stars-price` | 1000 stars narxi | /stars/1000 | Qayta yozish | H1'dan "sotib olish" olib tashlanadi; `stars-paketlari-taqqoslash` umumiy taqqoslash bo'lib qoladi | ⏳ |
+| 3 | Telegram Premium 3 oylik narxi 2026 — 172 000 so'm | `telegram-premium-3-oylik-sotib-olish` → `telegram-premium-3-months-price` | 3 oylik premium narxi | /premium/3-oy | Qayta yozish | `telegram-premium-3-oy-6-oy` (uz+ru) shu sahifaga **301** qilinadi (6 oy qismini `6-oylik-narxi` allaqachon qoplaydi) | ⏳ |
+| 4 | Eng arzon Telegram Premium 2026 — qayerdan va qancha? | `telegram-premium-eng-arzon` → `cheapest-telegram-premium` | arzon telegram premium | /premium/12-oy | Yangi | `paketlar-taqqoslash` "qaysi paket arzon" haqida; bu maqola "qaysi **yo'l** arzon" (Telegram ilovasi, boshqa botlar, StarsJoy) haqida — Fragment tilga olinmaydi | ⏳ |
+| 5 | 100 Telegram Stars narxi 2026 — qancha so'm? | `telegram-stars-100-narxi` → `100-telegram-stars-price` | 100 stars narxi | /stars/100 | Yangi | 500/1000/5000 seriyasining yetishmayotgan bo'g'ini; `stars-paketlari-taqqoslash` umumiy bo'lib qoladi | ⏳ |
+| 6 | iPhone va Android'da Telegram Premium narxi: ilovada nega qimmat? | `telegram-premium-iphone-android-narxi` → `telegram-premium-price-iphone-android` | iphone telegram premium narxi | /premium/12-oy | Yangi | App Store va Google Play narxi so'mga o'girilib StarsJoy bilan solishtiriladi; mavjud maqolalarda bu mavzu faqat o'tib ketishda tilga olingan | ⏳ |
+| 7 | Telegram Premium arziydimi? 2026 hisob-kitob: 1 kunga qancha tushadi | `telegram-premium-arziydimi` → `is-telegram-premium-worth-it` | telegram premium arziydimi | /premium/12-oy | Yangi | `premium-funksiyalari` funksiyalar ro'yxati; bu maqola **qaror** haqida: kunlik narx, kimga foydali va kimga foydasiz | ⏳ |
+| 8 | Bir nechta akkauntga Telegram Premium: jamoa, oila va giveaway g'oliblari uchun | `telegram-premium-koplab-akkauntga` → `telegram-premium-for-multiple-accounts` | ko'p akkauntga premium | /premium/12-oy, 3-oy | Yangi | `stars-koplab-arzon` faqat Stars haqida; Premium uchun ko'p miqdorda buyurtma maqolasi yo'q | ⏳ |
+| 9 | Telegram Premium'ni Stars bilan olish mumkinmi? (2026) | `telegram-premium-stars-bilan` → `pay-telegram-premium-with-stars` | premium stars bilan | /premium/*, /stars/1000 | Yangi | `stars-yoki-premium` "qaysi birini tanlash" haqida; bu maqola "Stars'ni Premium'ga **ishlatish**" haqida. ⚠️ Telegram'ning amaldagi qoidasi web search bilan tasdiqlanadi, tasdiqlanmasa band almashtiriladi | ⏳ |
+| 10 | Telegram username qayerdan topiladi — Premium va Stars olish uchun | `telegram-username-qayerdan-topiladi` → `find-telegram-username` | telegram username qayerda | /premium/12-oy, /stars/1000 | Yangi | Xaridgacha bo'lgan to'siqni olib tashlaydi (username yo'q / bilmaydi); mavjud maqolalarda faqat bir qator bilan tilga olingan | ⏳ |
+
+**Har bir maqola tuzilmasi:** "Yo'l xaritasi 2"dagi 7 bandlik tuzilma + yuqoridagi GEO qoidalari. Kafolat va to'lov matni ofertaga mos bo'lishi kerak.
+
+**Rejadan tashqari ochiq ish:** `telegram-stars-eng-arzon-provayderlar` uchun EN versiya.

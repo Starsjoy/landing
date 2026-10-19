@@ -20,6 +20,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'telegram-premium-12-months-price',
+    title: 'Telegram Premium 12 Months Price in 2026 — 422,000 UZS, Pay with Uzcard or Humo',
+    excerpt:
+      "Telegram Premium for 12 months costs 422,000 UZS at StarsJoy (about 35,200 UZS per month, 1,160 per day), paid with Uzcard or Humo — roughly 300,000 UZS less than a year in the app. Compared with 3 and 6 months.",
+    date: '2026-10-19',
+    tag: 'Premium',
+  },
+  {
     slug: '500-telegram-stars-price',
     title: '500 Telegram Stars Price in 2026 (UZS, App, Fragment)',
     excerpt:
