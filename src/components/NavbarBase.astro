@@ -54,6 +54,13 @@ const ICONS: Record<string, string> = {
 };
 const TG_PATH = 'M21.4 4.6 2.9 11.8c-1.2.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.5c.2.6.4.8.9.8.4 0 .6-.2.8-.4l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.8-1.4-1.4ZM8.9 14.4l8.6-5.4c.4-.3.8-.1.5.2l-7 6.4-.3 3.1z';
 
+// Bayroqlar inline SVG — emoji bayroqlar Windows'da ko'rinmaydi
+const FLAGS: Record<string, string> = {
+  UZ: '<rect width="24" height="16" fill="#fff"/><rect width="24" height="5.2" fill="#0099B5"/><rect y="10.8" width="24" height="5.2" fill="#1EB53A"/><rect y="5.2" width="24" height=".5" fill="#CE1126"/><rect y="10.3" width="24" height=".5" fill="#CE1126"/>',
+  RU: '<rect width="24" height="16" fill="#fff"/><rect y="5.33" width="24" height="5.34" fill="#0039A6"/><rect y="10.67" width="24" height="5.33" fill="#D52B1E"/>',
+  EN: '<rect width="24" height="16" fill="#012169"/><path d="M0 0l24 16M24 0 0 16" stroke="#fff" stroke-width="3.2"/><path d="M0 0l24 16M24 0 0 16" stroke="#C8102E" stroke-width="1.2"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="5"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="3"/>',
+};
+
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => {
   if (href.includes('#')) return false;
@@ -120,8 +127,8 @@ const links = items.filter((i) => !i.children && i.href !== homeHref);
       <div class="nav-actions">
         {langs.length > 1 && (
           <div class="lang has-dd">
-            <button class="lang-btn" type="button" aria-label={langLabel} aria-haspopup="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z" fill="none" stroke="currentColor" stroke-width="1.6" /></svg>
+            <button class="lang-btn" type="button" aria-label={langLabel} aria-haspopup="true" aria-expanded="false">
+              <svg class="flag" width="20" height="14" viewBox="0 0 24 16" aria-hidden="true" set:html={FLAGS[currentLang.code]} />
               <span>{currentLang.code}</span>
               <svg class="chev" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
             </button>
@@ -129,7 +136,7 @@ const links = items.filter((i) => !i.children && i.href !== homeHref);
               <div class="dd-card dd-card--lang">
                 {langs.map((l) => (
                   <a href={l.href} hreflang={l.code.toLowerCase()} class:list={['lang-opt', { active: l.current }]} aria-current={l.current ? 'true' : undefined}>
-                    <span>{l.label}</span><small>{l.code}</small>
+                    <span class="lang-name"><svg class="flag" width="20" height="14" viewBox="0 0 24 16" aria-hidden="true" set:html={FLAGS[l.code]} />{l.label}</span><small>{l.code}</small>
                   </a>
                 ))}
               </div>
@@ -231,6 +238,16 @@ const links = items.filter((i) => !i.children && i.href !== homeHref);
       (document.activeElement as HTMLElement).blur();
     }
   });
+
+  // Til dropdown'i: telefonda bosish bilan ochiladi (hover/focus iOS'da ishonchsiz)
+  const lang = header?.querySelector<HTMLElement>('.lang');
+  const langBtn = lang?.querySelector<HTMLButtonElement>('.lang-btn');
+  const setLang = (open: boolean) => {
+    lang?.classList.toggle('open', open);
+    langBtn?.setAttribute('aria-expanded', String(open));
+  };
+  langBtn?.addEventListener('click', (e) => { e.stopPropagation(); setLang(!lang?.classList.contains('open')); });
+  document.addEventListener('click', (e) => { if (!lang?.contains(e.target as Node)) setLang(false); });
 
   matchMedia('(min-width: 1101px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
 
@@ -471,7 +488,11 @@ const links = items.filter((i) => !i.children && i.href !== homeHref);
     cursor: pointer;
     transition: border-color 0.2s, background 0.2s;
   }
-  .lang-btn:hover, .lang:focus-within .lang-btn { border-color: rgba(124, 58, 237, 0.3); background: #fff; }
+  .lang-btn:hover, .lang:focus-within .lang-btn, .lang.open .lang-btn { border-color: rgba(124, 58, 237, 0.3); background: #fff; }
+  .lang.open > .dd { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
+  .lang.open .chev { transform: rotate(180deg); }
+  .flag { display: block; width: 20px; height: 14px; flex-shrink: 0; border-radius: 3px; box-shadow: 0 0 0 1px rgba(26, 16, 53, 0.1); }
+  .lang-name { display: flex; align-items: center; gap: 10px; }
   .dd-card--lang { width: 190px; padding: 6px; }
   .lang-opt {
     display: flex;
@@ -763,7 +784,8 @@ const links = items.filter((i) => !i.children && i.href !== homeHref);
     .nav-inner { gap: 14px; }
   }
   @media (max-width: 1100px) {
-    .desk-nav, .lang { display: none; }
+    /* Mobil: Telegram tugmasi o'rnida til dropdown'i; bot tugmasi menyu pastida qoladi */
+    .desk-nav, .nav-actions > .nav-cta { display: none; }
     .burger { display: inline-flex; }
     .nav-inner { height: 66px; padding: 0 20px; }
     #navbar:is(.scrolled, .menu-open) .nav-bar { width: calc(100% - 20px); margin-top: 8px; border-radius: 20px; }
