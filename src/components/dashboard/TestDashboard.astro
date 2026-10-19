@@ -1,0 +1,152 @@
+<!-- Visual theme only. Layout, responsive rules and behavior come from modad.astro. -->
+<style is:global>
+  html[data-dashboard="refresh"] {
+    color-scheme: dark;
+    --bg-0: #0c100d;
+    --bg-1: #111812;
+    --bg-2: #171f19;
+    --bg-3: #202b23;
+    --bg-4: #2b3930;
+    --border: #293a2e;
+    --border-light: #3d5545;
+    --text-0: #f2f8f4;
+    --text-1: #d9e6dd;
+    --text-2: #b2c7b9;
+    --text-3: #92ad9c;
+    --text-4: #819c8b;
+    --accent: #79ec99;
+    --accent-light: #b3fac6;
+    --accent-dark: #58ce7b;
+    --accent-bg: rgba(121, 236, 153, 0.08);
+    --accent-bg-strong: rgba(121, 236, 153, 0.15);
+    --green: #79ec99;
+    --green-bg: rgba(121, 236, 153, 0.10);
+    --radius: 18px;
+    --radius-sm: 10px;
+  }
+
+  [data-dashboard="refresh"] .sidebar {
+    background: #111812;
+    border-color: #26372b;
+  }
+  [data-dashboard="refresh"] .sb-brand-name { color: #ecf8ef; }
+  [data-dashboard="refresh"] .sb-brand-sub { color: #91b29c; }
+  [data-dashboard="refresh"] #sidebar-nav a { border-radius: 12px; }
+  [data-dashboard="refresh"] #sidebar-nav a .sb-icon {
+    background: #1d2a21;
+    color: #a3c5ae;
+  }
+  [data-dashboard="refresh"] #sidebar-nav a.active {
+    background: #263f2e;
+    color: #bbf9cc;
+  }
+  [data-dashboard="refresh"] #sidebar-nav a.active .sb-icon {
+    background: #79ec99;
+    color: #153d21;
+    box-shadow: none;
+  }
+  [data-dashboard="refresh"] #sidebar-nav a:hover { background: #213326; }
+  [data-dashboard="refresh"] .topbar {
+    background: rgba(15, 23, 17, 0.94);
+    border-color: #2b3b2f;
+  }
+  [data-dashboard="refresh"] :is(.tb-filters, .tb-months) {
+    background: #18251c;
+    border-color: #2b4132;
+    border-radius: 16px;
+  }
+  [data-dashboard="refresh"] :is(.tb-filters, .tb-months) button {
+    border-radius: 12px;
+  }
+  [data-dashboard="refresh"] :is(.tb-filters, .tb-months) button.active {
+    background: #edf8f0;
+    color: #193522;
+    box-shadow: none;
+  }
+  [data-dashboard="refresh"] :is(.tb-btn, .menu-btn, .rf-btn, .an-tab, .form-btn-sm) {
+    border-radius: 12px;
+  }
+  [data-dashboard="refresh"] :is(.panel, .chart-panel, .profit-breakdown, .plan-daily) {
+    background: #151e18;
+    border-color: #2a3b2f;
+    border-radius: 18px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  }
+  [data-dashboard="refresh"] :is(.stat-card, .profit-card, .salary-card, .plan-card, .buyer-card, .ai-card) {
+    background: #17221b;
+    border-color: #2e4535;
+    border-radius: 18px;
+    box-shadow: none;
+  }
+  [data-dashboard="refresh"] :is(.profit-main, .profit-uz, .profit-sub) {
+    background: #192a1f;
+    border-color: #385b43;
+  }
+  [data-dashboard="refresh"] .profit-card.profit-total {
+    background: #79ec99;
+    border-color: #79ec99;
+  }
+  [data-dashboard="refresh"] .profit-total :is(.pc-value, .pc-label, .pc-sub) {
+    color: #123b20;
+  }
+  [data-dashboard="refresh"] .profit-uz .pc-value { color: #9de9c5; }
+  [data-dashboard="refresh"] .profit-sub .pc-value { color: #b5dfc1; }
+  [data-dashboard="refresh"] :is(.stat-card.highlighted, .salary-card.sc-primary, .plan-card-main) {
+    background: #1d3023;
+    border-color: #4b7656;
+    box-shadow: none;
+  }
+  [data-dashboard="refresh"] :is(.pb-header, .panel-header, .chart-header, .pb-row, .pb-group) {
+    border-color: #2b4032;
+  }
+  [data-dashboard="refresh"] :is(.pc-value, .sc-value, .sc-val, .bc-value) {
+    font-variant-numeric: tabular-nums;
+  }
+  [data-dashboard="refresh"] table th {
+    background: #19251d;
+    color: #a2bfac;
+    border-color: #2e4435;
+  }
+  [data-dashboard="refresh"] table td { border-color: #273b2e; }
+  [data-dashboard="refresh"] tbody tr:nth-child(even) { background: #18241c; }
+  [data-dashboard="refresh"] tbody tr:hover { background: #213a29; }
+  [data-dashboard="refresh"] :is(.path-chip, .ua-chip, .sess-id) {
+    background: #1d2c22;
+    border-color: #314b39;
+    color: #b4d0bd;
+  }
+  [data-dashboard="refresh"] .an-tab.active {
+    background: #79ec99;
+    color: #173d22;
+    border-color: #79ec99;
+  }
+  [data-dashboard="refresh"] .chart-body svg text { fill: #93ad9c; }
+  [data-dashboard="refresh"] input:focus { border-color: #79ec99; }
+  [data-dashboard="refresh"] :is(button, a, input, select):focus-visible {
+    outline: 2px solid #a5f5bc;
+    outline-offset: 3px;
+  }
+  [data-dashboard="refresh"] .login-box {
+    background: #17221b;
+    border-color: #34563e;
+    border-radius: 24px;
+  }
+  [data-dashboard="refresh"] .login-box button {
+    background: #79ec99;
+    color: #123b20;
+    border-radius: 12px;
+  }
+  [data-dashboard="refresh"] .uz-topbar {
+    background: #131f17;
+    border-color: #2e4937;
+  }
+  [data-dashboard="refresh"] .uz-tab.active {
+    background: #79ec99;
+    color: #173d22;
+  }
+  [data-dashboard="refresh"] .uz-section {
+    background: #17221b;
+    border-color: #2e4937;
+    border-radius: 18px;
+  }
+</style>

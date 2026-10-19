@@ -1,7 +1,36 @@
 ---
+/**
+ * Xizmatlar — glass kartochkalar. Har bir kartochka butunlay havola:
+ * /stars, /premium, /gifts. Hover: silliq ko'tarilish, kursor ortidan
+ * yuradigan yumshoq yorug'lik (faqat sichqoncha), 3D rasm va strelka harakati.
+ */
+const services = [
+  {
+    title: 'Telegram Stars',
+    desc: "Kontentga to'lov qilish, kanallarni qo'llab-quvvatlash va botlardan xarid uchun Stars oling",
+    href: '/stars',
+    img: '/images/services-3d/stars.webp',
+    tone: 'gold',
+  },
+  {
+    title: 'Telegram Premium',
+    desc: 'Cheksiz imkoniyatlar: katta fayllar, tezkor yuklab olish, eksklyuziv sticker va reaktsiyalar',
+    href: '/premium',
+    img: '/images/services-3d/premium.webp',
+    tone: 'violet',
+  },
+  {
+    title: 'Telegram Gifts',
+    desc: "Do'stlaringizga maxsus sovg'alar yuboring — unikal animatsiyalar va premium hislar",
+    href: '/gifts',
+    img: '/images/services-3d/gifts.webp',
+    tone: 'rose',
+  },
+];
 ---
 
 <section id="services">
+  <div class="svc-bg" aria-hidden="true"><span></span><span></span></div>
   <div class="container">
     <div class="section-header fade-in">
       <span class="section-label">Xizmatlar</span>
@@ -9,149 +38,223 @@
       <p class="section-subtitle">Telegramning barcha premium xizmatlarini bir joydan oling</p>
     </div>
     <div class="services-grid">
-      <div class="service-card service-purple fade-in">
-        <div class="service-top">
-          <h3 class="service-title">Telegram Stars</h3>
-          <div class="service-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M16 3l3.7 7.5 8.3 1.2-6 5.8 1.4 8.3L16 21.9l-7.4 3.9 1.4-8.3-6-5.8 8.3-1.2L16 3z" stroke="#7C3AED" stroke-width="2" stroke-linejoin="round" fill="#7C3AED" opacity="0.15"/>
-              <path d="M16 3l3.7 7.5 8.3 1.2-6 5.8 1.4 8.3L16 21.9V3z" fill="#7C3AED" opacity="0.1"/>
-            </svg>
+      {services.map((s) => (
+        <a href={s.href} class={`service-card tone-${s.tone} fade-in`}>
+          <span class="glow" aria-hidden="true"></span>
+          <div class="service-top">
+            <h3 class="service-title">{s.title}</h3>
+            <span class="icon-wrap" aria-hidden="true">
+              <img class="service-icon" src={s.img} width="104" height="104" alt="" loading="lazy" decoding="async" />
+            </span>
           </div>
-        </div>
-        <p class="service-desc">Kontentga to'lov qilish, kanallarni qo'llab-quvvatlash va botlardan xarid uchun Stars oling</p>
-      </div>
-
-      <div class="service-card service-blue fade-in">
-        <div class="service-top">
-          <h3 class="service-title">Telegram Premium</h3>
-          <div class="service-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M16 4L7 15l9 17 9-17L16 4z" stroke="#2563EB" stroke-width="2" stroke-linejoin="round" fill="#2563EB" opacity="0.12"/>
-              <path d="M16 4l9 11L16 32V4z" fill="#2563EB" opacity="0.08"/>
-              <path d="M10 15l6-6 6 6" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-            </svg>
-          </div>
-        </div>
-        <p class="service-desc">Cheksiz imkoniyatlar: katta fayllar, tezkor yuklab olish, eksklyuziv sticker va reaktsiyalar</p>
-      </div>
-
-      <div class="service-card service-amber fade-in">
-        <div class="service-top">
-          <h3 class="service-title">Telegram Gifts</h3>
-          <div class="service-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect x="6" y="14" width="20" height="14" rx="3" stroke="#D97706" stroke-width="2" fill="#D97706" opacity="0.1"/>
-              <rect x="8" y="9" width="16" height="6" rx="2.5" stroke="#D97706" stroke-width="2" fill="#D97706" opacity="0.08"/>
-              <rect x="14" y="9" width="4" height="19" rx="1" fill="#D97706" opacity="0.15"/>
-              <path d="M16 9c-2-4.5-8-4.5-8 0s8 5 8 5 8-.5 8-5-6-4.5-8 0z" fill="#D97706" opacity="0.12"/>
-            </svg>
-          </div>
-        </div>
-        <p class="service-desc">Do'stlaringizga maxsus sovg'alar yuboring — unikal animatsiyalar va premium hislar</p>
-      </div>
+          <p class="service-desc">{s.desc}</p>
+          <span class="service-more">
+            Batafsil
+            <span class="arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </span>
+          </span>
+        </a>
+      ))}
     </div>
   </div>
 </section>
 
+<script>
+  // Kursor ortidan yuradigan yorug'lik — faqat aniq ko'rsatkichli qurilmalarda.
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll<HTMLElement>('#services .service-card').forEach((card) => {
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        card.style.setProperty('--my', `${e.clientY - r.top}px`);
+      });
+    });
+  }
+</script>
+
 <style>
+  #services { position: relative; isolation: isolate; overflow: hidden; }
+
+  /* Glass ko'rinishi uchun orqa fonda yumshoq dog'lar */
+  .svc-bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .svc-bg span {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.28;
+  }
+  .svc-bg span:nth-child(1) { width: 480px; height: 480px; top: 30%; left: -120px; background: #C4B5FD; }
+  .svc-bg span:nth-child(2) { width: 420px; height: 420px; bottom: -80px; right: -80px; background: #FBCFE8; }
+
   .services-grid {
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
 
   .service-card {
-    background: #FFFFFF;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 36px 28px;
-    text-align: left;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    --accent: #F59E0B;
+    --accent-soft: rgba(245, 158, 11, 0.14);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 28px 26px;
+    border-radius: 26px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    isolation: isolate;
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.62));
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow:
+      0 0 0 1px rgba(26, 16, 53, 0.06),
+      0 1px 2px rgba(26, 16, 53, 0.04),
+      0 16px 40px -22px rgba(26, 16, 53, 0.22),
+      inset 0 1px 0 #fff;
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s var(--ease),
+      box-shadow 0.6s var(--ease);
+    will-change: transform;
+  }
+  .tone-violet { --accent: #7C3AED; --accent-soft: rgba(124, 58, 237, 0.13); }
+  .tone-rose { --accent: #EC4899; --accent-soft: rgba(236, 72, 153, 0.13); }
+
+  /* Kursor ortidan yuradigan yorug'lik */
+  .glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 0%), var(--accent-soft), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.5s var(--ease);
   }
 
   .service-top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 10px;
+    gap: 12px;
+    margin-bottom: 12px;
   }
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--gradient);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .service-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(124, 58, 237, 0.2);
-    box-shadow: var(--shadow-lg);
-  }
-  .service-card:hover::before { opacity: 1; }
-
-  .service-icon {
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .service-purple .service-icon { background: rgba(124, 58, 237, 0.08); }
-  .service-blue .service-icon { background: rgba(37, 99, 235, 0.08); }
-  .service-amber .service-icon { background: rgba(245, 158, 11, 0.08); }
-
   .service-title {
+    margin-top: 6px;
     font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
     color: var(--text);
   }
-  .service-desc {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    line-height: 1.6;
+
+  .icon-wrap {
+    position: relative;
+    flex: 0 0 104px;
+    width: 104px;
+    height: 104px;
+    margin: -8px -6px 0 0;
+  }
+  .icon-wrap::after {
+    content: '';
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 2px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(26, 16, 53, 0.16), transparent);
+    transition: transform 0.6s var(--ease), opacity 0.6s var(--ease);
+  }
+  .service-icon {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    transition: transform 0.7s var(--ease);
   }
 
-  .service-price {
-    display: inline-block;
-    padding: 8px 20px;
-    background: rgba(124, 58, 237, 0.06);
-    border-radius: 50px;
-    font-weight: 700;
-    color: var(--primary);
-    font-size: 0.9rem;
+  .service-desc {
+    flex: 1;
+    margin-bottom: 22px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
   }
+
+  .service-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(26, 16, 53, 0.07);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text);
+    transition: color 0.4s var(--ease);
+  }
+  .arrow {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #F5F3F9;
+    color: var(--text);
+    overflow: hidden;
+    transition: background 0.45s var(--ease), color 0.45s var(--ease), transform 0.45s var(--ease);
+  }
+  .arrow svg { transition: transform 0.45s var(--ease); }
+
+  /* ===== Hover (faqat sichqoncha) ===== */
+  @media (hover: hover) and (pointer: fine) {
+    .services-grid .service-card.visible:hover {
+      transform: translateY(-8px);
+      box-shadow:
+        0 0 0 1px rgba(26, 16, 53, 0.07),
+        0 2px 4px rgba(26, 16, 53, 0.04),
+        0 32px 60px -28px rgba(26, 16, 53, 0.32),
+        inset 0 1px 0 #fff;
+    }
+    .service-card:hover .glow { opacity: 1; }
+    .service-card:hover .service-icon { transform: translateY(-6px) rotate(-6deg) scale(1.06); }
+    .service-card:hover .icon-wrap::after { transform: scaleX(0.8); opacity: 0.6; }
+    .service-card:hover .service-more { color: var(--accent); }
+    .service-card:hover .arrow { background: var(--accent); color: #fff; transform: scale(1.06); }
+    .service-card:hover .arrow svg { animation: nudge 0.6s var(--ease); }
+  }
+  @keyframes nudge {
+    0% { transform: translateX(0); }
+    45% { transform: translateX(140%); }
+    46% { transform: translateX(-140%); }
+    100% { transform: translateX(0); }
+  }
+
+  /* Bosish — mobilda ham sezilsin */
+  .services-grid .service-card.visible:active { transform: scale(0.985); transition-duration: 0.15s; }
+  .service-card:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
 
   @media (max-width: 1024px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
-    .services-grid { grid-template-columns: 1fr; gap: 16px; }
-    .service-card {
-      padding: 24px 20px;
-    }
-    .service-card:hover { transform: none; }
-    .service-icon {
-      width: 48px;
-      height: 48px;
-      min-width: 48px;
-    }
-    .service-title {
-      font-size: 1.1rem;
-    }
-    .service-desc {
-      font-size: 0.85rem;
-      margin-bottom: 0;
-      line-height: 1.5;
-    }
+    .services-grid { grid-template-columns: 1fr; gap: 14px; }
+    .service-card { padding: 22px 20px 18px; border-radius: 22px; }
+    .icon-wrap { flex-basis: 84px; width: 84px; height: 84px; margin: -6px -4px 0 0; }
+    .service-title { font-size: 1.15rem; }
+    .service-desc { font-size: 0.88rem; line-height: 1.5; margin-bottom: 16px; }
+    .service-more { padding-top: 14px; }
+    .arrow { width: 32px; height: 32px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-card, .service-icon, .arrow, .arrow svg, .glow, .icon-wrap::after { transition: none !important; animation: none !important; }
   }
 </style>

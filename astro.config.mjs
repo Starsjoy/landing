@@ -7,6 +7,13 @@ export default defineConfig({
   output: 'server',
   trailingSlash: 'never',
   adapter: vercel(),
+  vite: {
+    server: {
+      watch: {
+        ignored: ['**/.vercel/**', '**/frontend/**', '**/backend/**'],
+      },
+    },
+  },
   integrations: [sitemap({
     i18n: {
       defaultLocale: 'uz',
@@ -18,6 +25,7 @@ export default defineConfig({
     },
     filter: (page) =>
       !page.includes('/modad') &&
+      new URL(page).pathname !== '/test' &&
       !page.includes('/api/') &&
       !page.includes('/admin'),
     changefreq: 'weekly',

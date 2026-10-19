@@ -63,7 +63,7 @@ const agg = aggregateOf(await getApprovedReviews('premium'));
     }),
   })} />
   <Navbar />
-  <Hero />
+  <Hero rating={agg} />
   <Services />
   <HowItWorks />
   <Guarantees />

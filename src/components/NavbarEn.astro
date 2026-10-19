@@ -2,100 +2,59 @@
 /**
  * Ingliz tilidagi navigatsiya.
  *
- * UZ/RU navbardan farqi: ingliz tilida hozircha faqat 5 ta sahifa bor, shuning
- * uchun menyuda faqat o'shalar. Mavjud bo'lmagan bo'limlarga (Gifts, Blog,
- * Reviews) havola bermaymiz — ingliz o'quvchini o'zbekcha sahifaga tashlash
- * yomon tajriba va hreflang'ni ham buzadi.
+ * UZ/RU navbardan farqi: ingliz tilida hozircha faqat ayrim sahifalar bor, shuning
+ * uchun menyuda faqat o'shalar. Mavjud bo'lmagan bo'limlarga (Reviews va h.k.)
+ * havola bermaymiz — ingliz o'quvchini o'zbekcha sahifaga tashlash yomon tajriba
+ * va hreflang'ni ham buzadi.
  */
+import NavbarBase from './NavbarBase.astro';
 import { EN_TO_UZ } from '../lib/i18n';
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const uzPath = EN_TO_UZ[currentPath] ?? '/';
 const ruPath = uzPath === '/' ? '/ru' : `/ru${uzPath}`;
+
+const items = [
+  { label: 'Home', href: '/en', icon: 'home' },
+  {
+    label: 'Stars', href: '/en/stars', icon: 'star',
+    title: 'Telegram Stars', desc: 'Pick the pack that fits you', allLabel: 'All packs',
+    children: [
+      { label: '100 ⭐', href: '/en/stars/100' },
+      { label: '500 ⭐', href: '/en/stars/500-pack' },
+      { label: '1000 ⭐', href: '/en/stars/1000' },
+      { label: '5000 ⭐', href: '/en/stars/5000' },
+      { label: '10,000 ⭐', href: '/en/stars/10000' },
+    ],
+  },
+  {
+    label: 'Premium', href: '/en/premium', icon: 'crown',
+    title: 'Telegram Premium', desc: 'Choose a subscription period', allLabel: 'All plans',
+    children: [
+      { label: '3 months', href: '/en/premium/3-months' },
+      { label: '6 months', href: '/en/premium/6-months' },
+      { label: '12 months', href: '/en/premium/12-months' },
+    ],
+  },
+  { label: 'Gifts', href: '/en/gifts', icon: 'gift' },
+  { label: 'How to buy', href: '/en/how-to-buy', icon: 'help' },
+  { label: 'Blog', href: '/en/blog', icon: 'pen' },
+  { label: 'About', href: '/en/about', icon: 'info' },
+];
+
+const langs = [
+  { code: 'UZ', label: 'O‘zbekcha', href: uzPath },
+  { code: 'RU', label: 'Русский', href: ruPath },
+  { code: 'EN', label: 'English', href: currentPath, current: true },
+];
 ---
 
-<nav id="navbar">
-  <div class="nav-inner">
-    <a href="/en" class="logo">
-      <img src="/logo.png" alt="StarsJoy" class="logo-img" />
-      <span>StarsJoy</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="/en">Home</a></li>
-      <li class="has-dropdown">
-        <a href="/en/stars">Stars <span class="caret">&#9662;</span></a>
-        <ul class="dropdown-menu">
-          <li><a href="/en/stars/100">100 ⭐</a></li>
-          <li><a href="/en/stars/500-pack">500 ⭐</a></li>
-          <li><a href="/en/stars/1000">1000 ⭐</a></li>
-          <li><a href="/en/stars/5000">5000 ⭐</a></li>
-          <li><a href="/en/stars/10000">10,000 ⭐</a></li>
-          <li class="dropdown-all"><a href="/en/stars">All packs &rarr;</a></li>
-        </ul>
-      </li>
-      <li class="has-dropdown">
-        <a href="/en/premium">Premium <span class="caret">&#9662;</span></a>
-        <ul class="dropdown-menu">
-          <li><a href="/en/premium/3-months">3 months</a></li>
-          <li><a href="/en/premium/6-months">6 months</a></li>
-          <li><a href="/en/premium/12-months">12 months</a></li>
-          <li class="dropdown-all"><a href="/en/premium">All plans &rarr;</a></li>
-        </ul>
-      </li>
-      <li><a href="/en/gifts">Gifts</a></li>
-      <li><a href="/en/how-to-buy">How to buy</a></li>
-      <li><a href="/en/blog">Blog</a></li>
-      <li><a href="/en/about">About</a></li>
-      <li class="mobile-menu-cta"><a href="https://telegram.me/starsjoybot" class="nav-cta" target="_blank">Open the bot</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href={uzPath} class="lang-switch desktop-lang">🇺🇿</a>
-      <a href={ruPath} class="lang-switch desktop-lang" hreflang="ru" aria-label="Русский">🇷🇺</a>
-      <a href="https://telegram.me/starsjoybot" class="nav-cta" target="_blank">Open the bot</a>
-    </div>
-    <div class="mobile-actions">
-      <a href={uzPath} class="lang-switch mobile-lang">🇺🇿</a>
-      <a href={ruPath} class="lang-switch mobile-lang" hreflang="ru" aria-label="Русский">🇷🇺</a>
-      <button class="mobile-toggle" aria-label="Menu">
-        <span class="hamburger"></span>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<script>
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar?.classList.toggle('scrolled', window.scrollY > 50);
-    navLinks?.classList.remove('show');
-    toggle?.classList.remove('active');
-  });
-
-  const toggle = document.querySelector('.mobile-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  toggle?.addEventListener('click', () => {
-    navLinks?.classList.toggle('show');
-    toggle.classList.toggle('active');
-  });
-
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (!target.closest('.nav-links') && !target.closest('.mobile-toggle')) {
-      navLinks?.classList.remove('show');
-      toggle?.classList.remove('active');
-    }
-  });
-
-  document.querySelectorAll('.has-dropdown > a .caret').forEach((caret) => {
-    caret.addEventListener('click', (e) => {
-      if (window.innerWidth > 768) return;
-      e.preventDefault();
-      e.stopPropagation();
-      (caret as HTMLElement).closest('.has-dropdown')?.classList.toggle('open');
-    });
-  });
-</script>
-
-<style is:global>
-  @import './navbar-en.css';
-</style>
+<NavbarBase
+  homeHref="/en"
+  items={items}
+  langs={langs}
+  ctaLabel="Open the bot"
+  menuLabel="Menu"
+  closeLabel="Close menu"
+  langLabel="Choose language"
+/>

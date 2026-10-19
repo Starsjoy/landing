@@ -17,7 +17,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const path = context.url.pathname;
 
   // Skip: API, dashboard, assets
-  if (path.startsWith('/api') || path.startsWith('/modad') || path.includes('.')) {
+  if (path.startsWith('/api') || path.startsWith('/modad') || path === '/test' || path === '/test/' || path.includes('.')) {
     return next();
   }
 

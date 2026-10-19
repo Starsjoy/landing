@@ -1,6 +1,9 @@
 ---
 export const prerender = false;
 
+import TestDashboard from '../components/dashboard/TestDashboard.astro';
+const redesign = Astro.props.redesign === true;
+
 import { getRole, verifyPassword, generateToken, verifyAssistantLogin, generateAssistantToken, initDB } from '../lib/analytics';
 
 const token = Astro.cookies.get('moda_token')?.value || '';
@@ -34,7 +37,7 @@ if (authenticated && !dbReady) {
 ---
 
 <!doctype html>
-<html lang="uz">
+<html lang="uz" data-dashboard={redesign ? "refresh" : undefined}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -5376,5 +5379,6 @@ if (authenticated && !dbReady) {
       }, 60000);
     </script>
   )}
+  {redesign && <TestDashboard />}
 </body>
 </html>
