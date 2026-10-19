@@ -448,9 +448,12 @@ export async function getAiStats(period: string = 'today', from?: string, to?: s
 const ENV_PASS = import.meta.env.ANALYTICS_PASSWORD || 'starsjoy2026';
 const HMAC_SECRET = import.meta.env.HMAC_SECRET || 'starsjoy-hmac-key-2026';
 
-// Yordamchi admin — faqat Uzgets ma'lumotlarini ko'radi
-const ASSISTANT_USER = import.meta.env.ASSISTANT_USER || 'Abdulloh';
-const ASSISTANT_PASS = import.meta.env.ASSISTANT_PASSWORD || 'Aa321';
+// Yordamchi admin — faqat Uzgets ma'lumotlarini ko'radi.
+// Login/parol faqat env'dan (Vercel: ASSISTANT_USER, ASSISTANT_PASSWORD) — repo'da
+// ochiq turmasligi uchun standart qiymat yo'q. Env bo'lmasa assistant kirishi o'chiq.
+const ASSISTANT_USER = (import.meta.env.ASSISTANT_USER || '').trim();
+const ASSISTANT_PASS = import.meta.env.ASSISTANT_PASSWORD || '';
+const ASSISTANT_ENABLED = ASSISTANT_USER !== '' && ASSISTANT_PASS !== '';
 
 export type Role = 'owner' | 'assistant';
 
@@ -487,6 +490,7 @@ export function generateAssistantToken(): string {
 }
 
 export function verifyAssistantLogin(login: string, password: string): boolean {
+  if (!ASSISTANT_ENABLED) return false;
   return login.trim().toLowerCase() === ASSISTANT_USER.toLowerCase() && password === ASSISTANT_PASS;
 }
 
@@ -500,7 +504,7 @@ function tokenEq(token: string, expected: string): boolean {
 export async function getRole(token: string): Promise<Role | null> {
   try {
     if (!token || token.length !== 64) return null;
-    if (tokenEq(token, generateAssistantToken())) return 'assistant';
+    if (ASSISTANT_ENABLED && tokenEq(token, generateAssistantToken())) return 'assistant';
     const current = await getPassword();
     if (tokenEq(token, generateToken(current))) return 'owner';
     return null;
