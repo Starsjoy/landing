@@ -8,6 +8,7 @@ let dbReady = false;
 const PREMIUM_SEND_CHAT_ID = import.meta.env.PREMIUM_SEND_CHAT_ID || '-1003606510579';
 const PREMIUM_1_12_CHAT_ID = import.meta.env.PREMIUM_1_12_CHAT_ID || '-1003951417706';
 const UZGETS_CHAT_ID = import.meta.env.UZGETS_CHAT_ID || '-1003986767336';
+const PREMIUM24_CHAT_ID = import.meta.env.PREMIUM24_CHAT_ID || '-1004462532058';
 
 interface TelegramUpdate {
   update_id?: number;
@@ -134,12 +135,13 @@ function parseBonusMessage(text: string) {
   // 💫 50 Stars (bonus balansdan)   yoki   💫 Gift (25 ⭐) (bonus balansdan)
   const orderMatch = text.match(/#(\d+)/);
   const usernameMatch = text.match(/👤\s*([^\n]+)/);
-  const starsMatch = text.match(/💫\s*(?:Gift\s*\()?(\d+)/);
+  const starsMatch = text.match(/💫\s*(Gift\s*\()?(\d+)/);
   if (!starsMatch) return null;
   return {
     orderNumber: orderMatch?.[1] || '',
     username: extractUsername(usernameMatch?.[1] || ''),
-    stars: parseInt(starsMatch[1], 10),
+    kind: (starsMatch[1] ? 'gift' : 'stars') as 'gift' | 'stars',
+    stars: parseInt(starsMatch[2], 10),
   };
 }
 
@@ -194,6 +196,7 @@ export const POST: APIRoute = async ({ request }) => {
     const isPremiumSend = chatId === PREMIUM_SEND_CHAT_ID;
     const isPremium112 = chatId === PREMIUM_1_12_CHAT_ID;
     const isUzgets = chatId === UZGETS_CHAT_ID;
+    const isPremium24 = chatId === PREMIUM24_CHAT_ID;
 
     // DEBUG: log incoming chat_id va text
     console.log('[WEBHOOK] chat_id=' + chatId + ' | premium_send=' + isPremiumSend + ' | premium_1_12=' + isPremium112 + ' | uzgets=' + isUzgets);
@@ -210,7 +213,7 @@ export const POST: APIRoute = async ({ request }) => {
     const msgKey = chatId && messageId ? chatId + ':' + messageId : undefined;
 
     // Bonus yechish — StarsJoy chiqimi: sotuvga kirmaydi, foydadan ayiriladi
-    if (text.includes('User bonus oldi') && !isPremiumSend && !isPremium112 && !isUzgets) {
+    if (text.includes('User bonus oldi') && !isPremiumSend && !isPremium112 && !isUzgets && !isPremium24) {
       const bonus = parseBonusMessage(text);
       if (!bonus) {
         console.log('[WEBHOOK] bonus PARSE FAILED:', JSON.stringify(text));
@@ -251,6 +254,11 @@ export const POST: APIRoute = async ({ request }) => {
         });
       }
       order.type = ('uzgets_' + order.type) as any;
+    }
+
+    // Premium24 kanalidan kelgan buyurtmalar — StarsJoy'ga aralashmasligi uchun o'z type'i bilan
+    if (isPremium24) {
+      order.type = ('premium24_' + order.type) as any;
     }
 
     await addOrder({ ...order, timestamp, msgKey });

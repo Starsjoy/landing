@@ -280,6 +280,7 @@ if (authenticated && !dbReady) {
               <a data-section="sales" data-source="starsjoy" onclick="showSection('sales','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="sales" data-source="premium_send" onclick="showSection('sales','premium_send')"><span class="dd-label">Premium Send</span></a>
               <a data-section="sales" data-source="uzgets" onclick="showSection('sales','uzgets')"><span class="dd-label">Uzgets</span></a>
+              <a data-section="sales" data-source="premium24" onclick="showSection('sales','premium24')"><span class="dd-label">Premium24</span></a>
               <a data-section="sales" data-source="all" onclick="showSection('sales','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -298,23 +299,11 @@ if (authenticated && !dbReady) {
               <a data-section="profit" data-source="all" onclick="showSection('profit','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
-          <a data-section="salary" onclick="showSection('salary')">
+          <a data-section="bonuses" onclick="showSection('bonuses')">
             <span class="sb-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
             </span>
-            <span>Maosh</span>
-          </a>
-          <a data-section="plan" onclick="showSection('plan')">
-            <span class="sb-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            </span>
-            <span>Reja</span>
-          </a>
-          <a data-section="cashflow" onclick="showSection('cashflow')">
-            <span class="sb-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V8a2 2 0 0 0-2-2H5a2 2 0 0 1 0-4h14"/><path d="M3 6v12a2 2 0 0 0 2 2h16v-6"/><circle cx="17" cy="14" r="1.5"/></svg>
-            </span>
-            <span>Kirim/Chiqim</span>
+            <span>Bonuslar</span>
           </a>
           <a data-section="reviews" onclick="showSection('reviews')">
             <span class="sb-icon">
@@ -334,6 +323,7 @@ if (authenticated && !dbReady) {
               <a data-section="buyers" data-source="starsjoy" onclick="showSection('buyers','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="buyers" data-source="premium_send" onclick="showSection('buyers','premium_send')"><span class="dd-label">Premium Send</span></a>
               <a data-section="buyers" data-source="uzgets" onclick="showSection('buyers','uzgets')"><span class="dd-label">Uzgets</span></a>
+              <a data-section="buyers" data-source="premium24" onclick="showSection('buyers','premium24')"><span class="dd-label">Premium24</span></a>
               <a data-section="buyers" data-source="all" onclick="showSection('buyers','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -349,6 +339,7 @@ if (authenticated && !dbReady) {
               <a data-section="analytics" data-source="starsjoy" onclick="showSection('analytics','starsjoy')"><span class="dd-label">starsjoy</span></a>
               <a data-section="analytics" data-source="premium_send" onclick="showSection('analytics','premium_send')"><span class="dd-label">Premium Send</span></a>
               <a data-section="analytics" data-source="uzgets" onclick="showSection('analytics','uzgets')"><span class="dd-label">Uzgets</span></a>
+              <a data-section="analytics" data-source="premium24" onclick="showSection('analytics','premium24')"><span class="dd-label">Premium24</span></a>
               <a data-section="analytics" data-source="all" onclick="showSection('analytics','all')"><span class="dd-label">Umumiy</span></a>
             </div>
           </div>
@@ -427,6 +418,24 @@ if (authenticated && !dbReady) {
           </div>
 
           <!-- Sharhlar (moderatsiya) -->
+          <div id="section-bonuses" class="section-content" hidden>
+            <div class="panel">
+              <div class="panel-header" style="display:flex;align-items:center;justify-content:space-between">
+                <h2>Bonus chiqimi</h2>
+                <button class="rf-btn" onclick="fetchBonuses()">Yangilash</button>
+              </div>
+              <div class="panel-body">
+                <p class="bonus-rule" id="bonusRule"></p>
+                <div class="salary-cards" id="bonusCards"></div>
+                <div class="salary-cards" id="bonusKinds"></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><h2>Oxirgi yechishlar</h2></div>
+              <div class="panel-body" id="bonusTable"></div>
+            </div>
+          </div>
+
           <div id="section-reviews" class="section-content" hidden>
             <div class="panel">
               <div class="panel-header" style="display:flex;align-items:center;justify-content:space-between">
@@ -704,168 +713,8 @@ if (authenticated && !dbReady) {
             </div>
           </div>
 
-          <!-- Salary (Maosh) -->
-          <div id="section-salary" class="section-content" hidden>
-            <div class="salary-status" id="salaryStatus"></div>
 
-            <div class="salary-context" id="salaryClosing" hidden>
-              <div class="salary-context-title" id="salaryClosingTitle"></div>
-              <div class="salary-cards">
-                <div class="salary-card sc-primary"><div class="sc-label">To'liq olish mumkin</div><div class="sc-val" id="salClosingAvailable">0</div><div class="sc-sub" id="salClosingAvailSub">so'm</div></div>
-                <div class="salary-card"><div class="sc-label">O'tgan oydan qolgan</div><div class="sc-val" id="salClosingRollover">0</div><div class="sc-sub">so'm</div></div>
-                <div class="salary-card"><div class="sc-label">Olingan</div><div class="sc-val" id="salClosingWithdrawn">0</div><div class="sc-sub">so'm</div></div>
-              </div>
-            </div>
 
-            <div class="salary-context" id="salaryCurrent">
-              <div class="salary-context-title" id="salaryCurrentTitle"></div>
-              <div class="salary-cards">
-                <div class="salary-card sc-primary"><div class="sc-label" id="salCurAvailLabel">Hozir olish mumkin</div><div class="sc-val" id="salCurAvailable">0</div><div class="sc-sub" id="salCurAvailSub">so'm</div></div>
-                <div class="salary-card"><div class="sc-label">O'tgan oydan qolgan</div><div class="sc-val" id="salCurRollover">0</div><div class="sc-sub">so'm</div></div>
-                <div class="salary-card"><div class="sc-label">Olingan</div><div class="sc-val" id="salCurWithdrawn">0</div><div class="sc-sub">so'm</div></div>
-                <div class="salary-card"><div class="sc-label">Tavsiya etilgan limit</div><div class="sc-val" id="salCurLimit">0</div><div class="sc-sub" id="salCurLimitSub">so'm</div></div>
-              </div>
-            </div>
-
-            <div class="salary-form-wrap">
-              <div class="panel">
-                <div class="panel-header"><h2>Pul olish</h2></div>
-                <div class="panel-body panel-pad">
-                  <div class="form-stack">
-                    <input type="text" inputmode="numeric" id="salAmount" placeholder="Summa (so'm)" autocomplete="off" oninput="formatSalAmount(this)" />
-                    <input type="text" id="salNote" placeholder="Izoh (ixtiyoriy)" maxlength="200" />
-                    <div class="sal-date-row">
-                      <label class="sal-date-label" for="salDate">Olingan sana</label>
-                      <input type="date" id="salDate" />
-                    </div>
-                    <div class="sal-warn" id="salWarn" hidden></div>
-                    <button class="form-btn" onclick="addSalaryWithdrawal()">Qo'shish</button>
-                    <div class="form-msg" id="salMsg"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel salary-history-panel">
-              <div class="panel-header sal-hist-header">
-                <h2>Tarix</h2>
-                <button class="form-btn-sm" onclick="exportSalaryCSV()">CSV eksport</button>
-              </div>
-              <div class="panel-body" id="salaryHistory">
-                <div class="sal-empty">Hech qanday yozuv yo'q</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Plan (Reja) -->
-          <div id="section-plan" class="section-content" hidden>
-            <div class="plan-head">
-              <div class="plan-month-wrap">
-                <button class="plan-arrow" onclick="planShiftMonth(-1)" aria-label="Oldingi oy">‹</button>
-                <span class="plan-month-label" id="planMonthLabel">—</span>
-                <button class="plan-arrow" onclick="planShiftMonth(1)" aria-label="Keyingi oy">›</button>
-              </div>
-              <button class="plan-today-btn" onclick="planJumpToCurrent()">Bugungi oy</button>
-            </div>
-
-            <div class="plan-signal" id="planSignal" data-signal="none">
-              <span class="ps-dot"></span>
-              <span class="ps-text" id="planSignalText">Reja kiritilmagan</span>
-            </div>
-
-            <div class="plan-cards">
-              <div class="plan-card" id="planForecastCard">
-                <div class="pc-label">Prognoz (oy oxiri)</div>
-                <div class="pc-value" id="planForecastVal">0</div>
-                <div class="pc-sub" id="planForecastSub">—</div>
-              </div>
-              <div class="plan-card plan-card-main">
-                <div class="pc-label">Reja</div>
-                <div class="pc-value" id="planTargetVal">—</div>
-                <button class="pc-edit" onclick="planOpenEdit()" id="planEditBtn">Tahrirlash</button>
-              </div>
-              <div class="plan-card">
-                <div class="pc-label" id="planProfitLabel">Hozirgi foyda</div>
-                <div class="pc-value" id="planProfitVal">0</div>
-                <div class="pc-sub" id="planProfitSub">—</div>
-              </div>
-            </div>
-
-            <div class="plan-tip" id="planTip" hidden>
-              <span class="pt-icon">💡</span>
-              <span class="pt-text" id="planTipText"></span>
-              <button class="pt-apply" onclick="planApplySuggested()" id="planTipApply" hidden>Qo'llash</button>
-            </div>
-
-            <div class="plan-edit" id="planEdit" hidden>
-              <div class="pe-row">
-                <input type="text" inputmode="numeric" id="planInput" placeholder="Reja (so'm)" autocomplete="off" oninput="formatPlanInput(this)" />
-                <button class="pe-save" onclick="planSave()">Saqlash</button>
-                <button class="pe-cancel" onclick="planCloseEdit()">Bekor</button>
-              </div>
-              <div class="pe-msg" id="planMsg"></div>
-              <button class="pe-delete" onclick="planDelete()" id="planDeleteBtn" hidden>Rejani o'chirish</button>
-            </div>
-
-            <div class="plan-daily">
-              <div class="pd-header">Kunlik kesim</div>
-              <div class="pd-info" id="planDailyInfo"></div>
-              <div class="pd-bars" id="planBars"></div>
-              <div class="pd-legend">
-                <span class="pd-legend-item"><span class="pd-legend-dot" style="background:var(--green)"></span>Kunlik nishondan oshgan</span>
-                <span class="pd-legend-item"><span class="pd-legend-dot" style="background:var(--orange)"></span>Nishondan kam</span>
-                <span class="pd-legend-item"><span class="pd-legend-dot" style="background:var(--bg-3);opacity:0.5"></span>Kelajak / sotuv yo'q</span>
-              </div>
-            </div>
-
-            <div class="plan-needed" id="planNeeded" data-state="none" hidden>
-              <div class="pn-label" id="planNeededLabel">Bugundan har kuni kerakli</div>
-              <div class="pn-value" id="planNeededVal">0</div>
-              <div class="pn-sub" id="planNeededSub">—</div>
-            </div>
-          </div>
-
-          <!-- Cashflow (Kirim/Chiqim) -->
-          <div id="section-cashflow" class="section-content" hidden>
-            <div class="cf-header">
-              <div class="cf-source-title">Kirim/Chiqim — oylik kesim</div>
-              <div class="cf-source-hint">har oy oxirida qoldiqni kiriting → asl foyda chiqadi</div>
-            </div>
-
-            <div class="cf-kirim-wrap">
-              <div class="panel">
-                <div class="panel-header"><h2>Kirim qo'shish</h2></div>
-                <div class="panel-body panel-pad">
-                  <div class="form-stack">
-                    <input type="text" inputmode="numeric" id="cfKirimAmount" placeholder="Summa (so'm)" autocomplete="off" oninput="cfFormatInput(this)" />
-                    <input type="text" id="cfKirimNote" placeholder="Izoh (ixtiyoriy)" maxlength="200" />
-                    <div class="sal-date-row">
-                      <label class="sal-date-label" for="cfKirimDate">Sana</label>
-                      <input type="date" id="cfKirimDate" />
-                    </div>
-                    <button class="form-btn" onclick="cfAddKirim()">Qo'shish</button>
-                    <div class="form-msg" id="cfKirimMsg"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="cf-months" id="cfMonths">
-              <div class="sal-empty">Birinchi kirim qo'shsangiz, oylar shu yerda ko'rinadi</div>
-            </div>
-
-            <div class="panel">
-              <div class="panel-header cf-hist-header">
-                <h2>Kirim tarixi</h2>
-                <select class="cf-hist-filter" id="cfHistFilter" onchange="renderCashflowHistory()">
-                  <option value="all">Barcha oylar</option>
-                </select>
-              </div>
-              <div class="panel-body" id="cfHistory">
-                <div class="sal-empty">Hech qanday yozuv yo'q</div>
-              </div>
-            </div>
-          </div>
 
           <!-- Settings -->
           <div id="section-settings" class="section-content" hidden>
@@ -1459,6 +1308,12 @@ if (authenticated && !dbReady) {
 
     /* ── "Umumiy" foyda: har bir yo'nalish alohida karta, Starsjoy va Uzgets+PS asosiy ustunlar ── */
     .profit-cards.pc-grid-all { grid-template-columns: repeat(3, 1fr); }
+    .profit-bonus { grid-column: 1 / -1; border-color: rgba(248,113,113,0.35); background: rgba(248,113,113,0.05); }
+    .bonus-rule { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; }
+    #bonusKinds { margin-top: 12px; }
+    .bonus-log { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .bonus-log th, .bonus-log td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    #bonusTable { overflow-x: auto; }
     .profit-uz { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.04); }
     .profit-uz .pc-value { color: #22d3ee; }
     .profit-total { border-color: rgba(250,204,21,0.3); background: rgba(250,204,21,0.04); }
@@ -2557,20 +2412,9 @@ if (authenticated && !dbReady) {
           fetchSourceData(currentSource);
         }
 
-        // Salary section: fetch on enter
-        if (name === 'salary') {
-          fetchSalary();
-        }
-
-        // Plan section: fetch on enter (salyut uchun arm qilamiz)
-        if (name === 'plan') {
-          planConfettiArmed = true;
-          fetchPlan();
-        }
-
-        // Cashflow section: fetch on enter
-        if (name === 'cashflow') {
-          fetchCashflow();
+        // Bonuslar: fetch on enter
+        if (name === 'bonuses') {
+          fetchBonuses();
         }
 
         // Reviews moderatsiya: fetch on enter
@@ -3162,10 +3006,13 @@ if (authenticated && !dbReady) {
         if (type === 'premium_send_stars') return { pill: 'pill-premium_send_stars', label: 'PS Stars' };
         if (type === 'uzgets_stars') return { pill: 'pill-uzgets_stars', label: 'UZ Stars' };
         if (type === 'uzgets_premium') return { pill: 'pill-uzgets_premium', label: 'UZ Premium' };
+        if (type === 'premium24_stars') return { pill: 'pill-uzgets_stars', label: 'P24 Stars' };
+        if (type === 'premium24_premium') return { pill: 'pill-uzgets_premium', label: 'P24 Premium' };
+        if (type === 'premium24_gift') return { pill: 'pill-uzgets_stars', label: 'P24 Gift' };
         return { pill: 'pill-premium', label: 'Premium' };
       }
 
-      var sourceLabels = { starsjoy: 'Starsjoy', premium_send: 'Premium Send', uzgets: 'Uzgets', all: 'Umumiy' };
+      var sourceLabels = { starsjoy: 'Starsjoy', premium_send: 'Premium Send', uzgets: 'Uzgets', premium24: 'Premium24', all: 'Umumiy' };
 
       function renderSales() {
         var o = statsData.orders;
@@ -3191,6 +3038,18 @@ if (authenticated && !dbReady) {
             <div class="sc-label">⭐ Stars</div>
             <div class="sc-value">${fmtMoney(ov.psStarsTotalAmount || 0)}</div>
             <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.psStarsRevenue || 0)} so'm</span><span class="sc-divider"></span><span>${ov.psStarsCount || 0} ta sotildi</span></div>
+          </div>`;
+        } else if (currentSource === 'premium24') {
+          cards += `
+          <div class="stat-card">
+            <div class="sc-label">⭐ Stars</div>
+            <div class="sc-value">${fmtMoney(ov.p24StarsTotalAmount || 0)}</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.p24StarsRevenue || 0)} so'm</span><span class="sc-divider"></span><span>${ov.p24StarsCount || 0} ta</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-label">👑 Premium</div>
+            <div class="sc-value">${ov.p24PremiumTotalMonths || 0} oy</div>
+            <div class="sc-sub"><span class="sc-green">${fmtMoney(ov.p24PremiumRevenue || 0)} so'm</span><span class="sc-divider"></span><span>${ov.p24PremiumCount || 0} ta</span></div>
           </div>`;
         } else if (currentSource === 'uzgets') {
           var uzStarsProfit = Math.round((ov.uzStarsRevenue || 0) * 0.10);
@@ -3258,7 +3117,7 @@ if (authenticated && !dbReady) {
         }
         var salesCardsEl = document.getElementById('salesCards');
         var colsClass = '';
-        if (currentSource === 'premium_send') colsClass = ' cols-3';
+        if (currentSource === 'premium_send' || currentSource === 'premium24') colsClass = ' cols-3';
         else if (currentSource === 'uzgets') colsClass = ' cols-5';
         else if (currentSource === 'all') colsClass = ' cols-5';
         salesCardsEl.className = 'stat-cards sales-cards' + colsClass;
@@ -3438,6 +3297,28 @@ if (authenticated && !dbReady) {
         };
       }
 
+      async function fetchBonuses() {
+        var res = await fetch('/api/bonus');
+        if (!res.ok) return;
+        var d = await res.json();
+        var card = function(label, b) {
+          return `<div class="salary-card"><div class="sc-label">${label}</div><div class="sc-val">-${fmtMoney(b.cost)} so'm</div><div class="sc-label">${b.count} ta · ${fmtMoney(b.stars)} ⭐</div></div>`;
+        };
+        document.getElementById('bonusRule').textContent =
+          "Har bir bonusga yechilgan star uchun foydadan " + d.costPerStar + " so'm ayiriladi. Hisob 'User bonus oldi' kanal xabaridan olinadi.";
+        document.getElementById('bonusCards').innerHTML =
+          card('Bugun', d.today) + card('Shu oy', d.month) + card('Jami', d.total);
+        document.getElementById('bonusKinds').innerHTML =
+          `<div class="salary-card"><div class="sc-label">Stars yechildi</div><div class="sc-val">${fmtMoney(d.byKind.stars.stars)} ⭐</div><div class="sc-label">${d.byKind.stars.count} ta</div></div>`
+          + `<div class="salary-card"><div class="sc-label">Gift yechildi</div><div class="sc-val">${fmtMoney(d.byKind.gift.stars)} ⭐</div><div class="sc-label">${d.byKind.gift.count} ta</div></div>`;
+        document.getElementById('bonusTable').innerHTML = !d.recent.length
+          ? '<p class="bonus-rule">Hali bonus yechilmagan.</p>'
+          : `<table class="bonus-log"><thead><tr><th>Sana</th><th>Order</th><th>User</th><th>Nima</th><th>Zarar</th></tr></thead>
+             <tbody>${d.recent.map(function(r) {
+               return `<tr><td>${esc(new Date(r.timestamp).toLocaleString('uz', { timeZone: 'Asia/Tashkent', dateStyle: 'short', timeStyle: 'short' }))}</td><td>#${esc(r.orderNumber)}</td><td>@${esc(r.username)}</td><td>${r.kind === 'gift' ? 'Gift' : 'Stars'} · ${r.stars} ⭐</td><td>-${fmtMoney(r.cost)} so'm</td></tr>`;
+             }).join('')}</tbody></table>`;
+      }
+
       function renderProfit(orders) {
         if (!orders) return;
         var ov = orders.overview;
@@ -3453,13 +3334,20 @@ if (authenticated && !dbReady) {
         var psStarsAbdullohShare = psStarsTotal - psStarsOwnerShare;
         var psProfitTotal = psProfit + psStarsOwnerShare; // Premium Send'dan owner'ga tegishli jami (komissiya + stars ulushi)
         var bonusCost = ov.bonusCost || 0;
-        var starsjoyProfit = starsProfit + giftProfit + premiumProfit - bonusCost;
+        var starsjoyProfit = starsProfit + giftProfit + premiumProfit;
         // 'uzgets' ko'rinishida ma'lumot orders ichida, 'all' da esa alohida so'rovdan
         var uz = calcUzgets(currentSource === 'uzgets' ? ov : uzgetsOv);
         var jamiProfit = starsjoyProfit + uz.total + psProfitTotal;
 
         var isAll = currentSource === 'all';
         var cardsEl = document.querySelector('.profit-cards');
+        var bonusBase = isAll ? jamiProfit : starsjoyProfit;
+        var bonusCardHTML = `
+            <div class="profit-card profit-bonus">
+              <div class="pc-label">Bonus ayrilganda</div>
+              <div class="pc-value">${fmtMoney(bonusBase - bonusCost)}</div>
+              <div class="pc-sub">so'm qoldi: ${fmtMoney(bonusBase)} - ${fmtMoney(bonusCost)} bonus (${fmtMoney(ov.bonusStars || 0)} ⭐, ${ov.bonusCount || 0} ta)</div>
+            </div>`;
 
         // Umumiy daromad/buyurtmalar: source=all va source=uzgets so'rovlari cutoff'dan keyingi
         // Premium Send buyurtmalarini ikkalasida ham qaytaradi — grand totalda ikki marta
@@ -3499,7 +3387,7 @@ if (authenticated && !dbReady) {
               <div class="pc-label">Buyurtmalar</div>
               <div class="pc-value pc-dim">${ov.totalOrders + uzExtraOrders}</div>
               <div class="pc-sub">ta — barcha yo'nalishlar</div>
-            </div>`;
+            </div>` + bonusCardHTML;
         } else {
           var profit = currentSource === 'starsjoy' ? starsjoyProfit
             : currentSource === 'premium_send' ? psProfitTotal
@@ -3522,7 +3410,7 @@ if (authenticated && !dbReady) {
               <div class="pc-label">Buyurtmalar</div>
               <div class="pc-value pc-dim">${ov.totalOrders}</div>
               <div class="pc-sub">ta</div>
-            </div>`;
+            </div>` + (currentSource === 'starsjoy' ? bonusCardHTML : '');
         }
 
         // Dynamic breakdown
@@ -3530,10 +3418,6 @@ if (authenticated && !dbReady) {
             <div class="pb-row"><span class="pb-dot" style="background:#facc15"></span><span class="pb-name">Stars</span><span class="pb-revenue">${fmtMoney(ov.starsRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(starsProfit)} so'm (12%)</span></div>
             <div class="pb-row"><span class="pb-dot" style="background:#34d399"></span><span class="pb-name">Gift</span><span class="pb-revenue">${fmtMoney(ov.giftRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(giftProfit)} so'm (12%)</span></div>
             <div class="pb-row"><span class="pb-dot" style="background:#c084fc"></span><span class="pb-name">Premium</span><span class="pb-revenue">${fmtMoney(ov.premiumRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(premiumProfit)} so'm (10%)</span></div>`;
-        if (bonusCost > 0) {
-          sjRows += `
-            <div class="pb-row"><span class="pb-dot" style="background:#f87171"></span><span class="pb-name">Bonus</span><span class="pb-revenue">${fmtMoney(ov.bonusStars || 0)} ⭐</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">-${fmtMoney(bonusCost)} so'm</span></div>`;
-        }
         var psRows = `
             <div class="pb-row"><span class="pb-dot" style="background:#60a5fa"></span><span class="pb-name">PS Premium</span><span class="pb-revenue">${fmtMoney(ov.psRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(psProfit)} so'm (10%)</span></div>
             <div class="pb-row"><span class="pb-dot" style="background:#f472b6"></span><span class="pb-name">PS Stars</span><span class="pb-revenue">${fmtMoney(ov.psStarsRevenue || 0)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(psStarsTotal)} so'm (1/3)</span></div>
@@ -4790,6 +4674,7 @@ if (authenticated && !dbReady) {
         var starsjoyProfit = starsProfit + giftProfit + premiumProfit - (ov.bonusCost || 0);
         if (currentSource === 'starsjoy') return starsjoyProfit;
         if (currentSource === 'premium_send') return psProfit;
+        if (currentSource === 'premium24') return 0;
         if (currentSource === 'uzgets') return calcUzgets(ov).total;
         return starsjoyProfit + psProfit + calcUzgets(uzOv).total;
       }

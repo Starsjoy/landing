@@ -64,6 +64,7 @@ export async function initDB() {
       id SERIAL PRIMARY KEY,
       order_number TEXT DEFAULT '',
       username TEXT DEFAULT '',
+      kind TEXT NOT NULL DEFAULT 'stars',
       stars INTEGER NOT NULL,
       cost INTEGER NOT NULL,
       timestamp TIMESTAMPTZ DEFAULT NOW(),
@@ -1222,16 +1223,58 @@ export const BONUS_STAR_COST = 220;
 export async function addBonusRedemption(params: {
   orderNumber: string;
   username: string;
+  kind: 'stars' | 'gift';
   stars: number;
   timestamp: Date;
   msgKey?: string;
 }) {
   const sql = getSQL();
   await sql`
-    INSERT INTO bonus_redemptions (order_number, username, stars, cost, timestamp, msg_key)
-    VALUES (${params.orderNumber}, ${params.username}, ${params.stars}, ${params.stars * BONUS_STAR_COST}, ${params.timestamp}, ${params.msgKey || null})
+    INSERT INTO bonus_redemptions (order_number, username, kind, stars, cost, timestamp, msg_key)
+    VALUES (${params.orderNumber}, ${params.username}, ${params.kind}, ${params.stars}, ${params.stars * BONUS_STAR_COST}, ${params.timestamp}, ${params.msgKey || null})
     ON CONFLICT (msg_key) DO NOTHING
   `;
+}
+
+export async function getBonusSummary() {
+  const sql = getSQL();
+  const todayStart = sql`DATE_TRUNC('day', NOW() AT TIME ZONE 'Asia/Tashkent') AT TIME ZONE 'Asia/Tashkent'`;
+  const monthStart = sql`DATE_TRUNC('month', NOW() AT TIME ZONE 'Asia/Tashkent') AT TIME ZONE 'Asia/Tashkent'`;
+  const [r] = await sql`
+    SELECT
+      COUNT(*) FILTER (WHERE timestamp >= ${todayStart}) as today_count,
+      COALESCE(SUM(stars) FILTER (WHERE timestamp >= ${todayStart}), 0) as today_stars,
+      COALESCE(SUM(cost) FILTER (WHERE timestamp >= ${todayStart}), 0) as today_cost,
+      COUNT(*) FILTER (WHERE timestamp >= ${monthStart}) as month_count,
+      COALESCE(SUM(stars) FILTER (WHERE timestamp >= ${monthStart}), 0) as month_stars,
+      COALESCE(SUM(cost) FILTER (WHERE timestamp >= ${monthStart}), 0) as month_cost,
+      COUNT(*) as total_count,
+      COALESCE(SUM(stars), 0) as total_stars,
+      COALESCE(SUM(cost), 0) as total_cost,
+      COUNT(*) FILTER (WHERE kind = 'stars') as stars_count,
+      COALESCE(SUM(stars) FILTER (WHERE kind = 'stars'), 0) as stars_stars,
+      COUNT(*) FILTER (WHERE kind = 'gift') as gift_count,
+      COALESCE(SUM(stars) FILTER (WHERE kind = 'gift'), 0) as gift_stars
+    FROM bonus_redemptions
+  `;
+  const recent = await sql`
+    SELECT order_number, username, kind, stars, cost, timestamp
+    FROM bonus_redemptions ORDER BY timestamp DESC LIMIT 200
+  `;
+  return {
+    costPerStar: BONUS_STAR_COST,
+    today: { count: +r.today_count, stars: +r.today_stars, cost: +r.today_cost },
+    month: { count: +r.month_count, stars: +r.month_stars, cost: +r.month_cost },
+    total: { count: +r.total_count, stars: +r.total_stars, cost: +r.total_cost },
+    byKind: {
+      stars: { count: +r.stars_count, stars: +r.stars_stars },
+      gift: { count: +r.gift_count, stars: +r.gift_stars },
+    },
+    recent: recent.map((row: any) => ({
+      orderNumber: row.order_number, username: row.username, kind: row.kind,
+      stars: +row.stars, cost: +row.cost, timestamp: row.timestamp,
+    })),
+  };
 }
 
 export async function getAnalyticsData(period: string, source: string = 'all', from?: string, to?: string) {
@@ -1390,6 +1433,7 @@ function sourceFilter(source: string): string[] {
   if (source === 'premium_send') return ['premium_send', 'premium_send_stars'];
   if (source === 'premium_1_12') return ['premium_1_12'];
   if (source === 'uzgets') return ['uzgets_stars', 'uzgets_premium'];
+  if (source === 'premium24') return ['premium24_stars', 'premium24_premium', 'premium24_gift'];
   return ['stars', 'gift', 'premium', 'premium_send', 'premium_send_stars', 'premium_1_12']; // all (uzgets'siz)
 }
 
@@ -1465,7 +1509,13 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy') as uz_6_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy'), 0) as uz_6_revenue,
       COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy') as uz_12_count,
-      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy'), 0) as uz_12_revenue
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy'), 0) as uz_12_revenue,
+      COUNT(*) FILTER (WHERE type = 'premium24_stars') as p24_stars_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium24_stars'), 0) as p24_stars_revenue,
+      COALESCE(SUM(CASE WHEN type = 'premium24_stars' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as p24_stars_total_amount,
+      COUNT(*) FILTER (WHERE type = 'premium24_premium') as p24_premium_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'premium24_premium'), 0) as p24_premium_revenue,
+      COALESCE(SUM(CASE WHEN type = 'premium24_premium' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as p24_premium_total_months
     FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${rowCond}
   `;
 
@@ -1578,6 +1628,12 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       p112TwelveRevenue: +overview.p112_twelve_revenue,
       p112TotalMonths: +overview.p112_total_months,
       totalStars: +starsTotal.total_stars,
+      p24StarsCount: +overview.p24_stars_count,
+      p24StarsRevenue: +overview.p24_stars_revenue,
+      p24StarsTotalAmount: +overview.p24_stars_total_amount,
+      p24PremiumCount: +overview.p24_premium_count,
+      p24PremiumRevenue: +overview.p24_premium_revenue,
+      p24PremiumTotalMonths: +overview.p24_premium_total_months,
       bonusCount: +bonus.cnt,
       bonusStars: +bonus.stars,
       bonusCost: +bonus.cost,
