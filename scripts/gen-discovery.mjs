@@ -118,6 +118,7 @@ const GROUPS = [
       'eng-qimmat-telegram-sovgalari',
       'telegram-sovga-sotish-fragment',
       'telegram-gift-crafting',
+      'telegram-halloween-bear',
     ],
   },
   {

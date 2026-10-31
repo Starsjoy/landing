@@ -20,6 +20,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'telegram-halloween-bear',
+    title: 'Telegram Halloween Bear: Where to Get It With Uzcard or Humo',
+    excerpt:
+      "Telegram's new Halloween Bear gift costs 50 Stars. How to get it in Uzbekistan for 13,000 UZS with Uzcard or Humo, how long it stays on sale, and how to convert it to Stars.",
+    date: '2026-10-31',
+    tag: 'Gifts',
+  },
+  {
     slug: 'telegram-premium-12-months-price',
     title: 'Telegram Premium 12 Months Price in 2026 — 422,000 UZS, Pay with Uzcard or Humo',
     excerpt:

@@ -1,0 +1,608 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Telegram Halloween Bear qayerdan olinadi? Uzcard, Humo bilan | StarsJoy Blog";
+const description = "Telegram'ning yangi Halloween Bear sovg'asi 50 Stars turadi. O'zbekistonda Uzcard va Humo bilan 13 000 so'mga oling: qayerda bor, qanday olinadi va qachongacha.";
+const publishDate = "2026-10-31";
+const modifiedDate = "2026-10-31";
+const wordCount = 1150;
+const canonical = "https://starsjoy.uz/blog/telegram-halloween-bear";
+const ogImage = "https://starsjoy.uz/images/telegram-halloween-bear-og.png";
+
+const faqs = [
+  {
+    q: "Telegram'dagi yangi Halloween gift qaysi?",
+    a: "Bu Halloween Bear: qovoq boshli zombi ayiqcha. U 2026-yil 31-oktabr kechasi, Toshkent vaqti bilan taxminan 02:54 da chiqqan. Narxi 50 Stars, tiraji cheklanmagan."
+  },
+  {
+    q: "Halloween Bear qayerda bor?",
+    a: "Telegram'ning sovg'alar katalogida va StarsJoy Mini App'ida. @starsjoybot'da Gift bo'limini ochib, Uzcard yoki Humo kartadan 13 000 so'm to'lab olasiz. Telegram'ning o'zida esa 50 Stars kerak bo'ladi."
+  },
+  {
+    q: "Halloween Bear O'zbekistonda necha so'm turadi?",
+    a: "StarsJoy Mini App'ida 13 000 so'm, gift to'g'ridan-to'g'ri yuboriladi. Alohida 50 Stars olib, uni Telegram'da o'zingiz yuborsangiz, 12 000 so'm chiqadi."
+  },
+  {
+    q: "Halloween Bear'ni o'zimga olsam bo'ladimi?",
+    a: "Ha. StarsJoy Mini App'ida qabul qiluvchi sifatida o'z username'ingizni kiriting."
+  },
+  {
+    q: "Xalqaro karta yoki VPN kerakmi?",
+    a: "Yo'q. StarsJoy'da to'lov Uzcard yoki Humo kartadan o'tkazma orqali bo'ladi. Faqat username kerak: parol va SMS kod so'ralmaydi."
+  },
+  {
+    q: "Halloween Bear qachongacha sotiladi?",
+    a: "Telegram tugash sanasini e'lon qilmagan. Oldingi mavsumiy ayiqchalar qisqa muddat sotilgan: masalan, 2026-yil avgustdagisi 12-avgustda chiqib, 17-avgustga kelib katalogdan olingan."
+  },
+  {
+    q: "Halloween Bear'ni sotsa bo'ladimi?",
+    a: "Hozircha bozorda sotib bo'lmaydi, chunki bu oddiy sovg'a: Gift Marketplace faqat collectible sovg'alar uchun. Uni olganingizdan keyin cheklangan muddat ichida taxminan 43 Stars'ga almashtirish mumkin, lekin sovg'a butunlay yo'qoladi."
+  },
+  {
+    q: "Halloween Bear'ni collectible'ga upgrade qilsa bo'ladimi?",
+    a: "2026-yil 31-oktabr holatiga bu sovg'a uchun upgrade e'lon qilinmagan. Telegram upgrade'ni keyinroq qo'shishi mumkin, lekin buning kafolati yo'q."
+  },
+  {
+    q: "Halloween Bear va Mask bir xil narsami?",
+    a: "Yo'q. Halloween Bear 50 Stars'lik yangi sovg'a. Mask esa 2025-yilgi Halloween sovg'asi, uning upgrade'lari 2026-yil 31-oktabrda ochilgan. Mask yangi sotuvda yo'q, uni faqat egalaridan olish mumkin."
+  },
+  {
+    q: "Gift yetib kelmasa pul qaytariladimi?",
+    a: "Ha. Buyurtma texnik sabab bilan bajarilmasa, 24 soat ichida @StarsjoySupport'ga to'lov chekini yuborasiz va pul to'liq qaytariladi."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="telegram halloween bear, halloween gift telegram, telegram yangi gift, telegram yangi sovg'a, qovoq boshli ayiq telegram, telegram yangi mishka, halloween bear qayerdan olinadi, halloween bear narxi"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-halloween-bear" },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-halloween-bear" },
+    { lang: "en", href: "https://starsjoy.uz/en/blog/telegram-halloween-bear" }
+  ]}
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Telegram Halloween Bear qayerda bor va qanday olinadi?",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Gifts",
+    "keywords": "telegram halloween bear, halloween gift telegram, telegram yangi gift",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://telegram.me/starsjoy",
+        "https://telegram.me/starsjoybot"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": canonical,
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://starsjoy.uz/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Halloween Bear", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Telegram Halloween Bear qanday olinadi",
+    "totalTime": "PT2M",
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": "13000" },
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Mini App'ni oching", "text": "Telegram'da @starsjoybot'ni oching va Gift bo'limiga o'ting." },
+      { "@type": "HowToStep", "position": 2, "name": "Qabul qiluvchini kiriting", "text": "Do'stingizning username'ini yoki o'zingiznikini yozing." },
+      { "@type": "HowToStep", "position": 3, "name": "Sovg'ani tanlang", "text": "50 Stars'lik qovoq boshli ayiqchani tanlang. Xohlasangiz, xabar qo'shing yoki anonim yuboring." },
+      { "@type": "HowToStep", "position": 4, "name": "To'lang", "text": "Bot ko'rsatgan kartaga aniq summani Uzcard yoki Humo kartadan Payme, Click yoki bank ilovasi orqali o'tkazing." },
+      { "@type": "HowToStep", "position": 5, "name": "Qabul qiling", "text": "To'lov tasdiqlangach gift odatda 10 soniyada yetib boradi." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+    }))
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Telegram Halloween Bear",
+    "description": description,
+    "image": "https://starsjoy.uz/images/telegram-halloween-bear-og.png",
+    "brand": { "@type": "Brand", "name": "Telegram" },
+    "offers": {
+      "@type": "Offer",
+      "url": canonical,
+      "price": "13000",
+      "priceCurrency": "UZS",
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "StarsJoy" }
+    }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/">Bosh sahifa</a>
+          <span>/</span>
+          <a href="/blog">Blog</a>
+          <span>/</span>
+          <span>Halloween Bear</span>
+        </nav>
+        <div class="post-tag">Gifts</div>
+        <h1 class="post-title">Telegram Halloween Bear qayerda bor va qanday olinadi? Uzcard va Humo bilan</h1>
+        <div class="post-meta">
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
+          <span class="post-author">StarsJoy</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> Halloween Bear — Telegram 2026-yil 31-oktabr kechasi chiqargan yangi sovg'a, narxi <strong>50 Stars</strong>. O'zbekistonda uni <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> Mini App'idan <strong>Uzcard va Humo bilan 13 000 so'mga</strong> olasiz: faqat username kerak, odatda 10 soniyada yetadi. Telegram sotuv tugash sanasini e'lon qilmagan.
+          </div>
+
+          <div class="post-cta-box">
+            <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener" class="post-cta-btn">Halloween Bear'ni 13 000 so'mga olish &rarr;</a>
+            <span class="post-cta-sub">@starsjoybot, faqat username kerak</span>
+          </div>
+
+          <figure style="margin: 0 0 24px; text-align: center;">
+            <img src="/images/telegram-halloween-bear.webp" alt="Telegram Halloween Bear sovg'asi: qovoq boshli yashil zombi ayiqcha" width="280" height="280" style="display: block; margin: 0 auto 8px; max-width: 100%; height: auto;" />
+            <figcaption style="font-size: 0.85rem; color: var(--text-light);">Halloween Bear, 50 Stars. Rasm: Telegram.</figcaption>
+          </figure>
+
+          <section>
+            <h2>Halloween Bear haqida asosiy faktlar</h2>
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <tbody>
+                  <tr><td><strong>Nomi</strong></td><td>Halloween Bear (qovoq boshli zombi ayiqcha)</td></tr>
+                  <tr><td><strong>Chiqqan vaqti</strong></td><td>2026-10-31, Toshkent vaqti bilan taxminan 02:54</td></tr>
+                  <tr><td><strong>Telegram narxi</strong></td><td>50 Stars</td></tr>
+                  <tr><td><strong>StarsJoy'da</strong></td><td>13 000 so'm, gift tayyor yuboriladi</td></tr>
+                  <tr><td><strong>Tiraj</strong></td><td>Cheklanmagan</td></tr>
+                  <tr><td><strong>Sotuv tugashi</strong></td><td>E'lon qilinmagan</td></tr>
+                  <tr><td><strong>Upgrade</strong></td><td>E'lon qilinmagan</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Narxlar va holat 2026-10-31 ga to'g'ri. Birinchi 14 soatda <strong>67 930 ta</strong> sotilgan, bu minutiga taxminan 81 ta sovg'a demakdir (<a href="https://t.me/podarokdurova/8030" target="_blank" rel="noopener nofollow">Podarok Durova</a> kanali hisobi).</p>
+          </section>
+
+          <section>
+            <h2>Halloween Bear qayerda bor?</h2>
+            <p>Halloween Bear Telegram'ning sovg'alar katalogida va StarsJoy Mini App'ida bor. Sizga qaysi yo'l mosligi Stars balansingiz va kartangizga bog'liq:</p>
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead>
+                  <tr>
+                    <th>Qayerda</th>
+                    <th>Narx</th>
+                    <th>Nima kerak</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="highlight-row">
+                    <td><strong>StarsJoy Mini App</strong></td>
+                    <td>13 000 so'm</td>
+                    <td>Uzcard yoki Humo, username</td>
+                  </tr>
+                  <tr>
+                    <td>Telegram katalogi</td>
+                    <td>50 Stars</td>
+                    <td>Balansda 50 Stars</td>
+                  </tr>
+                  <tr>
+                    <td>Gift Marketplace</td>
+                    <td>Yo'q</td>
+                    <td>Bozor faqat collectible sovg'alar uchun</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Boshqa botlarda ham uchrashi mumkin, lekin to'lashdan oldin ularning ishonchliligini tekshiring. Tekshirish usullari: <a href="/blog/telegram-stars-firibgarlik-himoya">Stars firibgarligidan himoya</a>.</p>
+          </section>
+
+          <section>
+            <h2>Halloween Bear StarsJoy'da qanday olinadi?</h2>
+            <p>Balansda Stars bo'lishi shart emas: to'lovni so'mda qilasiz, gift to'g'ridan-to'g'ri qabul qiluvchiga boradi.</p>
+            <ol>
+              <li><strong>Mini App'ni oching.</strong> <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>'ga kiring va Gift bo'limini tanlang.</li>
+              <li><strong>Qabul qiluvchini kiriting.</strong> Do'stingizning username'ini yoki o'zingiznikini yozing.</li>
+              <li><strong>Sovg'ani tanlang.</strong> 50 Stars'lik qovoq boshli ayiqchani bosing. Xohlasangiz, xabar qo'shing yoki anonim yuboring.</li>
+              <li><strong>To'lang.</strong> Bot ko'rsatgan kartaga aniq summani Payme, Click yoki bank ilovasi orqali o'tkazing.</li>
+              <li><strong>Qabul qiling.</strong> Gift odatda 10 soniyada yetib boradi. Oferta bo'yicha buyurtma 5 daqiqa ichida bajariladi.</li>
+            </ol>
+            <p>Bot ko'rsatgan summa 13 000 so'mdan bir necha yuz so'm kam bo'lishi mumkin: bu to'lovni buyurtmangizga bog'lash uchun kerak. Summani aynan ko'rsatilganidek yuboring. Qabul qiluvchining profilida xabar yuborish yopiq bo'lsa, gift yetib bormaydi.</p>
+            <p><strong>Sotuv tugashini kutmang.</strong> <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot'ni oching</a> va Halloween Bear'ni 13 000 so'mga yuboring.</p>
+          </section>
+
+          <section>
+            <h2>Halloween Bear Telegram ilovasida qanday yuboriladi?</h2>
+            <p>Balansingizda 50 Stars bo'lsa, buni Telegram'ning o'zida qilasiz:</p>
+            <ol>
+              <li>Qabul qiluvchining profilini oching.</li>
+              <li>Yuqoridagi ⋮ yoki ⋯ menyusidan <strong>Send a Gift</strong> (Sovg'a yuborish) ni tanlang.</li>
+              <li>Katalogdan Halloween Bear'ni toping.</li>
+              <li>Xabar qo'shing yoki ismingizni yashiring va 50 Stars bilan to'lang.</li>
+            </ol>
+            <p>Stars yetmasa, <a href="/stars">StarsJoy'dan Uzcard va Humo bilan</a> oling. Eng kam miqdor 50 Stars, ya'ni 12 000 so'm. Balansni tekshirish: <a href="/blog/telegram-stars-hisobini-tekshirish">Stars hisobini ko'rish</a>.</p>
+          </section>
+
+          <section>
+            <h2>Qaysi yo'l arzon: Stars yoki tayyor gift?</h2>
+            <p>Bitta sovg'ada farq 1 000 so'm, o'zingiz yuborsangiz arzonroq. Tayyor gift esa bir necha qadamni qisqartiradi va Stars olishni talab qilmaydi. Bir nechta sovg'a yuborsangiz, <a href="/stars/100">100 Stars paketi</a> qulayroq.</p>
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead>
+                  <tr>
+                    <th>Miqdor</th>
+                    <th>Tayyor gift (Mini App)</th>
+                    <th>Stars olib, o'zingiz yuborasiz</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1 ta</td><td>13 000 so'm</td><td>12 000 so'm (50 Stars)</td></tr>
+                  <tr><td>3 ta</td><td>39 000 so'm</td><td>36 000 so'm (150 Stars)</td></tr>
+                  <tr><td>5 ta</td><td>65 000 so'm</td><td>60 000 so'm (250 Stars)</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Telegram ilovasida 50 Stars taxminan $1 turadi, lekin App Store yoki Google Play odatda xalqaro karta so'raydi. Umumiy narxlar: <a href="/blog/telegram-gifts-narxi-royxati">Telegram sovg'alari narxi</a>.</p>
+          </section>
+
+          <section>
+            <h2>Halloween Bear qachongacha sotiladi?</h2>
+            <p>Aniq sana yo'q: Telegram tugash vaqtini e'lon qilmagan. Lekin mavsumiy 50 Stars'lik ayiqchalar odatda uzoq turmaydi:</p>
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead>
+                  <tr>
+                    <th>Ayiqcha (2026)</th>
+                    <th>Sotuvda bo'lgan vaqt</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Yurakli ayiqcha</td><td>14-fevral bayramigacha</td></tr>
+                  <tr><td>Masxaraboz ayiqcha</td><td>1-aprelgacha</td></tr>
+                  <tr><td>Avtomat va bombali ayiqcha</td><td>12-avgustdan, 17-avgustga kelib olingan</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Demak, Halloween Bear ham bir necha kunda yo'qolishi mumkin. Bu taxmin, rasmiy sana emas. Bir vaqtda u cheklanmagan tirajda: olishga ulgursangiz, tugab qolmaydi.</p>
+          </section>
+
+          <section>
+            <h2>Sotuv tugagach Halloween Bear'ni olish mumkinmi?</h2>
+            <p>Telegram katalogidan olib tashlangach, yangisini sotib bo'lmaydi. Avval olingan sovg'alar esa egalarida qoladi. Oddiy sovg'ani boshqa odamga o'tkazib ham bo'lmaydi: bu imkoniyat faqat <a href="/blog/telegram-nft-gifts">collectible sovg'alarda</a> bor.</p>
+            <p>Shuning uchun sotuv tugagandan keyin kimdir bu sovg'ani "bepul" yoki "chegirmada" taklif qilsa, ehtiyot bo'ling. Telegram keyinroq upgrade ochsa, collectible nusxalar bozorda paydo bo'lishi mumkin, lekin buning kafolati yo'q.</p>
+          </section>
+
+          <section>
+            <h2>Halloween Bear'ni sotish yoki Stars'ga almashtirish mumkinmi?</h2>
+            <p>Bozorda sotib bo'lmaydi, lekin Stars'ga almashtirish mumkin. Qoidalari:</p>
+            <ul>
+              <li><strong>Qancha qaytadi:</strong> taxminan 43 Stars, ya'ni 50 Stars'ning bir qismi;</li>
+              <li><strong>Muddat:</strong> faqat sovg'a olingandan keyingi cheklangan vaqt ichida;</li>
+              <li><strong>Natija:</strong> sovg'a butunlay yo'qoladi va qaytmaydi;</li>
+              <li><strong>Reyting:</strong> Telegram qoidasiga ko'ra profil reytingi pasayadi.</li>
+            </ul>
+            <p>Upgrade 2026-10-31 holatiga e'lon qilinmagan. Upgrade qanday ishlashi haqida: <a href="/blog/telegram-gift-collectible-upgrade">Sovg'ani collectible'ga aylantirish</a>.</p>
+          </section>
+
+          <section>
+            <h2>Mask sovg'asida nima o'zgardi?</h2>
+            <p>Shu Halloween kuni Telegram yana bir yangilik chiqardi: 2025-yilgi <strong>Mask</strong> sovg'asi uchun upgrade'lar ochildi. Bu 2026-yil 31-oktabr, Toshkent vaqti bilan taxminan 20:09 da bo'lgan va yangi modellar <a href="/blog/telegram-gift-crafting">craft</a> bilan birga kelgan.</p>
+            <p>Halloween Bear'dan farqi: Mask yangi sotuvda yo'q va StarsJoy katalogiga kirmaydi. Uni faqat egalaridan olish mumkin. 2025-yilda 500 Stars turgan Mask'ning upgrade qilinmagan nusxasi uchinchi tomon bozorlarida taxminan $36 gacha chiqqan (<a href="https://t.me/podarokdurova/8038" target="_blank" rel="noopener nofollow">31-oktabr holatiga</a>). Bunday narxlar tez o'zgaradi, shuning uchun investitsiya sifatida qaramang.</p>
+          </section>
+
+          <section>
+            <h2>Sovg'a sotib olishda nimalarga e'tibor berish kerak?</h2>
+            <p>Telegram'da hech qachon parol yoki SMS kodni bermang. StarsJoy'ga faqat username kerak.</p>
+            <p>Sovg'asi borlar uchun yana bir xavf bor: oktyabrda firibgarlar soxta "sovg'angizni sotib olaman" xabarlarini ko'paytirgan. Xabardagi tugma Stars bermaydi, sovg'angizni tekin o'tkazib yuboradi. <a href="https://t.me/tginfo/4443" target="_blank" rel="noopener nofollow">Haqiqiy taklif</a> ekran o'rtasida chiqadi, soxtasi esa oddiy xabar kabi chap tomonda turadi.</p>
+            <p>Buyurtma texnik sabab bilan bajarilmasa, 24 soat ichida <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a>'ga to'lov chekini yuborasiz va pul to'liq qaytariladi. Batafsil: <a href="/blog/starsjoy-ishonchli-sharhlar-kafolat">StarsJoy ishonchlimi?</a></p>
+          </section>
+
+          <div class="cta-box">
+            <h2>Halloween Bear'ni hoziroq yuboring</h2>
+            <p>13 000 so'm, Uzcard yoki Humo bilan, odatda 10 soniyada yetadi.</p>
+            <a class="cta-btn" href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot'ni ochish</a>
+            <p class="cta-sub"><a href="/stars">Stars narxlari</a> · <a href="/gifts">Premium'ni sovg'a qilish</a></p>
+          </div>
+
+          <section>
+            <h2>Ko'p beriladigan savollar</h2>
+            <div class="post-faq">
+              {faqs.map(faq => (
+                <div class="post-faq-item">
+                  <h3>{faq.q}</h3>
+                  <p>{faq.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <h2>Manbalar</h2>
+            <ul>
+              <li><a href="https://t.me/GiftNews/290" target="_blank" rel="noopener nofollow">GiftNews</a>: Halloween Bear nomi, narxi va tiraji (2026-10-31);</li>
+              <li><a href="https://t.me/podarokdurova/8025" target="_blank" rel="noopener nofollow">Podarok Durova</a>: chiqish vaqti; <a href="https://t.me/podarokdurova/8035" target="_blank" rel="noopener nofollow">Mask upgrade'lari</a>;</li>
+              <li><a href="https://core.telegram.org/api/gifts" target="_blank" rel="noopener nofollow">Telegram API hujjatlari</a>: sovg'ani almashtirish va bozor qoidalari;</li>
+              <li><a href="https://telegram.org/blog/gifts-verification-platform" target="_blank" rel="noopener nofollow">Telegram blogi</a>: sovg'a yuborish tartibi;</li>
+              <li><a href="https://barboskich.com/podarki/podarok-mishka-v-telegram/" target="_blank" rel="noopener nofollow">Barboskich</a>: mavsumiy ayiqchalar sanalari va Stars'ga almashtirish miqdori.</li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 760px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .post-body {
+    padding: 60px 24px;
+  }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-cta-box { margin: 0 0 24px; text-align: center; }
+  .post-content a.post-cta-btn { display: inline-block; padding: 10px 22px; background: var(--primary); color: #fff; font-weight: 600; font-size: 0.95rem; border-radius: 8px; text-decoration: none; }
+  .post-content a.post-cta-btn:hover { opacity: 0.92; text-decoration: none; }
+  .post-cta-sub { display: block; margin-top: 6px; font-size: 0.82rem; color: var(--text-light); }
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
+  .post-content section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 28px 0 12px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 14px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .post-table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+  }
+
+  .post-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .post-table th {
+    background: rgba(124, 58, 237, 0.06);
+    color: var(--text);
+    font-weight: 700;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+  }
+
+  .post-table td {
+    padding: 12px 18px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+  }
+
+  .post-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .cta-box {
+    background: linear-gradient(135deg, #7C3AED, #5B21B6);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin: 36px 0;
+    text-align: center;
+  }
+  .post-content .cta-box h2 { color: #fff; margin: 0 0 8px; }
+  .post-content .cta-box p { color: rgba(255, 255, 255, 0.85); margin-bottom: 18px; }
+  .post-content .cta-box .cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: #5B21B6;
+    font-weight: 800;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+  }
+  .post-content .cta-box .cta-btn:hover { text-decoration: none; opacity: 0.92; }
+  .post-content .cta-box .cta-sub { margin: 16px 0 0; font-size: 0.9rem; }
+  .post-content .cta-box .cta-sub a { color: #fff; text-decoration: underline; }
+
+  .post-faq {
+    margin: 24px 0;
+  }
+
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+
+  .post-faq-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+
+  .post-faq-item p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.6rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.05rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
+    .cta-box { padding: 24px 18px; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .post-table th { padding: 10px 12px; font-size: 0.85rem; }
+    .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+  }
+</style>

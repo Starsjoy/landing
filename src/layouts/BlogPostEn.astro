@@ -38,6 +38,8 @@ interface Props {
   /** Rang belgisi: Stars | Premium | Gifts | Guide */
   tag?: string;
   faqs?: Faq[];
+  /** OG va Article rasmi (1200×630) */
+  ogImage?: string;
   /** Shu maqolaning o'zbekcha varianti bo'lsa — hreflang uchun */
   uzHref?: string;
   ruHref?: string;
@@ -47,7 +49,7 @@ interface Props {
 
 const {
   slug, title, description, keywords = '', publishDate,
-  heading, crumb, tag = 'Guide', faqs = [], uzHref, ruHref, enHref, locale = 'en',
+  heading, crumb, tag = 'Guide', faqs = [], ogImage = 'https://starsjoy.uz/og-image.png', uzHref, ruHref, enHref, locale = 'en',
 } = Astro.props;
 
 const prefix = locale === 'en' ? '/en/blog' : locale === 'ru' ? '/ru/blog' : '/blog';
@@ -74,6 +76,7 @@ const hreflangs = [
   keywords={keywords}
   lang={locale}
   ogType="article"
+  ogImage={ogImage}
   hreflangs={hreflangs}
 >
   {locale === 'uz' ? <Navbar /> : locale === 'ru' ? <NavbarRu /> : <NavbarEn />}
@@ -94,7 +97,7 @@ const hreflangs = [
       "logo": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png" }
     },
     "mainEntityOfPage": url,
-    "image": { "@type": "ImageObject", "url": "https://starsjoy.uz/og-image.png", "width": 1200, "height": 630 }
+    "image": { "@type": "ImageObject", "url": ogImage, "width": 1200, "height": 630 }
   })} />
 
   <script type="application/ld+json" set:html={JSON.stringify({

@@ -25,6 +25,7 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Blog index (English guides): https://starsjoy.uz/en/blog
 
 ### English guides
+- Telegram Halloween Bear: Where to Get It With Uzcard or Humo: https://starsjoy.uz/en/blog/telegram-halloween-bear — Telegram's new Halloween Bear gift costs 50 Stars. How to get it in Uzbekistan for 13,000 UZS with Uzcard or Humo, how long it stays on sale, and how to convert it to Stars.
 - Telegram Premium 12 Months Price in 2026 — 422,000 UZS, Pay with Uzcard or Humo: https://starsjoy.uz/en/blog/telegram-premium-12-months-price — Telegram Premium for 12 months costs 422,000 UZS at StarsJoy (about 35,200 UZS per month, 1,160 per day), paid with Uzcard or Humo — roughly 300,000 UZS less than a year in the app. Compared with 3 and 6 months.
 - 500 Telegram Stars Price in 2026 (UZS, App, Fragment): https://starsjoy.uz/en/blog/500-telegram-stars-price — 500 Telegram Stars cost 120,000 UZS at StarsJoy (240 UZS per Star): an honest comparison with the in-app and Fragment price, how many gifts 500 Stars buy, and delivery in about 10 seconds.
 - Pay for Telegram Premium with Click or Payme (2026 Guide): https://starsjoy.uz/en/blog/buy-telegram-premium-with-click-payme — How paying for Telegram Premium with Click or Payme works in Uzbekistan: prices for 3, 6 and 12 months, card-to-card transfer fees, step-by-step instructions and what to do if a payment fails.
@@ -61,7 +62,7 @@ Har bir sahifada: meta title/description, canonical, hreflang (uz/ru), Open Grap
 ## Tajriba va ishonch (tekshirsa bo'ladigan ma'lumotlar)
 
 - 8,000+ ta muvaffaqiyatli bajarilgan buyurtma.
-- https://starsjoy.uz/sharhlar — hozirda 124 ta tasdiqlangan sharh, o'rtacha ball 4.9/5. Har bir sharhda muallif, ball va aniq sana ko'rsatilgan.
+- https://starsjoy.uz/sharhlar — hozirda 143 ta tasdiqlangan sharh, o'rtacha ball 4.9/5. Har bir sharhda muallif, ball va aniq sana ko'rsatilgan.
 - Sharhlar moderatsiyadan o'tadi, lekin o'chirilmaydi yoki o'zgartirilmaydi; umumiy o'rtacha ball sahifada ochiq turadi va AggregateRating schema sifatida bosh sahifada hamda /sharhlar da beriladi.
 - Sharh qoldirish ochiq: https://starsjoy.uz/sharh-qoldirish
 - Kompaniya va shartlar: https://starsjoy.uz/info | Ommaviy oferta: https://starsjoy.uz/oferta
@@ -133,7 +134,7 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 ## Referral dasturi
 Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
 
-## Maqolalar (71 ta mavzu, har biri o'zbek va rus tilida)
+## Maqolalar (72 ta mavzu, har biri o'zbek va rus tilida)
 
 ### Telegram Stars — asoslar, narx va xarid
 
@@ -218,6 +219,7 @@ Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xar
 - Eng qimmat Telegram sovg'alari 2026: TOP-10 va rekord narxlar: https://starsjoy.uz/blog/eng-qimmat-telegram-sovgalari (RU: https://starsjoy.uz/ru/blog/eng-qimmat-telegram-sovgalari) — Fragment'da qayd etilgan eng qimmat Telegram sovg'alari: TOP-10 kollektsiya, rekord sotuvlar, nodirlik mexanikasi va so'mdagi taxminiy qiymati (2026-yil…
 - Telegram sovg‘asini qanday sotish mumkin?: https://starsjoy.uz/blog/telegram-sovga-sotish-fragment (RU: https://starsjoy.uz/ru/blog/telegram-sovga-sotish-fragment) — Telegram sovg‘asini Marketplace yoki Fragment orqali sotish: Stars va TON farqi, listing bosqichlari, komissiya, xavfsizlik va pulga aylantirish.
 - Telegram Gift Crafting: sovg'alarni birlashtirib noyob sovg'a yasash (2026): https://starsjoy.uz/blog/telegram-gift-crafting (RU: https://starsjoy.uz/ru/blog/telegram-gift-crafting) — Telegram Gift Crafting funksiyasi: 4 tagacha collectible sovg'ani birlashtirib Rare yoki Legendary darajali yangi sovg'a yasash, muvaffaqiyat ehtimoli va…
+- Telegram Halloween Bear qayerdan olinadi? Uzcard, Humo bilan: https://starsjoy.uz/blog/telegram-halloween-bear (RU: https://starsjoy.uz/ru/blog/telegram-halloween-bear) — Telegram'ning yangi Halloween Bear sovg'asi 50 Stars turadi. O'zbekistonda Uzcard va Humo bilan 13 000 so'mga oling: qayerda bor, qanday olinadi va qachongacha.
 
 ### Biznes, reseller va API
 
