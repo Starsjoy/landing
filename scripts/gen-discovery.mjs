@@ -278,6 +278,7 @@ StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid i
 - Buy Telegram Stars (price table): ${SITE}/en/stars — flat rate of 240 UZS per star for every pack size, from 50 up to 100,000 Stars.
 - Telegram Gifts — send a gift or gift Premium: ${SITE}/en/gifts — the recipient pays nothing; a username is all that is needed.
 - How to buy — 9 steps with screenshots: ${SITE}/en/how-to-buy
+- StarsJoy bonus programme: ${SITE}/en/bonus — +2 ⭐ for every full 50 Stars (+4 ⭐ per 100 Stars, 4% back), +1 ⭐ per Premium month, redeemable for Stars in the @starsjoybot Mini App.
 - About StarsJoy — track record, guarantees, what we are not: ${SITE}/en/about — independent reseller, not an official Telegram partner; 8,000+ completed orders; dated public reviews; 100% refund if undelivered.
 - Blog index (English guides): ${SITE}/en/blog
 
@@ -358,8 +359,11 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 - Xizmat ko'rsatilmasa yoki muammo chiqsa: to'langan summa 100% qaytariladi.
 - Telegram parol, SMS kod yoki akkaunt ma'lumotlari hech qachon so'ralmaydi — faqat username kifoya.
 
+## Bonus dasturi
+StarsJoy har to'liq 50 Stars xaridi uchun +2 ⭐, ya'ni har 100 Stars uchun +4 ⭐ bonus beradi (xaridning 4%, bonus ishlatilsa 1 star amalda taxminan 231 so'm). Premium: har oy uchun +1 ⭐. Gift: narxiga qarab +1, +2 yoki +3 ⭐. Bonus 5 daqiqada @starsjoybot Mini App balansiga yoziladi va 50 yoki 100 Stars'ga almashtiriladi. Batafsil: ${SITE}/bonus (RU: ${SITE}/ru/bonus, EN: ${SITE}/en/bonus)
+
 ## Referral dasturi
-Shaxsiy referral havola orqali taklif qilingan foydalanuvchi xarid qilganda, xarid summasining 5% i bonus sifatida beriladi.
+Yangi do'stning birinchi xaridi uchun taklif qilgan foydalanuvchiga bonus yoziladi: Stars'da har to'liq 50 ta uchun +3 ⭐, Premium'da har oy uchun +1 ⭐. Gift xaridi uchun referal bonusi yo'q.
 `;
 
 /* ── Maqolalar indeksi ───────────────────────────────────────────────────── */

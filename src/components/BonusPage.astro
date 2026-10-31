@@ -1,0 +1,198 @@
+---
+/**
+ * /bonus sahifasining umumiy qobig'i (uz/ru/en).
+ * Barcha matn proplar va slot orqali keladi, bonus hisobi esa shu yerda:
+ * backend/modules/rewards/config.js dagi rewardForOrder bilan bir xil bo'lishi shart.
+ */
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import NavbarRu from './NavbarRu.astro';
+import FooterRu from './FooterRu.astro';
+import NavbarEn from './NavbarEn.astro';
+import FooterEn from './FooterEn.astro';
+import { hreflangsFor } from '../lib/i18n';
+
+interface Faq { q: string; a: string }
+
+interface Props {
+  locale: 'uz' | 'ru' | 'en';
+  title: string;
+  description: string;
+  keywords: string;
+  canonical: string;
+  homeLabel: string;
+  homeHref: string;
+  crumb: string;
+  h1: string;
+  quickAnswer: string;
+  ctaLabel: string;
+  ctaSub: string;
+  updatedLabel: string;
+  updated: string;
+  tableTitle: string;
+  tableHead: [string, string, string];
+  currency: string;
+  thousandSep: string;
+  tableNote: string;
+  faqTitle: string;
+  faqs: Faq[];
+  finalTitle: string;
+  finalText: string;
+  finalCta: string;
+}
+
+const {
+  locale, title, description, keywords, canonical, homeLabel, homeHref, crumb, h1, quickAnswer,
+  ctaLabel, ctaSub, updatedLabel, updated, tableTitle, tableHead, currency, thousandSep, tableNote,
+  faqTitle, faqs, finalTitle, finalText, finalCta,
+} = Astro.props;
+
+const BOT_URL = 'https://telegram.me/starsjoybot';
+const STAR_PRICE = 240;
+const fmt = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, thousandSep);
+const rows = [50, 100, 250, 500, 1000, 2500, 5000, 10000].map((stars) => ({
+  stars: fmt(stars),
+  price: `${fmt(stars * STAR_PRICE)} ${currency}`,
+  bonus: `+${fmt(Math.floor(stars / 50) * 2)} ⭐`,
+}));
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  lang={locale}
+  hreflangs={hreflangsFor('/bonus')}
+>
+  {locale === 'uz' ? <Navbar /> : locale === 'ru' ? <NavbarRu /> : <NavbarEn />}
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "description": description,
+    "dateModified": updated,
+    "publisher": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
+    "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".bonus-quick", ".bonus-faq"] }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": homeLabel, "item": `https://starsjoy.uz${homeHref === '/' ? '' : homeHref}` },
+      { "@type": "ListItem", "position": 2, "name": crumb, "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+    }))
+  })} />
+
+  <main class="bonus-page">
+    <section class="bonus-hero">
+      <div class="container">
+        <nav class="bonus-breadcrumb">
+          <a href={homeHref}>{homeLabel}</a>
+          <span>/</span>
+          <span>{crumb}</span>
+        </nav>
+        <h1>{h1}</h1>
+        <p class="bonus-quick">{quickAnswer}</p>
+        <div class="bonus-cta-row">
+          <a href={BOT_URL} class="btn-primary" target="_blank" rel="noopener">&#9889; {ctaLabel}</a>
+          <span>{ctaSub}</span>
+        </div>
+        <p class="bonus-updated">{updatedLabel}: {updated}</p>
+      </div>
+    </section>
+
+    <div class="bonus-body">
+      <div class="container">
+        <section>
+          <h2>{tableTitle}</h2>
+          <div class="bonus-table-wrap">
+            <table class="bonus-table">
+              <thead><tr>{tableHead.map((cell) => <th>{cell}</th>)}</tr></thead>
+              <tbody>
+                {rows.map((row) => (
+                  <tr><td>{row.stars} ⭐</td><td>{row.price}</td><td><strong>{row.bonus}</strong></td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>{tableNote}</p>
+        </section>
+
+        <slot />
+
+        <section class="bonus-faq">
+          <h2>{faqTitle}</h2>
+          {faqs.map((faq) => (
+            <div class="bonus-faq-item">
+              <h3>{faq.q}</h3>
+              <p>{faq.a}</p>
+            </div>
+          ))}
+        </section>
+
+        <section class="bonus-final">
+          <h2>{finalTitle}</h2>
+          <p>{finalText}</p>
+          <a href={BOT_URL} class="btn-primary" target="_blank" rel="noopener">&#9889; {finalCta}</a>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  {locale === 'uz' ? <Footer /> : locale === 'ru' ? <FooterRu /> : <FooterEn />}
+</Layout>
+
+<style is:global>
+  .bonus-hero { padding: 120px 24px 48px; background: #F8F6FF; }
+  .bonus-hero .container, .bonus-body .container { max-width: 800px; margin: 0 auto; }
+  .bonus-breadcrumb { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+  .bonus-breadcrumb a { color: var(--primary); text-decoration: none; }
+  .bonus-hero h1 { font-size: 2.3rem; font-weight: 900; line-height: 1.2; color: var(--text); margin-bottom: 16px; }
+  .bonus-quick { font-size: 1.1rem; font-weight: 600; line-height: 1.7; color: var(--text); margin-bottom: 20px; }
+  .bonus-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-muted); }
+  .bonus-updated { margin-top: 16px; font-size: 0.85rem; color: var(--text-muted); }
+  .bonus-body { padding: 48px 24px 64px; }
+  .bonus-body section { padding: 0; margin: 0; }
+  .bonus-body h2 { font-size: 1.4rem; font-weight: 800; color: var(--text); margin: 32px 0 12px; line-height: 1.3; }
+  .bonus-body section:first-child h2 { margin-top: 0; }
+  .bonus-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .bonus-body p, .bonus-body li { font-size: 1rem; line-height: 1.8; color: var(--text-muted); }
+  .bonus-body p { margin-bottom: 14px; }
+  .bonus-body ul, .bonus-body ol { padding-left: 24px; margin-bottom: 14px; }
+  .bonus-body a:not(.btn-primary) { color: var(--primary); text-decoration: none; }
+  .bonus-body a:not(.btn-primary):hover { text-decoration: underline; }
+  .bonus-table-wrap { overflow-x: auto; margin: 16px 0; border: 1px solid rgba(124, 58, 237, 0.12); border-radius: 12px; }
+  .bonus-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .bonus-table th { background: rgba(124, 58, 237, 0.06); color: var(--text); font-weight: 700; padding: 12px 16px; text-align: left; }
+  .bonus-table td { padding: 11px 16px; color: var(--text-muted); border-top: 1px solid rgba(124, 58, 237, 0.08); }
+  .bonus-table td strong { color: var(--primary); }
+  .bonus-faq-item { background: #F8F6FF; border: 1px solid rgba(124, 58, 237, 0.1); border-radius: 12px; padding: 20px 22px; margin-bottom: 12px; }
+  .bonus-faq-item p { margin-bottom: 0; font-size: 0.95rem; }
+  .bonus-body .bonus-final { margin-top: 32px; padding: 28px 24px; text-align: center; background: #F8F6FF; border-radius: 16px; }
+  .bonus-final h2 { margin-top: 0; }
+
+  @media (max-width: 640px) {
+    .bonus-hero { padding: 100px 16px 36px; }
+    .bonus-hero h1 { font-size: 1.6rem; }
+    .bonus-quick { font-size: 1rem; }
+    .bonus-body { padding: 36px 16px 48px; }
+    .bonus-body h2 { font-size: 1.22rem; }
+    .bonus-body p, .bonus-body li { font-size: 0.95rem; }
+    .bonus-table th, .bonus-table td { padding: 10px 12px; font-size: 0.85rem; }
+  }
+</style>

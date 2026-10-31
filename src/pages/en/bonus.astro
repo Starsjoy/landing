@@ -1,0 +1,120 @@
+---
+import BonusPage from '../../components/BonusPage.astro';
+
+const faqs = [
+  {
+    q: "How much bonus does StarsJoy give?",
+    a: "+2 ⭐ for every full 50 Stars you buy, which is +4 ⭐ per 100 Stars. Premium earns +1 ⭐ per month, and gifts earn +1, +2 or +3 ⭐ depending on their price."
+  },
+  {
+    q: "When is the bonus credited?",
+    a: "About 5 minutes after your order is delivered. It goes to your bonus balance in the @starsjoybot Mini App."
+  },
+  {
+    q: "Does the bonus go to my Telegram Stars balance?",
+    a: "Not directly. It's first credited to your StarsJoy bonus balance. Once you have enough, you redeem it in the Mini App for Stars or a gift, which are then sent to your Telegram account."
+  },
+  {
+    q: "What can I redeem the bonus for?",
+    a: "50 or 100 Telegram Stars, or a 25 ⭐ gift. The bonus can't be withdrawn as cash."
+  },
+  {
+    q: "What does one Star cost with the bonus?",
+    a: "About 231 UZS once you use your bonus. The regular price is 240 UZS per Star, and the bonus gives you 4% extra Stars: 240 ÷ 1.04 ≈ 231."
+  },
+  {
+    q: "How much bonus do I get for 70 Stars?",
+    a: "+2 ⭐. The bonus counts every full 50 Stars, so 70 counts as 50, while 100 earns +4 ⭐."
+  },
+  {
+    q: "Who gets the bonus when I buy for someone else?",
+    a: "You do, as the person who placed the order. The recipient gets the Stars or Premium, and the bonus goes to your balance."
+  },
+  {
+    q: "How much bonus do I get for inviting a friend?",
+    a: "For a new friend's first purchase: +3 ⭐ per full 50 Stars, or +1 ⭐ per Premium month. There's no referral bonus on gift purchases."
+  },
+  {
+    q: "Is there a limit on redeeming the bonus?",
+    a: "Yes. Each user can redeem up to 3 times a day. There's also a shared daily limit across all users."
+  }
+];
+---
+
+<BonusPage
+  locale="en"
+  title="StarsJoy Bonus: +4 ⭐ for Every 100 Stars | StarsJoy"
+  description="StarsJoy gives +4 ⭐ for every 100 Stars you buy. See the bonuses for Premium, gifts and referrals, how to redeem them for Stars, and the terms on one page."
+  keywords="starsjoy bonus, telegram stars bonus, telegram stars cashback, stars cashback uzbekistan, 4 bonus stars per 100, starsjoy referral"
+  canonical="https://starsjoy.uz/en/bonus"
+  homeLabel="Home"
+  homeHref="/en"
+  crumb="Bonus"
+  h1="StarsJoy bonus: +4 ⭐ to your balance for every 100 Stars"
+  quickAnswer="StarsJoy gives +2 ⭐ for every full 50 Stars you buy, which is +4 ⭐ per 100 Stars, or 4% of your purchase. The bonus reaches your @starsjoybot Mini App balance in about 5 minutes, and you can then redeem it for 50 or 100 Stars."
+  ctaLabel="Buy Stars and earn a bonus"
+  ctaSub="@starsjoybot, with Uzcard or Humo"
+  updatedLabel="Updated"
+  updated="2026-10-31"
+  tableTitle="How much bonus does each Stars pack earn?"
+  tableHead={["Stars", "Price", "Bonus"]}
+  currency="UZS"
+  thousandSep=","
+  tableNote="Prices as of 2026-10-31, at 240 UZS per Star. The bonus counts every full 50 Stars: 70 Stars earn +2 ⭐, and 150 Stars earn +6 ⭐."
+  faqTitle="Frequently asked questions"
+  faqs={faqs}
+  finalTitle="Earn your first bonus today"
+  finalText="100 Stars for 24,000 UZS plus +4 ⭐ bonus, with Uzcard or Humo."
+  finalCta="Open @starsjoybot"
+>
+  <section>
+    <h2>Do Premium and gift purchases earn a bonus?</h2>
+    <p>Yes, every paid purchase earns a bonus: Stars, Premium and gifts.</p>
+    <div class="bonus-table-wrap">
+      <table class="bonus-table">
+        <thead><tr><th>Purchase</th><th>Bonus</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/en/premium">Premium, 3 months</a></td><td><strong>+3 ⭐</strong></td></tr>
+          <tr><td><a href="/en/premium">Premium, 6 months</a></td><td><strong>+6 ⭐</strong></td></tr>
+          <tr><td><a href="/en/premium">Premium, 12 months</a></td><td><strong>+12 ⭐</strong></td></tr>
+          <tr><td>Gift up to 25 ⭐</td><td><strong>+1 ⭐</strong></td></tr>
+          <tr><td>Gift, 26–50 ⭐</td><td><strong>+2 ⭐</strong></td></tr>
+          <tr><td>Gift over 50 ⭐</td><td><strong>+3 ⭐</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>How much does the bonus lower the price of a Star?</h2>
+    <p>Once you use your bonus, one Star effectively costs about <strong>231 UZS</strong>. The regular price is 240 UZS, and the bonus adds 4% extra Stars to every purchase.</p>
+    <p>For example, 1,250 Stars cost 300,000 UZS and earn 50 ⭐ bonus. That equals 50 Stars worth 12,000 UZS.</p>
+  </section>
+
+  <section>
+    <h2>How do I redeem my bonus?</h2>
+    <ol>
+      <li>Open the <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> Mini App and go to the Bonus section.</li>
+      <li>Choose 50 or 100 Stars, or a 25 ⭐ gift, from the catalog.</li>
+      <li>Confirm the recipient's username: yours or someone else's.</li>
+      <li>The Stars or gift are sent to the Telegram account.</li>
+    </ol>
+    <p>The bonus can't be exchanged for cash, and you can redeem up to 3 times a day. Orders paid with bonus don't earn a new bonus.</p>
+  </section>
+
+  <section>
+    <h2>How much bonus do I get for inviting a friend?</h2>
+    <p>You earn a bonus on a new friend's first purchase:</p>
+    <ul>
+      <li><strong>Stars:</strong> +3 ⭐ per full 50, which is +6 ⭐ for 100 Stars;</li>
+      <li><strong>Premium:</strong> +1 ⭐ per month, which is +12 ⭐ for 12 months;</li>
+      <li><strong>Gifts:</strong> no referral bonus.</li>
+    </ul>
+    <p>Your friend must join through your link and be new to StarsJoy. Each friend earns you a bonus once.</p>
+  </section>
+
+  <section>
+    <h2>What do I need to do to get the bonus?</h2>
+    <p>You don't need to register or enter a promo code: buy from @starsjoybot and the bonus is credited automatically. More on buying: <a href="/en/how-to-buy">how to buy</a>, prices: <a href="/en/stars">Telegram Stars</a>, terms: <a href="/oferta">public offer (Uzbek)</a>.</p>
+  </section>
+</BonusPage>

@@ -20,6 +20,7 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/gifts': '/gifts',
   '/en/how-to-buy': '/qollanma',
   '/en/about': '/info',
+  '/en/bonus': '/bonus',
   '/en/blog': '/blog',
   // Premium/Stars variant landing pages (SEO/AEO/GEO commercial pages)
   '/en/premium/3-months': '/premium/3-oy',

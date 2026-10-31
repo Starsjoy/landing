@@ -1,0 +1,82 @@
+---
+/**
+ * Bosh sahifadagi bonus bloki (uz/ru/en).
+ * Raqamlar backend/modules/rewards/config.js dagi rewardForOrder bilan bir xil.
+ */
+interface Props {
+  lang?: 'uz' | 'ru' | 'en';
+}
+const { lang = 'uz' } = Astro.props;
+
+const T = {
+  uz: {
+    label: 'Bonus',
+    title: 'Har 100 Stars uchun +4 ⭐ bonus',
+    desc: "StarsJoy'da har xarid foyda keltiradi: har to'liq 50 Stars uchun +2 ⭐ bonus balansingizga yoziladi. Yig'ilgan bonusni Mini App'da 50 yoki 100 Stars'ga almashtirasiz.",
+    items: [['100 Stars', '+4 ⭐'], ['1 000 Stars', '+40 ⭐'], ['Premium 12 oy', '+12 ⭐']],
+    more: 'Bonus shartlari',
+    href: '/bonus',
+  },
+  ru: {
+    label: 'Бонус',
+    title: '+4 ⭐ бонуса за каждые 100 Stars',
+    desc: 'В StarsJoy выгодна каждая покупка: за каждые полные 50 Stars на бонусный баланс начисляется +2 ⭐. Накопленные бонусы можно обменять в Mini App на 50 или 100 Stars.',
+    items: [['100 Stars', '+4 ⭐'], ['1 000 Stars', '+40 ⭐'], ['Premium 12 мес.', '+12 ⭐']],
+    more: 'Условия бонусов',
+    href: '/ru/bonus',
+  },
+  en: {
+    label: 'Bonus',
+    title: '+4 ⭐ bonus for every 100 Stars',
+    desc: 'Every StarsJoy purchase pays you back: each full 50 Stars adds +2 ⭐ to your bonus balance. Redeem what you collect for 50 or 100 Stars in the Mini App.',
+    items: [['100 Stars', '+4 ⭐'], ['1,000 Stars', '+40 ⭐'], ['Premium 12 months', '+12 ⭐']],
+    more: 'Bonus terms',
+    href: '/en/bonus',
+  },
+}[lang];
+---
+
+<section class="home-bonus" id="bonus">
+  <div class="container">
+    <div class="home-bonus-box">
+      <div class="home-bonus-text">
+        <span class="section-label">{T.label}</span>
+        <h2>{T.title}</h2>
+        <p>{T.desc}</p>
+        <a href={T.href}>{T.more} &rarr;</a>
+      </div>
+      <ul class="home-bonus-list">
+        {T.items.map(([name, bonus]) => (
+          <li><span>{name}</span><strong>{bonus}</strong></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-bonus { padding: 48px 24px; }
+  .home-bonus-box {
+    display: flex; align-items: center; gap: 40px;
+    max-width: 1000px; margin: 0 auto; padding: 36px 40px;
+    background: #F8F6FF; border: 1px solid rgba(124, 58, 237, 0.14); border-radius: 20px;
+  }
+  .home-bonus-text { flex: 1; }
+  .home-bonus-text h2 { font-size: 1.8rem; font-weight: 900; line-height: 1.2; color: var(--text); margin: 8px 0 12px; }
+  .home-bonus-text p { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 14px; }
+  .home-bonus-text a { font-weight: 700; color: var(--primary); text-decoration: none; }
+  .home-bonus-text a:hover { text-decoration: underline; }
+  .home-bonus-list { flex: 0 0 280px; list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .home-bonus-list li {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 12px 16px; background: #fff; border-radius: 12px; font-size: 0.95rem; color: var(--text-muted);
+  }
+  .home-bonus-list strong { color: var(--primary); font-weight: 800; }
+
+  @media (max-width: 768px) {
+    .home-bonus { padding: 32px 16px; }
+    .home-bonus-box { flex-direction: column; align-items: stretch; gap: 20px; padding: 24px 20px; }
+    .home-bonus-text h2 { font-size: 1.45rem; }
+    .home-bonus-list { flex: none; }
+  }
+</style>

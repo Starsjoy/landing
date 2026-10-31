@@ -1,0 +1,120 @@
+---
+import BonusPage from '../components/BonusPage.astro';
+
+const faqs = [
+  {
+    q: "StarsJoy qancha bonus beradi?",
+    a: "Har to'liq 50 Stars xaridi uchun +2 ⭐ bonus, ya'ni har 100 Stars uchun +4 ⭐. Premium'da har oy uchun +1 ⭐, gift'da esa narxiga qarab +1, +2 yoki +3 ⭐ beriladi."
+  },
+  {
+    q: "Bonus qachon tushadi?",
+    a: "Buyurtma yetkazilgach, taxminan 5 daqiqadan keyin. Bonus @starsjoybot Mini App'idagi bonus balansingizga yoziladi."
+  },
+  {
+    q: "Bonus Telegram Stars balansimga tushadimi?",
+    a: "To'g'ridan-to'g'ri yo'q. Avval StarsJoy bonus balansiga yoziladi. Yetarli miqdor yig'ilgach, uni Mini App'da Stars yoki gift'ga almashtirasiz va u Telegram akkauntingizga yuboriladi."
+  },
+  {
+    q: "Bonusni nimaga almashtirish mumkin?",
+    a: "50 yoki 100 ta Telegram Stars'ga, shuningdek 25 ⭐ lik gift'ga. Bonusni naqd pulga aylantirib bo'lmaydi."
+  },
+  {
+    q: "Bonus bilan 1 star necha so'mga tushadi?",
+    a: "Yig'ilgan bonusni ishlatsangiz, amalda taxminan 231 so'mga. Oddiy narx 240 so'm/star, bonus esa 4% qo'shimcha Stars beradi: 240 ÷ 1,04 ≈ 231."
+  },
+  {
+    q: "70 ta Stars olsam qancha bonus beriladi?",
+    a: "+2 ⭐. Bonus har to'liq 50 Stars uchun hisoblanadi, shuning uchun 70 ta 50 ta kabi hisoblanadi, 100 ta esa +4 ⭐ beradi."
+  },
+  {
+    q: "Boshqa odamga olganimda bonus kimga tushadi?",
+    a: "Buyurtma bergan odamga, ya'ni sizga. Stars yoki Premium qabul qiluvchiga boradi, bonus esa sizning balansingizga yoziladi."
+  },
+  {
+    q: "Do'stimni taklif qilsam qancha bonus olaman?",
+    a: "Yangi do'stingizning birinchi xaridi uchun: Stars'da har to'liq 50 ta uchun +3 ⭐, Premium'da har oy uchun +1 ⭐. Gift xaridi uchun referal bonusi yo'q."
+  },
+  {
+    q: "Bonusni yechishda limit bormi?",
+    a: "Ha. Bitta foydalanuvchi kuniga 3 martagacha yechishi mumkin. Barcha foydalanuvchilar uchun umumiy kunlik limit ham bor."
+  }
+];
+---
+
+<BonusPage
+  locale="uz"
+  title="StarsJoy bonuslari: har 100 Stars uchun +4 ⭐ | StarsJoy"
+  description="StarsJoy har 100 Stars xaridi uchun +4 ⭐ bonus beradi. Premium, gift va referal bonuslari, bonusni Stars'ga almashtirish tartibi va shartlari bir sahifada."
+  keywords="starsjoy bonus, telegram stars bonus, stars keshbek, stars cashback uzbekistan, har 100 stars 4 bonus, starsjoy referral"
+  canonical="https://starsjoy.uz/bonus"
+  homeLabel="Bosh sahifa"
+  homeHref="/"
+  crumb="Bonuslar"
+  h1="StarsJoy bonuslari: har 100 Stars uchun +4 ⭐ balansingizga"
+  quickAnswer="StarsJoy har to'liq 50 Stars xaridi uchun +2 ⭐, ya'ni har 100 Stars uchun +4 ⭐ bonus beradi. Bu xaridning 4 foizi. Bonus 5 daqiqada @starsjoybot Mini App'idagi balansingizga yoziladi, keyin uni 50 yoki 100 ta Stars'ga almashtirasiz."
+  ctaLabel="Stars olib bonus yig'ish"
+  ctaSub="@starsjoybot, Uzcard va Humo bilan"
+  updatedLabel="Yangilangan"
+  updated="2026-10-31"
+  tableTitle="Har Stars paketi uchun qancha bonus beriladi?"
+  tableHead={["Stars", "Narx", "Bonus"]}
+  currency="so'm"
+  thousandSep=" "
+  tableNote="Narxlar 2026-10-31 holatiga, tarif 240 so'm/star. Bonus har to'liq 50 Stars uchun hisoblanadi: masalan, 70 ta uchun +2 ⭐, 150 ta uchun +6 ⭐."
+  faqTitle="Ko'p beriladigan savollar"
+  faqs={faqs}
+  finalTitle="Birinchi bonusingizni bugun oling"
+  finalText="100 Stars 24 000 so'm va +4 ⭐ bonus, Uzcard yoki Humo bilan."
+  finalCta="@starsjoybot'ni ochish"
+>
+  <section>
+    <h2>Premium va gift xaridida bonus bormi?</h2>
+    <p>Ha, bonus har bir pullik xaridga yoziladi: Stars, Premium va gift.</p>
+    <div class="bonus-table-wrap">
+      <table class="bonus-table">
+        <thead><tr><th>Xarid</th><th>Bonus</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/premium/3-oy">Premium 3 oy</a></td><td><strong>+3 ⭐</strong></td></tr>
+          <tr><td><a href="/premium/6-oy">Premium 6 oy</a></td><td><strong>+6 ⭐</strong></td></tr>
+          <tr><td><a href="/premium/12-oy">Premium 12 oy</a></td><td><strong>+12 ⭐</strong></td></tr>
+          <tr><td>Gift, 25 ⭐ gacha</td><td><strong>+1 ⭐</strong></td></tr>
+          <tr><td>Gift, 26–50 ⭐</td><td><strong>+2 ⭐</strong></td></tr>
+          <tr><td>Gift, 50 ⭐ dan yuqori</td><td><strong>+3 ⭐</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Bonus 1 star narxini qanchaga tushiradi?</h2>
+    <p>Yig'ilgan bonusni ishlatsangiz, 1 star amalda taxminan <strong>231 so'mga</strong> tushadi. Oddiy narx 240 so'm, bonus esa har xariddan 4% qo'shimcha Stars beradi.</p>
+    <p>Aniq misol: 1250 Stars uchun jami 300 000 so'm to'laysiz va 50 ⭐ bonus yig'asiz. Bu 12 000 so'mlik 50 Stars'ga teng.</p>
+  </section>
+
+  <section>
+    <h2>Bonusni qanday yechib olish mumkin?</h2>
+    <ol>
+      <li><a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> Mini App'ini oching va Bonus bo'limiga o'ting.</li>
+      <li>Katalogdan 50 yoki 100 Stars yoxud 25 ⭐ lik gift'ni tanlang.</li>
+      <li>Qabul qiluvchi username'ni tasdiqlang: o'zingiz yoki boshqa odam.</li>
+      <li>Stars yoki gift Telegram akkauntiga yuboriladi.</li>
+    </ol>
+    <p>Bonus naqd pulga almashtirilmaydi va kuniga 3 martagacha yechiladi. Bonus bilan olingan buyurtmaga yangi bonus yozilmaydi.</p>
+  </section>
+
+  <section>
+    <h2>Do'stni taklif qilsam qancha bonus olaman?</h2>
+    <p>Yangi do'stingizning birinchi xaridi uchun bonus olasiz:</p>
+    <ul>
+      <li><strong>Stars:</strong> har to'liq 50 ta uchun +3 ⭐, ya'ni 100 Stars uchun +6 ⭐;</li>
+      <li><strong>Premium:</strong> har oy uchun +1 ⭐, ya'ni 12 oy uchun +12 ⭐;</li>
+      <li><strong>Gift:</strong> referal bonusi berilmaydi.</li>
+    </ul>
+    <p>Do'stingiz sizning havolangiz orqali kirgan bo'lishi va StarsJoy'da yangi foydalanuvchi bo'lishi kerak. Bitta do'st uchun bonus bir marta beriladi.</p>
+  </section>
+
+  <section>
+    <h2>Bonus olish uchun nima qilish kerak?</h2>
+    <p>Alohida ro'yxatdan o'tish yoki promokod shart emas: @starsjoybot'dan xarid qilsangiz, bonus o'zi yoziladi. Xarid haqida batafsil: <a href="/qollanma">qanday sotib olinadi</a>, narxlar: <a href="/stars">Telegram Stars</a>, shartlar: <a href="/oferta">ommaviy oferta</a>.</p>
+  </section>
+</BonusPage>

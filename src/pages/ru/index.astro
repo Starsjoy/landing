@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import BonusBanner from '../../components/BonusBanner.astro';
 import NavbarRu from '../../components/NavbarRu.astro';
 import BlogHighlights from '../../components/BlogHighlights.astro';
 import Reviews from '../../components/Reviews.astro';
@@ -30,6 +31,10 @@ const faqs = [
   {
     q: "Что делать, если Stars не пришли?",
     a: "Если услуга не была оказана — возвращаем 100% суммы. Обратитесь в поддержку через бота.",
+  },
+  {
+    q: "Начисляет ли StarsJoy бонус за покупку?",
+    a: "Да. +2 ⭐ за каждые полные 50 Stars, то есть +4 ⭐ за каждые 100 Stars, и +1 ⭐ за каждый месяц Premium. Бонусы можно обменять на Stars в Mini App."
   },
 ];
 
@@ -66,7 +71,7 @@ const faqs = [
     "name": "StarsJoy",
     "url": "https://starsjoy.uz",
     "logo": "https://starsjoy.uz/logo.png",
-    "description": "Платформа для покупки Telegram Stars, Premium и Gifts в Узбекистане за сумы. Более 8 000 выполненных заказов.",
+    "description": "Платформа для покупки Telegram Stars, Premium и Gifts в Узбекистане за сумы. Более 8 000 выполненных заказов. Начисляет +4 ⭐ бонуса за каждые 100 купленных Stars.",
     "areaServed": { "@type": "Country", "name": "Uzbekistan" },
     "sameAs": [
       "https://telegram.me/starsjoybot",
@@ -118,6 +123,7 @@ const faqs = [
             Наши услуги &#8595;
           </a>
         </div>
+        <a href="/ru/bonus" class="hero-bonus-link">🎁 +4 ⭐ бонуса за каждые 100 Stars &rarr;</a>
       </div>
 
       <div class="hero-visual">
@@ -221,6 +227,8 @@ const faqs = [
       </div>
     </div>
   </section>
+
+  <BonusBanner lang="ru" />
 
   <!-- ===== SERVICES ===== -->
   <section id="services">
@@ -408,8 +416,8 @@ const faqs = [
       <div class="referral-box fade-in">
         <div class="referral-content">
           <span class="section-label">Реферальная программа</span>
-          <h2 class="referral-title">Пригласите друга —<br>получите 5% бонус!</h2>
-          <p class="referral-desc">Каждый раз, когда ваш друг совершает покупку, вы получаете 5% от суммы в виде бонуса</p>
+          <h2 class="referral-title">Пригласите друга —<br>получите бонус Stars!</h2>
+          <p class="referral-desc">За первую покупку нового друга вы получаете бонус: +3 ⭐ за каждые 50 Stars и +1 ⭐ за месяц Premium. За свои покупки тоже начисляется <a href="/ru/bonus">+4 ⭐ за каждые 100 Stars</a></p>
           <div class="referral-steps">
             <div class="referral-step">
               <div class="referral-step-num">1</div>
@@ -421,7 +429,7 @@ const faqs = [
             </div>
             <div class="referral-step">
               <div class="referral-step-num">3</div>
-              <span>Получайте 5% бонус с каждой покупки друга</span>
+              <span>Получите бонус за первую покупку друга</span>
             </div>
           </div>
           <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">
@@ -439,8 +447,8 @@ const faqs = [
               <path d="M44 9v6M41 12h6" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="referral-bonus">5%</div>
-          <div class="referral-bonus-label">бонус с каждой покупки</div>
+          <div class="referral-bonus">+6 ⭐</div>
+          <div class="referral-bonus-label">за покупку другом 100 Stars</div>
         </div>
       </div>
     </div>
@@ -628,6 +636,11 @@ const faqs = [
     max-width: 520px;
     line-height: 1.7;
   }
+  .hero-bonus-link {
+    display: inline-block; margin-top: 16px; font-size: 0.92rem; font-weight: 700;
+    color: var(--primary); text-decoration: none;
+  }
+  .hero-bonus-link:hover { text-decoration: underline; }
   .hero-buttons {
     display: flex;
     gap: 16px;

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import Services from '../components/Services.astro';
+import BonusBanner from '../components/BonusBanner.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import Guarantees from '../components/Guarantees.astro';
 import Referral from '../components/Referral.astro';
@@ -47,7 +48,7 @@ const agg = aggregateOf(await getApprovedReviews('premium'));
     "name": "StarsJoy",
     "url": "https://starsjoy.uz",
     "logo": "https://starsjoy.uz/logo.png",
-    "description": "O'zbekistonda Telegram Stars, Premium va Gifts xizmatlarini so'mda sotib olish platformasi. 8,000+ bajarilgan buyurtma.",
+    "description": "O'zbekistonda Telegram Stars, Premium va Gifts xizmatlarini so'mda sotib olish platformasi. 8,000+ bajarilgan buyurtma. Har 100 Stars xaridi uchun +4 ⭐ bonus beradi.",
     "areaServed": { "@type": "Country", "name": "Uzbekistan" },
     "sameAs": [
       "https://telegram.me/starsjoybot",
@@ -64,6 +65,7 @@ const agg = aggregateOf(await getApprovedReviews('premium'));
   })} />
   <Navbar />
   <Hero rating={agg} />
+  <BonusBanner />
   <Services />
   <HowItWorks />
   <Guarantees />

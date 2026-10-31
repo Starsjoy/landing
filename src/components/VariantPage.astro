@@ -34,6 +34,9 @@ interface Props {
   priceLabel: string;
   priceValue: string;
   priceSubtext?: string;
+  /** Narx ostidagi bonus qatori, masalan "+4 ⭐ bonus" */
+  bonusNote?: string;
+  bonusHref?: string;
   ctaLabel: string;
   ctaHref: string;
 
@@ -66,7 +69,7 @@ const {
   homeLabel, hubLabel, hubHref, currentLabel,
   eyebrow, h1, quickAnswer, heroNote,
   siblingsTitle, siblings,
-  priceLabel, priceValue, priceSubtext, ctaLabel, ctaHref,
+  priceLabel, priceValue, priceSubtext, bonusNote, bonusHref, ctaLabel, ctaHref,
   forWhomTitle, forWhomText,
   trustItems,
   faqTitle, faqSubtitle, faqs,
@@ -147,6 +150,7 @@ const {
           <span class="vp-price-label">{priceLabel}</span>
           <span class="vp-price-value">{priceValue}</span>
           {priceSubtext && <span class="vp-price-subtext">{priceSubtext}</span>}
+          {bonusNote && <a class="vp-price-bonus" href={bonusHref}>{bonusNote}</a>}
         </div>
         <a href={ctaHref} class="btn-primary vp-price-cta" target="_blank">&#9889; {ctaLabel}</a>
       </div>
@@ -291,6 +295,8 @@ const {
   .vp-price-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
   .vp-price-value { font-size: 2rem; font-weight: 900; color: var(--primary); }
   .vp-price-subtext { font-size: 0.85rem; color: var(--text-muted); }
+  .vp-price-bonus { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+  .vp-price-bonus:hover { text-decoration: underline; }
 
   .vp-forwhom { padding: 40px 24px; }
   .vp-forwhom-box {

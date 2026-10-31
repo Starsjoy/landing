@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import BonusBanner from '../../components/BonusBanner.astro';
 import NavbarEn from '../../components/NavbarEn.astro';
 import Reviews from '../../components/Reviews.astro';
 import FooterEn from '../../components/FooterEn.astro';
@@ -29,6 +30,10 @@ const faqs = [
   {
     q: "What if the Stars never arrive?",
     a: "You get a 100% refund. Contact support through the bot with your payment receipt and it is resolved quickly.",
+  },
+  {
+    q: "Does StarsJoy give a bonus on purchases?",
+    a: "Yes. +2 ⭐ for every full 50 Stars, which is +4 ⭐ per 100 Stars, and +1 ⭐ for every Premium month. You can redeem the bonus for Stars in the Mini App."
   },
 ];
 
@@ -65,7 +70,7 @@ const faqs = [
     "name": "StarsJoy",
     "url": "https://starsjoy.uz",
     "logo": "https://starsjoy.uz/logo.png",
-    "description": "Platform for buying Telegram Stars, Premium and Gifts in Uzbekistan, paid in Uzbek som. More than 8,000 completed orders.",
+    "description": "Platform for buying Telegram Stars, Premium and Gifts in Uzbekistan, paid in Uzbek som. More than 8,000 completed orders. Gives +4 ⭐ bonus for every 100 Stars purchased.",
     "areaServed": { "@type": "Country", "name": "Uzbekistan" },
     "sameAs": [
       "https://telegram.me/starsjoybot",
@@ -117,6 +122,7 @@ const faqs = [
             Our services &#8595;
           </a>
         </div>
+        <a href="/en/bonus" class="hero-bonus-link">🎁 +4 ⭐ bonus for every 100 Stars &rarr;</a>
       </div>
 
       <div class="hero-visual">
@@ -220,6 +226,8 @@ const faqs = [
       </div>
     </div>
   </section>
+
+  <BonusBanner lang="en" />
 
   <!-- ===== SERVICES ===== -->
   <section id="services">
@@ -407,8 +415,8 @@ const faqs = [
       <div class="referral-box fade-in">
         <div class="referral-content">
           <span class="section-label">Referral programme</span>
-          <h2 class="referral-title">Invite a friend —<br>get a 5% bonus!</h2>
-          <p class="referral-desc">Every time somebody buys through your link you receive 5% of the amount as a bonus</p>
+          <h2 class="referral-title">Invite a friend —<br>earn bonus Stars!</h2>
+          <p class="referral-desc">Earn a bonus on a new friend's first purchase: +3 ⭐ per 50 Stars and +1 ⭐ per Premium month. Your own purchases earn <a href="/en/bonus">+4 ⭐ per 100 Stars</a> too</p>
           <div class="referral-steps">
             <div class="referral-step">
               <div class="referral-step-num">1</div>
@@ -420,7 +428,7 @@ const faqs = [
             </div>
             <div class="referral-step">
               <div class="referral-step-num">3</div>
-              <span>Earn 5% from every purchase they make</span>
+              <span>Earn a bonus on their first purchase</span>
             </div>
           </div>
           <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">
@@ -438,8 +446,8 @@ const faqs = [
               <path d="M44 9v6M41 12h6" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="referral-bonus">5%</div>
-          <div class="referral-bonus-label">bonus on every purchase</div>
+          <div class="referral-bonus">+6 ⭐</div>
+          <div class="referral-bonus-label">when a friend buys 100 Stars</div>
         </div>
       </div>
     </div>
@@ -625,6 +633,11 @@ const faqs = [
     max-width: 520px;
     line-height: 1.7;
   }
+  .hero-bonus-link {
+    display: inline-block; margin-top: 16px; font-size: 0.92rem; font-weight: 700;
+    color: var(--primary); text-decoration: none;
+  }
+  .hero-bonus-link:hover { text-decoration: underline; }
   .hero-buttons {
     display: flex;
     gap: 16px;
