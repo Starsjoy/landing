@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { addOrder, initDB } from '../../lib/analytics';
+import { addBonusRedemption, addOrder, initDB } from '../../lib/analytics';
 
 let dbReady = false;
 
@@ -127,6 +127,22 @@ function parsePremium112Message(text: string) {
   };
 }
 
+function parseBonusMessage(text: string) {
+  // 🎁 User bonus oldi!
+  // 📦 Order: #1797
+  // 👤 @user
+  // 💫 50 Stars (bonus balansdan)   yoki   💫 Gift (25 ⭐) (bonus balansdan)
+  const orderMatch = text.match(/#(\d+)/);
+  const usernameMatch = text.match(/👤\s*([^\n]+)/);
+  const starsMatch = text.match(/💫\s*(?:Gift\s*\()?(\d+)/);
+  if (!starsMatch) return null;
+  return {
+    orderNumber: orderMatch?.[1] || '',
+    username: extractUsername(usernameMatch?.[1] || ''),
+    stars: parseInt(starsMatch[1], 10),
+  };
+}
+
 function parseOrderMessage(text: string, isPremium112: boolean = false) {
   // Premium 1/12 kanal — boshqa format (no emojis)
   if (isPremium112) {
@@ -183,6 +199,31 @@ export const POST: APIRoute = async ({ request }) => {
     console.log('[WEBHOOK] chat_id=' + chatId + ' | premium_send=' + isPremiumSend + ' | premium_1_12=' + isPremium112 + ' | uzgets=' + isUzgets);
     console.log('[WEBHOOK] text:', JSON.stringify(text));
 
+    const timestamp = update.channel_post?.date
+      ? new Date(update.channel_post.date * 1000)
+      : new Date();
+
+    // Telegram javobni kutolmasa (timeout) o'sha update'ni qayta yuboradi.
+    // chat_id + message_id — xabarning yagona identifikatori, shu kalit bo'yicha
+    // takroriy yozuv DB darajasida bloklanadi.
+    const messageId = update.channel_post?.message_id;
+    const msgKey = chatId && messageId ? chatId + ':' + messageId : undefined;
+
+    // Bonus yechish — StarsJoy chiqimi: sotuvga kirmaydi, foydadan ayiriladi
+    if (text.includes('User bonus oldi') && !isPremiumSend && !isPremium112 && !isUzgets) {
+      const bonus = parseBonusMessage(text);
+      if (!bonus) {
+        console.log('[WEBHOOK] bonus PARSE FAILED:', JSON.stringify(text));
+        return new Response(JSON.stringify({ ok: true, skipped: true, reason: 'bonus no match', chatId }), {
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+      await addBonusRedemption({ ...bonus, timestamp, msgKey });
+      return new Response(JSON.stringify({ ok: true, bonus: bonus.stars, number: bonus.orderNumber }), {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
     const order = parseOrderMessage(text, isPremium112);
 
     if (!order) {
@@ -211,16 +252,6 @@ export const POST: APIRoute = async ({ request }) => {
       }
       order.type = ('uzgets_' + order.type) as any;
     }
-
-    const timestamp = update.channel_post?.date
-      ? new Date(update.channel_post.date * 1000)
-      : new Date();
-
-    // Telegram javobni kutolmasa (timeout) o'sha update'ni qayta yuboradi.
-    // chat_id + message_id — xabarning yagona identifikatori, shu kalit bo'yicha
-    // takroriy yozuv DB darajasida bloklanadi.
-    const messageId = update.channel_post?.message_id;
-    const msgKey = chatId && messageId ? chatId + ':' + messageId : undefined;
 
     await addOrder({ ...order, timestamp, msgKey });
 

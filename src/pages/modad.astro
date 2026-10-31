@@ -3452,7 +3452,8 @@ if (authenticated && !dbReady) {
         var psStarsOwnerShare = Math.round((ov.psStarsRevenue || 0) / 6);
         var psStarsAbdullohShare = psStarsTotal - psStarsOwnerShare;
         var psProfitTotal = psProfit + psStarsOwnerShare; // Premium Send'dan owner'ga tegishli jami (komissiya + stars ulushi)
-        var starsjoyProfit = starsProfit + giftProfit + premiumProfit;
+        var bonusCost = ov.bonusCost || 0;
+        var starsjoyProfit = starsProfit + giftProfit + premiumProfit - bonusCost;
         // 'uzgets' ko'rinishida ma'lumot orders ichida, 'all' da esa alohida so'rovdan
         var uz = calcUzgets(currentSource === 'uzgets' ? ov : uzgetsOv);
         var jamiProfit = starsjoyProfit + uz.total + psProfitTotal;
@@ -3529,6 +3530,10 @@ if (authenticated && !dbReady) {
             <div class="pb-row"><span class="pb-dot" style="background:#facc15"></span><span class="pb-name">Stars</span><span class="pb-revenue">${fmtMoney(ov.starsRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(starsProfit)} so'm (12%)</span></div>
             <div class="pb-row"><span class="pb-dot" style="background:#34d399"></span><span class="pb-name">Gift</span><span class="pb-revenue">${fmtMoney(ov.giftRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(giftProfit)} so'm (12%)</span></div>
             <div class="pb-row"><span class="pb-dot" style="background:#c084fc"></span><span class="pb-name">Premium</span><span class="pb-revenue">${fmtMoney(ov.premiumRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(premiumProfit)} so'm (10%)</span></div>`;
+        if (bonusCost > 0) {
+          sjRows += `
+            <div class="pb-row"><span class="pb-dot" style="background:#f87171"></span><span class="pb-name">Bonus</span><span class="pb-revenue">${fmtMoney(ov.bonusStars || 0)} ⭐</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">-${fmtMoney(bonusCost)} so'm</span></div>`;
+        }
         var psRows = `
             <div class="pb-row"><span class="pb-dot" style="background:#60a5fa"></span><span class="pb-name">PS Premium</span><span class="pb-revenue">${fmtMoney(ov.psRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(psProfit)} so'm (10%)</span></div>
             <div class="pb-row"><span class="pb-dot" style="background:#f472b6"></span><span class="pb-name">PS Stars</span><span class="pb-revenue">${fmtMoney(ov.psStarsRevenue || 0)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(psStarsTotal)} so'm (1/3)</span></div>
@@ -4782,10 +4787,11 @@ if (authenticated && !dbReady) {
         var giftProfit = Math.round((ov.giftRevenue || 0) * 0.12);
         var premiumProfit = Math.round((ov.premiumRevenue || 0) * 0.10);
         var psProfit = Math.round((ov.psRevenue || 0) * 0.10) + Math.round((ov.psStarsRevenue || 0) / 6);
-        if (currentSource === 'starsjoy') return starsProfit + giftProfit + premiumProfit;
+        var starsjoyProfit = starsProfit + giftProfit + premiumProfit - (ov.bonusCost || 0);
+        if (currentSource === 'starsjoy') return starsjoyProfit;
         if (currentSource === 'premium_send') return psProfit;
         if (currentSource === 'uzgets') return calcUzgets(ov).total;
-        return starsProfit + giftProfit + premiumProfit + psProfit + calcUzgets(uzOv).total;
+        return starsjoyProfit + psProfit + calcUzgets(uzOv).total;
       }
 
       function mqsOrdersOf(ov, uzOv) {

@@ -59,6 +59,18 @@ export async function initDB() {
   // Telegram webhook retry'da bir xil xabar ikki marta yozilmasligi uchun
   await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS msg_key TEXT`;
   await sql`CREATE UNIQUE INDEX IF NOT EXISTS idx_orders_msg_key ON orders(msg_key)`;
+  await sql`
+    CREATE TABLE IF NOT EXISTS bonus_redemptions (
+      id SERIAL PRIMARY KEY,
+      order_number TEXT DEFAULT '',
+      username TEXT DEFAULT '',
+      stars INTEGER NOT NULL,
+      cost INTEGER NOT NULL,
+      timestamp TIMESTAMPTZ DEFAULT NOW(),
+      msg_key TEXT UNIQUE
+    )
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS idx_bonus_redemptions_ts ON bonus_redemptions(timestamp)`;
 }
 
 export async function addVisit(params: {
@@ -584,6 +596,10 @@ export async function getMonthProfit(month: string): Promise<number> {
       COUNT(*) FILTER (WHERE type = 'premium_1_12' AND amount = '12 oy') as p112_twelve
     FROM orders WHERE timestamp >= ${since} AND timestamp < ${until}
   `;
+  const [bonus] = await sql`
+    SELECT COALESCE(SUM(cost), 0) as cost FROM bonus_redemptions
+    WHERE timestamp >= ${since} AND timestamp < ${until}
+  `;
   return (
     Math.round(+r.stars_rev * 0.12) +
     Math.round(+r.gift_rev * 0.12) +
@@ -591,7 +607,8 @@ export async function getMonthProfit(month: string): Promise<number> {
     Math.round(+r.ps_rev * 0.10) +
     Math.round(+r.ps_stars_rev / 6) + // Premium Send Stars: narxning 1/3 foyda, 2 admin o'rtasida 50/50 — o'z ulushi 1/6
     (+r.p112_one * 18000) +
-    (+r.p112_twelve * 48000)
+    (+r.p112_twelve * 48000) -
+    +bonus.cost
   );
 }
 
@@ -1144,7 +1161,14 @@ export async function getDailyProfitsForMonth(month: string): Promise<Array<{ da
     GROUP BY day
     ORDER BY day ASC
   `;
-  return rows.map((r: any) => ({
+  const bonusRows = await sql`
+    SELECT EXTRACT(DAY FROM (timestamp AT TIME ZONE 'Asia/Tashkent'))::int as day, SUM(cost) as cost
+    FROM bonus_redemptions
+    WHERE timestamp >= ${since} AND timestamp < ${until}
+    GROUP BY day
+  `;
+  const bonusByDay = new Map<number, number>(bonusRows.map((r: any) => [+r.day, +r.cost]));
+  const profits = rows.map((r: any) => ({
     day: +r.day,
     profit:
       Math.round(+r.stars_rev * 0.12) +
@@ -1153,8 +1177,14 @@ export async function getDailyProfitsForMonth(month: string): Promise<Array<{ da
       Math.round(+r.ps_rev * 0.10) +
       Math.round(+r.ps_stars_rev / 6) +
       (+r.p112_one * 18000) +
-      (+r.p112_twelve * 48000),
+      (+r.p112_twelve * 48000) -
+      (bonusByDay.get(+r.day) || 0),
   }));
+  // Sotuv bo'lmagan kunda ham bonus chiqimi foydadan ayiriladi
+  bonusByDay.forEach((cost, day) => {
+    if (!profits.some((p) => p.day === day)) profits.push({ day, profit: -cost });
+  });
+  return profits.sort((a, b) => a.day - b.day);
 }
 
 export function daysInMonth(month: string): number {
@@ -1182,6 +1212,24 @@ export async function addOrder(params: {
   await sql`
     INSERT INTO orders (order_number, type, username, amount, price, transaction_id, status, timestamp, msg_key)
     VALUES (${params.orderNumber}, ${params.type}, ${params.username}, ${params.amount}, ${params.price}, ${params.transactionId}, ${params.status}, ${params.timestamp}, ${msgKey})
+    ON CONFLICT (msg_key) DO NOTHING
+  `;
+}
+
+/** Bonusga berilgan har 1 star uchun foydadan ayiriladigan summa (so'm). */
+export const BONUS_STAR_COST = 220;
+
+export async function addBonusRedemption(params: {
+  orderNumber: string;
+  username: string;
+  stars: number;
+  timestamp: Date;
+  msgKey?: string;
+}) {
+  const sql = getSQL();
+  await sql`
+    INSERT INTO bonus_redemptions (order_number, username, stars, cost, timestamp, msg_key)
+    VALUES (${params.orderNumber}, ${params.username}, ${params.stars}, ${params.stars * BONUS_STAR_COST}, ${params.timestamp}, ${params.msgKey || null})
     ON CONFLICT (msg_key) DO NOTHING
   `;
 }
@@ -1421,6 +1469,14 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
     FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${rowCond}
   `;
 
+  // Bonus chiqimi faqat StarsJoy'ga tegishli
+  const [bonus] = source === 'all' || source === 'starsjoy'
+    ? await sql`
+        SELECT COUNT(*) as cnt, COALESCE(SUM(stars), 0) as stars, COALESCE(SUM(cost), 0) as cost
+        FROM bonus_redemptions WHERE timestamp >= ${since} AND timestamp <= ${until}
+      `
+    : [{ cnt: 0, stars: 0, cost: 0 }];
+
   const recent = await sql`
     SELECT id, order_number, type, username, amount, price, transaction_id, status, timestamp
     FROM orders
@@ -1522,6 +1578,9 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       p112TwelveRevenue: +overview.p112_twelve_revenue,
       p112TotalMonths: +overview.p112_total_months,
       totalStars: +starsTotal.total_stars,
+      bonusCount: +bonus.cnt,
+      bonusStars: +bonus.stars,
+      bonusCost: +bonus.cost,
       uzStarsCount: +overview.uz_stars_count,
       uzStarsRevenue: +overview.uz_stars_revenue,
       uzStarsTotalAmount: +overview.uz_stars_total_amount,
