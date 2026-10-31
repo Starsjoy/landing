@@ -212,8 +212,8 @@ export const POST: APIRoute = async ({ request }) => {
     const messageId = update.channel_post?.message_id;
     const msgKey = chatId && messageId ? chatId + ':' + messageId : undefined;
 
-    // Bonus yechish — StarsJoy chiqimi: sotuvga kirmaydi, foydadan ayiriladi
-    if (text.includes('User bonus oldi') && !isPremiumSend && !isPremium112 && !isUzgets && !isPremium24) {
+    // Bonus yechish — chiqim: sotuvga kirmaydi, o'z loyihasining foydasidan ayiriladi
+    if (text.includes('User bonus oldi') && !isPremiumSend && !isPremium112 && !isUzgets) {
       const bonus = parseBonusMessage(text);
       if (!bonus) {
         console.log('[WEBHOOK] bonus PARSE FAILED:', JSON.stringify(text));
@@ -221,7 +221,7 @@ export const POST: APIRoute = async ({ request }) => {
           headers: { 'Content-Type': 'application/json' },
         });
       }
-      await addBonusRedemption({ ...bonus, timestamp, msgKey });
+      await addBonusRedemption({ ...bonus, source: isPremium24 ? 'premium24' : 'starsjoy', timestamp, msgKey });
       return new Response(JSON.stringify({ ok: true, bonus: bonus.stars, number: bonus.orderNumber }), {
         headers: { 'Content-Type': 'application/json' },
       });

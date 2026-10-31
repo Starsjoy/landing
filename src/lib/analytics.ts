@@ -72,6 +72,7 @@ export async function initDB() {
     )
   `;
   await sql`CREATE INDEX IF NOT EXISTS idx_bonus_redemptions_ts ON bonus_redemptions(timestamp)`;
+  await sql`ALTER TABLE bonus_redemptions ADD COLUMN IF NOT EXISTS source TEXT NOT NULL DEFAULT 'starsjoy'`;
 }
 
 export async function addVisit(params: {
@@ -599,7 +600,7 @@ export async function getMonthProfit(month: string): Promise<number> {
   `;
   const [bonus] = await sql`
     SELECT COALESCE(SUM(cost), 0) as cost FROM bonus_redemptions
-    WHERE timestamp >= ${since} AND timestamp < ${until}
+    WHERE timestamp >= ${since} AND timestamp < ${until} AND source = 'starsjoy'
   `;
   return (
     Math.round(+r.stars_rev * 0.12) +
@@ -1165,7 +1166,7 @@ export async function getDailyProfitsForMonth(month: string): Promise<Array<{ da
   const bonusRows = await sql`
     SELECT EXTRACT(DAY FROM (timestamp AT TIME ZONE 'Asia/Tashkent'))::int as day, SUM(cost) as cost
     FROM bonus_redemptions
-    WHERE timestamp >= ${since} AND timestamp < ${until}
+    WHERE timestamp >= ${since} AND timestamp < ${until} AND source = 'starsjoy'
     GROUP BY day
   `;
   const bonusByDay = new Map<number, number>(bonusRows.map((r: any) => [+r.day, +r.cost]));
@@ -1220,7 +1221,17 @@ export async function addOrder(params: {
 /** Bonusga berilgan har 1 star uchun foydadan ayiriladigan summa (so'm). */
 export const BONUS_STAR_COST = 220;
 
+// Premium24 foydasi: Stars — har 50 tadan 2 500 so'm.
+// Premium — (Premium24 narxi − StarsJoy narxi) + StarsJoy'ning shu tarifdagi 10% foydasi.
+export const P24_STAR_PROFIT = 50;
+export const P24_PREMIUM_PROFIT: Record<3 | 6 | 12, number> = {
+  3: (187000 - 172000) + 17200,
+  6: (247000 - 232000) + 23200,
+  12: (447000 - 422000) + 42200,
+};
+
 export async function addBonusRedemption(params: {
+  source: 'starsjoy' | 'premium24';
   orderNumber: string;
   username: string;
   kind: 'stars' | 'gift';
@@ -1230,8 +1241,8 @@ export async function addBonusRedemption(params: {
 }) {
   const sql = getSQL();
   await sql`
-    INSERT INTO bonus_redemptions (order_number, username, kind, stars, cost, timestamp, msg_key)
-    VALUES (${params.orderNumber}, ${params.username}, ${params.kind}, ${params.stars}, ${params.stars * BONUS_STAR_COST}, ${params.timestamp}, ${params.msgKey || null})
+    INSERT INTO bonus_redemptions (source, order_number, username, kind, stars, cost, timestamp, msg_key)
+    VALUES (${params.source}, ${params.orderNumber}, ${params.username}, ${params.kind}, ${params.stars}, ${params.stars * BONUS_STAR_COST}, ${params.timestamp}, ${params.msgKey || null})
     ON CONFLICT (msg_key) DO NOTHING
   `;
 }
@@ -1254,11 +1265,13 @@ export async function getBonusSummary() {
       COUNT(*) FILTER (WHERE kind = 'stars') as stars_count,
       COALESCE(SUM(stars) FILTER (WHERE kind = 'stars'), 0) as stars_stars,
       COUNT(*) FILTER (WHERE kind = 'gift') as gift_count,
-      COALESCE(SUM(stars) FILTER (WHERE kind = 'gift'), 0) as gift_stars
+      COALESCE(SUM(stars) FILTER (WHERE kind = 'gift'), 0) as gift_stars,
+      COALESCE(SUM(cost) FILTER (WHERE source = 'starsjoy'), 0) as starsjoy_cost,
+      COALESCE(SUM(cost) FILTER (WHERE source = 'premium24'), 0) as premium24_cost
     FROM bonus_redemptions
   `;
   const recent = await sql`
-    SELECT order_number, username, kind, stars, cost, timestamp
+    SELECT source, order_number, username, kind, stars, cost, timestamp
     FROM bonus_redemptions ORDER BY timestamp DESC LIMIT 200
   `;
   return {
@@ -1266,12 +1279,13 @@ export async function getBonusSummary() {
     today: { count: +r.today_count, stars: +r.today_stars, cost: +r.today_cost },
     month: { count: +r.month_count, stars: +r.month_stars, cost: +r.month_cost },
     total: { count: +r.total_count, stars: +r.total_stars, cost: +r.total_cost },
+    byProject: { starsjoy: +r.starsjoy_cost, premium24: +r.premium24_cost },
     byKind: {
       stars: { count: +r.stars_count, stars: +r.stars_stars },
       gift: { count: +r.gift_count, stars: +r.gift_stars },
     },
     recent: recent.map((row: any) => ({
-      orderNumber: row.order_number, username: row.username, kind: row.kind,
+      source: row.source, orderNumber: row.order_number, username: row.username, kind: row.kind,
       stars: +row.stars, cost: +row.cost, timestamp: row.timestamp,
     })),
   };
@@ -1509,21 +1523,35 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy') as uz_6_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy'), 0) as uz_6_revenue,
       COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy') as uz_12_count,
-      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy'), 0) as uz_12_revenue,
-      COUNT(*) FILTER (WHERE type = 'premium24_stars') as p24_stars_count,
-      COALESCE(SUM(price) FILTER (WHERE type = 'premium24_stars'), 0) as p24_stars_revenue,
-      COALESCE(SUM(CASE WHEN type = 'premium24_stars' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as p24_stars_total_amount,
-      COUNT(*) FILTER (WHERE type = 'premium24_premium') as p24_premium_count,
-      COALESCE(SUM(price) FILTER (WHERE type = 'premium24_premium'), 0) as p24_premium_revenue,
-      COALESCE(SUM(CASE WHEN type = 'premium24_premium' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as p24_premium_total_months
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy'), 0) as uz_12_revenue
     FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${rowCond}
   `;
 
-  // Bonus chiqimi faqat StarsJoy'ga tegishli
-  const [bonus] = source === 'all' || source === 'starsjoy'
+  // Premium24 "Umumiy" ko'rinishining sotuv qatorlariga kirmaydi, lekin foydasiga qo'shiladi
+  const [p24] = source === 'all' || source === 'premium24'
+    ? await sql`
+        SELECT
+          COUNT(*) as orders,
+          COALESCE(SUM(price), 0) as revenue,
+          COUNT(*) FILTER (WHERE type = 'premium24_stars') as stars_count,
+          COALESCE(SUM(price) FILTER (WHERE type = 'premium24_stars'), 0) as stars_revenue,
+      COALESCE(SUM(CASE WHEN type = 'premium24_stars' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as stars_total_amount,
+          COUNT(*) FILTER (WHERE type = 'premium24_premium') as premium_count,
+          COALESCE(SUM(price) FILTER (WHERE type = 'premium24_premium'), 0) as premium_revenue,
+      COALESCE(SUM(CASE WHEN type = 'premium24_premium' THEN NULLIF(REGEXP_REPLACE(SPLIT_PART(amount, ' ', 1), '[^0-9]', '', 'g'), '')::INTEGER ELSE 0 END), 0) as premium_total_months,
+          COUNT(*) FILTER (WHERE type = 'premium24_premium' AND amount = '3 oy') as p3,
+          COUNT(*) FILTER (WHERE type = 'premium24_premium' AND amount = '6 oy') as p6,
+          COUNT(*) FILTER (WHERE type = 'premium24_premium' AND amount = '12 oy') as p12
+        FROM orders
+        WHERE timestamp >= ${since} AND timestamp <= ${until} AND type = ANY(${sourceFilter('premium24')})
+      `
+    : [{ orders: 0, revenue: 0, stars_count: 0, stars_revenue: 0, stars_total_amount: 0, premium_count: 0, premium_revenue: 0, premium_total_months: 0, p3: 0, p6: 0, p12: 0 }];
+
+  const [bonus] = source === 'all' || source === 'starsjoy' || source === 'premium24'
     ? await sql`
         SELECT COUNT(*) as cnt, COALESCE(SUM(stars), 0) as stars, COALESCE(SUM(cost), 0) as cost
-        FROM bonus_redemptions WHERE timestamp >= ${since} AND timestamp <= ${until}
+        FROM bonus_redemptions
+        WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${source === 'all' ? sql`TRUE` : sql`source = ${source}`}
       `
     : [{ cnt: 0, stars: 0, cost: 0 }];
 
@@ -1628,12 +1656,24 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       p112TwelveRevenue: +overview.p112_twelve_revenue,
       p112TotalMonths: +overview.p112_total_months,
       totalStars: +starsTotal.total_stars,
-      p24StarsCount: +overview.p24_stars_count,
-      p24StarsRevenue: +overview.p24_stars_revenue,
-      p24StarsTotalAmount: +overview.p24_stars_total_amount,
-      p24PremiumCount: +overview.p24_premium_count,
-      p24PremiumRevenue: +overview.p24_premium_revenue,
-      p24PremiumTotalMonths: +overview.p24_premium_total_months,
+      p24Orders: +p24.orders,
+      p24Revenue: +p24.revenue,
+      p24StarsCount: +p24.stars_count,
+      p24StarsRevenue: +p24.stars_revenue,
+      p24StarsTotalAmount: +p24.stars_total_amount,
+      p24PremiumCount: +p24.premium_count,
+      p24PremiumRevenue: +p24.premium_revenue,
+      p24PremiumTotalMonths: +p24.premium_total_months,
+      p243Count: +p24.p3,
+      p246Count: +p24.p6,
+      p2412Count: +p24.p12,
+      p24StarsProfit: +p24.stars_total_amount * P24_STAR_PROFIT,
+      p24PremiumRates: P24_PREMIUM_PROFIT,
+      p24Profit:
+        +p24.stars_total_amount * P24_STAR_PROFIT +
+        +p24.p3 * P24_PREMIUM_PROFIT[3] +
+        +p24.p6 * P24_PREMIUM_PROFIT[6] +
+        +p24.p12 * P24_PREMIUM_PROFIT[12],
       bonusCount: +bonus.cnt,
       bonusStars: +bonus.stars,
       bonusCost: +bonus.cost,
