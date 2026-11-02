@@ -3314,13 +3314,14 @@ if (authenticated && !dbReady) {
         document.getElementById('bonusKinds').innerHTML =
           `<div class="salary-card"><div class="sc-label">Starsjoy zarari</div><div class="sc-val">-${fmtMoney(d.byProject.starsjoy)} so'm</div></div>`
           + `<div class="salary-card"><div class="sc-label">Premium24 zarari</div><div class="sc-val">-${fmtMoney(d.byProject.premium24)} so'm</div></div>`
+          + `<div class="salary-card"><div class="sc-label">Uzgets zarari</div><div class="sc-val">-${fmtMoney(d.byProject.uzgets)} so'm</div></div>`
           + `<div class="salary-card"><div class="sc-label">Stars yechildi</div><div class="sc-val">${fmtMoney(d.byKind.stars.stars)} ⭐</div><div class="sc-label">${d.byKind.stars.count} ta</div></div>`
           + `<div class="salary-card"><div class="sc-label">Gift yechildi</div><div class="sc-val">${fmtMoney(d.byKind.gift.stars)} ⭐</div><div class="sc-label">${d.byKind.gift.count} ta</div></div>`;
         document.getElementById('bonusTable').innerHTML = !d.recent.length
           ? '<p class="bonus-rule">Hali bonus yechilmagan.</p>'
           : `<table class="bonus-log"><thead><tr><th>Sana</th><th>Loyiha</th><th>Order</th><th>User</th><th>Nima</th><th>Zarar</th></tr></thead>
              <tbody>${d.recent.map(function(r) {
-               return `<tr><td>${esc(new Date(r.timestamp).toLocaleString('uz', { timeZone: 'Asia/Tashkent', dateStyle: 'short', timeStyle: 'short' }))}</td><td>${r.source === 'premium24' ? 'Premium24' : 'Starsjoy'}</td><td>#${esc(r.orderNumber)}</td><td>@${esc(r.username)}</td><td>${r.kind === 'gift' ? 'Gift' : 'Stars'} · ${r.stars} ⭐</td><td>-${fmtMoney(r.cost)} so'm</td></tr>`;
+               return `<tr><td>${esc(new Date(r.timestamp).toLocaleString('uz', { timeZone: 'Asia/Tashkent', dateStyle: 'short', timeStyle: 'short' }))}</td><td>${r.source === 'premium24' ? 'Premium24' : r.source === 'uzgets' ? 'Uzgets' : 'Starsjoy'}</td><td>#${esc(r.orderNumber)}</td><td>@${esc(r.username)}</td><td>${r.kind === 'gift' ? 'Gift' : 'Stars'} · ${r.stars} ⭐</td><td>-${fmtMoney(r.cost)} so'm</td></tr>`;
              }).join('')}</tbody></table>`;
       }
 
@@ -3347,7 +3348,8 @@ if (authenticated && !dbReady) {
 
         var isAll = currentSource === 'all';
         var cardsEl = document.querySelector('.profit-cards');
-        var bonusBase = isAll ? jamiProfit : currentSource === 'premium24' ? p24Profit : starsjoyProfit;
+        var bonusBase = isAll ? jamiProfit : currentSource === 'premium24' ? p24Profit
+          : currentSource === 'uzgets' ? uz.total : starsjoyProfit;
         var bonusCardHTML = `
             <div class="profit-card profit-bonus">
               <div class="pc-label">Bonus ayrilganda</div>
@@ -3423,7 +3425,7 @@ if (authenticated && !dbReady) {
               <div class="pc-label">Buyurtmalar</div>
               <div class="pc-value pc-dim">${ov.totalOrders}</div>
               <div class="pc-sub">ta</div>
-            </div>` + (currentSource === 'starsjoy' || currentSource === 'premium24' ? bonusCardHTML : '');
+            </div>` + (currentSource === 'starsjoy' || currentSource === 'premium24' || currentSource === 'uzgets' ? bonusCardHTML : '');
         }
 
         // Dynamic breakdown
@@ -4702,7 +4704,7 @@ if (authenticated && !dbReady) {
         if (currentSource === 'starsjoy') return starsjoyProfit;
         if (currentSource === 'premium_send') return psProfit;
         if (currentSource === 'premium24') return (ov.p24Profit || 0) - (ov.bonusCost || 0);
-        if (currentSource === 'uzgets') return calcUzgets(ov).total;
+        if (currentSource === 'uzgets') return calcUzgets(ov).total - (ov.bonusCost || 0);
         return starsjoyProfit + psProfit + calcUzgets(uzOv).total + (ov.p24Profit || 0);
       }
 
