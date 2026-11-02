@@ -1316,6 +1316,9 @@ if (authenticated && !dbReady) {
     .bonus-log { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
     .bonus-log th, .bonus-log td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
     #bonusTable { overflow-x: auto; }
+    .bonus-log-history td { padding: 0 12px 10px; white-space: normal; }
+    .bonus-log-history summary { cursor: pointer; color: var(--text-muted); font-size: 0.8rem; }
+    .bonus-log-history pre { margin: 6px 0 0; font: inherit; font-size: 0.8rem; white-space: pre-wrap; color: var(--text-muted); }
     .profit-uz { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.04); }
     .profit-uz .pc-value { color: #22d3ee; }
     .profit-total { border-color: rgba(250,204,21,0.3); background: rgba(250,204,21,0.04); }
@@ -3308,7 +3311,7 @@ if (authenticated && !dbReady) {
           return `<div class="salary-card"><div class="sc-label">${label}</div><div class="sc-val">-${fmtMoney(b.cost)} so'm</div><div class="sc-label">${b.count} ta · ${fmtMoney(b.stars)} ⭐</div></div>`;
         };
         document.getElementById('bonusRule').textContent =
-          "Har bir bonusga yechilgan star uchun foydadan " + d.costPerStar + " so'm ayiriladi. Hisob 'User bonus oldi' kanal xabaridan olinadi.";
+          "Har bir bonusga yechilgan star uchun foydadan " + d.costPerStar + " so'm ayiriladi. Hisob referal kanaldagi 'User bonus oldi' xabaridan olinadi.";
         document.getElementById('bonusCards').innerHTML =
           card('Bugun', d.today) + card('Shu oy', d.month) + card('Jami', d.total);
         document.getElementById('bonusKinds').innerHTML =
@@ -3321,7 +3324,7 @@ if (authenticated && !dbReady) {
           ? '<p class="bonus-rule">Hali bonus yechilmagan.</p>'
           : `<table class="bonus-log"><thead><tr><th>Sana</th><th>Loyiha</th><th>Order</th><th>User</th><th>Nima</th><th>Zarar</th></tr></thead>
              <tbody>${d.recent.map(function(r) {
-               return `<tr><td>${esc(new Date(r.timestamp).toLocaleString('uz', { timeZone: 'Asia/Tashkent', dateStyle: 'short', timeStyle: 'short' }))}</td><td>${r.source === 'premium24' ? 'Premium24' : r.source === 'uzgets' ? 'Uzgets' : 'Starsjoy'}</td><td>#${esc(r.orderNumber)}</td><td>@${esc(r.username)}</td><td>${r.kind === 'gift' ? 'Gift' : 'Stars'} · ${r.stars} ⭐</td><td>-${fmtMoney(r.cost)} so'm</td></tr>`;
+               return `<tr><td>${esc(new Date(r.timestamp).toLocaleString('uz', { timeZone: 'Asia/Tashkent', dateStyle: 'short', timeStyle: 'short' }))}</td><td>${r.source === 'premium24' ? 'Premium24' : r.source === 'uzgets' ? 'Uzgets' : 'Starsjoy'}</td><td>#${esc(r.orderNumber)}</td><td>@${esc(r.username)}${r.recipient ? ' → @' + esc(r.recipient) : ''}</td><td>${r.kind === 'gift' ? 'Gift' : 'Stars'} · ${r.stars} ⭐</td><td>-${fmtMoney(r.cost)} so'm</td></tr>${r.history ? `<tr class="bonus-log-history"><td colspan="6"><details><summary>Bonus tarixi</summary><pre>${esc(r.history)}</pre></details></td></tr>` : ''}`;
              }).join('')}</tbody></table>`;
       }
 

@@ -9,6 +9,7 @@ const PREMIUM_SEND_CHAT_ID = import.meta.env.PREMIUM_SEND_CHAT_ID || '-100360651
 const PREMIUM_1_12_CHAT_ID = import.meta.env.PREMIUM_1_12_CHAT_ID || '-1003951417706';
 const UZGETS_CHAT_ID = import.meta.env.UZGETS_CHAT_ID || '-1003986767336';
 const PREMIUM24_CHAT_ID = import.meta.env.PREMIUM24_CHAT_ID || '-1004462532058';
+const REFERRAL_CHAT_ID = import.meta.env.REFERRAL_CHAT_ID || '-1004335921186';
 
 interface TelegramUpdate {
   update_id?: number;
@@ -129,20 +130,43 @@ function parsePremium112Message(text: string) {
 }
 
 function parseBonusMessage(text: string) {
+  // 🟨 StarsJoy            (referal kanali: uch loyiha uchun umumiy)
   // 🎁 User bonus oldi!
-  // 📦 Order: #1797
-  // 👤 @user
+  //
+  // 👤 Yechdi: @user
+  // 📥 Stars oldi: @user
   // 💫 50 Stars (bonus balansdan)   yoki   💫 Gift (25 ⭐) (bonus balansdan)
+  // 📦 Order: #1797
+  //
+  // 📜 Bonus tarixi (jami +50 ⭐):   — qayerdan yig'ilgani, oxirida
   const orderMatch = text.match(/#(\d+)/);
-  const usernameMatch = text.match(/👤\s*([^\n]+)/);
+  const usernameMatch = text.match(/👤\s*(?:Yechdi:\s*)?([^\n]+)/);
+  const recipientMatch = text.match(/📥\s*(?:Stars oldi|Oldi):\s*([^\n]+)/);
   const starsMatch = text.match(/💫\s*(Gift\s*\()?(\d+)/);
   if (!starsMatch) return null;
+  // Eski Orders formati: "👤 @yechgan → @oluvchi"
+  const [owner = '', arrowTo = ''] = (usernameMatch?.[1] || '').split('→').map((s) => s.trim());
+  const to = recipientMatch?.[1]?.trim() || arrowTo;
+  const username = extractUsername(owner);
+  const toUsername = to ? extractUsername(to) : '';
   return {
     orderNumber: orderMatch?.[1] || '',
-    username: extractUsername(usernameMatch?.[1] || ''),
+    username,
+    history: text.includes('📜') ? text.slice(text.indexOf('📜')).trim() : '',
+    // O'ziga yechilgan bo'lsa oluvchi alohida ko'rsatilmaydi
+    recipient: toUsername.toLowerCase() === username.toLowerCase() ? '' : toUsername,
     kind: (starsMatch[1] ? 'gift' : 'stars') as 'gift' | 'stars',
     stars: parseInt(starsMatch[2], 10),
   };
+}
+
+/** Referal kanalidagi xabar qaysi loyihadan: birinchi qatordagi nomdan */
+function bonusSourceFromHeader(text: string): 'starsjoy' | 'premium24' | 'uzgets' | null {
+  const head = text.split('\n')[0];
+  if (head.includes('StarsJoy')) return 'starsjoy';
+  if (head.includes('Premium24')) return 'premium24';
+  if (head.includes('UzGets')) return 'uzgets';
+  return null;
 }
 
 function parseOrderMessage(text: string, isPremium112: boolean = false) {
@@ -197,6 +221,7 @@ export const POST: APIRoute = async ({ request }) => {
     const isPremium112 = chatId === PREMIUM_1_12_CHAT_ID;
     const isUzgets = chatId === UZGETS_CHAT_ID;
     const isPremium24 = chatId === PREMIUM24_CHAT_ID;
+    const isReferral = chatId === REFERRAL_CHAT_ID;
 
     // DEBUG: log incoming chat_id va text
     console.log('[WEBHOOK] chat_id=' + chatId + ' | premium_send=' + isPremiumSend + ' | premium_1_12=' + isPremium112 + ' | uzgets=' + isUzgets);
@@ -212,10 +237,21 @@ export const POST: APIRoute = async ({ request }) => {
     const messageId = update.channel_post?.message_id;
     const msgKey = chatId && messageId ? chatId + ':' + messageId : undefined;
 
-    // Bonus yechish — chiqim: sotuvga kirmaydi, o'z loyihasining foydasidan ayiriladi
+    // Referal kanali: faqat bonus yechish yoziladi, qolgan xabarlar sotuv emas
+    if (isReferral && !text.includes('User bonus oldi')) {
+      return new Response(JSON.stringify({ ok: true, skipped: true, reason: 'referral log', chatId }), {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Bonus yechish — chiqim: sotuvga kirmaydi, o'z loyihasining foydasidan ayiriladi.
+    // Orders kanallari deploy davridagi eski xabarlar uchun qoldirilgan.
     if (text.includes('User bonus oldi') && !isPremiumSend && !isPremium112) {
       const bonus = parseBonusMessage(text);
-      if (!bonus) {
+      const source = isReferral
+        ? bonusSourceFromHeader(text)
+        : isPremium24 ? 'premium24' : isUzgets ? 'uzgets' : 'starsjoy';
+      if (!bonus || !source) {
         console.log('[WEBHOOK] bonus PARSE FAILED:', JSON.stringify(text));
         return new Response(JSON.stringify({ ok: true, skipped: true, reason: 'bonus no match', chatId }), {
           headers: { 'Content-Type': 'application/json' },
@@ -223,7 +259,7 @@ export const POST: APIRoute = async ({ request }) => {
       }
       await addBonusRedemption({
         ...bonus,
-        source: isPremium24 ? 'premium24' : isUzgets ? 'uzgets' : 'starsjoy',
+        source,
         timestamp,
         msgKey,
       });

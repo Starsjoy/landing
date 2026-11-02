@@ -73,6 +73,8 @@ export async function initDB() {
   `;
   await sql`CREATE INDEX IF NOT EXISTS idx_bonus_redemptions_ts ON bonus_redemptions(timestamp)`;
   await sql`ALTER TABLE bonus_redemptions ADD COLUMN IF NOT EXISTS source TEXT NOT NULL DEFAULT 'starsjoy'`;
+  await sql`ALTER TABLE bonus_redemptions ADD COLUMN IF NOT EXISTS recipient TEXT NOT NULL DEFAULT ''`;
+  await sql`ALTER TABLE bonus_redemptions ADD COLUMN IF NOT EXISTS history TEXT NOT NULL DEFAULT ''`;
 }
 
 export async function addVisit(params: {
@@ -1234,6 +1236,8 @@ export async function addBonusRedemption(params: {
   source: 'starsjoy' | 'premium24' | 'uzgets';
   orderNumber: string;
   username: string;
+  recipient: string;
+  history: string;
   kind: 'stars' | 'gift';
   stars: number;
   timestamp: Date;
@@ -1241,8 +1245,8 @@ export async function addBonusRedemption(params: {
 }) {
   const sql = getSQL();
   await sql`
-    INSERT INTO bonus_redemptions (source, order_number, username, kind, stars, cost, timestamp, msg_key)
-    VALUES (${params.source}, ${params.orderNumber}, ${params.username}, ${params.kind}, ${params.stars}, ${params.stars * BONUS_STAR_COST}, ${params.timestamp}, ${params.msgKey || null})
+    INSERT INTO bonus_redemptions (source, order_number, username, recipient, history, kind, stars, cost, timestamp, msg_key)
+    VALUES (${params.source}, ${params.orderNumber}, ${params.username}, ${params.recipient}, ${params.history}, ${params.kind}, ${params.stars}, ${params.stars * BONUS_STAR_COST}, ${params.timestamp}, ${params.msgKey || null})
     ON CONFLICT (msg_key) DO NOTHING
   `;
 }
@@ -1272,7 +1276,7 @@ export async function getBonusSummary() {
     FROM bonus_redemptions
   `;
   const recent = await sql`
-    SELECT source, order_number, username, kind, stars, cost, timestamp
+    SELECT source, order_number, username, recipient, history, kind, stars, cost, timestamp
     FROM bonus_redemptions ORDER BY timestamp DESC LIMIT 200
   `;
   return {
@@ -1286,7 +1290,7 @@ export async function getBonusSummary() {
       gift: { count: +r.gift_count, stars: +r.gift_stars },
     },
     recent: recent.map((row: any) => ({
-      source: row.source, orderNumber: row.order_number, username: row.username, kind: row.kind,
+      source: row.source, orderNumber: row.order_number, username: row.username, recipient: row.recipient, history: row.history, kind: row.kind,
       stars: +row.stars, cost: +row.cost, timestamp: row.timestamp,
     })),
   };
