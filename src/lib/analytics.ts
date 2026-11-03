@@ -1233,7 +1233,7 @@ export const P24_PREMIUM_PROFIT: Record<3 | 6 | 12, number> = {
 };
 
 export async function addBonusRedemption(params: {
-  source: 'starsjoy' | 'premium24' | 'uzgets';
+  source: 'starsjoy' | 'premium24' | 'uzgets' | 'premiumsend';
   orderNumber: string;
   username: string;
   recipient: string;
@@ -1272,7 +1272,8 @@ export async function getBonusSummary() {
       COALESCE(SUM(stars) FILTER (WHERE kind = 'gift'), 0) as gift_stars,
       COALESCE(SUM(cost) FILTER (WHERE source = 'starsjoy'), 0) as starsjoy_cost,
       COALESCE(SUM(cost) FILTER (WHERE source = 'premium24'), 0) as premium24_cost,
-      COALESCE(SUM(cost) FILTER (WHERE source = 'uzgets'), 0) as uzgets_cost
+      COALESCE(SUM(cost) FILTER (WHERE source = 'uzgets'), 0) as uzgets_cost,
+      COALESCE(SUM(cost) FILTER (WHERE source = 'premiumsend'), 0) as premiumsend_cost
     FROM bonus_redemptions
   `;
   const recent = await sql`
@@ -1284,7 +1285,7 @@ export async function getBonusSummary() {
     today: { count: +r.today_count, stars: +r.today_stars, cost: +r.today_cost },
     month: { count: +r.month_count, stars: +r.month_stars, cost: +r.month_cost },
     total: { count: +r.total_count, stars: +r.total_stars, cost: +r.total_cost },
-    byProject: { starsjoy: +r.starsjoy_cost, premium24: +r.premium24_cost, uzgets: +r.uzgets_cost },
+    byProject: { starsjoy: +r.starsjoy_cost, premium24: +r.premium24_cost, uzgets: +r.uzgets_cost, premiumsend: +r.premiumsend_cost },
     byKind: {
       stars: { count: +r.stars_count, stars: +r.stars_stars },
       gift: { count: +r.gift_count, stars: +r.gift_stars },
@@ -1552,11 +1553,13 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       `
     : [{ orders: 0, revenue: 0, stars_count: 0, stars_revenue: 0, stars_total_amount: 0, premium_count: 0, premium_revenue: 0, premium_total_months: 0, p3: 0, p6: 0, p12: 0 }];
 
-  const [bonus] = source === 'all' || source === 'starsjoy' || source === 'premium24' || source === 'uzgets'
+  // PremiumSend sotuvi 'premium_send' manbasida, bonus yozuvi esa 'premiumsend' nomi bilan
+  const bonusSource = source === 'premium_send' ? 'premiumsend' : source;
+  const [bonus] = source === 'all' || source === 'starsjoy' || source === 'premium24' || source === 'uzgets' || source === 'premium_send'
     ? await sql`
         SELECT COUNT(*) as cnt, COALESCE(SUM(stars), 0) as stars, COALESCE(SUM(cost), 0) as cost
         FROM bonus_redemptions
-        WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${source === 'all' ? sql`TRUE` : sql`source = ${source}`}
+        WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${source === 'all' ? sql`TRUE` : sql`source = ${bonusSource}`}
       `
     : [{ cnt: 0, stars: 0, cost: 0 }];
 

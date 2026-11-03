@@ -130,7 +130,7 @@ function parsePremium112Message(text: string) {
 }
 
 function parseBonusMessage(text: string) {
-  // 🟨 StarsJoy            (referal kanali: uch loyiha uchun umumiy)
+  // 🟨 StarsJoy            (referal kanali: to'rt loyiha uchun umumiy; 🟦 UzGets, 🟪 Premium24, 🟧 PremiumSend)
   // 🎁 User bonus oldi!
   //
   // 👤 Yechdi: @user
@@ -161,11 +161,12 @@ function parseBonusMessage(text: string) {
 }
 
 /** Referal kanalidagi xabar qaysi loyihadan: birinchi qatordagi nomdan */
-function bonusSourceFromHeader(text: string): 'starsjoy' | 'premium24' | 'uzgets' | null {
+function bonusSourceFromHeader(text: string): 'starsjoy' | 'premium24' | 'uzgets' | 'premiumsend' | null {
   const head = text.split('\n')[0];
   if (head.includes('StarsJoy')) return 'starsjoy';
   if (head.includes('Premium24')) return 'premium24';
   if (head.includes('UzGets')) return 'uzgets';
+  if (head.includes('PremiumSend')) return 'premiumsend';
   return null;
 }
 
