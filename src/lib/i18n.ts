@@ -58,6 +58,7 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/blog/telegram-premium-12-months-price': '/blog/telegram-premium-12-oylik',
   '/en/blog/cheapest-telegram-premium': '/blog/telegram-premium-eng-arzon',
   '/en/blog/1000-telegram-stars-price': '/blog/telegram-1000-stars-sotib-olish',
+  '/en/blog/100-telegram-stars-price': '/blog/telegram-stars-100-narxi',
 };
 
 /** O'zbekcha sahifa → uning inglizcha ekvivalenti (yuqoridagining teskarisi) */
