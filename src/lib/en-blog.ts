@@ -20,6 +20,22 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: '1000-telegram-stars-price',
+    title: '1000 Telegram Stars Price in 2026 — 240,000 UZS, Pay with Uzcard or Humo',
+    excerpt:
+      '1000 Telegram Stars cost 240,000 UZS at StarsJoy (240 UZS per Star), paid with Uzcard or Humo and delivered in about 10 seconds, plus a +40 ⭐ bonus (~231 UZS per Star). Compared with the in-app price (~$19.99) and what 1000 Stars buy.',
+    date: '2026-11-04',
+    tag: 'Stars',
+  },
+  {
+    slug: 'cheapest-telegram-premium',
+    title: 'Cheapest Telegram Premium in 2026 — Where and How Much? Pay with Uzcard or Humo',
+    excerpt:
+      'The cheapest Telegram Premium is 12 months for 422,000 UZS (~35,200 per month, ~1,160 per day), paid with Uzcard or Humo — about 41% less than the app. Plus a checklist for cheap offers.',
+    date: '2026-11-04',
+    tag: 'Premium',
+  },
+  {
     slug: 'telegram-halloween-bear',
     title: 'Telegram Halloween Bear: Where to Get It With Uzcard or Humo',
     excerpt:

@@ -89,6 +89,7 @@ const GROUPS = [
       'telegram-premium-12-oylik',
       'telegram-premium-12-oylik-uzcard-humo-bilan',
       'telegram-premium-paketlar-taqqoslash',
+      'telegram-premium-eng-arzon',
       'telegram-premium-uzbekistan-eng-yaxshi-usullar',
       'telegram-premium-uzcard',
       'telegram-premium-click-payme',
