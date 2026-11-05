@@ -1,0 +1,661 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+
+const title = "Меньше 100 звёзд Telegram — 50 звёзд за 12 000 сум, Uzcard и Humo | StarsJoy Blog";
+const description = "В приложении Telegram минимальный пакет 100 звёзд. В StarsJoy 50 звёзд за 12 000 сум, а если нужно меньше, 13 звёзд через подарок за 5 000 сум. Uzcard, Humo.";
+const publishDate = "2026-11-05";
+const modifiedDate = "2026-11-05";
+const wordCount = 1400;
+const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-100-tadan-kam";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="меньше 100 звезд telegram, 50 звезд телеграм, 50 stars цена, купить 10 звезд, купить 20 звезд, мало звезд telegram, минимум звезд, конвертировать подарок в звезды, Uzcard, Humo"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-stars-100-tadan-kam" },
+    { lang: "ru", href: canonical },
+    { lang: "en", href: "https://starsjoy.uz/en/blog/buy-less-than-100-telegram-stars" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Нужно меньше 100 звёзд Telegram? 50 звёзд и меньше — с картой Uzcard и Humo",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Stars",
+    "keywords": "меньше 100 звезд, 50 звезд, мало звезд, конвертировать подарок в звезды, Uzcard, Humo, StarsJoy",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": [
+        "https://telegram.me/starsjoy",
+        "https://telegram.me/starsjoybot"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://starsjoy.uz/logo.png"
+      }
+    },
+    "mainEntityOfPage": canonical,
+    "citation": [
+      "https://core.telegram.org/api/gifts",
+      "https://core.telegram.org/method/payments.convertStarGift"
+    ],
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Меньше 100 звёзд", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "50 Telegram Stars",
+    "description": "50 звёзд Telegram — через @starsjoybot с картой Uzcard или Humo, зачисление за 10 секунд.",
+    "brand": { "@type": "Brand", "name": "StarsJoy" },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://starsjoy.uz/ru/stars",
+      "price": "12000",
+      "priceCurrency": "UZS",
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "StarsJoy" }
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Можно ли купить меньше 100 звёзд в приложении Telegram?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Нет. В приложении Telegram (Узбекистан, на 04.11.2026) самый маленький пакет 100 звёзд за 25 399 сум. Пакетов на 50, 30 или 10 звёзд нет. В StarsJoy можно взять любое количество от 50 звёзд: 50 звёзд стоят 12 000 сум." }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько стоят 50 звёзд Telegram?",
+        "acceptedAnswer": { "@type": "Answer", "text": "В StarsJoy 50 звёзд стоят 12 000 сум (240 сум за звезду), плюс бонус +2 ⭐. Оплата с Uzcard или Humo через Payme, Click или приложение банка, звёзды обычно приходят за 10 секунд." }
+      },
+      {
+        "@type": "Question",
+        "name": "Что делать, если нужно меньше 50 звёзд?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Купите себе в StarsJoy подарок за 15 или 25 звёзд и конвертируйте его в звёзды в Telegram. Подарок за 15 звёзд (5 000 сум) даёт 13 звёзд, за 25 звёзд (7 000 сум) даёт 21 звезду. Telegram при конвертации удерживает около 15%." }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько звёзд даёт подарок при конвертации?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Значения из самого Telegram (05.11.2026): подарок за 15 звёзд — 13 звёзд, за 25 — 21, за 50 — 43, за 100 — 85. То есть около 85% цены подарка." }
+      },
+      {
+        "@type": "Question",
+        "name": "За какое время нужно конвертировать подарок?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Telegram разрешает конвертировать подарок в звёзды в течение 7 дней после получения. Конвертированный подарок исчезает из профиля и не восстанавливается." }
+      },
+      {
+        "@type": "Question",
+        "name": "Что дешевле: через подарок или 50 звёзд?",
+        "acceptedAnswer": { "@type": "Answer", "text": "До 26 звёзд дешевле через подарок: 13 звёзд — 5 000, 21 звезда — 7 000, 26 звёзд — 10 000 сум. Если нужно 27 звёзд и больше, берите сразу 50 звёзд: 12 000 сум, с бонусом 52 звезды." }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько я сэкономлю по сравнению со 100 звёздами в приложении?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Минимальная покупка в приложении — 100 звёзд за 25 399 сум. Если вам нужно 13 звёзд, путь через подарок в StarsJoy стоит 5 000 сум — на 20 399 сум меньше. Если нужно 50 звёзд — 12 000 сум, на 13 399 сум меньше." }
+      },
+      {
+        "@type": "Question",
+        "name": "Нужен ли пароль или SMS-код?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Нет. И звёзды, и подарок отправляются только по username в Telegram. Пароль, SMS-код или пароль двухэтапной проверки никогда не запрашиваются." }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Как получить меньше 50 звёзд Telegram через подарок",
+    "description": "Купить в StarsJoy подарок за 15 или 25 звёзд и конвертировать его в звёзды в Telegram.",
+    "totalTime": "PT3M",
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": "5000" },
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Выберите подарок", "text": "Откройте раздел подарков в @starsjoybot и выберите подарок за 15 или 25 звёзд." },
+      { "@type": "HowToStep", "position": 2, "name": "Свой username", "text": "В качестве получателя укажите свой username в Telegram." },
+      { "@type": "HowToStep", "position": 3, "name": "Оплатите", "text": "Переведите сумму из бота с карты Uzcard или Humo: подарок за 15 звёзд — 5 000, за 25 звёзд — 7 000 сум." },
+      { "@type": "HowToStep", "position": 4, "name": "Конвертируйте в звёзды", "text": "Откройте полученный подарок в Telegram и конвертируйте его в звёзды (Convert to Stars). Подарок за 15 звёзд даёт 13 звёзд, за 25 — 21. Сделайте это в течение 7 дней." }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".tldr-box", ".post-faq"]
+    }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <a href="/ru/blog">Блог</a>
+          <span>/</span>
+          <span>Меньше 100 звёзд</span>
+        </nav>
+        <div class="post-tag">Stars</div>
+        <h1 class="post-title">Нужно меньше 100 звёзд Telegram? 50 звёзд и меньше — с картой Uzcard и Humo</h1>
+        <div class="post-meta">
+          <span class="post-date">Обновлено: {modifiedDate}</span>
+          <span class="post-author">StarsJoy Blog</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Коротко">
+            <strong>Коротко:</strong> в приложении Telegram самый маленький пакет — <strong>100 звёзд (25 399 сум)</strong>, меньше купить нельзя. В StarsJoy звёзды продаются <strong>от 50 штук</strong>: <strong>12 000 сум</strong> плюс бонус +2 ⭐. Если нужно ещё меньше, купите в <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> себе подарок за 15 или 25 звёзд и конвертируйте его в звёзды: <strong>13 звёзд — 5 000 сум</strong>, <strong>21 звезда — 7 000 сум</strong>. Оплата <strong>Uzcard или Humo</strong>, нужен только username.
+          </div>
+
+          <div class="price-facts" aria-label="Цены">
+            <div><span>50 звёзд</span><strong>12 000 сум (+2 ⭐)</strong></div>
+            <div><span>13 звёзд (через подарок)</span><strong>5 000 сум</strong></div>
+            <div><span>21 звезда (через подарок)</span><strong>7 000 сум</strong></div>
+            <div><span>Минимум в приложении</span><strong>100 звёзд — 25 399 сум</strong></div>
+          </div>
+          <p class="price-note">Цены StarsJoy на 05.11.2026: звезда 240 сум, подарки за 15 ⭐ — 5 000, за 25 ⭐ — 7 000 сум. Значения конвертации — из каталога Telegram (05.11.2026). Цена приложения — приложение Telegram (Узбекистан), 04.11.2026.</p>
+
+          <section>
+            <p>Многим 100 звёзд не нужны: для нескольких реакций, одного недорогого закрытого поста или небольшой покупки в боте хватает и 10–50 звёзд. Но в приложении Telegram самый маленький пакет — 100 звёзд, и приходится платить 25 399 сум, даже если столько не нужно.</p>
+
+            <p>В этой статье — два способа получить небольшое количество звёзд без переплаты: <strong>купить 50 звёзд напрямую</strong> и <strong>конвертировать подарок в звёзды</strong>. В конце таблица: сколько звёзд вам нужно и какой способ дешевле.</p>
+          </section>
+
+          <section>
+            <h2>Можно ли купить меньше 100 звёзд в приложении Telegram?</h2>
+
+            <p>Коротко: <strong>нет</strong>. В приложении Telegram (Узбекистан, 04.11.2026) самый маленький пакет — <strong>100 звёзд за 25 399 сум</strong>. Пакетов на 50, 30 или 10 звёзд нет. К тому же покупка в приложении обычно требует международную карту Visa или Mastercard, Uzcard и Humo там не проходят.</p>
+
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead>
+                  <tr><th>Где</th><th>Минимум</th><th>Цена</th><th>Карта</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Приложение Telegram</td><td>100 звёзд</td><td>25 399 сум</td><td>Обычно международная</td></tr>
+                  <tr class="highlight-row"><td>StarsJoy — звёзды</td><td>50 звёзд</td><td>12 000 сум</td><td>Uzcard, Humo</td></tr>
+                  <tr class="highlight-row"><td>StarsJoy — через подарок</td><td>13 звёзд</td><td>5 000 сум</td><td>Uzcard, Humo</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>То есть тому, кому нужно 13 звёзд, приложение обойдётся в 25 399 сум, а StarsJoy — в 5 000 сум: <strong>на 20 399 сум меньше</strong>. Подробнее о покупке без Visa: <a href="/ru/blog/telegram-stars-visa-kartasiz">звёзды Telegram без карты Visa</a>.</p>
+          </section>
+
+          <section>
+            <h2>Сколько стоят 50 звёзд Telegram и как их купить?</h2>
+
+            <p>В StarsJoy звёзды продаются <strong>от 50 штук</strong>, и цена не зависит от количества: каждая звезда — <strong>240 сум</strong>. 50 звёзд — <strong>12 000 сум</strong>, за каждые полные 50 звёзд бонус +2 ⭐. От 50 до 100 можно взять любое число:</p>
+
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead>
+                  <tr><th>Звёзды</th><th>Цена</th><th>Бонус</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="highlight-row"><td>50 звёзд</td><td>12 000 сум</td><td>+2 ⭐</td></tr>
+                  <tr><td>60 звёзд</td><td>14 400 сум</td><td>+2 ⭐</td></tr>
+                  <tr><td>75 звёзд</td><td>18 000 сум</td><td>+2 ⭐</td></tr>
+                  <tr><td>99 звёзд</td><td>23 760 сум</td><td>+2 ⭐</td></tr>
+                  <tr><td><a href="/ru/stars/100">100 звёзд</a></td><td>24 000 сум</td><td>+4 ⭐</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>Формула простая: количество звёзд × 240 сум. 50 звёзд стоят <strong>на 13 399 сум меньше</strong>, чем самый маленький пакет в приложении (100 звёзд, 25 399 сум). Если вам всё же нужно 90–100 звёзд, полное сравнение с приложением — в статье <a href="/ru/blog/telegram-stars-100-narxi">цена 100 звёзд Telegram</a>.</p>
+
+            <p>Как купить: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> → раздел звёзд → количество 50 (или нужное) → username → переведите точную сумму из бота с карты Uzcard или Humo. Звёзды обычно приходят за 10 секунд.</p>
+          </section>
+
+          <section>
+            <h2>Если нужно меньше 50: конвертируйте подарок в звёзды</h2>
+
+            <p>Полученный в Telegram подарок (gift) можно не хранить в профиле, а <strong>конвертировать в звёзды</strong>. Как сказано в документации Telegram, подарок при этом полностью исчезает, а на баланс зачисляются звёзды — немного меньше цены подарка. Это и есть самый дешёвый способ получить мало звёзд: купить себе в StarsJoy небольшой подарок и сразу конвертировать его.</p>
+
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead>
+                  <tr><th>Подарок</th><th>Цена в StarsJoy</th><th>После конвертации</th><th>Цена 1 звезды</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="highlight-row"><td>За 15 звёзд</td><td>5 000 сум</td><td>13 звёзд</td><td>~385 сум</td></tr>
+                  <tr class="highlight-row"><td>За 25 звёзд</td><td>7 000 сум</td><td>21 звезда</td><td>~333 сум</td></tr>
+                  <tr><td>За 50 звёзд</td><td>13 000 сум</td><td>43 звезды</td><td>~302 сум</td></tr>
+                  <tr><td>За 100 звёзд</td><td>25 000 сум</td><td>85 звёзд</td><td>~294 сум</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>При конвертации Telegram удерживает около <strong>15%</strong> цены подарка (15 → 13, 25 → 21, 50 → 43, 100 → 85). Поэтому в пересчёте на одну звезду этот путь дороже, зато <strong>итоговая сумма самая маленькая</strong>: 13 звёзд всего за 5 000 сум. Конвертировать подарки за 50 и 100 звёзд невыгодно — на те же деньги напрямую выйдет больше звёзд.</p>
+
+            <p>Цены и виды подарков: <a href="/ru/gifts">подарки StarsJoy</a> и <a href="/ru/blog/telegram-gifts-narxi-royxati">цены подарков Telegram</a>.</p>
+          </section>
+
+          <section>
+            <h2>Сколько звёзд нужно и какой способ дешевле?</h2>
+
+            <p>Расчёт по ценам StarsJoy: в пути через подарок количество звёзд берётся из значения конвертации, в прямом пути — 240 сум × количество.</p>
+
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead>
+                  <tr><th>Вам нужно</th><th>Самый дешёвый способ</th><th>Платите</th><th>Получаете</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="highlight-row"><td>1–13 звёзд</td><td>Подарок за 15 звёзд → звёзды</td><td>5 000 сум</td><td>13 звёзд</td></tr>
+                  <tr class="highlight-row"><td>14–21 звезда</td><td>Подарок за 25 звёзд → звёзды</td><td>7 000 сум</td><td>21 звезда</td></tr>
+                  <tr><td>22–26 звёзд</td><td>2 подарка за 15 звёзд → звёзды</td><td>10 000 сум</td><td>26 звёзд</td></tr>
+                  <tr class="highlight-row"><td>27–52 звезды</td><td>50 звёзд напрямую</td><td>12 000 сум</td><td>50 + 2 ⭐ бонус</td></tr>
+                  <tr><td>53–100 звёзд</td><td>Нужное число × 240 сум</td><td>12 720–24 000 сум</td><td>Ровно сколько нужно</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p><strong>Правило:</strong> до 26 звёзд — через подарок, от 27 — сразу <a href="/ru/stars">звёзды</a>. Например, 34 звезды через подарки (15 + 25) тоже стоят 12 000 сум, но за 12 000 сум напрямую вы получите 50 звёзд и бонус.</p>
+          </section>
+
+          <section>
+            <h2>Как конвертировать подарок в звёзды?</h2>
+
+            <h3>Шаг 1: купите подарок</h3>
+            <p>Откройте раздел подарков в <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> и выберите подарок за 15 или 25 звёзд. В качестве получателя укажите <strong>свой username</strong>.</p>
+
+            <h3>Шаг 2: оплатите</h3>
+            <p>Переведите точную сумму из бота с карты Uzcard или Humo через Payme, Click или приложение банка. Подарок придёт в Telegram за несколько минут.</p>
+
+            <h3>Шаг 3: конвертируйте в звёзды</h3>
+            <p>Откройте сообщение с подарком в Telegram — в окне подарка есть кнопка конвертации в звёзды (в английском интерфейсе "Convert to … Stars"). После подтверждения звёзды сразу зачисляются на баланс.</p>
+
+            <h3>Важные условия</h3>
+            <ul>
+              <li><strong>7 дней.</strong> Telegram разрешает конвертировать подарок в течение 7 дней после получения — не откладывайте;</li>
+              <li><strong>Без возврата.</strong> Конвертированный подарок полностью исчезает из профиля, звёзды обратно в подарок не превращаются;</li>
+              <li><strong>Берите себе.</strong> Звёзды получит тот, на чей username пришёл подарок — проверьте username.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>На что хватит немного звёзд?</h2>
+            <ul>
+              <li><strong>Реакции:</strong> каждая реакция звездой — 1 звезда, 13 звёзд — 13 реакций;</li>
+              <li><strong>Платный пост:</strong> цену назначает владелец канала, и до оплаты в посте видно, сколько звёзд нужно — столько и берёте;</li>
+              <li><strong>Боты и Mini App:</strong> небольшая покупка или один предмет в игре;</li>
+              <li><strong>Подарок:</strong> подарок за 15 звёзд можно и просто отправить другу, без конвертации.</li>
+            </ul>
+            <p>Все возможности: <a href="/ru/blog/telegram-stars-bilan-nima-qilish-mumkin">что можно делать со звёздами Telegram</a>.</p>
+          </section>
+
+          <section>
+            <h2>Безопасность и гарантия</h2>
+            <p>И звёзды, и подарки отправляются только по <strong>username в Telegram</strong>. Бот никогда не спрашивает пароль, SMS-код или пароль двухэтапной проверки — если спрашивают, это <a href="/ru/blog/telegram-stars-firibgarlik-himoya">признак мошенничества</a>.</p>
+            <ul>
+              <li>Если оплата прошла, а заказ не выполнен по технической причине — <strong>деньги возвращаются полностью</strong>;</li>
+              <li>Для этого <strong>в течение 24 часов</strong> отправьте чек через <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a>;</li>
+              <li>Если указан неверный username и звёзды или подарок ушли на другой аккаунт — деньги не возвращаются.</li>
+            </ul>
+          </section>
+
+          <div class="cta-box">
+            <h2>Возьмите немного звёзд прямо сейчас</h2>
+            <p>50 звёзд — 12 000 сум, 13 звёзд — 5 000 сум. С Uzcard или Humo, нужен только username.</p>
+            <a class="cta-btn" href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Открыть @starsjoybot</a>
+            <p class="cta-sub"><a href="/ru/stars">Пакеты звёзд</a> · <a href="/ru/gifts">Подарки</a></p>
+          </div>
+
+          <section>
+            <h2>Итог</h2>
+            <p>Приложение Telegram не продаёт меньше 100 звёзд, а StarsJoy даёт два недорогих способа: если нужно <strong>от 27 до 100 звёзд</strong> — напрямую, 50 звёзд за 12 000 сум; если нужно <strong>до 26</strong> — подарок за 15 или 25 звёзд, конвертированный в звёзды, от 5 000 сум. Оба способа — с Uzcard или Humo, в сумах, без пароля и SMS-кода.</p>
+            <p class="end-cta">За небольшим количеством звёзд → <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a></p>
+            <p>Полезные статьи: <a href="/ru/blog/telegram-stars-100-narxi">цена 100 звёзд</a>, <a href="/ru/blog/telegram-stars-paketlari-taqqoslash">сравнение пакетов звёзд</a>, <a href="/ru/blog/telegram-stars-uzcard-bilan-sotib-olish">звёзды с Uzcard</a>, <a href="/ru/blog/telegram-stars-humo-bilan-sotib-olish">звёзды с Humo</a>.</p>
+          </section>
+
+          <section>
+            <h2>Частые вопросы</h2>
+            <div class="post-faq">
+              <div class="post-faq-item">
+                <h3>Можно ли купить меньше 100 звёзд в приложении Telegram?</h3>
+                <p>Нет. В приложении (Узбекистан, 04.11.2026) минимум — 100 звёзд за 25 399 сум. В StarsJoy любое количество от 50: 50 звёзд — 12 000 сум.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Сколько стоят 50 звёзд Telegram?</h3>
+                <p>В StarsJoy 12 000 сум (240 сум за звезду) и бонус +2 ⭐. Оплата Uzcard или Humo, обычно за 10 секунд.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Что делать, если нужно меньше 50 звёзд?</h3>
+                <p>Купите себе в StarsJoy подарок за 15 или 25 звёзд и конвертируйте его в Telegram: 13 звёзд за 5 000 сум, 21 звезда за 7 000 сум.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Сколько звёзд даёт подарок при конвертации?</h3>
+                <p>Значения Telegram (05.11.2026): 15 → 13, 25 → 21, 50 → 43, 100 → 85 звёзд — около 85% цены.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>За какое время нужно конвертировать подарок?</h3>
+                <p>В течение 7 дней после получения. Конвертированный подарок исчезает из профиля и не восстанавливается.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Что дешевле: через подарок или 50 звёзд?</h3>
+                <p>До 26 звёзд — через подарок (5 000–10 000 сум). От 27 — сразу 50 звёзд: 12 000 сум, с бонусом 52 звезды.</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Сколько я сэкономлю по сравнению со 100 звёздами в приложении?</h3>
+                <p>Если нужно 13 звёзд — 20 399 сум, если 50 звёзд — 13 399 сум (минимум в приложении 100 звёзд за 25 399 сум).</p>
+              </div>
+              <div class="post-faq-item">
+                <h3>Нужен ли пароль или SMS-код?</h3>
+                <p>Нет. Только username в Telegram. «Продавец», который просит пароль или код, — мошенник.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2>Источники</h2>
+            <ul>
+              <li><a href="https://core.telegram.org/api/gifts" target="_blank" rel="noopener">Telegram API: подарки и их конвертация в звёзды</a></li>
+              <li><a href="https://core.telegram.org/method/payments.convertStarGift" target="_blank" rel="noopener">Telegram API: payments.convertStarGift</a></li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 760px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .post-body {
+    padding: 60px 24px;
+  }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 28px 0 12px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 14px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .price-facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 0 0 8px;
+  }
+  .price-facts div {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .price-facts span { display: block; font-size: 0.8rem; color: var(--text-muted); }
+  .price-facts strong { display: block; font-size: 1.02rem; color: var(--primary); margin-top: 2px; }
+  .post-content .price-note { font-size: 0.85rem; margin-bottom: 28px; }
+
+  .cta-box {
+    background: linear-gradient(135deg, #7C3AED, #5B21B6);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin: 36px 0;
+    text-align: center;
+  }
+  .post-content .cta-box h2 { color: #fff; margin: 0 0 8px; }
+  .post-content .cta-box p { color: rgba(255, 255, 255, 0.85); margin-bottom: 18px; }
+  .post-content .cta-box .cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: #5B21B6;
+    font-weight: 800;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+  }
+  .post-content .cta-box .cta-btn:hover { text-decoration: none; opacity: 0.92; }
+  .post-content .cta-box .cta-sub { margin: 16px 0 0; font-size: 0.9rem; }
+  .post-content .cta-box .cta-sub a { color: #fff; text-decoration: underline; }
+
+  .natural-cta {
+    background: rgba(124, 58, 237, 0.04);
+    border-left: 3px solid var(--primary);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 18px 0;
+    font-size: 0.95rem;
+  }
+
+  .end-cta {
+    text-align: center;
+    padding: 14px;
+    background: rgba(124, 58, 237, 0.06);
+    border-radius: 10px;
+    font-weight: 600;
+    margin: 20px 0;
+  }
+
+  .post-table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+  }
+
+  .post-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .post-table th {
+    background: rgba(124, 58, 237, 0.06);
+    color: var(--text);
+    font-weight: 700;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+  }
+
+  .post-table td {
+    padding: 12px 18px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+  }
+
+  .post-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .post-table .highlight-row {
+    background: rgba(124, 58, 237, 0.04);
+  }
+
+  .post-table .highlight-row td {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .post-faq {
+    margin: 24px 0;
+  }
+
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+
+  .post-faq-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+
+  .post-faq-item p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.6rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.05rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .post-table th { padding: 10px 12px; font-size: 0.85rem; }
+    .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
+    .price-facts { grid-template-columns: repeat(2, 1fr); }
+    .cta-box { padding: 24px 18px; }
+  }
+</style>

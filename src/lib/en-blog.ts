@@ -20,6 +20,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'buy-less-than-100-telegram-stars',
+    title: 'Fewer Than 100 Telegram Stars — 50 Stars for 12,000 UZS, Uzcard and Humo',
+    excerpt:
+      "The Telegram app's smallest pack is 100 Stars. StarsJoy sells 50 Stars for 12,000 UZS, and for fewer you can convert a gift into Stars: 13 Stars for 5,000 UZS. A table shows which route is cheaper.",
+    date: '2026-11-05',
+    tag: 'Stars',
+  },
+  {
     slug: '100-telegram-stars-price',
     title: '100 Telegram Stars Price in 2026 — 24,000 UZS, Pay with Uzcard or Humo',
     excerpt:
