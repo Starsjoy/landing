@@ -370,6 +370,7 @@ if (authenticated && !dbReady) {
           </button>
 
           <div class="tb-filters" id="filters">
+            <button data-period="daybefore" id="dayBeforeBtn" onclick="setDaysAgo(2, 'daybefore')">Oldingi kun</button>
             <button data-period="yesterday" onclick="setYesterday()">Kecha</button>
             <button data-period="today" class="active" onclick="setPeriod('today')">Bugun</button>
             <button data-period="week" onclick="setPeriod('week')">Hafta</button>
@@ -2457,21 +2458,30 @@ if (authenticated && !dbReady) {
         fetchAnalytics();
       }
 
-      function setYesterday() {
-        // Tashkent vaqtida kechagi sanani hisoblash (UTC+5)
-        var now = new Date();
-        var tashkentNow = new Date(now.getTime() + 5 * 60 * 60 * 1000);
-        var yesterday = new Date(Date.UTC(
-          tashkentNow.getUTCFullYear(),
-          tashkentNow.getUTCMonth(),
-          tashkentNow.getUTCDate() - 1
-        ));
+      // Toshkent vaqtida N kun oldingi sana (UTC+5)
+      function daysAgoDate(n) {
+        var tashkentNow = new Date(Date.now() + 5 * 60 * 60 * 1000);
+        return new Date(Date.UTC(tashkentNow.getUTCFullYear(), tashkentNow.getUTCMonth(), tashkentNow.getUTCDate() - n));
+      }
+      function daysAgoLabel(n) {
+        var d = daysAgoDate(n);
+        return String(d.getUTCDate()).padStart(2, '0') + '.' + String(d.getUTCMonth() + 1).padStart(2, '0');
+      }
+      (function () {
+        var b = document.getElementById('dayBeforeBtn');
+        if (b) b.textContent = daysAgoLabel(2);
+      })();
+
+      function setYesterday() { setDaysAgo(1, 'yesterday'); }
+
+      function setDaysAgo(n, key) {
+        var yesterday = daysAgoDate(n);
         var y = yesterday.getUTCFullYear();
         var m = String(yesterday.getUTCMonth() + 1).padStart(2, '0');
         var d = String(yesterday.getUTCDate()).padStart(2, '0');
         var dateStr = y + '-' + m + '-' + d;
 
-        currentPeriod = 'yesterday';
+        currentPeriod = key;
         currentMonth = null;
         salesFrom = dateStr;
         salesTo = dateStr;
@@ -2482,11 +2492,11 @@ if (authenticated && !dbReady) {
         if (dto) dto.value = dateStr;
 
         document.querySelectorAll('#filters button').forEach(b => {
-          b.classList.toggle('active', b.dataset.period === 'yesterday');
+          b.classList.toggle('active', b.dataset.period === key);
         });
         document.querySelectorAll('.tb-months button').forEach(b => b.classList.remove('active'));
 
-        chartPeriod = 'yesterday';
+        chartPeriod = key;
         fetchStats();
         fetchAnalytics();
       }
@@ -2737,7 +2747,7 @@ if (authenticated && !dbReady) {
       }
 
       var periodLabels = {
-        yesterday: 'Kecha', today: 'Bugun', week: 'Hafta', month: 'Oy',
+        daybefore: daysAgoLabel(2), yesterday: 'Kecha', today: 'Bugun', week: 'Hafta', month: 'Oy',
         '3months': '3 oy', '6months': '6 oy', '12months': '1 yil'
       };
 
@@ -4692,7 +4702,7 @@ if (authenticated && !dbReady) {
       function isMobileView() { return window.innerWidth <= 640; }
 
       var mqsPeriodLabels = {
-        yesterday: 'Kechagi', today: 'Bugungi', week: 'Haftalik', month: 'Oylik',
+        daybefore: daysAgoLabel(2) + ' kungi', yesterday: 'Kechagi', today: 'Bugungi', week: 'Haftalik', month: 'Oylik',
         '3months': '3 oylik', '6months': '6 oylik', '12months': 'Yillik'
       };
 
