@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Что можно делать с Telegram Stars? 9 основных способов использования (2026) | Блог StarsJoy";
 const description = "Где и для чего использовать Telegram Stars: Gift, Premium, paid post, Mini App, premium reactions, чаевые, Telegram Ads (30% скидка), Fragment marketplace — полное руководство.";
 const publishDate = "2026-05-07";
-const modifiedDate = "2026-05-07";
+const modifiedDate = "2026-11-15";
 const wordCount = 1860;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-bilan-nima-qilish-mumkin";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -100,7 +101,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "С какого минимума Stars можно начать?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Самый дешёвый use case — premium reaction или маленькие чаевые: 1 Star = 1 reaction (1 Star = 240 сум). С 50 Stars (12 000 сум) можно отправить маленький Gift (Cake, Bouquet) или прочитать paid post. 100 Stars (24 000 сум) — Regular Gift (Trophy, Diamond) или несколько недель paid подписки на канал. Большие инвестиции для старта не нужны."
+          "text": `Самый дешёвый use case — premium reaction или маленькие чаевые: 1 Star = 1 reaction (1 Star = ${STAR_PRICE} сум). С 50 Stars (${fmtS(starsPrice(50))} сум) можно отправить маленький Gift (Cake, Bouquet) или прочитать paid post. 100 Stars (${fmtS(starsPrice(100))} сум) — Regular Gift (Trophy, Diamond) или несколько недель paid подписки на канал. Большие инвестиции для старта не нужны.`
         }
       },
       {
@@ -165,7 +166,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> Telegram Stars используются 9 основными способами: <strong>(1) Покупка и отправка Gift, (2) Активация Premium, (3) Paid каналы/post, (4) Оплата в Mini App, (5) Premium reactions, (6) Premium-функции в ботах, (7) Чаевые контент-мейкерам, (8) Telegram Ads (скидка 30%!), (9) Fragment marketplace (username, анонимный номер)</strong>. Самый дешёвый use case — 1 Star (240 сум) на paid reaction или 15 Stars (4 500 сум) на маленький Gift. У Stars нет срока действия — покупайте и используйте в любое время.
+            <strong>Краткий ответ:</strong> Telegram Stars используются 9 основными способами: <strong>(1) Покупка и отправка Gift, (2) Активация Premium, (3) Paid каналы/post, (4) Оплата в Mini App, (5) Premium reactions, (6) Premium-функции в ботах, (7) Чаевые контент-мейкерам, (8) Telegram Ads (скидка 30%!), (9) Fragment marketplace (username, анонимный номер)</strong>. Самый дешёвый use case — 1 Star ({STAR_PRICE} сум) на paid reaction или 15 Stars (4 500 сум) на маленький Gift. У Stars нет срока действия — покупайте и используйте в любое время.
           </div>
 
           <p>Купили Telegram Stars, но непонятно, что именно с ними делать? В этой статье разбираются все 9 основных способов использования Stars в экосистеме Telegram в 2026 году — каждый с ценой, применимостью и примерами. Основано на официальной <a href="https://telegram.org/blog/telegram-stars" target="_blank" rel="noopener nofollow">документации Stars от Telegram</a>, актуально на май 2026 года.</p>
@@ -174,7 +175,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Основная логика Stars</h2>
 
-          <p>Telegram Stars — внутренняя валюта экосистемы Telegram. Один раз купили — потратили на разные сервисы и товары внутри Telegram. Курс на локальном реселлер-боте — <strong>1 Star = 240 сум</strong> (через локального бота, Click/Payme/Uzcard/Humo). У Stars <a href="/ru/blog/telegram-stars-amal-muddati">нет срока действия</a> — купили и используете в нужный момент.</p>
+          <p>Telegram Stars — внутренняя валюта экосистемы Telegram. Один раз купили — потратили на разные сервисы и товары внутри Telegram. Курс на локальном реселлер-боте — <strong>1 Star = {STAR_PRICE} сум</strong> (через локального бота, Click/Payme/Uzcard/Humo). У Stars <a href="/ru/blog/telegram-stars-amal-muddati">нет срока действия</a> — купили и используете в нужный момент.</p>
 
           <p>Ниже разбор 9 основных use case подробно.</p>
 
@@ -183,8 +184,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Самый популярный use case. Через Stars можно купить анимированные подарки из внутреннего каталога Telegram и отправить другу или контакту. Три категории:</p>
 
           <ul>
-            <li><strong>Regular Gifts</strong> (15–100 Stars, 4 500–24 000 сум) — небольшие поздравления (Cake, Bouquet, Trophy, Diamond)</li>
-            <li><strong>Limited Gifts</strong> (1 000–10 000 Stars, 240 000–2 400 000 сум) — специальные подарки с ограниченным тиражом</li>
+            <li><strong>Regular Gifts</strong> (15–100 Stars, 4 500–{fmtS(starsPrice(100))} сум) — небольшие поздравления (Cake, Bouquet, Trophy, Diamond)</li>
+            <li><strong>Limited Gifts</strong> (1 000–10 000 Stars, {fmtS(starsPrice(1000))}–{fmtS(starsPrice(10000))} сум) — специальные подарки с ограниченным тиражом</li>
             <li><strong>Unique Gifts (NFT)</strong> (5 000+ Stars) — единственный экземпляр, для коллекции</li>
           </ul>
 
@@ -196,23 +197,24 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <table class="price-table">
             <thead>
-              <tr><th>Premium-пакет</th><th>Количество Stars</th><th>В сумах (по курсу 240)</th></tr>
+              <tr><th>Premium-пакет</th><th>Количество Stars</th><th>В сумах (по курсу {STAR_PRICE})</th></tr>
             </thead>
             <tbody>
-              <tr><td>1 месяц</td><td>~800–1 000 Stars</td><td>~190 000–240 000 сум</td></tr>
-              <tr><td>3 месяца</td><td>~2 500–3 000 Stars</td><td>~600 000–720 000 сум</td></tr>
-              <tr><td>12 месяцев</td><td>~7 500–9 000 Stars</td><td>~1 800 000–2 160 000 сум</td></tr>
+              <tr><td>1 месяц</td><td>~800–1 000 Stars</td><td>~{fmtS(starsPrice(800))}–{fmtS(starsPrice(1000))} сум</td></tr>
+              <tr><td>3 месяца</td><td>~2 500–3 000 Stars</td><td>~{fmtS(starsPrice(2500))}–{fmtS(starsPrice(3000))} сум</td></tr>
+              <tr><td>12 месяцев</td><td>~7 500–9 000 Stars</td><td>~{fmtS(starsPrice(7500))}–{fmtS(starsPrice(9000))} сум</td></tr>
             </tbody>
           </table>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
-          <p>Но Premium через Stars — лишний шаг (купить Stars и потом конвертировать в Premium). Прямая оплата Premium в сумах часто удобнее и дешевле (12 месяцев напрямую — 422 000 сум). Подробности и сравнение пакетов — в статье <a href="/ru/blog/telegram-premium-paketlar-taqqoslash">Сравнение пакетов Premium</a>.</p>
+          <p>Но Premium через Stars — лишний шаг (купить Stars и потом конвертировать в Premium). Прямая оплата Premium в сумах часто удобнее и дешевле (12 месяцев напрямую — {fmtS(PREMIUM_PRICE[12])} сум). Подробности и сравнение пакетов — в статье <a href="/ru/blog/telegram-premium-paketlar-taqqoslash">Сравнение пакетов Premium</a>.</p>
 
           <h2>3. Paid каналы и paid post</h2>
 
           <p>В Telegram контент-мейкеры (владельцы каналов) могут устанавливать Stars-плату за контент. Как пользователь, вы можете:</p>
 
           <ul>
-            <li><strong>Читать paid post</strong> — оплачивать Stars за отдельный пост (10–100 Stars, 2 400–24 000 сум)</li>
+            <li><strong>Читать paid post</strong> — оплачивать Stars за отдельный пост (10–100 Stars, {fmtS(starsPrice(10))}–{fmtS(starsPrice(100))} сум)</li>
             <li><strong>Подписаться на paid канал</strong> — месячная подписка для эксклюзивного контента (50–500 Stars/мес)</li>
             <li><strong>Покупать sticker pack</strong> — специальные наборы стикеров от контент-мейкеров</li>
           </ul>
@@ -236,7 +238,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>5. Premium reactions</h2>
 
-          <p>Обычный пользователь ставит 1 реакцию на сообщение (👍 или ❤️). Через Stars — paid reactions: <strong>1 Star = 1 reaction</strong> (240 сум). Накопить много реакций на одном сообщении — для поддержки контент-мейкера или привлечения внимания к важному посту.</p>
+          <p>Обычный пользователь ставит 1 реакцию на сообщение (👍 или ❤️). Через Stars — paid reactions: <strong>1 Star = 1 reaction</strong> ({STAR_PRICE} сум). Накопить много реакций на одном сообщении — для поддержки контент-мейкера или привлечения внимания к важному посту.</p>
 
           <p>Paid reactions анонимны. Контент-мейкер видит сколько реакций получил, но не кто их поставил. Для владельцев каналов — это один из источников дохода Stars.</p>
 
@@ -257,7 +259,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Stars можно отправлять напрямую в live-stream, voice chat или на профиль контент-мейкера — как чаевые или донат. Новый путь монетизации для преподавателей, блогеров, стримеров и творческих исполнителей.</p>
 
-          <p>Сумма чаевых — от 10 Stars (небольшое спасибо, 2 400 сум) до 1 000+ Stars (240 000+ сум). Отправка одной кнопкой — через "Send Stars" в профиле контакта.</p>
+          <p>Сумма чаевых — от 10 Stars (небольшое спасибо, {fmtS(starsPrice(10))} сум) до 1 000+ Stars ({fmtS(starsPrice(1000))}+ сум). Отправка одной кнопкой — через "Send Stars" в профиле контакта.</p>
 
           <h2>8. Telegram Ads — скидка 30%! (для бизнеса)</h2>
 
@@ -288,7 +290,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li><strong>NFT Gifts</strong> — покупка Unique Gifts от других пользователей</li>
           </ul>
 
-          <p>Цены на Fragment в большом диапазоне: обычный username от 5 000 Stars (1 200 000 сум), premium username до 50 000+ Stars (12 000 000+ сум). Anonymous Number — около 1 250 Stars (300 000 сум).</p>
+          <p>Цены на Fragment в большом диапазоне: обычный username от 5 000 Stars ({fmtS(starsPrice(5000))} сум), premium username до 50 000+ Stars ({fmtS(starsPrice(50000))}+ сум). Anonymous Number — около 1 250 Stars ({fmtS(starsPrice(1250))} сум).</p>
 
           <h2>Можно ли вывести Stars (cash out)?</h2>
 
@@ -345,7 +347,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>С какого минимума можно начать со Stars?</h3>
-              <p>1 Star (240 сум) для paid reaction или маленьких чаевых. 50 Stars (12 000 сум) — маленький Gift (Cake, Bouquet) или paid post. 100 Stars (24 000 сум) — Regular Gift или несколько недель paid подписки на канал. Большие инвестиции для старта не нужны.</p>
+              <p>1 Star ({STAR_PRICE} сум) для paid reaction или маленьких чаевых. 50 Stars ({fmtS(starsPrice(50))} сум) — маленький Gift (Cake, Bouquet) или paid post. 100 Stars ({fmtS(starsPrice(100))} сум) — Regular Gift или несколько недель paid подписки на канал. Большие инвестиции для старта не нужны.</p>
             </div>
             <div class="post-faq-item">
               <h3>Скидка 30% в Telegram Ads через Stars — правда?</h3>
@@ -363,7 +365,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Вывод</h2>
 
-          <p>Telegram Stars к 2026 году стали центральной внутренней валютой экосистемы Telegram: 9 основных use case — Gift, Premium, paid контент, Mini App, reactions, функции ботов, чаевые, реклама и Fragment marketplace. Минимально начать можно с 1 Star (240 сум) — на paid reaction или маленькие чаевые.</p>
+          <p>Telegram Stars к 2026 году стали центральной внутренней валютой экосистемы Telegram: 9 основных use case — Gift, Premium, paid контент, Mini App, reactions, функции ботов, чаевые, реклама и Fragment marketplace. Минимально начать можно с 1 Star ({STAR_PRICE} сум) — на paid reaction или маленькие чаевые.</p>
 
           <p>Самая большая выгода для бизнесменов — Telegram Ads (скидка 30%), для контент-мейкеров — новые пути монетизации (paid post, чаевые), для обычных пользователей — Gifts и удобные оплаты в Mini App внутри естественной экосистемы.</p>
 

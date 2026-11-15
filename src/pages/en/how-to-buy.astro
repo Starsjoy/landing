@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import NavbarEn from '../../components/NavbarEn.astro';
 import FooterEn from '../../components/FooterEn.astro';
 import { hreflangsFor } from '../../lib/i18n';
+import { STAR_PRICE, PREMIUM_PRICE, PRICES_DATE, starsPrice, fmt, PRICE_NOTE } from '../../lib/prices';
 
 // Same screenshots as the Uzbek guide — they show the real app. The interface
 // language in the shots is Uzbek; the bot itself also runs in English, which the
@@ -19,7 +20,7 @@ const img9 = '/qollanma/starsjoy-qadam-9-tolov-qildim.webp';
 
 const title = "How to Buy Telegram Stars and Premium in Uzbekistan — 9 Steps with Screenshots | StarsJoy";
 const description = "A step-by-step guide to buying Telegram Stars, Premium and Gifts through the StarsJoy Mini App: all nine steps with real screenshots. Pay in Uzbek som with Uzcard or Humo — no Visa card, no password, about 2–3 minutes.";
-const modifiedDate = "2026-08-07";
+const modifiedDate = PRICES_DATE;
 
 const steps = [
   {
@@ -53,15 +54,15 @@ const steps = [
   {
     img: img5,
     title: "Choose the amount or a ready-made pack",
-    text: "For Stars, type any number from 50 to 100,000 or pick a ready pack: 50 Stars — 12,000 UZS, 100 Stars — 24,000 UZS, and so on at a flat 240 UZS per star. For Premium, choose a 3, 6 or 12-month plan instead. If you have a promo code, apply it here with the check button.",
-    alt: "The list of Stars packs: 50 Stars 12,000 UZS, 100 Stars 24,000 UZS, 200 Stars 48,000 UZS",
+    text: `For Stars, type any number from 50 to 100,000 or pick a ready pack: 50 Stars — ${fmt(starsPrice(50))} UZS, 100 Stars — ${fmt(starsPrice(100))} UZS, and so on at a flat ${STAR_PRICE} UZS per star. For Premium, choose a 3, 6 or 12-month plan instead. If you have a promo code, apply it here with the check button.`,
+    alt: "The list of Stars packs with prices: 50, 100 and 200 Stars",
     caption: "Step 5: an amount for Stars, or a 3/6/12-month term for Premium.",
   },
   {
     img: img6,
     title: "Press the purchase button",
-    text: "Once the amount is selected, the blue button at the bottom shows the final total — for example 'Buy Stars — 12,000 UZS'. The number on that button is exactly what you will pay; there is no fee added afterwards.",
-    alt: "The blue purchase button reading 'Buy Stars — 12,000 UZS' highlighted",
+    text: `Once the amount is selected, the blue button at the bottom shows the final total — for example 'Buy Stars — ${fmt(starsPrice(50))} UZS'. The number on that button is exactly what you will pay; there is no fee added afterwards.`,
+    alt: "The blue purchase button showing the order total, highlighted",
     caption: "Step 6: the number on the button is the final price.",
   },
   {
@@ -121,7 +122,7 @@ const faqs = [
   },
   {
     q: "What if something goes wrong?",
-    a: "Contact support at @starsjoy_bot with your payment receipt. If the service was not delivered, the full amount is refunded."
+    a: "Contact support at @StarsjoySupport with your payment receipt. If the service was not delivered, the full amount is refunded."
   }
 ];
 ---
@@ -143,7 +144,7 @@ const faqs = [
     "description": description,
     "totalTime": "PT3M",
     "inLanguage": "en-US",
-    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": "12000" },
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": String(starsPrice(50)) },
     "supply": [
       { "@type": "HowToSupply", "name": "A Telegram account" },
       { "@type": "HowToSupply", "name": "An Uzcard or Humo card issued in Uzbekistan" }
@@ -234,7 +235,8 @@ const faqs = [
         </div>
         <div class="req-card">
           <span class="req-label">What it costs</span>
-          <p>Stars — 240 UZS per star (50 Stars = 12,000 UZS). Premium — 172,000 UZS for 3 months, 232,000 for 6, 422,000 for 12. See <a href="/en/stars">Stars</a> and <a href="/en/premium">Premium</a>.</p>
+          <p>Stars — {STAR_PRICE} UZS per star (50 Stars = {fmt(starsPrice(50))} UZS). Premium — {fmt(PREMIUM_PRICE[3])} UZS for 3 months, {fmt(PREMIUM_PRICE[6])} for 6, {fmt(PREMIUM_PRICE[12])} for 12. See <a href="/en/stars">Stars</a> and <a href="/en/premium">Premium</a>.</p>
+          <p><small>{PRICE_NOTE.en}</small></p>
         </div>
       </div>
     </div>
@@ -297,7 +299,7 @@ const faqs = [
       </ul>
       <p class="rules-support fade-in">
         Something went wrong? Message support at
-        <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a>
+        <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a>
         with your receipt. If the service was not delivered, you get a 100% refund.
       </p>
     </div>

@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, starsPrice, fmtS } from '../../../lib/prices';
 
 const title = "Как получать Stars за сообщения от незнакомцев в Telegram (2026) | StarsJoy Blog";
 const description = "Telegram Premium позволяет установить цену 1–10 000 Stars за сообщение от людей вне контактов: как включить, какой процент вам достаётся и когда можно вернуть деньги.";
@@ -28,7 +29,7 @@ const publishDate = "2026-09-10";
     "headline": "Как получать Stars за сообщения от незнакомцев в Telegram (2026)",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": "2026-11-15",
     "inLanguage": "ru-RU",
     "articleSection": "Stars",
     "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
@@ -79,7 +80,7 @@ const publishDate = "2026-09-10";
       {
         "@type": "Question",
         "name": "Сколько Stars можно просить за сообщение?",
-        "acceptedAnswer": { "@type": "Answer", "text": "От 1 до 10 000 Stars (примерно от 240 до 2 400 000 сум по курсу 240 сум/star) — цену устанавливаете сами. Многие рекомендуют начинать с низкой цены, например 5-20 Stars." }
+        "acceptedAnswer": { "@type": "Answer", "text": `От 1 до 10 000 Stars (примерно от ${STAR_PRICE} до ${fmtS(starsPrice(10000))} сум по курсу ${STAR_PRICE} сум/star) — цену устанавливаете сами. Многие рекомендуют начинать с низкой цены, например 5-20 Stars.` }
       },
       {
         "@type": "Question",

@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Premium 3 oy va 6 oy sotib olish (2026) | StarsJoy Blog";
 const description = "Telegram Premium 3 oylik va 6 oylik paketlarni O'zbekistonda Uzcard, Humo, Click va Payme orqali eng oson sotib olish yo'li — to'liq qo'llanma.";
 const publishDate = "2026-03-24";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1150;
 ---
 
@@ -88,7 +89,7 @@ const wordCount = 1150;
         "name": "StarsJoy orqali qaysi paketlar mavjud?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "3 oylik (172 000 so'm), 6 oylik (232 000 so'm) va 12 oylik (422 000 so'm) paketlar Gift orqali avtomatik mavjud — Uzcard/Humo bilan to'lanadi. 1 oylik paket Telegram'da rasman bor, lekin Gift'da yo'q (minimal 3 oy) — uni faqat akkaunt egasi o'zi, xalqaro kartasi bilan Telegram ichidan yoqadi."
+          "text": "3 oylik (" + fmtS(PREMIUM_PRICE[3]) + " so'm), 6 oylik (" + fmtS(PREMIUM_PRICE[6]) + " so'm) va 12 oylik (" + fmtS(PREMIUM_PRICE[12]) + " so'm) paketlar Gift orqali avtomatik mavjud — Uzcard/Humo bilan to'lanadi. 1 oylik paket Telegram'da rasman bor, lekin Gift'da yo'q (minimal 3 oy) — uni faqat akkaunt egasi o'zi, xalqaro kartasi bilan Telegram ichidan yoqadi."
         }
       },
       {
@@ -104,7 +105,7 @@ const wordCount = 1150;
         "name": "6 oylik paket 3 oylikdan qanchalik arzon?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "6 oylik paket oyiga hisoblaganda 3 oylikdan taxminan 30% arzonroq (38 667 vs 57 333 so'm/oy). Uzoq muddatli foydalanish rejalashtirilsa — 6 oylik foydali."
+          "text": "6 oylik paket oyiga hisoblaganda 3 oylikdan taxminan 30% arzonroq (" + fmtS(premiumPerMonth(6)) + " vs " + fmtS(premiumPerMonth(3)) + " so'm/oy). Uzoq muddatli foydalanish rejalashtirilsa — 6 oylik foydali."
         }
       },
       {
@@ -188,13 +189,13 @@ const wordCount = 1150;
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> O'zbekistonda 3 oylik (172 000 so'm) va 6 oylik (232 000 so'm) Telegram Premium'ni <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard yoki Humo bilan Click/Payme orqali sotib olasiz — 10 soniyada faol. Xalqaro karta, VPN, parol yoki SMS kerak emas: ishlash rasmiy Telegram Gift Premium mexanizmi orqali. 6 oylik oyiga ~30% arzonroq. Barcha usullar — <a href="/blog/telegram-premium-sotib-olish">Premium sotib olish qo'llanmasi</a>da.
+            <strong>Qisqacha javob:</strong> O'zbekistonda 3 oylik ({fmtS(PREMIUM_PRICE[3])} so'm) va 6 oylik ({fmtS(PREMIUM_PRICE[6])} so'm) Telegram Premium'ni <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard yoki Humo bilan Click/Payme orqali sotib olasiz — 10 soniyada faol. Xalqaro karta, VPN, parol yoki SMS kerak emas: ishlash rasmiy Telegram Gift Premium mexanizmi orqali. 6 oylik oyiga ~30% arzonroq. Barcha usullar — <a href="/blog/telegram-premium-sotib-olish">Premium sotib olish qo'llanmasi</a>da.
           </div>
 
           <section>
             <h2>Telegram Premium 3 oy va 6 oy paketini qanday sotib olish mumkin?</h2>
             <p><a href="/premium/3-oy"><strong>→ 3 oylik</strong></a> yoki <a href="/premium/6-oy"><strong>6 oylik Premium'ni hozir sotib olish</strong></a> — narxi, FAQ va bevosita xarid tugmasi bilan alohida sahifada.</p>
-            <p><strong>Telegram Premium</strong> — bu Telegramning pullik obuna tizimi bo'lib, foydalanuvchiga kengaytirilgan imkoniyatlar beradi. O'zbekistonda <strong>Telegram Premium 3 oy va 6 oy</strong> paketlarini Uzcard, Humo, Click yoki Payme orqali sotib olish mumkin. StarsJoy narxlari: 3 oy — 172 000 so'm, 6 oy — 232 000 so'm, 12 oy — 422 000 so'm.</p>
+            <p><strong>Telegram Premium</strong> — bu Telegramning pullik obuna tizimi bo'lib, foydalanuvchiga kengaytirilgan imkoniyatlar beradi. O'zbekistonda <strong>Telegram Premium 3 oy va 6 oy</strong> paketlarini Uzcard, Humo, Click yoki Payme orqali sotib olish mumkin. StarsJoy narxlari: 3 oy — {fmtS(PREMIUM_PRICE[3])} so'm, 6 oy — {fmtS(PREMIUM_PRICE[6])} so'm, 12 oy — {fmtS(PREMIUM_PRICE[12])} so'm.</p>
 
             <p>3 va 6 oylik paketlarni Starsjoy <a href="/blog/starsjoy-mini-app-nima">Mini App</a> ichida yon-yonda taqqoslash mumkin — chat-da bunday vizual taqqoslash mumkin emas.</p>
 
@@ -220,30 +221,31 @@ const wordCount = 1150;
                 <tbody>
                   <tr>
                     <td>3 oylik</td>
-                    <td>172 000 so'm</td>
-                    <td>~57 333 so'm/oy</td>
+                    <td>{fmtS(PREMIUM_PRICE[3])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(3))} so'm/oy</td>
                   </tr>
                   <tr>
                     <td>6 oylik</td>
-                    <td>232 000 so'm</td>
-                    <td>~38 667 so'm/oy</td>
+                    <td>{fmtS(PREMIUM_PRICE[6])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(6))} so'm/oy</td>
                   </tr>
                   <tr class="highlight-row">
                     <td>12 oylik</td>
-                    <td>422 000 so'm</td>
-                    <td>~35 167 so'm/oy</td>
+                    <td>{fmtS(PREMIUM_PRICE[12])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(12))} so'm/oy</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <p><small>{PRICE_NOTE.uz}</small></p>
 
             <h3>Telegram Premium 3 oylik narxi</h3>
 
-            <p>3 oylik paket — 172 000 so'm (oyiga ~57 333 so'm). Premium ni birinchi marta sinab ko'rmoqchi bo'lganlar uchun to'g'ri boshlang'ich. Uch oy davomida barcha imkoniyatlarni sinaysiz, keyin davom ettirasizmi yoki yo'qmi — o'zingiz qaror qilasiz.</p>
+            <p>3 oylik paket — {fmtS(PREMIUM_PRICE[3])} so'm (oyiga ~{fmtS(premiumPerMonth(3))} so'm). Premium ni birinchi marta sinab ko'rmoqchi bo'lganlar uchun to'g'ri boshlang'ich. Uch oy davomida barcha imkoniyatlarni sinaysiz, keyin davom ettirasizmi yoki yo'qmi — o'zingiz qaror qilasiz.</p>
 
             <h3>6 oylik paket</h3>
 
-            <p>6 oylik paket — 232 000 so'm (oyiga ~38 667 so'm). Doimiy foydalanuvchilar uchun eng mantiqiy tanlov. Oyiga hisoblaganda 3 oylikdan ~30% arzonroq. Hisoblasangiz: 3 oylik paketni 2 marta olsangiz 344 000 so'm, 6 oylik esa 232 000 so'm. Farq sezilarli.</p>
+            <p>6 oylik paket — {fmtS(PREMIUM_PRICE[6])} so'm (oyiga ~{fmtS(premiumPerMonth(6))} so'm). Doimiy foydalanuvchilar uchun eng mantiqiy tanlov. Oyiga hisoblaganda 3 oylikdan ~30% arzonroq. Hisoblasangiz: 3 oylik paketni 2 marta olsangiz {fmtS(PREMIUM_PRICE[3] * 2)} so'm, 6 oylik esa {fmtS(PREMIUM_PRICE[6])} so'm. Farq sezilarli.</p>
 
             <p>6 oylik paketning to'liq narx tahlili — ilova va Fragment bilan taqqoslash, to'lov va kafolat: <a href="/blog/telegram-premium-6-oylik-narxi">Telegram Premium 6 oylik narxi</a>.</p>
 
@@ -330,7 +332,7 @@ const wordCount = 1150;
               </div>
               <div class="post-faq-item">
                 <h3>StarsJoy orqali qaysi paketlar mavjud?</h3>
-                <p>3 oylik (172 000 so'm), 6 oylik (232 000 so'm) va 12 oylik (422 000 so'm) paketlar Gift orqali avtomatik mavjud — Uzcard/Humo bilan to'lanadi. <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a> Telegram'da bor, lekin Gift'da yo'q — uni faqat o'zingiz, xalqaro kartangiz bilan Telegram ichidan yoqasiz.</p>
+                <p>3 oylik ({fmtS(PREMIUM_PRICE[3])} so'm), 6 oylik ({fmtS(PREMIUM_PRICE[6])} so'm) va 12 oylik ({fmtS(PREMIUM_PRICE[12])} so'm) paketlar Gift orqali avtomatik mavjud — Uzcard/Humo bilan to'lanadi. <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a> Telegram'da bor, lekin Gift'da yo'q — uni faqat o'zingiz, xalqaro kartangiz bilan Telegram ichidan yoqasiz.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Premium qachon aktivlanadi?</h3>
@@ -338,7 +340,7 @@ const wordCount = 1150;
               </div>
               <div class="post-faq-item">
                 <h3>6 oylik paket 3 oylikdan qanchalik arzon?</h3>
-                <p>6 oylik paket oyiga hisoblaganda 3 oylikdan taxminan 30% arzonroq (38 667 vs 57 333 so'm/oy). Uzoq muddatli foydalanish rejalashtirilsa — 6 oylik foydali.</p>
+                <p>6 oylik paket oyiga hisoblaganda 3 oylikdan taxminan 30% arzonroq ({fmtS(premiumPerMonth(6))} vs {fmtS(premiumPerMonth(3))} so'm/oy). Uzoq muddatli foydalanish rejalashtirilsa — 6 oylik foydali.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Premium boshqa odamga sovg'a qilish mumkinmi?</h3>
@@ -363,9 +365,9 @@ const wordCount = 1150;
             <p>Qisqacha:</p>
 
             <ul>
-              <li>3 oylik (172 000 so'm) — birinchi marta sinab ko'rish uchun to'g'ri boshlang'ich</li>
-              <li>6 oylik (232 000 so'm) — doimiy foydalanuvchilar uchun tejamkor tanlov</li>
-              <li>12 oylik (422 000 so'm) — eng ko'p tejash istaydiganlar uchun</li>
+              <li>3 oylik ({fmtS(PREMIUM_PRICE[3])} so'm) — birinchi marta sinab ko'rish uchun to'g'ri boshlang'ich</li>
+              <li>6 oylik ({fmtS(PREMIUM_PRICE[6])} so'm) — doimiy foydalanuvchilar uchun tejamkor tanlov</li>
+              <li>12 oylik ({fmtS(PREMIUM_PRICE[12])} so'm) — eng ko'p tejash istaydiganlar uchun</li>
               <li>Gift — do'st yoki hamkasbga sovg'a uchun</li>
             </ul>
 

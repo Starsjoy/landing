@@ -1,5 +1,6 @@
 ---
 import BonusPage from '../components/BonusPage.astro';
+import { STAR_PRICE, starsPrice, starPriceWithBonus, fmtS, PRICES_DATE } from '../lib/prices';
 
 const faqs = [
   {
@@ -20,7 +21,7 @@ const faqs = [
   },
   {
     q: "Bonus bilan 1 star necha so'mga tushadi?",
-    a: "Yig'ilgan bonusni ishlatsangiz, amalda taxminan 231 so'mga. Oddiy narx 240 so'm/star, bonus esa 4% qo'shimcha Stars beradi: 240 ÷ 1,04 ≈ 231."
+    a: `Yig'ilgan bonusni ishlatsangiz, amalda taxminan ${starPriceWithBonus()} so'mga. Oddiy narx ${STAR_PRICE} so'm/star, bonus esa 4% qo'shimcha Stars beradi: ${STAR_PRICE} ÷ 1,04 ≈ ${starPriceWithBonus()}.`
   },
   {
     q: "70 ta Stars olsam qancha bonus beriladi?",
@@ -55,16 +56,16 @@ const faqs = [
   ctaLabel="Stars olib bonus yig'ish"
   ctaSub="@starsjoybot, Uzcard va Humo bilan"
   updatedLabel="Yangilangan"
-  updated="2026-10-31"
+  updated={PRICES_DATE}
   tableTitle="Har Stars paketi uchun qancha bonus beriladi?"
   tableHead={["Stars", "Narx", "Bonus"]}
   currency="so'm"
   thousandSep=" "
-  tableNote="Narxlar 2026-10-31 holatiga, tarif 240 so'm/star. Bonus har to'liq 50 Stars uchun hisoblanadi: masalan, 70 ta uchun +2 ⭐, 150 ta uchun +6 ⭐."
+  tableNote={`Narxlar ${PRICES_DATE} holatiga, tarif ${STAR_PRICE} so'm/star. Bonus har to'liq 50 Stars uchun hisoblanadi: masalan, 70 ta uchun +2 ⭐, 150 ta uchun +6 ⭐.`}
   faqTitle="Ko'p beriladigan savollar"
   faqs={faqs}
   finalTitle="Birinchi bonusingizni bugun oling"
-  finalText="100 Stars 24 000 so'm va +4 ⭐ bonus, Uzcard yoki Humo bilan."
+  finalText={`100 Stars ${fmtS(starsPrice(100))} so'm va +4 ⭐ bonus, Uzcard yoki Humo bilan.`}
   finalCta="@starsjoybot'ni ochish"
 >
   <section>
@@ -87,8 +88,8 @@ const faqs = [
 
   <section>
     <h2>Bonus 1 star narxini qanchaga tushiradi?</h2>
-    <p>Yig'ilgan bonusni ishlatsangiz, 1 star amalda taxminan <strong>231 so'mga</strong> tushadi. Oddiy narx 240 so'm, bonus esa har xariddan 4% qo'shimcha Stars beradi.</p>
-    <p>Aniq misol: 1250 Stars uchun jami 300 000 so'm to'laysiz va 50 ⭐ bonus yig'asiz. Bu 12 000 so'mlik 50 Stars'ga teng.</p>
+    <p>Yig'ilgan bonusni ishlatsangiz, 1 star amalda taxminan <strong>{starPriceWithBonus()} so'mga</strong> tushadi. Oddiy narx {STAR_PRICE} so'm, bonus esa har xariddan 4% qo'shimcha Stars beradi.</p>
+    <p>Aniq misol: 1250 Stars uchun jami {fmtS(starsPrice(1250))} so'm to'laysiz va 50 ⭐ bonus yig'asiz. Bu {fmtS(starsPrice(50))} so'mlik 50 Stars'ga teng.</p>
   </section>
 
   <section>

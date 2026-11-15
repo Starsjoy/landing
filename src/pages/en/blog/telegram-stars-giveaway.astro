@@ -1,12 +1,13 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { STAR_PRICE, PRICE_NOTE } from '../../../lib/prices';
 
 const faqs = [
   { q: "Who can run a Stars giveaway?", a: "Channels with at least 50 subscribers and groups with at least 500 members. Smaller channels or groups need to grow their audience to that threshold first." },
   { q: "How are winners chosen?", a: "Through Telegram's standard boost-based selection system — the same mechanic already used for Premium giveaways. To enter, a member simply boosts the channel or group; no separate entry form is needed. When the giveaway ends, winners are picked at random among everyone who boosted." },
   { q: "How is the giveaway prize paid for?", a: "Fully upfront (prepaid) — the organizer pays the entire Stars amount before the giveaway even starts. That means it can't be cancelled or the payment delayed once it's running." },
   { q: "What can a winner spend the Stars on?", a: "Anything inside Telegram: paid media and gifts, channel subscriptions, games, Mini Apps, and any other Stars-based service." },
-  { q: "Where's the cheapest place to buy a large amount of Stars for a giveaway?", a: "Buying Stars on a personal account through the App Store or Google Play sends roughly 30% of the amount to Apple/Google, and single-purchase size is capped. A local reseller like StarsJoy sells Stars at a flat 240 UZS/Star with no size limit, paid directly with an Uzcard or Humo card." },
+  { q: "Where's the cheapest place to buy a large amount of Stars for a giveaway?", a: `Buying Stars on a personal account through the App Store or Google Play sends roughly 30% of the amount to Apple/Google, and single-purchase size is capped. A local reseller like StarsJoy sells Stars at a flat ${STAR_PRICE} UZS/Star with no size limit, paid directly with an Uzcard or Humo card.` },
   { q: "How is a Stars giveaway different from a Premium giveaway?", a: "Both use the identical boost-based mechanic; the only difference is the prize. A Premium giveaway hands winners a Premium subscription, while a Stars giveaway credits their balance with Stars directly." }
 ];
 ---
@@ -19,6 +20,7 @@ const faqs = [
   description="Steps to run a Stars-prize giveaway in a channel or group: who's eligible, how winners are picked, and where to buy Stars cheaply enough to fund a large prize pool."
   keywords="telegram stars giveaway, how to run a telegram giveaway, stars prize giveaway telegram, telegram channel giveaway guide, buy stars for giveaway"
   publishDate="2026-09-10"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-stars-giveaway-otkazish"
   ruHref="https://starsjoy.uz/ru/blog/telegram-stars-giveaway-otkazish"
   faqs={faqs}
@@ -89,7 +91,8 @@ const faqs = [
   <section>
     <h2>Where to buy a large amount of Stars cheaply for a giveaway</h2>
     <p>This is the single biggest cost in running a giveaway. Buying Stars on a personal account through the App Store or Google Play sends roughly <strong>30%</strong> of the amount to Apple/Google as commission, and there's a cap on how much you can buy in one purchase — not practical for a large prize pool.</p>
-    <p>Through a local reseller like StarsJoy, Stars cost a flat <strong>240 UZS/Star</strong>, with no size limit, paid directly with an Uzcard or Humo card — no international card and no extra commission. Full guide to stocking up cheaply: <a href="/en/blog/what-you-can-do-with-telegram-stars">what you can actually do with Telegram Stars</a>.</p>
+    <p>Through a local reseller like StarsJoy, Stars cost a flat <strong>{STAR_PRICE} UZS/Star</strong>, with no size limit, paid directly with an Uzcard or Humo card — no international card and no extra commission. Full guide to stocking up cheaply: <a href="/en/blog/what-you-can-do-with-telegram-stars">what you can actually do with Telegram Stars</a>.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>

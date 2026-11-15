@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, fmtS, PRICES_DATE_UZ, PRICE_NOTE } from '../lib/prices';
 import { hreflangsFor } from '../lib/i18n';
 
 // Rasmlar `npm run images:qollanma` orqali WebP'ga o'girilgan (scripts/build-qollanma-images.mjs).
@@ -16,9 +17,11 @@ const img7 = '/qollanma/starsjoy-qadam-7-karta-nusxalash.webp';
 const img8 = '/qollanma/starsjoy-qadam-8-summa-otkazish.webp';
 const img9 = '/qollanma/starsjoy-qadam-9-tolov-qildim.webp';
 
+const S50 = fmtS(starsPrice(50)), S100 = fmtS(starsPrice(100)), S200 = fmtS(starsPrice(200)), S50P = fmtS(starsPrice(50) + 100);
+const P3 = fmtS(PREMIUM_PRICE[3]), P6 = fmtS(PREMIUM_PRICE[6]), P12 = fmtS(PREMIUM_PRICE[12]);
 const title = "StarsJoy Qo'llanma: Telegram Stars va Premium Sotib Olish (9 Qadam)";
 const description = "StarsJoy mini ilovasida Telegram Stars, Premium va Gifts sotib olishning to'liq rasmli qo'llanmasi: to'qqiz qadamning har biri skrinshot bilan, Uzcard yoki Humo karta orqali so'mda to'lov.";
-const modifiedDate = "30.07.2026";
+const modifiedDate = PRICES_DATE_UZ;
 
 const steps = [
   {
@@ -57,16 +60,16 @@ const steps = [
     id: "miqdor",
     img: img5,
     title: "Miqdor yoki tayyor paketni tanlang",
-    text: "«Stars miqdorini kiriting» maydoniga 50 dan 100 000 gacha istalgan sonni yozing yoki tayyor paketlardan birini tanlang: 50 Stars — 12 000 so'm, 100 Stars — 24 000 so'm, 200 Stars — 48 000 so'm. Qolgan variantlarni ko'rish uchun «Ko'proq variantlarni ko'rsatish» ni bosing. Tarif barcha miqdorlar uchun bir xil — 240 so'm/star. Agar siz Premium olayotgan bo'lsangiz, bu ekranda Stars miqdori o'rniga obuna muddatlari chiqadi — 3 oylik, 6 oylik va 12 oylik — va shulardan istalganini tanlaysiz. Promokodingiz bo'lsa, eng pastdagi maydonga kiritib «Tekshirish» ni bosing.",
-    alt: "Stars paketlari ro'yxati: 50 Stars 12 000 so'm, 100 Stars 24 000 so'm, 200 Stars 48 000 so'm",
+    text: `«Stars miqdorini kiriting» maydoniga 50 dan 100 000 gacha istalgan sonni yozing yoki tayyor paketlardan birini tanlang: 50 Stars — ${S50} so'm, 100 Stars — ${S100} so'm, 200 Stars — ${S200} so'm. Qolgan variantlarni ko'rish uchun «Ko'proq variantlarni ko'rsatish» ni bosing. Tarif barcha miqdorlar uchun bir xil — ${STAR_PRICE} so'm/star. Agar siz Premium olayotgan bo'lsangiz, bu ekranda Stars miqdori o'rniga obuna muddatlari chiqadi — 3 oylik, 6 oylik va 12 oylik — va shulardan istalganini tanlaysiz. Promokodingiz bo'lsa, eng pastdagi maydonga kiritib «Tekshirish» ni bosing.`,
+    alt: `Stars paketlari ro'yxati: 50 Stars ${S50} so'm, 100 Stars ${S100} so'm, 200 Stars ${S200} so'm`,
     caption: "5-qadam: Stars uchun miqdor, Premium uchun 3, 6 yoki 12 oylik muddat tanlanadi.",
   },
   {
     id: "xarid",
     img: img6,
     title: "Xarid tugmasini bosing",
-    text: "Miqdor tanlangach pastdagi ko'k tugmada yakuniy summa paydo bo'ladi — masalan «Stars olish - 12 000 so'm». Tugmadagi raqam siz to'laydigan yakuniy narx: hech qanday yashirin komissiya yoki qo'shimcha to'lov qo'shilmaydi. Tugmani bosing.",
-    alt: "«Stars olish - 12 000 so'm» yozuvli ko'k tugma belgilangan",
+    text: `Miqdor tanlangach pastdagi ko'k tugmada yakuniy summa paydo bo'ladi — masalan «Stars olish - ${S50} so'm». Tugmadagi raqam siz to'laydigan yakuniy narx: hech qanday yashirin komissiya yoki qo'shimcha to'lov qo'shilmaydi. Tugmani bosing.`,
+    alt: `«Stars olish - ${S50} so'm» yozuvli ko'k tugma belgilangan`,
     caption: "6-qadam: tugmadagi summa — yakuniy narx.",
   },
   {
@@ -117,7 +120,7 @@ const faqs = [
   },
   {
     q: "Noto'g'ri summa yuborsam nima bo'ladi?",
-    a: "Tizim to'lovni summa bo'yicha taniydi, shuning uchun boshqa summa yuborilsa buyurtma avtomatik yakunlanmaydi. Bunday holatda to'lov chekini olib @starsjoy_bot qo'llab-quvvatlash xizmatiga yozing — buyurtma qo'lda yakunlanadi yoki pul to'liq qaytariladi."
+    a: "Tizim to'lovni summa bo'yicha taniydi, shuning uchun boshqa summa yuborilsa buyurtma avtomatik yakunlanmaydi. Bunday holatda to'lov chekini olib @StarsjoySupport qo'llab-quvvatlash xizmatiga yozing — buyurtma qo'lda yakunlanadi yoki pul to'liq qaytariladi."
   },
   {
     q: "To'lov taymeri tugab qolsa nima qilaman?",
@@ -152,7 +155,7 @@ const faqs = [
     "description": description,
     "totalTime": "PT3M",
     "inLanguage": "uz",
-    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": "12000" },
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": String(starsPrice(50)) },
     "supply": [
       { "@type": "HowToSupply", "name": "Telegram akkaunt" },
       { "@type": "HowToSupply", "name": "Uzcard yoki Humo karta" }
@@ -257,7 +260,8 @@ const faqs = [
         </div>
         <div class="req-card">
           <span class="req-label">Qancha turadi</span>
-          <p>Stars — 240 so'm/star (50 Stars = 12 000 so'm). Premium — 3 oy 172 000, 6 oy 232 000, 12 oy 422 000 so'm. <a href="/narxlar">To'liq narxlar</a>.</p>
+          <p>Stars — {STAR_PRICE} so'm/star (50 Stars = {S50} so'm). Premium — 3 oy {P3}, 6 oy {P6}, 12 oy {P12} so'm. <a href="/narxlar">To'liq narxlar</a>.</p>
+          <p><small>{PRICE_NOTE.uz}</small></p>
         </div>
       </div>
     </div>
@@ -319,7 +323,7 @@ const faqs = [
           <h3>Telegram Stars</h3>
           <p>
             3-qadamda <strong>«Stars olish»</strong> ni tanlaysiz. 5-qadamda 50 dan 100 000 gacha istalgan miqdorni
-            kiritasiz yoki tayyor paketni tanlaysiz — tarif barcha miqdorlar uchun 240 so'm/star.
+            kiritasiz yoki tayyor paketni tanlaysiz — tarif barcha miqdorlar uchun {STAR_PRICE} so'm/star.
             Stars ko'rsatilgan akkauntning Telegram balansiga tushadi va botlar, kanallar hamda mini ilovalarda ishlatiladi.
           </p>
           <a href="/stars" class="variant-link">Telegram Stars sahifasi &rarr;</a>
@@ -329,7 +333,7 @@ const faqs = [
           <h3>Telegram Premium</h3>
           <p>
             3-qadamda <strong>«Premium olish»</strong> ni tanlaysiz. 5-qadamda miqdor o'rniga obuna muddatini
-            tanlaysiz: 3 oy — 172 000 so'm, 6 oy — 232 000 so'm, 12 oy — 422 000 so'm.
+            tanlaysiz: 3 oy — {P3} so'm, 6 oy — {P6} so'm, 12 oy — {P12} so'm.
             Premium ko'rsatilgan akkauntga ulanadi; agar akkauntda amaldagi obuna bo'lsa, yangi muddat uning ustiga qo'shiladi.
           </p>
           <a href="/premium" class="variant-link">Telegram Premium sahifasi &rarr;</a>
@@ -356,13 +360,13 @@ const faqs = [
         <h2 class="section-title">Xato qilmaslik uchun to'rt qoida</h2>
       </div>
       <ul class="rules-list fade-in">
-        <li><strong>Summani o'zgartirmang.</strong> Tizim to'lovni aynan summa bo'yicha taniydi. 12 000 o'rniga 12 100 yuborilsa, buyurtma avtomatik yakunlanmaydi.</li>
+        <li><strong>Summani o'zgartirmang.</strong> Tizim to'lovni aynan summa bo'yicha taniydi. {S50} o'rniga {S50P} yuborilsa, buyurtma avtomatik yakunlanmaydi.</li>
         <li><strong>Karta raqamini ilovadan oling.</strong> Karta raqami vaqt o'tishi bilan o'zgarishi mumkin, shuning uchun eslab qolgan yoki oldin saqlab qo'ygan raqamdan foydalanmang — har safar buyurtma oynasidagi raqamni nusxalang.</li>
         <li><strong>Username'ni tekshiring.</strong> Ilova username kiritilgach akkaunt egasining ismi va rasmini ko'rsatadi. Boshqa odamga yuborilgan xizmatni qaytarib bo'lmaydi.</li>
         <li><strong>Taymerga qarang.</strong> Vaqt tugagach buyurtma bekor bo'ladi. Bu holatda pul yubormang, mini ilovada buyurtmani qaytadan yarating.</li>
       </ul>
       <p class="rules-support fade-in">
-        Biror qadamda muammo chiqsa, to'lov chekini olib <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a>
+        Biror qadamda muammo chiqsa, to'lov chekini olib <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a>
         qo'llab-quvvatlash xizmatiga yozing. Xizmat ko'rsatilmasa, to'langan summa 100% qaytariladi.
       </p>
     </div>

@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Как активировать Telegram Premium на 1 месяц своей картой: гайд из Узбекистана | StarsJoy Блог";
-const description = "1 месяц Telegram Premium — как купить из Узбекистана? Специалист @starsjoysupport бесплатно научит активировать Premium своей картой прямо в Telegram. Пароль давать не нужно.";
+const description = "1 месяц Telegram Premium — как купить из Узбекистана? Специалист @StarsjoySupport бесплатно научит активировать Premium своей картой прямо в Telegram. Пароль давать не нужно.";
 const publishDate = "2026-04-07";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1680;
 ---
 
@@ -97,7 +98,7 @@ const wordCount = 1680;
         "name": "Как купить 1-месячный Telegram Premium из Узбекистана?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "1-месячный Premium вы активируете своей личной картой прямо внутри Telegram. С международной картой Visa/Mastercard: Telegram → Настройки → Telegram Premium → выбираете 1 месяц и оплачиваете. Если шаги непонятны или вы не знаете, какой способ подойдёт под вашу карту — специалист @starsjoysupport бесплатно научит пошагово."
+          "text": "1-месячный Premium вы активируете своей личной картой прямо внутри Telegram. С международной картой Visa/Mastercard: Telegram → Настройки → Telegram Premium → выбираете 1 месяц и оплачиваете. Если шаги непонятны или вы не знаете, какой способ подойдёт под вашу карту — специалист @StarsjoySupport бесплатно научит пошагово."
         }
       },
       {
@@ -105,7 +106,7 @@ const wordCount = 1680;
         "name": "Можно ли купить 1-месячный Premium только с Uzcard или Humo?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Только с Uzcard или Humo купить 1-месячный Premium из Узбекистана практически невозможно — Telegram требует международную карту. В этом случае лучшая альтернатива — 3-месячный Gift Premium через @starsjoybot за 172 000 сум (~57 333 сум/мес). Оплата Uzcard или Humo, активация за 5 минут. Специалист @starsjoysupport подскажет, какой вариант подходит именно вам."
+          "text": "Только с Uzcard или Humo купить 1-месячный Premium из Узбекистана практически невозможно — Telegram требует международную карту. В этом случае лучшая альтернатива — 3-месячный Gift Premium через @starsjoybot за " + fmtS(PREMIUM_PRICE[3]) + " сум (~" + fmtS(premiumPerMonth(3)) + " сум/мес). Оплата Uzcard или Humo, активация за 5 минут. Специалист @StarsjoySupport подскажет, какой вариант подходит именно вам."
         }
       },
       {
@@ -113,12 +114,12 @@ const wordCount = 1680;
         "name": "Сколько стоит 1 месяц Telegram Premium?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Цену 1-месячного Premium устанавливает сам Telegram — примерно эквивалент $4–5 (~50 000–60 000 сум). Точная цена видна в самом приложении Telegram: Настройки → Telegram Premium. Для сравнения: 3-месячный автоматический пакет — 172 000 сум (~57 333 сум/мес), цена в месяц почти одинакова, но оплата картами Uzcard/Humo и покупка гораздо проще."
+          "text": "Цену 1-месячного Premium устанавливает сам Telegram — примерно эквивалент $4–5 (~50 000–60 000 сум). Точная цена видна в самом приложении Telegram: Настройки → Telegram Premium. Для сравнения: 3-месячный автоматический пакет — " + fmtS(PREMIUM_PRICE[3]) + " сум (~" + fmtS(premiumPerMonth(3)) + " сум/мес), цена в месяц почти одинакова, но оплата картами Uzcard/Humo и покупка гораздо проще."
         }
       },
       {
         "@type": "Question",
-        "name": "Что делает специалист @starsjoysupport для 1-месячного Premium?",
+        "name": "Что делает специалист @StarsjoySupport для 1-месячного Premium?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Специалист как эксперт даёт бесплатную консультацию и обучение: с учётом типа вашей карты и устройства показывает самый удобный способ, пошагово объясняет (со скриншотами), как активировать Premium внутри Telegram, и при необходимости рекомендует 3-месячный Gift как альтернативу. Ничего не продаёт — это настоящая помощь. В аккаунт никто не заходит, пароль не запрашивается."
@@ -189,11 +190,11 @@ const wordCount = 1680;
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> 1-месячный Telegram Premium в Telegram официально есть, но активирует его только сам владелец аккаунта своей картой Visa или Mastercard прямо в Telegram (в Gift минимум 3 месяца). Если есть только Uzcard/Humo — лучшая альтернатива 3-месячный Gift Premium через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> (официальный механизм Gift, пароль и SMS не запрашиваются). Не знаете шаги — <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> бесплатно научит. Подробнее о пакетах — в <a href="/ru/blog/telegram-premium-sotib-olish">гайде по покупке Premium</a>.
+            <strong>Краткий ответ:</strong> 1-месячный Telegram Premium в Telegram официально есть, но активирует его только сам владелец аккаунта своей картой Visa или Mastercard прямо в Telegram (в Gift минимум 3 месяца). Если есть только Uzcard/Humo — лучшая альтернатива 3-месячный Gift Premium через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> (официальный механизм Gift, пароль и SMS не запрашиваются). Не знаете шаги — <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a> бесплатно научит. Подробнее о пакетах — в <a href="/ru/blog/telegram-premium-sotib-olish">гайде по покупке Premium</a>.
           </div>
 
           <section>
-            <p><strong>1 месяц Telegram Premium</strong> — подписка, которая существует внутри самого приложения Telegram, но недоступна через функцию Gift (подарок). Именно поэтому большинство реселлеров в Узбекистане её не предлагают. Реальный путь — вы <strong>активируете Premium своей картой прямо в Telegram</strong>. Специалист <a href="https://telegram.me/starsjoysupport" target="_blank">@starsjoysupport</a> бесплатно научит вас этому процессу шаг за шагом.</p>
+            <p><strong>1 месяц Telegram Premium</strong> — подписка, которая существует внутри самого приложения Telegram, но недоступна через функцию Gift (подарок). Именно поэтому большинство реселлеров в Узбекистане её не предлагают. Реальный путь — вы <strong>активируете Premium своей картой прямо в Telegram</strong>. Специалист <a href="https://telegram.me/starsjoysupport" target="_blank">@StarsjoySupport</a> бесплатно научит вас этому процессу шаг за шагом.</p>
 
             <p>При покупке Premium через Starsjoy (<a href="/ru/blog/starsjoy-mini-app-nima">Telegram Mini App</a>, а не чат-бота) пакет виден как карточка на Dashboard, ввод username и оплата — на одной странице, без переписки.</p>
 
@@ -214,7 +215,7 @@ const wordCount = 1680;
 
             <p>Именно поэтому реселлеры в Узбекистане не предлагают 1-месячный пакет: они опираются на механизм Gift (одна кнопка — указать username), а в Gift 1 месяца нет. Активировать 1-месячный Premium может <strong>только сам владелец аккаунта, своей картой</strong> — так устроена архитектура Telegram.</p>
 
-            <p>Поэтому StarsJoy не «продаёт» 1-месячный Premium — <strong>мы бесплатно учим вас, как активировать его самостоятельно</strong>. Специалист <a href="https://telegram.me/starsjoysupport" target="_blank">@starsjoysupport</a> с учётом типа вашей карты и ситуации покажет самый правильный путь.</p>
+            <p>Поэтому StarsJoy не «продаёт» 1-месячный Premium — <strong>мы бесплатно учим вас, как активировать его самостоятельно</strong>. Специалист <a href="https://telegram.me/starsjoysupport" target="_blank">@StarsjoySupport</a> с учётом типа вашей карты и ситуации покажет самый правильный путь.</p>
           </section>
 
           <section>
@@ -278,18 +279,19 @@ const wordCount = 1680;
             <h3>Если международной карты нет?</h3>
             <p>Честный ответ: <strong>только с Uzcard или Humo купить 1-месячный Premium из Узбекистана практически невозможно</strong>. Telegram не принимает эти карты в своей платёжной системе. Поэтому лучшая альтернатива — <strong>3-месячный Gift Premium</strong>:</p>
             <ul>
-              <li>Через <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> — 172 000 сум (~57 333 сум/мес — практически как 1 месяц)</li>
+              <li>Через <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> — {fmtS(PREMIUM_PRICE[3])} сум (~{fmtS(premiumPerMonth(3))} сум/мес — практически как 1 месяц)</li>
               <li>Оплата Uzcard или Humo через Click/Payme</li>
               <li>Указываете только username, активация за 5 минут</li>
               <li>Никаких паролей или кодов</li>
             </ul>
-            <p>Для большинства пользователей это самый дешёвый, быстрый и безопасный путь.</p>
+            <p><small>{PRICE_NOTE.ru}</small></p>
+            <p>Для большинства пользователей это самый удобный, быстрый и безопасный путь, и по выгодной цене.</p>
           </section>
 
           <section>
-            <h2>Специалист @starsjoysupport: бесплатно научит вас</h2>
+            <h2>Специалист @StarsjoySupport: бесплатно научит вас</h2>
 
-            <p>Если вы не знаете, как активировать 1-месячный Premium своей картой или не понимаете, какой способ подойдёт именно вам — напишите специалисту <a href="https://telegram.me/starsjoysupport" target="_blank">@starsjoysupport</a>. Это <strong>бесплатная консультация и обучение</strong> — ничего покупать не нужно.</p>
+            <p>Если вы не знаете, как активировать 1-месячный Premium своей картой или не понимаете, какой способ подойдёт именно вам — напишите специалисту <a href="https://telegram.me/starsjoysupport" target="_blank">@StarsjoySupport</a>. Это <strong>бесплатная консультация и обучение</strong> — ничего покупать не нужно.</p>
 
             <p>Специалист выслушает вашу ситуацию и сделает следующее:</p>
 
@@ -297,13 +299,13 @@ const wordCount = 1680;
               <li><strong>Спросит вашу карту:</strong> Visa, Mastercard, Uzcard, Humo — для каждой свой подходящий путь</li>
               <li><strong>Уточнит ваше устройство:</strong> iPhone, Android — шаги активации Premium немного отличаются</li>
               <li><strong>Научит пошагово:</strong> какую кнопку Telegram нажать, на какую страницу перейти, куда ввести карту — всё со скриншотами</li>
-              <li><strong>Порекомендует самый дешёвый вариант:</strong> если 1 месяц у вас не сработает — покажет 3-месячный Gift как альтернативу (помесячная цена почти одинакова)</li>
+              <li><strong>Порекомендует выгодный и подходящий вариант:</strong> если 1 месяц у вас не сработает — покажет 3-месячный Gift как альтернативу (помесячная цена почти одинакова)</li>
               <li><strong>Ничего не продаёт:</strong> если вы сами активируете 1 месяц, мы ничего не получим — это настоящая помощь, а не маркетинг</li>
             </ul>
 
             <p>Золотое правило специалиста: <strong>мы никогда не запрашиваем пароль, коды, SMS или данные для входа</strong>. Активация Premium всегда остаётся в ваших руках. Наша задача — показать правильный путь и провести вас шаг за шагом.</p>
 
-            <p>Куда писать: <a href="https://telegram.me/starsjoysupport" target="_blank">@starsjoysupport</a>. <em>«Хочу активировать 1-месячный Premium, карта Uzcard / Visa / Humo, как сделать?»</em> — этого короткого вопроса достаточно. Ответ обычно за 10 секунд.</p>
+            <p>Куда писать: <a href="https://telegram.me/starsjoysupport" target="_blank">@StarsjoySupport</a>. <em>«Хочу активировать 1-месячный Premium, карта Uzcard / Visa / Humo, как сделать?»</em> — этого короткого вопроса достаточно. Ответ обычно за 10 секунд.</p>
           </section>
 
           <section>
@@ -329,7 +331,7 @@ const wordCount = 1680;
                   <tr>
                     <td>Цена</td>
                     <td>~50–60 000 сум/мес</td>
-                    <td>172 000 сум (~57 333/мес)</td>
+                    <td>{fmtS(PREMIUM_PRICE[3])} сум (~{fmtS(premiumPerMonth(3))}/мес)</td>
                   </tr>
                   <tr>
                     <td>Скорость</td>
@@ -376,9 +378,9 @@ const wordCount = 1680;
 
             <p><strong>1 месяц Telegram Premium</strong> в Telegram официально есть, но активирует его только <strong>сам владелец аккаунта, своей картой</strong> — не через Gift. Если у вас есть международная карта (Visa/Mastercard) — активируете сами за несколько шагов. Если только Uzcard или Humo — 1 месяц практически нереален, лучшая альтернатива 3-месячный Gift.</p>
 
-            <p>Не знаете шаги — напишите специалисту <a href="https://telegram.me/starsjoysupport" target="_blank">@starsjoysupport</a>, он бесплатно научит вас пошагово: <em>«Хочу сам активировать 1 месяц, карта … (тип), как сделать?»</em> Ничего не продаём — даём настоящую помощь.</p>
+            <p>Не знаете шаги — напишите специалисту <a href="https://telegram.me/starsjoysupport" target="_blank">@StarsjoySupport</a>, он бесплатно научит вас пошагово: <em>«Хочу сам активировать 1 месяц, карта … (тип), как сделать?»</em> Ничего не продаём — даём настоящую помощь.</p>
 
-            <p>Если подходит 3 месяца — через <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> за 172 000 сум, активация за 5 минут. Все пакеты — в гайде <a href="/ru/blog/telegram-premium-sotib-olish">Как купить Telegram Premium</a>.</p>
+            <p>Если подходит 3 месяца — через <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> за {fmtS(PREMIUM_PRICE[3])} сум, активация за 5 минут. Все пакеты — в гайде <a href="/ru/blog/telegram-premium-sotib-olish">Как купить Telegram Premium</a>.</p>
           </section>
 
           <section>
@@ -395,18 +397,18 @@ const wordCount = 1680;
               </div>
               <div class="post-faq-item">
                 <h3>Как активировать 1-месячный Premium из Узбекистана?</h3>
-                <p>1-месячный Premium вы активируете своей личной картой прямо внутри Telegram. С международной картой Visa/Mastercard: Telegram → Настройки → Telegram Premium → оплата. Если шаги непонятны — @starsjoysupport бесплатно научит пошагово.</p>
+                <p>1-месячный Premium вы активируете своей личной картой прямо внутри Telegram. С международной картой Visa/Mastercard: Telegram → Настройки → Telegram Premium → оплата. Если шаги непонятны — @StarsjoySupport бесплатно научит пошагово.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Если у меня только Uzcard или Humo?</h3>
-                <p>Только с Uzcard или Humo купить 1-месячный Premium из Узбекистана практически невозможно — Telegram требует международную карту. Лучшая альтернатива — 3-месячный Gift Premium через @starsjoybot за 172 000 сум (~57 333 сум/мес). Оплата Uzcard/Humo, активация за 5 минут.</p>
+                <p>Только с Uzcard или Humo купить 1-месячный Premium из Узбекистана практически невозможно — Telegram требует международную карту. Лучшая альтернатива — 3-месячный Gift Premium через @starsjoybot за {fmtS(PREMIUM_PRICE[3])} сум (~{fmtS(premiumPerMonth(3))} сум/мес). Оплата Uzcard/Humo, активация за 5 минут.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Сколько стоит 1 месяц Telegram Premium?</h3>
-                <p>Цену устанавливает сам Telegram — примерно эквивалент $4–5 (~50 000–60 000 сум). Точная цена видна в самом приложении Telegram: Настройки → Telegram Premium. Для сравнения: 3-месячный пакет — 172 000 сум (~57 333 сум/мес), цена в месяц почти одинакова.</p>
+                <p>Цену устанавливает сам Telegram — примерно эквивалент $4–5 (~50 000–60 000 сум). Точная цена видна в самом приложении Telegram: Настройки → Telegram Premium. Для сравнения: 3-месячный пакет — {fmtS(PREMIUM_PRICE[3])} сум (~{fmtS(premiumPerMonth(3))} сум/мес), цена в месяц почти одинакова.</p>
               </div>
               <div class="post-faq-item">
-                <h3>Что делает специалист @starsjoysupport для 1-месячного Premium?</h3>
+                <h3>Что делает специалист @StarsjoySupport для 1-месячного Premium?</h3>
                 <p>Специалист как эксперт даёт бесплатную консультацию и обучение: с учётом карты и устройства показывает самый правильный путь, пошагово (со скриншотами) объясняет процесс активации Premium внутри Telegram. Ничего не продаёт — это настоящая помощь. В аккаунт никто не заходит.</p>
               </div>
               <div class="post-faq-item">

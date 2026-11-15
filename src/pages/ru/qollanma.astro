@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import NavbarRu from '../../components/NavbarRu.astro';
 import FooterRu from '../../components/FooterRu.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, fmtS, PRICES_DATE_UZ, PRICE_NOTE } from '../../lib/prices';
 import { hreflangsFor } from '../../lib/i18n';
 
 // Изображения конвертированы в WebP через `npm run images:qollanma` (scripts/build-qollanma-images.mjs).
@@ -15,9 +16,11 @@ const img7 = '/qollanma/starsjoy-qadam-7-karta-nusxalash.webp';
 const img8 = '/qollanma/starsjoy-qadam-8-summa-otkazish.webp';
 const img9 = '/qollanma/starsjoy-qadam-9-tolov-qildim.webp';
 
+const S50 = fmtS(starsPrice(50)), S100 = fmtS(starsPrice(100)), S200 = fmtS(starsPrice(200)), S50P = fmtS(starsPrice(50) + 100);
+const P3 = fmtS(PREMIUM_PRICE[3]), P6 = fmtS(PREMIUM_PRICE[6]), P12 = fmtS(PREMIUM_PRICE[12]);
 const title = "Инструкция StarsJoy: Покупка Telegram Stars и Premium (9 Шагов)";
 const description = "Полная инструкция по покупке Telegram Stars, Premium и Gifts в мини-приложении StarsJoy: каждый из девяти шагов со скриншотом, оплата картой Uzcard или Humo в сумах.";
-const modifiedDate = "30.07.2026";
+const modifiedDate = PRICES_DATE_UZ;
 
 const steps = [
   {
@@ -51,15 +54,15 @@ const steps = [
   {
     img: img5,
     title: "Выберите количество или готовый пакет",
-    text: "В поле «Stars miqdorini kiriting» введите любое количество от 50 до 100 000 или выберите готовый пакет: 50 Stars — 12 000 сум, 100 Stars — 24 000 сум, 200 Stars — 48 000 сум. Остальные варианты откроются по ссылке «Ko'proq variantlarni ko'rsatish». Тариф одинаков для всех объёмов — 240 сум за star. Если вы покупаете Premium, на этом экране вместо количества Stars показываются сроки подписки — 3 месяца, 6 месяцев и 12 месяцев — и вы выбираете любой из них. Если есть промокод, введите его в нижнее поле и нажмите «Tekshirish».",
-    alt: "Список пакетов Stars: 50 Stars 12 000 сум, 100 Stars 24 000 сум, 200 Stars 48 000 сум",
+    text: `В поле «Stars miqdorini kiriting» введите любое количество от 50 до 100 000 или выберите готовый пакет: 50 Stars — ${S50} сум, 100 Stars — ${S100} сум, 200 Stars — ${S200} сум. Остальные варианты откроются по ссылке «Ko'proq variantlarni ko'rsatish». Тариф одинаков для всех объёмов — ${STAR_PRICE} сум за star. Если вы покупаете Premium, на этом экране вместо количества Stars показываются сроки подписки — 3 месяца, 6 месяцев и 12 месяцев — и вы выбираете любой из них. Если есть промокод, введите его в нижнее поле и нажмите «Tekshirish».`,
+    alt: `Список пакетов Stars: 50 Stars ${S50} сум, 100 Stars ${S100} сум, 200 Stars ${S200} сум`,
     caption: "Шаг 5: для Stars — количество, для Premium — срок 3, 6 или 12 месяцев.",
   },
   {
     img: img6,
     title: "Нажмите кнопку покупки",
-    text: "После выбора количества на синей кнопке внизу появится итоговая сумма — например «Stars olish - 12 000 so'm». Число на кнопке и есть финальная цена: скрытых комиссий или доплат нет. Нажмите кнопку.",
-    alt: "Синяя кнопка «Stars olish - 12 000 so'm» с итоговой суммой покупки",
+    text: `После выбора количества на синей кнопке внизу появится итоговая сумма — например «Stars olish - ${S50} so'm». Число на кнопке и есть финальная цена: скрытых комиссий или доплат нет. Нажмите кнопку.`,
+    alt: `Синяя кнопка «Stars olish - ${S50} so'm» с итоговой суммой покупки`,
     caption: "Шаг 6: сумма на кнопке — это итоговая цена.",
   },
   {
@@ -107,7 +110,7 @@ const faqs = [
   },
   {
     q: "Что будет, если перевести неправильную сумму?",
-    a: "Система распознаёт платёж именно по сумме, поэтому при другой сумме заказ не закроется автоматически. В этом случае сохраните чек и напишите в поддержку @starsjoy_bot — заказ закроют вручную либо вернут деньги полностью."
+    a: "Система распознаёт платёж именно по сумме, поэтому при другой сумме заказ не закроется автоматически. В этом случае сохраните чек и напишите в поддержку @StarsjoySupport — заказ закроют вручную либо вернут деньги полностью."
   },
   {
     q: "Что делать, если таймер оплаты истёк?",
@@ -143,7 +146,7 @@ const faqs = [
     "description": description,
     "totalTime": "PT3M",
     "inLanguage": "ru",
-    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": "12000" },
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": String(starsPrice(50)) },
     "supply": [
       { "@type": "HowToSupply", "name": "Аккаунт Telegram" },
       { "@type": "HowToSupply", "name": "Карта Uzcard или Humo" }
@@ -248,7 +251,8 @@ const faqs = [
         </div>
         <div class="req-card">
           <span class="req-label">Сколько стоит</span>
-          <p>Stars — 240 сум за star (50 Stars = 12 000 сум). Premium — 3 мес. 172 000, 6 мес. 232 000, 12 мес. 422 000 сум. <a href="/ru/narxlar">Все цены</a>.</p>
+          <p>Stars — {STAR_PRICE} сум за star (50 Stars = {S50} сум). Premium — 3 мес. {P3}, 6 мес. {P6}, 12 мес. {P12} сум. <a href="/ru/narxlar">Все цены</a>.</p>
+          <p><small>{PRICE_NOTE.ru}</small></p>
         </div>
       </div>
     </div>
@@ -310,7 +314,7 @@ const faqs = [
           <h3>Telegram Stars</h3>
           <p>
             На шаге 3 выбираете <strong>«Stars olish»</strong>. На шаге 5 вводите любое количество от 50 до 100 000
-            или выбираете готовый пакет — тариф одинаков для всех объёмов, 240 сум за star.
+            или выбираете готовый пакет — тариф одинаков для всех объёмов, {STAR_PRICE} сум за star.
             Stars зачисляются на баланс указанного аккаунта и тратятся в ботах, каналах и мини-приложениях.
           </p>
           <a href="/ru/stars" class="variant-link">Страница Telegram Stars &rarr;</a>
@@ -320,7 +324,7 @@ const faqs = [
           <h3>Telegram Premium</h3>
           <p>
             На шаге 3 выбираете <strong>«Premium olish»</strong>. На шаге 5 вместо количества выбираете срок подписки:
-            3 месяца — 172 000 сум, 6 месяцев — 232 000 сум, 12 месяцев — 422 000 сум.
+            3 месяца — {P3} сум, 6 месяцев — {P6} сум, 12 месяцев — {P12} сум.
             Premium подключается к указанному аккаунту; если действующая подписка уже есть, новый срок добавляется к ней.
           </p>
           <a href="/ru/premium" class="variant-link">Страница Telegram Premium &rarr;</a>
@@ -347,14 +351,14 @@ const faqs = [
         <h2 class="section-title">Четыре правила, чтобы не ошибиться</h2>
       </div>
       <ul class="rules-list fade-in">
-        <li><strong>Не меняйте сумму.</strong> Система распознаёт платёж именно по сумме. Если вместо 12 000 отправить 12 100, заказ не закроется автоматически.</li>
+        <li><strong>Не меняйте сумму.</strong> Система распознаёт платёж именно по сумме. Если вместо {S50} отправить {S50P}, заказ не закроется автоматически.</li>
         <li><strong>Берите номер карты из приложения.</strong> Номер карты со временем может измениться, поэтому не пользуйтесь запомнившимся или сохранённым ранее номером — каждый раз копируйте тот, что показан в окне заказа.</li>
         <li><strong>Проверяйте username.</strong> После ввода приложение показывает имя и аватар аккаунта. Услугу, отправленную не тому человеку, вернуть нельзя.</li>
         <li><strong>Следите за таймером.</strong> По истечении времени заказ отменяется. В этом случае не переводите деньги, а создайте заказ заново.</li>
       </ul>
       <p class="rules-support fade-in">
         Если на каком-то шаге возникла проблема, сохраните чек и напишите в поддержку
-        <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a>.
+        <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a>.
         Если услуга не оказана, оплаченная сумма возвращается на 100%.
       </p>
     </div>

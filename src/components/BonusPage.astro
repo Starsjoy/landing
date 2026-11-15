@@ -12,6 +12,7 @@ import FooterRu from './FooterRu.astro';
 import NavbarEn from './NavbarEn.astro';
 import FooterEn from './FooterEn.astro';
 import { hreflangsFor } from '../lib/i18n';
+import { STAR_PRICE, PRICE_NOTE } from '../lib/prices';
 
 interface Faq { q: string; a: string }
 
@@ -49,7 +50,6 @@ const {
 } = Astro.props;
 
 const BOT_URL = 'https://telegram.me/starsjoybot';
-const STAR_PRICE = 240;
 const fmt = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, thousandSep);
 const rows = [50, 100, 250, 500, 1000, 2500, 5000, 10000].map((stars) => ({
   stars: fmt(stars),
@@ -131,6 +131,7 @@ const rows = [50, 100, 250, 500, 1000, 2500, 5000, 10000].map((stars) => ({
             </table>
           </div>
           <p>{tableNote}</p>
+          <p><small>{PRICE_NOTE[locale]}</small></p>
         </section>
 
         <slot />

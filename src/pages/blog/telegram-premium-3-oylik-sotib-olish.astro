@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Premium 3 oylik sotib olish 2026 — narxi va eng oson yo'l | StarsJoy Blog";
-const description = "3 oylik Telegram Premium narxi 172 000 so'm — Premium'ni sinash uchun eng past kirish narxi. @starsjoybot orqali Click yoki Payme bilan 10 soniyada faollashadi. Avtomatik yangilanmaydi — to'lov bir martalik.";
+const description = `3 oylik Telegram Premium narxi ${fmtS(PREMIUM_PRICE[3])} so'm — Premium'ni sinash uchun eng past kirish narxi. @starsjoybot orqali Click yoki Payme bilan 10 soniyada faollashadi. Avtomatik yangilanmaydi — to'lov bir martalik.`;
 const publishDate = "2026-05-24";
-const modifiedDate = "2026-05-24";
+const modifiedDate = "2026-11-15";
 const wordCount = 1640;
 const canonical = "https://starsjoy.uz/blog/telegram-premium-3-oylik-sotib-olish";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -16,7 +17,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
   title={title}
   description={description}
   canonical={canonical}
-  keywords="Telegram Premium 3 oylik, 3 oylik Telegram Premium sotib olish, Telegram Premium 172000 som, Telegram Premium 3 oy narxi, Telegram Premium sinov, Telegram Premium 3 oylik Uzbekistan, Premium 3 oylik Starsjoy"
+  keywords={`Telegram Premium 3 oylik, 3 oylik Telegram Premium sotib olish, Telegram Premium ${PREMIUM_PRICE[3]} som, Telegram Premium 3 oy narxi, Telegram Premium sinov, Telegram Premium 3 oylik Uzbekistan, Premium 3 oylik Starsjoy`}
   ogType="article"
   ogImage={ogImage}
   hreflangs={[
@@ -36,7 +37,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
     "inLanguage": "uz-UZ",
     "wordCount": wordCount,
     "articleSection": "Premium",
-    "keywords": "Telegram Premium 3 oylik, Premium 172 000 som, Premium sinov, 3 oylik Premium sotib olish, StarsJoy",
+    "keywords": "Telegram Premium 3 oylik, Premium " + fmtS(PREMIUM_PRICE[3]) + " som, Premium sinov, 3 oylik Premium sotib olish, StarsJoy",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
@@ -83,7 +84,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "3 oylik Telegram Premium narxi qancha (2026)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "O'zbekistonda StarsJoy orqali 3 oylik Telegram Premium narxi 172 000 so'm. Oyiga hisoblaganda ~57 333 so'm. To'lov bir martalik — kartadan avtomatik yechilmaydi va obuna avtomatik yangilanmaydi."
+          "text": "O'zbekistonda StarsJoy orqali 3 oylik Telegram Premium narxi " + fmtS(PREMIUM_PRICE[3]) + " so'm. Oyiga hisoblaganda ~" + fmtS(premiumPerMonth(3)) + " so'm. To'lov bir martalik — kartadan avtomatik yechilmaydi va obuna avtomatik yangilanmaydi."
         }
       },
       {
@@ -115,7 +116,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "3 oylik Premium uchun Visa karta kerakmi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yo'q. StarsJoy orqali Uzcard yoki Humo kartasi bilan Click yoki Payme orqali to'lash mumkin — xalqaro karta umuman shart emas. 172 000 so'm — karta limit muammosi bo'lmaydigan summa, ko'pchilik kartalarda muammosiz o'tadi."
+          "text": "Yo'q. StarsJoy orqali Uzcard yoki Humo kartasi bilan Click yoki Payme orqali to'lash mumkin — xalqaro karta umuman shart emas. " + fmtS(PREMIUM_PRICE[3]) + " so'm — karta limit muammosi bo'lmaydigan summa, ko'pchilik kartalarda muammosiz o'tadi."
         }
       },
       {
@@ -123,7 +124,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "3 oylik va 6 oylik orasidan qaysisini tanlash kerak?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "3 oylik — sinov uchun yoki vaqtinchalik kerak bo'lganda. 6 oylik (232 000 so'm) — agar Premium'ni doimiy ishlatishga ishonchingiz bo'lsa, oyiga ~38 667 so'mga tushadi (3 oylikdan ~33% arzon). Birinchi marta olayotgan bo'lsangiz 3 oylikdan boshlash xavfsizroq — yoqsa kelgusi safar 6 yoki 12 oylik olasiz."
+          "text": "3 oylik — sinov uchun yoki vaqtinchalik kerak bo'lganda. 6 oylik (" + fmtS(PREMIUM_PRICE[6]) + " so'm) — agar Premium'ni doimiy ishlatishga ishonchingiz bo'lsa, oyiga ~" + fmtS(premiumPerMonth(6)) + " so'mga tushadi (3 oylikdan ~33% arzon). Birinchi marta olayotgan bo'lsangiz 3 oylikdan boshlash xavfsizroq — yoqsa kelgusi safar 6 yoki 12 oylik olasiz."
         }
       },
       {
@@ -139,7 +140,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "3 oylik Premium'ni boshqa odamga sovg'a qilish mumkinmi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ha. @starsjoybot da Gift Premium orqali istalgan Telegram foydalanuvchisiga 3 oylik Premium sovg'a qilish mumkin — faqat ularning username'ini kiriting. 3 oylik — kichik byudjetga sig'adigan, lekin sezilarli sovg'a (172 000 so'm)."
+          "text": "Ha. @starsjoybot da Gift Premium orqali istalgan Telegram foydalanuvchisiga 3 oylik Premium sovg'a qilish mumkin — faqat ularning username'ini kiriting. 3 oylik — kichik byudjetga sig'adigan, lekin sezilarli sovg'a (" + fmtS(PREMIUM_PRICE[3]) + " so'm)."
         }
       }
     ]
@@ -158,10 +159,10 @@ const ogImage = "https://starsjoy.uz/og-image.png";
     ],
     "step": [
       { "@type": "HowToStep", "name": "@starsjoybot ni oching", "text": "Telegram'da @starsjoybot ni qidiring yoki telegram.me/starsjoybot havolasiga o'ting va /start tugmasini bosing." },
-      { "@type": "HowToStep", "name": "3 oylik paketni tanlang", "text": "Bot menyusidan Telegram Premium → 3 oylik tugmasini bosing. Narx — 172 000 so'm." },
+      { "@type": "HowToStep", "name": "3 oylik paketni tanlang", "text": "Bot menyusidan Telegram Premium → 3 oylik tugmasini bosing. Narx — " + fmtS(PREMIUM_PRICE[3]) + " so'm." },
       { "@type": "HowToStep", "name": "Username kiriting", "text": "Premium qaysi Telegram akkauntga tushishi kerakligini kiriting (o'zingizniki yoki sovg'a oluvchiniki — @username shaklida). Bot tasdiqlash uchun so'raydi." },
       { "@type": "HowToStep", "name": "To'lov turini tanlang", "text": "Click yoki Payme'ni tanlang. Ikkalasi ham Uzcard va Humo kartalarini qabul qiladi. Bot to'lov havolasini chiqaradi." },
-      { "@type": "HowToStep", "name": "Karta bilan to'lang", "text": "Havolani bosing — ilova ochiladi. Kartani tanlang va PIN yoki SMS-kod bilan to'lovni tasdiqlang. 172 000 so'm so'mda yechiladi, konvertatsiya yo'q." },
+      { "@type": "HowToStep", "name": "Karta bilan to'lang", "text": "Havolani bosing — ilova ochiladi. Kartani tanlang va PIN yoki SMS-kod bilan to'lovni tasdiqlang. " + fmtS(PREMIUM_PRICE[3]) + " so'm so'mda yechiladi, konvertatsiya yo'q." },
       { "@type": "HowToStep", "name": "Premium faollashishini kuting", "text": "10 soniya ichida 3 oylik Premium ko'rsatilgan akkauntda faol bo'ladi. Telegram → Settings → Premium bo'limidan tekshiring." }
     ]
   })} />
@@ -201,7 +202,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> 3 oylik Telegram Premium O'zbekistonda <strong>172 000 so'm</strong> — Premium'ni sinab ko'rish yoki vaqtinchalik (sayohat, loyiha, imtihon davri) ishlatish uchun eng past kirish narxi. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ga kirib 3 oylik tugmasini bosing, username'ingizni kiriting, Click yoki Payme orqali Uzcard/Humo bilan to'lang — 10 soniyada faollashadi. <strong>Avtomatik yangilanmaydi</strong> — to'lov bir martalik, kartadan kelajakda hech narsa yechilmaydi. Visa shart emas, parol so'ralmaydi.
+            <strong>Qisqacha javob:</strong> 3 oylik Telegram Premium O'zbekistonda <strong>{fmtS(PREMIUM_PRICE[3])} so'm</strong> — Premium'ni sinab ko'rish yoki vaqtinchalik (sayohat, loyiha, imtihon davri) ishlatish uchun eng past kirish narxi. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ga kirib 3 oylik tugmasini bosing, username'ingizni kiriting, Click yoki Payme orqali Uzcard/Humo bilan to'lang — 10 soniyada faollashadi. <strong>Avtomatik yangilanmaydi</strong> — to'lov bir martalik, kartadan kelajakda hech narsa yechilmaydi. Visa shart emas, parol so'ralmaydi.
           </div>
 
           <section>
@@ -217,7 +218,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <section>
             <h2>3 oylik Telegram Premium narxi 2026</h2>
 
-            <p>O'zbekistonda StarsJoy orqali <strong>3 oylik Telegram Premium narxi — 172 000 so'm</strong> (2026-yil may holatiga to'g'ri). Oyiga hisoblaganda ~57 333 so'm. To'lov bir martalik, kartadan avtomatik yangilanmaydi.</p>
+            <p>O'zbekistonda StarsJoy orqali <strong>3 oylik Telegram Premium narxi — {fmtS(PREMIUM_PRICE[3])} so'm</strong> (2026-yil noyabr holatiga to'g'ri). Oyiga hisoblaganda ~{fmtS(premiumPerMonth(3))} so'm. To'lov bir martalik, kartadan avtomatik yangilanmaydi.</p>
 
             <div class="post-table-wrap">
               <table class="post-table">
@@ -232,27 +233,28 @@ const ogImage = "https://starsjoy.uz/og-image.png";
                 <tbody>
                   <tr class="highlight-row">
                     <td>3 oylik</td>
-                    <td>172 000 so'm</td>
-                    <td>~57 333 so'm</td>
+                    <td>{fmtS(PREMIUM_PRICE[3])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(3))} so'm</td>
                     <td>Eng past kirish narxi, sinov uchun</td>
                   </tr>
                   <tr>
                     <td>6 oylik</td>
-                    <td>232 000 so'm</td>
-                    <td>~38 667 so'm</td>
+                    <td>{fmtS(PREMIUM_PRICE[6])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(6))} so'm</td>
                     <td>3 oylikdan ~33% arzon (oyiga)</td>
                   </tr>
                   <tr>
                     <td>12 oylik</td>
-                    <td>422 000 so'm</td>
-                    <td>~35 167 so'm</td>
+                    <td>{fmtS(PREMIUM_PRICE[12])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(12))} so'm</td>
                     <td>Eng arzon oylik narx + Business bundle</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <p><small>{PRICE_NOTE.uz}</small></p>
 
-            <p><em>Narxlar 2026-yil may holatiga to'g'ri.</em> Jadval ko'rsatadi: oyiga hisobda 3 oylik eng qimmat — bu uzoq muddatga noto'g'ri tanlov degani emas, balki <strong>qisqa muddatli ehtiyoj uchun mantiqiy chegirma</strong>. Agar 6+ oy Premium ishlatishga ishonchingiz bo'lsa — 6 yoki 12 oylikni o'qing. Agar hali sinab ko'rmagan yoki vaqtinchalik kerak bo'lsa — 3 oylik eng to'g'ri start.</p>
+            <p><em>Narxlar 2026-yil noyabr holatiga to'g'ri.</em> Jadval ko'rsatadi: oyiga hisobda 3 oylik eng qimmat — bu uzoq muddatga noto'g'ri tanlov degani emas, balki <strong>qisqa muddatli ehtiyoj uchun mantiqiy chegirma</strong>. Agar 6+ oy Premium ishlatishga ishonchingiz bo'lsa — 6 yoki 12 oylikni o'qing. Agar hali sinab ko'rmagan yoki vaqtinchalik kerak bo'lsa — 3 oylik eng to'g'ri start.</p>
 
             <p>Boshqa xizmatlarda 3 oylik narxi 150 000–170 000 so'm oralig'ida bo'lishi mumkin, lekin to'lov turi (Visa kerak yoki yo'q), faollashish vaqti va xavfsizlik (parol so'raydimi yo'qmi) farq qiladi. StarsJoy'da Uzcard/Humo bilan Click yoki Payme orqali to'lash — parol so'ralmaydi, faqat username yetarli.</p>
           </section>
@@ -263,13 +265,13 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <p>3 oylik paket — universal yechim emas. Quyidagi holatlarda u eng to'g'ri:</p>
 
             <h3>Premium'ni birinchi marta sinab ko'ruvchilar</h3>
-            <p>Premium funksiyalari haqida ko'p eshitgansiz, lekin ular sizning kunlik ishingizga qanchalik kerakligini bilmaysiz. 4 GB fayl yuklash, ovozli xabar transkriptsiyasi, reklamasiz kanallar — bularning hammasi yaxshi, lekin har kuni ishlatasizmi? 3 oylik paket — bu savolga javob topish uchun eng past xavfli yo'l. 172 000 so'm — sinov uchun maqbul summa. Yoqsa — keyin 6 yoki 12 oylikka o'tasiz. Yoqmasa — yo'qotish katta emas.</p>
+            <p>Premium funksiyalari haqida ko'p eshitgansiz, lekin ular sizning kunlik ishingizga qanchalik kerakligini bilmaysiz. 4 GB fayl yuklash, ovozli xabar transkriptsiyasi, reklamasiz kanallar — bularning hammasi yaxshi, lekin har kuni ishlatasizmi? 3 oylik paket — bu savolga javob topish uchun eng past xavfli yo'l. {fmtS(PREMIUM_PRICE[3])} so'm — sinov uchun maqbul summa. Yoqsa — keyin 6 yoki 12 oylikka o'tasiz. Yoqmasa — yo'qotish katta emas.</p>
 
             <h3>Vaqtinchalik ehtiyojlilar</h3>
             <p>Sayohat (chet eldagi 2-3 oy davrida ko'proq fayl va media ulashish), katta ish loyihasi (video yoki dasturchilik fayllarini doimiy yuklab turish kerak bo'lganda), imtihon davri (o'quv materiallari, video darslar yuklash) — bularning barchasi 3 oyga sig'adigan ehtiyojlar. 12 oylik olib ortiqcha 9 oyni "tashlab qo'yish" mantiqsiz.</p>
 
             <h3>Sovg'a beruvchilar (kichik byudjet)</h3>
-            <p>Tug'ilgan kun yoki bayram uchun sovg'a — 172 000 so'mlik narx kichik byudjetga sig'adigan, lekin sezilarli sovg'a. 12 oylik (422 000 so'm) ko'pchilik uchun og'ir bo'lishi mumkin. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> da Gift Premium orqali sovg'a qiluvchiga to'g'ridan-to'g'ri yuborish mumkin.</p>
+            <p>Tug'ilgan kun yoki bayram uchun sovg'a — {fmtS(PREMIUM_PRICE[3])} so'mlik narx kichik byudjetga sig'adigan, lekin sezilarli sovg'a. 12 oylik ({fmtS(PREMIUM_PRICE[12])} so'm) ko'pchilik uchun og'ir bo'lishi mumkin. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> da Gift Premium orqali sovg'a qiluvchiga to'g'ridan-to'g'ri yuborish mumkin.</p>
 
             <h3>Avtomatik obunani xohlamaydiganlar</h3>
             <p>iPhone yoki Android App Store orqali olingan Premium oyma-oy kartadan avtomatik yechiladi — ba'zilar buni xohlamaydi. StarsJoy 3 oylik to'lovi <strong>bir martalik</strong> — 3 oy tugagandan keyin kartadan hech narsa yechilmaydi. Bu nazoratni saqlash uchun muhim — siz qachon va qaysi paketni qayta olishni o'zingiz tanlaysiz.</p>
@@ -310,7 +312,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <p>Telegram'da <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">telegram.me/starsjoybot</a> ni oching va <code>/start</code> tugmasini bosing. Bot avtomatik ravishda asosiy menyuni ko'rsatadi — Stars, Premium, Gifts variantlari.</p>
 
             <h3>2-qadam: Premium → 3 oylik paketni tanlang</h3>
-            <p>Bot menyudan <strong>Telegram Premium</strong> bo'limini ochib, paket variantlarini ko'rsatadi: 3 oy, 6 oy, 12 oy. <strong>3 oylik</strong> tugmasini bosing. Narx — 172 000 so'm.</p>
+            <p>Bot menyudan <strong>Telegram Premium</strong> bo'limini ochib, paket variantlarini ko'rsatadi: 3 oy, 6 oy, 12 oy. <strong>3 oylik</strong> tugmasini bosing. Narx — {fmtS(PREMIUM_PRICE[3])} so'm.</p>
 
             <h3>3-qadam: Telegram username'ingizni kiriting</h3>
             <p>Premium qaysi akkauntga tushishi kerakligini kiriting. Bu siz o'zingiz uchun ham (oddiy holatda), boshqa odam uchun ham bo'lishi mumkin (Gift Premium — sovg'a). Bot username'ni tekshiradi — diqqat bilan ko'rib tasdiqlang.</p>
@@ -345,9 +347,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <p>Agar 3 oylik tugagach Premium'ni davom ettirmoqchi bo'lsangiz — bir necha variant bor:</p>
 
             <ul>
-              <li><strong>Yana 3 oylik olish</strong> (yana 172 000 so'm) — agar hali ham sinov rejimida bo'lsangiz</li>
-              <li><strong>6 oylik'ga o'tish</strong> (232 000 so'm) — agar Premium yoqib qolgan bo'lsa, oyiga ~33% arzonroq tushadi</li>
-              <li><strong>12 oylik'ga o'tish</strong> (422 000 so'm) — eng tejamli variant, ustiga Telegram Business bundle</li>
+              <li><strong>Yana 3 oylik olish</strong> (yana {fmtS(PREMIUM_PRICE[3])} so'm) — agar hali ham sinov rejimida bo'lsangiz</li>
+              <li><strong>6 oylik'ga o'tish</strong> ({fmtS(PREMIUM_PRICE[6])} so'm) — agar Premium yoqib qolgan bo'lsa, oyiga ~33% arzonroq tushadi</li>
+              <li><strong>12 oylik'ga o'tish</strong> ({fmtS(PREMIUM_PRICE[12])} so'm) — eng tejamli variant, ustiga Telegram Business bundle</li>
             </ul>
 
             <p>Ko'pchilik 3 oydan keyin <a href="/blog/telegram-premium-12-oylik">12 oylik</a> ga o'tadi — chunki Premium yoqib qolgach, har 3 oyda qayta sotib olish noqulay tuyuladi va oyiga narx kichrayadi.</p>
@@ -356,7 +358,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <section>
             <h2>Xulosa</h2>
 
-            <p><strong>3 oylik Telegram Premium</strong> — Premium'ni sinab ko'rish yoki vaqtinchalik (2-3 oy) ishlatish uchun eng past kirish narxi. 172 000 so'm bilan to'liq Premium tajribasini olasiz: 4 GB fayl, transkriptsiya, reklamasiz kanallar, Premium stikerlar va Telegram Business bundle — hammasi 3 oy davomida cheklovsiz.</p>
+            <p><strong>3 oylik Telegram Premium</strong> — Premium'ni sinab ko'rish yoki vaqtinchalik (2-3 oy) ishlatish uchun eng past kirish narxi. {fmtS(PREMIUM_PRICE[3])} so'm bilan to'liq Premium tajribasini olasiz: 4 GB fayl, transkriptsiya, reklamasiz kanallar, Premium stikerlar va Telegram Business bundle — hammasi 3 oy davomida cheklovsiz.</p>
 
             <p>O'zbekistonda 3 oylik Premium olish uchun:</p>
             <ol>
@@ -380,7 +382,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <div class="post-faq">
               <div class="post-faq-item">
                 <h3>3 oylik Telegram Premium narxi qancha (2026)?</h3>
-                <p>O'zbekistonda StarsJoy orqali 172 000 so'm. Oyiga hisoblaganda ~57 333 so'm. To'lov bir martalik — kartadan avtomatik yechilmaydi.</p>
+                <p>O'zbekistonda StarsJoy orqali {fmtS(PREMIUM_PRICE[3])} so'm. Oyiga hisoblaganda ~{fmtS(premiumPerMonth(3))} so'm. To'lov bir martalik — kartadan avtomatik yechilmaydi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>3 oylik Premium kimga to'g'ri keladi?</h3>
@@ -396,11 +398,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               </div>
               <div class="post-faq-item">
                 <h3>3 oylik Premium uchun Visa karta kerakmi?</h3>
-                <p>Yo'q. StarsJoy orqali Uzcard yoki Humo kartasi bilan Click yoki Payme orqali to'lash mumkin. 172 000 so'm — karta limit muammosi bo'lmaydigan summa.</p>
+                <p>Yo'q. StarsJoy orqali Uzcard yoki Humo kartasi bilan Click yoki Payme orqali to'lash mumkin. {fmtS(PREMIUM_PRICE[3])} so'm — karta limit muammosi bo'lmaydigan summa.</p>
               </div>
               <div class="post-faq-item">
                 <h3>3 oylik va 6 oylik orasidan qaysisini tanlash?</h3>
-                <p>3 oylik — sinov uchun yoki vaqtinchalik kerak bo'lganda. 6 oylik (232 000 so'm) — agar doimiy ishlatishga ishonchingiz bo'lsa, oyiga ~33% arzon. Birinchi marta olayotgan bo'lsangiz 3 oylikdan boshlash xavfsizroq.</p>
+                <p>3 oylik — sinov uchun yoki vaqtinchalik kerak bo'lganda. 6 oylik ({fmtS(PREMIUM_PRICE[6])} so'm) — agar doimiy ishlatishga ishonchingiz bo'lsa, oyiga ~33% arzon. Birinchi marta olayotgan bo'lsangiz 3 oylikdan boshlash xavfsizroq.</p>
               </div>
               <div class="post-faq-item">
                 <h3>3 oylik Premium ichida Telegram Business bormi?</h3>

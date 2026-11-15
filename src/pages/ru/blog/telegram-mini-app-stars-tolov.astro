@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Оплата Stars в Telegram Mini App: как работает и безопасно ли? (2026) | Блог StarsJoy";
 const description = "Оплата Stars в Telegram Mini App — как работает, какие популярные Mini App принимают Stars и пошаговое руководство по оплате — полное руководство 2026.";
 const publishDate = "2026-05-06";
-const modifiedDate = "2026-05-06";
+const modifiedDate = "2026-11-15";
 const wordCount = 1750;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-mini-app-stars-tolov";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -377,7 +378,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Оплата Stars в Telegram Mini App к 2026 году стала простой и широко применяемой: в играх, e-com, NFT, образовании и реселлер Mini App используется как внутреннее платёжное средство. Благодаря механизму официального Bot Payments API безопасно — платёжный интерфейс всегда показывается Telegram, а Mini App не может получить ваши личные данные.</p>
 
-          <p>Если Stars на балансе есть, оплата в Mini App совершается за 30-60 секунд. Если не хватает — через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> можно пополнить за 5 минут с Click/Payme и вернуться продолжить. По курсу 1 Star = 240 сум на реселлерском рынке точные суммы легко рассчитать.</p>
+          <p>Если Stars на балансе есть, оплата в Mini App совершается за 30-60 секунд. Если не хватает — через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> можно пополнить за 5 минут с Click/Payme и вернуться продолжить. По курсу 1 Star = {STAR_PRICE} сум на реселлерском рынке точные суммы легко рассчитать.</p>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
           <div class="end-cta">
             <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Пополнить Stars — @starsjoybot &rarr;</a>

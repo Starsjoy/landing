@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICES_DATE_UZ, PRICE_NOTE } from '../../lib/prices';
 
 const title = "100 yoki 50 tadan kam Telegram Stars qanday olinadi? Uzcard, Humo | StarsJoy Blog";
-const description = "100 yoki 50 tadan kam Stars: ilovada eng kichik paket 100 Stars. StarsJoy'da 50 Stars 12 000 so'm, 50 dan kami sovg'a orqali, 13 Stars 5 000 so'm. Uzcard, Humo.";
+const description = `100 yoki 50 tadan kam Stars: ilovada eng kichik paket 100 Stars. StarsJoy'da 50 Stars ${fmtS(starsPrice(50))} so'm, 50 dan kami sovg'a orqali, 13 Stars 5 000 so'm. Uzcard, Humo.`;
 const publishDate = "2026-11-05";
-const modifiedDate = "2026-11-05";
+const modifiedDate = "2026-11-15";
 const wordCount = 1400;
 const canonical = "https://starsjoy.uz/blog/telegram-stars-100-tadan-kam";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -88,7 +89,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
     "offers": {
       "@type": "Offer",
       "url": "https://starsjoy.uz/stars",
-      "price": "12000",
+      "price": `${starsPrice(50)}`,
       "priceCurrency": "UZS",
       "availability": "https://schema.org/InStock",
       "seller": { "@type": "Organization", "name": "StarsJoy" }
@@ -102,12 +103,12 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       {
         "@type": "Question",
         "name": "Telegram ilovasida 100 tadan kam Stars olsa bo'ladimi?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yo'q. Telegram ilovasida (O'zbekiston, 04.11.2026 holatiga) eng kichik paket 100 Stars — 25 399 so'm. 50, 30 yoki 10 Stars'lik paket yo'q. StarsJoy'da esa 50 Stars'dan boshlab istalgan sonni olish mumkin: 50 Stars 12 000 so'm." }
+        "acceptedAnswer": { "@type": "Answer", "text": `Yo'q. Telegram ilovasida (O'zbekiston, 04.11.2026 holatiga) eng kichik paket 100 Stars — 25 399 so'm. 50, 30 yoki 10 Stars'lik paket yo'q. StarsJoy'da esa 50 Stars'dan boshlab istalgan sonni olish mumkin: 50 Stars ${fmtS(starsPrice(50))} so'm.` }
       },
       {
         "@type": "Question",
         "name": "50 Telegram Stars necha so'm turadi?",
-        "acceptedAnswer": { "@type": "Answer", "text": "StarsJoy'da 50 Stars 12 000 so'm (1 Star 240 so'm), ustiga +2 ⭐ bonus. Uzcard yoki Humo kartadan Payme, Click yoki bank ilovasi orqali to'lanadi, Stars odatda 10 soniyada tushadi." }
+        "acceptedAnswer": { "@type": "Answer", "text": `StarsJoy'da 50 Stars ${fmtS(starsPrice(50))} so'm (1 Star ${STAR_PRICE} so'm), ustiga +2 ⭐ bonus. Uzcard yoki Humo kartadan Payme, Click yoki bank ilovasi orqali to'lanadi, Stars odatda 10 soniyada tushadi.` }
       },
       {
         "@type": "Question",
@@ -127,12 +128,12 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       {
         "@type": "Question",
         "name": "Qaysi biri arzon: sovg'a orqali yoki 50 Stars?",
-        "acceptedAnswer": { "@type": "Answer", "text": "26 Stars'gacha kerak bo'lsa sovg'a orqali arzon: 13 Stars — 5 000, 21 Stars — 7 000, 26 Stars — 10 000 so'm. 27 Stars va undan ko'pi kerak bo'lsa, to'g'ridan-to'g'ri 50 Stars oling: 12 000 so'm, bonus bilan 52 Stars." }
+        "acceptedAnswer": { "@type": "Answer", "text": `34 Stars'gacha kerak bo'lsa sovg'a orqali arzon: 13 Stars — 5 000, 21 Stars — 7 000, 26 Stars — 10 000, 34 Stars — 12 000 so'm. 35 Stars va undan ko'pi kerak bo'lsa, to'g'ridan-to'g'ri 50 Stars oling: ${fmtS(starsPrice(50))} so'm, bonus bilan 52 Stars.` }
       },
       {
         "@type": "Question",
         "name": "Ilovadagi 100 Stars bilan solishtirganda qancha tejayman?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Ilovada eng kam xarid 100 Stars — 25 399 so'm. Sizga 13 Stars kerak bo'lsa, StarsJoy'dagi sovg'a yo'li 5 000 so'm — 20 399 so'm kam to'laysiz. 50 Stars kerak bo'lsa, 12 000 so'm — 13 399 so'm kam." }
+        "acceptedAnswer": { "@type": "Answer", "text": `Ilovada eng kam xarid 100 Stars — 25 399 so'm. Sizga 13 Stars kerak bo'lsa, StarsJoy'dagi sovg'a yo'li 5 000 so'm — 20 399 so'm kam to'laysiz. 50 Stars kerak bo'lsa, ${fmtS(starsPrice(50))} so'm — ${fmtS(25399 - starsPrice(50))} so'm kam.` }
       },
       {
         "@type": "Question",
@@ -192,16 +193,16 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> 100 tadan kam Telegram Stars'ni <strong>StarsJoy</strong>'da (<a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>) <strong>Uzcard yoki Humo</strong> bilan olasiz: <strong>50 Stars — 12 000 so'm</strong>, ustiga +2 ⭐ bonus. Telegram ilovasida esa eng kichik paket 100 Stars (25 399 so'm), undan kam olib bo'lmaydi. 50 tadan ham kam kerak bo'lsa, StarsJoy'dan o'zingizga 15 yoki 25 Stars'lik sovg'a olib, uni Stars'ga aylantirasiz: <strong>13 Stars — 5 000 so'm</strong>, <strong>21 Stars — 7 000 so'm</strong>. Faqat username kerak, parol va SMS kod so'ralmaydi.
+            <strong>Qisqacha javob:</strong> 100 tadan kam Telegram Stars'ni <strong>StarsJoy</strong>'da (<a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>) <strong>Uzcard yoki Humo</strong> bilan olasiz: <strong>50 Stars — {fmtS(starsPrice(50))} so'm</strong>, ustiga +2 ⭐ bonus. Telegram ilovasida esa eng kichik paket 100 Stars (25 399 so'm), undan kam olib bo'lmaydi. 50 tadan ham kam kerak bo'lsa, StarsJoy'dan o'zingizga 15 yoki 25 Stars'lik sovg'a olib, uni Stars'ga aylantirasiz: <strong>13 Stars — 5 000 so'm</strong>, <strong>21 Stars — 7 000 so'm</strong>. Faqat username kerak, parol va SMS kod so'ralmaydi.
           </div>
 
           <div class="price-facts" aria-label="Narx faktlari">
-            <div><span>50 Stars</span><strong>12 000 so'm (+2 ⭐)</strong></div>
+            <div><span>50 Stars</span><strong>{fmtS(starsPrice(50))} so'm (+2 ⭐)</strong></div>
             <div><span>13 Stars (sovg'a orqali)</span><strong>5 000 so'm</strong></div>
             <div><span>21 Stars (sovg'a orqali)</span><strong>7 000 so'm</strong></div>
             <div><span>Ilovada eng kami</span><strong>100 Stars — 25 399 so'm</strong></div>
           </div>
-          <p class="price-note">StarsJoy narxlari 05.11.2026 holatiga: Stars 240 so'm/dona, sovg'alar 15 ⭐ — 5 000, 25 ⭐ — 7 000 so'm. Aylantirish qiymatlari Telegram katalogidan (05.11.2026). Ilova narxi — Telegram ilovasi (O'zbekiston), 04.11.2026.</p>
+          <p class="price-note">StarsJoy narxlari {PRICES_DATE_UZ} holatiga: Stars {STAR_PRICE} so'm/dona, sovg'alar 15 ⭐ — 5 000, 25 ⭐ — 7 000 so'm. Aylantirish qiymatlari Telegram katalogidan (05.11.2026). Ilova narxi — Telegram ilovasi (O'zbekiston), 04.11.2026. {PRICE_NOTE.uz}</p>
 
           <section>
             <p>Ko'pchilikka 100 ta Stars kerak emas: bir nechta reaksiya, bitta arzon yopiq post yoki botdagi kichik xarid uchun 10–50 Stars ham yetadi. Lekin Telegram ilovasida eng kichik paket 100 Stars — kerak bo'lmasa ham 25 399 so'm to'lashga to'g'ri keladi.</p>
@@ -229,7 +230,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
                   <tr class="highlight-row">
                     <td>StarsJoy — Stars</td>
                     <td>50 Stars</td>
-                    <td>12 000 so'm</td>
+                    <td>{fmtS(starsPrice(50))} so'm</td>
                     <td>Uzcard, Humo</td>
                   </tr>
                   <tr class="highlight-row">
@@ -248,7 +249,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <section>
             <h2>50 Telegram Stars qancha turadi va qanday olinadi?</h2>
 
-            <p>StarsJoy'da Stars <strong>50 tadan</strong> boshlab sotiladi va narx miqdorga bog'liq emas: har bir Star <strong>240 so'm</strong>. 50 Stars — <strong>12 000 so'm</strong>, har to'liq 50 Stars uchun +2 ⭐ bonus. 50 dan 100 gacha istalgan sonni olish mumkin:</p>
+            <p>StarsJoy'da Stars <strong>50 tadan</strong> boshlab sotiladi va narx miqdorga bog'liq emas: har bir Star <strong>{STAR_PRICE} so'm</strong>. 50 Stars — <strong>{fmtS(starsPrice(50))} so'm</strong>, har to'liq 50 Stars uchun +2 ⭐ bonus. 50 dan 100 gacha istalgan sonni olish mumkin:</p>
 
             <div class="post-table-wrap">
               <table class="post-table">
@@ -256,16 +257,16 @@ const ogImage = "https://starsjoy.uz/og-image.png";
                   <tr><th>Stars</th><th>Narx</th><th>Bonus</th></tr>
                 </thead>
                 <tbody>
-                  <tr class="highlight-row"><td>50 Stars</td><td>12 000 so'm</td><td>+2 ⭐</td></tr>
-                  <tr><td>60 Stars</td><td>14 400 so'm</td><td>+2 ⭐</td></tr>
-                  <tr><td>75 Stars</td><td>18 000 so'm</td><td>+2 ⭐</td></tr>
-                  <tr><td>99 Stars</td><td>23 760 so'm</td><td>+2 ⭐</td></tr>
-                  <tr><td><a href="/stars/100">100 Stars</a></td><td>24 000 so'm</td><td>+4 ⭐</td></tr>
+                  <tr class="highlight-row"><td>50 Stars</td><td>{fmtS(starsPrice(50))} so'm</td><td>+2 ⭐</td></tr>
+                  <tr><td>60 Stars</td><td>{fmtS(starsPrice(60))} so'm</td><td>+2 ⭐</td></tr>
+                  <tr><td>75 Stars</td><td>{fmtS(starsPrice(75))} so'm</td><td>+2 ⭐</td></tr>
+                  <tr><td>99 Stars</td><td>{fmtS(starsPrice(99))} so'm</td><td>+2 ⭐</td></tr>
+                  <tr><td><a href="/stars/100">100 Stars</a></td><td>{fmtS(starsPrice(100))} so'm</td><td>+4 ⭐</td></tr>
                 </tbody>
               </table>
             </div>
 
-            <p>Formula oddiy: Stars soni × 240 so'm. 50 Stars ilovadagi eng kichik paketdan (100 Stars, 25 399 so'm) <strong>13 399 so'm kam</strong> turadi. Agar baribir 90–100 Stars kerak bo'lsa, <a href="/blog/telegram-stars-100-narxi">100 Stars narxi</a> maqolasida ilova bilan to'liq taqqoslash bor.</p>
+            <p>Formula oddiy: Stars soni × {STAR_PRICE} so'm. 50 Stars ilovadagi eng kichik paketdan (100 Stars, 25 399 so'm) <strong>{fmtS(25399 - starsPrice(50))} so'm kam</strong> turadi. Agar baribir 90–100 Stars kerak bo'lsa, <a href="/blog/telegram-stars-100-narxi">100 Stars narxi</a> maqolasida ilova bilan to'liq taqqoslash bor.</p>
 
             <p>Olish tartibi: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> → Stars bo'limi → miqdorga 50 (yoki kerakli son) → username → bot ko'rsatgan kartaga aynan ko'rsatilgan summani Uzcard yoki Humo kartadan o'tkazasiz. Stars odatda 10 soniyada tushadi.</p>
           </section>
@@ -297,7 +298,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <section>
             <h2>Qancha Stars kerak bo'lsa, qaysi yo'l arzon?</h2>
 
-            <p>Hisob StarsJoy narxlari bilan: sovg'a yo'lida qancha Stars chiqishi aylantirish qiymatidan, to'g'ridan-to'g'ri yo'lda — 240 so'm × son.</p>
+            <p>Hisob StarsJoy narxlari bilan: sovg'a yo'lida qancha Stars chiqishi aylantirish qiymatidan, to'g'ridan-to'g'ri yo'lda — {STAR_PRICE} so'm × son.</p>
 
             <div class="post-table-wrap">
               <table class="post-table">
@@ -308,13 +309,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
                   <tr class="highlight-row"><td>1–13 Stars</td><td>15 Stars'lik sovg'a → Stars</td><td>5 000 so'm</td><td>13 Stars</td></tr>
                   <tr class="highlight-row"><td>14–21 Stars</td><td>25 Stars'lik sovg'a → Stars</td><td>7 000 so'm</td><td>21 Stars</td></tr>
                   <tr><td>22–26 Stars</td><td>2 ta 15 Stars'lik sovg'a → Stars</td><td>10 000 so'm</td><td>26 Stars</td></tr>
-                  <tr class="highlight-row"><td>27–52 Stars</td><td>50 Stars to'g'ridan-to'g'ri</td><td>12 000 so'm</td><td>50 + 2 ⭐ bonus</td></tr>
-                  <tr><td>53–100 Stars</td><td>Kerakli son × 240 so'm</td><td>12 720–24 000 so'm</td><td>Aynan kerakli son</td></tr>
+                  <tr><td>27–34 Stars</td><td>15 + 25 Stars'lik sovg'a → Stars</td><td>12 000 so'm</td><td>34 Stars</td></tr>
+                  <tr class="highlight-row"><td>35–52 Stars</td><td>50 Stars to'g'ridan-to'g'ri</td><td>{fmtS(starsPrice(50))} so'm</td><td>50 + 2 ⭐ bonus</td></tr>
+                  <tr><td>53–100 Stars</td><td>Kerakli son × {STAR_PRICE} so'm</td><td>{fmtS(starsPrice(53))}–{fmtS(starsPrice(100))} so'm</td><td>Aynan kerakli son</td></tr>
                 </tbody>
               </table>
             </div>
 
-            <p><strong>Qoida:</strong> 26 tagacha Stars kerak bo'lsa — sovg'a orqali, 27 va undan ko'p bo'lsa — to'g'ridan-to'g'ri <a href="/stars">Stars</a>. Masalan, 34 Stars sovg'a orqali (15 + 25) ham 12 000 so'm turadi, lekin 12 000 so'mga to'g'ridan-to'g'ri 50 Stars va bonus olasiz.</p>
+            <p><strong>Qoida:</strong> 34 tagacha Stars kerak bo'lsa — sovg'a orqali, 35 va undan ko'p bo'lsa — to'g'ridan-to'g'ri <a href="/stars">Stars</a>. Chegarada farq kichik: 34 Stars sovg'a orqali (15 + 25) 12 000 so'm, to'g'ridan-to'g'ri 50 Stars esa {fmtS(starsPrice(50))} so'm, bonus bilan 52 Stars va aylantirish shart emas.</p>
           </section>
 
           <section>
@@ -360,14 +362,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <div class="cta-box">
             <h2>Kam Stars'ni hoziroq oling</h2>
-            <p>50 Stars — 12 000 so'm, 13 Stars — 5 000 so'm. Uzcard yoki Humo bilan, faqat username.</p>
+            <p>50 Stars — {fmtS(starsPrice(50))} so'm, 13 Stars — 5 000 so'm. Uzcard yoki Humo bilan, faqat username.</p>
             <a class="cta-btn" href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot'ni ochish</a>
             <p class="cta-sub"><a href="/stars">Stars paketlari</a> · <a href="/gifts">Sovg'alar</a></p>
           </div>
 
           <section>
             <h2>Xulosa</h2>
-            <p>Telegram ilovasi 100 Stars'dan kam sotmaydi, StarsJoy esa ikkita arzon yo'l beradi: <strong>27 tadan 100 tagacha Stars</strong> kerak bo'lsa — to'g'ridan-to'g'ri, 50 Stars 12 000 so'mdan; <strong>26 tagacha</strong> kerak bo'lsa — 15 yoki 25 Stars'lik sovg'ani Stars'ga aylantirib, 5 000 so'mdan. Ikkalasi ham Uzcard yoki Humo bilan, so'mda, parol va SMS kodsiz.</p>
+            <p>Telegram ilovasi 100 Stars'dan kam sotmaydi, StarsJoy esa ikkita arzon yo'l beradi: <strong>35 tadan 100 tagacha Stars</strong> kerak bo'lsa — to'g'ridan-to'g'ri, 50 Stars {fmtS(starsPrice(50))} so'mdan; <strong>34 tagacha</strong> kerak bo'lsa — 15 yoki 25 Stars'lik sovg'ani Stars'ga aylantirib, 5 000 so'mdan. Ikkalasi ham Uzcard yoki Humo bilan, so'mda, parol va SMS kodsiz.</p>
             <p class="end-cta">Kam Stars uchun → <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a></p>
             <p>Foydali maqolalar: <a href="/blog/telegram-stars-100-narxi">100 Stars narxi</a>, <a href="/blog/telegram-stars-paketlari-taqqoslash">Stars paketlari taqqoslash</a>, <a href="/blog/telegram-stars-uzcard-bilan-sotib-olish">Stars'ni Uzcard bilan olish</a>, <a href="/blog/telegram-stars-humo-bilan-sotib-olish">Stars'ni Humo bilan olish</a>.</p>
           </section>
@@ -377,11 +379,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <div class="post-faq">
               <div class="post-faq-item">
                 <h3>Telegram ilovasida 100 tadan kam Stars olsa bo'ladimi?</h3>
-                <p>Yo'q. Ilovada (O'zbekiston, 04.11.2026) eng kichik paket 100 Stars — 25 399 so'm. StarsJoy'da 50 Stars'dan boshlab istalgan son: 50 Stars 12 000 so'm.</p>
+                <p>Yo'q. Ilovada (O'zbekiston, 04.11.2026) eng kichik paket 100 Stars — 25 399 so'm. StarsJoy'da 50 Stars'dan boshlab istalgan son: 50 Stars {fmtS(starsPrice(50))} so'm.</p>
               </div>
               <div class="post-faq-item">
                 <h3>50 Telegram Stars necha so'm turadi?</h3>
-                <p>StarsJoy'da 12 000 so'm (1 Star 240 so'm) va +2 ⭐ bonus. Uzcard yoki Humo bilan to'lanadi, odatda 10 soniyada tushadi.</p>
+                <p>StarsJoy'da {fmtS(starsPrice(50))} so'm (1 Star {STAR_PRICE} so'm) va +2 ⭐ bonus. Uzcard yoki Humo bilan to'lanadi, odatda 10 soniyada tushadi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>50 tadan kam Stars'ni qanday olsa bo'ladi?</h3>
@@ -397,11 +399,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               </div>
               <div class="post-faq-item">
                 <h3>Qaysi biri arzon: sovg'a orqali yoki 50 Stars?</h3>
-                <p>26 Stars'gacha — sovg'a orqali (5 000–10 000 so'm). 27 va undan ko'p — to'g'ridan-to'g'ri 50 Stars: 12 000 so'm, bonus bilan 52 Stars.</p>
+                <p>34 Stars'gacha — sovg'a orqali (5 000–12 000 so'm). 35 va undan ko'p — to'g'ridan-to'g'ri 50 Stars: {fmtS(starsPrice(50))} so'm, bonus bilan 52 Stars.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Ilovadagi 100 Stars bilan solishtirganda qancha tejayman?</h3>
-                <p>13 Stars kerak bo'lsa — 20 399 so'm, 50 Stars kerak bo'lsa — 13 399 so'm kam to'laysiz (ilovada eng kami 100 Stars, 25 399 so'm).</p>
+                <p>13 Stars kerak bo'lsa — 20 399 so'm, 50 Stars kerak bo'lsa — {fmtS(25399 - starsPrice(50))} so'm kam to'laysiz (ilovada eng kami 100 Stars, 25 399 so'm).</p>
               </div>
               <div class="post-faq-item">
                 <h3>Parol yoki SMS kod kerakmi?</h3>

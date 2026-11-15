@@ -2,11 +2,14 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../../lib/prices';
+const p3 = fmtS(PREMIUM_PRICE[3]), p6 = fmtS(PREMIUM_PRICE[6]), p12 = fmtS(PREMIUM_PRICE[12]);
+const m3 = fmtS(premiumPerMonth(3)), m6 = fmtS(premiumPerMonth(6)), m12 = fmtS(premiumPerMonth(12));
 
 const title = "Подарить Telegram Premium 2026 — другу через Uzcard/Humo | StarsJoy Blog";
 const description = "Хотите подарить Telegram Premium другу? В официальном способе нужно самому иметь Premium, а через StarsJoy достаточно username получателя + Uzcard/Humo. Цены (3/6/12 мес.), шаги и что увидит получатель — гид 2026.";
 const publishDate = "2026-06-13";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1730;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-sovga-qilish";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -100,7 +103,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Сколько стоит подарок Telegram Premium (2026)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Через StarsJoy: 3 месяца — 172 000 сум, 6 месяцев — 232 000 сум, 12 месяцев — 422 000 сум. Цена подарка не отличается от покупки для себя — отдельной 'комиссии за подарок' нет."
+          "text": `Через StarsJoy: 3 месяца — ${p3} сум, 6 месяцев — ${p6} сум, 12 месяцев — ${p12} сум. Цена подарка не отличается от покупки для себя — отдельной 'комиссии за подарок' нет.`
         }
       },
       {
@@ -195,7 +198,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> Подарить Telegram Premium другу можно через <strong>официальный механизм Gift Premium</strong>. В способе внутри Telegram вы должны сами иметь Premium, а в Узбекистане это обычно требует ещё и карту Visa. Через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> же — даже без Premium — достаточно ввести <strong>username</strong> друга и оплатить картой Uzcard или Humo. Цены: 3 месяца 172 000 сум, 6 месяцев 232 000 сум, 12 месяцев 422 000 сум. Пароль и SMS-код не спрашивают.
+            <strong>Краткий ответ:</strong> Подарить Telegram Premium другу можно через <strong>официальный механизм Gift Premium</strong>. В способе внутри Telegram вы должны сами иметь Premium, а в Узбекистане это обычно требует ещё и карту Visa. Через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> же — даже без Premium — достаточно ввести <strong>username</strong> друга и оплатить картой Uzcard или Humo. Цены: 3 месяца {p3} сум, 6 месяцев {p6} сум, 12 месяцев {p12} сум. Пароль и SMS-код не спрашивают.
           </div>
 
           <section>
@@ -260,21 +263,22 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <tbody>
               <tr>
                 <td>3 месяца</td>
-                <td>172 000 сум</td>
-                <td>~57 333 сум</td>
+                <td>{p3} сум</td>
+                <td>~{m3} сум</td>
               </tr>
               <tr>
                 <td>6 месяцев</td>
-                <td>232 000 сум</td>
-                <td>~38 667 сум</td>
+                <td>{p6} сум</td>
+                <td>~{m6} сум</td>
               </tr>
               <tr>
                 <td>12 месяцев</td>
-                <td>422 000 сум</td>
-                <td>~35 167 сум</td>
+                <td>{p12} сум</td>
+                <td>~{m12} сум</td>
               </tr>
             </tbody>
           </table>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
           <p>Самый популярный выбор для подарка — <strong>3 месяца</strong> (самая доступная точка входа) или, как впечатляющий подарок, <a href="/ru/blog/telegram-premium-12-oylik">12 месяцев</a> (дешевле всего в месяц, хватит на год). Подробное сравнение сроков — в статье <a href="/ru/blog/telegram-premium-paketlar-taqqoslash">сравнение пакетов Premium</a>.</p>
 
@@ -337,7 +341,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Сколько стоит подарок Premium (2026)?</h3>
-              <p>Через StarsJoy: 3 месяца — 172 000 сум, 6 месяцев — 232 000 сум, 12 месяцев — 422 000 сум. Дополнительной комиссии за подарок нет.</p>
+              <p>Через StarsJoy: 3 месяца — {p3} сум, 6 месяцев — {p6} сум, 12 месяцев — {p12} сум. Дополнительной комиссии за подарок нет.</p>
             </div>
             <div class="post-faq-item">
               <h3>Нужна ли карта Visa?</h3>
@@ -353,7 +357,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Telegram Premium — современный подарок, которым пользуются каждый день и который запоминается. В официальном пути нужно самому иметь Premium и чаще всего Visa; в Узбекистане же самый простой способ — через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ввести только username друга и оплатить картой Uzcard или Humo. Выбирайте от 3 до 12 месяцев — активируется за несколько минут.</p>
 
-          <p class="end-cta">Подарить Premium: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> · Вопросы — <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a></p>
+          <p class="end-cta">Подарить Premium: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> · Вопросы — <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a></p>
 
           <p>Читайте также: <a href="/ru/blog/telegram-premium-12-oylik">Telegram Premium 12 месяцев</a> · <a href="/ru/blog/telegram-premium-paketlar-taqqoslash">сравнение пакетов Premium</a> · <a href="/ru/blog/telegram-premium-funksiyalari">функции Premium</a> · <a href="/ru/blog/telegram-gift-collectible-upgrade">Collectible Gifts</a></p>
 

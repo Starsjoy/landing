@@ -1,10 +1,11 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { starsPrice, fmt, PRICE_NOTE } from '../../../lib/prices';
 
 const faqs = [
   { q: "What is the new Telegram Halloween gift?", a: "It's the Halloween Bear, a zombie bear with a pumpkin for a head. It was released overnight on October 31, 2026, at about 02:54 Tashkent time. It costs 50 Stars and has unlimited supply." },
   { q: "Where can I get the Halloween Bear?", a: "In Telegram's gift catalog and in the StarsJoy Mini App. In @starsjoybot, open the Gift section and pay 13,000 UZS with an Uzcard or Humo card. In Telegram itself you need 50 Stars." },
-  { q: "How much is the Halloween Bear in Uzbekistan?", a: "13,000 UZS in the StarsJoy Mini App, where the gift is sent directly. If you buy 50 Stars separately and send it yourself in Telegram, it comes to 12,000 UZS." },
+  { q: "How much is the Halloween Bear in Uzbekistan?", a: `13,000 UZS in the StarsJoy Mini App, where the gift is sent directly. If you buy 50 Stars separately and send it yourself in Telegram, it comes to ${fmt(starsPrice(50))} UZS.` },
   { q: "Can I buy the Halloween Bear for myself?", a: "Yes. In the StarsJoy Mini App, enter your own username as the recipient." },
   { q: "Do I need an international card or a VPN?", a: "No. StarsJoy payments are transfers from an Uzcard or Humo card. Only a username is needed: no password or SMS code is ever requested." },
   { q: "How long will the Halloween Bear be on sale?", a: "Telegram hasn't announced an end date. Earlier seasonal bears sold only briefly: the August 2026 bear appeared on August 12 and was gone from the catalog by August 17." },
@@ -23,6 +24,7 @@ const faqs = [
   description="Telegram's new Halloween Bear gift costs 50 Stars. Get it in Uzbekistan for 13,000 UZS with Uzcard or Humo: where to find it, how to buy it and when sales end."
   keywords="telegram halloween bear, telegram halloween gift, new telegram gift, pumpkin bear telegram, zombie bear telegram, where to get halloween bear, halloween bear price"
   publishDate="2026-10-31"
+  modifiedDate="2026-11-15"
   ogImage="https://starsjoy.uz/images/telegram-halloween-bear-og.png"
   uzHref="https://starsjoy.uz/blog/telegram-halloween-bear"
   ruHref="https://starsjoy.uz/ru/blog/telegram-halloween-bear"
@@ -133,25 +135,26 @@ const faqs = [
       <li>Find the Halloween Bear in the catalog.</li>
       <li>Add a message or hide your name, then pay 50 Stars.</li>
     </ol>
-    <p>If you're short of Stars, <a href="/en/stars">buy them from StarsJoy with Uzcard or Humo</a>. The minimum is 50 Stars, which is 12,000 UZS.</p>
+    <p>If you're short of Stars, <a href="/en/stars">buy them from StarsJoy with Uzcard or Humo</a>. The minimum is 50 Stars, which is {fmt(starsPrice(50))} UZS.</p>
   </section>
 
   <section>
     <h2>Which is cheaper: Stars or a ready-made gift?</h2>
-    <p>On a single gift the difference is 1,000 UZS, and sending it yourself is cheaper. A ready-made gift saves a few steps and doesn't require buying Stars. For several gifts, the <a href="/en/stars/100">100 Stars pack</a> is handier.</p>
+    <p>On a single gift the difference is {fmt(13000 - starsPrice(50))} UZS, and sending it yourself is cheaper. A ready-made gift saves a few steps and doesn't require buying Stars. For several gifts, the <a href="/en/stars/100">100 Stars pack</a> is handier.</p>
     <div class="post-table-wrap">
       <table class="post-table">
         <thead>
           <tr><th>Quantity</th><th>Ready-made gift (Mini App)</th><th>Stars, sent by you</th></tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td>13,000 UZS</td><td>12,000 UZS (50 Stars)</td></tr>
-          <tr><td>3</td><td>39,000 UZS</td><td>36,000 UZS (150 Stars)</td></tr>
-          <tr><td>5</td><td>65,000 UZS</td><td>60,000 UZS (250 Stars)</td></tr>
+          <tr><td>1</td><td>13,000 UZS</td><td>{fmt(starsPrice(50))} UZS (50 Stars)</td></tr>
+          <tr><td>3</td><td>39,000 UZS</td><td>{fmt(starsPrice(150))} UZS (150 Stars)</td></tr>
+          <tr><td>5</td><td>65,000 UZS</td><td>{fmt(starsPrice(250))} UZS (250 Stars)</td></tr>
         </tbody>
       </table>
     </div>
     <p>In the Telegram app, 50 Stars cost about $1, but the App Store or Google Play usually asks for an international card. <a href="/en/stars">StarsJoy Stars prices</a> are in Uzbek som.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>

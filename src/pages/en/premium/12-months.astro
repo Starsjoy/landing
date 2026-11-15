@@ -4,22 +4,27 @@ import NavbarEn from '../../../components/NavbarEn.astro';
 import FooterEn from '../../../components/FooterEn.astro';
 import VariantPage from '../../../components/VariantPage.astro';
 import { hreflangsFor } from '../../../lib/i18n';
+import { PREMIUM_PRICE, premiumPerMonth, fmt, PRICE_NOTE } from '../../../lib/prices';
+
+/** Oylik narx, yuzlikkacha yaxlitlangan: 59667 → "59,700". */
+const pm = (m: 3 | 6 | 12) => fmt(Math.round(premiumPerMonth(m) / 100) * 100);
+const save12vs3 = Math.round((1 - PREMIUM_PRICE[12] / 12 / (PREMIUM_PRICE[3] / 3)) * 100);
 
 const canonical = "https://starsjoy.uz/en/premium/12-months";
-const title = "Buy Telegram Premium 12 Months — 422,000 UZS | StarsJoy";
-const description = "Telegram Premium for 12 months (a full year) costs 422,000 UZS in Uzbekistan, about 35,200 UZS/month — the best value plan. Pay with Uzcard, Humo or Click, activated in about 10 seconds.";
+const title = `Buy Telegram Premium 12 Months — ${fmt(PREMIUM_PRICE[12])} UZS | StarsJoy`;
+const description = `Telegram Premium for 12 months (a full year) costs ${fmt(PREMIUM_PRICE[12])} UZS in Uzbekistan, about ${pm(12)} UZS/month — the best value plan. Pay with Uzcard, Humo or Click, activated in about 10 seconds.`;
 
 const faqs = [
   {
     q: "Where can I buy Telegram Premium for 12 months (a year) at the cheapest price?",
-    a: "StarsJoy — through @starsjoybot. Pay 422,000 UZS via Uzcard, Humo or Click, activated in about 10 seconds. This is the lowest per-month price available (~35,200 UZS/month)."
+    a: `StarsJoy — through @starsjoybot. Pay ${fmt(PREMIUM_PRICE[12])} UZS via Uzcard, Humo or Click, activated in about 10 seconds. This is the lowest per-month price among StarsJoy plans (~${pm(12)} UZS/month).`
   },
   {
     q: "How much cheaper is the 12-month plan compared to 3 months?",
-    a: "The 3-month plan costs about 57,300 UZS/month, the 12-month plan about 35,200 UZS/month — roughly a 38% saving per month. If you plan to use Premium all year, this is the cheapest route."
+    a: `The 3-month plan costs about ${pm(3)} UZS/month, the 12-month plan about ${pm(12)} UZS/month — roughly a ${save12vs3}% saving per month. If you plan to use Premium all year, this is the cheapest route.`
   },
   {
-    q: "Are there any card-limit issues paying 422,000 UZS at once with Uzcard/Humo?",
+    q: `Are there any card-limit issues paying ${fmt(PREMIUM_PRICE[12])} UZS at once with Uzcard/Humo?`,
     a: "Possibly — Uzbek bank cards sometimes have a daily or monthly transaction limit. If the full amount doesn't go through in one payment, try Click or Payme instead, or check your limit with your bank beforehand."
   },
   {
@@ -32,7 +37,7 @@ const faqs = [
   },
   {
     q: "If I gift the 12-month plan to a friend, does the price change?",
-    a: "No, the gift price is the same as a regular purchase (422,000 UZS) — the recipient pays nothing."
+    a: `No, the gift price is the same as a regular purchase (${fmt(PREMIUM_PRICE[12])} UZS) — the recipient pays nothing.`
   }
 ];
 
@@ -76,13 +81,13 @@ const related = [
     currentLabel="12 months"
     eyebrow="Telegram Premium — 12 months"
     h1="Buy Telegram Premium for 12 Months (a Full Year)"
-    quickAnswer="Telegram Premium for 12 months costs 422,000 UZS (~35,200 UZS/month) — the best value plan, activated via @starsjoybot in about 10 seconds."
-    heroNote="For regular Premium users — the lowest per-month price, roughly 38% cheaper per month than the 3-month plan."
+    quickAnswer={`Telegram Premium for 12 months costs ${fmt(PREMIUM_PRICE[12])} UZS (~${pm(12)} UZS/month) — the best value plan, activated via @starsjoybot in about 10 seconds.`}
+    heroNote={`For regular Premium users — the lowest per-month price, roughly ${save12vs3}% cheaper per month than the 3-month plan. ${PRICE_NOTE.en}`}
     siblingsTitle="Other terms"
     siblings={siblings}
     priceLabel="Price"
-    priceValue="422,000 UZS"
-    priceSubtext="~35,200 UZS/month — best value"
+    priceValue={`${fmt(PREMIUM_PRICE[12])} UZS`}
+    priceSubtext={`~${pm(12)} UZS/month — best value`}
     ctaLabel="Buy Premium — 12 months"
     ctaHref="https://telegram.me/starsjoybot"
     forWhomTitle="Who is this for?"
@@ -94,11 +99,11 @@ const related = [
     relatedTitle="More about Telegram Premium"
     related={related}
     finalCtaTitle="Ready for 12 months of Premium?"
-    finalCtaText="422,000 UZS, pay with Uzcard/Click, activated in about 10 seconds"
+    finalCtaText={`${fmt(PREMIUM_PRICE[12])} UZS, pay with Uzcard/Click, activated in about 10 seconds`}
     finalCtaLabel="Buy now"
     schemaName="Telegram Premium — 12-month subscription"
     schemaDescription={description}
-    priceAmount="422000"
+    priceAmount={String(PREMIUM_PRICE[12])}
     breadcrumbSchema={[
       { name: "Home", item: "https://starsjoy.uz/en" },
       { name: "Telegram Premium", item: "https://starsjoy.uz/en/premium" },

@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Telegram Premium через Click и Payme (2026) | StarsJoy Блог";
-const description = "Как получить Telegram Premium через Click или Payme: цены на 3, 6 и 12 месяцев (от 172 000 сумов), комиссия за перевод, шаги и что делать при сбое оплаты.";
+const description = `Как получить Telegram Premium через Click или Payme: цены на 3, 6 и 12 месяцев (от ${fmtS(PREMIUM_PRICE[3])} сумов), комиссия за перевод, шаги и что делать при сбое оплаты.`;
 const publishDate = "2026-10-10";
-const modifiedDate = "2026-10-10";
+const modifiedDate = "2026-11-15";
 const wordCount = 1350;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-click-payme";
 ---
@@ -99,12 +100,12 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-click-payme";
       {
         "@type": "Question",
         "name": "Сколько стоит Premium при оплате через Click и Payme?",
-        "acceptedAnswer": { "@type": "Answer", "text": "В StarsJoy 3 месяца стоят 172 000 сумов, 6 месяцев — 232 000 сумов, 12 месяцев — 422 000 сумов. От того, из какого приложения вы платите, цена Premium не меняется." }
+        "acceptedAnswer": { "@type": "Answer", "text": `В StarsJoy 3 месяца стоят ${fmtS(PREMIUM_PRICE[3])} сумов, 6 месяцев — ${fmtS(PREMIUM_PRICE[6])} сумов, 12 месяцев — ${fmtS(PREMIUM_PRICE[12])} сумов. От того, из какого приложения вы платите, цена Premium не меняется.` }
       },
       {
         "@type": "Question",
         "name": "Берут ли Click и Payme комиссию?",
-        "acceptedAnswer": { "@type": "Answer", "text": "StarsJoy комиссию не добавляет. Но Click и Payme за перевод с карты на карту обычно берут около 1,1% — на тарифе 12 месяцев это примерно 4 600 сумов. Точная сумма показывается в приложении до подтверждения перевода." }
+        "acceptedAnswer": { "@type": "Answer", "text": "StarsJoy комиссию не добавляет. Но Click и Payme за перевод с карты на карту обычно берут около 1,1% — на тарифе 12 месяцев это примерно 4 700 сумов. Точная сумма показывается в приложении до подтверждения перевода." }
       },
       {
         "@type": "Question",
@@ -124,7 +125,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-click-payme";
       {
         "@type": "Question",
         "name": "Деньги списались, а Premium не включился — что делать?",
-        "acceptedAnswer": { "@type": "Answer", "text": "В течение 24 часов отправьте чек оплаты в @starsjoy_bot (поддержка). Если заказ не выполнен по технической причине, деньги возвращаются полностью." }
+        "acceptedAnswer": { "@type": "Answer", "text": "В течение 24 часов отправьте чек оплаты в @StarsjoySupport (поддержка). Если заказ не выполнен по технической причине, деньги возвращаются полностью." }
       },
       {
         "@type": "Question",
@@ -174,13 +175,13 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-click-payme";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Коротко">
-            <strong>Коротко:</strong> Да, Telegram Premium можно получить через Click или Payme. В <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> выберите срок и укажите username, бот покажет номер карты и сумму — переведите её на эту карту из Click или Payme. Цены: 3 месяца — <strong>172 000</strong>, 6 месяцев — <strong>232 000</strong>, 12 месяцев — <strong>422 000 сумов</strong>. Premium обычно активируется за <strong>10 секунд</strong>.
+            <strong>Коротко:</strong> Да, Telegram Premium можно получить через Click или Payme. В <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> выберите срок и укажите username, бот покажет номер карты и сумму — переведите её на эту карту из Click или Payme. Цены: 3 месяца — <strong>{fmtS(PREMIUM_PRICE[3])}</strong>, 6 месяцев — <strong>{fmtS(PREMIUM_PRICE[6])}</strong>, 12 месяцев — <strong>{fmtS(PREMIUM_PRICE[12])} сумов</strong>. Premium обычно активируется за <strong>10 секунд</strong>.
           </div>
 
           <section>
             <h2>Главные цифры</h2>
             <ul>
-              <li><strong>Цены:</strong> 3 месяца — 172 000, 6 месяцев — 232 000, 12 месяцев — 422 000 сумов;</li>
+              <li><strong>Цены:</strong> 3 месяца — {fmtS(PREMIUM_PRICE[3])}, 6 месяцев — {fmtS(PREMIUM_PRICE[6])}, 12 месяцев — {fmtS(PREMIUM_PRICE[12])} сумов;</li>
               <li><strong>Способ оплаты:</strong> перевод из Click или Payme на карту, которую покажет бот;</li>
               <li><strong>Карты:</strong> Uzcard и Humo, международная карта не нужна;</li>
               <li><strong>Комиссия приложения:</strong> обычно около 1,1%, сам StarsJoy комиссию не добавляет;</li>
@@ -220,12 +221,13 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-click-payme";
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td><a href="/ru/premium/3-oy">3 месяца</a></td><td>172 000 сумов</td><td>~57 300 сумов</td><td>+ ~1 900 сумов</td></tr>
-                  <tr><td><a href="/ru/premium/6-oy">6 месяцев</a></td><td>232 000 сумов</td><td>~38 700 сумов</td><td>+ ~2 600 сумов</td></tr>
-                  <tr><td><a href="/ru/premium/12-oy">12 месяцев</a></td><td>422 000 сумов</td><td>~35 200 сумов</td><td>+ ~4 600 сумов</td></tr>
+                  <tr><td><a href="/ru/premium/3-oy">3 месяца</a></td><td>{fmtS(PREMIUM_PRICE[3])} сумов</td><td>~59 700 сумов</td><td>+ ~2 000 сумов</td></tr>
+                  <tr><td><a href="/ru/premium/6-oy">6 месяцев</a></td><td>{fmtS(PREMIUM_PRICE[6])} сумов</td><td>~39 800 сумов</td><td>+ ~2 600 сумов</td></tr>
+                  <tr><td><a href="/ru/premium/12-oy">12 месяцев</a></td><td>{fmtS(PREMIUM_PRICE[12])} сумов</td><td>~35 800 сумов</td><td>+ ~4 700 сумов</td></tr>
                 </tbody>
               </table>
             </div>
+            <p><small>{PRICE_NOTE.ru}</small></p>
             <p>Цены определяются по тарифу на момент заказа — перед оплатой сверьтесь с суммой в боте. Подробный расчёт по тарифам: <a href="/ru/blog/telegram-premium-6-oylik-narxi">цена Premium на 6 месяцев</a>, <a href="/ru/blog/telegram-premium-12-oylik">Premium на 12 месяцев</a> и <a href="/ru/blog/telegram-premium-3-oylik-sotib-olish">Premium на 3 месяца</a>.</p>
             <p><strong>Уже выбрали тариф?</strong> <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Откройте @starsjoybot</a> — оформите заказ и оплатите из Click или Payme, Premium обычно включается за 10 секунд.</p>
           </section>
@@ -284,7 +286,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-click-payme";
               <li><strong>Не хватает средств.</strong> Проверьте, что на карте достаточно денег на цену Premium и комиссию.</li>
               <li><strong>Исчерпан лимит.</strong> Если в этот день вы уже делали крупные переводы, дневного лимита может не хватить. Оплатите с другой карты или из другого приложения. Подробнее для годового тарифа: <a href="/ru/blog/telegram-premium-12-oylik-uzcard-humo-bilan">Premium на 12 месяцев и лимит карты</a>.</li>
               <li><strong>Отправлена неверная сумма.</strong> Сумму, отличную от указанной в боте, система не распознает. В этом случае напишите в поддержку и приложите чек.</li>
-              <li><strong>Деньги списались, Premium не включился.</strong> В течение 24 часов отправьте чек оплаты в <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a>.</li>
+              <li><strong>Деньги списались, Premium не включился.</strong> В течение 24 часов отправьте чек оплаты в <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a>.</li>
             </ul>
           </section>
 
@@ -298,7 +300,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-click-payme";
             <p>Согласно оферте StarsJoy:</p>
             <ul>
               <li>Если оплата прошла, а заказ не выполнен по технической причине, — <strong>деньги возвращаются полностью</strong>;</li>
-              <li>Для этого в течение <strong>24 часов</strong> отправьте чек оплаты через @starsjoy_bot;</li>
+              <li>Для этого в течение <strong>24 часов</strong> отправьте чек оплаты через @StarsjoySupport;</li>
               <li>Если указан неверный username и Premium включился у другого человека, деньги не возвращаются. Проверьте username дважды перед оплатой.</li>
             </ul>
             <p>Это разовый перевод: автопродления нет, и позже с карты ничего не спишут. Подробнее: <a href="/ru/blog/starsjoy-ishonchli-sharhlar-kafolat">Надёжен ли StarsJoy? Отзывы и гарантии</a>.</p>
@@ -306,7 +308,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-click-payme";
 
           <div class="cta-box">
             <h2>Получите Premium через Click или Payme</h2>
-            <p>От 172 000 сумов, картой Uzcard или Humo, обычно активируется за 10 секунд.</p>
+            <p>От {fmtS(PREMIUM_PRICE[3])} сумов, картой Uzcard или Humo, обычно активируется за 10 секунд.</p>
             <a class="cta-btn" href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Открыть @starsjoybot</a>
             <p class="cta-sub"><a href="/ru/premium/3-oy">3 месяца</a> · <a href="/ru/premium/6-oy">6 месяцев</a> · <a href="/ru/premium/12-oy">12 месяцев</a> · <a href="/ru/premium">Все тарифы Premium</a></p>
           </div>
@@ -320,11 +322,11 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-click-payme";
               </div>
               <div class="post-faq-item">
                 <h3>Сколько стоит Premium при оплате через Click и Payme?</h3>
-                <p>3 месяца — 172 000 сумов, 6 месяцев — 232 000 сумов, 12 месяцев — 422 000 сумов. Приложение для оплаты на цену не влияет.</p>
+                <p>3 месяца — {fmtS(PREMIUM_PRICE[3])} сумов, 6 месяцев — {fmtS(PREMIUM_PRICE[6])} сумов, 12 месяцев — {fmtS(PREMIUM_PRICE[12])} сумов. Приложение для оплаты на цену не влияет.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Берут ли Click и Payme комиссию?</h3>
-                <p>StarsJoy комиссию не добавляет. Click и Payme за перевод с карты на карту обычно берут около 1,1% — на 12 месяцах это примерно 4 600 сумов. Точная сумма видна до подтверждения.</p>
+                <p>StarsJoy комиссию не добавляет. Click и Payme за перевод с карты на карту обычно берут около 1,1% — на 12 месяцах это примерно 4 700 сумов. Точная сумма видна до подтверждения.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Что лучше — Click или Payme?</h3>
@@ -340,7 +342,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-click-payme";
               </div>
               <div class="post-faq-item">
                 <h3>Деньги списались, а Premium не включился — что делать?</h3>
-                <p>В течение 24 часов отправьте чек оплаты в @starsjoy_bot. Если заказ не выполнен по технической причине, деньги вернут полностью.</p>
+                <p>В течение 24 часов отправьте чек оплаты в @StarsjoySupport. Если заказ не выполнен по технической причине, деньги вернут полностью.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Нужно ли кому-то сообщать пароль от Click или Payme?</h3>

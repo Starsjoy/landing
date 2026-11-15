@@ -4,14 +4,15 @@ import NavbarEn from '../../components/NavbarEn.astro';
 import FooterEn from '../../components/FooterEn.astro';
 import Reviews from '../../components/Reviews.astro';
 import { hreflangsFor } from '../../lib/i18n';
+import { STAR_PRICE, PREMIUM_PRICE, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Gifts — Send Premium or a Gift in Uzbekistan | StarsJoy";
 const description = "Send Telegram Gifts and gift Telegram Premium from Uzbekistan. The recipient pays nothing and you only need their username. Paid in Uzbek som with Uzcard or Humo, delivered in about 10 seconds.";
 
 const plans = [
-  { months: 3,  price: 172000, best: false },
-  { months: 6,  price: 232000, best: false },
-  { months: 12, price: 422000, best: true  },
+  { months: 3,  price: PREMIUM_PRICE[3],  best: false },
+  { months: 6,  price: PREMIUM_PRICE[6],  best: false },
+  { months: 12, price: PREMIUM_PRICE[12], best: true  },
 ];
 const fmt = (n: number) => n.toLocaleString('en-US');
 
@@ -34,7 +35,7 @@ const faqs = [
   },
   {
     q: "Can I gift Premium for 1 month?",
-    a: "No. Telegram's Gift Premium mechanism starts at 3 months, so 172,000 UZS is the smallest Premium gift. The 1-month subscription exists inside Telegram but only the account owner can enable it with an international card."
+    a: `No. Telegram's Gift Premium mechanism starts at 3 months, so ${fmt(PREMIUM_PRICE[3])} UZS is the smallest Premium gift. The 1-month subscription exists inside Telegram but only the account owner can enable it with an international card.`
   },
   {
     q: "What if I type the username wrong?",
@@ -70,8 +71,8 @@ const faqs = [
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "UZS",
-      "lowPrice": "172000",
-      "highPrice": "422000",
+      "lowPrice": String(PREMIUM_PRICE[3]),
+      "highPrice": String(PREMIUM_PRICE[12]),
       "availability": "https://schema.org/InStock",
       "offerCount": "3"
     }
@@ -211,9 +212,9 @@ const faqs = [
         </table>
       </div>
       <p class="pricing-note fade-in">
-        Telegram Gifts bought with Stars are priced separately, at the flat rate of 240 UZS per star —
-        see the <a href="/en/stars">Telegram Stars page</a>. A gifted subscription and a collectible gift
-        can both be sent from the same bot.
+        Telegram Gifts bought with Stars are priced separately in the bot; Stars themselves cost a flat
+        {STAR_PRICE} UZS each — see the <a href="/en/stars">Telegram Stars page</a>. A gifted subscription
+        and a collectible gift can both be sent from the same bot. {PRICE_NOTE.en}
       </p>
       <div class="pricing-cta fade-in">
         <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#127873; Send a gift</a>

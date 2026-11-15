@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Stars bilan nima qilish mumkin? 9 ta asosiy ishlatish yo'li (2026) | StarsJoy Blog";
 const description = "Telegram Stars'ni qayerda va nima uchun ishlatish mumkin: Gift, Premium, paid post, Mini App, paid reactions, tip, Telegram Ads (30% chegirma), Fragment marketplace — to'liq qo'llanma.";
 const publishDate = "2026-05-07";
-const modifiedDate = "2026-05-07";
+const modifiedDate = "2026-11-15";
 const wordCount = 1860;
 const canonical = "https://starsjoy.uz/blog/telegram-stars-bilan-nima-qilish-mumkin";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -99,7 +100,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Eng kam qancha Stars bilan boshlash mumkin?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Eng arzon use case — premium reactions yoki kichik tip: 1 Star = 1 reaction (1 Star = 240 so'm). 50 Stars (12 000 so'm) bilan kichik Gift (Cake, Bouquet) yuborish yoki paid post o'qish mumkin. 100 Stars (24 000 so'm) — Regular Gift (Trophy, Diamond) yoki bir necha haftalik paid kanal obunasi. Stars'ni boshlash uchun katta investitsiya kerak emas."
+          "text": `Eng arzon use case — premium reactions yoki kichik tip: 1 Star = 1 reaction (1 Star = ${STAR_PRICE} so'm). 50 Stars (${fmtS(starsPrice(50))} so'm) bilan kichik Gift (Cake, Bouquet) yuborish yoki paid post o'qish mumkin. 100 Stars (${fmtS(starsPrice(100))} so'm) — Regular Gift (Trophy, Diamond) yoki bir necha haftalik paid kanal obunasi. Stars'ni boshlash uchun katta investitsiya kerak emas.`
         }
       },
       {
@@ -164,7 +165,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Telegram Stars 9 ta asosiy yo'l bilan ishlatiladi: <strong>(1) Gift sotib olish va yuborish, (2) Premium aktivatsiyasi, (3) Paid kanal/paid post, (4) Mini App to'lovi, (5) Premium reactions, (6) Bot premium funksiyalari, (7) Kontent yaratuvchi tip, (8) Telegram Ads (30% chegirma!), (9) Fragment marketplace (username, anonymous raqam)</strong>. Eng arzon use case — 1 Star (240 so'm) bilan paid reaction yoki 15 Stars (4 500 so'm) bilan kichik Gift. Stars'ning amal muddati yo'q — sotib olib, xohlagan vaqtda ishlatasiz.
+            <strong>Qisqacha javob:</strong> Telegram Stars 9 ta asosiy yo'l bilan ishlatiladi: <strong>(1) Gift sotib olish va yuborish, (2) Premium aktivatsiyasi, (3) Paid kanal/paid post, (4) Mini App to'lovi, (5) Premium reactions, (6) Bot premium funksiyalari, (7) Kontent yaratuvchi tip, (8) Telegram Ads (30% chegirma!), (9) Fragment marketplace (username, anonymous raqam)</strong>. Eng arzon use case — 1 Star ({STAR_PRICE} so'm) bilan paid reaction yoki 15 Stars (4 500 so'm) bilan kichik Gift. Stars'ning amal muddati yo'q — sotib olib, xohlagan vaqtda ishlatasiz.
           </div>
 
           <p>Telegram Stars sotib oldingiz, lekin ular bilan aniq nima qilish kerakligi tushunarsizmi? Bu maqolada Stars'ni 2026-yilda Telegram ekosistemasida sarflash mumkin bo'lgan barcha 9 ta asosiy yo'l ko'rib chiqiladi — har biri narx, mosligi va qo'llash misollari bilan. Telegram'ning rasmiy <a href="https://telegram.org/blog/telegram-stars" target="_blank" rel="noopener nofollow">Stars hujjatiga</a> asoslangan, 2026-yil may holatiga mos.</p>
@@ -173,7 +174,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Stars'ning asosiy mantig'i</h2>
 
-          <p>Telegram Stars — Telegram ekosistemasining ichki valyutasi. Bir martagina sotib olib, Telegram ichida turli xizmatlar va tovarlarga sarflash mumkin. Mahalliy reseller bot orqali kursi <strong>1 Star = 240 so'm</strong> (mahalliy bot, Click/Payme/Uzcard/Humo orqali). Stars'ning <a href="/blog/telegram-stars-amal-muddati">amal muddati yo'q</a> — sotib olib, kerakli paytda ishlatish mumkin.</p>
+          <p>Telegram Stars — Telegram ekosistemasining ichki valyutasi. Bir martagina sotib olib, Telegram ichida turli xizmatlar va tovarlarga sarflash mumkin. Mahalliy reseller bot orqali kursi <strong>1 Star = {STAR_PRICE} so'm</strong> (mahalliy bot, Click/Payme/Uzcard/Humo orqali). Stars'ning <a href="/blog/telegram-stars-amal-muddati">amal muddati yo'q</a> — sotib olib, kerakli paytda ishlatish mumkin.</p>
 
           <p>Quyida 9 ta asosiy use case batafsil ko'rib chiqiladi.</p>
 
@@ -182,8 +183,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Eng mashhur use case. Stars bilan Telegram'ning ichki katalogidagi animatsiyali sovg'alarni sotib olib, do'st yoki kontaktga yuborish mumkin. Uch kategoriya:</p>
 
           <ul>
-            <li><strong>Regular Gifts</strong> (15–100 Stars, 4 500–24 000 so'm) — kichik tabriklar (Cake, Bouquet, Trophy, Diamond)</li>
-            <li><strong>Limited Gifts</strong> (1 000–10 000 Stars, 240 000–2 400 000 so'm) — cheklangan tirajdagi maxsus sovg'alar</li>
+            <li><strong>Regular Gifts</strong> (15–100 Stars, 4 500–{fmtS(starsPrice(100))} so'm) — kichik tabriklar (Cake, Bouquet, Trophy, Diamond)</li>
+            <li><strong>Limited Gifts</strong> (1 000–10 000 Stars, {fmtS(starsPrice(1000))}–{fmtS(starsPrice(10000))} so'm) — cheklangan tirajdagi maxsus sovg'alar</li>
             <li><strong>Unique Gifts (NFT)</strong> (5 000+ Stars) — yagona nusxa, kollektsiya uchun</li>
           </ul>
 
@@ -195,23 +196,24 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <table class="price-table">
             <thead>
-              <tr><th>Premium paket</th><th>Stars miqdori</th><th>So'mda (240 kursida)</th></tr>
+              <tr><th>Premium paket</th><th>Stars miqdori</th><th>So'mda ({STAR_PRICE} kursida)</th></tr>
             </thead>
             <tbody>
-              <tr><td>1 oy</td><td>~800–1 000 Stars</td><td>~190 000–240 000 so'm</td></tr>
-              <tr><td>3 oy</td><td>~2 500–3 000 Stars</td><td>~600 000–720 000 so'm</td></tr>
-              <tr><td>12 oy</td><td>~7 500–9 000 Stars</td><td>~1 800 000–2 160 000 so'm</td></tr>
+              <tr><td>1 oy</td><td>~800–1 000 Stars</td><td>~{fmtS(starsPrice(800))}–{fmtS(starsPrice(1000))} so'm</td></tr>
+              <tr><td>3 oy</td><td>~2 500–3 000 Stars</td><td>~{fmtS(starsPrice(2500))}–{fmtS(starsPrice(3000))} so'm</td></tr>
+              <tr><td>12 oy</td><td>~7 500–9 000 Stars</td><td>~{fmtS(starsPrice(7500))}–{fmtS(starsPrice(9000))} so'm</td></tr>
             </tbody>
           </table>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
-          <p>Lekin Stars orqali Premium olish — qo'shimcha qadam (Stars sotib olib, keyin Premium'ga aylantirish). To'g'ridan-to'g'ri so'mda Premium olish ko'pincha qulayroq va arzonroq (12 oylik to'g'ridan-to'g'ri 422 000 so'm). Tafsilot va paketlar taqqoslash — <a href="/blog/telegram-premium-paketlar-taqqoslash">Premium paketlar taqqoslash</a> maqolasida.</p>
+          <p>Lekin Stars orqali Premium olish — qo'shimcha qadam (Stars sotib olib, keyin Premium'ga aylantirish). To'g'ridan-to'g'ri so'mda Premium olish ko'pincha qulayroq va arzonroq (12 oylik to'g'ridan-to'g'ri {fmtS(PREMIUM_PRICE[12])} so'm). Tafsilot va paketlar taqqoslash — <a href="/blog/telegram-premium-paketlar-taqqoslash">Premium paketlar taqqoslash</a> maqolasida.</p>
 
           <h2>3. Paid kanal obuna va paid post</h2>
 
           <p>Telegram'da kontent yaratuvchilar (kanal egalari) o'z kontenti uchun Stars haqi qo'yishi mumkin. Foydalanuvchi sifatida siz:</p>
 
           <ul>
-            <li><strong>Paid post o'qish</strong> — alohida xabar uchun Stars to'lash (10–100 Stars, 2 400–24 000 so'm)</li>
+            <li><strong>Paid post o'qish</strong> — alohida xabar uchun Stars to'lash (10–100 Stars, {fmtS(starsPrice(10))}–{fmtS(starsPrice(100))} so'm)</li>
             <li><strong>Paid kanal obunasi</strong> — oylik obuna qilib eksklyuziv kontentga kirish (50–500 Stars/oy)</li>
             <li><strong>Sticker pack sotib olish</strong> — kontent yaratuvchining maxsus sticker setlarini olish</li>
           </ul>
@@ -235,7 +237,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>5. Premium reactions</h2>
 
-          <p>Oddiy foydalanuvchi har xabarga 1 ta reaction qo'ya oladi (👍 yoki ❤️). Stars bilan paid reactions — <strong>1 Star = 1 reaction</strong> (240 so'm). Bir xabarga ko'p reaction yig'ib qo'yish — kontent yaratuvchini qo'llab-quvvatlash yoki muhim xabarga e'tibor qaratish uchun.</p>
+          <p>Oddiy foydalanuvchi har xabarga 1 ta reaction qo'ya oladi (👍 yoki ❤️). Stars bilan paid reactions — <strong>1 Star = 1 reaction</strong> ({STAR_PRICE} so'm). Bir xabarga ko'p reaction yig'ib qo'yish — kontent yaratuvchini qo'llab-quvvatlash yoki muhim xabarga e'tibor qaratish uchun.</p>
 
           <p>Paid reactions — anonim. Kontent yaratuvchi qancha reaction olganini ko'radi, lekin kim qo'yganini emas. Kanal egalari uchun bu Stars daromadining bir manbai.</p>
 
@@ -256,7 +258,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Stars'ni live-stream, voice chat yoki kontent yaratuvchi profiliga to'g'ridan-to'g'ri yuborish — tip yoki donat sifatida. O'qituvchilar, blogerlar, streamerlar va shou ijodkorlari uchun yangi monetizatsiya yo'li.</p>
 
-          <p>Tip miqdori — 10 Stars (kichik rahmat, 2 400 so'm) dan 1 000+ Stars (240 000+ so'm) gacha. Yuborish bir tugmada — kontakt profilining "Send Stars" tugmasi orqali.</p>
+          <p>Tip miqdori — 10 Stars (kichik rahmat, {fmtS(starsPrice(10))} so'm) dan 1 000+ Stars ({fmtS(starsPrice(1000))}+ so'm) gacha. Yuborish bir tugmada — kontakt profilining "Send Stars" tugmasi orqali.</p>
 
           <h2>8. Telegram Ads — 30% chegirma! (biznes uchun)</h2>
 
@@ -287,7 +289,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li><strong>NFT Gifts</strong> — boshqa foydalanuvchilarning Unique Gift'larini sotib olish</li>
           </ul>
 
-          <p>Fragment narxlari katta diapazonda: oddiy username 5 000 Stars (1 200 000 so'm) atrofida boshlanadi, premium username 50 000+ Stars (12 000 000+ so'm) gacha. Anonymous Number — taxminan 1 250 Stars (300 000 so'm).</p>
+          <p>Fragment narxlari katta diapazonda: oddiy username 5 000 Stars ({fmtS(starsPrice(5000))} so'm) atrofida boshlanadi, premium username 50 000+ Stars ({fmtS(starsPrice(50000))}+ so'm) gacha. Anonymous Number — taxminan 1 250 Stars ({fmtS(starsPrice(1250))} so'm).</p>
 
           <h2>Stars'ni cash out qilish mumkinmi?</h2>
 
@@ -344,7 +346,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Eng kam qancha Stars bilan boshlash mumkin?</h3>
-              <p>1 Star (240 so'm) bilan paid reaction yoki kichik tip. 50 Stars (12 000 so'm) bilan kichik Gift (Cake, Bouquet) yoki paid post. 100 Stars (24 000 so'm) — Regular Gift yoki bir necha haftalik paid kanal obunasi. Boshlash uchun katta investitsiya kerak emas.</p>
+              <p>1 Star ({STAR_PRICE} so'm) bilan paid reaction yoki kichik tip. 50 Stars ({fmtS(starsPrice(50))} so'm) bilan kichik Gift (Cake, Bouquet) yoki paid post. 100 Stars ({fmtS(starsPrice(100))} so'm) — Regular Gift yoki bir necha haftalik paid kanal obunasi. Boshlash uchun katta investitsiya kerak emas.</p>
             </div>
             <div class="post-faq-item">
               <h3>Stars Telegram Ads'da 30% chegirma rostmi?</h3>
@@ -362,7 +364,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Xulosa</h2>
 
-          <p>Telegram Stars 2026-yilga kelib Telegram ekosistemasining markaziy ichki valyutasiga aylandi: 9 ta asosiy use case orqali Gift, Premium, paid kontent, Mini App, reactions, bot funksiyalar, tip, reklama va Fragment marketplace'da ishlatiladi. Eng kam 1 Star (240 so'm) bilan boshlash mumkin — paid reaction yoki kichik tip uchun.</p>
+          <p>Telegram Stars 2026-yilga kelib Telegram ekosistemasining markaziy ichki valyutasiga aylandi: 9 ta asosiy use case orqali Gift, Premium, paid kontent, Mini App, reactions, bot funksiyalar, tip, reklama va Fragment marketplace'da ishlatiladi. Eng kam 1 Star ({STAR_PRICE} so'm) bilan boshlash mumkin — paid reaction yoki kichik tip uchun.</p>
 
           <p>Eng katta foyda biznes egalari uchun Telegram Ads (30% chegirma), kontent yaratuvchilar uchun yangi monetizatsiya yo'llari (paid post, tip), va oddiy foydalanuvchi uchun Gift va Mini App'lar bilan tabiiy ekosistema ichidagi to'lov qulayligi.</p>
 

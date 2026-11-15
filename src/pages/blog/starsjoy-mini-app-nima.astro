@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE } from '../../lib/prices';
 
 const title = "Starsjoy bot mi yoki Mini App? Asl ko'rinishi va farqi (2026) | StarsJoy Blog";
 const description = "Starsjoy — Telegram Mini App'i (oddiy bot emas). Ilova ichida Dashboard, Stars/Premium/Gifts kartalar, Profile va History. Bot vs Mini App farqi, Starsjoy ichida nima borligi, ochish bosqichlari va texnik tafsilot.";
 const publishDate = "2026-05-15";
-const modifiedDate = "2026-05-15";
+const modifiedDate = "2026-11-15";
 const wordCount = 1850;
 const canonical = "https://starsjoy.uz/blog/starsjoy-mini-app-nima";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -78,8 +79,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
     "offers": {
       "@type": "Offer",
       "priceCurrency": "UZS",
-      "price": "240",
-      "description": "1 Star = 240 so'm (reseller kursi, 2026 holatiga to'g'ri)"
+      "price": String(STAR_PRICE),
+      "description": "1 Star = " + STAR_PRICE + " so'm (reseller kursi, 2026 holatiga to'g'ri)"
     },
     "provider": {
       "@type": "Organization",

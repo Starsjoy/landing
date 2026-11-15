@@ -1,5 +1,10 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { PREMIUM_PRICE, fmt, PRICE_NOTE } from '../../../lib/prices';
+
+const P3 = PREMIUM_PRICE[3], P6 = PREMIUM_PRICE[6], P12 = PREMIUM_PRICE[12];
+/** Oylik narx, 100 so'mgacha yaxlitlangan. */
+const pm = (m: 3 | 6 | 12) => Math.round(PREMIUM_PRICE[m] / m / 100) * 100;
 
 const faqs = [
   {
@@ -24,7 +29,7 @@ const faqs = [
   },
   {
     q: "How much does Telegram Premium cost in Uzbekistan?",
-    a: "Through StarsJoy: 172,000 UZS for 3 months, 232,000 UZS for 6 months, 422,000 UZS for 12 months, paid in som with Uzcard or Humo. There is no 1-month plan — Telegram's Gift Premium mechanism starts at 3 months."
+    a: `Through StarsJoy: ${fmt(P3)} UZS for 3 months, ${fmt(P6)} UZS for 6 months, ${fmt(P12)} UZS for 12 months, paid in som with Uzcard or Humo. There is no 1-month plan — Telegram's Gift Premium mechanism starts at 3 months.`
   }
 ];
 ---
@@ -38,6 +43,7 @@ const faqs = [
   description="Every Telegram Premium feature in 2026, grouped by what it changes: files and media, chats and reading, personalisation, channels and business. Plus the three things Premium does not do, which people assume it does."
   keywords="telegram premium features, what does telegram premium give, telegram premium benefits, telegram premium 4gb, telegram premium worth it"
   publishDate="2026-08-07"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-premium-funksiyalari"
   ruHref="https://starsjoy.uz/ru/blog/telegram-premium-funksiyalari"
   faqs={faqs}
@@ -104,7 +110,8 @@ const faqs = [
   <section>
     <h2>So is it worth it?</h2>
     <p>A straightforward test: if you have ever had to compress a file, split an archive, or wait out a throttled download, Premium pays for itself in saved time. If you mostly read channels and chat, the ad removal and doubled limits are pleasant but not transformative — and you might get more value from <a href="/en/stars">Stars</a> instead, which is what you actually spend inside channels and bots.</p>
-    <p>On price, the 12-month plan is the only one worth calculating: at 422,000 UZS it works out to roughly 35,200 UZS per month, against about 57,300 UZS on the 3-month plan. Full pricing on the <a href="/en/premium">Telegram Premium page</a>.</p>
+    <p>On price, the 12-month plan is the only one worth calculating: at {fmt(P12)} UZS it works out to roughly {fmt(pm(12))} UZS per month, against about {fmt(pm(3))} UZS on the 3-month plan. Full pricing on the <a href="/en/premium">Telegram Premium page</a>.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>

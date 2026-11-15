@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegramda kanalga pullik obuna: Stars bilan qanday ishlaydi (2026) | StarsJoy Blog";
 const description = "Telegram kanaliga oylik pullik obuna (channel subscription) Stars orqali qanday sozlanadi va qanday obuna bo'linadi: narx belgilash, bekor qilish, Stars qayerga tushadi va paid postdan farqi.";
@@ -28,7 +29,7 @@ const publishDate = "2026-09-09";
     "headline": "Telegramda kanalga pullik obuna: Stars bilan qanday ishlaydi (2026)",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": "2026-11-15",
     "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
     "publisher": {
       "@type": "Organization",
@@ -80,7 +81,7 @@ const publishDate = "2026-09-09";
       {
         "@type": "Question",
         "name": "Obuna narxini qancha qilib belgilash kerak?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Odatiy amaliyot — 50 dan 500 Stars/oygacha (12 000 – 120 000 so'm). Kichik auditoriya yoki yangi kanal uchun past narxdan boshlash, natijaga qarab asta oshirish tavsiya etiladi." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Odatiy amaliyot — 50 dan 500 Stars/oygacha (" + fmtS(starsPrice(50)) + " – " + fmtS(starsPrice(500)) + " so'm). Kichik auditoriya yoki yangi kanal uchun past narxdan boshlash, natijaga qarab asta oshirish tavsiya etiladi." }
       },
       {
         "@type": "Question",
@@ -119,7 +120,8 @@ const publishDate = "2026-09-09";
         <div class="post-content">
 
           <section>
-            <p class="post-lead"><strong>Qisqa javob:</strong> Telegram kanal egasi <strong>oylik narxni Stars'da</strong> belgilab, eksklyuziv kontentni faqat pullik obunachilarga ochishi mumkin. Bu <a href="/blog/telegram-channel-paid-post-yaratish">paid post</a>dan farq qiladi — u bir martalik to'lov, obuna esa har oy avtomatik yechiladigan takrorlanuvchi to'lov. Odatiy narx oralig'i — 50–500 Stars/oy (12 000–120 000 so'm), Stars 100% kanal hisobiga tushadi.</p>
+            <p class="post-lead"><strong>Qisqa javob:</strong> Telegram kanal egasi <strong>oylik narxni Stars'da</strong> belgilab, eksklyuziv kontentni faqat pullik obunachilarga ochishi mumkin. Bu <a href="/blog/telegram-channel-paid-post-yaratish">paid post</a>dan farq qiladi — u bir martalik to'lov, obuna esa har oy avtomatik yechiladigan takrorlanuvchi to'lov. Odatiy narx oralig'i — 50–500 Stars/oy ({fmtS(starsPrice(50))}–{fmtS(starsPrice(500))} so'm), Stars 100% kanal hisobiga tushadi.</p>
+            <p><small>{PRICE_NOTE.uz}</small></p>
           </section>
 
           <section>

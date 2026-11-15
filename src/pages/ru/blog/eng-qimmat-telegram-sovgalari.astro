@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Самые дорогие подарки Telegram 2026: ТОП-10 и рекордные цены | StarsJoy Blog";
 const description = "Самые дорогие подарки Telegram по данным Fragment: ТОП-10 коллекций, рекордные продажи, механика редкости и примерная стоимость в сумах (август 2026).";
 const publishDate = "2026-08-12";
-const modifiedDate = "2026-08-12";
+const modifiedDate = "2026-11-15";
 const wordCount = 1620;
 const canonical = "https://starsjoy.uz/ru/blog/eng-qimmat-telegram-sovgalari";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -145,7 +146,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Можно ли купить дорогой collectible-подарок из Узбекистана?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Покупка на вторичном рынке (Fragment и другие площадки) требует кошелька с GRAM — Uzcard или Humo напрямую не принимаются. Более реальный путь: купить Stars или обычный подарок в сумах через @starsjoybot (1 Star = 240 сумов, доставка обычно 10 секунд), а затем улучшить подарок до Collectible в приложении Telegram. Traits выпадают случайно — редкая комбинация возможна, но не гарантирована."
+          "text": "Покупка на вторичном рынке (Fragment и другие площадки) требует кошелька с GRAM — Uzcard или Humo напрямую не принимаются. Более реальный путь: купить Stars или обычный подарок в сумах через @starsjoybot (1 Star = " + STAR_PRICE + " сумов, доставка обычно 10 секунд), а затем улучшить подарок до Collectible в приложении Telegram. Traits выпадают случайно — редкая комбинация возможна, но не гарантирована."
         }
       },
       {
@@ -379,9 +380,10 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Более реальный путь состоит из двух шагов:</p>
           <ol>
-            <li>Купите <strong>Stars или обычный подарок</strong> в сумах через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> — оплата с Uzcard/Humo через Click или Payme, 1 Star = 240 сумов, доставка обычно 10 секунд (при высокой нагрузке может занять немного дольше).</li>
+            <li>Купите <strong>Stars или обычный подарок</strong> в сумах через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> — оплата с Uzcard/Humo через Click или Payme, 1 Star = {STAR_PRICE} сумов, доставка обычно 10 секунд (при высокой нагрузке может занять немного дольше).</li>
             <li>Улучшите подарок до <strong>Collectible</strong> в приложении Telegram. Traits выпадают случайно — если повезёт, вы получите редкую комбинацию.</li>
           </ol>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
           <p class="natural-cta"><strong>Честное предупреждение:</strong> результат апгрейда — <strong>случайность</strong>. Выпадение редкого traits не гарантировано, и мы не рекомендуем это как «способ заработка». Покупайте подарок прежде всего как подарок; прибыль от перепродажи — негарантированная вероятность. Сколько стоит какой подарок: <a href="/ru/blog/telegram-gifts-narxi-royxati">список цен Telegram Gifts</a>, как купить: <a href="/ru/blog/telegram-gifts-bot-orqali">покупка Gifts через бота</a>, страница товара: <a href="/ru/gifts">Telegram Gifts</a>.</p>
 
@@ -428,7 +430,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Можно ли купить дорогой collectible из Узбекистана?</h3>
-              <p>На вторичном рынке нужен кошелёк с GRAM — Uzcard/Humo напрямую не принимаются. Более реальный путь: купить Stars или обычный подарок в сумах через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> (1 Star = 240 сумов, обычно 10 секунд), затем улучшить подарок до Collectible в Telegram. Traits выпадают случайно.</p>
+              <p>На вторичном рынке нужен кошелёк с GRAM — Uzcard/Humo напрямую не принимаются. Более реальный путь: купить Stars или обычный подарок в сумах через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> (1 Star = {STAR_PRICE} сумов, обычно 10 секунд), затем улучшить подарок до Collectible в Telegram. Traits выпадают случайно.</p>
             </div>
             <div class="post-faq-item">
               <h3>Может ли покупка дорогого подарка быть инвестицией?</h3>

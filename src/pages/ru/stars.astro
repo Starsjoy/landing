@@ -4,9 +4,10 @@ import NavbarRu from '../../components/NavbarRu.astro';
 import FooterRu from '../../components/FooterRu.astro';
 import Reviews from '../../components/Reviews.astro';
 import { hreflangsFor } from '../../lib/i18n';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Купить Telegram Stars — Дёшево и Быстро | StarsJoy";
-const description = "Купить Telegram Stars по самым низким ценам. Доставка за 10 секунд, оплата через Click и карту. 100% гарантия. StarsJoy — надёжный сервис покупки звёзд Телеграм.";
+const description = `Купить Telegram Stars недорого, в сумах через Uzcard и Humo: 1 звезда — ${STAR_PRICE} сум. Доставка обычно за 10 секунд, бонусные Stars за каждую покупку, 100% гарантия. StarsJoy — надёжный сервис покупки звёзд Телеграм.`;
 
 const faqs = [
   {
@@ -15,7 +16,7 @@ const faqs = [
   },
   {
     q: "Сколько стоят Telegram Stars?",
-    a: "В StarsJoy Telegram Stars продаются по тарифу 240 сум/star: 50 Stars — 12 000 сум, 100 Stars — 24 000 сум, 250 Stars — 60 000 сум, 500 Stars — 120 000 сум, 1 000 Stars — 240 000 сум, 2 500 Stars — 600 000 сум, 5 000 Stars — 1 200 000 сум, 10 000 Stars — 2 400 000 сум."
+    a: `В StarsJoy Telegram Stars продаются по тарифу ${STAR_PRICE} сум/star: ` + [50, 100, 250, 500, 1000, 2500, 5000, 10000].map((n) => `${fmtS(n)} Stars — ${fmtS(starsPrice(n))} сум`).join(', ') + '.'
   },
   {
     q: "Как купить Telegram Stars через StarsJoy?",
@@ -60,8 +61,8 @@ const faqs = [
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "UZS",
-      "lowPrice": "12000",
-      "highPrice": "2400000",
+      "lowPrice": String(starsPrice(50)),
+      "highPrice": String(starsPrice(10000)),
       "availability": "https://schema.org/InStock",
       "offerCount": "8"
     }
@@ -98,9 +99,9 @@ const faqs = [
       </nav>
       <div class="stars-hero-inner fade-in">
         <div class="stars-hero-content">
-          <h1 class="stars-title">Купить Telegram Stars — По Лучшим Ценам</h1>
+          <h1 class="stars-title">Купить Telegram Stars — По Выгодной Цене</h1>
           <p class="stars-desc">
-            Купить звёзды Телеграм стало проще простого! С StarsJoy вы получите Telegram Stars быстро, недорого и с полной гарантией. Оплата через Click и банковскую карту.
+            Купить звёзды Телеграм стало проще простого! С StarsJoy вы получите Telegram Stars быстро, недорого и с полной гарантией: оплата через Uzcard, Humo и Click, поддержка 24/7.
           </p>
           <div class="stars-features">
             <div class="stars-feature">
@@ -113,7 +114,7 @@ const faqs = [
             </div>
             <div class="stars-feature">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#10B981" stroke-width="1.5"/><path d="M10 7v6M7 10h6" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/></svg>
-              <span>Лучшие цены</span>
+              <span>Бонус за каждую покупку</span>
             </div>
           </div>
           <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">
@@ -145,7 +146,7 @@ const faqs = [
       <div class="section-header fade-in">
         <span class="section-label">Цены</span>
         <h2 class="section-title">Цены на Telegram Stars</h2>
-        <p class="section-subtitle">Точная цена для всех пакетов — 240 сум/star, без скрытых платежей</p>
+        <p class="section-subtitle">Точная цена для всех пакетов — {STAR_PRICE} сум/star, без скрытых платежей</p>
       </div>
       <div class="pricing-table-wrap fade-in">
         <table class="pricing-table">
@@ -153,18 +154,19 @@ const faqs = [
             <tr><th>Stars</th><th>Цена</th></tr>
           </thead>
           <tbody>
-            <tr><td>50 ⭐</td><td>12 000 сум</td></tr>
-            <tr><td><a href="/ru/stars/100">100 ⭐</a></td><td>24 000 сум</td></tr>
-            <tr><td>250 ⭐</td><td>60 000 сум</td></tr>
-            <tr><td><a href="/ru/stars/500-ta">500 ⭐</a></td><td>120 000 сум</td></tr>
-            <tr class="pricing-highlight"><td><a href="/ru/stars/1000">1 000 ⭐</a> <span class="pricing-badge">Популярный</span></td><td>240 000 сум</td></tr>
-            <tr><td>2 500 ⭐</td><td>600 000 сум</td></tr>
-            <tr><td><a href="/ru/stars/5000">5 000 ⭐</a></td><td>1 200 000 сум</td></tr>
-            <tr><td><a href="/ru/stars/10000">10 000 ⭐</a></td><td>2 400 000 сум</td></tr>
+            <tr><td>50 ⭐</td><td>{fmtS(starsPrice(50))} сум</td></tr>
+            <tr><td><a href="/ru/stars/100">100 ⭐</a></td><td>{fmtS(starsPrice(100))} сум</td></tr>
+            <tr><td>250 ⭐</td><td>{fmtS(starsPrice(250))} сум</td></tr>
+            <tr><td><a href="/ru/stars/500-ta">500 ⭐</a></td><td>{fmtS(starsPrice(500))} сум</td></tr>
+            <tr class="pricing-highlight"><td><a href="/ru/stars/1000">1 000 ⭐</a> <span class="pricing-badge">Популярный</span></td><td>{fmtS(starsPrice(1000))} сум</td></tr>
+            <tr><td>2 500 ⭐</td><td>{fmtS(starsPrice(2500))} сум</td></tr>
+            <tr><td><a href="/ru/stars/5000">5 000 ⭐</a></td><td>{fmtS(starsPrice(5000))} сум</td></tr>
+            <tr><td><a href="/ru/stars/10000">10 000 ⭐</a></td><td>{fmtS(starsPrice(10000))} сум</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="pricing-note fade-in">Нужно другое количество Stars? В боте можно указать любое число — цена рассчитывается по тому же тарифу (240 сум/star).</p>
+      <p class="pricing-note fade-in">Нужно другое количество Stars? В боте можно указать любое число — цена рассчитывается по тому же тарифу ({STAR_PRICE} сум/star).</p>
+      <p class="pricing-note fade-in"><small>{PRICE_NOTE.ru}</small></p>
       <p class="pricing-note fade-in">За каждые полные 50 Stars начисляется <strong>+2 ⭐ бонуса</strong>, то есть +4 ⭐ за каждые 100 Stars. Подробнее: <a href="/ru/bonus">бонусы StarsJoy</a>.</p>
       <div class="pricing-cta fade-in">
         <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Купить Stars</a>
@@ -277,7 +279,7 @@ const faqs = [
     <div class="container">
       <div class="stars-cta-box fade-in">
         <h2>Готовы купить Telegram Stars?</h2>
-        <p>Лучшие цены, мгновенная доставка и 100% гарантия безопасности</p>
+        <p>Выгодные цены, оплата через Uzcard и Humo, быстрая доставка и 100% гарантия безопасности</p>
         <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">&#9889; Купить Stars</a>
       </div>
     </div>

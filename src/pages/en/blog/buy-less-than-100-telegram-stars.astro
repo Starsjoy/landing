@@ -1,14 +1,15 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { STAR_PRICE, starsPrice, fmt, PRICE_NOTE, PRICES_DATE_UZ } from '../../../lib/prices';
 
 const faqs = [
   {
     q: "Can I buy fewer than 100 Stars in the Telegram app?",
-    a: "No. In the Telegram app (Uzbekistan, as of 04.11.2026) the smallest pack is 100 Stars for 25,399 UZS — there is no 50, 30 or 10-Star pack. StarsJoy sells any amount from 50 Stars: 50 Stars cost 12,000 UZS."
+    a: `No. In the Telegram app (Uzbekistan, as of 04.11.2026) the smallest pack is 100 Stars for 25,399 UZS — there is no 50, 30 or 10-Star pack. StarsJoy sells any amount from 50 Stars: 50 Stars cost ${fmt(starsPrice(50))} UZS.`
   },
   {
     q: "How much do 50 Telegram Stars cost?",
-    a: "At StarsJoy, 50 Stars cost 12,000 UZS (240 UZS per Star) plus a +2 ⭐ bonus. You pay from an Uzcard or Humo card via Payme, Click or a banking app, and the Stars usually arrive in about 10 seconds."
+    a: `At StarsJoy, 50 Stars cost ${fmt(starsPrice(50))} UZS (${STAR_PRICE} UZS per Star) plus a +2 ⭐ bonus. You pay from an Uzcard or Humo card via Payme, Click or a banking app, and the Stars usually arrive in about 10 seconds.`
   },
   {
     q: "How do I buy fewer than 50 Telegram Stars?",
@@ -24,11 +25,11 @@ const faqs = [
   },
   {
     q: "Which is cheaper: a gift or 50 Stars?",
-    a: "Up to 26 Stars, the gift route is cheaper: 13 Stars for 5,000, 21 for 7,000, 26 for 10,000 UZS. For 27 Stars or more, buy 50 Stars directly: 12,000 UZS, 52 Stars with the bonus."
+    a: `Up to 34 Stars, the gift route is cheaper: 13 Stars for 5,000, 21 for 7,000, 26 for 10,000, 34 for 12,000 UZS. For 35 Stars or more, buy 50 Stars directly: ${fmt(starsPrice(50))} UZS, 52 Stars with the bonus.`
   },
   {
     q: "How much do I save versus 100 Stars in the app?",
-    a: "The app's minimum is 100 Stars for 25,399 UZS. If you need 13 Stars, the gift route at StarsJoy costs 5,000 UZS — 20,399 UZS less. If you need 50 Stars, it is 12,000 UZS — 13,399 UZS less."
+    a: `The app's minimum is 100 Stars for 25,399 UZS. If you need 13 Stars, the gift route at StarsJoy costs 5,000 UZS — 20,399 UZS less. If you need 50 Stars, it is ${fmt(starsPrice(50))} UZS — ${fmt(25399 - starsPrice(50))} UZS less.`
   },
   {
     q: "Do I need a password or SMS code?",
@@ -43,19 +44,20 @@ const faqs = [
   heading="How do you buy fewer than 100 or 50 Telegram Stars? With Uzcard or Humo at StarsJoy"
   crumb="Fewer than 100 Stars"
   tag="Stars"
-  description="Fewer than 100 or 50 Stars: the app starts at 100. At StarsJoy 50 Stars cost 12,000 UZS, and under 50 via a gift, 13 Stars for 5,000 UZS. Uzcard or Humo."
+  description={`Fewer than 100 or 50 Stars: the app starts at 100. At StarsJoy 50 Stars cost ${fmt(starsPrice(50))} UZS, and under 50 via a gift, 13 Stars for 5,000 UZS. Uzcard or Humo.`}
   keywords="buy less than 100 telegram stars, buy less than 50 telegram stars, 50 telegram stars, cheapest telegram stars, buy 10 telegram stars, minimum telegram stars, convert telegram gift to stars, telegram stars uzcard, telegram stars humo"
   publishDate="2026-11-05"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-stars-100-tadan-kam"
   ruHref="https://starsjoy.uz/ru/blog/telegram-stars-100-tadan-kam"
   faqs={faqs}
 >
   <section>
-    <p class="post-lead"><strong>Short answer:</strong> you can buy fewer than 100 Telegram Stars at <strong>StarsJoy</strong> (<a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>) with an <strong>Uzcard or Humo</strong> card: <strong>50 Stars for 12,000 UZS</strong> plus a +2 ⭐ bonus. The Telegram app's smallest pack is 100 Stars (25,399 UZS), and you cannot buy fewer there. Need even fewer? Buy yourself a 15 or 25-Star gift at StarsJoy and convert it to Stars: <strong>13 Stars for 5,000 UZS</strong>, <strong>21 Stars for 7,000 UZS</strong>. Only your username is needed, no password or SMS code.</p>
+    <p class="post-lead"><strong>Short answer:</strong> you can buy fewer than 100 Telegram Stars at <strong>StarsJoy</strong> (<a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>) with an <strong>Uzcard or Humo</strong> card: <strong>50 Stars for {fmt(starsPrice(50))} UZS</strong> plus a +2 ⭐ bonus. The Telegram app's smallest pack is 100 Stars (25,399 UZS), and you cannot buy fewer there. Need even fewer? Buy yourself a 15 or 25-Star gift at StarsJoy and convert it to Stars: <strong>13 Stars for 5,000 UZS</strong>, <strong>21 Stars for 7,000 UZS</strong>. Only your username is needed, no password or SMS code.</p>
   </section>
 
   <section>
-    <p>Plenty of people do not need 100 Stars: a few reactions, one cheap paid post or a small bot purchase take 10–50 Stars. But the Telegram app starts at 100 Stars, so you pay 25,399 UZS even if you need far fewer. Below are two ways to get a small amount without overpaying — <strong>50 Stars directly</strong> and <strong>converting a gift into Stars</strong> — and a table showing which is cheaper for the amount you need. StarsJoy prices are as of 05.11.2026; conversion values come from Telegram's own catalogue (05.11.2026); the app price is the Telegram app in Uzbekistan on 04.11.2026.</p>
+    <p>Plenty of people do not need 100 Stars: a few reactions, one cheap paid post or a small bot purchase take 10–50 Stars. But the Telegram app starts at 100 Stars, so you pay 25,399 UZS even if you need far fewer. Below are two ways to get a small amount without overpaying — <strong>50 Stars directly</strong> and <strong>converting a gift into Stars</strong> — and a table showing which is cheaper for the amount you need. StarsJoy prices are as of {PRICES_DATE_UZ}; conversion values come from Telegram's own catalogue (05.11.2026); the app price is the Telegram app in Uzbekistan on 04.11.2026.</p>
   </section>
 
   <section>
@@ -67,29 +69,30 @@ const faqs = [
       </thead>
       <tbody>
         <tr><td>Telegram app</td><td>100 Stars</td><td>25,399 UZS</td><td>Usually international</td></tr>
-        <tr><td><strong>StarsJoy — Stars</strong></td><td><strong>50 Stars</strong></td><td><strong>12,000 UZS</strong></td><td>Uzcard, Humo</td></tr>
+        <tr><td><strong>StarsJoy — Stars</strong></td><td><strong>50 Stars</strong></td><td><strong>{fmt(starsPrice(50))} UZS</strong></td><td>Uzcard, Humo</td></tr>
         <tr><td><strong>StarsJoy — via a gift</strong></td><td><strong>13 Stars</strong></td><td><strong>5,000 UZS</strong></td><td>Uzcard, Humo</td></tr>
       </tbody>
     </table>
     <p>So someone who needs 13 Stars pays 25,399 UZS in the app but 5,000 UZS through StarsJoy — <strong>20,399 UZS less</strong>.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>
     <h2>How much do 50 Telegram Stars cost?</h2>
-    <p>StarsJoy sells Stars <strong>from 50</strong> at a flat <strong>240 UZS per Star</strong>, with +2 ⭐ for every full 50. Any amount from 50 to 100 works:</p>
+    <p>StarsJoy sells Stars <strong>from 50</strong> at a flat <strong>{STAR_PRICE} UZS per Star</strong>, with +2 ⭐ for every full 50. Any amount from 50 to 100 works:</p>
     <table>
       <thead>
         <tr><th>Stars</th><th>Price</th><th>Bonus</th></tr>
       </thead>
       <tbody>
-        <tr><td><strong>50 Stars</strong></td><td><strong>12,000 UZS</strong></td><td>+2 ⭐</td></tr>
-        <tr><td>60 Stars</td><td>14,400 UZS</td><td>+2 ⭐</td></tr>
-        <tr><td>75 Stars</td><td>18,000 UZS</td><td>+2 ⭐</td></tr>
-        <tr><td>99 Stars</td><td>23,760 UZS</td><td>+2 ⭐</td></tr>
-        <tr><td><a href="/en/stars/100">100 Stars</a></td><td>24,000 UZS</td><td>+4 ⭐</td></tr>
+        <tr><td><strong>50 Stars</strong></td><td><strong>{fmt(starsPrice(50))} UZS</strong></td><td>+2 ⭐</td></tr>
+        <tr><td>60 Stars</td><td>{fmt(starsPrice(60))} UZS</td><td>+2 ⭐</td></tr>
+        <tr><td>75 Stars</td><td>{fmt(starsPrice(75))} UZS</td><td>+2 ⭐</td></tr>
+        <tr><td>99 Stars</td><td>{fmt(starsPrice(99))} UZS</td><td>+2 ⭐</td></tr>
+        <tr><td><a href="/en/stars/100">100 Stars</a></td><td>{fmt(starsPrice(100))} UZS</td><td>+4 ⭐</td></tr>
       </tbody>
     </table>
-    <p>50 Stars cost <strong>13,399 UZS less</strong> than the app's smallest pack. If you need 90–100 Stars anyway, see the full app comparison in <a href="/en/blog/100-telegram-stars-price">100 Telegram Stars price</a>. To buy: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> → Stars → enter 50 (or the amount you need) → username → transfer the exact sum shown from your Uzcard or Humo.</p>
+    <p>50 Stars cost <strong>{fmt(25399 - starsPrice(50))} UZS less</strong> than the app's smallest pack. If you need 90–100 Stars anyway, see the full app comparison in <a href="/en/blog/100-telegram-stars-price">100 Telegram Stars price</a>. To buy: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> → Stars → enter 50 (or the amount you need) → username → transfer the exact sum shown from your Uzcard or Humo.</p>
   </section>
 
   <section>
@@ -119,11 +122,12 @@ const faqs = [
         <tr><td>1–13 Stars</td><td>15-Star gift → Stars</td><td><strong>5,000 UZS</strong></td><td>13 Stars</td></tr>
         <tr><td>14–21 Stars</td><td>25-Star gift → Stars</td><td><strong>7,000 UZS</strong></td><td>21 Stars</td></tr>
         <tr><td>22–26 Stars</td><td>Two 15-Star gifts → Stars</td><td>10,000 UZS</td><td>26 Stars</td></tr>
-        <tr><td>27–52 Stars</td><td>50 Stars directly</td><td><strong>12,000 UZS</strong></td><td>50 + 2 ⭐ bonus</td></tr>
-        <tr><td>53–100 Stars</td><td>Exact amount × 240 UZS</td><td>12,720–24,000 UZS</td><td>Exactly what you need</td></tr>
+        <tr><td>27–34 Stars</td><td>15 + 25-Star gifts → Stars</td><td>12,000 UZS</td><td>34 Stars</td></tr>
+        <tr><td>35–52 Stars</td><td>50 Stars directly</td><td><strong>{fmt(starsPrice(50))} UZS</strong></td><td>50 + 2 ⭐ bonus</td></tr>
+        <tr><td>53–100 Stars</td><td>Exact amount × {STAR_PRICE} UZS</td><td>{fmt(starsPrice(53))}–{fmt(starsPrice(100))} UZS</td><td>Exactly what you need</td></tr>
       </tbody>
     </table>
-    <p><strong>Rule of thumb:</strong> up to 26 Stars — go through a gift; 27 or more — buy <a href="/en/stars">Stars</a> directly. For example, 34 Stars via gifts (15 + 25) also cost 12,000 UZS, but 12,000 UZS buys 50 Stars plus a bonus directly.</p>
+    <p><strong>Rule of thumb:</strong> up to 34 Stars — go through a gift; 35 or more — buy <a href="/en/stars">Stars</a> directly. For example, 34 Stars via gifts (15 + 25) cost 12,000 UZS, while {fmt(starsPrice(50))} UZS buys 50 Stars plus a bonus directly — only {fmt(starsPrice(50) - 12000)} UZS more for 18 more Stars.</p>
   </section>
 
   <section>
@@ -158,7 +162,7 @@ const faqs = [
 
   <section>
     <h2>Get a few Stars now</h2>
-    <p>50 Stars for 12,000 UZS, 13 Stars for 5,000 UZS — with Uzcard or Humo, only your username needed → <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener"><strong>open @starsjoybot</strong></a>.</p>
+    <p>50 Stars for {fmt(starsPrice(50))} UZS, 13 Stars for 5,000 UZS — with Uzcard or Humo, only your username needed → <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener"><strong>open @starsjoybot</strong></a>.</p>
   </section>
 
   <section>

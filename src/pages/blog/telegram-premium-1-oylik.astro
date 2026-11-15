@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "1 oylik Telegram Premium qanday olinadi: o'z kartangiz orqali yoqish | StarsJoy Blog";
-const description = "1 oylik Telegram Premium — O'zbekistondan qanday olish mumkin? @starsjoysupport mutaxassisi o'z kartangiz orqali Premium yoqishni bepul o'rgatadi. Parol berish shart emas.";
+const description = "1 oylik Telegram Premium — O'zbekistondan qanday olish mumkin? @StarsjoySupport mutaxassisi o'z kartangiz orqali Premium yoqishni bepul o'rgatadi. Parol berish shart emas.";
 const publishDate = "2026-04-07";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1650;
 ---
 
@@ -96,7 +97,7 @@ const wordCount = 1650;
         "name": "O'zbekistondan 1 oylik Telegram Premium qanday olinadi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "1 oylik Premium siz o'zingizning shaxsiy kartangiz orqali Telegram ilovasi ichidan yoqasiz. Agar Visa/Mastercard xalqaro kartasi bor bo'lsa — Telegram → Sozlamalar → Telegram Premium orqali to'g'ridan-to'g'ri obuna bo'lasiz. Jarayon murakkab tuyulsa, @starsjoysupport mutaxassisi sizga bepul bosqichma-bosqich o'rgatadi: qaysi qadamlar kerak, qaysi karta qaysi yo'lda ishlaydi va eng arzon variant qaysi."
+          "text": "1 oylik Premium siz o'zingizning shaxsiy kartangiz orqali Telegram ilovasi ichidan yoqasiz. Agar Visa/Mastercard xalqaro kartasi bor bo'lsa — Telegram → Sozlamalar → Telegram Premium orqali to'g'ridan-to'g'ri obuna bo'lasiz. Jarayon murakkab tuyulsa, @StarsjoySupport mutaxassisi sizga bepul bosqichma-bosqich o'rgatadi: qaysi qadamlar kerak, qaysi karta qaysi yo'lda ishlaydi va eng arzon variant qaysi."
         }
       },
       {
@@ -104,7 +105,7 @@ const wordCount = 1650;
         "name": "Agar xalqaro karta bo'lmasa, 1 oylik Premium olish mumkinmi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Faqat Uzcard yoki Humo karta bilan 1 oylik Premium olish O'zbekistondan amalda deyarli imkonsiz — Telegram to'lov tizimi xalqaro kartani talab qiladi. Bu holda eng yaxshi yechim — 3 oylik Gift Premium @starsjoybot orqali 172 000 so'mga (oyiga ~57 333 so'm). Uzcard yoki Humo bilan to'lanadi, 5 daqiqada faol. @starsjoysupport mutaxassisi sizning vaziyatingizga qarab eng to'g'ri variantni tavsiya qiladi."
+          "text": "Faqat Uzcard yoki Humo karta bilan 1 oylik Premium olish O'zbekistondan amalda deyarli imkonsiz — Telegram to'lov tizimi xalqaro kartani talab qiladi. Bu holda eng yaxshi yechim — 3 oylik Gift Premium @starsjoybot orqali " + fmtS(PREMIUM_PRICE[3]) + " so'mga (oyiga ~" + fmtS(premiumPerMonth(3)) + " so'm). Uzcard yoki Humo bilan to'lanadi, 5 daqiqada faol. @StarsjoySupport mutaxassisi sizning vaziyatingizga qarab eng to'g'ri variantni tavsiya qiladi."
         }
       },
       {
@@ -112,12 +113,12 @@ const wordCount = 1650;
         "name": "1 oylik Telegram Premium narxi qancha?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "1 oylik Premium narxini Telegram o'zi belgilaydi — taxminan $4–5 ekvivalent (~50 000–60 000 so'm). Aniq narxni o'z Telegram ilovangizdan ko'rishingiz mumkin: Sozlamalar → Telegram Premium. Eslatma: 3 oylik avtomatik paket 172 000 so'm — oyiga ~57 333 so'm, narx deyarli teng, lekin Uzcard/Humo bilan to'lanadi va sotib olish jarayoni ancha oddiy."
+          "text": "1 oylik Premium narxini Telegram o'zi belgilaydi — taxminan $4–5 ekvivalent (~50 000–60 000 so'm). Aniq narxni o'z Telegram ilovangizdan ko'rishingiz mumkin: Sozlamalar → Telegram Premium. Eslatma: 3 oylik avtomatik paket " + fmtS(PREMIUM_PRICE[3]) + " so'm — oyiga ~" + fmtS(premiumPerMonth(3)) + " so'm, narx deyarli teng, lekin Uzcard/Humo bilan to'lanadi va sotib olish jarayoni ancha oddiy."
         }
       },
       {
         "@type": "Question",
-        "name": "@starsjoysupport menejeri 1 oylik Premium uchun nima qiladi?",
+        "name": "@StarsjoySupport menejeri 1 oylik Premium uchun nima qiladi?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Menejer mutaxassis sifatida bepul maslahat va o'rgatish beradi: sizning karta turingiz va vaziyatingizga qarab eng arzon yo'lni ko'rsatadi, Telegram ilovasi ichida Premium qanday yoqilishini bosqichma-bosqich tushuntiradi (skrinshotlar bilan), agar 1 oylik sizda real ishlamasa — 3 oylik Gift'ni alternativa sifatida tavsiya qiladi. Akkauntingizga hech kim kirmaydi, parol so'ralmaydi."
@@ -188,11 +189,11 @@ const wordCount = 1650;
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> 1 oylik Telegram Premium Telegram'da rasman bor, lekin uni faqat akkaunt egasi o'zi, Visa yoki Mastercard xalqaro kartasi bilan Telegram ichidan yoqadi (Gift'da minimal 3 oy). Faqat Uzcard/Humo bo'lsa — eng yaxshi muqobil <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali 3 oylik Gift Premium (rasmiy Gift mexanizmi, parol/SMS so'ralmaydi). Qadamlarni bilmasangiz, <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> bepul o'rgatadi.
+            <strong>Qisqacha javob:</strong> 1 oylik Telegram Premium Telegram'da rasman bor, lekin uni faqat akkaunt egasi o'zi, Visa yoki Mastercard xalqaro kartasi bilan Telegram ichidan yoqadi (Gift'da minimal 3 oy). Faqat Uzcard/Humo bo'lsa — eng yaxshi muqobil <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali 3 oylik Gift Premium (rasmiy Gift mexanizmi, parol/SMS so'ralmaydi). Qadamlarni bilmasangiz, <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a> bepul o'rgatadi.
           </div>
 
           <section>
-            <p><strong>1 oylik Telegram Premium</strong> — Telegram ilovasining o'zida mavjud, lekin Gift (sovg'a) funksiyasi orqali sotib olib bo'lmaydigan paket. Shu sababli O'zbekistondagi reseller xizmatlarning ko'pchiligi uni taklif qilmaydi. Real yo'l — Premium'ni <strong>o'z kartangiz orqali Telegram ichidan o'zingiz yoqasiz</strong>. <a href="https://telegram.me/starsjoysupport" target="_blank">@starsjoysupport</a> mutaxassisi bu jarayonni bepul, bosqichma-bosqich o'rgatadi.</p>
+            <p><strong>1 oylik Telegram Premium</strong> — Telegram ilovasining o'zida mavjud, lekin Gift (sovg'a) funksiyasi orqali sotib olib bo'lmaydigan paket. Shu sababli O'zbekistondagi reseller xizmatlarning ko'pchiligi uni taklif qilmaydi. Real yo'l — Premium'ni <strong>o'z kartangiz orqali Telegram ichidan o'zingiz yoqasiz</strong>. <a href="https://telegram.me/starsjoysupport" target="_blank">@StarsjoySupport</a> mutaxassisi bu jarayonni bepul, bosqichma-bosqich o'rgatadi.</p>
 
             <p>Premium'ni Starsjoy (<a href="/blog/starsjoy-mini-app-nima">Telegram Mini App'i</a>, chat-bot emas) orqali olganda paket Dashboard'da karta ko'rinishida, username kiritish va to'lov bir sahifada — chat-da emas.</p>
 
@@ -213,7 +214,7 @@ const wordCount = 1650;
 
             <p>Aynan shu sababli O'zbekistondagi reseller xizmatlar 1 oylik paketni taklif qilmaydi: ular Gift mexanizmiga tayanadi (bir tugmali jarayon — username yuborish kifoya), va Gift'da 1 oy yo'q. 1 oylikni esa <strong>faqat akkaunt egasining o'zi, o'z kartasi orqali</strong> yoqishi mumkin — Telegram'ning arxitekturasi shunday qurilgan.</p>
 
-            <p>Shu sababli StarsJoy 1 oylik Premium'ni "sotmaydi" — <strong>biz sizga uni o'zingiz qanday yoqishingiz kerakligini bepul o'rgatamiz</strong>. <a href="https://telegram.me/starsjoysupport" target="_blank">@starsjoysupport</a> mutaxassisi sizning karta turingiz va vaziyatingizga qarab eng to'g'ri yo'lni ko'rsatadi.</p>
+            <p>Shu sababli StarsJoy 1 oylik Premium'ni "sotmaydi" — <strong>biz sizga uni o'zingiz qanday yoqishingiz kerakligini bepul o'rgatamiz</strong>. <a href="https://telegram.me/starsjoysupport" target="_blank">@StarsjoySupport</a> mutaxassisi sizning karta turingiz va vaziyatingizga qarab eng to'g'ri yo'lni ko'rsatadi.</p>
           </section>
 
           <section>
@@ -277,18 +278,19 @@ const wordCount = 1650;
             <h3>Agar xalqaro karta yo'q bo'lsa?</h3>
             <p>Halol javob: <strong>faqat Uzcard yoki Humo bilan 1 oylik Premium olish O'zbekistondan deyarli imkonsiz</strong>. Telegram bu kartalarni o'z to'lov tizimida qabul qilmaydi. Shu sababli eng yaxshi alternativa — <strong>3 oylik Gift Premium</strong>:</p>
             <ul>
-              <li><a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> orqali 172 000 so'm (oyiga ~57 333 so'm — 1 oylik bilan deyarli teng)</li>
+              <li><a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> orqali {fmtS(PREMIUM_PRICE[3])} so'm (oyiga ~{fmtS(premiumPerMonth(3))} so'm — 1 oylik bilan deyarli teng)</li>
               <li>Uzcard yoki Humo bilan Click/Payme orqali to'lanadi</li>
               <li>Faqat username kiritasiz, 5 daqiqada faol</li>
               <li>Parol, kod, hech narsa kerak emas</li>
             </ul>
-            <p>Ko'pchilik foydalanuvchi uchun bu — eng arzon, eng tez va eng xavfsiz yo'l.</p>
+            <p><small>{PRICE_NOTE.uz}</small></p>
+            <p>Ko'pchilik foydalanuvchi uchun bu — eng qulay, eng tez va eng xavfsiz yo'l, narxi ham arzon.</p>
           </section>
 
           <section>
-            <h2>@starsjoysupport mutaxassisi: sizga bepul o'rgatadi</h2>
+            <h2>@StarsjoySupport mutaxassisi: sizga bepul o'rgatadi</h2>
 
-            <p>Agar 1 oylik Premium'ni o'z kartangiz orqali qanday yoqishni bilmasangiz yoki qaysi yo'l sizda ishlashini tushunmasangiz — <a href="https://telegram.me/starsjoysupport" target="_blank">@starsjoysupport</a> mutaxassisiga yozing. Bu — <strong>bepul maslahat va o'rgatish xizmati</strong>, biror narsa sotib olish shart emas.</p>
+            <p>Agar 1 oylik Premium'ni o'z kartangiz orqali qanday yoqishni bilmasangiz yoki qaysi yo'l sizda ishlashini tushunmasangiz — <a href="https://telegram.me/starsjoysupport" target="_blank">@StarsjoySupport</a> mutaxassisiga yozing. Bu — <strong>bepul maslahat va o'rgatish xizmati</strong>, biror narsa sotib olish shart emas.</p>
 
             <p>Mutaxassis sizning vaziyatingizni eshitib, quyidagilarni qiladi:</p>
 
@@ -296,13 +298,13 @@ const wordCount = 1650;
               <li><strong>Kartangizni so'raydi:</strong> Visa, Mastercard, Uzcard, Humo — har biri uchun mos yo'l boshqacha</li>
               <li><strong>Qaysi qurilmadasiz aniqlaydi:</strong> iPhone, Android — Premium yoqish bosqichlari biroz farqlanadi</li>
               <li><strong>Bosqichma-bosqich o'rgatadi:</strong> Telegram'ning qaysi tugmasini bosish, qaysi sahifaga o'tish, kartani qayerga kiritish — barchasini skrinshotlar bilan ko'rsatadi</li>
-              <li><strong>Eng arzon variantni tavsiya qiladi:</strong> agar 1 oylik sizda ishlamasa — 3 oylik Gift'ni alternativa sifatida ko'rsatadi (oylik narx deyarli teng)</li>
+              <li><strong>Arzon va mos variantni tavsiya qiladi:</strong> agar 1 oylik sizda ishlamasa — 3 oylik Gift'ni alternativa sifatida ko'rsatadi (oylik narx deyarli teng)</li>
               <li><strong>Hech narsa sotmaydi:</strong> agar 1 oylikni o'zingiz yoqsangiz, biz hech narsa olmaymiz — bu chinakam yordam, marketing emas</li>
             </ul>
 
             <p>Mutaxassisning oltin qoidasi: <strong>biz hech qachon parol, kod, SMS yoki kirish ma'lumotlarini so'ramaymiz</strong>. Premium yoqish har doim sizning qo'lingizda qoladi. Bizning vazifa — to'g'ri yo'lni ko'rsatish va qadamma-qadam yo'naltirish.</p>
 
-            <p>Yozish uchun: <a href="https://telegram.me/starsjoysupport" target="_blank">@starsjoysupport</a>. <em>"1 oylik Premium yoqmoqchiman, kartam Uzcard / Visa / Humo, qanday qilay?"</em> — shu qisqa savol kifoya. Javob 10 soniyada keladi.</p>
+            <p>Yozish uchun: <a href="https://telegram.me/starsjoysupport" target="_blank">@StarsjoySupport</a>. <em>"1 oylik Premium yoqmoqchiman, kartam Uzcard / Visa / Humo, qanday qilay?"</em> — shu qisqa savol kifoya. Javob 10 soniyada keladi.</p>
           </section>
 
           <section>
@@ -328,7 +330,7 @@ const wordCount = 1650;
                   <tr>
                     <td>Narx</td>
                     <td>~50–60 000 so'm/oy</td>
-                    <td>172 000 so'm (~57 333/oy)</td>
+                    <td>{fmtS(PREMIUM_PRICE[3])} so'm (~{fmtS(premiumPerMonth(3))}/oy)</td>
                   </tr>
                   <tr>
                     <td>Tezlik</td>
@@ -375,9 +377,9 @@ const wordCount = 1650;
 
             <p><strong>1 oylik Telegram Premium</strong> Telegram'da rasman bor, lekin u faqat <strong>akkaunt egasining o'zi, o'z kartasi orqali</strong> yoqiladi — Gift orqali emas. Agar sizda xalqaro karta (Visa/Mastercard) bo'lsa — bir necha qadamda o'zingiz yoqasiz. Faqat Uzcard yoki Humo bo'lsa — 1 oylik amalda deyarli imkonsiz, eng yaxshi alternativa 3 oylik Gift.</p>
 
-            <p>Qadamlarni bilmasangiz — <a href="https://telegram.me/starsjoysupport" target="_blank">@starsjoysupport</a> mutaxassisi sizga bepul, bosqichma-bosqich o'rgatadi: <em>"1 oylikni o'zim yoqmoqchiman, kartam … (turi), qanday qilay?"</em> deb yozing. Hech narsa sotmaymiz — sof yordam beramiz.</p>
+            <p>Qadamlarni bilmasangiz — <a href="https://telegram.me/starsjoysupport" target="_blank">@StarsjoySupport</a> mutaxassisi sizga bepul, bosqichma-bosqich o'rgatadi: <em>"1 oylikni o'zim yoqmoqchiman, kartam … (turi), qanday qilay?"</em> deb yozing. Hech narsa sotmaymiz — sof yordam beramiz.</p>
 
-            <p>Agar 3 oylik mos kelsa — <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> orqali 172 000 so'mga 5 daqiqada faol. Barcha paketlar — <a href="/blog/telegram-premium-sotib-olish">Telegram Premium sotib olish qo'llanmasi</a>.</p>
+            <p>Agar 3 oylik mos kelsa — <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> orqali {fmtS(PREMIUM_PRICE[3])} so'mga 5 daqiqada faol. Barcha paketlar — <a href="/blog/telegram-premium-sotib-olish">Telegram Premium sotib olish qo'llanmasi</a>.</p>
           </section>
 
           <section>
@@ -394,18 +396,18 @@ const wordCount = 1650;
               </div>
               <div class="post-faq-item">
                 <h3>O'zbekistondan 1 oylik Premium qanday yoqiladi?</h3>
-                <p>1 oylik Premium siz o'zingizning shaxsiy kartangiz orqali Telegram ilovasi ichidan yoqasiz. Visa/Mastercard xalqaro kartasi bilan: Telegram → Sozlamalar → Telegram Premium → to'lov. Qadamlarni bilmasangiz, @starsjoysupport mutaxassisi bepul bosqichma-bosqich o'rgatadi.</p>
+                <p>1 oylik Premium siz o'zingizning shaxsiy kartangiz orqali Telegram ilovasi ichidan yoqasiz. Visa/Mastercard xalqaro kartasi bilan: Telegram → Sozlamalar → Telegram Premium → to'lov. Qadamlarni bilmasangiz, @StarsjoySupport mutaxassisi bepul bosqichma-bosqich o'rgatadi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Agar Uzcard/Humo'dan boshqa kartam bo'lmasa?</h3>
-                <p>Faqat Uzcard yoki Humo bilan 1 oylik Premium olish O'zbekistondan amalda deyarli imkonsiz — Telegram to'lov tizimi xalqaro kartani talab qiladi. Bu holda eng yaxshi alternativa — 3 oylik Gift Premium @starsjoybot orqali 172 000 so'mga (oyiga ~57 333 so'm). Uzcard/Humo bilan to'lanadi, 5 daqiqada faol.</p>
+                <p>Faqat Uzcard yoki Humo bilan 1 oylik Premium olish O'zbekistondan amalda deyarli imkonsiz — Telegram to'lov tizimi xalqaro kartani talab qiladi. Bu holda eng yaxshi alternativa — 3 oylik Gift Premium @starsjoybot orqali {fmtS(PREMIUM_PRICE[3])} so'mga (oyiga ~{fmtS(premiumPerMonth(3))} so'm). Uzcard/Humo bilan to'lanadi, 5 daqiqada faol.</p>
               </div>
               <div class="post-faq-item">
                 <h3>1 oylik Premium narxi qancha?</h3>
-                <p>Narxni Telegram o'zi belgilaydi — taxminan $4–5 ekvivalent (~50 000–60 000 so'm). Aniq narx o'z Telegram ilovangizda ko'rinadi: Sozlamalar → Telegram Premium. Eslatma: 3 oylik avtomatik paket 172 000 so'm — oyiga ~57 333 so'm, narx deyarli teng.</p>
+                <p>Narxni Telegram o'zi belgilaydi — taxminan $4–5 ekvivalent (~50 000–60 000 so'm). Aniq narx o'z Telegram ilovangizda ko'rinadi: Sozlamalar → Telegram Premium. Eslatma: 3 oylik avtomatik paket {fmtS(PREMIUM_PRICE[3])} so'm — oyiga ~{fmtS(premiumPerMonth(3))} so'm, narx deyarli teng.</p>
               </div>
               <div class="post-faq-item">
-                <h3>@starsjoysupport menejeri 1 oylik Premium uchun nima qiladi?</h3>
+                <h3>@StarsjoySupport menejeri 1 oylik Premium uchun nima qiladi?</h3>
                 <p>Menejer mutaxassis sifatida bepul maslahat va o'rgatish beradi: kartangiz va qurilmangizga qarab eng to'g'ri yo'lni ko'rsatadi, Telegram ichida Premium qanday yoqilishini bosqichma-bosqich (skrinshotlar bilan) tushuntiradi. Hech narsa sotmaydi — sof yordam. Akkauntingizga hech kim kirmaydi.</p>
               </div>
               <div class="post-faq-item">

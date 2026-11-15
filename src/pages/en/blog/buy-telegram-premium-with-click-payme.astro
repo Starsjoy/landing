@@ -1,5 +1,12 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { PREMIUM_PRICE, fmt, PRICE_NOTE } from '../../../lib/prices';
+
+const P3 = PREMIUM_PRICE[3], P6 = PREMIUM_PRICE[6], P12 = PREMIUM_PRICE[12];
+/** Oylik narx, 100 so'mgacha yaxlitlangan. */
+const pm = (m: 3 | 6 | 12) => Math.round(PREMIUM_PRICE[m] / m / 100) * 100;
+/** Click/Payme ~1.1% komissiyasi, 100 so'mgacha yaxlitlangan. */
+const fee = (m: 3 | 6 | 12) => Math.round(PREMIUM_PRICE[m] * 0.011 / 100) * 100;
 
 const faqs = [
   {
@@ -8,11 +15,11 @@ const faqs = [
   },
   {
     q: "How much does Premium cost when paying with Click or Payme?",
-    a: "At StarsJoy, 3 months cost 172,000 UZS, 6 months 232,000 UZS and 12 months 422,000 UZS. The app you pay from doesn't change the price of Premium."
+    a: `At StarsJoy, 3 months cost ${fmt(P3)} UZS, 6 months ${fmt(P6)} UZS and 12 months ${fmt(P12)} UZS. The app you pay from doesn't change the price of Premium.`
   },
   {
     q: "Do Click and Payme charge a fee?",
-    a: "StarsJoy adds no commission. But Click and Payme usually charge around 1.1% for a card-to-card transfer — about 4,600 UZS on the 12-month plan. The exact fee is shown in the app before you confirm."
+    a: `StarsJoy adds no commission. But Click and Payme usually charge around 1.1% for a card-to-card transfer — about ${fmt(fee(12))} UZS on the 12-month plan. The exact fee is shown in the app before you confirm.`
   },
   {
     q: "Which is better — Click or Payme?",
@@ -28,7 +35,7 @@ const faqs = [
   },
   {
     q: "I was charged but Premium wasn't activated — what now?",
-    a: "Send your payment receipt to @starsjoy_bot (support) within 24 hours. If the order failed for a technical reason, you get a full refund."
+    a: "Send your payment receipt to @StarsjoySupport within 24 hours. If the order failed for a technical reason, you get a full refund."
   },
   {
     q: "Do I need to share my Click or Payme password with anyone?",
@@ -47,21 +54,22 @@ const faqs = [
   heading="How to pay for Telegram Premium with Click or Payme (2026)"
   crumb="Premium via Click and Payme"
   tag="Premium"
-  description="How to get Telegram Premium with Click or Payme in Uzbekistan: prices for 3, 6 and 12 months (from 172,000 UZS), transfer fees and step-by-step payment."
+  description={`How to get Telegram Premium with Click or Payme in Uzbekistan: prices for 3, 6 and 12 months (from ${fmt(P3)} UZS), transfer fees and step-by-step payment.`}
   keywords="telegram premium click, telegram premium payme, pay telegram premium uzbekistan, buy telegram premium with click, buy telegram premium with payme"
   publishDate="2026-10-10"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-premium-click-payme"
   ruHref="https://starsjoy.uz/ru/blog/telegram-premium-click-payme"
   faqs={faqs}
 >
   <section>
-    <p class="post-lead"><strong>Short answer:</strong> Yes, you can get Telegram Premium with Click or Payme. In <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> you pick a term and enter a username, the bot shows a card number and the amount, and you transfer it to that card from Click or Payme. Prices: 3 months — <strong>172,000</strong>, 6 months — <strong>232,000</strong>, 12 months — <strong>422,000 UZS</strong>. Premium is usually active in about <strong>10 seconds</strong>.</p>
+    <p class="post-lead"><strong>Short answer:</strong> Yes, you can get Telegram Premium with Click or Payme. In <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> you pick a term and enter a username, the bot shows a card number and the amount, and you transfer it to that card from Click or Payme. Prices: 3 months — <strong>{fmt(P3)}</strong>, 6 months — <strong>{fmt(P6)}</strong>, 12 months — <strong>{fmt(P12)} UZS</strong>. Premium is usually active in about <strong>10 seconds</strong>.</p>
   </section>
 
   <section>
     <h2>Key numbers</h2>
     <ul>
-      <li><strong>Prices:</strong> 3 months — 172,000, 6 months — 232,000, 12 months — 422,000 UZS;</li>
+      <li><strong>Prices:</strong> 3 months — {fmt(P3)}, 6 months — {fmt(P6)}, 12 months — {fmt(P12)} UZS;</li>
       <li><strong>Payment method:</strong> a transfer from Click or Payme to the card the bot shows;</li>
       <li><strong>Cards:</strong> Uzcard and Humo, no international card needed;</li>
       <li><strong>App fee:</strong> usually around 1.1%; StarsJoy itself adds no commission;</li>
@@ -69,6 +77,7 @@ const faqs = [
       <li><strong>What you need:</strong> only a Telegram username;</li>
       <li><strong>Where:</strong> <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>.</li>
     </ul>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>
@@ -95,9 +104,9 @@ const faqs = [
         <tr><th>Plan</th><th>Price</th><th>Per month</th><th>With a 1.1% fee</th></tr>
       </thead>
       <tbody>
-        <tr><td><a href="/en/premium/3-months">3 months</a></td><td>172,000 UZS</td><td>~57,300 UZS</td><td>+ ~1,900 UZS</td></tr>
-        <tr><td><a href="/en/premium/6-months">6 months</a></td><td>232,000 UZS</td><td>~38,700 UZS</td><td>+ ~2,600 UZS</td></tr>
-        <tr><td><a href="/en/premium/12-months">12 months</a></td><td>422,000 UZS</td><td>~35,200 UZS</td><td>+ ~4,600 UZS</td></tr>
+        <tr><td><a href="/en/premium/3-months">3 months</a></td><td>{fmt(P3)} UZS</td><td>~{fmt(pm(3))} UZS</td><td>+ ~{fmt(fee(3))} UZS</td></tr>
+        <tr><td><a href="/en/premium/6-months">6 months</a></td><td>{fmt(P6)} UZS</td><td>~{fmt(pm(6))} UZS</td><td>+ ~{fmt(fee(6))} UZS</td></tr>
+        <tr><td><a href="/en/premium/12-months">12 months</a></td><td>{fmt(P12)} UZS</td><td>~{fmt(pm(12))} UZS</td><td>+ ~{fmt(fee(12))} UZS</td></tr>
       </tbody>
     </table>
     <p>Prices follow the rate at the time of the order — check the amount in the bot before paying. A full breakdown of the middle plan: <a href="/en/blog/telegram-premium-6-months-price">Telegram Premium 6 months price</a>.</p>
@@ -151,7 +160,7 @@ const faqs = [
       <li><strong>Not enough balance.</strong> Check that the card covers both the Premium price and the fee.</li>
       <li><strong>Limit reached.</strong> If you've already made large transfers that day, your daily limit may fall short. Pay from another card or another app.</li>
       <li><strong>Wrong amount sent.</strong> An amount that differs from the one in the bot won't be recognised. Contact support with your receipt.</li>
-      <li><strong>Charged, but no Premium.</strong> Send your payment receipt to <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a> within 24 hours.</li>
+      <li><strong>Charged, but no Premium.</strong> Send your payment receipt to <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a> within 24 hours.</li>
     </ul>
   </section>
 
@@ -165,7 +174,7 @@ const faqs = [
     <p>Under the StarsJoy public offer:</p>
     <ul>
       <li>If the payment went through but the order failed for a technical reason, you get a <strong>full refund</strong>;</li>
-      <li>To claim it, send your payment receipt through @starsjoy_bot <strong>within 24 hours</strong>;</li>
+      <li>To claim it, send your payment receipt through @StarsjoySupport <strong>within 24 hours</strong>;</li>
       <li>If a wrong username was entered and Premium was activated for someone else, the payment can't be refunded — check the username twice before paying.</li>
     </ul>
     <p>It's a one-time transfer: there's no auto-renewal and your card isn't charged later. More: <a href="/en/blog/is-starsjoy-legit">is StarsJoy legit</a>.</p>

@@ -1,18 +1,19 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { STAR_PRICE, starsPrice, starPriceWithBonus, fmt, PRICE_NOTE, PRICES_DATE_UZ } from '../../../lib/prices';
 
 const faqs = [
   {
     q: "How much do 1000 Telegram Stars cost in UZS?",
-    a: "At StarsJoy, 1000 Telegram Stars cost 240,000 UZS — 240 UZS per Star. You pay from an Uzcard or Humo card via Payme, Click or any banking app, and the Stars usually arrive in about 10 seconds. A +40 ⭐ bonus is added on top, so one Star effectively costs about 231 UZS."
+    a: `At StarsJoy, 1000 Telegram Stars cost ${fmt(starsPrice(1000))} UZS — ${STAR_PRICE} UZS per Star. You pay from an Uzcard or Humo card via Payme, Click or any banking app, and the Stars usually arrive in about 10 seconds. A +40 ⭐ bonus is added on top, so one Star effectively costs about ${starPriceWithBonus()} UZS.`
   },
   {
     q: "How much are 1000 Stars in the Telegram app?",
-    a: "The in-app price in Uzbekistan as of 04.11.2026 is 233,999 UZS for 1000 Stars — about 234 UZS per Star. StarsJoy's 240,000 UZS is about 6,000 UZS (~2.6%) more without the bonus, but with the +40 ⭐ bonus a Star costs ~231 UZS — about 1.4% cheaper than the app. The app usually needs an international card and doesn't accept Uzcard or Humo."
+    a: `The in-app price in Uzbekistan as of 04.11.2026 is 233,999 UZS for 1000 Stars — about 234 UZS per Star. StarsJoy's ${fmt(starsPrice(1000))} UZS is about 8.5% more, and even with the +40 ⭐ bonus (~${starPriceWithBonus()} UZS per Star) it stays roughly 4% above the app. What StarsJoy offers instead is payment with Uzcard or Humo, delivery in about 10 seconds and 24/7 support — the app usually needs an international card and doesn't accept Uzcard or Humo.`
   },
   {
     q: "How do I buy 1000 Stars with Uzcard or Humo?",
-    a: "Open @starsjoybot, enter 1000 in the Stars section, add the username that should receive them, and transfer exactly 240,000 UZS to the card the bot shows — via Payme, Click or any banking app. The Stars usually arrive in about 10 seconds. No password or SMS code is needed."
+    a: `Open @starsjoybot, enter 1000 in the Stars section, add the username that should receive them, and transfer exactly ${fmt(starsPrice(1000))} UZS to the card the bot shows — via Payme, Click or any banking app. The Stars usually arrive in about 10 seconds. No password or SMS code is needed.`
   },
   {
     q: "What bonus do I get for 1000 Stars?",
@@ -24,7 +25,7 @@ const faqs = [
   },
   {
     q: "Is 1000 Stars at once cheaper than 500 Stars twice?",
-    a: "At StarsJoy the price is the same: 240 UZS per Star, 240,000 UZS in total either way, and the same bonus (+20 ⭐ + 20 ⭐ = +40 ⭐). One purchase is simply more convenient: one transfer, one wait."
+    a: `At StarsJoy the price is the same: ${STAR_PRICE} UZS per Star, ${fmt(starsPrice(1000))} UZS in total either way, and the same bonus (+20 ⭐ + 20 ⭐ = +40 ⭐). One purchase is simply more convenient: one transfer, one wait.`
   },
   {
     q: "How fast do 1000 Stars arrive?",
@@ -36,7 +37,7 @@ const faqs = [
   },
   {
     q: "Can I buy 1000 Stars for someone else?",
-    a: "Yes. Enter their username in the order and the Stars go straight to their account. The price is the same — 240,000 UZS."
+    a: `Yes. Enter their username in the order and the Stars go straight to their account. The price is the same — ${fmt(starsPrice(1000))} UZS.`
   },
   {
     q: "What if the Stars don't arrive?",
@@ -47,52 +48,54 @@ const faqs = [
 
 <BlogPostEn
   slug="1000-telegram-stars-price"
-  title="1000 Telegram Stars Price in 2026 — 240,000 UZS, Pay with Uzcard or Humo"
-  heading="1000 Telegram Stars price in 2026 — 240,000 UZS, pay with Uzcard or Humo"
+  title={`1000 Telegram Stars Price in 2026 — ${fmt(starsPrice(1000))} UZS, Pay with Uzcard or Humo`}
+  heading={`1000 Telegram Stars price in 2026 — ${fmt(starsPrice(1000))} UZS, pay with Uzcard or Humo`}
   crumb="1000 Stars price"
   tag="Stars"
-  description="1000 Telegram Stars cost 240,000 UZS (240 UZS per Star), paid with Uzcard or Humo and delivered in about 10 seconds, plus a +40 ⭐ bonus. Compared with the in-app price, and what 1000 Stars buy."
+  description={`1000 Telegram Stars cost ${fmt(starsPrice(1000))} UZS (${STAR_PRICE} UZS per Star), paid with Uzcard or Humo and delivered in about 10 seconds, plus a +40 ⭐ bonus. Compared with the in-app price, and what 1000 Stars buy.`}
   keywords="1000 telegram stars price, 1000 stars price uzs, how much are 1000 telegram stars, buy 1000 telegram stars, telegram stars uzcard, telegram stars humo, telegram stars uzbekistan"
   publishDate="2026-11-04"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-1000-stars-sotib-olish"
   ruHref="https://starsjoy.uz/ru/blog/telegram-1000-stars-sotib-olish"
   faqs={faqs}
 >
   <section>
-    <p class="post-lead"><strong>Short answer:</strong> 1000 Telegram Stars cost <strong>240,000 UZS</strong> at StarsJoy — 240 UZS per Star. Open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, enter 1000, add the username, and transfer the sum to the card the bot shows <strong>from your Uzcard or Humo</strong> — via Payme, Click or any banking app, no Visa needed. The Stars usually arrive in about <strong>10 seconds</strong>, with a <strong>+40 ⭐ bonus</strong> on top. No password or SMS code is ever needed.</p>
+    <p class="post-lead"><strong>Short answer:</strong> 1000 Telegram Stars cost <strong>{fmt(starsPrice(1000))} UZS</strong> at StarsJoy — {STAR_PRICE} UZS per Star. Open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, enter 1000, add the username, and transfer the sum to the card the bot shows <strong>from your Uzcard or Humo</strong> — via Payme, Click or any banking app, no Visa needed. The Stars usually arrive in about <strong>10 seconds</strong>, with a <strong>+40 ⭐ bonus</strong> on top. No password or SMS code is ever needed.</p>
   </section>
 
   <section>
-    <p>1000 is the most searched and most purchased Stars pack: much more than a 100–500 trial, without the large one-off payment of 5,000 or 10,000 Stars. Before buying, people want three numbers — the exact price in som, how it compares with the Telegram app, and what 1000 Stars actually buy. Here they are. Prices are as of 04.11.2026, from the <a href="/en/stars/1000">1000 Stars page</a>.</p>
+    <p>1000 is the most searched and most purchased Stars pack: much more than a 100–500 trial, without the large one-off payment of 5,000 or 10,000 Stars. Before buying, people want three numbers — the exact price in som, how it compares with the Telegram app, and what 1000 Stars actually buy. Here they are. StarsJoy prices are as of {PRICES_DATE_UZ} (app prices as of 04.11.2026), from the <a href="/en/stars/1000">1000 Stars page</a>.</p>
   </section>
 
   <section>
     <h2>How much do 1000 Telegram Stars cost?</h2>
-    <p>At StarsJoy the price doesn't depend on the pack size — every Star costs 240 UZS, plus +2 ⭐ bonus for every full 50 Stars.</p>
+    <p>At StarsJoy the price doesn't depend on the pack size — every Star costs {STAR_PRICE} UZS, plus +2 ⭐ bonus for every full 50 Stars.</p>
     <table>
       <thead>
         <tr><th>Pack</th><th>Price</th><th>Per Star</th><th>Bonus</th></tr>
       </thead>
       <tbody>
-        <tr><td><a href="/en/stars/100">100 Stars</a></td><td>24,000 UZS</td><td>240 UZS</td><td>+4 ⭐</td></tr>
-        <tr><td><a href="/en/stars/500-pack">500 Stars</a></td><td>120,000 UZS</td><td>240 UZS</td><td>+20 ⭐</td></tr>
-        <tr><td><a href="/en/stars/1000"><strong>1000 Stars</strong></a></td><td><strong>240,000 UZS</strong></td><td><strong>240 UZS</strong></td><td><strong>+40 ⭐</strong></td></tr>
-        <tr><td><a href="/en/stars/5000">5000 Stars</a></td><td>1,200,000 UZS</td><td>240 UZS</td><td>+200 ⭐</td></tr>
-        <tr><td><a href="/en/stars/10000">10,000 Stars</a></td><td>2,400,000 UZS</td><td>240 UZS</td><td>+400 ⭐</td></tr>
+        <tr><td><a href="/en/stars/100">100 Stars</a></td><td>{fmt(starsPrice(100))} UZS</td><td>{STAR_PRICE} UZS</td><td>+4 ⭐</td></tr>
+        <tr><td><a href="/en/stars/500-pack">500 Stars</a></td><td>{fmt(starsPrice(500))} UZS</td><td>{STAR_PRICE} UZS</td><td>+20 ⭐</td></tr>
+        <tr><td><a href="/en/stars/1000"><strong>1000 Stars</strong></a></td><td><strong>{fmt(starsPrice(1000))} UZS</strong></td><td><strong>{STAR_PRICE} UZS</strong></td><td><strong>+40 ⭐</strong></td></tr>
+        <tr><td><a href="/en/stars/5000">5000 Stars</a></td><td>{fmt(starsPrice(5000))} UZS</td><td>{STAR_PRICE} UZS</td><td>+200 ⭐</td></tr>
+        <tr><td><a href="/en/stars/10000">10,000 Stars</a></td><td>{fmt(starsPrice(10000))} UZS</td><td>{STAR_PRICE} UZS</td><td>+400 ⭐</td></tr>
       </tbody>
     </table>
     <p>The bonus lands on your Mini App balance within 5 minutes and can be exchanged for Stars. There's no commission or hidden fee — you transfer exactly the amount you see in the bot.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>
     <h2>How much are 1000 Stars in the Telegram app?</h2>
-    <p><strong>233,999 UZS</strong> — the in-app price in Uzbekistan as of 04.11.2026, or about 234 UZS per Star. Without the bonus StarsJoy is about 6,000 UZS more; with the bonus a Star comes out cheaper.</p>
+    <p><strong>233,999 UZS</strong> — the in-app price in Uzbekistan as of 04.11.2026, or about 234 UZS per Star. StarsJoy is about {fmt(starsPrice(1000) - 233999)} UZS more; the difference is in how you pay, not in the price.</p>
     <table>
       <thead>
         <tr><th>Where</th><th>Price of 1000 Stars</th><th>What you need</th></tr>
       </thead>
       <tbody>
-        <tr><td><strong>StarsJoy (@starsjoybot)</strong></td><td><strong>240,000 UZS + 40 ⭐ bonus</strong> — fixed, in som</td><td>Uzcard, Humo or any card; just a username</td></tr>
+        <tr><td><strong>StarsJoy (@starsjoybot)</strong></td><td><strong>{fmt(starsPrice(1000))} UZS + 40 ⭐ bonus</strong> — fixed, in som</td><td>Uzcard, Humo or any card; just a username</td></tr>
         <tr><td>Telegram app (App Store / Google Play)</td><td>233,999 UZS (as of 04.11.2026)</td><td>Usually an international Visa / Mastercard</td></tr>
       </tbody>
     </table>
@@ -101,14 +104,14 @@ const faqs = [
 
   <section>
     <h2>What does one Star really cost with the bonus?</h2>
-    <p>1000 Stars + 40 ⭐ bonus = <strong>1,040 Stars</strong>. <strong>240,000 ÷ 1,040 ≈ 231 UZS</strong> per Star.</p>
+    <p>1000 Stars + 40 ⭐ bonus = <strong>1,040 Stars</strong>. <strong>{fmt(starsPrice(1000))} ÷ 1,040 ≈ {starPriceWithBonus()} UZS</strong> per Star.</p>
     <ul>
-      <li><strong>Without the bonus</strong>, StarsJoy's price is about 2.6% (≈ 6,000 UZS) higher than the app — we say this openly;</li>
-      <li><strong>With the bonus</strong>, a Star is <strong>about 1.4% cheaper</strong> than in the app (231 vs 234 UZS);</li>
-      <li>For reference: 250 Stars cost 59,999 UZS in the app and 60,000 UZS at StarsJoy (+10 ⭐ bonus) — practically equal on small packs;</li>
-      <li>And you don't need an international card or pay any conversion fee.</li>
+      <li><strong>Without the bonus</strong>, StarsJoy's price is about 8.5% (≈ {fmt(starsPrice(1000) - 233999)} UZS) higher than the app — we say this openly;</li>
+      <li><strong>With the bonus</strong>, a Star costs ~{starPriceWithBonus()} UZS vs 234 UZS in the app — still about 4% more;</li>
+      <li>For reference: 100 Stars cost 25,399 UZS in the app and {fmt(starsPrice(100))} UZS at StarsJoy (+4 ⭐ bonus) — practically equal on small packs;</li>
+      <li>On the other hand, you don't need an international card or pay any conversion fee.</li>
     </ul>
-    <p>To be straightforward: the main advantage for 1000 Stars isn't a big discount — it's buying with Uzcard or Humo, in som, in 10 seconds, with a bonus. If you have a working international card, the app is fine too; if not, the fastest route is <a href="/en/stars/1000">1000 Stars at StarsJoy</a>.</p>
+    <p>To be straightforward: StarsJoy isn't cheaper than the app for 1000 Stars — the advantage is buying with Uzcard or Humo, in som, in about 10 seconds, with a bonus and 24/7 support at @StarsjoySupport. If you have a working international card, the app is fine too; if not, the fastest route is <a href="/en/stars/1000">1000 Stars at StarsJoy</a>.</p>
   </section>
 
   <section>
@@ -128,7 +131,7 @@ const faqs = [
     <ol>
       <li><strong>Open the bot.</strong> Open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> in Telegram and go to Stars.</li>
       <li><strong>Enter 1000 and the username.</strong> Type 1000 as the amount and enter the Telegram username that should receive the Stars — yours or someone else's.</li>
-      <li><strong>Pay.</strong> Transfer exactly 240,000 UZS to the card the bot shows, via Payme, Click or a banking app, then confirm the payment in the bot. A different amount won't be recognised.</li>
+      <li><strong>Pay.</strong> Transfer exactly {fmt(starsPrice(1000))} UZS to the card the bot shows, via Payme, Click or a banking app, then confirm the payment in the bot. A different amount won't be recognised.</li>
       <li><strong>Receive.</strong> The Stars usually arrive in about 10 seconds; under the public offer, orders are fulfilled within 5 minutes. The +40 ⭐ bonus goes to your Mini App balance.</li>
     </ol>
     <p>Check the username twice — Stars sent to the wrong account can't be returned. More: <a href="/en/blog/is-buying-telegram-stars-safe">is buying Telegram Stars safe</a>.</p>
@@ -136,7 +139,7 @@ const faqs = [
 
   <section>
     <h2>1000 Stars, 500 × 2 or 5000 — which makes sense?</h2>
-    <p>At StarsJoy, two 500-Star packs cost the same 240,000 UZS and earn the same +40 ⭐ — one purchase of 1000 is just more convenient. New to Stars? Start with <a href="/en/stars/500-pack">500 Stars</a> (120,000 UZS). Using Stars regularly, 1000 is the most balanced pack. For larger volumes: <a href="/en/blog/5000-telegram-stars-price">5000 Telegram Stars price</a> and <a href="/en/blog/10000-telegram-stars-price">10,000 Telegram Stars price</a>.</p>
+    <p>At StarsJoy, two 500-Star packs cost the same {fmt(starsPrice(1000))} UZS and earn the same +40 ⭐ — one purchase of 1000 is just more convenient. New to Stars? Start with <a href="/en/stars/500-pack">500 Stars</a> ({fmt(starsPrice(500))} UZS). Using Stars regularly, 1000 is the most balanced pack. For larger volumes: <a href="/en/blog/5000-telegram-stars-price">5000 Telegram Stars price</a> and <a href="/en/blog/10000-telegram-stars-price">10,000 Telegram Stars price</a>.</p>
   </section>
 
   <section>
@@ -158,7 +161,7 @@ const faqs = [
 
   <section>
     <h2>Get 1000 Stars now</h2>
-    <p>240,000 UZS with Uzcard or Humo, +40 ⭐ bonus, usually delivered in 10 seconds → <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener"><strong>open @starsjoybot</strong></a>.</p>
+    <p>{fmt(starsPrice(1000))} UZS with Uzcard or Humo, +40 ⭐ bonus, usually delivered in 10 seconds → <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener"><strong>open @starsjoybot</strong></a>.</p>
   </section>
 
   <section>

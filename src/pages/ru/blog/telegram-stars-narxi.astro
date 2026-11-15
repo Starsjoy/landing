@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { starsPrice, starPriceWithBonus, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Цена Telegram Stars 2026: как купить дешевле в Узбекистане | StarsJoy Blog";
 const description = "Сколько стоят Telegram Stars в 2026 году? Курс в сумах, сравнение цен, покупка через Uzcard и Humo — самые выгодные способы.";
 const publishDate = "2026-03-15";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1150;
 ---
 
@@ -165,7 +166,7 @@ const wordCount = 1150;
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> Цена Telegram Stars зависит от источника покупки — App Store/Google Play самые дорогие, а reseller-боты обычно дешевле. В Узбекистане самый удобный способ <a href="/ru/blog/telegram-stars-sotib-olish">купить Stars</a> — картой Uzcard или Humo через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, Visa не требуется. Точные цены пакетов видны в самом боте.
+            <strong>Краткий ответ:</strong> Цена Telegram Stars зависит от источника покупки: в StarsJoy 100 Stars стоят {fmtS(starsPrice(100))} сум, в приложении Telegram — 25 399 сум (04.11.2026), цена практически равная, разница в способе оплаты. В Узбекистане самый удобный способ <a href="/ru/blog/telegram-stars-sotib-olish">купить Stars</a> — картой Uzcard или Humo через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, Visa не требуется. Точные цены пакетов видны в самом боте.
           </div>
 
           <section>
@@ -191,7 +192,7 @@ const wordCount = 1150;
 
             <h3>Комиссия App Store и Google Play</h3>
 
-            <p>Apple и Google взимают до 30% комиссии с покупок внутри приложений. Поэтому Stars, купленные через мобильное приложение, часто являются самым дорогим вариантом.</p>
+            <p>Apple и Google взимают до 30% комиссии с покупок внутри приложений, и она уже включена в цену в приложении. В Узбекистане 100 Stars в приложении стоят 25 399 сум (04.11.2026), но для оплаты обычно нужна международная карта или баланс App Store.</p>
 
             <h3>Покупка через официальный бот Telegram</h3>
 
@@ -218,8 +219,8 @@ const wordCount = 1150;
                 </thead>
                 <tbody>
                   <tr>
-                    <td>App Store / Google Play</td>
-                    <td>35 000 сум</td>
+                    <td>Приложение Telegram (App Store / Google Play), 04.11.2026</td>
+                    <td>25 399 сум</td>
                     <td>Visa / Mastercard</td>
                   </tr>
                   <tr>
@@ -229,14 +230,16 @@ const wordCount = 1150;
                   </tr>
                   <tr class="highlight-row">
                     <td>Бот Starsjoy</td>
-                    <td>22 000 – 24 000 сум</td>
+                    <td>{fmtS(starsPrice(100))} сум (+ бонусные Stars)</td>
                     <td>Humo / Uzcard</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <p>Как видно, через некоторые сервисы можно <strong>купить Telegram Stars дешевле</strong>. Это особенно удобно для пользователей, которые хотят оплачивать местными картами.</p>
+            <p><small>{PRICE_NOTE.ru}</small></p>
+
+            <p>Как видно, за 100 Stars цена StarsJoy практически равна цене в приложении Telegram, а с бонусными Stars за каждую покупку 1 ⭐ обходится примерно в {starPriceWithBonus()} сум. Когда речь идёт о том, где <strong>купить Telegram Stars дешевле</strong>, главная разница в удобстве: оплата картой Uzcard и Humo, Stars обычно приходят автоматически примерно за 10 секунд, поддержка 24/7 — @StarsjoySupport. Это особенно удобно для пользователей, которые хотят оплачивать местными картами.</p>
 
             <div class="post-cta-box">
               <a href="https://telegram.me/starsjoybot" target="_blank" class="post-cta-btn">Купить Telegram Stars &rarr;</a>
@@ -374,7 +377,7 @@ const wordCount = 1150;
             <p>В 2026 году <strong>цена Telegram Stars</strong> заметно отличается на разных платформах.</p>
 
             <ul>
-              <li>App Store и Google Play — самый дорогой вариант</li>
+              <li>App Store и Google Play — нужна международная карта или баланс App Store</li>
               <li>Официальный бот — средняя цена</li>
               <li>Некоторые сервисы — часто дешевле</li>
             </ul>

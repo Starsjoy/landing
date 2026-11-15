@@ -1,5 +1,6 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, fmt, PRICE_NOTE } from '../../../lib/prices';
 
 const faqs = [
   {
@@ -34,6 +35,7 @@ const faqs = [
   description="Stars and Premium are two separate Telegram products, not two tiers of the same thing. What each one actually does, when you need which, and why buying the wrong one is the most common mistake."
   keywords="telegram stars vs premium, difference between telegram stars and premium, telegram stars or premium, which telegram subscription"
   publishDate="2026-08-07"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-stars-yoki-premium"
   ruHref="https://starsjoy.uz/ru/blog/telegram-stars-yoki-premium"
   faqs={faqs}
@@ -57,11 +59,12 @@ const faqs = [
           <tr><td>How you use it</td><td>Spend it on things</td><td>Hold it for a period</td></tr>
           <tr><td>Runs out?</td><td>When you spend it</td><td>When the term ends</td></tr>
           <tr><td>Affects the app itself</td><td>No</td><td>Yes</td></tr>
-          <tr><td>Price in Uzbekistan</td><td>240 UZS per star</td><td>From 172,000 UZS / 3 months</td></tr>
-          <tr><td>Minimum purchase</td><td>50 Stars (12,000 UZS)</td><td>3 months</td></tr>
+          <tr><td>Price in Uzbekistan</td><td>{STAR_PRICE} UZS per star</td><td>From {fmt(PREMIUM_PRICE[3])} UZS / 3 months</td></tr>
+          <tr><td>Minimum purchase</td><td>50 Stars ({fmt(starsPrice(50))} UZS)</td><td>3 months</td></tr>
         </tbody>
       </table>
     </div>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>
@@ -99,7 +102,7 @@ const faqs = [
   <section>
     <h2>The mistake worth avoiding</h2>
     <p>People buy Premium expecting it to cover a paid post, or buy Stars expecting the 4 GB upload limit. Both then have to buy the other thing anyway. Before purchasing, name the specific thing you could not do — the answer follows directly from that, and it is almost never ambiguous.</p>
-    <p>If you genuinely want both, buy them separately: <a href="/en/stars">Stars</a> at 240 UZS each and <a href="/en/premium">Premium</a> from 172,000 UZS for 3 months, both paid in som with Uzcard or Humo.</p>
+    <p>If you genuinely want both, buy them separately: <a href="/en/stars">Stars</a> at {STAR_PRICE} UZS each and <a href="/en/premium">Premium</a> from {fmt(PREMIUM_PRICE[3])} UZS for 3 months, both paid in som with Uzcard or Humo.</p>
   </section>
 
   <section>

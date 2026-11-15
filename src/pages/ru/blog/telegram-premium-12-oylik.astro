@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, PRICES_DATE_UZ, premiumPerMonth, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
-const title = "Сколько стоит Telegram Premium на год в 2026 — 422 000 сум, оплата Uzcard и Humo | StarsJoy Блог";
-const description = "Цена Telegram Premium на 12 месяцев — 422 000 сум: ~35 200 в месяц, ~1 160 сум в день. Оплата с Uzcard или Humo, активация за 10 секунд. На ~300 000 сум дешевле, чем в приложении.";
+const title = `Сколько стоит Telegram Premium на год в 2026 — ${fmtS(PREMIUM_PRICE[12])} сум, оплата Uzcard и Humo | StarsJoy Блог`;
+const description = `Цена Telegram Premium на 12 месяцев — ${fmtS(PREMIUM_PRICE[12])} сум: ~${fmtS(premiumPerMonth(12))} в месяц, ~${fmtS(PREMIUM_PRICE[12] / 365)} сум в день. Оплата с Uzcard или Humo, активация за 10 секунд. На ~${fmtS(722000 - PREMIUM_PRICE[12])} сум дешевле, чем в приложении.`;
 const publishDate = "2026-04-17";
-const modifiedDate = "2026-10-19";
+const modifiedDate = "2026-11-15";
 const wordCount = 2240;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-12-oylik";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -16,7 +17,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
   title={title}
   description={description}
   canonical={canonical}
-  keywords="telegram premium цена, сколько стоит telegram premium на год, сколько стоит подписка телеграм премиум на год, telegram premium 12 месяцев цена, telegram premium цена в узбекистане, Telegram Premium 422 000 сум, Telegram Premium Uzcard, Telegram Premium Humo"
+  keywords={`telegram premium цена, сколько стоит telegram premium на год, сколько стоит подписка телеграм премиум на год, telegram premium 12 месяцев цена, telegram premium цена в узбекистане, Telegram Premium ${fmtS(PREMIUM_PRICE[12])} сум, Telegram Premium Uzcard, Telegram Premium Humo`}
   lang="ru"
   ogType="article"
   ogImage={ogImage}
@@ -31,14 +32,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Сколько стоит Telegram Premium на год (12 месяцев) в 2026 — 422 000 сум, оплата Uzcard и Humo",
+    "headline": "Сколько стоит Telegram Premium на год (12 месяцев) в 2026 — " + fmtS(PREMIUM_PRICE[12]) + " сум, оплата Uzcard и Humo",
     "description": description,
     "datePublished": publishDate,
     "dateModified": modifiedDate,
     "inLanguage": "ru-RU",
     "wordCount": wordCount,
     "articleSection": "Premium",
-    "keywords": "telegram premium цена, Telegram Premium на год цена, Telegram Premium 12 месяцев, Premium 422 000 сум, Uzcard, Humo, StarsJoy",
+    "keywords": "telegram premium цена, Telegram Premium на год цена, Telegram Premium 12 месяцев, Premium " + fmtS(PREMIUM_PRICE[12]) + " сум, Uzcard, Humo, StarsJoy",
     "author": {
       "@type": "Organization",
       "name": "StarsJoy",
@@ -85,7 +86,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Сколько стоит Telegram Premium на 12 месяцев (2026)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "В Узбекистане через StarsJoy Telegram Premium на 12 месяцев (1 год) стоит 422 000 сум. В пересчёте ~35 200 сум в месяц и ~1 160 сум в день — самая низкая ежемесячная цена среди всех пакетов. Оплата разовая, с карты ничего не списывается автоматически."
+          "text": "В Узбекистане через StarsJoy Telegram Premium на 12 месяцев (1 год) стоит " + fmtS(PREMIUM_PRICE[12]) + " сум. В пересчёте ~" + fmtS(premiumPerMonth(12)) + " сум в месяц и ~" + fmtS(PREMIUM_PRICE[12] / 365) + " сум в день — самая низкая ежемесячная цена среди всех пакетов. Оплата разовая, с карты ничего не списывается автоматически."
         }
       },
       {
@@ -93,7 +94,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Сколько стоит Telegram Premium на год в приложении?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "В приложении Telegram месячная подписка стоит $4.99 — за 12 месяцев $59.88, то есть около 722 000 сум (курс ЦБ на 17.10.2026, $1 = 12 055.90 сум). 12 месяцев в StarsJoy — 422 000 сум, примерно на 300 000 сум дешевле. В приложении есть и годовая подписка, но её цена зависит от страны и обычно нужна международная карта."
+          "text": "В приложении Telegram месячная подписка стоит $4.99 — за 12 месяцев $59.88, то есть около 722 000 сум (курс ЦБ на 17.10.2026, $1 = 12 055.90 сум). 12 месяцев в StarsJoy — " + fmtS(PREMIUM_PRICE[12]) + " сум, примерно на " + fmtS(722000 - PREMIUM_PRICE[12]) + " сум дешевле. В приложении есть и годовая подписка, но её цена зависит от страны и обычно нужна международная карта."
         }
       },
       {
@@ -101,7 +102,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Как купить 12-месячный Telegram Premium?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Зайдите в @starsjoybot → в разделе Premium выберите 12 месяцев → введите username Telegram → переведите 422 000 сум на карту, которую покажет бот, через Payme, Click или любое банковское приложение. Premium обычно активируется за 10 секунд. Пароль и SMS-код не запрашиваются."
+          "text": "Зайдите в @starsjoybot → в разделе Premium выберите 12 месяцев → введите username Telegram → переведите " + fmtS(PREMIUM_PRICE[12]) + " сум на карту, которую покажет бот, через Payme, Click или любое банковское приложение. Premium обычно активируется за 10 секунд. Пароль и SMS-код не запрашиваются."
         }
       },
       {
@@ -109,7 +110,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Насколько 12-месячный пакет дешевле 3 или 6 месяцев?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "12 месяцев — ~35 200 сум/мес, 6 месяцев — ~38 700 сум/мес, 3 месяца — ~57 300 сум/мес. По сравнению с 3-месячным экономия за год — 266 000 сум, по сравнению с 6-месячным — 42 000 сум. Главное преимущество: одна оплата на год вместо нескольких."
+          "text": "12 месяцев — ~" + fmtS(premiumPerMonth(12)) + " сум/мес, 6 месяцев — ~" + fmtS(premiumPerMonth(6)) + " сум/мес, 3 месяца — ~" + fmtS(premiumPerMonth(3)) + " сум/мес. По сравнению с 3-месячным экономия за год — " + fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12]) + " сум, по сравнению с 6-месячным — " + fmtS(PREMIUM_PRICE[6] * 2 - PREMIUM_PRICE[12]) + " сум. Главное преимущество: одна оплата на год вместо нескольких."
         }
       },
       {
@@ -149,7 +150,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Можно ли оплатить 12-месячный Premium в рассрочку?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Нет — 12-месячный пакет оплачивается одним платежом. Если 422 000 сум сразу тяжело, начните с 6 месяцев (232 000 сум) и до окончания срока купите ещё 6 — новый срок добавится к текущему. Так выйдет на 42 000 сум в год дороже."
+          "text": "Нет — 12-месячный пакет оплачивается одним платежом. Если " + fmtS(PREMIUM_PRICE[12]) + " сум сразу тяжело, начните с 6 месяцев (" + fmtS(PREMIUM_PRICE[6]) + " сум) и до окончания срока купите ещё 6 — новый срок добавится к текущему. Так выйдет на " + fmtS(PREMIUM_PRICE[6] * 2 - PREMIUM_PRICE[12]) + " сум в год дороже."
         }
       },
       {
@@ -157,7 +158,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Вернут ли деньги, если Premium не активировался?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Да. По оферте StarsJoy, если оплата прошла, а заказ не выполнен по технической причине, деньги возвращаются полностью. Для этого в течение 24 часов отправьте чек об оплате через @starsjoy_bot."
+          "text": "Да. По оферте StarsJoy, если оплата прошла, а заказ не выполнен по технической причине, деньги возвращаются полностью. Для этого в течение 24 часов отправьте чек об оплате через @StarsjoySupport."
         }
       }
     ]
@@ -169,7 +170,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
     "name": "Как получить Telegram Premium на 12 месяцев с Uzcard или Humo",
     "description": "Пошаговая инструкция: Telegram Premium на 12 месяцев через @starsjoybot с картой Uzcard или Humo.",
     "totalTime": "PT2M",
-    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": "422000" },
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": String(PREMIUM_PRICE[12]) },
     "tool": [
       { "@type": "HowToTool", "name": "Telegram-аккаунт" },
       { "@type": "HowToTool", "name": "Карта Uzcard или Humo" },
@@ -178,7 +179,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
     "step": [
       { "@type": "HowToStep", "position": 1, "name": "Откройте @starsjoybot", "text": "В Telegram откройте @starsjoybot и выберите раздел Premium." },
       { "@type": "HowToStep", "position": 2, "name": "12 месяцев и username", "text": "Выберите срок 12 месяцев (1 год) и введите username Telegram, на который нужен Premium — свой или другого человека." },
-      { "@type": "HowToStep", "position": 3, "name": "Оплатите", "text": "Переведите ровно 422 000 сум на карту, которую показывает бот, через Payme, Click или любое банковское приложение." },
+      { "@type": "HowToStep", "position": 3, "name": "Оплатите", "text": "Переведите ровно " + fmtS(PREMIUM_PRICE[12]) + " сум на карту, которую показывает бот, через Payme, Click или любое банковское приложение." },
       { "@type": "HowToStep", "position": 4, "name": "Получите", "text": "После подтверждения оплаты Premium обычно активируется за 10 секунд. Проверьте в Telegram → Settings → Premium." }
     ]
   })} />
@@ -205,7 +206,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <span>Цена Premium на 12 месяцев</span>
         </nav>
         <div class="post-tag">Premium</div>
-        <h1 class="post-title">Сколько стоит Telegram Premium на год (12 месяцев) в 2026 — 422 000 сум, оплата Uzcard и Humo</h1>
+        <h1 class="post-title">Сколько стоит Telegram Premium на год (12 месяцев) в 2026 — {fmtS(PREMIUM_PRICE[12])} сум, оплата Uzcard и Humo</h1>
         <div class="post-meta">
           <span class="post-date">Обновлено: {modifiedDate}</span>
           <span class="post-author">StarsJoy Блог</span>
@@ -218,16 +219,17 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> Telegram Premium на 12 месяцев (1 год) в StarsJoy стоит <strong>422 000 сум</strong> — ~35 200 сум в месяц и ~1 160 сум в день, самый выгодный пакет. По сравнению с месячной подпиской в приложении Telegram это примерно на <strong>300 000 сум в год дешевле</strong>. В <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> выберите 12 месяцев, введите username и переведите сумму на карту, которую покажет бот, <strong>с Uzcard или Humo</strong> через Payme, Click или банковское приложение — Visa не нужна. Premium обычно активируется за <strong>10 секунд</strong>. Пароль и SMS-код не нужны.
+            <strong>Краткий ответ:</strong> Telegram Premium на 12 месяцев (1 год) в StarsJoy стоит <strong>{fmtS(PREMIUM_PRICE[12])} сум</strong> — ~{fmtS(premiumPerMonth(12))} сум в месяц и ~{fmtS(PREMIUM_PRICE[12] / 365)} сум в день, самый выгодный пакет. По сравнению с месячной подпиской в приложении Telegram это примерно на <strong>{fmtS(722000 - PREMIUM_PRICE[12])} сум в год дешевле</strong>. В <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> выберите 12 месяцев, введите username и переведите сумму на карту, которую покажет бот, <strong>с Uzcard или Humo</strong> через Payme, Click или банковское приложение — Visa не нужна. Premium обычно активируется за <strong>10 секунд</strong>. Пароль и SMS-код не нужны.
           </div>
 
           <div class="price-facts" aria-label="Факты о цене">
-            <div><span>Цена</span><strong>422 000 сум</strong></div>
-            <div><span>В месяц</span><strong>~35 200 сум</strong></div>
-            <div><span>В день</span><strong>~1 160 сум</strong></div>
-            <div><span>Против приложения</span><strong>~300 000 сум дешевле</strong></div>
+            <div><span>Цена</span><strong>{fmtS(PREMIUM_PRICE[12])} сум</strong></div>
+            <div><span>В месяц</span><strong>~{fmtS(premiumPerMonth(12))} сум</strong></div>
+            <div><span>В день</span><strong>~{fmtS(PREMIUM_PRICE[12] / 365)} сум</strong></div>
+            <div><span>Против приложения</span><strong>~{fmtS(722000 - PREMIUM_PRICE[12])} сум дешевле</strong></div>
           </div>
-          <p class="price-note">Цены на 19.10.2026, по <a href="/ru/premium/12-oy">странице Premium на 12 месяцев</a>. Цены в долларах пересчитаны по курсу ЦБ (17.10.2026, $1 = 12 055.90 сум).</p>
+          <p class="price-note">Цены на {PRICES_DATE_UZ}, по <a href="/ru/premium/12-oy">странице Premium на 12 месяцев</a>. Цены в долларах пересчитаны по курсу ЦБ (17.10.2026, $1 = 12 055.90 сум).</p>
+          <p class="price-note">{PRICE_NOTE.ru}</p>
 
           <section>
             <p>Купили 3-месячный Premium — понравилось. Взяли 6-месячный — теперь пользуетесь постоянно. Но каждые 3–6 месяцев снова покупать, платить, помнить — это утомляет. К тому же, на коротких пакетах ежемесячная цена выше. Решение: <strong>Telegram Premium на 12 месяцев</strong> — одна оплата, год спокойного использования, самая низкая цена за месяц и бонусом Telegram Business в комплекте.</p>
@@ -255,29 +257,29 @@ const ogImage = "https://starsjoy.uz/og-image.png";
                 <tbody>
                   <tr>
                     <td><a href="/ru/premium/3-oy">3 месяца</a></td>
-                    <td>172 000 сум</td>
-                    <td>~57 300 сум</td>
-                    <td>688 000 сум (×4)</td>
+                    <td>{fmtS(PREMIUM_PRICE[3])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(3))} сум</td>
+                    <td>{fmtS(PREMIUM_PRICE[3] * 4)} сум (×4)</td>
                   </tr>
                   <tr>
                     <td><a href="/ru/premium/6-oy">6 месяцев</a></td>
-                    <td>232 000 сум</td>
-                    <td>~38 700 сум</td>
-                    <td>464 000 сум (×2)</td>
+                    <td>{fmtS(PREMIUM_PRICE[6])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(6))} сум</td>
+                    <td>{fmtS(PREMIUM_PRICE[6] * 2)} сум (×2)</td>
                   </tr>
                   <tr class="highlight-row">
                     <td><a href="/ru/premium/12-oy">12 месяцев</a></td>
-                    <td>422 000 сум</td>
-                    <td>~35 200 сум</td>
-                    <td>422 000 сум</td>
+                    <td>{fmtS(PREMIUM_PRICE[12])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(12))} сум</td>
+                    <td>{fmtS(PREMIUM_PRICE[12])} сум</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <p><em>Цены актуальны на 19 октября 2026 года.</em> Цифры показывают: 12-месячный пакет на <strong>~39% дешевле</strong> 3-месячного — экономия 266 000 сум в год. На <strong>~9% дешевле</strong> 6-месячного — экономия 42 000 сум в год. Сама экономия в сумах не огромная по сравнению с 6 месяцами, но главное: <strong>одна оплата с карты</strong>, дальше 12 месяцев ничего не нужно помнить и переподписываться.</p>
+            <p><em>Цены актуальны на 15 ноября 2026 года.</em> Цифры показывают: 12-месячный пакет на <strong>~40% дешевле</strong> 3-месячного — экономия {fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12])} сум в год. На <strong>~10% дешевле</strong> 6-месячного — экономия {fmtS(PREMIUM_PRICE[6] * 2 - PREMIUM_PRICE[12])} сум в год. Сама экономия в сумах не огромная по сравнению с 6 месяцами, но главное: <strong>одна оплата с карты</strong>, дальше 12 месяцев ничего не нужно помнить и переподписываться.</p>
 
-            <p>Для понимания: покупка 3-месячного 4 раза в год = 688 000 сум и 4 акта оплаты с проверкой лимита карты. 12-месячный = <strong>422 000 сум разово</strong>, экономия 266 000 сум плюс экономия времени и нервов.</p>
+            <p>Для понимания: покупка 3-месячного 4 раза в год = {fmtS(PREMIUM_PRICE[3] * 4)} сум и 4 акта оплаты с проверкой лимита карты. 12-месячный = <strong>{fmtS(PREMIUM_PRICE[12])} сум разово</strong>, экономия {fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12])} сум плюс экономия времени и нервов.</p>
 
             <p>Подробное сравнение коротких пакетов — в статьях <a href="/ru/blog/telegram-premium-paketlar-taqqoslash">Сравнение Premium-пакетов</a> и <a href="/ru/blog/telegram-premium-6-oylik-narxi">Цена Premium на 6 месяцев</a>. Если 12 месяцев сразу дорого — 6-месячный пакет хорошая альтернатива.</p>
           </section>
@@ -285,7 +287,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <section>
             <h2>Сколько стоит Telegram Premium на год в приложении?</h2>
 
-            <p>Короткий ответ: с месячной подпиской в приложении год обойдётся примерно в <strong>722 000 сум</strong> — на ~300 000 сум (~41%) дороже, чем 12 месяцев в StarsJoy. Сравнение основных вариантов:</p>
+            <p>Короткий ответ: с месячной подпиской в приложении год обойдётся примерно в <strong>722 000 сум</strong> — на ~{fmtS(722000 - PREMIUM_PRICE[12])} сум (~41%) дороже, чем 12 месяцев в StarsJoy. Сравнение основных вариантов:</p>
 
             <div class="post-table-wrap">
               <table class="post-table">
@@ -299,7 +301,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
                 <tbody>
                   <tr class="highlight-row">
                     <td>StarsJoy (@starsjoybot)</td>
-                    <td>422 000 сум (≈ $35) — фиксированно, в сумах</td>
+                    <td>{fmtS(PREMIUM_PRICE[12])} сум (≈ $36) — фиксированно, в сумах</td>
                     <td>Uzcard, Humo или любая карта; только username</td>
                   </tr>
                   <tr>
@@ -324,11 +326,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <section>
             <h2>Сколько стоит 12-месячный Premium в день?</h2>
 
-            <p>Расчёт простой: <strong>422 000 ÷ 365 ≈ 1 160 сум в день</strong>, или <strong>422 000 ÷ 12 ≈ 35 200 сум в месяц</strong>.</p>
+            <p>Расчёт простой: <strong>{fmtS(PREMIUM_PRICE[12])} ÷ 365 ≈ {fmtS(PREMIUM_PRICE[12] / 365)} сум в день</strong>, или <strong>{fmtS(PREMIUM_PRICE[12])} ÷ 12 ≈ {fmtS(premiumPerMonth(12))} сум в месяц</strong>.</p>
 
-            <p>Для сравнения: в 3-месячном пакете день стоит ~1 900 сум, в 6-месячном — ~1 270 сум. То есть в годовом пакете вы платите меньше всего за каждый день — и за эту сумму получаете загрузку файлов до 4 ГБ, расшифровку голосовых, перевод, каналы без рекламы Telegram и функции Telegram Business.</p>
+            <p>Для сравнения: в 3-месячном пакете день стоит ~{fmtS(PREMIUM_PRICE[3] / 90)} сум, в 6-месячном — ~{fmtS(PREMIUM_PRICE[6] / 180)} сум. То есть в годовом пакете вы платите меньше всего за каждый день — и за эту сумму получаете загрузку файлов до 4 ГБ, расшифровку голосовых, перевод, каналы без рекламы Telegram и функции Telegram Business.</p>
 
-            <p>Оплата разовая: платите 422 000 сум и 12 месяцев больше ничего не платите. Комиссий и скрытых платежей нет — переводите ровно ту сумму, которую видите в боте. Цена фиксируется по тарифу на момент заказа, поэтому перед оплатой сверьтесь с суммой в боте.</p>
+            <p>Оплата разовая: платите {fmtS(PREMIUM_PRICE[12])} сум и 12 месяцев больше ничего не платите. Комиссий и скрытых платежей нет — переводите ровно ту сумму, которую видите в боте. Цена фиксируется по тарифу на момент заказа, поэтому перед оплатой сверьтесь с суммой в боте.</p>
           </section>
 
           <section>
@@ -343,7 +345,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <p>В 2024 году с выходом Telegram Business все его функции были включены в Premium без дополнительной оплаты. То есть покупатель 12-месячного Premium <strong>автоматически</strong> получает бизнес-профиль, рабочее время, автоответы, шаблоны быстрых ответов и расширенный Chatbot API. Для малого бизнеса (фрилансер, магазин, сервис) — два сервиса за одну подписку в год. Подробнее: <a href="/ru/blog/telegram-business-vs-premium">Разница между Business и Premium</a>.</p>
 
             <h3>Те, кто работает и учится в Telegram</h3>
-            <p>Если Telegram для вас рабочий инструмент — переписка с клиентами, обмен большими файлами, чтение каналов на иностранных языках — Premium-функции используются каждый день: файлы до 4 ГБ, расшифровка голосовых и перевод внутри приложения. При таком использовании ~1 160 сум в день — самый выгодный вариант, а покупать короткие пакеты снова и снова — лишние траты.</p>
+            <p>Если Telegram для вас рабочий инструмент — переписка с клиентами, обмен большими файлами, чтение каналов на иностранных языках — Premium-функции используются каждый день: файлы до 4 ГБ, расшифровка голосовых и перевод внутри приложения. При таком использовании ~{fmtS(PREMIUM_PRICE[12] / 365)} сум в день — самый выгодный вариант, а покупать короткие пакеты снова и снова — лишние траты.</p>
 
             <h3>Подарок</h3>
             <p>12-месячный Premium — серьёзный и запоминающийся подарок. На день рождения, Новый год или близкому человеку. Через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> можно отправить Gift Premium на 12 месяцев любому пользователю — достаточно знать его username.</p>
@@ -372,7 +374,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <li><strong>Бандл Telegram Business</strong> (с 2024 года) — бизнес-профиль, рабочее время, автоответы, быстрые шаблоны</li>
             </ul>
 
-            <p>Все функции доступны в течение 12 месяцев без ограничений. В 3-месячном пакете тот же набор, но за год обойдётся на 266 000 сум дороже. Подробнее: <a href="/ru/blog/telegram-premium-funksiyalari">полный список функций Premium</a>.</p>
+            <p>Все функции доступны в течение 12 месяцев без ограничений. В 3-месячном пакете тот же набор, но за год обойдётся на {fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12])} сум дороже. Подробнее: <a href="/ru/blog/telegram-premium-funksiyalari">полный список функций Premium</a>.</p>
           </section>
 
           <section>
@@ -384,18 +386,18 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <p>В Telegram откройте <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">telegram.me/starsjoybot</a>, нажмите <code>/start</code>, перейдите в приложение и выберите раздел Premium.</p>
 
             <h3>Шаг 2: Выберите 12-месячный пакет</h3>
-            <p>Бот предложит пакеты: 3, 6, 12 месяцев. Выберите <strong>12 месяцев</strong> (1 год). Цена — 422 000 сум. Подробнее о пакете: <a href="/ru/premium/12-oy">Telegram Premium на 12 месяцев</a>.</p>
+            <p>Бот предложит пакеты: 3, 6, 12 месяцев. Выберите <strong>12 месяцев</strong> (1 год). Цена — {fmtS(PREMIUM_PRICE[12])} сум. Подробнее о пакете: <a href="/ru/premium/12-oy">Telegram Premium на 12 месяцев</a>.</p>
 
             <h3>Шаг 3: Введите username Telegram</h3>
             <p>Укажите username аккаунта, на который нужен Premium. Можно себе или другому человеку (Gift Premium). Бот проверит и попросит подтвердить — внимательно проверьте, так как Gift Premium нельзя отозвать.</p>
 
             <h3>Шаг 4: Оплатите на карту, которую показывает бот</h3>
-            <p>В окне заказа появятся номер карты и сумма. Скопируйте карту и переведите <strong>ровно 422 000 сум</strong> из удобного приложения: Payme, Click или приложения банка, выпустившего вашу Uzcard/Humo. Затем нажмите в боте кнопку подтверждения оплаты. Оплата в сумах — без конвертации и международной комиссии. Если придёт другая сумма, система не распознает платёж.</p>
+            <p>В окне заказа появятся номер карты и сумма. Скопируйте карту и переведите <strong>ровно {fmtS(PREMIUM_PRICE[12])} сум</strong> из удобного приложения: Payme, Click или приложения банка, выпустившего вашу Uzcard/Humo. Затем нажмите в боте кнопку подтверждения оплаты. Оплата в сумах — без конвертации и международной комиссии. Если придёт другая сумма, система не распознает платёж.</p>
 
             <h3>Шаг 5: Premium активируется за 10 секунд</h3>
             <p>После подтверждения оплаты 12-месячный Premium обычно активируется на указанном аккаунте в течение 10 секунд. По оферте заказ выполняется в течение 5 минут. Проверьте в <strong>Settings → Premium</strong>.</p>
 
-            <p class="natural-cta">422 000 сум — крупная сумма, на некоторых картах есть дневной лимит переводов. О лимитах, зарплатных картах и оплате с нескольких карт: <a href="/ru/blog/telegram-premium-12-oylik-uzcard-humo-bilan">Оплата 12-месячного Premium через Uzcard и Humo</a>.</p>
+            <p class="natural-cta">{fmtS(PREMIUM_PRICE[12])} сум — крупная сумма, на некоторых картах есть дневной лимит переводов. О лимитах, зарплатных картах и оплате с нескольких карт: <a href="/ru/blog/telegram-premium-12-oylik-uzcard-humo-bilan">Оплата 12-месячного Premium через Uzcard и Humo</a>.</p>
 
             <p><strong>Важное правило безопасности:</strong> бот <em>никогда</em> не запрашивает пароль, SMS-код или код двухфакторной аутентификации. Достаточно username — это официальный механизм Gift Premium от Telegram. Если какой-то сервис просит пароль — это <a href="/ru/blog/telegram-stars-firibgarlik-himoya">признак мошенничества</a>.</p>
           </section>
@@ -406,7 +408,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <p>12 месяцев — самая крупная оплата. Поэтому стоит учесть несколько моментов.</p>
 
             <h3>Оплата разовая</h3>
-            <p>422 000 сум — разовый платёж, без рассрочки. Если сейчас сумма обременительна, начните с <a href="/ru/premium/6-oy">6-месячного пакета</a> (232 000 сум) — он тоже даёт экономию и легче для бюджета.</p>
+            <p>{fmtS(PREMIUM_PRICE[12])} сум — разовый платёж, без рассрочки. Если сейчас сумма обременительна, начните с <a href="/ru/premium/6-oy">6-месячного пакета</a> ({fmtS(PREMIUM_PRICE[6])} сум) — он тоже даёт экономию и легче для бюджета.</p>
 
             <h3>Автопродления нет</h3>
             <p>Через 12 месяцев подписка автоматически прекращается — <strong>с карты ничего лишнего не списывается</strong>. В StarsJoy Premium покупается разовым платежом, никаких автосписаний в будущем. Аккаунт возвращается в обычный режим. Все чаты, файлы и группы сохраняются — отключаются только Premium-функции. Можно купить снова в любое время.</p>
@@ -423,7 +425,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <p>Да. Для заказа нужен только <strong>username в Telegram</strong> — пароль, SMS-код или данные для входа никогда не запрашиваются. По оферте StarsJoy:</p>
             <ul>
               <li>Если оплата прошла, а заказ не выполнен по технической причине — <strong>деньги возвращаются полностью</strong>;</li>
-              <li>Для этого <strong>в течение 24 часов</strong> отправьте чек об оплате через <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a> (поддержка);</li>
+              <li>Для этого <strong>в течение 24 часов</strong> отправьте чек об оплате через <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a> (поддержка);</li>
               <li>Если введён неверный username и Premium активирован у другого человека — деньги не возвращаются. Поэтому проверьте username дважды перед оплатой.</li>
             </ul>
             <p>Подробнее: <a href="/ru/blog/starsjoy-ishonchli-sharhlar-kafolat">Можно ли доверять StarsJoy? Отзывы и гарантии</a>.</p>
@@ -431,7 +433,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <div class="cta-box">
             <h2>Получите Premium на 12 месяцев сейчас</h2>
-            <p>422 000 сум — ~1 160 сум в день. Любая карта, обычно активация за 10 секунд.</p>
+            <p>{fmtS(PREMIUM_PRICE[12])} сум — ~{fmtS(PREMIUM_PRICE[12] / 365)} сум в день. Любая карта, обычно активация за 10 секунд.</p>
             <a class="cta-btn" href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Открыть @starsjoybot</a>
             <p class="cta-sub"><a href="/ru/premium/12-oy">О пакете Premium на 12 месяцев</a> · <a href="/ru/premium">Все тарифы Premium</a></p>
           </div>
@@ -439,7 +441,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <section>
             <h2>Заключение</h2>
 
-            <p><strong>Telegram Premium на 12 месяцев</strong> — самый выгодный вариант для постоянных пользователей и малого бизнеса. 422 000 сум — ~35 200 сум в месяц, экономия 266 000 сум в год по сравнению с 3-месячным пакетом и ~300 000 сум — по сравнению с месячной подпиской в приложении. Одна оплата — год спокойного использования. Плюс бандл Telegram Business — без отдельной подписки.</p>
+            <p><strong>Telegram Premium на 12 месяцев</strong> — самый выгодный вариант для постоянных пользователей и малого бизнеса. {fmtS(PREMIUM_PRICE[12])} сум — ~{fmtS(premiumPerMonth(12))} сум в месяц, экономия {fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12])} сум в год по сравнению с 3-месячным пакетом и ~{fmtS(722000 - PREMIUM_PRICE[12])} сум — по сравнению с месячной подпиской в приложении. Одна оплата — год спокойного использования. Плюс бандл Telegram Business — без отдельной подписки.</p>
 
             <p>Как купить в Узбекистане:</p>
             <ol>
@@ -463,11 +465,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <div class="post-faq">
               <div class="post-faq-item">
                 <h3>Сколько стоит Telegram Premium на 12 месяцев (2026)?</h3>
-                <p>В Узбекистане через StarsJoy — 422 000 сум. В пересчёте ~35 200 сум в месяц и ~1 160 сум в день — самая низкая ежемесячная цена. Оплата разовая, автосписаний с карты нет.</p>
+                <p>В Узбекистане через StarsJoy — {fmtS(PREMIUM_PRICE[12])} сум. В пересчёте ~{fmtS(premiumPerMonth(12))} сум в месяц и ~{fmtS(PREMIUM_PRICE[12] / 365)} сум в день — самая низкая ежемесячная цена. Оплата разовая, автосписаний с карты нет.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Сколько стоит Telegram Premium на год в приложении?</h3>
-                <p>Месячная подписка в приложении — $4.99, за 12 месяцев $59.88 (≈ 722 000 сум). 12 месяцев в StarsJoy дешевле примерно на 300 000 сум. Цена годовой подписки в приложении зависит от страны, обычно нужна международная карта.</p>
+                <p>Месячная подписка в приложении — $4.99, за 12 месяцев $59.88 (≈ 722 000 сум). 12 месяцев в StarsJoy дешевле примерно на {fmtS(722000 - PREMIUM_PRICE[12])} сум. Цена годовой подписки в приложении зависит от страны, обычно нужна международная карта.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Как купить 12-месячный Telegram Premium?</h3>
@@ -475,7 +477,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               </div>
               <div class="post-faq-item">
                 <h3>Насколько 12-месячный дешевле 3 или 6 месяцев?</h3>
-                <p>На ~39% дешевле 3-месячного (~35 200 vs ~57 300 сум/мес) — экономия 266 000 сум в год. На ~9% дешевле 6-месячного — экономия 42 000 сум в год.</p>
+                <p>На ~40% дешевле 3-месячного (~{fmtS(premiumPerMonth(12))} vs ~{fmtS(premiumPerMonth(3))} сум/мес) — экономия {fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12])} сум в год. На ~10% дешевле 6-месячного — экономия {fmtS(PREMIUM_PRICE[6] * 2 - PREMIUM_PRICE[12])} сум в год.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Нужна ли Visa карта?</h3>
@@ -495,11 +497,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               </div>
               <div class="post-faq-item">
                 <h3>Можно ли в рассрочку?</h3>
-                <p>Нет, 12 месяцев оплачиваются одним платежом. Альтернатива: начать с 6 месяцев (232 000 сум) и до окончания срока купить ещё 6 — новый срок добавится к текущему. Это на 42 000 сум в год дороже.</p>
+                <p>Нет, 12 месяцев оплачиваются одним платежом. Альтернатива: начать с 6 месяцев ({fmtS(PREMIUM_PRICE[6])} сум) и до окончания срока купить ещё 6 — новый срок добавится к текущему. Это на {fmtS(PREMIUM_PRICE[6] * 2 - PREMIUM_PRICE[12])} сум в год дороже.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Вернут ли деньги, если Premium не активировался?</h3>
-                <p>Да. Если заказ не выполнен по технической причине, в течение 24 часов отправьте чек через @starsjoy_bot — деньги вернут полностью.</p>
+                <p>Да. Если заказ не выполнен по технической причине, в течение 24 часов отправьте чек через @StarsjoySupport — деньги вернут полностью.</p>
               </div>
             </div>
           </section>

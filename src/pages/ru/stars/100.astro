@@ -3,16 +3,18 @@ import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
 import VariantPage from '../../../components/VariantPage.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 import { hreflangsFor } from '../../../lib/i18n';
 
+const P = fmtS(starsPrice(100));
 const canonical = "https://starsjoy.uz/ru/stars/100";
-const title = "Купить 100 Telegram Stars — 24 000 сум | StarsJoy";
-const description = "100 Telegram Stars — 24 000 сум. Самый популярный пробный пакет для тех, кто впервые покупает Stars. Оплата Uzcard/Click, доставка за 10 секунд.";
+const title = `Купить 100 Telegram Stars — ${P} сум | StarsJoy`;
+const description = `100 Telegram Stars — ${P} сум. Самый популярный пробный пакет для тех, кто впервые покупает Stars. Оплата Uzcard/Click, доставка за 10 секунд.`;
 
 const faqs = [
   {
     q: "Где можно купить 100 Telegram Stars?",
-    a: "Через @starsjoybot — введите количество 100 и оплатите через Uzcard, Humo или Click. Цена 24 000 сум, поступление на баланс за 10 секунд."
+    a: `Через @starsjoybot — введите количество 100 и оплатите через Uzcard, Humo или Click. Цена ${P} сум, поступление на баланс за 10 секунд.`
   },
   {
     q: "На что хватит 100 Stars?",
@@ -20,7 +22,7 @@ const faqs = [
   },
   {
     q: "Стоит ли начинать со 100 Stars, если покупаю впервые?",
-    a: "Да, если хотите впервые проверить, как работает Stars и весь процесс покупки, 100 штук (24 000 сум) — самый доступный и безопасный старт. Понравится — в следующий раз возьмёте пакет побольше."
+    a: `Да, если хотите впервые проверить, как работает Stars и весь процесс покупки, 100 штук (${P} сум) — самый доступный и безопасный старт. Понравится — в следующий раз возьмёте пакет побольше.`
   },
   {
     q: "Такой маленький пакет тоже доставляется за 10 секунд?",
@@ -28,7 +30,7 @@ const faqs = [
   },
   {
     q: "Цена 100 Stars выше, чем у больших пакетов?",
-    a: "Нет, у StarsJoy единый тариф — 240 сум за звезду для любого количества. Разница только в итоговой сумме, не в цене за штуку."
+    a: `Нет, у StarsJoy единый тариф — ${STAR_PRICE} сум за звезду для любого количества. Разница только в итоговой сумме, не в цене за штуку.`
   },
   {
     q: "Можно подарить 100 Stars?",
@@ -82,13 +84,14 @@ const related = [
     currentLabel="100 ⭐"
     eyebrow="Telegram Stars — 100 штук"
     h1="Купить 100 Telegram Stars"
-    quickAnswer="100 Telegram Stars — 24 000 сум, поступают на баланс через @starsjoybot за 10 секунд."
+    quickAnswer={`100 Telegram Stars — ${P} сум, поступают на баланс через @starsjoybot за 10 секунд.`}
     heroNote="Самый популярный пробный пакет для тех, кто покупает Stars впервые. Нужно меньше — от 50 звёзд."
     siblingsTitle="Другие количества"
     siblings={siblings}
     priceLabel="Цена"
-    priceValue="24 000 сум"
-    priceSubtext="240 сум/звезда"
+    priceValue={`${P} сум`}
+    priceSubtext={`${STAR_PRICE} сум/звезда`}
+    priceNote={PRICE_NOTE.ru}
     bonusNote="+4 ⭐ бонуса, подробнее →"
     bonusHref="/ru/bonus"
     ctaLabel="Купить 100 Stars"
@@ -102,11 +105,11 @@ const related = [
     relatedTitle="Дополнительно о Stars"
     related={related}
     finalCtaTitle="Готовы купить 100 Stars?"
-    finalCtaText="24 000 сум, оплата Uzcard/Click, доставка за 10 секунд"
+    finalCtaText={`${P} сум, оплата Uzcard/Click, доставка за 10 секунд`}
     finalCtaLabel="Купить сейчас"
     schemaName="Telegram Stars — 100 штук"
     schemaDescription={description}
-    priceAmount="24000"
+    priceAmount={String(starsPrice(100))}
     breadcrumbSchema={[
       { name: "Главная", item: "https://starsjoy.uz/ru" },
       { name: "Telegram Stars", item: "https://starsjoy.uz/ru/stars" },

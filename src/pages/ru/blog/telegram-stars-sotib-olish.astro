@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Как купить Telegram Stars? (Руководство 2026) | Блог StarsJoy";
 const description = "Как купить Telegram Stars — простые способы покупки через бот, пошаговая инструкция и ответы на частые вопросы.";
 const publishDate = "2026-03-11";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1000;
 ---
 
@@ -81,7 +82,7 @@ const wordCount = 1000;
         "name": "Сколько стоят Telegram Stars?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Цена Telegram Stars зависит от способа покупки. Например, через бот StarsJoy 50 Stars стоят в среднем 11 000 — 12 000 сумов. Через App Store или Google Play цена может быть немного выше из-за комиссии."
+          "text": `Цена Telegram Stars зависит от способа покупки. Например, через бот StarsJoy 50 Stars стоят ${fmtS(starsPrice(50))} сумов, а за каждую покупку начисляются бонусные Stars. Оплата через App Store или Google Play обычно требует международную карту.`
         }
       },
       {
@@ -313,7 +314,8 @@ const wordCount = 1000;
             <div class="post-faq">
               <div class="post-faq-item">
                 <h3>Сколько стоят Telegram Stars?</h3>
-                <p>Цена Telegram Stars зависит от способа покупки. Например, через <a href="https://telegram.me/starsjoybot" target="_blank">бот StarsJoy</a> 50 Stars стоят в среднем 11 000 — 12 000 сумов. Через App Store или Google Play цена может быть немного выше из-за комиссии.</p>
+                <p>Цена Telegram Stars зависит от способа покупки. Например, через <a href="https://telegram.me/starsjoybot" target="_blank">бот StarsJoy</a> 50 Stars стоят {fmtS(starsPrice(50))} сумов, а за каждую покупку начисляются бонусные Stars. Оплата через App Store или Google Play обычно требует международную карту.</p>
+                <p><small>{PRICE_NOTE.ru}</small></p>
               </div>
               <div class="post-faq-item">
                 <h3>Где используются Telegram Stars?</h3>

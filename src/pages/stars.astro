@@ -4,9 +4,10 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Reviews from '../components/Reviews.astro';
 import { hreflangsFor } from '../lib/i18n';
+import { STAR_PRICE, starsPrice, fmt, PRICE_NOTE } from '../lib/prices';
 
 const title = "Telegram Stars Sotib Olish — Arzon Narxda | StarsJoy";
-const description = "Telegram stars sotib olish eng arzon narxlarda. Telegram yulduzchalar narxlari, tez yetkazish va 100% kafolat bilan. StarsJoy orqali telegramda stars oling.";
+const description = `Telegram stars sotib olish arzon narxlarda, Uzcard va Humo bilan, so'mda: 1 star — ${STAR_PRICE} so'm. Telegram yulduzchalar narxlari, tez yetkazish, har xaridda bonus Stars va 100% kafolat. StarsJoy orqali telegramda stars oling.`;
 
 const faqs = [
   {
@@ -15,7 +16,7 @@ const faqs = [
   },
   {
     q: "Telegram Stars sotib olish narxlari qancha?",
-    a: "StarsJoy orqali Telegram Stars 240 so'm/star tarifida sotib olinadi: 50 Stars — 12,000 so'm, 100 Stars — 24,000 so'm, 250 Stars — 60,000 so'm, 500 Stars — 120,000 so'm, 1,000 Stars — 240,000 so'm, 2,500 Stars — 600,000 so'm, 5,000 Stars — 1,200,000 so'm, 10,000 Stars — 2,400,000 so'm."
+    a: `StarsJoy orqali Telegram Stars ${STAR_PRICE} so'm/star tarifida sotib olinadi: ` + [50, 100, 250, 500, 1000, 2500, 5000, 10000].map((n) => `${fmt(n)} Stars — ${fmt(starsPrice(n))} so'm`).join(', ') + '.'
   },
   {
     q: "Telegram yulduzchalar qanday sotib olinadi?",
@@ -59,8 +60,8 @@ const faqs = [
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "UZS",
-      "lowPrice": "12000",
-      "highPrice": "2400000",
+      "lowPrice": String(starsPrice(50)),
+      "highPrice": String(starsPrice(10000)),
       "availability": "https://schema.org/InStock",
       "offerCount": "8"
     }
@@ -95,9 +96,9 @@ const faqs = [
       </nav>
       <div class="stars-hero-inner fade-in">
         <div class="stars-hero-content">
-          <h1 class="stars-title">Telegram Stars Sotib Olish — Eng Arzon Narxlarda</h1>
+          <h1 class="stars-title">Telegram Stars Sotib Olish — Arzon Narxlarda</h1>
           <p class="stars-desc">
-            Telegram yulduzchalar sotib olish endi juda oson! StarsJoy orqali telegramda stars oling — tez yetkazish, arzon narxlar va 100% kafolat bilan.
+            Telegram yulduzchalar sotib olish endi juda oson! StarsJoy orqali telegramda stars oling — arzon narxlar, Uzcard va Humo bilan to'lov, odatda 10 soniyada yetkazish va 100% kafolat bilan.
           </p>
           <div class="stars-features">
             <div class="stars-feature">
@@ -110,7 +111,7 @@ const faqs = [
             </div>
             <div class="stars-feature">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#10B981" stroke-width="1.5"/><path d="M10 7v6M7 10h6" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/></svg>
-              <span>Eng arzon narxlar</span>
+              <span>Har xaridda bonus Stars</span>
             </div>
           </div>
           <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">
@@ -142,7 +143,7 @@ const faqs = [
       <div class="section-header fade-in">
         <span class="section-label">Narxlar</span>
         <h2 class="section-title">Telegram Stars narxlari</h2>
-        <p class="section-subtitle">Barcha paketlar uchun aniq narx — 240 so'm/star, yashirin to'lov yo'q</p>
+        <p class="section-subtitle">Barcha paketlar uchun aniq narx — {STAR_PRICE} so'm/star, yashirin to'lov yo'q</p>
       </div>
       <div class="pricing-table-wrap fade-in">
         <table class="pricing-table">
@@ -150,18 +151,19 @@ const faqs = [
             <tr><th>Stars</th><th>Narx</th></tr>
           </thead>
           <tbody>
-            <tr><td>50 ⭐</td><td>12,000 so'm</td></tr>
-            <tr><td><a href="/stars/100">100 ⭐</a></td><td>24,000 so'm</td></tr>
-            <tr><td>250 ⭐</td><td>60,000 so'm</td></tr>
-            <tr><td><a href="/stars/500-ta">500 ⭐</a></td><td>120,000 so'm</td></tr>
-            <tr class="pricing-highlight"><td><a href="/stars/1000">1,000 ⭐</a> <span class="pricing-badge">Mashhur</span></td><td>240,000 so'm</td></tr>
-            <tr><td>2,500 ⭐</td><td>600,000 so'm</td></tr>
-            <tr><td><a href="/stars/5000">5,000 ⭐</a></td><td>1,200,000 so'm</td></tr>
-            <tr><td><a href="/stars/10000">10,000 ⭐</a></td><td>2,400,000 so'm</td></tr>
+            <tr><td>50 ⭐</td><td>{fmt(starsPrice(50))} so'm</td></tr>
+            <tr><td><a href="/stars/100">100 ⭐</a></td><td>{fmt(starsPrice(100))} so'm</td></tr>
+            <tr><td>250 ⭐</td><td>{fmt(starsPrice(250))} so'm</td></tr>
+            <tr><td><a href="/stars/500-ta">500 ⭐</a></td><td>{fmt(starsPrice(500))} so'm</td></tr>
+            <tr class="pricing-highlight"><td><a href="/stars/1000">1,000 ⭐</a> <span class="pricing-badge">Mashhur</span></td><td>{fmt(starsPrice(1000))} so'm</td></tr>
+            <tr><td>2,500 ⭐</td><td>{fmt(starsPrice(2500))} so'm</td></tr>
+            <tr><td><a href="/stars/5000">5,000 ⭐</a></td><td>{fmt(starsPrice(5000))} so'm</td></tr>
+            <tr><td><a href="/stars/10000">10,000 ⭐</a></td><td>{fmt(starsPrice(10000))} so'm</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="pricing-note fade-in">Boshqa miqdorda Stars kerak bo'lsa, botda istalgan sonni kiritishingiz mumkin — narx shu tarifga (240 so'm/star) mos hisoblanadi.</p>
+      <p class="pricing-note fade-in">Boshqa miqdorda Stars kerak bo'lsa, botda istalgan sonni kiritishingiz mumkin — narx shu tarifga ({STAR_PRICE} so'm/star) mos hisoblanadi.</p>
+      <p class="pricing-note fade-in"><small>{PRICE_NOTE.uz}</small></p>
       <p class="pricing-note fade-in">Har to'liq 50 Stars uchun <strong>+2 ⭐ bonus</strong> beriladi, ya'ni har 100 Stars uchun +4 ⭐. Batafsil: <a href="/bonus">StarsJoy bonuslari</a>.</p>
       <div class="pricing-cta fade-in">
         <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Stars sotib olish</a>
@@ -274,7 +276,7 @@ const faqs = [
     <div class="container">
       <div class="stars-cta-box fade-in">
         <h2>Telegram Stars sotib olishga tayyormisiz?</h2>
-        <p>Eng arzon narxlar, tez yetkazish va 100% kafolat bilan</p>
+        <p>Arzon narxlar, Uzcard va Humo bilan to'lov, tez yetkazish va 100% kafolat bilan</p>
         <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">&#9889; Stars Sotib Olish</a>
       </div>
     </div>

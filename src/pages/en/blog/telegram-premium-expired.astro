@@ -1,5 +1,8 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { PREMIUM_PRICE, fmt, PRICE_NOTE } from '../../../lib/prices';
+
+const P3 = PREMIUM_PRICE[3], P6 = PREMIUM_PRICE[6], P12 = PREMIUM_PRICE[12];
 
 const faqs = [
   {
@@ -38,6 +41,7 @@ const faqs = [
   description="Your Telegram Premium ran out. What actually changes on your account, what stays untouched, and the fastest way to renew from Uzbekistan — paid in som with Uzcard or Humo, active again in about 10 seconds."
   keywords="telegram premium expired, renew telegram premium, telegram premium ended, extend telegram premium uzbekistan"
   publishDate="2026-08-07"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-premium-muddati-tugadi"
   ruHref="https://starsjoy.uz/ru/blog/telegram-premium-muddati-tugadi"
   faqs={faqs}
@@ -85,7 +89,8 @@ const faqs = [
       <li>Transfer the exact amount shown from Click, Payme, Uzum or your bank app.</li>
       <li>Press "I have paid". Premium reactivates in about 10 seconds and Telegram sends its own notification.</li>
     </ol>
-    <p>Prices: 172,000 UZS for 3 months, 232,000 for 6, 422,000 for 12. Step-by-step with screenshots: <a href="/en/how-to-buy">how to buy</a>.</p>
+    <p>Prices: {fmt(P3)} UZS for 3 months, {fmt(P6)} for 6, {fmt(P12)} for 12. Step-by-step with screenshots: <a href="/en/how-to-buy">how to buy</a>.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>

@@ -4,6 +4,7 @@ import NavbarEn from '../../components/NavbarEn.astro';
 import FooterEn from '../../components/FooterEn.astro';
 import { getApprovedReviews, aggregateOf } from '../../lib/reviews';
 import { hreflangsFor } from '../../lib/i18n';
+import { STAR_PRICE, PREMIUM_PRICE, fmt, PRICE_NOTE } from '../../lib/prices';
 
 const title = "About StarsJoy — Who We Are, What We Guarantee | Telegram Stars & Premium in Uzbekistan";
 const description = "StarsJoy is an independent Telegram Stars, Premium and Gifts reseller for Uzbekistan. Over 8,000 completed orders, dated public customer reviews, a 100% refund guarantee, and payment in Uzbek som with Uzcard or Humo.";
@@ -25,7 +26,7 @@ const orgSchema: any = {
     {
       "@type": "ContactPoint",
       "contactType": "customer support",
-      "url": "https://telegram.me/starsjoy_bot",
+      "url": "https://telegram.me/StarsjoySupport",
       "availableLanguage": ["Uzbek", "Russian", "English"]
     }
   ],
@@ -124,10 +125,11 @@ if (agg.reviewCount > 0) {
     <div class="container">
       <div class="info-content">
         <h2>Services and prices</h2>
-        <p><strong>Telegram Stars</strong> — Telegram's internal currency, used for paid posts, paid reactions, tips, bots and Mini Apps, Telegram Gifts and Telegram Ads. A flat 240 UZS per star, from 50 up to 100,000. <a href="/en/stars">Stars page &rarr;</a></p>
-        <p><strong>Telegram Premium</strong> — the subscription that unlocks 4 GB uploads, faster downloads, no channel ads, exclusive stickers and reactions, a premium profile and real-time translation. 172,000 UZS for 3 months, 232,000 for 6 months, 422,000 for 12 months. <a href="/en/premium">Premium page &rarr;</a></p>
+        <p><strong>Telegram Stars</strong> — Telegram's internal currency, used for paid posts, paid reactions, tips, bots and Mini Apps, Telegram Gifts and Telegram Ads. A flat {STAR_PRICE} UZS per star, from 50 up to 100,000. <a href="/en/stars">Stars page &rarr;</a></p>
+        <p><strong>Telegram Premium</strong> — the subscription that unlocks 4 GB uploads, faster downloads, no channel ads, exclusive stickers and reactions, a premium profile and real-time translation. {fmt(PREMIUM_PRICE[3])} UZS for 3 months, {fmt(PREMIUM_PRICE[6])} for 6 months, {fmt(PREMIUM_PRICE[12])} for 12 months. <a href="/en/premium">Premium page &rarr;</a></p>
         <p><strong>Telegram Gifts</strong> — send Premium to someone else. The price matches the corresponding Premium plan and the recipient pays nothing; you can attach a message.</p>
         <p><strong>Referral programme</strong> — share your personal link from the bot and earn a bonus on a new friend's first purchase: +3 ⭐ per full 50 Stars or +1 ⭐ per Premium month. Your own purchases earn <a href="/en/bonus">+4 ⭐ per 100 Stars</a> too.</p>
+        <p><small>{PRICE_NOTE.en}</small></p>
       </div>
     </div>
   </section>
@@ -148,7 +150,7 @@ if (agg.reviewCount > 0) {
       <div class="info-content">
         <h2>Contact</h2>
         <p><strong>@starsjoybot</strong> — the bot and Mini App where purchases happen</p>
-        <p><strong>@starsjoy_bot</strong> — support, for questions and problems</p>
+        <p><strong>@StarsjoySupport</strong> — support, for questions and problems</p>
         <p><strong>@starsjoy</strong> — the official Telegram channel, for news and announcements</p>
         <p>The bot interface is available in Uzbek, Russian and English.</p>
       </div>

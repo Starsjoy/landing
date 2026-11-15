@@ -5,9 +5,10 @@ import Footer from '../components/Footer.astro';
 import Reviews from '../components/Reviews.astro';
 import { getApprovedReviews, aggregateOf } from '../lib/reviews';
 import { hreflangsFor } from '../lib/i18n';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../lib/prices';
 
 const title = "Telegram Premium Sotib Olish — Arzon Narxda O'zbekistonda | StarsJoy";
-const description = "Telegram Premium narxi O'zbekistonda: 3 oy 172 000, 6 oy 232 000, 12 oy 422 000 so'm. Uzcard, Click, Humo orqali to'lang — 10 soniyada aktivlashadi. StarsJoy 100% kafolat.";
+const description = `Telegram Premium narxi O'zbekistonda: 3 oy ${fmtS(PREMIUM_PRICE[3])}, 6 oy ${fmtS(PREMIUM_PRICE[6])}, 12 oy ${fmtS(PREMIUM_PRICE[12])} so'm. Uzcard, Click, Humo orqali to'lang — 10 soniyada aktivlashadi. StarsJoy 100% kafolat.`;
 
 const faqs = [
   {
@@ -16,7 +17,7 @@ const faqs = [
   },
   {
     q: "Telegram Premium narxi O'zbekistonda qancha?",
-    a: "StarsJoy orqali Telegram Premium eng arzon narxlarda sotib olish mumkin. 3 oylik (172 000 so'm), 6 oylik (232 000 so'm) va 12 oylik (422 000 so'm) obuna mavjud. Uzoqroq muddat tanlasangiz, narx sezilarli arzonroq bo'ladi."
+    a: `StarsJoy orqali Telegram Premium'ni arzon narxlarda, Uzcard va Humo bilan so'mda sotib olish mumkin. 3 oylik (${fmtS(PREMIUM_PRICE[3])} so'm), 6 oylik (${fmtS(PREMIUM_PRICE[6])} so'm) va 12 oylik (${fmtS(PREMIUM_PRICE[12])} so'm) obuna mavjud. Uzoqroq muddat tanlasangiz, oylik narx sezilarli arzonroq bo'ladi.`
   },
   {
     q: "Telegram Premium Uzcard orqali sotib olish mumkinmi?",
@@ -40,7 +41,7 @@ const faqs = [
   },
   {
     q: "1 oylik Telegram Premium bormi?",
-    a: "StarsJoy 3, 6 va 12 oylik tariflarni taklif qiladi — 1 oylik tarif sotilmaydi. Eng qisqa muddat 3 oylik (172 000 so'm), u oyiga taxminan 57 300 so'mga to'g'ri keladi."
+    a: `StarsJoy 3, 6 va 12 oylik tariflarni taklif qiladi — 1 oylik tarif sotilmaydi. Eng qisqa muddat 3 oylik (${fmtS(PREMIUM_PRICE[3])} so'm), u oyiga taxminan ${fmtS(Math.round(premiumPerMonth(3) / 100) * 100)} so'mga to'g'ri keladi.`
   },
   {
     q: "To'lov qilgandan keyin Premium kelmasa nima bo'ladi?",
@@ -54,15 +55,15 @@ const faqs = [
 
 // Oylik narx — chop etilgan tariflardan hisoblanadi (yaxlitlangan)
 const plans = [
-  { months: 3,  price: 172000, best: false, href: "/premium/3-oy" },
-  { months: 6,  price: 232000, best: false, href: "/premium/6-oy" },
-  { months: 12, price: 422000, best: true,  href: "/premium/12-oy" },
+  { months: 3,  price: PREMIUM_PRICE[3], best: false, href: "/premium/3-oy" },
+  { months: 6,  price: PREMIUM_PRICE[6], best: false, href: "/premium/6-oy" },
+  { months: 12, price: PREMIUM_PRICE[12], best: true,  href: "/premium/12-oy" },
 ];
 const fmt = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const perMonth = (p: { months: number; price: number }) =>
   fmt(Math.round(p.price / p.months / 100) * 100);
 // 3 oylik va 12 oylik tarifdagi oylik narx farqi (chop etilgan tariflardan)
-const monthlySaving = fmt(Math.round((172000 / 3 - 422000 / 12) / 1000) * 1000);
+const monthlySaving = fmt(Math.round((premiumPerMonth(3) - premiumPerMonth(12)) / 1000) * 1000);
 
 // Mijozlar sharhlari (tasdiqlangan, TTL keshli) + reyting
 const reviews = await getApprovedReviews('premium');
@@ -77,8 +78,8 @@ const productSchema: any = {
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "UZS",
-    "lowPrice": "172000",
-    "highPrice": "422000",
+    "lowPrice": String(PREMIUM_PRICE[3]),
+    "highPrice": String(PREMIUM_PRICE[12]),
     "availability": "https://schema.org/InStock",
     "offerCount": "3"
   }
@@ -143,7 +144,7 @@ if (agg.reviewCount > 0) {
         <div class="prem-hero-content">
           <h1 class="prem-title">Telegram Premium Sotib Olish — O'zbekistonda</h1>
           <p class="prem-desc">
-            Telegram Premium obunasini Uzcard, Click yoki karta orqali sotib oling. Arzon narxlar, tez aktivlashtirish va 100% kafolat bilan.
+            Telegram Premium obunasini Uzcard, Click yoki karta orqali sotib oling. Arzon narxlar, tez aktivlashtirish, 24/7 support va 100% kafolat bilan.
           </p>
           <div class="prem-features">
             <div class="prem-feature">
@@ -211,10 +212,11 @@ if (agg.reviewCount > 0) {
         </table>
       </div>
       <p class="pricing-note fade-in">
-        Narxlarga barcha to'lov usullari (Uzcard, Humo, Click) kiradi — yashirin komissiya yo'q.
+        Uzcard, Humo yoki Click bilan to'lash mumkin — yashirin komissiya yo'q.
         12 oylik tarifda bir oy 3 oylik tarifga qaraganda taxminan {monthlySaving} so'mga arzon tushadi.
         Barcha xizmatlar narxini <a href="/narxlar">narxlar sahifasida</a> bitta jadvalda ko'rishingiz mumkin.
       </p>
+      <p class="pricing-note fade-in"><small>{PRICE_NOTE.uz}</small></p>
       <div class="pricing-cta fade-in">
         <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Premium sotib olish</a>
       </div>
@@ -438,7 +440,7 @@ if (agg.reviewCount > 0) {
     <div class="container">
       <div class="prem-cta-box fade-in">
         <h2>Telegram Premium ga tayyor bo'ling!</h2>
-        <p>O'zbekistondagi eng arzon narxlar, Uzcard/Click orqali to'lov</p>
+        <p>Arzon narxlar, Uzcard/Click orqali to'lov, tez aktivlashtirish va 24/7 support</p>
         <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">&#9889; Premium Sotib Olish</a>
       </div>
     </div>

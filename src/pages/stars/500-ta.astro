@@ -3,16 +3,18 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import VariantPage from '../../components/VariantPage.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 import { hreflangsFor } from '../../lib/i18n';
 
+const P = fmtS(starsPrice(500));
 const canonical = "https://starsjoy.uz/stars/500-ta";
-const title = "500 ta Telegram Stars sotib olish — 120 000 so'm | StarsJoy";
-const description = "500 ta Telegram Stars narxi — 120 000 so'm. Botlardagi bir nechta xizmat va premium kontentga muntazam foydalanuvchilar uchun o'rtacha paket. Uzcard/Click orqali 10 soniyada yetkaziladi.";
+const title = `500 ta Telegram Stars sotib olish — ${P} so'm | StarsJoy`;
+const description = `500 ta Telegram Stars narxi — ${P} so'm. Botlardagi bir nechta xizmat va premium kontentga muntazam foydalanuvchilar uchun o'rtacha paket. Uzcard/Click orqali 10 soniyada yetkaziladi.`;
 
 const faqs = [
   {
     q: "500 ta Telegram Stars'ni qayerdan arzon narxda sotib olsam bo'ladi?",
-    a: "@starsjoybot orqali — miqdorni 500 deb kiritib, Uzcard, Humo yoki Click bilan to'lang. Narxi 120 000 so'm, 10 soniyada hisobingizga tushadi."
+    a: `@starsjoybot orqali — miqdorni 500 deb kiritib, Uzcard, Humo yoki Click bilan to'lang. Narxi ${P} so'm, 10 soniyada hisobingizga tushadi.`
   },
   {
     q: "500 ta Stars kimlar uchun optimal?",
@@ -20,7 +22,7 @@ const faqs = [
   },
   {
     q: "500 ta va 1000 tani solishtirganda qaysi biri tejamliroq?",
-    a: "Ikkalasi ham bir xil tarifda (240 so'm/star) — tejov faqat umumiy summada, foizda emas. 1000 ta ko'proq zaxira kerak bo'lsa qulay, 500 ta esa kamroq mablag' bilan boshlash uchun."
+    a: `Ikkalasi ham bir xil tarifda (${STAR_PRICE} so'm/star) — tejov faqat umumiy summada, foizda emas. 1000 ta ko'proq zaxira kerak bo'lsa qulay, 500 ta esa kamroq mablag' bilan boshlash uchun.`
   },
   {
     q: "500 ta Stars qancha vaqtda yetkaziladi?",
@@ -80,13 +82,14 @@ const related = [
     currentLabel="500 ⭐"
     eyebrow="Telegram Stars — 500 ta"
     h1="500 ta Telegram Stars sotib olish"
-    quickAnswer="500 ta Telegram Stars narxi — 120 000 so'm, @starsjoybot orqali 10 soniyada hisobingizga tushadi."
+    quickAnswer={`500 ta Telegram Stars narxi — ${P} so'm, @starsjoybot orqali 10 soniyada hisobingizga tushadi.`}
     heroNote="Botlardagi bir nechta xizmat va premium kontentdan muntazam foydalanuvchilar uchun o'rtacha paket."
     siblingsTitle="Boshqa miqdorlar"
     siblings={siblings}
     priceLabel="Narx"
-    priceValue="120 000 so'm"
-    priceSubtext="240 so'm/star"
+    priceValue={`${P} so'm`}
+    priceSubtext={`${STAR_PRICE} so'm/star`}
+    priceNote={PRICE_NOTE.uz}
     bonusNote="+20 ⭐ bonus, batafsil →"
     bonusHref="/bonus"
     ctaLabel="500 ta Stars sotib olish"
@@ -100,11 +103,11 @@ const related = [
     relatedTitle="Stars haqida qo'shimcha"
     related={related}
     finalCtaTitle="500 ta Stars'ga tayyor bo'ling"
-    finalCtaText="120 000 so'm, Uzcard/Click orqali, 10 soniyada yetkaziladi"
+    finalCtaText={`${P} so'm, Uzcard/Click orqali, 10 soniyada yetkaziladi`}
     finalCtaLabel="Hozir sotib olish"
     schemaName="Telegram Stars — 500 ta"
     schemaDescription={description}
-    priceAmount="120000"
+    priceAmount={String(starsPrice(500))}
     breadcrumbSchema={[
       { name: "Bosh sahifa", item: "https://starsjoy.uz" },
       { name: "Telegram Stars", item: "https://starsjoy.uz/stars" },

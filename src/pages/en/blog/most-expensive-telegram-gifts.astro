@@ -1,5 +1,6 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { STAR_PRICE, PRICE_NOTE } from '../../../lib/prices';
 
 const faqs = [
   {
@@ -24,7 +25,7 @@ const faqs = [
   },
   {
     q: "Can I buy an expensive collectible from Uzbekistan?",
-    a: "Buying a ready collectible on the secondary market needs a wallet funded with GRAM — Fragment and the other marketplaces do not take Uzcard or Humo directly. The practical route is to buy Stars or a regular gift in UZS through @starsjoybot (240 UZS per star, delivery usually 10 seconds), then upgrade the gift to a collectible inside Telegram. The traits you get are random."
+    a: `Buying a ready collectible on the secondary market needs a wallet funded with GRAM — Fragment and the other marketplaces do not take Uzcard or Humo directly. The practical route is to buy Stars or a regular gift in UZS through @starsjoybot (${STAR_PRICE} UZS per star, delivery usually 10 seconds), then upgrade the gift to a collectible inside Telegram. The traits you get are random.`
   },
   {
     q: "Is buying an expensive gift an investment?",
@@ -42,6 +43,7 @@ const faqs = [
   description="The most expensive Telegram gifts by verified Fragment sales: the top 10 collections, record prices, how rarity actually works, and why a small supply does not mean a high price."
   keywords="most expensive telegram gift, rarest telegram gifts, plush pepe price, telegram gift record sale, telegram collectible price, fragment gift prices"
   publishDate="2026-08-12"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/eng-qimmat-telegram-sovgalari"
   ruHref="https://starsjoy.uz/ru/blog/eng-qimmat-telegram-sovgalari"
   faqs={faqs}
@@ -141,9 +143,10 @@ const faqs = [
     <p>Buying a finished collectible on the secondary market requires a wallet funded with <strong>GRAM</strong>. Fragment and the other marketplaces do not accept Uzcard or Humo directly, which is a real barrier for most buyers here.</p>
     <p>The practical route has two steps:</p>
     <ol>
-      <li>Buy <strong>Stars or a regular gift</strong> in UZS through <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> — paid from Uzcard or Humo via Click or Payme, at 240 UZS per star, delivered usually within 10 seconds.</li>
+      <li>Buy <strong>Stars or a regular gift</strong> in UZS through <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> — paid from Uzcard or Humo via Click or Payme, at {STAR_PRICE} UZS per star, delivered usually within 10 seconds.</li>
       <li>Upgrade the gift to a <strong>collectible</strong> inside Telegram. The traits are assigned at random, so a rare combination is possible.</li>
     </ol>
+    <p><small>{PRICE_NOTE.en}</small></p>
     <p>To be straight about it: the outcome of an upgrade is <strong>chance</strong>. A rare trait is not guaranteed and we do not present this as a way to make money. Buy a gift because it is a gift; resale value is a possibility, not a plan.</p>
   </section>
 

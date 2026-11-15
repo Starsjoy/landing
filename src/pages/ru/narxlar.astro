@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import NavbarRu from '../../components/NavbarRu.astro';
 import FooterRu from '../../components/FooterRu.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Цены на Telegram Stars и Premium 2026 — Всё на одной странице | StarsJoy";
 const description = "Сравните цены на Telegram Stars и Telegram Premium на одной странице: точная цена в сумах для всех пакетов и сроков, без скрытых платежей. Купите через StarsJoy.";
@@ -13,11 +14,11 @@ const faqs = [
   },
   {
     q: "Есть ли скрытые комиссии сверх указанной цены?",
-    a: "Нет. Цена, указанная на сайте и в боте — итоговая. Никаких скрытых комиссий или доплат."
+    a: "Скрытых комиссий нет. Точная итоговая цена показывается в боте при оформлении заказа, и вы платите именно эту сумму."
   },
   {
     q: "Когда обновляются цены?",
-    a: "Цены обновляются при изменении курса Telegram/Fragment. Цены на этой странице и в @starsjoybot всегда синхронизированы — цена в боте самая актуальная."
+    a: "Цены обновляются при изменении курса Telegram, налогов или комиссий платёжных систем. Цены на этой странице и в @starsjoybot всегда синхронизированы — цена в боте самая актуальная."
   },
   {
     q: "Что выгоднее по цене — Stars или Premium?",
@@ -44,13 +45,13 @@ const faqs = [
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Telegram Stars",
-    "description": "Цены на Telegram Stars — по тарифу 240 сум/star, пакеты от 50 до 5 000 штук.",
+    "description": `Цены на Telegram Stars — по тарифу ${STAR_PRICE} сум/star, пакеты от 50 до 10 000 штук.`,
     "brand": { "@type": "Brand", "name": "StarsJoy" },
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "UZS",
-      "lowPrice": "12000",
-      "highPrice": "2400000",
+      "lowPrice": String(starsPrice(50)),
+      "highPrice": String(starsPrice(10000)),
       "availability": "https://schema.org/InStock",
       "offerCount": "8"
     }
@@ -66,8 +67,8 @@ const faqs = [
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "UZS",
-      "lowPrice": "172000",
-      "highPrice": "422000",
+      "lowPrice": String(PREMIUM_PRICE[3]),
+      "highPrice": String(PREMIUM_PRICE[12]),
       "availability": "https://schema.org/InStock",
       "offerCount": "3"
     }
@@ -117,7 +118,7 @@ const faqs = [
       <div class="section-header fade-in">
         <span class="section-label">Telegram Stars</span>
         <h2 class="section-title">Цены на Telegram Stars</h2>
-        <p class="section-subtitle">Тариф: 240 сум/star — одинаковый для всех пакетов, без наценок</p>
+        <p class="section-subtitle">Тариф: {STAR_PRICE} сум/star — одинаковый для всех пакетов, без наценок</p>
       </div>
       <div class="pricing-table-wrap fade-in">
         <table class="pricing-table">
@@ -125,17 +126,18 @@ const faqs = [
             <tr><th>Stars</th><th>Цена</th></tr>
           </thead>
           <tbody>
-            <tr><td>50 ⭐</td><td>12 000 сум</td></tr>
-            <tr><td><a href="/ru/stars/100">100 ⭐</a></td><td>24 000 сум</td></tr>
-            <tr><td>250 ⭐</td><td>60 000 сум</td></tr>
-            <tr><td><a href="/ru/stars/500-ta">500 ⭐</a></td><td>120 000 сум</td></tr>
-            <tr class="pricing-highlight"><td><a href="/ru/stars/1000">1 000 ⭐</a> <span class="pricing-badge">Популярный</span></td><td>240 000 сум</td></tr>
-            <tr><td>2 500 ⭐</td><td>600 000 сум</td></tr>
-            <tr><td><a href="/ru/stars/5000">5 000 ⭐</a></td><td>1 200 000 сум</td></tr>
-            <tr><td><a href="/ru/stars/10000">10 000 ⭐</a></td><td>2 400 000 сум</td></tr>
+            <tr><td>50 ⭐</td><td>{fmtS(starsPrice(50))} сум</td></tr>
+            <tr><td><a href="/ru/stars/100">100 ⭐</a></td><td>{fmtS(starsPrice(100))} сум</td></tr>
+            <tr><td>250 ⭐</td><td>{fmtS(starsPrice(250))} сум</td></tr>
+            <tr><td><a href="/ru/stars/500-ta">500 ⭐</a></td><td>{fmtS(starsPrice(500))} сум</td></tr>
+            <tr class="pricing-highlight"><td><a href="/ru/stars/1000">1 000 ⭐</a> <span class="pricing-badge">Популярный</span></td><td>{fmtS(starsPrice(1000))} сум</td></tr>
+            <tr><td>2 500 ⭐</td><td>{fmtS(starsPrice(2500))} сум</td></tr>
+            <tr><td><a href="/ru/stars/5000">5 000 ⭐</a></td><td>{fmtS(starsPrice(5000))} сум</td></tr>
+            <tr><td><a href="/ru/stars/10000">10 000 ⭐</a></td><td>{fmtS(starsPrice(10000))} сум</td></tr>
           </tbody>
         </table>
       </div>
+      <p class="narx-links fade-in"><small>{PRICE_NOTE.ru}</small></p>
       <p class="narx-links fade-in">За каждые полные 50 Stars начисляется +2 ⭐ бонуса, то есть +4 ⭐ за каждые 100 Stars: <a href="/ru/bonus">условия бонусов</a>.</p>
       <p class="narx-links fade-in">
         Подробнее: <a href="/ru/stars">страница покупки Stars</a> ·
@@ -162,9 +164,9 @@ const faqs = [
             <tr><th>Срок</th><th>Цена</th></tr>
           </thead>
           <tbody>
-            <tr><td><a href="/ru/premium/3-oy">3 месяца</a></td><td>172 000 сум</td></tr>
-            <tr><td><a href="/ru/premium/6-oy">6 месяцев</a></td><td>232 000 сум</td></tr>
-            <tr class="pricing-highlight"><td><a href="/ru/premium/12-oy">12 месяцев</a> <span class="pricing-badge">Выгоднее всего</span></td><td>422 000 сум</td></tr>
+            <tr><td><a href="/ru/premium/3-oy">3 месяца</a></td><td>{fmtS(PREMIUM_PRICE[3])} сум</td></tr>
+            <tr><td><a href="/ru/premium/6-oy">6 месяцев</a></td><td>{fmtS(PREMIUM_PRICE[6])} сум</td></tr>
+            <tr class="pricing-highlight"><td><a href="/ru/premium/12-oy">12 месяцев</a> <span class="pricing-badge">Выгоднее всего</span></td><td>{fmtS(PREMIUM_PRICE[12])} сум</td></tr>
           </tbody>
         </table>
       </div>
@@ -194,7 +196,7 @@ const faqs = [
         </div>
         <div class="fact-card fade-in">
           <h3>Без скрытых платежей</h3>
-          <p>Цена на сайте и в боте — итоговая. Никаких дополнительных комиссий.</p>
+          <p>Цена, показанная в боте при оформлении заказа, — итоговая. Никаких скрытых комиссий.</p>
         </div>
         <div class="fact-card fade-in">
           <h3>Доставка за 10 секунд</h3>

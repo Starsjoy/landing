@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, starsPrice, starPriceWithBonus, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Stars paketlari: 50, 100, 500, 1000 — qaysi paket arzon va qaysi qachon mos? (2026) | StarsJoy Blog";
-const description = "Telegram Stars paketlarini taqqoslash: 50, 100, 500, 1000 Stars narxlari so'mda, birlik narxi, qaysi paket qaysi maqsad uchun mos va O'zbekistonda eng arzon yo'l.";
+const description = "Telegram Stars paketlarini taqqoslash: 50, 100, 500, 1000 Stars narxlari so'mda, birlik narxi, qaysi paket qaysi maqsad uchun mos va O'zbekistonda arzon va qulay yo'l.";
 const publishDate = "2026-05-04";
-const modifiedDate = "2026-05-04";
+const modifiedDate = "2026-11-15";
 const wordCount = 1810;
 const canonical = "https://starsjoy.uz/blog/telegram-stars-paketlari-taqqoslash";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -83,7 +84,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Qaysi Telegram Stars paketi eng arzon?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Mahalliy reseller kursida (1 Star = 240 so'm) birlik narxi har bir paketda bir xil — 50 Stars 12 000 so'm, 100 Stars 24 000 so'm, 500 Stars 120 000 so'm, 1000 Stars 240 000 so'm. Telegram'ning rasmiy ichki narxida (App Store, Google Play) ko'p Stars paketda birlik narxi biroz arzon, lekin platforma komissiyasi 15-30% qo'shiladi va xorijiy karta talab qilinadi. Mahalliy bot orqali so'mda to'lasangiz, paketdan qat'iy nazar effektiv narx tekis qoladi."
+          "text": `Mahalliy reseller kursida (1 Star = ${STAR_PRICE} so'm) birlik narxi har bir paketda bir xil — 50 Stars ${fmtS(starsPrice(50))} so'm, 100 Stars ${fmtS(starsPrice(100))} so'm, 500 Stars ${fmtS(starsPrice(500))} so'm, 1000 Stars ${fmtS(starsPrice(1000))} so'm. Telegram ilovasida (App Store, Google Play) katta paketlarda birlik narxi arzonroq (100 Stars — 25 399 so'm, 1000 Stars — 233 999 so'm, 04.11.2026), lekin to'lov uchun odatda xorijiy karta yoki App Store balansi talab qilinadi. Mahalliy bot orqali so'mda to'lasangiz, paketdan qat'iy nazar narx tekis qoladi va har xaridda bonus Stars beriladi.`
         }
       },
       {
@@ -99,7 +100,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Telegram'ning rasmiy paketi va mahalliy bot orasidagi farq nima?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Telegram'ning rasmiy paketi (App Store, Google Play) xorijiy karta (Visa/MasterCard) talab qiladi va 15-30% platforma komissiyasi qo'shadi. Mahalliy reseller bot Click, Payme, Uzcard yoki Humo orqali so'mda to'lash imkonini beradi va platforma komissiyasi yo'q. Stars Telegram'ning rasmiy infratuzilmasi (Bot Payments API yoki Fragment) orqali yetkaziladi — chetlab o'tish yo'q."
+          "text": "Telegram'ning rasmiy paketi (App Store, Google Play) xorijiy karta (Visa/MasterCard) yoki App Store balansini talab qiladi. Mahalliy reseller bot Click, Payme, Uzcard yoki Humo orqali so'mda to'lash imkonini beradi, Stars odatda ~10 soniyada avtomatik yetkaziladi. Stars Telegram'ning rasmiy infratuzilmasi (Bot Payments API yoki Fragment) orqali yetkaziladi — chetlab o'tish yo'q."
         }
       },
       {
@@ -123,7 +124,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Stars sotib olganda ortiqcha komissiya qancha?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Telegram'ning rasmiy ichki narxida (App Store, Google Play) komissiya 15-30%. Mahalliy reseller botda effektiv komissiya ~10-15% (so'mdagi narxga oldindan kiritilgan), lekin xorijiy karta yoki virtual karta xizmati uchun qo'shimcha xarajat yo'q. To'lov tizimlari (Click, Payme) o'z qo'shimcha komissiya olmaydi — ular bot tomonidan qoplanadi."
+          "text": "Telegram ilovasida (App Store, Google Play) narx yakuniy ko'rsatiladi, lekin xorijiy karta yoki App Store balansi kerak. Mahalliy reseller botda so'mdagi narx ham yakuniy — xorijiy karta yoki virtual karta xizmati uchun qo'shimcha xarajat yo'q. To'lov tizimlari (Click, Payme) o'z qo'shimcha komissiya olmaydi — ular bot tomonidan qoplanadi."
         }
       }
     ]
@@ -164,7 +165,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Mahalliy reseller kursida (1 Star = 240 so'm) Stars paketlari narxi tekis: <strong>50 Stars = 12 000 so'm, 100 Stars = 24 000 so'm, 500 Stars = 120 000 so'm, 1000 Stars = 240 000 so'm</strong>. Telegram'ning rasmiy paketida (App Store, Google Play) katta paketlarda birlik narxi biroz arzon, lekin 15–30% platforma komissiyasi va xorijiy karta talab qilinadi. Maqsadga qarab tanlash mantiqliroq: 50 Stars bitta kichik Gift uchun, 100 Stars ikkita Regular Gift uchun, 500 Stars Limited Gift uchun, 1000 Stars Premium 1 oylik yoki katta sovg'a uchun.
+            <strong>Qisqacha javob:</strong> Mahalliy reseller kursida (1 Star = {STAR_PRICE} so'm) Stars paketlari narxi tekis: <strong>50 Stars = {fmtS(starsPrice(50))} so'm, 100 Stars = {fmtS(starsPrice(100))} so'm, 500 Stars = {fmtS(starsPrice(500))} so'm, 1000 Stars = {fmtS(starsPrice(1000))} so'm</strong>. Telegram ilovasida (App Store, Google Play) katta paketlarda birlik narxi arzonroq (1000 Stars — 233 999 so'm, 04.11.2026), lekin xorijiy karta yoki App Store balansi talab qilinadi. Maqsadga qarab tanlash mantiqliroq: 50 Stars bitta kichik Gift uchun, 100 Stars ikkita Regular Gift uchun, 500 Stars Limited Gift uchun, 1000 Stars Premium 1 oylik yoki katta sovg'a uchun.
           </div>
 
           <p><a href="/stars/100"><strong>→ 100 ta</strong></a> yoki <a href="/stars/500-ta"><strong>500 ta Stars'ni hozir sotib olish</strong></a> — narxi, FAQ va bevosita xarid tugmasi bilan alohida sahifada.</p>
@@ -197,31 +198,32 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tr>
                 <th>Paket</th>
                 <th>Mahalliy bot (so'mda)</th>
-                <th>Telegram rasmiy (App Store/Google Play)</th>
+                <th>Telegram ilovasi (O'zbekiston, 04.11.2026)</th>
                 <th>Birlik narxi (so'm/Star)</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>50 Stars</td><td>12 000 so'm</td><td>~$0.99 (taxminan 12 400 so'm)</td><td>240 so'm</td></tr>
-              <tr><td>100 Stars</td><td>24 000 so'm</td><td>~$1.99 (taxminan 24 900 so'm)</td><td>240 so'm</td></tr>
-              <tr><td>500 Stars</td><td>120 000 so'm</td><td>~$9.99 (taxminan 124 900 so'm)</td><td>240 so'm</td></tr>
-              <tr><td>1000 Stars</td><td>240 000 so'm</td><td>~$19.99 (taxminan 250 000 so'm)</td><td>240 so'm</td></tr>
+              <tr><td>50 Stars</td><td>{fmtS(starsPrice(50))} so'm</td><td>—</td><td>{STAR_PRICE} so'm</td></tr>
+              <tr><td>100 Stars</td><td>{fmtS(starsPrice(100))} so'm</td><td>25 399 so'm</td><td>{STAR_PRICE} so'm</td></tr>
+              <tr><td>500 Stars</td><td>{fmtS(starsPrice(500))} so'm</td><td>—</td><td>{STAR_PRICE} so'm</td></tr>
+              <tr><td>1000 Stars</td><td>{fmtS(starsPrice(1000))} so'm</td><td>233 999 so'm</td><td>{STAR_PRICE} so'm</td></tr>
             </tbody>
           </table>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
-          <p>Mahalliy reseller botda birlik narxi har bir paketda bir xil — 240 so'm/Star. Bu sodda hisob: paket miqdorini 240 ga ko'paytirsangiz, so'mdagi summa chiqadi (50 × 240 = 12 000, 100 × 240 = 24 000 va h.k.). Joriy aniq narxni <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ichida real vaqtda ko'rish mumkin — kurs valyuta bozori va Telegram'ning ichki narxiga qarab haftada bir-ikki marta qayta hisoblanadi.</p>
+          <p>Mahalliy reseller botda birlik narxi har bir paketda bir xil — {STAR_PRICE} so'm/Star. Bu sodda hisob: paket miqdorini {STAR_PRICE} ga ko'paytirsangiz, so'mdagi summa chiqadi (50 × {STAR_PRICE} = {fmtS(starsPrice(50))}, 100 × {STAR_PRICE} = {fmtS(starsPrice(100))} va h.k.). Joriy aniq narxni <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ichida real vaqtda ko'rish mumkin — kurs valyuta bozori va Telegram'ning ichki narxiga qarab haftada bir-ikki marta qayta hisoblanadi.</p>
 
-          <p>Telegram'ning rasmiy ichki narxida birlik narxi paket kattaroq bo'lganda biroz arzonlashishi mumkin (masalan 1000 Stars uchun $19.99 — 1 Star ≈ $0.0199, 50 Stars uchun $0.99 — 1 Star ≈ $0.0198). Lekin App Store yoki Google Play platforma komissiyasi (15–30%) qo'shilgandan keyin, mahalliy bot bilan effektiv farq deyarli yo'q yoki hatto mahalliy bot biroz arzon chiqadi — chunki platforma komissiyasidan tejam bor.</p>
+          <p>Telegram ilovasida birlik narxi paket kattaroq bo'lganda arzonlashadi: 100 Stars — 25 399 so'm (1 Star ≈ 254 so'm), 1000 Stars — 233 999 so'm (1 Star ≈ 234 so'm), 04.11.2026 holatiga. Ya'ni 100 Stars'da StarsJoy narxi ilova bilan deyarli teng, 1000 Stars'da esa ilova arzonroq. StarsJoy'ning afzalligi qulaylikda: Uzcard/Humo bilan to'lov, Stars odatda ~10 soniyada avtomatik yetkaziladi, har xaridda bonus Stars (bonus bilan 1 ⭐ taxminan {starPriceWithBonus()} so'm) va 24/7 support — @StarsjoySupport.</p>
 
           <h2>Birlik narxi — qaysi paket eng arzon?</h2>
 
           <p>Bu savolga aniq javob — <strong>qayerdan olishingizga bog'liq</strong>:</p>
 
           <h3>Mahalliy reseller bot orqali</h3>
-          <p>Birlik narxi tekis 240 so'm/Star. 50 Stars yoki 1000 Stars — har bir Star uchun bir xil. Sababi: mahalliy bot Telegram'ning ichki narxiga ustiga aniq foiz qo'shadi, va bu foiz har bir paketda bir xil. Demak, ko'proq paket olish bilan tejam yo'q.</p>
+          <p>Birlik narxi tekis {STAR_PRICE} so'm/Star. 50 Stars yoki 1000 Stars — har bir Star uchun bir xil. Sababi: mahalliy bot Telegram'ning ichki narxiga ustiga aniq foiz qo'shadi, va bu foiz har bir paketda bir xil. Demak, ko'proq paket olish bilan tejam yo'q.</p>
 
           <h3>Telegram rasmiy ichki to'lovi orqali</h3>
-          <p>Birlik narxi katta paketda biroz arzon (chunki Telegram'ning ichki narxi va platforma komissiyasi paket o'lchamiga qarab biroz farq qiladi). Lekin platforma komissiyasi va xorijiy karta talabi bu farqni yo'qqa chiqaradi — effektiv narx odatda mahalliy bot bilan tenglashadi yoki hatto qimmatroq tushadi.</p>
+          <p>Birlik narxi katta paketda arzonroq (100 Stars — 25 399 so'm, 1000 Stars — 233 999 so'm, 04.11.2026). Lekin to'lov uchun odatda xorijiy karta yoki App Store balansi kerak — O'zbekistondagi ko'p foydalanuvchi uchun bu yo'l noqulay.</p>
 
           <p>Xulosa: agar maqsad faqat narx tejash bo'lsa, paket o'lchamini ko'paytirib tejam izlash mantiqsiz. Maqsad bo'yicha tanlash kerak — qaysi miqdor sizga aniq nima uchun kerakligi.</p>
 
@@ -229,21 +231,21 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Vaziyatga qarab paket tanlash. Quyida har bir paket uchun real ssenariylar:</p>
 
-          <h3>50 Stars (12 000 so'm) — kichik tabriklar</h3>
+          <h3>50 Stars ({fmtS(starsPrice(50))} so'm) — kichik tabriklar</h3>
           <p>50 Stars yetadi: bitta kichik Gift (Heart 15 Stars × 3 = 45, Cake 50, Bouquet 50, Rocket 50), bir necha paid reaction (1 Star = 1 reaction), kichik mualliflik kanali bir necha post o'qish (paid post). Yangi Stars foydalanuvchisi uchun "tatib ko'rish" miqdori — birinchi xaridda mantiqli.</p>
           <p><strong>Misollar:</strong> Do'stga Cake yuborish (tug'ilgan kun), favvora kanalda 1 oy paid post o'qish, kontent yaratuvchiga 5–10 ta paid reaction qo'shish.</p>
 
-          <h3>100 Stars (24 000 so'm) — ikki Regular Gift</h3>
+          <h3>100 Stars ({fmtS(starsPrice(100))} so'm) — ikki Regular Gift</h3>
           <p>100 Stars universal o'rta paket. Yetadi: ikkita Regular Gift (Trophy 100, Diamond 100, Crown 100, Ring 100), bir nechta o'rta paket Gifts kombinatsiyasi (Cake 50 + Bouquet 50), 50–80 ta paid reaction, bir-ikki haftalik paid kanal obunasi.</p>
           <p><strong>Misollar:</strong> Eslatma sovg'asi (Trophy yoki Diamond), tug'ilgan kun arafasi do'st uchun ikki sovg'a, sevgan kontent yaratuvchini 1 oy paid kanalda qo'llab-quvvatlash.</p>
 
           <p class="natural-cta">Stars hisobni 5 daqiqada to'ldirish kerak bo'lsa, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click yoki Payme bilan tezkor sxema bor — to'liq qo'llanma <a href="/blog/telegram-stars-tez-toldirish">5 daqiqada Stars to'ldirish</a> maqolasida.</p>
 
-          <h3>500 Stars (120 000 so'm) — Limited Gift yoki bir nechta sovg'a</h3>
+          <h3>500 Stars ({fmtS(starsPrice(500))} so'm) — Limited Gift yoki bir nechta sovg'a</h3>
           <p>500 Stars katta sovg'a yoki ko'p kichik sovg'a kombinatsiyasi uchun. Yetadi: pastki Limited Gift (mavsumiy chiqarilmalar), 5 ta o'rta Regular Gift (5 × 100 Stars), bir necha oy paid kanal obunasi, ko'p paid reaction.</p>
           <p><strong>Misollar:</strong> Yubiley sovg'asi (Limited Gift), nikoh tabrigi katta sovg'a, biznes mijozga hurmat ko'rsatish. 500 Stars miqdori "men siz uchun maxsus narsa tanladim" signalini beradi.</p>
 
-          <h3>1000 Stars (240 000 so'm) — Premium 1 oy yoki katta sovg'a</h3>
+          <h3>1000 Stars ({fmtS(starsPrice(1000))} so'm) — Premium 1 oy yoki katta sovg'a</h3>
           <p>1000 Stars yirik miqdor. Yetadi: Telegram Premium 1 oylik aktivatsiyasi (taxminan 800–1000 Stars), o'rta Limited Gift (1 000–2 500 Stars oralig'ining pastki qismi), bir necha katta Regular Gift kombinatsiyasi.</p>
           <p><strong>Misollar:</strong> Premium tezkor aktivatsiya (Stars'dan), shaxsiy katta sovg'a (Limited Gift), do'stga uzoq muddatga turli sovg'alar yuborish uchun zaxira. 1000 Stars eng mashhur paket — uning haqida batafsil <a href="/blog/telegram-1000-stars-sotib-olish">1000 Stars sotib olish</a> maqolasida 5 ta real scenario va withdrawal qoidalari ko'rib chiqilgan.</p>
 
@@ -255,7 +257,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Telegram'ning rasmiy paketlari bir necha standart raqamlarni qamrab oladi (50, 100, 150, 250, 500, 1000, 2500, 5000, 10000), lekin har bir oraliq raqamni qoplamaydi. Mahalliy reseller botlar (masalan @starsjoybot) odatda custom miqdorni qo'llab-quvvatlaydi — siz bot ichida aniq Stars miqdorini ko'rsatasiz va so'mdagi narx avtomatik hisoblanadi.</p>
 
-          <p>Custom miqdorda birlik narxi paket bilan bir xil — 240 so'm/Star. Demak, 250 Stars × 240 = 60 000 so'm, 750 Stars × 240 = 180 000 so'm. Bu paket emas — siz aynan kerakli miqdorni olasiz va ortiqcha qoldiq qolmaydi.</p>
+          <p>Custom miqdorda birlik narxi paket bilan bir xil — {STAR_PRICE} so'm/Star. Demak, 250 Stars × {STAR_PRICE} = {fmtS(starsPrice(250))} so'm, 750 Stars × {STAR_PRICE} = {fmtS(starsPrice(750))} so'm. Bu paket emas — siz aynan kerakli miqdorni olasiz va ortiqcha qoldiq qolmaydi.</p>
 
           <p>Custom miqdor faqat reseller botlarda emas, Telegram'ning Web App va ba'zi rasmiy interfeyslarida ham mavjud — lekin bu yerda ham xorijiy karta talab qilinadi.</p>
 
@@ -268,10 +270,10 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tr><th>Yo'l</th><th>Narx</th><th>Karta talabi</th><th>Qo'shimcha qadamlar</th></tr>
             </thead>
             <tbody>
-              <tr><td>App Store / Google Play</td><td>~$1.99 (~24 900 so'm)</td><td>Visa/MasterCard (xorijiy)</td><td>Ilovaga to'lov ulash, valyuta konvertatsiya</td></tr>
+              <tr><td>Telegram ilovasi (App Store / Google Play)</td><td>25 399 so'm (04.11.2026)</td><td>Visa/MasterCard (xorijiy)</td><td>Ilovaga to'lov ulash, valyuta konvertatsiya</td></tr>
               <tr><td>Telegram Web (Stars)</td><td>~$1.99 (~24 900 so'm)</td><td>Visa/MasterCard</td><td>Sayt orqali to'lov, valyuta konvertatsiya</td></tr>
               <tr><td>Fragment + TON Wallet</td><td>~$1.69 (~21 000 so'm)</td><td>TON wallet</td><td>Wallet sozlash, TON kupit'</td></tr>
-              <tr><td>Mahalliy reseller bot</td><td>24 000 so'm</td><td>Uzcard/Humo/Click/Payme</td><td>Yo'q — to'g'ridan-to'g'ri so'mda</td></tr>
+              <tr><td>Mahalliy reseller bot</td><td>{fmtS(starsPrice(100))} so'm + bonus Stars</td><td>Uzcard/Humo/Click/Payme</td><td>Yo'q — to'g'ridan-to'g'ri so'mda</td></tr>
             </tbody>
           </table>
 
@@ -299,7 +301,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <div class="post-faq">
             <div class="post-faq-item">
               <h3>Qaysi Telegram Stars paketi eng arzon?</h3>
-              <p>Mahalliy reseller kursida (1 Star = 240 so'm) birlik narxi har bir paketda bir xil — paket o'lchami narxni o'zgartirmaydi. Telegram'ning rasmiy ichki narxida ko'p Stars paketda birlik narxi biroz arzon, lekin platforma komissiyasi 15–30% va xorijiy karta talabi bu farqni yo'qqa chiqaradi.</p>
+              <p>Mahalliy reseller kursida (1 Star = {STAR_PRICE} so'm) birlik narxi har bir paketda bir xil — paket o'lchami narxni o'zgartirmaydi. Telegram ilovasida katta paketlarda birlik narxi arzonroq (1000 Stars — 233 999 so'm, 04.11.2026), lekin to'lov uchun odatda xorijiy karta yoki App Store balansi talab qilinadi.</p>
             </div>
             <div class="post-faq-item">
               <h3>50, 100, 500 va 1000 Stars qaysi maqsad uchun yetadi?</h3>
@@ -307,11 +309,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Telegram'ning rasmiy paketi va mahalliy bot orasidagi farq nima?</h3>
-              <p>Rasmiy yo'l xorijiy karta (Visa/MasterCard) talab qiladi va 15–30% platforma komissiyasi qo'shadi. Mahalliy bot Click, Payme, Uzcard yoki Humo orqali so'mda to'lash imkonini beradi va platforma komissiyasi yo'q. Stars Telegram'ning rasmiy infratuzilmasi orqali yetkaziladi — chetlab o'tish yo'q.</p>
+              <p>Rasmiy yo'l xorijiy karta (Visa/MasterCard) yoki App Store balansini talab qiladi. Mahalliy bot Click, Payme, Uzcard yoki Humo orqali so'mda to'lash imkonini beradi, Stars odatda ~10 soniyada avtomatik yetkaziladi. Stars Telegram'ning rasmiy infratuzilmasi orqali yetkaziladi — chetlab o'tish yo'q.</p>
             </div>
             <div class="post-faq-item">
               <h3>Custom miqdor (250 yoki 750 Stars) sotib olish mumkinmi?</h3>
-              <p>Mahalliy reseller bot orqali ko'pincha custom miqdor (masalan 250, 750, 1200 Stars) sotib olish mumkin — bot ichida aniq miqdorni ko'rsatasiz va so'mdagi summa avtomatik hisoblanadi. Birlik narxi paket bilan bir xil — 240 so'm/Star.</p>
+              <p>Mahalliy reseller bot orqali ko'pincha custom miqdor (masalan 250, 750, 1200 Stars) sotib olish mumkin — bot ichida aniq miqdorni ko'rsatasiz va so'mdagi summa avtomatik hisoblanadi. Birlik narxi paket bilan bir xil — {STAR_PRICE} so'm/Star.</p>
             </div>
             <div class="post-faq-item">
               <h3>Qaysi Stars paketi Premium aktivatsiyasi uchun mos?</h3>
@@ -319,15 +321,15 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Stars sotib olganda ortiqcha komissiya qancha?</h3>
-              <p>Telegram rasmiy ichki narxida komissiya 15–30%. Mahalliy reseller botda effektiv komissiya ~10–15% (so'mdagi narxga oldindan kiritilgan). To'lov tizimlari (Click, Payme) qo'shimcha komissiya olmaydi — bot tomonidan qoplanadi.</p>
+              <p>Telegram ilovasida narx yakuniy ko'rsatiladi, lekin xorijiy karta yoki App Store balansi kerak. Mahalliy reseller botda so'mdagi narx ham yakuniy. To'lov tizimlari (Click, Payme) qo'shimcha komissiya olmaydi — bot tomonidan qoplanadi.</p>
             </div>
           </div>
 
           <h2>Xulosa</h2>
 
-          <p>Telegram Stars paketlarini tanlashda asosiy mantiq — narx tejam emas, balki maqsadga moslik. Mahalliy reseller botda birlik narxi har bir paketda bir xil (240 so'm/Star), shu sababli "katta paket olib tejam qilaman" yondashuvi mantiqsiz. To'g'ri yondashuv — sizga aynan nima kerak: bitta kichik Gift uchun 50 Stars, ikkita Regular Gift uchun 100 Stars, Limited Gift uchun 500 Stars, Premium yoki katta sovg'a uchun 1000 Stars.</p>
+          <p>Telegram Stars paketlarini tanlashda asosiy mantiq — narx tejam emas, balki maqsadga moslik. Mahalliy reseller botda birlik narxi har bir paketda bir xil ({STAR_PRICE} so'm/Star), shu sababli "katta paket olib tejam qilaman" yondashuvi mantiqsiz. To'g'ri yondashuv — sizga aynan nima kerak: bitta kichik Gift uchun 50 Stars, ikkita Regular Gift uchun 100 Stars, Limited Gift uchun 500 Stars, Premium yoki katta sovg'a uchun 1000 Stars.</p>
 
-          <p>Telegram'ning rasmiy ichki to'lovi (App Store, Google Play) xorijiy karta talab qiladi va platforma komissiyasi 15–30% qo'shadi — bu yo'l O'zbekiston foydalanuvchisi uchun amalda yopiq. Mahalliy reseller bot Click/Payme/Uzcard/Humo orqali so'mda to'g'ridan-to'g'ri ishlaydi va Stars Telegram'ning rasmiy infratuzilmasi orqali yetkaziladi.</p>
+          <p>Telegram'ning rasmiy ichki to'lovi (App Store, Google Play) xorijiy karta yoki App Store balansini talab qiladi — bu yo'l O'zbekiston foydalanuvchisi uchun amalda yopiq. Mahalliy reseller bot Click/Payme/Uzcard/Humo orqali so'mda to'g'ridan-to'g'ri ishlaydi va Stars Telegram'ning rasmiy infratuzilmasi orqali yetkaziladi.</p>
 
           <div class="end-cta">
             <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Stars sotib olish — @starsjoybot &rarr;</a>
@@ -337,7 +339,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <ul class="related-list">
             <li><a href="/blog/telegram-stars-narxi">Telegram Stars narxi 2026: O'zbekistonda eng arzon narxda</a></li>
-            <li><a href="/blog/telegram-1000-stars-sotib-olish">1000 Telegram Stars narxi: 240 000 so'm, ilova bilan taqqoslash</a></li>
+            <li><a href="/blog/telegram-1000-stars-sotib-olish">1000 Telegram Stars narxi: {fmtS(starsPrice(1000))} so'm, ilova bilan taqqoslash</a></li>
             <li><a href="/blog/telegram-stars-tez-toldirish">Telegram Stars'ni 5 daqiqada to'ldirish</a></li>
             <li><a href="/blog/telegram-stars-click-payme">Click va Payme orqali Telegram Stars sotib olish</a></li>
             <li><a href="/blog/telegram-gifts-narxi-royxati">Telegram Gifts narxi 2026: barcha sovg'alar ro'yxati</a></li>

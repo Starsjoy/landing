@@ -1,5 +1,6 @@
 ---
 import BonusPage from '../../components/BonusPage.astro';
+import { STAR_PRICE, starsPrice, starPriceWithBonus, fmtS, PRICES_DATE } from '../../lib/prices';
 
 const faqs = [
   {
@@ -20,7 +21,7 @@ const faqs = [
   },
   {
     q: "Сколько стоит 1 звезда с учётом бонуса?",
-    a: "Если использовать накопленные бонусы, фактически около 231 сума. Обычная цена — 240 сумов за звезду, а бонус даёт 4% дополнительных Stars: 240 ÷ 1,04 ≈ 231."
+    a: `Если использовать накопленные бонусы, фактически около ${starPriceWithBonus()} сумов. Обычная цена — ${STAR_PRICE} сума за звезду, а бонус даёт 4% дополнительных Stars: ${STAR_PRICE} ÷ 1,04 ≈ ${starPriceWithBonus()}.`
   },
   {
     q: "Сколько бонусов за 70 Stars?",
@@ -55,16 +56,16 @@ const faqs = [
   ctaLabel="Купить Stars и копить бонусы"
   ctaSub="@starsjoybot, с Uzcard и Humo"
   updatedLabel="Обновлено"
-  updated="2026-10-31"
+  updated={PRICES_DATE}
   tableTitle="Сколько бонусов за каждый пакет Stars?"
   tableHead={["Stars", "Цена", "Бонус"]}
   currency="сумов"
   thousandSep=" "
-  tableNote="Цены на 2026-10-31, тариф 240 сумов за звезду. Бонус считается за каждые полные 50 Stars: например, за 70 — +2 ⭐, за 150 — +6 ⭐."
+  tableNote={`Цены на ${PRICES_DATE}, тариф ${STAR_PRICE} сума за звезду. Бонус считается за каждые полные 50 Stars: например, за 70 — +2 ⭐, за 150 — +6 ⭐.`}
   faqTitle="Частые вопросы"
   faqs={faqs}
   finalTitle="Получите первый бонус уже сегодня"
-  finalText="100 Stars за 24 000 сумов и +4 ⭐ бонуса, с Uzcard или Humo."
+  finalText={`100 Stars за ${fmtS(starsPrice(100))} сумов и +4 ⭐ бонуса, с Uzcard или Humo.`}
   finalCta="Открыть @starsjoybot"
 >
   <section>
@@ -87,8 +88,8 @@ const faqs = [
 
   <section>
     <h2>Насколько бонус снижает цену одной звезды?</h2>
-    <p>Если использовать накопленные бонусы, одна звезда фактически обходится примерно в <strong>231 сум</strong>. Обычная цена — 240 сумов, а бонус даёт 4% дополнительных Stars с каждой покупки.</p>
-    <p>Пример: за 1250 Stars вы платите 300 000 сумов и накапливаете 50 ⭐ бонуса. Это равно 50 Stars стоимостью 12 000 сумов.</p>
+    <p>Если использовать накопленные бонусы, одна звезда фактически обходится примерно в <strong>{starPriceWithBonus()} сума</strong>. Обычная цена — {STAR_PRICE} сума, а бонус даёт 4% дополнительных Stars с каждой покупки.</p>
+    <p>Пример: за 1250 Stars вы платите {fmtS(starsPrice(1250))} сумов и накапливаете 50 ⭐ бонуса. Это равно 50 Stars стоимостью {fmtS(starsPrice(50))} сумов.</p>
   </section>
 
   <section>

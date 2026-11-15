@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Mini App'da Stars bilan to'lov: qanday ishlaydi va xavfsizmi? (2026) | StarsJoy Blog";
 const description = "Telegram Mini App'da Stars bilan to'lov nima, qanday ishlaydi, qaysi mashhur Mini App'lar Stars qabul qiladi va to'lov bosqichlari — to'liq qo'llanma 2026.";
 const publishDate = "2026-05-06";
-const modifiedDate = "2026-05-06";
+const modifiedDate = "2026-11-15";
 const wordCount = 1750;
 const canonical = "https://starsjoy.uz/blog/telegram-mini-app-stars-tolov";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -376,7 +377,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Telegram Mini App'da Stars bilan to'lov 2026-yilga kelib oddiy va keng qo'llaniladigan jarayon: oyinlar, e-com, NFT, ta'lim va reseller Mini App'larida ichki to'lov vositasi sifatida ishlatiladi. Telegram'ning rasmiy Bot Payments API mexanizmi tufayli xavfsiz — to'lov interfeysi har doim Telegram tomonidan ko'rsatiladi va Mini App sizning shaxsiy ma'lumotlaringizni ololmaydi.</p>
 
-          <p>Stars balansingiz bo'lsa, Mini App'da to'lov 30-60 soniya ichida amalga oshadi. Yetmasa — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click/Payme bilan 5 daqiqada to'ldirib, qaytib davom etish mumkin. 1 Star = 240 so'm reseller kursida — aniq summalarni hisoblash oson.</p>
+          <p>Stars balansingiz bo'lsa, Mini App'da to'lov 30-60 soniya ichida amalga oshadi. Yetmasa — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click/Payme bilan 5 daqiqada to'ldirib, qaytib davom etish mumkin. 1 Star = {STAR_PRICE} so'm reseller kursida — aniq summalarni hisoblash oson.</p>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
           <div class="end-cta">
             <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Stars to'ldirish — @starsjoybot &rarr;</a>

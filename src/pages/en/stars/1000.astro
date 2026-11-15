@@ -4,15 +4,16 @@ import NavbarEn from '../../../components/NavbarEn.astro';
 import FooterEn from '../../../components/FooterEn.astro';
 import VariantPage from '../../../components/VariantPage.astro';
 import { hreflangsFor } from '../../../lib/i18n';
+import { STAR_PRICE, starsPrice, fmt, PRICE_NOTE } from '../../../lib/prices';
 
 const canonical = "https://starsjoy.uz/en/stars/1000";
-const title = "Buy 1000 Telegram Stars — 240,000 UZS | StarsJoy";
-const description = "1000 Telegram Stars costs 240,000 UZS in Uzbekistan — StarsJoy's most popular pack. Pay with Uzcard, Humo or Click, delivered in about 10 seconds.";
+const title = `Buy 1000 Telegram Stars — ${fmt(starsPrice(1000))} UZS | StarsJoy`;
+const description = `1000 Telegram Stars costs ${fmt(starsPrice(1000))} UZS in Uzbekistan — StarsJoy's most popular pack. Pay with Uzcard, Humo or Click, delivered in about 10 seconds.`;
 
 const faqs = [
   {
     q: "Where can I buy 1000 Telegram Stars?",
-    a: "Through @starsjoybot — enter 1000 as the amount and pay via Uzcard, Humo or Click. The price is 240,000 UZS, delivered to your balance in about 10 seconds."
+    a: `Through @starsjoybot — enter 1000 as the amount and pay via Uzcard, Humo or Click. The price is ${fmt(starsPrice(1000))} UZS, delivered to your balance in about 10 seconds.`
   },
   {
     q: "Why is 1000 Stars the most popular pack?",
@@ -28,7 +29,7 @@ const faqs = [
   },
   {
     q: "Can I pay with Uzcard or Humo?",
-    a: "Yes, the full 240,000 UZS can be paid via Uzcard, Humo, Click or Payme — no international card or currency conversion needed."
+    a: `Yes, the full ${fmt(starsPrice(1000))} UZS can be paid via Uzcard, Humo, Click or Payme — no international card or currency conversion needed.`
   },
   {
     q: "Can I withdraw 1000 Stars as cash?",
@@ -80,13 +81,13 @@ const related = [
     currentLabel="1000 ⭐"
     eyebrow="Telegram Stars — 1000"
     h1="Buy 1000 Telegram Stars"
-    quickAnswer="1000 Telegram Stars costs 240,000 UZS, delivered via @starsjoybot in about 10 seconds."
-    heroNote="StarsJoy's most popular pack — a bigger buffer than the starter packs, cheaper entry than the bulk packs."
+    quickAnswer={`1000 Telegram Stars costs ${fmt(starsPrice(1000))} UZS, delivered via @starsjoybot in about 10 seconds.`}
+    heroNote={`StarsJoy's most popular pack — a bigger buffer than the starter packs, cheaper entry than the bulk packs. ${PRICE_NOTE.en}`}
     siblingsTitle="Other amounts"
     siblings={siblings}
     priceLabel="Price"
-    priceValue="240,000 UZS"
-    priceSubtext="240 UZS/star — most popular"
+    priceValue={`${fmt(starsPrice(1000))} UZS`}
+    priceSubtext={`${STAR_PRICE} UZS/star — most popular`}
     bonusNote="+40 ⭐ bonus, details →"
     bonusHref="/en/bonus"
     ctaLabel="Buy 1000 Stars"
@@ -100,11 +101,11 @@ const related = [
     relatedTitle="More about Telegram Stars"
     related={related}
     finalCtaTitle="Ready to buy 1000 Stars?"
-    finalCtaText="240,000 UZS, pay with Uzcard/Click, delivered in about 10 seconds"
+    finalCtaText={`${fmt(starsPrice(1000))} UZS, pay with Uzcard/Click, delivered in about 10 seconds`}
     finalCtaLabel="Buy now"
     schemaName="Telegram Stars — 1000"
     schemaDescription={description}
-    priceAmount="240000"
+    priceAmount={String(starsPrice(1000))}
     breadcrumbSchema={[
       { name: "Home", item: "https://starsjoy.uz/en" },
       { name: "Telegram Stars", item: "https://starsjoy.uz/en/stars" },

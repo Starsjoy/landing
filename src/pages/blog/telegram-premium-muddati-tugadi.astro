@@ -2,11 +2,14 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
+const p3 = fmtS(PREMIUM_PRICE[3]), p6 = fmtS(PREMIUM_PRICE[6]), p12 = fmtS(PREMIUM_PRICE[12]);
+const m3 = fmtS(premiumPerMonth(3)), m6 = fmtS(premiumPerMonth(6)), m12 = fmtS(premiumPerMonth(12));
 
 const title = "Telegram Premium muddati tugadi: yangilash yo'llari va nima qilish kerak (2026) | StarsJoy Blog";
 const description = "Telegram Premium muddati tugagach nima bo'ladi, qachon tugashini qanday tekshirish va Uzcard/Humo orqali tezda yangilash bosqichlari — to'liq qo'llanma.";
 const publishDate = "2026-05-05";
-const modifiedDate = "2026-05-05";
+const modifiedDate = "2026-11-15";
 const wordCount = 1720;
 const canonical = "https://starsjoy.uz/blog/telegram-premium-muddati-tugadi";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -203,7 +206,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Telegram Premium muddati tugagach <strong>akkaunt va xabarlar saqlanadi</strong> — faqat Premium funksiyalari (katta fayllar, premium emoji, animatsiyali profil rasmi va boshqalar) to'xtaydi. Mahalliy bot orqali sotib olingan Premium <strong>auto-renew qilmaydi</strong> — qo'lda yangilanadi. Eng tez yo'l: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click/Payme/Uzcard/Humo bilan 10 soniyada qaytadan aktivatsiya. Narxlar: 1 oy 57 000, 3 oy 172 000, 6 oy 232 000, 12 oy 422 000 so'm.
+            <strong>Qisqacha javob:</strong> Telegram Premium muddati tugagach <strong>akkaunt va xabarlar saqlanadi</strong> — faqat Premium funksiyalari (katta fayllar, premium emoji, animatsiyali profil rasmi va boshqalar) to'xtaydi. Mahalliy bot orqali sotib olingan Premium <strong>auto-renew qilmaydi</strong> — qo'lda yangilanadi. Eng tez yo'l: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click/Payme/Uzcard/Humo bilan 10 soniyada qaytadan aktivatsiya. Narxlar: 1 oy 57 000, 3 oy {p3}, 6 oy {p6}, 12 oy {p12} so'm.
           </div>
 
           <p>Telegram Premium obunangiz tugadi yoki tugashga yaqinmi? Birinchi savol — nima bo'ladi va qanday yangilash kerak. Bu maqolada Premium muddati tugashining real natijalari, qanday tekshirish va eng tez yangilash bosqichlari ko'rib chiqiladi. Maqola O'zbekiston foydalanuvchisi uchun yozilgan: mahalliy bot va Click/Payme/Uzcard/Humo to'lovlari fokusida.</p>
@@ -288,13 +291,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </thead>
             <tbody>
               <tr><td>1 oy</td><td>57 000 so'm</td><td>57 000 so'm</td><td>Birinchi sinab ko'rish</td></tr>
-              <tr><td>3 oy</td><td>172 000 so'm</td><td>~57 333 so'm</td><td>Qisqa fokus rejasi</td></tr>
-              <tr><td>6 oy</td><td>232 000 so'm</td><td>~38 667 so'm</td><td>Doimiy foydalanuvchi (eng mashhur)</td></tr>
-              <tr><td>12 oy</td><td>422 000 so'm</td><td>~35 167 so'm</td><td>Eng tejamkor (yiliga 266 000 tejam vs 3-oylik × 4)</td></tr>
+              <tr><td>3 oy</td><td>{p3} so'm</td><td>~{m3} so'm</td><td>Qisqa fokus rejasi</td></tr>
+              <tr><td>6 oy</td><td>{p6} so'm</td><td>~{m6} so'm</td><td>Doimiy foydalanuvchi (eng mashhur)</td></tr>
+              <tr><td>12 oy</td><td>{p12} so'm</td><td>~{m12} so'm</td><td>Eng tejamkor (yiliga 287 000 tejam vs 3-oylik × 4)</td></tr>
             </tbody>
           </table>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
-          <p>Birlik narxi 12 oylik paketda eng arzon (35 167 so'm/oy), 1 oyliqda eng qimmat (57 000 so'm/oy). Yiliga to'liq foydalansangiz va byudjet imkon bersa — 12 oylik mantiqli. Doimiy foydalanuvchi bo'lib, lekin 422 000 so'm bir paytda og'ir bo'lsa — 6 oylik (232 000) optimal o'rta yo'l.</p>
+          <p>Birlik narxi 12 oylik paketda eng arzon (~{m12} so'm/oy), 3 oylikda eng yuqori (~{m3} so'm/oy). Yiliga to'liq foydalansangiz va byudjet imkon bersa — 12 oylik mantiqli. Doimiy foydalanuvchi bo'lib, lekin {p12} so'm bir paytda og'ir bo'lsa — 6 oylik ({p6}) optimal o'rta yo'l.</p>
 
           <h2>Tugagandan keyin uzoq kutish — yo'qotish bormi?</h2>
 
@@ -320,7 +324,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li>Bironta xabarlashuv ochib, voice-to-text tugmasi ko'rinadimi?</li>
           </ol>
 
-          <p>Hammasi to'g'ri bo'lsa, Premium aktiv. Agar 30 daqiqa ichida aktivlashmasa, <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> ga yozing — operator tezda yordam beradi.</p>
+          <p>Hammasi to'g'ri bo'lsa, Premium aktiv. Agar 30 daqiqa ichida aktivlashmasa, <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a> ga yozing — operator tezda yordam beradi.</p>
 
           <h2>Premium tugashidan oldin nima qilish kerak?</h2>
 
@@ -367,7 +371,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Telegram Premium muddati tugashi katta xavf emas — akkaunt va xabarlar to'liq saqlanadi, faqat Premium funksiyalari to'xtaydi. Yangi paket olganingizda barcha funksiyalar darhol qaytadi (animatsiyali rasm, premium emoji, katta fayllar va boshqalar). Mahalliy reseller bot orqali olingan Premium auto-renew qilmaydi — har muddat oxirida qo'lda yangilanishi shart, lekin bu xususiyat sizdan kutilmagan to'lov olinmasligini ta'minlaydi.</p>
 
-          <p>Eng tez yangilash yo'li — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali 10 soniya. Click, Payme, Uzcard yoki Humo orqali to'lov, paket darhol aktiv. Doimiy foydalanuvchi uchun 6 oylik (232 000) yoki 12 oylik (422 000) mantiqli — birlik narxi 1 oylikdan ancha arzon.</p>
+          <p>Eng tez yangilash yo'li — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali 10 soniya. Click, Payme, Uzcard yoki Humo orqali to'lov, paket darhol aktiv. Doimiy foydalanuvchi uchun 6 oylik ({p6}) yoki 12 oylik ({p12}) mantiqli — birlik narxi 1 oylikdan ancha arzon.</p>
 
           <div class="end-cta">
             <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Premium yangilash — @starsjoybot &rarr;</a>

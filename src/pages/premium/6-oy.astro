@@ -3,24 +3,29 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import VariantPage from '../../components/VariantPage.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
 import { hreflangsFor } from '../../lib/i18n';
 
+const P3 = fmtS(PREMIUM_PRICE[3]), P6 = fmtS(PREMIUM_PRICE[6]), P12 = fmtS(PREMIUM_PRICE[12]);
+const pm = (m: 3 | 6 | 12) => fmtS(Math.round(premiumPerMonth(m) / 100) * 100);
+const M3 = pm(3), M6 = pm(6), M12 = pm(12);
+const SAVE = Math.round((1 - premiumPerMonth(12) / premiumPerMonth(3)) * 100);
 const canonical = "https://starsjoy.uz/premium/6-oy";
-const title = "Telegram Premium 6 oylik sotib olish — 232 000 so'm | StarsJoy";
-const description = "Telegram Premium 6 oylik obuna narxi — 232 000 so'm, oyiga ~38 700 so'm. Uzcard, Humo yoki Click orqali 10 soniyada faollashadi. Narx va muddat o'rtasidagi eng muvozanatli tarif.";
+const title = `Telegram Premium 6 oylik sotib olish — ${P6} so'm | StarsJoy`;
+const description = `Telegram Premium 6 oylik obuna narxi — ${P6} so'm, oyiga ~${M6} so'm. Uzcard, Humo yoki Click orqali 10 soniyada faollashadi. Narx va muddat o'rtasidagi eng muvozanatli tarif.`;
 
 const faqs = [
   {
     q: "Telegram Premium 6 oylikni qayerdan sotib olish mumkin?",
-    a: "@starsjoybot orqali — botga kirib 'Premium' bo'limidan 6 oylik tarifni tanlang. Narxi 232 000 so'm, Uzcard, Humo yoki Click bilan to'lab, 10 soniyada faollashadi."
+    a: `@starsjoybot orqali — botga kirib 'Premium' bo'limidan 6 oylik tarifni tanlang. Narxi ${P6} so'm, Uzcard, Humo yoki Click bilan to'lab, 10 soniyada faollashadi.`
   },
   {
     q: "6 oylik nima uchun eng ko'p tanlanadigan tarif hisoblanadi?",
-    a: "6 oylik 3 oylikka nisbatan oyiga sezilarli arzonroq (~38 700 vs ~57 300 so'm), lekin 12 oylik kabi bir yilga bog'lab qo'ymaydi. Shu sababli Premium'ni doimiy ishlatadigan, lekin bir yilga oldindan to'lashni istamaydigan foydalanuvchilar uchun muvozanatli variant."
+    a: `6 oylik 3 oylikka nisbatan oyiga sezilarli arzonroq (~${M6} vs ~${M3} so'm), lekin 12 oylik kabi bir yilga bog'lab qo'ymaydi. Shu sababli Premium'ni doimiy ishlatadigan, lekin bir yilga oldindan to'lashni istamaydigan foydalanuvchilar uchun muvozanatli variant.`
   },
   {
     q: "6 oylik va 3 oylikning oylik narxida qancha farq bor?",
-    a: "3 oylikda 1 oy taxminan 57 300 so'm, 6 oylikda esa ~38 700 so'm — ya'ni 6 oylikni tanlab, 3 oylikni ikki marta qayta xarid qilishga nisbatan sezilarli tejaysiz."
+    a: `3 oylikda 1 oy taxminan ${M3} so'm, 6 oylikda esa ~${M6} so'm — ya'ni 6 oylikni tanlab, 3 oylikni ikki marta qayta xarid qilishga nisbatan sezilarli tejaysiz.`
   },
   {
     q: "6 oy tugagach eslatma yoki avtomatik yechim bo'ladimi?",
@@ -28,7 +33,7 @@ const faqs = [
   },
   {
     q: "6 oylikni Uzcard yoki Humo bilan sotib olsam bo'ladimi?",
-    a: "Ha, 232 000 so'm to'liq Uzcard, Humo yoki Click orqali, xorijiy karta va valyuta konvertatsiyasisiz to'lanadi."
+    a: `Ha, ${P6} so'm to'liq Uzcard, Humo yoki Click orqali, xorijiy karta va valyuta konvertatsiyasisiz to'lanadi.`
   },
   {
     q: "6 oylikni sovg'a qilsam bo'ladimi?",
@@ -75,13 +80,14 @@ const related = [
     currentLabel="6 oylik"
     eyebrow="Telegram Premium — 6 oylik"
     h1="Telegram Premium 6 oylik sotib olish"
-    quickAnswer="Telegram Premium 6 oylik obuna narxi — 232 000 so'm (oyiga ~38 700 so'm), @starsjoybot orqali 10 soniyada faollashadi."
+    quickAnswer={`Telegram Premium 6 oylik obuna narxi — ${P6} so'm (oyiga ~${M6} so'm), @starsjoybot orqali 10 soniyada faollashadi.`}
     heroNote="Narx va muddat o'rtasida eng muvozanatli tarif — 3 oylikdan arzonroq, 12 oylikdek uzoq bog'lamaydi."
     siblingsTitle="Boshqa muddatlar"
     siblings={siblings}
     priceLabel="Narx"
-    priceValue="232 000 so'm"
-    priceSubtext="~38 700 so'm/oy"
+    priceValue={`${P6} so'm`}
+    priceSubtext={`~${M6} so'm/oy`}
+    priceNote={PRICE_NOTE.uz}
     ctaLabel="6 oylik Premium sotib olish"
     ctaHref="https://telegram.me/starsjoybot"
     forWhomTitle="Kimga mos?"
@@ -93,11 +99,11 @@ const related = [
     relatedTitle="6 oylik Premium haqida qo'shimcha"
     related={related}
     finalCtaTitle="6 oylik Premium'ga tayyor bo'ling"
-    finalCtaText="232 000 so'm, Uzcard/Click orqali, 10 soniyada faollashadi"
+    finalCtaText={`${P6} so'm, Uzcard/Click orqali, 10 soniyada faollashadi`}
     finalCtaLabel="Hozir sotib olish"
     schemaName="Telegram Premium 6 oylik obuna"
     schemaDescription={description}
-    priceAmount="232000"
+    priceAmount={String(PREMIUM_PRICE[6])}
     breadcrumbSchema={[
       { name: "Bosh sahifa", item: "https://starsjoy.uz" },
       { name: "Telegram Premium", item: "https://starsjoy.uz/premium" },

@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Stars qanday sotib olinadi? (2026 qo'llanma) | StarsJoy Blog";
 const description = "Telegram Stars qanday sotib olinadi — bot orqali tez va oson xarid qilish yo'llari, qadamma-qadam qo'llanma va ko'p beriladigan savollar.";
 const publishDate = "2026-03-11";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1000;
 ---
 
@@ -80,7 +81,7 @@ const wordCount = 1000;
         "name": "Telegram Stars narxi qancha?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Telegram Stars narxi sotib olish usuliga qarab farq qiladi. Masalan, StarsJoy bot orqali sotib olinsa 50 ta Stars narxi o'rtacha 11 000 — 12 000 so'mni tashkil etadi. App Store yoki Google Play orqali narx komissiya hisobiga biroz yuqoriroq bo'lishi mumkin."
+          "text": `Telegram Stars narxi sotib olish usuliga qarab farq qiladi. Masalan, StarsJoy bot orqali sotib olinsa 50 ta Stars narxi ${fmtS(starsPrice(50))} so'mni tashkil etadi va har xaridda bonus Stars beriladi. App Store yoki Google Play orqali to'lov odatda xalqaro kartani talab qiladi.`
         }
       },
       {
@@ -312,7 +313,8 @@ const wordCount = 1000;
             <div class="post-faq">
               <div class="post-faq-item">
                 <h3>Telegram Stars narxi qancha?</h3>
-                <p>Telegram Stars narxi sotib olish usuliga qarab farq qiladi. Masalan, <a href="https://telegram.me/starsjoybot" target="_blank">StarsJoy bot</a> orqali sotib olinsa 50 ta Stars narxi o'rtacha 11 000 — 12 000 so'mni tashkil etadi. App Store yoki Google Play orqali narx komissiya hisobiga biroz yuqoriroq bo'lishi mumkin.</p>
+                <p>Telegram Stars narxi sotib olish usuliga qarab farq qiladi. Masalan, <a href="https://telegram.me/starsjoybot" target="_blank">StarsJoy bot</a> orqali sotib olinsa 50 ta Stars narxi {fmtS(starsPrice(50))} so'mni tashkil etadi va har xaridda bonus Stars beriladi. App Store yoki Google Play orqali to'lov odatda xalqaro kartani talab qiladi.</p>
+                <p><small>{PRICE_NOTE.uz}</small></p>
               </div>
               <div class="post-faq-item">
                 <h3>Telegram Stars qayerda ishlatiladi?</h3>

@@ -2,11 +2,14 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
+const p3 = fmtS(PREMIUM_PRICE[3]), p6 = fmtS(PREMIUM_PRICE[6]), p12 = fmtS(PREMIUM_PRICE[12]);
+const m3 = fmtS(premiumPerMonth(3)), m6 = fmtS(premiumPerMonth(6)), m12 = fmtS(premiumPerMonth(12));
 
 const title = "Telegram Premium 1 vs 3 vs 6 vs 12 oy: paketlar taqqoslash va qaysi arzon? (2026) | StarsJoy Blog";
 const description = "Telegram Premium paketlari to'liq taqqoslash: 1, 3, 6 va 12 oy narxlari, oyiga birlik narxi, qaysi paket qaysi foydalanuvchiga mos va eng tejamkor variant.";
 const publishDate = "2026-05-05";
-const modifiedDate = "2026-05-05";
+const modifiedDate = "2026-11-15";
 const wordCount = 1780;
 const canonical = "https://starsjoy.uz/blog/telegram-premium-paketlar-taqqoslash";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -83,7 +86,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Qaysi Telegram Premium paketi eng arzon (oyiga)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "12 oylik paket — 422 000 so'm, oyiga ~35 167 so'm. Bu eng past birlik narxi. 1 oylik paket esa eng qimmat — oyiga 57 000 so'm. Paket o'zaro farqi: 12 oylik 1 oylikdan oyiga 38% arzon, 6 oylikdan 9% arzon, 3 oylikdan 39% arzon."
+          "text": `12 oylik paket — ${p12} so'm, oyiga ~${m12} so'm. Bu eng past birlik narxi. Eng yuqori birlik narxi 3 oylikda — oyiga ~${m3} so'm (1 oylik oyiga 57 000 so'm). Paket o'zaro farqi: 12 oylik 1 oylikdan oyiga 37% arzon, 6 oylikdan 10% arzon, 3 oylikdan 40% arzon.`
         }
       },
       {
@@ -99,7 +102,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "6 oylik vs 12 oylik — qaysi mantiqliroq?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Doimiy foydalanuvchi uchun 12 oylik (422 000) yiliga 42 000 so'm tejam beradi (vs 6 oylik × 2 = 464 000). Lekin 422 000 so'm bir paytda og'ir bo'lsa, 6 oylik (232 000) optimal o'rta yo'l — yarim yiliga sekin to'lov va keyinroq yangilash mumkin. 6 oylik eng mashhur paket — chunki narx va vaqt balansi yaxshi."
+          "text": `Doimiy foydalanuvchi uchun 12 oylik (${p12}) yiliga 49 000 so'm tejam beradi (vs 6 oylik × 2 = 478 000). Lekin ${p12} so'm bir paytda og'ir bo'lsa, 6 oylik (${p6}) optimal o'rta yo'l — yarim yiliga sekin to'lov va keyinroq yangilash mumkin. 6 oylik eng mashhur paket — chunki narx va vaqt balansi yaxshi.`
         }
       },
       {
@@ -107,7 +110,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "3 oylik paket nima uchun kamroq mantiqli?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "3 oylik (172 000 so'm) oyiga 57 333 so'm — bu deyarli 1 oylik narxiga teng. Oyiga tejam yo'q. Logika: 3 oydan keyin yangilash kerak va 6 oylik bilan solishtirsangiz oyiga 18 000 so'm ortiqcha to'laysiz. Ko'p hollarda 6 oylikdan boshlash mantiqliroq. 3 oylik mos: aniq 3 oylik fokus rejasi (masalan, kurs yoki loyiha) bo'lsa va undan keyin Premium kerak emas bo'lsa."
+          "text": `3 oylik (${p3} so'm) oyiga ~${m3} so'm — bu 1 oylik narxidan ham biroz qimmat. Oyiga tejam yo'q. Logika: 3 oydan keyin yangilash kerak va 6 oylik bilan solishtirsangiz oyiga ~19 800 so'm ortiqcha to'laysiz. Ko'p hollarda 6 oylikdan boshlash mantiqliroq. 3 oylik mos: aniq 3 oylik fokus rejasi (masalan, kurs yoki loyiha) bo'lsa va undan keyin Premium kerak emas bo'lsa.`
         }
       },
       {
@@ -164,7 +167,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Eng arzon birlik narxi <strong>12 oylik</strong> paketda — 422 000 so'm yiliga, oyiga ~35 167 so'm. <strong>6 oylik</strong> (232 000) eng mashhur paket — narx va vaqt balansi yaxshi (oyiga ~38 667 so'm). <strong>3 oylik</strong> (172 000) oyiga 57 333 so'm — bu 1 oylikka deyarli teng, demak tejam yo'q. <strong>1 oylik</strong> (57 000) faqat sinab ko'rish yoki qisqa kerak holatlar uchun. Funksiyalar barcha paketlarda bir xil — farq faqat vaqt va birlik narxida.
+            <strong>Qisqacha javob:</strong> Eng arzon birlik narxi <strong>12 oylik</strong> paketda — {p12} so'm yiliga, oyiga ~{m12} so'm. <strong>6 oylik</strong> ({p6}) eng mashhur paket — narx va vaqt balansi yaxshi (oyiga ~{m6} so'm). <strong>3 oylik</strong> ({p3}) oyiga ~{m3} so'm — bu 1 oylikdan ham biroz qimmat, demak tejam yo'q. <strong>1 oylik</strong> (57 000) faqat sinab ko'rish yoki qisqa kerak holatlar uchun. Funksiyalar barcha paketlarda bir xil — farq faqat vaqt va birlik narxida.
           </div>
 
           <p>Telegram Premium sotib olishda yoki yangilashda asosiy savol — qaysi paketni tanlash. To'rtta variant bor: 1, 3, 6 va 12 oy. Birinchi qarashda "kattaroq paket = arzonroq" mantig'i to'g'riga o'xshaydi, lekin bu har doim shunday emas. Bu maqolada to'rttala paket narxlari, oyiga birlik narxi va qaysi paket qaysi foydalanuvchiga mos kelishini batafsil ko'rib chiqamiz.</p>
@@ -188,13 +191,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </thead>
             <tbody>
               <tr><td>1 oy</td><td>57 000 so'm</td><td>57 000 so'm</td><td>—</td></tr>
-              <tr><td>3 oy</td><td>172 000 so'm</td><td>~57 333 so'm</td><td>+0.6% (qimmatroq)</td></tr>
-              <tr><td>6 oy</td><td>232 000 so'm</td><td>~38 667 so'm</td><td>−32% (arzonroq)</td></tr>
-              <tr><td>12 oy</td><td>422 000 so'm</td><td>~35 167 so'm</td><td>−38% (arzonroq)</td></tr>
+              <tr><td>3 oy</td><td>{p3} so'm</td><td>~{m3} so'm</td><td>+4.7% (qimmatroq)</td></tr>
+              <tr><td>6 oy</td><td>{p6} so'm</td><td>~{m6} so'm</td><td>−30% (arzonroq)</td></tr>
+              <tr><td>12 oy</td><td>{p12} so'm</td><td>~{m12} so'm</td><td>−37% (arzonroq)</td></tr>
             </tbody>
           </table>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
-          <p>Birinchi qiziqarli kuzatuv: <strong>3 oylik paket 1 oylikdan oyiga arzonroq emas</strong>. 172 000 ÷ 3 = 57 333 — bu 1 oylik narxidan (57 000) bir oz qimmat. Demak, 3 oylik tejam mantig'i yo'q. 6 oylik va 12 oylik paketlar haqiqiy tejam beradi.</p>
+          <p>Birinchi qiziqarli kuzatuv: <strong>3 oylik paket 1 oylikdan oyiga arzonroq emas</strong>. {p3} ÷ 3 ≈ {m3} — bu 1 oylik narxidan (57 000) qimmatroq. Demak, 3 oylik tejam mantig'i yo'q. 6 oylik va 12 oylik paketlar haqiqiy tejam beradi.</p>
 
           <h2>Birlik narxi — qaysi paket eng tejamkor?</h2>
 
@@ -210,23 +214,23 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               </tr>
             </thead>
             <tbody>
-              <tr><td>1 oylik × 12</td><td>57 000 × 12</td><td>684 000 so'm</td><td>+262 000 so'm</td></tr>
-              <tr><td>3 oylik × 4</td><td>172 000 × 4</td><td>688 000 so'm</td><td>+266 000 so'm</td></tr>
-              <tr><td>6 oylik × 2</td><td>232 000 × 2</td><td>464 000 so'm</td><td>+42 000 so'm</td></tr>
-              <tr><td>12 oylik × 1</td><td>422 000 × 1</td><td>422 000 so'm</td><td>0</td></tr>
+              <tr><td>1 oylik × 12</td><td>57 000 × 12</td><td>684 000 so'm</td><td>+255 000 so'm</td></tr>
+              <tr><td>3 oylik × 4</td><td>{p3} × 4</td><td>716 000 so'm</td><td>+287 000 so'm</td></tr>
+              <tr><td>6 oylik × 2</td><td>{p6} × 2</td><td>478 000 so'm</td><td>+49 000 so'm</td></tr>
+              <tr><td>12 oylik × 1</td><td>{p12} × 1</td><td>{p12} so'm</td><td>0</td></tr>
             </tbody>
           </table>
 
           <p>Yiliga to'liq foydalansangiz:</p>
 
           <ul>
-            <li><strong>1 oylik × 12</strong> — eng qimmat strategiya, 12 oylikdan 262 000 so'm ortiqcha</li>
-            <li><strong>3 oylik × 4</strong> — 1 oylik strategiyaga deyarli teng, 12 oylikdan 266 000 so'm ortiqcha (eng tejamsiz)</li>
-            <li><strong>6 oylik × 2</strong> — 12 oylikdan atigi 42 000 so'm ortiqcha, lekin sumdagi yuk yarmiga taqsimlanadi</li>
-            <li><strong>12 oylik × 1</strong> — eng tejamkor, lekin 422 000 so'm bir paytda</li>
+            <li><strong>1 oylik × 12</strong> — 12 oylikdan 255 000 so'm ortiqcha, ustiga har oy yangilash kerak</li>
+            <li><strong>3 oylik × 4</strong> — eng qimmat strategiya: 1 oylik strategiyadan ham qimmat, 12 oylikdan 287 000 so'm ortiqcha</li>
+            <li><strong>6 oylik × 2</strong> — 12 oylikdan atigi 49 000 so'm ortiqcha, lekin sumdagi yuk yarmiga taqsimlanadi</li>
+            <li><strong>12 oylik × 1</strong> — eng tejamkor, lekin {p12} so'm bir paytda</li>
           </ul>
 
-          <p>Eng katta tushunish: <strong>3 oylik paket tejam bermaydi</strong>. Ko'p foydalanuvchilar "6 oylik qimmat, 1 oylik kichik — 3 oylik o'rta yo'l" deb o'ylashadi. Aslida 3 oylik 1 oylikka deyarli teng birlik narxda, demak haqiqiy o'rta yo'l 6 oylik.</p>
+          <p>Eng katta tushunish: <strong>3 oylik paket tejam bermaydi</strong>. Ko'p foydalanuvchilar "6 oylik qimmat, 1 oylik kichik — 3 oylik o'rta yo'l" deb o'ylashadi. Aslida 3 oylikning birlik narxi 1 oylikdan ham biroz yuqori, demak haqiqiy o'rta yo'l 6 oylik.</p>
 
           <h2>Qaysi paket kim uchun mos?</h2>
 
@@ -242,33 +246,33 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li>Yaqin orada tugatadigan loyiha bor (1 oydan keyin Premium kerak emas)</li>
           </ul>
 
-          <h3>3 oylik (172 000 so'm) — qisqa fokus</h3>
+          <h3>3 oylik ({p3} so'm) — qisqa fokus</h3>
           <p>Mos foydalanuvchi: aniq 3 oylik rejasi bor va undan keyin Premium kerak emasligini biladi. Misollar:</p>
           <ul>
             <li>3 oylik kontent kampaniyasi (masalan, kurs marketingi)</li>
             <li>Mavsumiy faollik (yangi yil kampaniyasi, ramazon davri)</li>
             <li>Talaba sertifikat olish bo'yicha 3 oylik intensiv tayyorgarlik</li>
           </ul>
-          <p>Eslatma: 3 oylik 1 oylikka oylik teng birlik narx — demak, agar undan keyin yana Premium kerak bo'lsa, 6 oylikdan boshlash arzonroq.</p>
+          <p>Eslatma: 3 oylikning birlik narxi 1 oylikdan ham biroz yuqori — demak, agar undan keyin yana Premium kerak bo'lsa, 6 oylikdan boshlash arzonroq.</p>
 
-          <h3>6 oylik (232 000 so'm) — eng mashhur paket</h3>
+          <h3>6 oylik ({p6} so'm) — eng mashhur paket</h3>
           <p>Mos foydalanuvchi: doimiy Premium foydalanuvchi, lekin 12 oyga to'liq sodiqlik biroz ko'p. Misollar:</p>
           <ul>
             <li>Yarim yilga rejada Premium kerak, undan keyin holatga qarab</li>
-            <li>Byudjet 232 000 so'm bir paytda mos, 422 000 og'ir</li>
+            <li>Byudjet {p6} so'm bir paytda mos, {p12} og'ir</li>
             <li>Premium o'zgarishlari (yangi funksiyalar) ni 6 oydan keyin baholashni xohlaydi</li>
           </ul>
-          <p>6 oylik StarsJoy'dagi eng mashhur paket — chunki narx va vaqt balansi optimal. Yiliga 12 oylikdan atigi 42 000 so'm ortiqcha to'lasangiz ham, sumdagi yuk yarmiga taqsimlanadi.</p>
+          <p>6 oylik StarsJoy'dagi eng mashhur paket — chunki narx va vaqt balansi optimal. Yiliga 12 oylikdan atigi 49 000 so'm ortiqcha to'lasangiz ham, sumdagi yuk yarmiga taqsimlanadi.</p>
 
           <p class="natural-cta">Joriy Premium muddati tugayapti yoki tugadimi? <a href="/blog/telegram-premium-muddati-tugadi">Premium muddati tugadi qo'llanmasi</a> da yangilash bosqichlari va oldindan yangilash strategiyasi.</p>
 
-          <h3>12 oylik (422 000 so'm) — eng tejamkor</h3>
+          <h3>12 oylik ({p12} so'm) — eng tejamkor</h3>
           <p>Mos foydalanuvchi: doimiy va uzoq muddatli Premium foydalanuvchi, byudjet imkon beradi. Misollar:</p>
           <ul>
             <li>Yiliga to'liq Premium ishlataman, ehtiyoj barqaror</li>
-            <li>422 000 so'm sumdagi yuk hozir mos</li>
+            <li>{p12} so'm sumdagi yuk hozir mos</li>
             <li>Har 6 oyda yangilash haqida o'ylashni xohlamayman — bir marta to'lab xotirjamlik</li>
-            <li>Eng past birlik narxi (oyiga 35 167) muhim</li>
+            <li>Eng past birlik narxi (oyiga ~{m12}) muhim</li>
           </ul>
           <p>12 oylik haqida tafsilot — <a href="/blog/telegram-premium-12-oylik">12 oylik Telegram Premium qo'llanmasida</a>.</p>
 
@@ -285,7 +289,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tr><td>Premium foyda berdi, davom ettirmoqchiman</td><td>6 oylik</td><td>Tejam katta, lekin uzoq muddatli sodiqlik talab qilmaydi</td></tr>
               <tr><td>Premium o'zgarmas talab — yiliga to'liq kerak</td><td>12 oylik</td><td>Eng past birlik narxi va bir martalik tashvish</td></tr>
               <tr><td>3 oylik kampaniya uchun kerak, undan keyin yo'q</td><td>3 oylik</td><td>Aniq vaqt va undan keyin Premium kerak emasligini bilasiz</td></tr>
-              <tr><td>Byudjet katta to'lov og'ir</td><td>6 oylik dan boshlang</td><td>1 oylik 12 marta xayrli emas (oyiga teng narx, lekin har oy yangilash kerak)</td></tr>
+              <tr><td>Byudjet katta to'lov og'ir</td><td>6 oylik dan boshlang</td><td>1 oylik 12 marta xayrli emas (oyiga 57 000 so'm — 6 oylikdan qimmat, ustiga har oy yangilash kerak)</td></tr>
             </tbody>
           </table>
 
@@ -315,20 +319,20 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </thead>
             <tbody>
               <tr><td>1 oy</td><td>~$4.99 (~62 000 so'm)</td><td>57 000 so'm</td></tr>
-              <tr><td>3 oy</td><td>~$13.99 (~175 000 so'm)</td><td>172 000 so'm</td></tr>
-              <tr><td>6 oy</td><td>~$24.99 (~313 000 so'm)</td><td>232 000 so'm</td></tr>
-              <tr><td>12 oy</td><td>~$44.99 (~563 000 so'm)</td><td>422 000 so'm</td></tr>
+              <tr><td>3 oy</td><td>~$13.99 (~175 000 so'm)</td><td>{p3} so'm</td></tr>
+              <tr><td>6 oy</td><td>~$24.99 (~313 000 so'm)</td><td>{p6} so'm</td></tr>
+              <tr><td>12 oy</td><td>~$44.99 (~563 000 so'm)</td><td>{p12} so'm</td></tr>
             </tbody>
           </table>
 
-          <p>App Store yoki Google Play orqali narx 9–34% qimmatroq tushadi (ayniqsa 6 va 12 oylikda) — chunki platforma komissiyasi (15–30%) qo'shiladi va valyuta konvertatsiyasi xorijiy karta orqali bo'ladi. Mahalliy bot Click/Payme/Uzcard/Humo orqali to'g'ridan-to'g'ri so'mda ishlaydi va Premium Telegram'ning rasmiy infratuzilmasi orqali yetkaziladi.</p>
+          <p>App Store yoki Google Play orqali 1 oylik ~9% qimmatroq, 3 oylik deyarli bir xil, 6 va 12 oylik esa ~30% qimmatroq tushadi — chunki platforma komissiyasi (15–30%) qo'shiladi va valyuta konvertatsiyasi xorijiy karta orqali bo'ladi. Mahalliy bot Click/Payme/Uzcard/Humo orqali to'g'ridan-to'g'ri so'mda ishlaydi va Premium Telegram'ning rasmiy infratuzilmasi orqali yetkaziladi.</p>
 
           <h2>Tez-tez beriladigan savollar</h2>
 
           <div class="post-faq">
             <div class="post-faq-item">
               <h3>Qaysi Telegram Premium paketi eng arzon (oyiga)?</h3>
-              <p>12 oylik — 422 000 so'm yiliga, oyiga ~35 167 so'm. Bu eng past birlik narxi. 1 oylik eng qimmat — oyiga 57 000 so'm. 12 oylik 1 oylikdan oyiga 38% arzon, 6 oylikdan 9% arzon.</p>
+              <p>12 oylik — {p12} so'm yiliga, oyiga ~{m12} so'm. Bu eng past birlik narxi. Eng yuqori birlik narxi 3 oylikda — oyiga ~{m3} so'm (1 oylik 57 000 so'm). 12 oylik 1 oylikdan oyiga 37% arzon, 6 oylikdan 10% arzon.</p>
             </div>
             <div class="post-faq-item">
               <h3>1 oylik Premium kim uchun mos?</h3>
@@ -336,11 +340,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>6 oylik vs 12 oylik — qaysi mantiqliroq?</h3>
-              <p>Doimiy foydalanuvchi uchun 12 oylik yiliga 42 000 so'm tejam beradi (vs 6 oylik × 2). Lekin 422 000 og'ir bo'lsa, 6 oylik (232 000) optimal — narx va vaqt balansi yaxshi. 6 oylik eng mashhur paket.</p>
+              <p>Doimiy foydalanuvchi uchun 12 oylik yiliga 49 000 so'm tejam beradi (vs 6 oylik × 2). Lekin {p12} og'ir bo'lsa, 6 oylik ({p6}) optimal — narx va vaqt balansi yaxshi. 6 oylik eng mashhur paket.</p>
             </div>
             <div class="post-faq-item">
               <h3>3 oylik paket nima uchun kamroq mantiqli?</h3>
-              <p>3 oylik 172 000 so'm — oyiga 57 333, bu 1 oylik narxiga teng. Tejam yo'q. Aniq 3 oylik fokus rejasi bo'lsa va undan keyin Premium kerak emas bo'lsagina mantiqli. Aks holda 6 oylikdan boshlash arzonroq.</p>
+              <p>3 oylik {p3} so'm — oyiga ~{m3}, bu 1 oylik narxidan ham biroz qimmat. Tejam yo'q. Aniq 3 oylik fokus rejasi bo'lsa va undan keyin Premium kerak emas bo'lsagina mantiqli. Aks holda 6 oylikdan boshlash arzonroq.</p>
             </div>
             <div class="post-faq-item">
               <h3>Paket o'rtasida boshqa paketga o'tish mumkinmi?</h3>
@@ -358,9 +362,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <ul>
             <li><strong>1 oylik (57 000)</strong> — sinab ko'rish va aniq qisqa kerak holatlar uchun</li>
-            <li><strong>3 oylik (172 000)</strong> — kamroq mantiqli, chunki birlik narxi 1 oylikka deyarli teng</li>
-            <li><strong>6 oylik (232 000)</strong> — eng mashhur, narx va vaqt balansi optimal</li>
-            <li><strong>12 oylik (422 000)</strong> — eng past birlik narxi, doimiy va uzoq muddatli foydalanuvchi uchun</li>
+            <li><strong>3 oylik ({p3})</strong> — kamroq mantiqli, chunki birlik narxi 1 oylikdan ham biroz yuqori</li>
+            <li><strong>6 oylik ({p6})</strong> — eng mashhur, narx va vaqt balansi optimal</li>
+            <li><strong>12 oylik ({p12})</strong> — eng past birlik narxi, doimiy va uzoq muddatli foydalanuvchi uchun</li>
           </ul>
 
           <p>Premium funksiyalari barcha paketlarda bir xil. Tanlovning haqiqiy o'qi — sizning foydalanish davriyligingiz va byudjet imkoniyatingiz. Yangi foydalanuvchi uchun "1 oy sinab ko'rish → 6 oylik tasdiqlash → 12 oylik barqaror" ketma-ketligi tabiiy yo'l.</p>

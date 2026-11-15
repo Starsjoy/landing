@@ -5,9 +5,10 @@ import FooterRu from '../../components/FooterRu.astro';
 import Reviews from '../../components/Reviews.astro';
 import { getApprovedReviews, aggregateOf } from '../../lib/reviews';
 import { hreflangsFor } from '../../lib/i18n';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Купить Telegram Premium — Дёшево в Узбекистане | StarsJoy";
-const description = "Telegram Premium цена в Узбекистане: 3 мес — 172 000, 6 мес — 232 000, 12 мес — 422 000 сум. Оплата через Click, Uzcard, Humo. Активация за 10 секунд. StarsJoy.";
+const description = `Telegram Premium цена в Узбекистане: 3 мес — ${fmtS(PREMIUM_PRICE[3])}, 6 мес — ${fmtS(PREMIUM_PRICE[6])}, 12 мес — ${fmtS(PREMIUM_PRICE[12])} сум. Оплата через Click, Uzcard, Humo. Активация за 10 секунд. StarsJoy.`;
 
 const faqs = [
   {
@@ -16,7 +17,7 @@ const faqs = [
   },
   {
     q: "Сколько стоит Telegram Premium в Узбекистане?",
-    a: "Через StarsJoy вы можете купить Telegram Premium по самой выгодной цене в Узбекистане. Доступны подписки на 3 месяца (172 000 сум), 6 месяцев (232 000 сум) и 12 месяцев (422 000 сум). Чем дольше срок — тем дешевле."
+    a: `Через StarsJoy вы можете купить Telegram Premium по выгодной цене, в сумах картой Uzcard или Humo. Доступны подписки на 3 месяца (${fmtS(PREMIUM_PRICE[3])} сум), 6 месяцев (${fmtS(PREMIUM_PRICE[6])} сум) и 12 месяцев (${fmtS(PREMIUM_PRICE[12])} сум). Чем дольше срок — тем дешевле в пересчёте на месяц.`
   },
   {
     q: "Можно ли оплатить через Uzcard или Humo?",
@@ -44,7 +45,7 @@ const faqs = [
   },
   {
     q: "Есть ли подписка на 1 месяц?",
-    a: "StarsJoy предлагает тарифы на 3, 6 и 12 месяцев — тарифа на 1 месяц нет. Минимальный срок — 3 месяца (172 000 сум), это примерно 57 300 сум в месяц."
+    a: `StarsJoy предлагает тарифы на 3, 6 и 12 месяцев — тарифа на 1 месяц нет. Минимальный срок — 3 месяца (${fmtS(PREMIUM_PRICE[3])} сум), это примерно ${fmtS(Math.round(premiumPerMonth(3) / 100) * 100)} сум в месяц.`
   },
   {
     q: "Что делать, если Premium не пришёл после оплаты?",
@@ -58,15 +59,15 @@ const faqs = [
 
 // Цена за месяц — рассчитывается из опубликованных тарифов (округлённо)
 const plans = [
-  { months: 3,  price: 172000, best: false, href: "/ru/premium/3-oy" },
-  { months: 6,  price: 232000, best: false, href: "/ru/premium/6-oy" },
-  { months: 12, price: 422000, best: true,  href: "/ru/premium/12-oy" },
+  { months: 3,  price: PREMIUM_PRICE[3], best: false, href: "/ru/premium/3-oy" },
+  { months: 6,  price: PREMIUM_PRICE[6], best: false, href: "/ru/premium/6-oy" },
+  { months: 12, price: PREMIUM_PRICE[12], best: true,  href: "/ru/premium/12-oy" },
 ];
 const fmt = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const perMonth = (p: { months: number; price: number }) =>
   fmt(Math.round(p.price / p.months / 100) * 100);
 // Разница в цене за месяц между тарифами 3 и 12 месяцев
-const monthlySaving = fmt(Math.round((172000 / 3 - 422000 / 12) / 1000) * 1000);
+const monthlySaving = fmt(Math.round((premiumPerMonth(3) - premiumPerMonth(12)) / 1000) * 1000);
 
 // Отзывы клиентов (одобренные, общий пул с UZ) + рейтинг
 const reviews = await getApprovedReviews('premium');
@@ -81,8 +82,8 @@ const productSchema: any = {
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "UZS",
-    "lowPrice": "172000",
-    "highPrice": "422000",
+    "lowPrice": String(PREMIUM_PRICE[3]),
+    "highPrice": String(PREMIUM_PRICE[12]),
     "availability": "https://schema.org/InStock",
     "offerCount": "3"
   }
@@ -215,10 +216,11 @@ if (agg.reviewCount > 0) {
         </table>
       </div>
       <p class="pricing-note fade-in">
-        В цену включены все способы оплаты (Uzcard, Humo, Click) — без скрытых комиссий.
+        Оплата через Uzcard, Humo или Click — без скрытых комиссий.
         На тарифе 12 месяцев один месяц обходится примерно на {monthlySaving} сум дешевле, чем на тарифе 3 месяца.
         Все цены сервиса собраны на <a href="/ru/narxlar">странице цен</a>.
       </p>
+      <p class="pricing-note fade-in"><small>{PRICE_NOTE.ru}</small></p>
       <div class="pricing-cta fade-in">
         <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Купить Premium</a>
       </div>
@@ -441,7 +443,7 @@ if (agg.reviewCount > 0) {
     <div class="container">
       <div class="prem-cta-box fade-in">
         <h2>Готовы подключить Telegram Premium?</h2>
-        <p>Лучшие цены в Узбекистане, оплата через Uzcard/Click/Humo</p>
+        <p>Выгодные цены, оплата через Uzcard/Click/Humo, быстрая активация и поддержка 24/7</p>
         <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">&#9889; Купить Premium</a>
       </div>
     </div>

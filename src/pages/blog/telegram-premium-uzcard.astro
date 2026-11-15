@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Premiumni O'zbekistonda Uzcard orqali qanday olish mumkin (2026) | StarsJoy Blog";
 const description = "Telegram Premium'ni Uzcard orqali sotib olish mumkinmi? O'zbekistonda Uzcard va Humo bilan Premium aktivatsiya qilish — bosqichma-bosqich qo'llanma.";
 const publishDate = "2026-03-26";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1400;
 ---
 
@@ -256,22 +257,24 @@ const wordCount = 1400;
                 <tbody>
                   <tr>
                     <td>3 oy</td>
-                    <td>172 000 so'm</td>
-                    <td>~57 333 so'm/oy</td>
+                    <td>{fmtS(PREMIUM_PRICE[3])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(3))} so'm/oy</td>
                   </tr>
                   <tr>
                     <td>6 oy</td>
-                    <td>232 000 so'm</td>
-                    <td>~38 667 so'm/oy</td>
+                    <td>{fmtS(PREMIUM_PRICE[6])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(6))} so'm/oy</td>
                   </tr>
                   <tr class="highlight-row">
                     <td>12 oy</td>
-                    <td>422 000 so'm</td>
-                    <td>~35 167 so'm/oy</td>
+                    <td>{fmtS(PREMIUM_PRICE[12])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(12))} so'm/oy</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+
+            <p><small>{PRICE_NOTE.uz}</small></p>
 
             <p>Uzcard va Humo kartalarida to'lov Click yoki Payme orqali amalga oshiriladi. <a href="/blog/telegram-stars-narxi">Telegram Stars narxlari</a> bilan solishtirsangiz, Premium obuna oylik hisobda ancha tejamkor chiqadi.</p>
 
@@ -281,7 +284,7 @@ const wordCount = 1400;
 
             <ul>
               <li>Agar birinchi marta sinab ko'rmoqchi bo'lsangiz — <strong>3 oylik</strong> mos. Xavf kam, arzon, Premium'ni his qilasiz.</li>
-              <li>Doimiy foydalanuvchi uchun <strong>12 oylik</strong> eng tejamkor — oylik narx eng past, yiliga 20–30% tejaysiz.</li>
+              <li>Doimiy foydalanuvchi uchun <strong>12 oylik</strong> eng tejamkor — oylik narx eng past, 3 oylik paketlarga nisbatan ~40% tejaysiz.</li>
               <li>O'rta variant — <strong>6 oylik</strong>, balans jihatdan qulay. Ko'pchilik shu variantni tanlaydi.</li>
             </ul>
 
@@ -402,7 +405,7 @@ const wordCount = 1400;
               </div>
               <div class="post-faq-item">
                 <h3>1 oylik Telegram Premium bor ekanmi?</h3>
-                <p>Gift funksiyasi orqali yo'q — minimal 3 oy. <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a> Telegram'da bor, lekin uni faqat o'zingiz, xalqaro kartangiz bilan Telegram ichidan yoqasiz — @starsjoysupport mutaxassisi qadamlarni bepul o'rgatadi.</p>
+                <p>Gift funksiyasi orqali yo'q — minimal 3 oy. <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a> Telegram'da bor, lekin uni faqat o'zingiz, xalqaro kartangiz bilan Telegram ichidan yoqasiz — @StarsjoySupport mutaxassisi qadamlarni bepul o'rgatadi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Do'stimga ham Premium olsa bo'ladimi?</h3>

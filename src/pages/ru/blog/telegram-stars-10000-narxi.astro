@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Цена 10 000 Telegram Stars в 2026 — сколько сумов? | StarsJoy Блог";
-const description = "10 000 Telegram Stars стоят 2 400 000 сумов (240 сум/звезда). Сравнение с ценой в приложении и на Fragment, оплата крупной суммы и доставка за 10 секунд.";
+const description = `10 000 Telegram Stars стоят ${fmtS(starsPrice(10000))} сумов (${STAR_PRICE} сум/звезда). Сравнение с ценой в приложении и на Fragment, оплата крупной суммы и доставка за 10 секунд.`;
 const publishDate = "2026-09-30";
-const modifiedDate = "2026-09-30";
+const modifiedDate = "2026-11-15";
 const wordCount = 1300;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
 ---
@@ -79,11 +80,11 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
     "@type": "HowTo",
     "name": "Как купить 10 000 Telegram Stars",
     "totalTime": "PT2M",
-    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": "2400000" },
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "UZS", "value": `${starsPrice(10000)}` },
     "step": [
       { "@type": "HowToStep", "position": 1, "name": "Откройте бота", "text": "Откройте @starsjoybot в Telegram и выберите раздел Stars." },
       { "@type": "HowToStep", "position": 2, "name": "Количество и username", "text": "Введите количество 10000 и Telegram username, на который придут Stars." },
-      { "@type": "HowToStep", "position": 3, "name": "Оплатите", "text": "Переведите 2 400 000 сумов на карту, которую покажет бот, через Payme, Click или любое банковское приложение." },
+      { "@type": "HowToStep", "position": 3, "name": "Оплатите", "text": `Переведите ${fmtS(starsPrice(10000))} сумов на карту, которую покажет бот, через Payme, Click или любое банковское приложение.` },
       { "@type": "HowToStep", "position": 4, "name": "Получите", "text": "После подтверждения оплаты Stars обычно зачисляются за 10 секунд." }
     ]
   })} />
@@ -95,16 +96,16 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
       {
         "@type": "Question",
         "name": "Сколько стоят 10 000 Telegram Stars?",
-        "acceptedAnswer": { "@type": "Answer", "text": "В StarsJoy 10 000 Telegram Stars стоят 2 400 000 сумов — это тариф 240 сум за звезду. В приложении Telegram (App Store / Google Play) — около $200, на Fragment — около $150 с оплатой в TON." }
+        "acceptedAnswer": { "@type": "Answer", "text": `В StarsJoy 10 000 Telegram Stars стоят ${fmtS(starsPrice(10000))} сумов — это тариф ${STAR_PRICE} сум за звезду. В приложении Telegram (App Store / Google Play) — около $200, на Fragment — около $150 с оплатой в TON.` }
       },
       {
         "@type": "Question",
         "name": "Если взять 10 000 Stars, одна звезда станет дешевле?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Нет. В StarsJoy тариф одинаковый для любого количества — 240 сум за звезду. 10 000 Stars — это ровно 10 × 1000, то есть 2 400 000 сумов. Скрытых платежей нет." }
+        "acceptedAnswer": { "@type": "Answer", "text": `Нет. В StarsJoy тариф одинаковый для любого количества — ${STAR_PRICE} сум за звезду. 10 000 Stars — это ровно 10 × 1000, то есть ${fmtS(starsPrice(10000))} сумов. Скрытых платежей нет.` }
       },
       {
         "@type": "Question",
-        "name": "Как оплатить 2 400 000 сумов?",
+        "name": `Как оплатить ${fmtS(starsPrice(10000))} сумов?`,
         "acceptedAnswer": { "@type": "Answer", "text": "Переводом на карту, которую покажет бот, — через Payme, Click или любое банковское приложение. Если на карте дневной лимит, оплатите с другой карты или приложения, либо разделите заказ на два по 5000." }
       },
       {
@@ -125,7 +126,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
       {
         "@type": "Question",
         "name": "Вернут ли деньги, если Stars не пришли?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Да. Если оплата прошла, а заказ не выполнен по технической причине, деньги возвращаются полностью. Для этого в течение 24 часов отправьте чек оплаты через @starsjoy_bot." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Да. Если оплата прошла, а заказ не выполнен по технической причине, деньги возвращаются полностью. Для этого в течение 24 часов отправьте чек оплаты через @StarsjoySupport." }
       },
       {
         "@type": "Question",
@@ -170,11 +171,11 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Коротко">
-            <strong>Коротко:</strong> 10 000 Telegram Stars в StarsJoy стоят <strong>2 400 000 сумов</strong> (240 сум за звезду). В <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> введите количество 10000, укажите username и переведите сумму на карту, которую покажет бот, — через Payme, Click или любое банковское приложение. Stars обычно приходят за <strong>10 секунд</strong>. Пароль и SMS-код не нужны.
+            <strong>Коротко:</strong> 10 000 Telegram Stars в StarsJoy стоят <strong>{fmtS(starsPrice(10000))} сумов</strong> ({STAR_PRICE} сум за звезду). В <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> введите количество 10000, укажите username и переведите сумму на карту, которую покажет бот, — через Payme, Click или любое банковское приложение. Stars обычно приходят за <strong>10 секунд</strong>. Пароль и SMS-код не нужны.
           </div>
 
           <section>
-            <p>10 000 Stars — самый крупный готовый пакет в StarsJoy. При такой сумме обычно хотят знать три вещи: точную цену, нет ли дешевле в другом месте и как без проблем оплатить 2,4 миллиона сумов. Ниже — чёткие ответы на все три вопроса.</p>
+            <p>10 000 Stars — самый крупный готовый пакет в StarsJoy. При такой сумме обычно хотят знать три вещи: точную цену, нет ли дешевле в другом месте и как без проблем оплатить 2,54 миллиона сумов. Ниже — чёткие ответы на все три вопроса.</p>
           </section>
 
           <section>
@@ -192,7 +193,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
                 <tbody>
                   <tr>
                     <td><strong>StarsJoy (@starsjoybot)</strong></td>
-                    <td><strong>2 400 000 сумов</strong> — фиксированно, в сумах</td>
+                    <td><strong>{fmtS(starsPrice(10000))} сумов</strong> — фиксированно, в сумах</td>
                     <td>Uzcard, Humo или любая карта; только username</td>
                   </tr>
                   <tr>
@@ -208,13 +209,14 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
                 </tbody>
               </table>
             </div>
-            <p>Скажем честно: цена StarsJoy близка к цене в приложении Telegram, а Fragment в долларах дешевле. Преимущество StarsJoy в другом — фиксированная цена в сумах, оплата местной картой, без криптовалюты и международной карты.</p>
+            <p class="price-note"><small>{PRICE_NOTE.ru}</small></p>
+            <p>Скажем честно: цена StarsJoy примерно на 8% выше долларовой цены в приложении, а Fragment в долларах ещё дешевле. Преимущество StarsJoy в другом — фиксированная цена в сумах, оплата картой Uzcard или Humo, без криптовалюты и международной карты. Stars обычно приходят за 10 секунд, к каждой покупке начисляются бонусные Stars, на вопросы 24/7 отвечает @StarsjoySupport, а пароль или SMS-код не нужны.</p>
           </section>
 
           <section>
             <h2>Как считается цена?</h2>
-            <p>В StarsJoy тариф одинаковый для любого количества: <strong>240 сум за звезду</strong>. Поэтому расчёт простой:</p>
-            <p><strong>10 000 × 240 = 2 400 000 сумов.</strong></p>
+            <p>В StarsJoy тариф одинаковый для любого количества: <strong>{STAR_PRICE} сум за звезду</strong>. Поэтому расчёт простой:</p>
+            <p><strong>10 000 × {STAR_PRICE} = {fmtS(starsPrice(10000))} сумов.</strong></p>
             <p>За крупный пакет цена звезды не растёт и не снижается. Комиссий и скрытых платежей нет — вы платите ту сумму, которую видите в боте. Цена определяется по тарифу на момент заказа, поэтому перед оплатой сверьтесь с суммой в боте.</p>
           </section>
 
@@ -227,18 +229,18 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
           <section>
             <h2>Разве на Fragment не дешевле?</h2>
             <p>В долларах — да. Fragment — официальная платформа Telegram, где Stars продаются примерно по $0.015, то есть 10 000 штук — около $150. Но оплата принимается только в <strong>криптовалюте TON</strong>.</p>
-            <p>Это значит: зарегистрироваться на криптобирже, купить TON, перевести его в кошелёк и заплатить комиссию за перевод. За это время курс TON может измениться. Если у вас есть опыт с криптой — Fragment логичен. Если нет, делать свой первый криптоперевод на 2,4 миллиона сумов именно ради этой покупки рискованно. Подробнее: <a href="/ru/blog/telegram-stars-fragment-alternativa">где купить Stars кроме Fragment</a>.</p>
+            <p>Это значит: зарегистрироваться на криптобирже, купить TON, перевести его в кошелёк и заплатить комиссию за перевод. За это время курс TON может измениться. Если у вас есть опыт с криптой — Fragment логичен. Если нет, делать свой первый криптоперевод на 2,54 миллиона сумов именно ради этой покупки рискованно. Подробнее: <a href="/ru/blog/telegram-stars-fragment-alternativa">где купить Stars кроме Fragment</a>.</p>
           </section>
 
           <section>
-            <h2>Как оплатить 2 400 000 сумов?</h2>
+            <h2>Как оплатить {fmtS(starsPrice(10000))} сумов?</h2>
             <p>В StarsJoy оплата — это перевод на карту, которую показывает бот. Поэтому его можно сделать из любого удобного приложения:</p>
             <ul>
               <li><strong>Payme или Click</strong> — самый быстрый путь, если карта уже привязана;</li>
               <li><strong>Банковское приложение</strong> — того банка, где открыта ваша Uzcard или Humo;</li>
               <li><strong>Другая карта</strong> — если на одной не хватает средств или лимита.</li>
             </ul>
-            <p><strong>О дневном лимите.</strong> На некоторых картах дневной лимит переводов ниже 2,4 миллиона сумов. В этом случае есть три варианта: оплатить с другой карты или приложения, попросить банк повысить лимит или разделить заказ на два по <a href="/ru/stars/5000">5000 Stars</a>.</p>
+            <p><strong>О дневном лимите.</strong> На некоторых картах дневной лимит переводов ниже 2,54 миллиона сумов. В этом случае есть три варианта: оплатить с другой карты или приложения, попросить банк повысить лимит или разделить заказ на два по <a href="/ru/stars/5000">5000 Stars</a>.</p>
           </section>
 
           <section>
@@ -246,7 +248,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
             <ol>
               <li><strong>Откройте бота.</strong> Откройте <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> в Telegram и выберите раздел Stars.</li>
               <li><strong>Количество и username.</strong> Введите количество <strong>10000</strong> и Telegram username, на который придут Stars, — свой или чужой.</li>
-              <li><strong>Оплатите.</strong> Переведите 2 400 000 сумов на карту, которую покажет бот, через Payme, Click или банковское приложение.</li>
+              <li><strong>Оплатите.</strong> Переведите {fmtS(starsPrice(10000))} сумов на карту, которую покажет бот, через Payme, Click или банковское приложение.</li>
               <li><strong>Получите.</strong> После подтверждения оплаты Stars обычно зачисляются за 10 секунд. По оферте заказ выполняется в течение 5 минут.</li>
             </ol>
             <p>Где посмотреть, что Stars пришли: <a href="/ru/blog/telegram-stars-hisobini-tekshirish">как проверить баланс Stars</a>.</p>
@@ -276,14 +278,14 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td><a href="/ru/stars/500-ta">500 ⭐</a></td><td>120 000 сумов</td></tr>
-                  <tr><td><a href="/ru/stars/1000">1000 ⭐</a></td><td>240 000 сумов</td></tr>
-                  <tr><td><a href="/ru/stars/5000">5000 ⭐</a></td><td>1 200 000 сумов</td></tr>
-                  <tr><td><a href="/ru/stars/10000"><strong>10 000 ⭐</strong></a></td><td><strong>2 400 000 сумов</strong></td></tr>
+                  <tr><td><a href="/ru/stars/500-ta">500 ⭐</a></td><td>{fmtS(starsPrice(500))} сумов</td></tr>
+                  <tr><td><a href="/ru/stars/1000">1000 ⭐</a></td><td>{fmtS(starsPrice(1000))} сумов</td></tr>
+                  <tr><td><a href="/ru/stars/5000">5000 ⭐</a></td><td>{fmtS(starsPrice(5000))} сумов</td></tr>
+                  <tr><td><a href="/ru/stars/10000"><strong>10 000 ⭐</strong></a></td><td><strong>{fmtS(starsPrice(10000))} сумов</strong></td></tr>
                 </tbody>
               </table>
             </div>
-            <p>Если нужно больше 10 000, в боте можно ввести любое число — цена считается по тем же 240 сумам за звезду. Подробнее о крупных покупках: <a href="/ru/blog/telegram-stars-koplab-arzon">Stars в большом количестве</a>.</p>
+            <p>Если нужно больше 10 000, в боте можно ввести любое число — цена считается по тем же {STAR_PRICE} сумам за звезду. Подробнее о крупных покупках: <a href="/ru/blog/telegram-stars-koplab-arzon">Stars в большом количестве</a>.</p>
           </section>
 
           <section>
@@ -292,7 +294,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
             <p>Согласно оферте StarsJoy:</p>
             <ul>
               <li>Если оплата прошла, а заказ не выполнен по технической причине, — <strong>деньги возвращаются полностью</strong>;</li>
-              <li>Для этого в течение <strong>24 часов</strong> отправьте чек оплаты через <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a> (поддержка);</li>
+              <li>Для этого в течение <strong>24 часов</strong> отправьте чек оплаты через <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a> (поддержка);</li>
               <li>Если указан неверный username и Stars ушли другому человеку, деньги не возвращаются. Поэтому проверьте username дважды перед оплатой.</li>
             </ul>
             <p>Подробнее: <a href="/ru/blog/starsjoy-ishonchli-sharhlar-kafolat">Надёжен ли StarsJoy? Отзывы и гарантии</a>.</p>
@@ -300,7 +302,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
 
           <div class="cta-box">
             <h2>Получите 10 000 Stars прямо сейчас</h2>
-            <p>2 400 000 сумов, любой картой, обычно за 10 секунд на вашем счёте.</p>
+            <p>{fmtS(starsPrice(10000))} сумов, любой картой, обычно за 10 секунд на вашем счёте.</p>
             <a class="cta-btn" href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Открыть @starsjoybot</a>
             <p class="cta-sub"><a href="/ru/stars/10000">О пакете 10 000 Stars</a> · <a href="/ru/stars">Все пакеты Stars</a></p>
           </div>
@@ -310,14 +312,14 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
             <div class="post-faq">
               <div class="post-faq-item">
                 <h3>Сколько стоят 10 000 Telegram Stars?</h3>
-                <p>В StarsJoy — 2 400 000 сумов (240 сум за звезду). В приложении Telegram — около $200, на Fragment — около $150 с оплатой в TON.</p>
+                <p>В StarsJoy — {fmtS(starsPrice(10000))} сумов ({STAR_PRICE} сум за звезду). В приложении Telegram — около $200, на Fragment — около $150 с оплатой в TON.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Если взять 10 000 Stars, одна звезда станет дешевле?</h3>
-                <p>Нет. Тариф одинаковый для любого количества — 240 сум за звезду. Скрытых платежей нет.</p>
+                <p>Нет. Тариф одинаковый для любого количества — {STAR_PRICE} сум за звезду. Скрытых платежей нет.</p>
               </div>
               <div class="post-faq-item">
-                <h3>Как оплатить 2 400 000 сумов?</h3>
+                <h3>Как оплатить {fmtS(starsPrice(10000))} сумов?</h3>
                 <p>Переводом на карту, которую покажет бот, через Payme, Click или любое банковское приложение. Если не хватает дневного лимита, оплатите с другой карты или разделите заказ на два по 5000.</p>
               </div>
               <div class="post-faq-item">
@@ -334,7 +336,7 @@ const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-10000-narxi";
               </div>
               <div class="post-faq-item">
                 <h3>Вернут ли деньги, если Stars не пришли?</h3>
-                <p>Да. Если заказ не выполнен по технической причине, в течение 24 часов отправьте чек через @starsjoy_bot — деньги вернут полностью.</p>
+                <p>Да. Если заказ не выполнен по технической причине, в течение 24 часов отправьте чек через @StarsjoySupport — деньги вернут полностью.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Можно купить 10 000 Stars другому человеку?</h3>

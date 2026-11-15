@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Платные посты в Telegram-канале: полное руководство 2026 (приём Stars) | StarsJoy Blog";
 const description = "Как создать платный пост (paid media) в Telegram-канале: пошаговое руководство из 5 шагов, требования (1000+ подписчиков), как назначать цену, вывод Stars в TON или Telegram Ads и советы для контент-мейкера.";
 const publishDate = "2026-05-09";
-const modifiedDate = "2026-05-09";
+const modifiedDate = "2026-11-15";
 const wordCount = 1920;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-channel-paid-post-yaratish";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -170,7 +171,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Откуда подписчики могут быстро получить Stars?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Подписчики могут купить Stars: внутри Telegram официально (in-app через Apple/Google Play или Fragment с TON) или через локальных поставщиков в Узбекистане (Click и Payme в сумах). StarsJoy доставляет Stars за 10 секунд через Click/Payme/Uzcard/Humo (1 Star = ~240 сум средний курс)."
+          "text": "Подписчики могут купить Stars: внутри Telegram официально (in-app через Apple/Google Play или Fragment с TON) или через локальных поставщиков в Узбекистане (Click и Payme в сумах). StarsJoy доставляет Stars за 10 секунд через Click/Payme/Uzcard/Humo (1 Star = ~" + STAR_PRICE + " сум средний курс)."
         }
       }
     ]
@@ -267,15 +268,16 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>В модальном окне введите количество Stars. Рекомендуемые диапазоны:</p>
 
           <ul>
-            <li><strong>10-50 Stars</strong> (~2 400-12 000 сум) — эксклюзивные lifestyle/закулисные фото, короткое видео</li>
-            <li><strong>100-500 Stars</strong> (~24 000-120 000 сум) — урок курса, детальный анализ, сильная инфографика</li>
-            <li><strong>1000+ Stars</strong> (от ~240 000 сум) — короткий курс целиком, профессиональная диагностика, эксклюзивный стратегический контент</li>
+            <li><strong>10-50 Stars</strong> (~{fmtS(starsPrice(10))}-{fmtS(starsPrice(50))} сум) — эксклюзивные lifestyle/закулисные фото, короткое видео</li>
+            <li><strong>100-500 Stars</strong> (~{fmtS(starsPrice(100))}-{fmtS(starsPrice(500))} сум) — урок курса, детальный анализ, сильная инфографика</li>
+            <li><strong>1000+ Stars</strong> (от ~{fmtS(starsPrice(1000))} сум) — короткий курс целиком, профессиональная диагностика, эксклюзивный стратегический контент</li>
           </ul>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
           <h3>Шаг 5 — Опубликуйте пост</h3>
           <p>После назначения цены нажмите <em>"Done"</em> или <em>"Post"</em>. Пост публикуется в канале, и подписчики видят его под blur-эффектом (с ценой и кратким описанием). После первой оплаты Stars поступают на счёт канала.</p>
 
-          <p class="natural-cta"><strong>Хотите протестировать платный пост сами?</strong> Чтобы открыть свой пост с другого аккаунта, нужны Stars. Купить их можно через Click или Payme — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> доставляет за 10 секунд (1 Star = ~240 сум). Тест помогает почувствовать, как ваш платный контент выглядит для аудитории.</p>
+          <p class="natural-cta"><strong>Хотите протестировать платный пост сами?</strong> Чтобы открыть свой пост с другого аккаунта, нужны Stars. Купить их можно через Click или Payme — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> доставляет за 10 секунд (1 Star = ~{STAR_PRICE} сум). Тест помогает почувствовать, как ваш платный контент выглядит для аудитории.</p>
 
           <h2>Доход — как выводить Stars?</h2>
 
@@ -377,7 +379,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Откуда подписчики могут быстро получить Stars?</h3>
-              <p>Telegram in-app (Apple/Google ~30% комиссии), Fragment (с TON), или локальный поставщик (Click/Payme в сумах). В Узбекистане локальный вариант — за 1-3 минуты (1 Star = ~240 сум).</p>
+              <p>Telegram in-app (Apple/Google ~30% комиссии), Fragment (с TON), или локальный поставщик (Click/Payme в сумах). В Узбекистане локальный вариант — за 1-3 минуты (1 Star = ~{STAR_PRICE} сум).</p>
             </div>
           </div>
 

@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICES_DATE_UZ, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Telegram Premium в Узбекистане: 3 лучших способа и цены на 3/6/12 месяцев (2026) | StarsJoy Blog";
-const description = "Telegram Premium в Узбекистане 2026 — 3 лучших способа (@PremiumSendBot, @uzgetsbot, @starsjoybot), точные цены на 3/6/12 месяцев (168 000 — 425 000 сум), оплата Uzcard/Humo/Click/Payme, какой бот кому подходит — полное сравнение.";
+const description = `Telegram Premium в Узбекистане 2026 — 3 лучших способа (@PremiumSendBot, @uzgetsbot, @starsjoybot), точные цены на 3/6/12 месяцев (168 000 — ${fmtS(PREMIUM_PRICE[12])} сум), оплата Uzcard/Humo/Click/Payme, какой бот кому подходит — полное сравнение.`;
 const publishDate = "2026-05-17";
-const modifiedDate = "2026-05-17";
+const modifiedDate = "2026-11-15";
 const wordCount = 2050;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-uzbekistan-eng-yaxshi-usullar";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -83,7 +84,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Как купить Telegram Premium в Узбекистане?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Самый быстрый способ купить Telegram Premium в Узбекистане — через локальный бот. 3 надёжных варианта: @PremiumSendBot (фокус на Premium, premiumsend.uz), @uzgetsbot (быстрая покупка, uzgets.uz), @starsjoybot (Premium + Stars + Gifts вместе, starsjoy.uz). Все боты принимают оплату через Uzcard, Humo, Click и Payme в сумах. Время активации — 5-15 минут. Диапазон цен: 3 месяца 168 000–175 000 сум, 6 месяцев 228 000–235 000 сум, 12 месяцев 408 000–425 000 сум."
+          "text": `Самый быстрый способ купить Telegram Premium в Узбекистане — через локальный бот. 3 надёжных варианта: @PremiumSendBot (фокус на Premium, premiumsend.uz), @uzgetsbot (быстрая покупка, uzgets.uz), @starsjoybot (Premium + Stars + Gifts вместе, starsjoy.uz). Все боты принимают оплату через Uzcard, Humo, Click и Payme в сумах. Время активации — 5-15 минут. Диапазон цен: 3 месяца 168 000–${fmtS(PREMIUM_PRICE[3])} сум, 6 месяцев 228 000–${fmtS(PREMIUM_PRICE[6])} сум, 12 месяцев 408 000–${fmtS(PREMIUM_PRICE[12])} сум.`
         }
       },
       {
@@ -91,7 +92,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Сколько стоит Telegram Premium на 3, 6 и 12 месяцев?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Точные цены отличаются в каждом боте (на май 2026 года): @uzgetsbot — 3 мес 168 000, 6 мес 228 000, 12 мес 408 000 сум (в месяц ~34 000); @starsjoybot — 3 мес 172 000, 6 мес 232 000, 12 мес 422 000 сум (в месяц ~35 167); @PremiumSendBot — 3 мес 175 000, 6 мес 235 000, 12 мес 425 000 сум (в месяц ~35 417). Самый выгодный вариант — @uzgetsbot 12 месяцев (408 000 сум). В каждом боте 12 месяцев на ~39% дешевле в месяц по сравнению с 3 месяцами."
+          "text": `Точные цены отличаются в каждом боте (на май 2026 года): @uzgetsbot — 3 мес 168 000, 6 мес 228 000, 12 мес 408 000 сум (в месяц ~34 000); @starsjoybot — 3 мес ${fmtS(PREMIUM_PRICE[3])}, 6 мес ${fmtS(PREMIUM_PRICE[6])}, 12 мес ${fmtS(PREMIUM_PRICE[12])} сум (в месяц ~${fmtS(premiumPerMonth(12))}); @PremiumSendBot — 3 мес 175 000, 6 мес 235 000, 12 мес 425 000 сум (в месяц ~35 417). Самый выгодный вариант — @uzgetsbot 12 месяцев (408 000 сум). В каждом боте 12 месяцев на ~39–40% дешевле в месяц по сравнению с 3 месяцами.`
         }
       },
       {
@@ -131,7 +132,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Есть ли разница если брать 12 месяцев частями по 3 месяца?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Да — разница существенная. Если купить 3 месяца 4 раза (4 × 172 000 = 688 000 сум), это на 266 000 сум больше чем 12 месяцев (~422 000 сум). В пересчёте на месяц: 3 месяца ~57 333 сум, 12 месяцев ~35 167 сум — экономия 22 166 сум в месяц. Если Premium нужен надолго, 12 месяцев логичнее. Но если хотите впервые попробовать Premium или нужно на короткий проект, начать с 3 месяцев — нормально."
+          "text": `Да — разница существенная. Если купить 3 месяца 4 раза (4 × ${fmtS(PREMIUM_PRICE[3])} = 716 000 сум), это на 287 000 сум больше чем 12 месяцев (~${fmtS(PREMIUM_PRICE[12])} сум). В пересчёте на месяц: 3 месяца ~${fmtS(premiumPerMonth(3))} сум, 12 месяцев ~${fmtS(premiumPerMonth(12))} сум — экономия 23 917 сум в месяц. Если Premium нужен надолго, 12 месяцев логичнее. Но если хотите впервые попробовать Premium или нужно на короткий проект, начать с 3 месяцев — нормально.`
         }
       },
       {
@@ -173,7 +174,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       { "@type": "HowToTool", "name": "Приложение Click или Payme" }
     ],
     "step": [
-      { "@type": "HowToStep", "name": "Выберите срок", "text": "Определитесь на какой срок нужен Premium — 3, 6 или 12 месяцев. Самый выгодный вариант — 12 месяцев (в месяц ~35 167 сум). Если впервые пробуете Premium, рекомендуется 3 месяца (172 000 сум)." },
+      { "@type": "HowToStep", "name": "Выберите срок", "text": `Определитесь на какой срок нужен Premium — 3, 6 или 12 месяцев. Самый выгодный вариант — 12 месяцев (в месяц ~${fmtS(premiumPerMonth(12))} сум). Если впервые пробуете Premium, рекомендуется 3 месяца (${fmtS(PREMIUM_PRICE[3])} сум).` },
       { "@type": "HowToStep", "name": "Выберите бот", "text": "3 варианта: @PremiumSendBot (фокус на Premium, детальный интерфейс), @uzgetsbot (быстрая покупка + промо), @starsjoybot (Premium + Stars + Gifts вместе, Mini App). Смотрите decision-helper таблицу в конце статьи." },
       { "@type": "HowToStep", "name": "Откройте бот в Telegram", "text": "В поиске Telegram наберите имя выбранного бота и нажмите /start. В меню выберите раздел 'Telegram Premium' или 'Premium'." },
       { "@type": "HowToStep", "name": "Выберите пакет и username", "text": "Отметьте пакет на выбранный срок (3, 6 или 12 месяцев). Введите свой Telegram username или username получателя (например, @yourname). Бот пришлёт ссылку для оплаты." },
@@ -217,7 +218,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> Самый быстрый и надёжный способ купить Telegram Premium в Узбекистане — <strong>через локальный бот</strong>. 3 рабочих варианта: <a href="https://telegram.me/PremiumSendBot" target="_blank" rel="noopener">@PremiumSendBot</a> (<a href="https://premiumsend.uz" target="_blank" rel="noopener">premiumsend.uz</a>, фокус на Premium), <a href="https://telegram.me/uzgetsbot" target="_blank" rel="noopener">@uzgetsbot</a> (<a href="https://uzgets.uz" target="_blank" rel="noopener">uzgets.uz</a>, быстрая покупка + самый дешёвый) и <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> (<a href="https://starsjoy.uz" target="_blank" rel="noopener">starsjoy.uz</a>, Premium + Stars + Gifts вместе). Диапазон цен: <strong>3 месяца 168 000–175 000 сум, 6 месяцев 228 000–235 000 сум, 12 месяцев 408 000–425 000 сум</strong>. Самый дешёвый — @uzgetsbot 12 месяцев (408 000 сум, в месяц ~34 000 сум). Оплата через Uzcard, Humo, Click или Payme, активация за 5-15 минут.
+            <strong>Краткий ответ:</strong> Самый быстрый и надёжный способ купить Telegram Premium в Узбекистане — <strong>через локальный бот</strong>. 3 рабочих варианта: <a href="https://telegram.me/PremiumSendBot" target="_blank" rel="noopener">@PremiumSendBot</a> (<a href="https://premiumsend.uz" target="_blank" rel="noopener">premiumsend.uz</a>, фокус на Premium), <a href="https://telegram.me/uzgetsbot" target="_blank" rel="noopener">@uzgetsbot</a> (<a href="https://uzgets.uz" target="_blank" rel="noopener">uzgets.uz</a>, быстрая покупка + самый дешёвый) и <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> (<a href="https://starsjoy.uz" target="_blank" rel="noopener">starsjoy.uz</a>, Premium + Stars + Gifts вместе). Диапазон цен: <strong>3 месяца 168 000–{fmtS(PREMIUM_PRICE[3])} сум, 6 месяцев 228 000–{fmtS(PREMIUM_PRICE[6])} сум, 12 месяцев 408 000–{fmtS(PREMIUM_PRICE[12])} сум</strong>. Самый дешёвый — @uzgetsbot 12 месяцев (408 000 сум, в месяц ~34 000 сум). Оплата через Uzcard, Humo, Click или Payme, активация за 5-15 минут.
           </div>
 
           <p>Купить Telegram Premium в Узбекистане — задача, которую уже нельзя решить обычным способом. Официальный <a href="/ru/blog/telegram-premium-sotib-olish">@PremiumBot от Telegram</a> во многих случаях не принимает карты Uzcard и Humo, а App Store и Google Play работают с региональными ограничениями по оплате. Поэтому большинство пользователей покупают Premium через локальный бот — этот путь позволяет платить в сумах, подтверждать через Click/Payme и получать активацию за 5-15 минут.</p>
@@ -251,10 +252,10 @@ const ogImage = "https://starsjoy.uz/og-image.png";
                 </tr>
                 <tr>
                   <td><strong>@starsjoybot</strong><br /><a href="https://starsjoy.uz" target="_blank" rel="noopener">starsjoy.uz</a></td>
-                  <td>172 000 сум</td>
-                  <td>232 000 сум</td>
-                  <td>422 000 сум</td>
-                  <td>~35 167 сум</td>
+                  <td>{fmtS(PREMIUM_PRICE[3])} сум</td>
+                  <td>{fmtS(PREMIUM_PRICE[6])} сум</td>
+                  <td>{fmtS(PREMIUM_PRICE[12])} сум</td>
+                  <td>~{fmtS(premiumPerMonth(12))} сум</td>
                 </tr>
                 <tr>
                   <td><strong>@PremiumSendBot</strong><br /><a href="https://premiumsend.uz" target="_blank" rel="noopener">premiumsend.uz</a></td>
@@ -267,9 +268,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </table>
           </div>
 
-          <p><em>Цены актуальны на май 2026 года, установлены на официальных сайтах каждого бота. Для актуальной цены проверьте сайты — периодически проходят промо-акции.</em></p>
+          <p><em>Цены актуальны на май 2026 года (цены @starsjoybot — на {PRICES_DATE_UZ}), установлены на официальных сайтах каждого бота. Для актуальной цены проверьте сайты — периодически проходят промо-акции.</em></p>
 
-          <p>В каждом боте 12 месяцев на ~<strong>39% дешевле</strong> в месяц по сравнению с 3 месяцами, на ~9% дешевле чем 6 месяцев. Самая низкая цена на 12 месяцев — у @uzgetsbot (408 000 сум), самая высокая — у @PremiumSendBot (425 000 сум). Разница 17 000 сум (примерно 1 400 сум/мес) — небольшая, но в долгосрочной перспективе ощутимая.</p>
+          <p><small>{PRICE_NOTE.ru}</small></p>
+
+          <p>В каждом боте 12 месяцев на ~<strong>39–40% дешевле</strong> в месяц по сравнению с 3 месяцами, на ~10% дешевле чем 6 месяцев. Самая низкая цена на 12 месяцев — у @uzgetsbot (408 000 сум), самая высокая — у @starsjoybot ({fmtS(PREMIUM_PRICE[12])} сум). Разница 21 000 сум (примерно 1 750 сум/мес) — небольшая, но в долгосрочной перспективе ощутимая.</p>
 
           <p>1 месяц отдельно не продаётся — в официальной системе <strong>Gift Premium</strong> от Telegram нет варианта на 1 месяц, доступны только 3, 6 и 12 месяцев. Если вам нужен именно 1 месяц, подробный разбор есть в <a href="/ru/blog/telegram-premium-1-oylik">статье о Premium на 1 месяц</a>. Полное сравнение пакетов — в статье <a href="/ru/blog/telegram-premium-paketlar-taqqoslash">сравнение пакетов 1 vs 3 vs 6 vs 12 месяцев</a>.</p>
 
@@ -353,7 +356,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p><strong>Сильные стороны:</strong></p>
           <ul>
-            <li>Самая низкая цена из трёх ботов (на 12 мес экономия 17 000 сум)</li>
+            <li>Самая низкая цена из трёх ботов (на 12 мес экономия до 21 000 сум)</li>
             <li>Минимальное количество шагов покупки — 3-4 кнопки и вы на оплате</li>
             <li>В большинстве случаев Premium доставляется менее чем за 5 минут</li>
             <li>Вместе с Premium доступны Stars (50–10 000)</li>
@@ -370,14 +373,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p><a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> — бот с самым широким набором услуг. Кроме Premium предоставляет Telegram Stars (для буста каналов, paid post, оплаты в мини-приложениях), <a href="/ru/blog/telegram-gifts-narxi-royxati">Telegram Gifts</a> (NFT и обычные подарки) и работает также через Mini App.</p>
 
-          <p><strong>Точные цены (starsjoy.uz):</strong> 3 мес — <strong>172 000 сум</strong>, 6 мес — <strong>232 000 сум</strong>, 12 мес — <strong>422 000 сум</strong> (в месяц ~35 167 сум).</p>
+          <p><strong>Точные цены (starsjoy.uz):</strong> 3 мес — <strong>{fmtS(PREMIUM_PRICE[3])} сум</strong>, 6 мес — <strong>{fmtS(PREMIUM_PRICE[6])} сум</strong>, 12 мес — <strong>{fmtS(PREMIUM_PRICE[12])} сум</strong> (в месяц ~{fmtS(premiumPerMonth(12))} сум).</p>
 
           <p><strong>Сильные стороны:</strong></p>
           <ul>
             <li>Один бот — три продукта (Premium + Stars + Gifts), удобно для повторных покупок</li>
             <li>Оплата: Click, Payme, Uzcard, Humo, Visa/Mastercard (международные), внутри бота</li>
             <li>Покупка через Mini App тоже доступна (открывается прямо в Telegram, не нужно лишних кнопок)</li>
-            <li>Круглосуточная поддержка — <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a></li>
+            <li>Круглосуточная поддержка — <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a></li>
             <li>Корпоративная схема оплаты для юридических лиц</li>
             <li>Цена — средняя из трёх (не самая низкая и не самая высокая)</li>
           </ul>
@@ -406,18 +409,18 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tbody>
                 <tr>
                   <td>Впервые пробую Premium</td>
-                  <td>3 месяца (168 000–175 000 сум)</td>
+                  <td>3 месяца (168 000–{fmtS(PREMIUM_PRICE[3])} сум)</td>
                   <td>Наименьшая сумма, 3 месяца — достаточно для изучения функций</td>
                 </tr>
                 <tr>
                   <td>Краткосрочный проект (4-6 месяцев)</td>
-                  <td>6 месяцев (228 000–235 000 сум)</td>
+                  <td>6 месяцев (228 000–{fmtS(PREMIUM_PRICE[6])} сум)</td>
                   <td>На ~33% дешевле в месяц по сравнению с 3 месяцами</td>
                 </tr>
                 <tr class="highlight-row">
                   <td>Нужен Premium надолго</td>
-                  <td>12 месяцев (408 000–425 000 сум)</td>
-                  <td>В месяц 34 000–35 417 сум — самый выгодный, на ~39% дешевле</td>
+                  <td>12 месяцев (408 000–{fmtS(PREMIUM_PRICE[12])} сум)</td>
+                  <td>В месяц 34 000–{fmtS(premiumPerMonth(12))} сум — самый выгодный, на ~39–40% дешевле</td>
                 </tr>
                 <tr>
                   <td>Подарок на день рождения или праздник</td>
@@ -433,9 +436,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </table>
           </div>
 
-          <p>Математика (на примере @uzgetsbot — самая низкая цена): если покупать 3 месяца каждые 3 месяца, за год получится 4 × 168 000 = <strong>672 000 сум</strong>. А 12 месяцев — 408 000 сум — <strong>экономия 264 000 сум</strong> (~39% меньше). Для @starsjoybot: 4 × 172 000 = 688 000 vs 422 000 → экономия 266 000 сум. Для @PremiumSendBot: 4 × 175 000 = 700 000 vs 425 000 → экономия 275 000 сум. В каждом боте разница ~39% — на долгий срок 12 месяцев логичнее.</p>
+          <p>Математика (на примере @uzgetsbot — самая низкая цена): если покупать 3 месяца каждые 3 месяца, за год получится 4 × 168 000 = <strong>672 000 сум</strong>. А 12 месяцев — 408 000 сум — <strong>экономия 264 000 сум</strong> (~39% меньше). Для @starsjoybot: 4 × {fmtS(PREMIUM_PRICE[3])} = 716 000 vs {fmtS(PREMIUM_PRICE[12])} → экономия 287 000 сум. Для @PremiumSendBot: 4 × 175 000 = 700 000 vs 425 000 → экономия 275 000 сум. В каждом боте разница ~39–40% — на долгий срок 12 месяцев логичнее.</p>
 
-          <p>Однако единовременная оплата 408 000–425 000 сум для некоторых пользователей — большая сумма. В таком случае 6 месяцев — компромисс: дешевле в месяц чем 3 месяца, но единовременный платёж мягче.</p>
+          <p>Однако единовременная оплата 408 000–{fmtS(PREMIUM_PRICE[12])} сум для некоторых пользователей — большая сумма. В таком случае 6 месяцев — компромисс: дешевле в месяц чем 3 месяца, но единовременный платёж мягче.</p>
 
           <h2>Способы оплаты: Uzcard, Humo, Click, Payme — что удобнее?</h2>
 
@@ -515,7 +518,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>В Узбекистане <strong>3 лучших и надёжных способа</strong> купить Telegram Premium работают через локальных ботов. <a href="https://telegram.me/PremiumSendBot" target="_blank" rel="noopener">@PremiumSendBot</a> — если нужен только Premium и вы хотите подробно изучить пакеты. <a href="https://telegram.me/uzgetsbot" target="_blank" rel="noopener">@uzgetsbot</a> — для быстрой покупки и промо-акций. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> — если вместе с Premium нужны Stars или Gifts, работает также через Mini App и принимает больше всего способов оплаты.</p>
 
-          <p>Точные цены (установлены на сайтах каждого бота): @uzgetsbot — <strong>3 мес 168 000, 6 мес 228 000, 12 мес 408 000 сум</strong> (самый дешёвый); @starsjoybot — <strong>172 000 / 232 000 / 422 000 сум</strong>; @PremiumSendBot — <strong>175 000 / 235 000 / 425 000 сум</strong>. Самый экономный вариант — для каждого бота 12 месяцев (в месяц 34 000–35 417 сум, на ~39% дешевле чем 3 месяца). Оплата через Uzcard, Humo, Click или Payme, активация за 5-15 минут. Все три бота используют официальный механизм <em>Gift Premium</em> от Telegram — никаких нарушений правил или обхода TOS, полностью официальный способ.</p>
+          <p>Точные цены (установлены на сайтах каждого бота): @uzgetsbot — <strong>3 мес 168 000, 6 мес 228 000, 12 мес 408 000 сум</strong> (самый дешёвый); @starsjoybot — <strong>{fmtS(PREMIUM_PRICE[3])} / {fmtS(PREMIUM_PRICE[6])} / {fmtS(PREMIUM_PRICE[12])} сум</strong>; @PremiumSendBot — <strong>175 000 / 235 000 / 425 000 сум</strong>. Самый экономный вариант — для каждого бота 12 месяцев (в месяц 34 000–{fmtS(premiumPerMonth(12))} сум, на ~39–40% дешевле чем 3 месяца). Оплата через Uzcard, Humo, Click или Payme, активация за 5-15 минут. Все три бота используют официальный механизм <em>Gift Premium</em> от Telegram — никаких нарушений правил или обхода TOS, полностью официальный способ.</p>
 
           <p>Если впервые пробуете и нужна минимальная цена — <a href="https://telegram.me/uzgetsbot" target="_blank" rel="noopener">@uzgetsbot</a> (3 мес 168 000 сум). Или если вместе с Premium вы периодически покупаете Stars или Gifts, удобнее всего управлять всеми услугами через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> в одном интерфейсе. Для детального Premium-интерфейса и пакета на 1 месяц — <a href="https://telegram.me/PremiumSendBot" target="_blank" rel="noopener">@PremiumSendBot</a>.</p>
 
@@ -532,7 +535,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Сколько стоит Telegram Premium на 3, 6 и 12 месяцев?</h3>
-              <p>Точные цены установлены на сайтах каждого бота (на май 2026 года): <strong>@uzgetsbot</strong> (uzgets.uz) — 3 мес 168 000, 6 мес 228 000, 12 мес 408 000 сум (в месяц ~34 000); <strong>@starsjoybot</strong> (starsjoy.uz) — 3 мес 172 000, 6 мес 232 000, 12 мес 422 000 сум (в месяц ~35 167); <strong>@PremiumSendBot</strong> (premiumsend.uz) — 3 мес 175 000, 6 мес 235 000, 12 мес 425 000 сум (в месяц ~35 417). Самый дешёвый — @uzgetsbot 12 месяцев. В каждом боте 12 месяцев на ~39% дешевле в месяц по сравнению с 3 месяцами.</p>
+              <p>Точные цены установлены на сайтах каждого бота (на май 2026 года): <strong>@uzgetsbot</strong> (uzgets.uz) — 3 мес 168 000, 6 мес 228 000, 12 мес 408 000 сум (в месяц ~34 000); <strong>@starsjoybot</strong> (starsjoy.uz) — 3 мес {fmtS(PREMIUM_PRICE[3])}, 6 мес {fmtS(PREMIUM_PRICE[6])}, 12 мес {fmtS(PREMIUM_PRICE[12])} сум (в месяц ~{fmtS(premiumPerMonth(12))}); <strong>@PremiumSendBot</strong> (premiumsend.uz) — 3 мес 175 000, 6 мес 235 000, 12 мес 425 000 сум (в месяц ~35 417). Самый дешёвый — @uzgetsbot 12 месяцев. В каждом боте 12 месяцев на ~39–40% дешевле в месяц по сравнению с 3 месяцами.</p>
             </div>
             <div class="post-faq-item">
               <h3>Почему официальный @PremiumBot не работает из Узбекистана?</h3>
@@ -552,7 +555,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Есть ли разница если брать 12 месяцев частями по 3 месяца?</h3>
-              <p>Да — разница существенная. Например, в @starsjoybot: 3 месяца 4 раза (4 × 172 000 = <strong>688 000 сум</strong>) — на <strong>266 000 сум больше</strong> чем 12 месяцев (422 000 сум). В @uzgetsbot разница 264 000 сум (672 000 vs 408 000), в @PremiumSendBot — 275 000 сум (700 000 vs 425 000). В каждом боте разница ~39% — экономия 22 000+ сум в месяц. При долгосрочном использовании 12 месяцев логичнее. Подробнее — в <a href="/ru/blog/telegram-premium-3-oy-6-oy">анализе 3 vs 6 месяцев</a>.</p>
+              <p>Да — разница существенная. Например, в @starsjoybot: 3 месяца 4 раза (4 × {fmtS(PREMIUM_PRICE[3])} = <strong>716 000 сум</strong>) — на <strong>287 000 сум больше</strong> чем 12 месяцев ({fmtS(PREMIUM_PRICE[12])} сум). В @uzgetsbot разница 264 000 сум (672 000 vs 408 000), в @PremiumSendBot — 275 000 сум (700 000 vs 425 000). В каждом боте разница ~39–40% — экономия 22 000+ сум в месяц. При долгосрочном использовании 12 месяцев логичнее. Подробнее — в <a href="/ru/blog/telegram-premium-3-oy-6-oy">анализе 3 vs 6 месяцев</a>.</p>
             </div>
             <div class="post-faq-item">
               <h3>Можно ли подарить Premium другому человеку?</h3>

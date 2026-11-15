@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Stars qancha vaqt amal qiladi va eskirib qoladimi? (2026) | StarsJoy Blog";
 const description = "Telegram Stars'ning amal muddati bormi, hisobimda turgan Stars eskirib ketadimi, refund qoidalari va akkaunt o'chirilganda Stars qaerga ketadi — to'liq tushuntirish.";
 const publishDate = "2026-05-06";
-const modifiedDate = "2026-05-06";
+const modifiedDate = "2026-11-15";
 const wordCount = 1680;
 const canonical = "https://starsjoy.uz/blog/telegram-stars-amal-muddati";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -239,7 +240,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li>Sizga yuborilgan Gifts'lar yo'qoladi (akkauntda saqlangani uchun)</li>
           </ul>
 
-          <p>Shu sababli katta miqdorda Stars saqlash o'rniga kerakli miqdorda sotib olib darhol ishlatish maslahat beriladi. Stars 240 so'm/Star kursida tezda olinadi — 100 yoki 500 Stars darhol kerak bo'lganda 5 daqiqada to'ldiriladi (<a href="/blog/telegram-stars-tez-toldirish">Stars 5 daqiqada to'ldirish</a>).</p>
+          <p>Shu sababli katta miqdorda Stars saqlash o'rniga kerakli miqdorda sotib olib darhol ishlatish maslahat beriladi. Stars {STAR_PRICE} so'm/Star kursida tezda olinadi — 100 yoki 500 Stars darhol kerak bo'lganda 5 daqiqada to'ldiriladi (<a href="/blog/telegram-stars-tez-toldirish">Stars 5 daqiqada to'ldirish</a>).</p>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
           <p class="natural-cta">Akkauntni xavfsiz saqlash maslahatlari va firibgarlardan himoya — <a href="/blog/telegram-stars-firibgarlik-himoya">Stars firibgarlik himoya</a> qo'llanmasida. Akkaunt blokirovkasini oldini olish uchun ham foydali.</p>
 

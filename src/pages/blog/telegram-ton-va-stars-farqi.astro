@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram ekotizimida TON va Stars o'rtasidagi farq nima? (2026) | StarsJoy Blog";
 const description = "Telegramda TON va Stars o'rtasidagi farq nima? Qaysi biri kripto, qaysi biri ichki valyuta? Qaysini qachon ishlatish kerak — to'liq tushuntirish.";
 const publishDate = "2026-04-20";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 2100;
 ---
 
@@ -443,7 +444,8 @@ const wordCount = 2100;
               <li><strong>Stars</strong> — ichki valyuta, barqaror narx, Telegram balansida, sovg'a/bot/kontent uchun</li>
             </ul>
 
-            <p>O'zbekistonda yashovchi oddiy foydalanuvchi uchun <strong>Stars yetarli va osonroq</strong>. Kripto bilan tanishishni xohlasangiz — TON'ga keyin o'tasiz. Hozircha esa <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> orqali 50 Stars'ni 12 000 so'm atrofida, Uzcard yoki Humo bilan 5 daqiqada sotib olish mumkin — hech qanday kripto va verifikatsiyasiz.</p>
+            <p>O'zbekistonda yashovchi oddiy foydalanuvchi uchun <strong>Stars yetarli va osonroq</strong>. Kripto bilan tanishishni xohlasangiz — TON'ga keyin o'tasiz. Hozircha esa <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> orqali 50 Stars'ni {fmtS(starsPrice(50))} so'm atrofida, Uzcard yoki Humo bilan 5 daqiqada sotib olish mumkin — hech qanday kripto va verifikatsiyasiz.</p>
+            <p><small>{PRICE_NOTE.uz}</small></p>
 
             <p><strong>Hoziroq Stars sotib olish kerak bo'lsa</strong> → <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> ga kiring, miqdorni tanlang va Click/Payme orqali to'lang. Tafsilotlar <a href="/blog/telegram-stars-sotib-olish">to'liq qo'llanmada</a>.</p>
 

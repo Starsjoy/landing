@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, PRICES_DATE_UZ, starsPrice, starPriceWithBonus, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Купить Telegram Stars через Uzcard (цены 2026, за 10 секунд) | StarsJoy Blog";
-const description = "Покупка Telegram Stars через Uzcard — самый удобный способ в Узбекистане. 1 Star = 240 сум, 100 Stars = 24 000 сум, через Click или Payme за 10 секунд. Пошаговое руководство, таблица цен и советы по безопасности.";
+const description = `Покупка Telegram Stars через Uzcard — самый удобный способ в Узбекистане. 1 Star = ${STAR_PRICE} сум, 100 Stars = ${fmtS(starsPrice(100))} сум, через Click или Payme за 10 секунд. Пошаговое руководство, таблица цен и советы по безопасности.`;
 const publishDate = "2026-05-12";
-const modifiedDate = "2026-05-12";
+const modifiedDate = "2026-11-15";
 const wordCount = 1820;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-uzcard-bilan-sotib-olish";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -83,7 +84,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Можно ли купить Telegram Stars через Uzcard?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Да. Не напрямую с сайта Telegram, а через локального поставщика (например, @starsjoybot). Вы платите Uzcard'ом в сумах через Click или Payme, и за 10 секунд Stars поступают на ваш счёт. 1 Star по стандартному курсу = 240 сум, значит 100 Stars = 24 000 сум."
+          "text": `Да. Не напрямую с сайта Telegram, а через локального поставщика (например, @starsjoybot). Вы платите Uzcard'ом в сумах через Click или Payme, и за 10 секунд Stars поступают на ваш счёт. 1 Star по стандартному курсу = ${STAR_PRICE} сум, значит 100 Stars = ${fmtS(starsPrice(100))} сум.`
         }
       },
       {
@@ -131,7 +132,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Что делать, если лимит Uzcard не позволяет провести оплату?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Если упёрлись в дневной лимит разовой оплаты: (1) временно увеличьте суточный лимит в настройках Click или Payme, или (2) разбейте заказ на 2 меньших платежа. Для крупных заказов (1000+ Stars) доступна оплата банковским переводом — для этого свяжитесь с @starsjoysupport, вам пришлют реквизиты."
+          "text": "Если упёрлись в дневной лимит разовой оплаты: (1) временно увеличьте суточный лимит в настройках Click или Payme, или (2) разбейте заказ на 2 меньших платежа. Для крупных заказов (1000+ Stars) доступна оплата банковским переводом — для этого свяжитесь с @StarsjoySupport, вам пришлют реквизиты."
         }
       },
       {
@@ -201,7 +202,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ для держателя Uzcard:</strong> Aloqabank, Anorbank, Davr Bank, Hamkorbank, Universalbank — большинство этих банковских карт работают в системе Uzcard. Напрямую с сайта Telegram купить Stars нельзя (нужна международная система), но Uzcard через Click или Payme работает на 100%. В <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> выберите количество, перейдите в Click или Payme, выберите карту Uzcard и подтвердите PIN — Stars приходят <strong>за 10 секунд</strong>. Стандартный курс: <strong>1 Star = 240 сум</strong>. В 2026 Uzcard подключён к экосистеме Tez QR — оплата через QR-код тоже доступна.
+            <strong>Краткий ответ для держателя Uzcard:</strong> Aloqabank, Anorbank, Davr Bank, Hamkorbank, Universalbank — большинство этих банковских карт работают в системе Uzcard. Напрямую с сайта Telegram купить Stars нельзя (нужна международная система), но Uzcard через Click или Payme работает на 100%. В <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> выберите количество, перейдите в Click или Payme, выберите карту Uzcard и подтвердите PIN — Stars приходят <strong>за 10 секунд</strong>. Стандартный курс: <strong>1 Star = {STAR_PRICE} сум</strong>. В 2026 Uzcard подключён к экосистеме Tez QR — оплата через QR-код тоже доступна.
           </div>
 
           <p>Uzcard — самая распространённая платёжная система в Узбекистане: 13+ миллионов активных карт, основа для большинства частных банковских карт (Aloqabank, Anorbank, Davr Bank, Hamkorbank, Universalbank, Ипотека-банк, Asia Alliance Bank) и стандарт для ежедневных покупок. Поэтому держатель Uzcard уже знает, как оплачивать через Click и Payme. Но при покупке Telegram Stars есть один небольшой нюанс: Stars нельзя купить напрямую через Uzcard на сайте Telegram — нужен локальный поставщик.</p>
@@ -215,7 +216,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Поскольку Uzcard — стандарт для клиентов частных банков и используется ежедневно, техника оплаты через Click и Payme уже знакома. При покупке Stars есть 3 нюанса — учитывая их, первая покупка пройдёт без проблем.</p>
 
           <h3>1. Суточный лимит карты</h3>
-          <p>У большинства карт Uzcard стандартный суточный лимит интернет-операций — <strong>5-10 млн сум</strong>. Этого достаточно для 1000 Stars (240 000 сум) или 5000 Stars (1.2 млн сум). Но если хотите купить крупный пакет (10 000+ Stars, 2.4 млн+ сум) — поднимите лимит через мобильное приложение банка: у Aloqabank, Anorbank, Davr Bank есть настройки «Лимит интернет-операций».</p>
+          <p>У большинства карт Uzcard стандартный суточный лимит интернет-операций — <strong>5-10 млн сум</strong>. Этого достаточно для 1000 Stars ({fmtS(starsPrice(1000))} сум) или 5000 Stars ({starsPrice(5000) / 1e6} млн сум). Но если хотите купить крупный пакет (10 000+ Stars, {starsPrice(10000) / 1e6} млн+ сум) — поднимите лимит через мобильное приложение банка: у Aloqabank, Anorbank, Davr Bank есть настройки «Лимит интернет-операций».</p>
 
           <h3>2. Click vs Payme — что удобнее?</h3>
           <p>Uzcard принимается обоими на 100%. Разница в опыте:</p>
@@ -244,7 +245,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Пакеты Stars и цены через Uzcard в 2026 году</h2>
 
-          <p>Локальный поставщик Starsjoy работает по стандартному курсу <strong>1 Star = 240 сум</strong>. Это примерно соответствует официальному курсу Telegram ($0.013-0.016) в сумах и значительно дешевле, чем покупка через Apple/Google in-app (без комиссии платформы 30%). Основные пакеты:</p>
+          <p>Локальный поставщик Starsjoy работает по стандартному курсу <strong>1 Star = {STAR_PRICE} сум</strong>. Цена близка к цене в приложении Telegram (100 Stars в приложении — 25 399 сум, 04.11.2026), а разница в удобстве: оплата Uzcard в сумах, Stars обычно приходят автоматически примерно за 10 секунд, и за каждую покупку начисляются бонусные Stars (с бонусом 1 ⭐ примерно {starPriceWithBonus()} сум). Основные пакеты:</p>
 
           <div class="post-table-wrap">
             <table class="post-table">
@@ -258,32 +259,32 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tbody>
                 <tr>
                   <td>50 Stars</td>
-                  <td>12 000 сум</td>
+                  <td>{fmtS(starsPrice(50))} сум</td>
                   <td>2-3 небольших Gift (15-25 Stars)</td>
                 </tr>
                 <tr>
                   <td>100 Stars</td>
-                  <td>24 000 сум</td>
+                  <td>{fmtS(starsPrice(100))} сум</td>
                   <td>Платные реакции, мелкие платежи ботам</td>
                 </tr>
                 <tr>
                   <td>250 Stars</td>
-                  <td>60 000 сум</td>
+                  <td>{fmtS(starsPrice(250))} сум</td>
                   <td>Gift среднего размера</td>
                 </tr>
                 <tr class="highlight-row">
                   <td>500 Stars</td>
-                  <td>120 000 сум</td>
+                  <td>{fmtS(starsPrice(500))} сум</td>
                   <td>Бонус для Premium на 1 месяц</td>
                 </tr>
                 <tr>
                   <td>1000 Stars</td>
-                  <td>240 000 сум</td>
+                  <td>{fmtS(starsPrice(1000))} сум</td>
                   <td>Multi-use, самый популярный пакет</td>
                 </tr>
                 <tr>
                   <td>2500 Stars</td>
-                  <td>600 000 сум</td>
+                  <td>{fmtS(starsPrice(2500))} сум</td>
                   <td>Bulk — бюджет канала</td>
                 </tr>
                 <tr>
@@ -295,7 +296,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </table>
           </div>
 
-          <p><em>Цены актуальны на май 2026 года. При крупных заказах (5000+) с поддержкой Starsjoy обсуждается индивидуальный курс — цена может быть ниже.</em> Подробно о пакетах — в нашей статье <a href="/ru/blog/telegram-stars-narxi">цена Telegram Stars</a>.</p>
+          <p><small>{PRICE_NOTE.ru}</small></p>
+
+          <p><em>Цены актуальны на {PRICES_DATE_UZ}. При крупных заказах (5000+) с поддержкой Starsjoy обсуждается индивидуальный курс — цена может быть ниже.</em> Подробно о пакетах — в нашей статье <a href="/ru/blog/telegram-stars-narxi">цена Telegram Stars</a>.</p>
 
           <p class="natural-cta"><strong>Совет:</strong> Если вы покупаете Stars впервые, лучше начать с 50 или 100 Stars — этого достаточно, чтобы освоить процесс, цена низкая, а для будущих крупных заказов вы уже познакомитесь с поддержкой. 100 Stars можно выбрать прямо в меню <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>.</p>
 
@@ -370,8 +373,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <ul>
             <li>Есть официальный сайт и Telegram-канал (для StarsJoy: <a href="https://starsjoy.uz">starsjoy.uz</a> и <a href="https://telegram.me/starsjoy" target="_blank" rel="noopener">@starsjoy</a>)</li>
             <li>Оплата через официальные платформы Click или Payme</li>
-            <li>Чёткий контакт поддержки (<a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a>)</li>
-            <li>Цена соответствует рынку (1 Star ≈ 240 сум)</li>
+            <li>Чёткий контакт поддержки (<a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a>)</li>
+            <li>Цена соответствует рынку (1 Star ≈ {STAR_PRICE} сум)</li>
             <li>Не запрашивают пароль, SMS-код или 2FA</li>
           </ul>
 
@@ -379,9 +382,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Итог</h2>
 
-          <p><strong>Покупка Telegram Stars через Uzcard</strong> сегодня — самый распространённый способ в Узбекистане. Процесс простой и быстрый: зайдите в <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, выберите нужное количество Stars, оплатите через Click или Payme с Uzcard — <strong>за 10 секунд</strong> Stars появятся на вашем счёте. Стандартный курс 1 Star = 240 сум, для крупных заказов — индивидуальное предложение.</p>
+          <p><strong>Покупка Telegram Stars через Uzcard</strong> сегодня — самый распространённый способ в Узбекистане. Процесс простой и быстрый: зайдите в <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, выберите нужное количество Stars, оплатите через Click или Payme с Uzcard — <strong>за 10 секунд</strong> Stars появятся на вашем счёте. Стандартный курс 1 Star = {STAR_PRICE} сум, для крупных заказов — индивидуальное предложение.</p>
 
-          <p>Главные правила: выбирайте надёжный сервис (с официальным каналом и контактом поддержки), <strong>никогда не сообщайте пароль</strong>, сравнивайте цену с другими платформами (in-app покупка на 25-40% дороже). Stars можно использовать <a href="/ru/blog/telegram-stars-bilan-nima-qilish-mumkin">9 разными способами</a> — Gift, подарок Premium, paid post, платные реакции, Mini App и Telegram Ads.</p>
+          <p>Главные правила: выбирайте надёжный сервис (с официальным каналом и контактом поддержки), <strong>никогда не сообщайте пароль</strong>, сравнивайте цену с другими платформами (в приложении Telegram для оплаты обычно нужна международная карта или баланс App Store). Stars можно использовать <a href="/ru/blog/telegram-stars-bilan-nima-qilish-mumkin">9 разными способами</a> — Gift, подарок Premium, paid post, платные реакции, Mini App и Telegram Ads.</p>
 
           <div class="end-cta">
             Быстрые Stars через Uzcard: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> за 10 секунд
@@ -392,7 +395,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <div class="post-faq">
             <div class="post-faq-item">
               <h3>Можно ли купить Telegram Stars через Uzcard?</h3>
-              <p>Да. Не напрямую с сайта Telegram, а через локального поставщика (например, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>). Вы платите Uzcard'ом в сумах через Click или Payme, и за 10 секунд Stars поступают на ваш счёт. 1 Star по стандартному курсу = 240 сум, значит 100 Stars = 24 000 сум.</p>
+              <p>Да. Не напрямую с сайта Telegram, а через локального поставщика (например, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>). Вы платите Uzcard'ом в сумах через Click или Payme, и за 10 секунд Stars поступают на ваш счёт. 1 Star по стандартному курсу = {STAR_PRICE} сум, значит 100 Stars = {fmtS(starsPrice(100))} сум.</p>
             </div>
             <div class="post-faq-item">
               <h3>Почему нельзя купить Stars напрямую через Uzcard на Telegram?</h3>
@@ -416,7 +419,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Что делать, если лимит Uzcard не позволяет провести оплату?</h3>
-              <p>Если упёрлись в дневной лимит разовой оплаты: (1) временно увеличьте суточный лимит в настройках Click или Payme, или (2) разбейте заказ на 2 меньших платежа. Для крупных заказов (1000+ Stars) доступна оплата банковским переводом — для этого свяжитесь с <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a>, вам пришлют реквизиты.</p>
+              <p>Если упёрлись в дневной лимит разовой оплаты: (1) временно увеличьте суточный лимит в настройках Click или Payme, или (2) разбейте заказ на 2 меньших платежа. Для крупных заказов (1000+ Stars) доступна оплата банковским переводом — для этого свяжитесь с <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a>, вам пришлют реквизиты.</p>
             </div>
             <div class="post-faq-item">
               <h3>Можно ли потом обменять Stars обратно на деньги?</h3>

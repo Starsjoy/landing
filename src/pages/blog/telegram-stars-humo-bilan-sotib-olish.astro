@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, PREMIUM_PRICE, PRICES_DATE_UZ, starsPrice, starPriceWithBonus, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Stars'ni Humo karta bilan sotib olish (2026, maosh kartasidan 10 soniyada) | StarsJoy Blog";
-const description = "Humo karta (Xalq banki, Mikrokreditbank, Asaka, Agrobank maosh kartalari) bilan Telegram Stars sotib olish. 1 Star = 240 so'm, Click yoki Payme orqali so'mda, Tez QR 2026 yangiligi. Bosqichma-bosqich qo'llanma va maoshli karta limitlari uchun yechim.";
+const description = `Humo karta (Xalq banki, Mikrokreditbank, Asaka, Agrobank maosh kartalari) bilan Telegram Stars sotib olish. 1 Star = ${STAR_PRICE} so'm, Click yoki Payme orqali so'mda, Tez QR 2026 yangiligi. Bosqichma-bosqich qo'llanma va maoshli karta limitlari uchun yechim.`;
 const publishDate = "2026-05-13";
-const modifiedDate = "2026-05-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1760;
 const canonical = "https://starsjoy.uz/blog/telegram-stars-humo-bilan-sotib-olish";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -83,7 +84,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Humo karta bilan Telegram Stars sotib olish mumkinmi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ha. Telegram saytidan to'g'ridan-to'g'ri emas, balki mahalliy yetkazib beruvchi @starsjoybot orqali. Humo kartangiz bilan Click yoki Payme ilovasida so'mda to'laysiz va 10 soniyada Stars hisobingizga tushadi. 2026-yildan Humo'da Tez QR ham qo'shildi — bu yangi qulay alternativa. Standart kurs 1 Star = 240 so'm (100 Stars = 24 000 so'm)."
+          "text": `Ha. Telegram saytidan to'g'ridan-to'g'ri emas, balki mahalliy yetkazib beruvchi @starsjoybot orqali. Humo kartangiz bilan Click yoki Payme ilovasida so'mda to'laysiz va 10 soniyada Stars hisobingizga tushadi. 2026-yildan Humo'da Tez QR ham qo'shildi — bu yangi qulay alternativa. Standart kurs 1 Star = ${STAR_PRICE} so'm (100 Stars = ${fmtS(starsPrice(100))} so'm).`
         }
       },
       {
@@ -91,7 +92,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Humo va Uzcard'da Stars sotib olishda farq bormi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Texnik jarayonda farq deyarli yo'q — ikkalasi ham Click yoki Payme orqali ishlaydi va narxi bir xil (1 Star = 240 so'm). Farq foydalanuvchida: Humo asosan davlat banklari (Xalq banki, Mikrokreditbank, Agrobank, Asaka) tomonidan maosh kartasi sifatida beriladi, shuning uchun bir martalik to'lov limiti boshqacha bo'lishi mumkin. 2026-yilda Humo Tez QR Uzcard QR bilan birlashtirildi — endi Humo egasi ham QR orqali to'laydi."
+          "text": `Texnik jarayonda farq deyarli yo'q — ikkalasi ham Click yoki Payme orqali ishlaydi va narxi bir xil (1 Star = ${STAR_PRICE} so'm). Farq foydalanuvchida: Humo asosan davlat banklari (Xalq banki, Mikrokreditbank, Agrobank, Asaka) tomonidan maosh kartasi sifatida beriladi, shuning uchun bir martalik to'lov limiti boshqacha bo'lishi mumkin. 2026-yilda Humo Tez QR Uzcard QR bilan birlashtirildi — endi Humo egasi ham QR orqali to'laydi.`
         }
       },
       {
@@ -99,7 +100,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Maosh kartam Humo — limit yetmasa nima qilaman?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Maosh kartasi limiti odatda bankka qarab 500 000 — 3 000 000 so'm/kun bo'ladi. Stars uchun 100 000 — 250 000 so'm tipidagi to'lovlar bemalol o'tadi. Agar yiriqroq buyurtma (1000+ Stars = 240 000+ so'm) limit bilan to'qnashsa: (1) bank ilovasida kunlik onlayn to'lov limitini vaqtincha oshiring, (2) buyurtmani 2 ta kichik to'lovga bo'ling, yoki (3) 1000+ Stars uchun @starsjoysupport orqali bank o'tkazmasi variantini so'rang."
+          "text": `Maosh kartasi limiti odatda bankka qarab 500 000 — 3 000 000 so'm/kun bo'ladi. Stars uchun 100 000 — 250 000 so'm tipidagi to'lovlar bemalol o'tadi. Agar yiriqroq buyurtma (1000+ Stars = ${fmtS(starsPrice(1000))}+ so'm) limit bilan to'qnashsa: (1) bank ilovasida kunlik onlayn to'lov limitini vaqtincha oshiring, (2) buyurtmani 2 ta kichik to'lovga bo'ling, yoki (3) 1000+ Stars uchun @StarsjoySupport orqali bank o'tkazmasi variantini so'rang.`
         }
       },
       {
@@ -202,7 +203,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Maosh kartasi egasi uchun qisqa javob:</strong> Xalq banki, Mikrokreditbank, Agrobank yoki Asaka bank maosh dasturi — bu kartalar Humo tizimida. Humo'da bir asosiy nuans bor: <strong>maosh keladigan kunda balans ko'p</strong>, qolgan kunlarda esa kam. Stars sotib olishni rejalashtirayotganda buni hisobga olish kerak. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> dan miqdorni tanlang, Click yoki Payme'da Humo'ni tanlang va PIN/SMS bilan to'lang — <strong>10 soniyada</strong> Stars hisobingizda. Standart kurs <strong>1 Star = 240 so'm</strong>. 2026'da Humo Tez QR ekotizimiga qo'shildi — QR orqali ham to'lov mavjud.
+            <strong>Maosh kartasi egasi uchun qisqa javob:</strong> Xalq banki, Mikrokreditbank, Agrobank yoki Asaka bank maosh dasturi — bu kartalar Humo tizimida. Humo'da bir asosiy nuans bor: <strong>maosh keladigan kunda balans ko'p</strong>, qolgan kunlarda esa kam. Stars sotib olishni rejalashtirayotganda buni hisobga olish kerak. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> dan miqdorni tanlang, Click yoki Payme'da Humo'ni tanlang va PIN/SMS bilan to'lang — <strong>10 soniyada</strong> Stars hisobingizda. Standart kurs <strong>1 Star = {STAR_PRICE} so'm</strong>. 2026'da Humo Tez QR ekotizimiga qo'shildi — QR orqali ham to'lov mavjud.
           </div>
 
           <p>Humo — O'zbekistonning davlat sektoriga moslashtirilgan to'lov tizimi: ish haqi, pensiya, ijtimoiy nafaqa va davlat dasturlari to'lovlari shu yerga keladi. Xalq banki, Mikrokreditbank, Agrobank, Asaka bank, Aloqabank ijtimoiy mahsulotlari — Humo orqali. Maosh keladigan davrda (oy oxiri/boshi) Humo balansi yuqori bo'ladi va aynan shu paytda Telegram Stars yoki Premium sotib olishga qaror qilinadi. Lekin Stars'ni to'g'ridan-to'g'ri Telegram saytidan Humo bilan olib bo'lmaydi.</p>
@@ -216,10 +217,10 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Humo Stars sotib olishda texnik jihatdan Uzcard'dan farq qilmaydi — Click va Payme ikkalasini ham qabul qiladi. Lekin <strong>maosh kartasi rejimi</strong> bir necha nuansni keltirib chiqaradi, bularni Uzcard egasi bilmasligi mumkin.</p>
 
           <h3>1. Maosh kun atrofida balans yuqori — strategiya</h3>
-          <p>Davlat sektor maoshlari odatda oy oxiri yoki boshlanish kunlarida keladi (10-15 yoki 25-30). Aynan shu kunlar Humo balansida pul ko'p bo'ladi va Stars/Premium sotib olish uchun eng to'g'ri vaqt. Agar 12 oylik Premium (422 000 so'm) yoki 5000+ Stars kabi yirik xarid rejalashtirsangiz — maosh keladigan kun atrofida amalga oshiring.</p>
+          <p>Davlat sektor maoshlari odatda oy oxiri yoki boshlanish kunlarida keladi (10-15 yoki 25-30). Aynan shu kunlar Humo balansida pul ko'p bo'ladi va Stars/Premium sotib olish uchun eng to'g'ri vaqt. Agar 12 oylik Premium ({fmtS(PREMIUM_PRICE[12])} so'm) yoki 5000+ Stars kabi yirik xarid rejalashtirsangiz — maosh keladigan kun atrofida amalga oshiring.</p>
 
           <h3>2. Kunlik internet to'lov limiti — odatda kichikroq</h3>
-          <p>Maosh kartalarining ko'pchiligida standart internet to'lov limiti <strong>2-5 mln so'm</strong> oralig'ida (Uzcard xususiy bank kartalariga nisbatan past). Bu 1000 Stars (240 000 so'm) yoki 12 oylik Premium uchun yetadi, lekin 10 000 Stars (2.4 mln so'm) sotib olganda limit tugashi mumkin. Yechim — bank ilovasida vaqtinchalik limitni ko'tarish:</p>
+          <p>Maosh kartalarining ko'pchiligida standart internet to'lov limiti <strong>2-5 mln so'm</strong> oralig'ida (Uzcard xususiy bank kartalariga nisbatan past). Bu 1000 Stars ({fmtS(starsPrice(1000))} so'm) yoki 12 oylik Premium uchun yetadi, lekin 10 000 Stars ({starsPrice(10000) / 1e6} mln so'm) sotib olganda limit tugashi mumkin. Yechim — bank ilovasida vaqtinchalik limitni ko'tarish:</p>
           <ul>
             <li><strong>Xalq banki:</strong> "Halq Mobile" ilovasida → Kartalar → Limit sozlamasi</li>
             <li><strong>Agrobank:</strong> "AgroBank" ilovasida → Profil → Karta limitlari</li>
@@ -247,7 +248,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Humo bilan Stars: 2026 narx jadvali</h2>
 
-          <p>StarsJoy mahalliy yetkazib beruvchi sifatida barcha mahalliy kartalar (Uzcard, Humo) uchun standart kurs <strong>1 Star = 240 so'm</strong> bilan ishlaydi. Bu Apple/Google in-app variantidan ~30% arzon (chunki platforma komissiyasi yo'q). Asosiy paketlar:</p>
+          <p>StarsJoy mahalliy yetkazib beruvchi sifatida barcha mahalliy kartalar (Uzcard, Humo) uchun standart kurs <strong>1 Star = {STAR_PRICE} so'm</strong> bilan ishlaydi. Narx Telegram ilovasidagiga yaqin (100 Stars ilovada 25 399 so'm, 04.11.2026), farqi esa qulaylikda: Humo bilan so'mda to'lov, Stars odatda ~10 soniyada avtomatik yetkaziladi va har xaridda bonus Stars beriladi (bonus bilan 1 ⭐ taxminan {starPriceWithBonus()} so'm). Asosiy paketlar:</p>
 
           <div class="post-table-wrap">
             <table class="post-table">
@@ -261,32 +262,32 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tbody>
                 <tr>
                   <td>50 Stars</td>
-                  <td>12 000 so'm</td>
+                  <td>{fmtS(starsPrice(50))} so'm</td>
                   <td>Bemalol — har qanday limitda</td>
                 </tr>
                 <tr>
                   <td>100 Stars</td>
-                  <td>24 000 so'm</td>
+                  <td>{fmtS(starsPrice(100))} so'm</td>
                   <td>Bemalol — barcha banklarda</td>
                 </tr>
                 <tr>
                   <td>250 Stars</td>
-                  <td>60 000 so'm</td>
+                  <td>{fmtS(starsPrice(250))} so'm</td>
                   <td>Bemalol — standart limit yetadi</td>
                 </tr>
                 <tr class="highlight-row">
                   <td>500 Stars</td>
-                  <td>120 000 so'm</td>
+                  <td>{fmtS(starsPrice(500))} so'm</td>
                   <td>Maosh kartasi uchun ham qulay</td>
                 </tr>
                 <tr>
                   <td>1000 Stars</td>
-                  <td>240 000 so'm</td>
+                  <td>{fmtS(starsPrice(1000))} so'm</td>
                   <td>Aksariyat banklarda yetadi (chek qiling)</td>
                 </tr>
                 <tr>
                   <td>2500 Stars</td>
-                  <td>600 000 so'm</td>
+                  <td>{fmtS(starsPrice(2500))} so'm</td>
                   <td>Limit oshirish yoki 2 ga bo'lish kerak</td>
                 </tr>
                 <tr>
@@ -298,9 +299,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </table>
           </div>
 
-          <p><em>Narxlar 2026-yil may holatiga to'g'ri. Yiriklarda (5000+ Stars) StarsJoy support bilan shaxsiy kurs muhokama qilinadi.</em> <a href="/blog/telegram-stars-narxi">Telegram Stars narxi</a> umumiy paketlar bo'yicha batafsil maqolamiz ham bor.</p>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
-          <p class="natural-cta"><strong>Maosh kartasi maslahati:</strong> Agar Humo karta sizning asosiy maosh kartangiz bo'lsa, birinchi xaridda 100 Stars'dan boshlash mantiqliroq — bu jarayonni o'rganib olish uchun yetarli, narxi past (24 000 so'm) va kelajakdagi yiriqroq buyurtmalarda support bilan ishlashga ko'nikasiz. 100 Stars'ni <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali to'g'ridan-to'g'ri tanlash mumkin.</p>
+          <p><em>Narxlar {PRICES_DATE_UZ} holatiga. Yiriklarda (5000+ Stars) StarsJoy support bilan shaxsiy kurs muhokama qilinadi.</em> <a href="/blog/telegram-stars-narxi">Telegram Stars narxi</a> umumiy paketlar bo'yicha batafsil maqolamiz ham bor.</p>
+
+          <p class="natural-cta"><strong>Maosh kartasi maslahati:</strong> Agar Humo karta sizning asosiy maosh kartangiz bo'lsa, birinchi xaridda 100 Stars'dan boshlash mantiqliroq — bu jarayonni o'rganib olish uchun yetarli, narxi past ({fmtS(starsPrice(100))} so'm) va kelajakdagi yiriqroq buyurtmalarda support bilan ishlashga ko'nikasiz. 100 Stars'ni <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali to'g'ridan-to'g'ri tanlash mumkin.</p>
 
           <h2>Click va Payme'da Humo'ni qanday tanlash kerak?</h2>
 
@@ -361,7 +364,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li><strong>Boshqa banklar Humo:</strong> har biri bank ilovasida ko'rsatiladi (ko'pincha 1 000 000 — 2 000 000 so'm)</li>
           </ul>
 
-          <p>Bu limitlar 100-1000 Stars (24 000 — 240 000 so'm) sotib olish uchun bemalol yetadi. 2500 Stars yoki yirikroq bo'lsa, oldindan bank ilovasida limitni vaqtincha oshirish kerak — bu odatda 1 daqiqada, ariza yozish kerak emas.</p>
+          <p>Bu limitlar 100-1000 Stars ({fmtS(starsPrice(100))} — {fmtS(starsPrice(1000))} so'm) sotib olish uchun bemalol yetadi. 2500 Stars yoki yirikroq bo'lsa, oldindan bank ilovasida limitni vaqtincha oshirish kerak — bu odatda 1 daqiqada, ariza yozish kerak emas.</p>
 
           <p><strong>Vaqt nuansi:</strong> Agar siz maosh kuniga yaqin (yoki to'g'ridan-to'g'ri o'sha kun) buyurtma bermoqchi bo'lsangiz, balansingiz oz bo'lishi mumkin. Bunday holda <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> dan to'lov havolasini olib, maosh tushgach to'lash mumkin — havola 15-30 daqiqa amal qiladi. Yoki Click/Payme'ga ikkinchi (shaxsiy) kartangiz ulangan bo'lsa, undan to'lab keyin pulni Humo'dan qaytadan o'tkazib olishingiz mumkin.</p>
 
@@ -398,8 +401,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <ul>
             <li>Rasmiy veb-sayt va Telegram kanal mavjud (StarsJoy uchun: <a href="https://starsjoy.uz">starsjoy.uz</a> va <a href="https://telegram.me/starsjoy" target="_blank" rel="noopener">@starsjoy</a>)</li>
             <li>To'lov rasmiy Click yoki Payme orqali — shaxsiy karta raqami emas</li>
-            <li>Support kontakti aniq (<a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a>)</li>
-            <li>Narx bozorga mos (1 Star ≈ 240 so'm)</li>
+            <li>Support kontakti aniq (<a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a>)</li>
+            <li>Narx bozorga mos (1 Star ≈ {STAR_PRICE} so'm)</li>
             <li>Parol, SMS-kod yoki 2FA so'ralmaydi</li>
           </ul>
 
@@ -407,7 +410,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Xulosa</h2>
 
-          <p><strong>Humo karta bilan Telegram Stars sotib olish</strong> — O'zbekistondagi davlat banklari va maosh kartasi egalari uchun eng amaliy yo'l. Jarayon Uzcard bilan deyarli bir xil: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ga kiring, Stars miqdorini tanlang, Click yoki Payme'da Humo kartangizni tanlab to'lang — <strong>10 soniyada</strong> Stars hisobingizda paydo bo'ladi. Standart kurs 1 Star = 240 so'm, 2026-yilda Humo Tez QR ekotizimiga ham qo'shildi.</p>
+          <p><strong>Humo karta bilan Telegram Stars sotib olish</strong> — O'zbekistondagi davlat banklari va maosh kartasi egalari uchun eng amaliy yo'l. Jarayon Uzcard bilan deyarli bir xil: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ga kiring, Stars miqdorini tanlang, Click yoki Payme'da Humo kartangizni tanlab to'lang — <strong>10 soniyada</strong> Stars hisobingizda paydo bo'ladi. Standart kurs 1 Star = {STAR_PRICE} so'm, 2026-yilda Humo Tez QR ekotizimiga ham qo'shildi.</p>
 
           <p>Maosh kartasi egalari uchun asosiy maslahatlar: oldindan bank ilovangizda kunlik onlayn to'lov limitini bilib qo'ying (100-1000 Stars uchun har qanday limitda yetadi), maosh kuniga yaqin balansga e'tibor bering, <strong>hech qachon parol yoki SMS-kod bermang</strong>. Stars kelajakdagi <a href="/blog/telegram-stars-bilan-nima-qilish-mumkin">9 ta yo'l</a> bilan ishlatiladi.</p>
 
@@ -420,15 +423,15 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <div class="post-faq">
             <div class="post-faq-item">
               <h3>Humo karta bilan Telegram Stars sotib olish mumkinmi?</h3>
-              <p>Ha. Telegram saytidan to'g'ridan-to'g'ri emas, balki mahalliy yetkazib beruvchi <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali. Humo kartangiz bilan Click yoki Payme ilovasida so'mda to'laysiz va 10 soniyada Stars hisobingizga tushadi. 2026-yildan Humo'da Tez QR ham qo'shildi — bu yangi qulay alternativa. Standart kurs 1 Star = 240 so'm (100 Stars = 24 000 so'm).</p>
+              <p>Ha. Telegram saytidan to'g'ridan-to'g'ri emas, balki mahalliy yetkazib beruvchi <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali. Humo kartangiz bilan Click yoki Payme ilovasida so'mda to'laysiz va 10 soniyada Stars hisobingizga tushadi. 2026-yildan Humo'da Tez QR ham qo'shildi — bu yangi qulay alternativa. Standart kurs 1 Star = {STAR_PRICE} so'm (100 Stars = {fmtS(starsPrice(100))} so'm).</p>
             </div>
             <div class="post-faq-item">
               <h3>Humo va Uzcard'da Stars sotib olishda farq bormi?</h3>
-              <p>Texnik jarayonda farq deyarli yo'q — ikkalasi ham Click yoki Payme orqali ishlaydi va narxi bir xil (1 Star = 240 so'm). Farq foydalanuvchida: Humo asosan davlat banklari (Xalq banki, Mikrokreditbank, Agrobank, Asaka) tomonidan maosh kartasi sifatida beriladi, shuning uchun bir martalik to'lov limiti boshqacha bo'lishi mumkin. 2026-yilda Humo Tez QR Uzcard QR bilan birlashtirildi — endi Humo egasi ham QR orqali to'laydi. <a href="/blog/telegram-stars-uzcard-bilan-sotib-olish">Uzcard bilan Stars</a> maqolasida Uzcard angle to'liq yoritilgan.</p>
+              <p>Texnik jarayonda farq deyarli yo'q — ikkalasi ham Click yoki Payme orqali ishlaydi va narxi bir xil (1 Star = {STAR_PRICE} so'm). Farq foydalanuvchida: Humo asosan davlat banklari (Xalq banki, Mikrokreditbank, Agrobank, Asaka) tomonidan maosh kartasi sifatida beriladi, shuning uchun bir martalik to'lov limiti boshqacha bo'lishi mumkin. 2026-yilda Humo Tez QR Uzcard QR bilan birlashtirildi — endi Humo egasi ham QR orqali to'laydi. <a href="/blog/telegram-stars-uzcard-bilan-sotib-olish">Uzcard bilan Stars</a> maqolasida Uzcard angle to'liq yoritilgan.</p>
             </div>
             <div class="post-faq-item">
               <h3>Maosh kartam Humo — limit yetmasa nima qilaman?</h3>
-              <p>Maosh kartasi limiti odatda bankka qarab 500 000 — 3 000 000 so'm/kun bo'ladi. Stars uchun 100 000 — 250 000 so'm tipidagi to'lovlar bemalol o'tadi. Agar yiriqroq buyurtma (1000+ Stars = 240 000+ so'm) limit bilan to'qnashsa: (1) bank ilovasida kunlik onlayn to'lov limitini vaqtincha oshiring, (2) buyurtmani 2 ta kichik to'lovga bo'ling, yoki (3) 1000+ Stars uchun <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> orqali bank o'tkazmasi variantini so'rang.</p>
+              <p>Maosh kartasi limiti odatda bankka qarab 500 000 — 3 000 000 so'm/kun bo'ladi. Stars uchun 100 000 — 250 000 so'm tipidagi to'lovlar bemalol o'tadi. Agar yiriqroq buyurtma (1000+ Stars = {fmtS(starsPrice(1000))}+ so'm) limit bilan to'qnashsa: (1) bank ilovasida kunlik onlayn to'lov limitini vaqtincha oshiring, (2) buyurtmani 2 ta kichik to'lovga bo'ling, yoki (3) 1000+ Stars uchun <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a> orqali bank o'tkazmasi variantini so'rang.</p>
             </div>
             <div class="post-faq-item">
               <h3>Humo Tez QR orqali Stars to'lash qulay yo'lmi?</h3>

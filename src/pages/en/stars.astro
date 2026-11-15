@@ -4,12 +4,13 @@ import NavbarEn from '../../components/NavbarEn.astro';
 import FooterEn from '../../components/FooterEn.astro';
 import Reviews from '../../components/Reviews.astro';
 import { hreflangsFor } from '../../lib/i18n';
+import { STAR_PRICE, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Buy Telegram Stars in Uzbekistan — Pay in Som with Uzcard | StarsJoy";
-const description = "Telegram Stars price in Uzbekistan: 240 UZS per star, flat rate. 50 Stars = 12,000 UZS, 1,000 Stars = 240,000 UZS. Pay with Uzcard, Humo or Click in Uzbek som — no Visa card and no TON wallet needed.";
+const RATE = STAR_PRICE;
+const description = `Telegram Stars price in Uzbekistan: ${RATE} UZS per star, flat rate. 50 Stars = ${(50 * RATE).toLocaleString('en-US')} UZS, 1,000 Stars = ${(1000 * RATE).toLocaleString('en-US')} UZS. Pay with Uzcard, Humo or Click in Uzbek som — no Visa card and no TON wallet needed.`;
 
-// Flat rate — every pack uses the same 240 UZS/star, no volume discount.
-const RATE = 240;
+// Flat rate — every pack uses the same price per star (src/lib/prices.ts), no volume discount.
 const packs = [50, 100, 250, 500, 1000, 2500, 5000, 10000];
 // 500 uses a "-pack" suffix slug — a bare "/500" path triggers a platform-level
 // routing issue on Vercel, so every language's 500 variant page is named around it.
@@ -19,7 +20,7 @@ const fmt = (n: number) => n.toLocaleString('en-US');
 const faqs = [
   {
     q: "How much does 1 Telegram Star cost in Uzbekistan?",
-    a: "Through StarsJoy the rate is a flat 240 UZS per star for every pack size — there is no volume discount and no hidden fee. So 50 Stars cost 12,000 UZS, 100 Stars cost 24,000 UZS and 1,000 Stars cost 240,000 UZS."
+    a: `Through StarsJoy the rate is a flat ${RATE} UZS per star for every pack size — there is no volume discount and no hidden fee. So 50 Stars cost ${fmt(50 * RATE)} UZS, 100 Stars cost ${fmt(100 * RATE)} UZS and 1,000 Stars cost ${fmt(1000 * RATE)} UZS.`
   },
   {
     q: "Can I buy Telegram Stars without a Visa card or a TON wallet?",
@@ -39,7 +40,7 @@ const faqs = [
   },
   {
     q: "Can I buy an amount that is not in the table?",
-    a: "Yes. Enter any amount between 50 and 100,000 in the bot and the price is calculated at the same 240 UZS per star rate."
+    a: `Yes. Enter any amount between 50 and 100,000 in the bot and the price is calculated at the same ${RATE} UZS per star rate.`
   },
   {
     q: "Can I convert Telegram Stars back into money?",
@@ -128,7 +129,7 @@ const faqs = [
         <div class="stars-hero-content">
           <h1 class="stars-title">Buy Telegram Stars in Uzbekistan</h1>
           <p class="stars-desc">
-            A flat 240 UZS per star, paid in Uzbek som with an Uzcard or Humo card. No international card, no TON wallet, no crypto exchange — Stars land in your Telegram balance in about 10 seconds.
+            A flat {RATE} UZS per star, paid in Uzbek som with an Uzcard or Humo card. No international card, no TON wallet, no crypto exchange — Stars land in your Telegram balance in about 10 seconds.
           </p>
           <div class="stars-features">
             <div class="stars-feature">
@@ -198,6 +199,7 @@ const faqs = [
         calculated at the same {RATE} UZS per star. Prices are set in som, so there is no exchange-rate
         surprise between the moment you order and the moment you pay.
       </p>
+      <p class="pricing-note fade-in">{PRICE_NOTE.en}</p>
       <p class="pricing-note fade-in">Every full 50 Stars earns <strong>+2 ⭐ bonus</strong>, which is +4 ⭐ per 100 Stars. Details: <a href="/en/bonus">StarsJoy bonus</a>.</p>
       <div class="pricing-cta fade-in">
         <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Buy Telegram Stars</a>
@@ -309,7 +311,7 @@ const faqs = [
     <div class="container">
       <div class="stars-cta-box fade-in">
         <h2>Ready to buy Telegram Stars?</h2>
-        <p>240 UZS per star, paid in som with Uzcard or Humo</p>
+        <p>{RATE} UZS per star, paid in som with Uzcard or Humo</p>
         <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">&#9889; Buy Telegram Stars</a>
       </div>
     </div>

@@ -4,15 +4,16 @@ import NavbarEn from '../../../components/NavbarEn.astro';
 import FooterEn from '../../../components/FooterEn.astro';
 import VariantPage from '../../../components/VariantPage.astro';
 import { hreflangsFor } from '../../../lib/i18n';
+import { STAR_PRICE, starsPrice, fmt, PRICE_NOTE } from '../../../lib/prices';
 
 const canonical = "https://starsjoy.uz/en/stars/100";
-const title = "Buy 100 Telegram Stars — 24,000 UZS | StarsJoy";
-const description = "100 Telegram Stars costs 24,000 UZS in Uzbekistan. The most popular starter pack for first-time buyers. Pay with Uzcard/Click, delivered in about 10 seconds.";
+const title = `Buy 100 Telegram Stars — ${fmt(starsPrice(100))} UZS | StarsJoy`;
+const description = `100 Telegram Stars costs ${fmt(starsPrice(100))} UZS in Uzbekistan. The most popular starter pack for first-time buyers. Pay with Uzcard/Click, delivered in about 10 seconds.`;
 
 const faqs = [
   {
     q: "Where can I buy 100 Telegram Stars?",
-    a: "Through @starsjoybot — enter 100 as the amount and pay via Uzcard, Humo or Click. The price is 24,000 UZS, delivered to your balance in about 10 seconds."
+    a: `Through @starsjoybot — enter 100 as the amount and pay via Uzcard, Humo or Click. The price is ${fmt(starsPrice(100))} UZS, delivered to your balance in about 10 seconds.`
   },
   {
     q: "What can I do with 100 Stars?",
@@ -20,7 +21,7 @@ const faqs = [
   },
   {
     q: "Should I start with 100 Stars if this is my first purchase?",
-    a: "Yes, if you want to try Stars and the purchase process for the first time, 100 (24,000 UZS) is the cheapest, lowest-risk starting point. If it goes well, you can buy a larger pack next time."
+    a: `Yes, if you want to try Stars and the purchase process for the first time, 100 (${fmt(starsPrice(100))} UZS) is a low-cost, low-risk starting point. If it goes well, you can buy a larger pack next time.`
   },
   {
     q: "Does a small pack like this still arrive in 10 seconds?",
@@ -28,7 +29,7 @@ const faqs = [
   },
   {
     q: "Is the price per Star higher for 100 than for larger packs?",
-    a: "No, StarsJoy uses one flat rate — 240 UZS per Star for any amount. Only the total changes, not the per-Star price."
+    a: `No, StarsJoy uses one flat rate — ${STAR_PRICE} UZS per Star for any amount. Only the total changes, not the per-Star price.`
   },
   {
     q: "Can I gift 100 Stars to someone?",
@@ -81,13 +82,13 @@ const related = [
     currentLabel="100 ⭐"
     eyebrow="Telegram Stars — 100"
     h1="Buy 100 Telegram Stars"
-    quickAnswer="100 Telegram Stars costs 24,000 UZS, delivered via @starsjoybot in about 10 seconds."
-    heroNote="The most popular starter pack for first-time buyers. Need fewer? From 50 Stars."
+    quickAnswer={`100 Telegram Stars costs ${fmt(starsPrice(100))} UZS, delivered via @starsjoybot in about 10 seconds.`}
+    heroNote={`The most popular starter pack for first-time buyers. Need fewer? From 50 Stars. ${PRICE_NOTE.en}`}
     siblingsTitle="Other amounts"
     siblings={siblings}
     priceLabel="Price"
-    priceValue="24,000 UZS"
-    priceSubtext="240 UZS/star"
+    priceValue={`${fmt(starsPrice(100))} UZS`}
+    priceSubtext={`${STAR_PRICE} UZS/star`}
     bonusNote="+4 ⭐ bonus, details →"
     bonusHref="/en/bonus"
     ctaLabel="Buy 100 Stars"
@@ -101,11 +102,11 @@ const related = [
     relatedTitle="More about Telegram Stars"
     related={related}
     finalCtaTitle="Ready to buy 100 Stars?"
-    finalCtaText="24,000 UZS, pay with Uzcard/Click, delivered in about 10 seconds"
+    finalCtaText={`${fmt(starsPrice(100))} UZS, pay with Uzcard/Click, delivered in about 10 seconds`}
     finalCtaLabel="Buy now"
     schemaName="Telegram Stars — 100"
     schemaDescription={description}
-    priceAmount="24000"
+    priceAmount={String(starsPrice(100))}
     breadcrumbSchema={[
       { name: "Home", item: "https://starsjoy.uz/en" },
       { name: "Telegram Stars", item: "https://starsjoy.uz/en/stars" },

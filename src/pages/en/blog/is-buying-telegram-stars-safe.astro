@@ -1,5 +1,6 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { starsPrice, fmt, PRICE_NOTE } from '../../../lib/prices';
 
 const faqs = [
   {
@@ -34,6 +35,7 @@ const faqs = [
   description="Buying Telegram Stars or Premium through a reseller is safe when nothing but your username is required. The warning signs that separate a real service from account theft, and what to do if you already gave something away."
   keywords="is buying telegram stars safe, telegram stars scam, telegram premium scam, safe telegram stars reseller, telegram account stolen"
   publishDate="2026-08-07"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-stars-firibgarlik-himoya"
   ruHref="https://starsjoy.uz/ru/blog/telegram-stars-firibgarlik-himoya"
   faqs={faqs}
@@ -81,8 +83,9 @@ const faqs = [
       <li><strong>Treat unverifiable scale claims as worthless.</strong> "100,000+ orders" with nothing to check it against tells you nothing — and inconsistent figures (a huge order count next to a small user count) tell you something worse.</li>
       <li><strong>Ask a question first.</strong> A real service answers before payment. Response quality now predicts response quality later.</li>
       <li><strong>Check there is a public offer or terms page</strong> naming what happens if delivery fails.</li>
-      <li><strong>Send a small first order.</strong> 50 Stars costs 12,000 UZS. That is a cheap way to test a service you have not used before.</li>
+      <li><strong>Send a small first order.</strong> 50 Stars costs {fmt(starsPrice(50))} UZS. That is a cheap way to test a service you have not used before.</li>
     </ul>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>

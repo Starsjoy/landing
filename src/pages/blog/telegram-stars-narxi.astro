@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { starsPrice, starPriceWithBonus, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Stars narxi 2026: O'zbekistonda eng arzon narxda sotib olish | StarsJoy Blog";
 const description = "Telegram Stars narxi 2026-yilda qancha? Telegram Stars kursi so'mda, narxlar taqqoslanishi, Uzcard va Humo orqali arzon sotib olish usullari.";
 const publishDate = "2026-03-15";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1150;
 ---
 
@@ -164,7 +165,7 @@ const wordCount = 1150;
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Telegram Stars narxi sotib olish manbasiga qarab farq qiladi — App Store/Google Play eng qimmat, reseller botlar esa odatda arzonroq. O'zbekistonda <a href="/blog/telegram-stars-sotib-olish">Stars sotib olish</a>ning eng qulay yo'li — Uzcard yoki Humo bilan <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali, Visa shart emas. Aniq paket narxlari botning o'zida ko'rinadi.
+            <strong>Qisqacha javob:</strong> Telegram Stars narxi sotib olish manbasiga qarab farq qiladi: StarsJoy'da 100 Stars {fmtS(starsPrice(100))} so'm, Telegram ilovasida 25 399 so'm (04.11.2026) — narx deyarli teng, farq to'lov usulida. O'zbekistonda <a href="/blog/telegram-stars-sotib-olish">Stars sotib olish</a>ning eng qulay yo'li — Uzcard yoki Humo bilan <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali, Visa shart emas. Aniq paket narxlari botning o'zida ko'rinadi.
           </div>
 
           <section>
@@ -190,7 +191,7 @@ const wordCount = 1150;
 
             <h3>App Store va Google Play komissiyasi</h3>
 
-            <p>Apple va Google ilova ichidagi xaridlardan odatda 30% gacha komissiya oladi. Shu sabab mobil ilova orqali sotib olingan Stars ko'pincha eng qimmat variant hisoblanadi.</p>
+            <p>Apple va Google ilova ichidagi xaridlardan odatda 30% gacha komissiya oladi, u ilovadagi narxga allaqachon kiritilgan. O'zbekistonda ilovada 100 Stars 25 399 so'm (04.11.2026), lekin to'lov uchun odatda xalqaro karta yoki App Store balansi kerak.</p>
 
             <h3>Rasmiy Telegram bot orqali xarid</h3>
 
@@ -217,8 +218,8 @@ const wordCount = 1150;
                 </thead>
                 <tbody>
                   <tr>
-                    <td>App Store / Google Play</td>
-                    <td>35 000 so'm</td>
+                    <td>Telegram ilovasi (App Store / Google Play), 04.11.2026</td>
+                    <td>25 399 so'm</td>
                     <td>Visa / Mastercard</td>
                   </tr>
                   <tr>
@@ -228,14 +229,16 @@ const wordCount = 1150;
                   </tr>
                   <tr class="highlight-row">
                     <td>Starsjoy bot</td>
-                    <td>22 000 – 24 000 so'm</td>
+                    <td>{fmtS(starsPrice(100))} so'm (+ bonus Stars)</td>
                     <td>Humo / Uzcard</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <p>Ko'rinib turibdiki, ayrim xizmatlar orqali <strong>arzon Telegram Stars sotib olish</strong> mumkin. Bu ayniqsa mahalliy kartalar orqali to'lov qilishni xohlaydigan foydalanuvchilar uchun qulay.</p>
+            <p><small>{PRICE_NOTE.uz}</small></p>
+
+            <p>Ko'rinib turibdiki, 100 Stars uchun StarsJoy narxi Telegram ilovasi bilan deyarli teng, har xariddagi bonus Stars hisobga olinsa 1 ⭐ taxminan {starPriceWithBonus()} so'mga tushadi. <strong>Arzon Telegram Stars sotib olish</strong> haqida gap ketganda asosiy farq qulaylikda: Uzcard va Humo bilan to'lov, Stars odatda ~10 soniyada avtomatik yetkaziladi, 24/7 support — @StarsjoySupport. Bu ayniqsa mahalliy kartalar orqali to'lov qilishni xohlaydigan foydalanuvchilar uchun qulay.</p>
 
             <div class="post-cta-box">
               <a href="https://telegram.me/starsjoybot" target="_blank" class="post-cta-btn">Telegram Stars sotib olish &rarr;</a>
@@ -375,7 +378,7 @@ const wordCount = 1150;
             <p>2026-yilda <strong>Telegram Stars narxi</strong> turli platformalarda sezilarli darajada farq qiladi.</p>
 
             <ul>
-              <li>App Store va Google Play — eng qimmat</li>
+              <li>App Store va Google Play — xalqaro karta yoki App Store balansi kerak</li>
               <li>Rasmiy bot — o'rtacha narx</li>
               <li>Ba'zi xizmatlar — ko'pincha arzonroq</li>
             </ul>

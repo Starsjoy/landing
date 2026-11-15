@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, starPriceWithBonus, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Stars bilan giveaway qanday o'tkaziladi? (2026) | StarsJoy Blog";
 const description = "Kanal yoki guruhda Stars sovrinli giveaway o'tkazish bosqichlari: kim o'tkaza oladi, g'oliblar qanday tanlanadi va katta giveaway uchun Stars'ni qayerdan arzon olish kerak.";
@@ -29,7 +30,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-stars-giveaway-otkazish";
     "headline": "Telegram Stars bilan giveaway qanday o'tkaziladi? (2026)",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": "2026-11-15",
     "inLanguage": "uz-UZ",
     "articleSection": "Biznes",
     "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
@@ -95,7 +96,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-stars-giveaway-otkazish";
       {
         "@type": "Question",
         "name": "Giveaway uchun katta miqdorda Stars'ni qayerdan arzon olsam bo'ladi?",
-        "acceptedAnswer": { "@type": "Answer", "text": "App Store va Google Play orqali shaxsiy hisobga Stars sotib olishda summaning ~30%i ularga ketadi, bundan tashqari xarid miqdoriga cheklovlar bor. StarsJoy kabi mahalliy reseller orqali Stars'ni 240 so'm/star bo'yicha, cheklovsiz miqdorda va Uzcard/Humo karta bilan sotib olish ancha arzon chiqadi." }
+        "acceptedAnswer": { "@type": "Answer", "text": `App Store va Google Play orqali shaxsiy hisobga Stars sotib olish odatda xalqaro karta talab qiladi, bundan tashqari xarid miqdoriga cheklovlar bor. StarsJoy orqali Stars ${STAR_PRICE} so'm/star bo'yicha, cheklovsiz miqdorda va Uzcard/Humo karta bilan sotib olinadi. Har xaridda bonus Stars beriladi, bonus bilan 1 ⭐ taxminan ${starPriceWithBonus()} so'mga tushadi.` }
       },
       {
         "@type": "Question",
@@ -129,7 +130,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-stars-giveaway-otkazish";
         <div class="post-content">
 
           <section>
-            <p class="post-lead"><strong>Qisqa javob:</strong> Kamida <strong>50 obunachisi</strong> bor kanal yoki <strong>500 a'zosi</strong> bor guruh egasi <strong>Statistics &gt; Boosts</strong> bo'limidan Stars sovrinli giveaway o'tkazishi mumkin. Prize oldindan to'lanadi, ishtirok etish uchun a'zolar kanalni "boost" qiladi, g'oliblar esa ular orasidan tasodifiy tanlanadi. Katta giveaway uchun Stars'ni StarsJoy kabi mahalliy reseller orqali olish App Store/Google Play'dagi ~30% komissiyadan qochish imkonini beradi.</p>
+            <p class="post-lead"><strong>Qisqa javob:</strong> Kamida <strong>50 obunachisi</strong> bor kanal yoki <strong>500 a'zosi</strong> bor guruh egasi <strong>Statistics &gt; Boosts</strong> bo'limidan Stars sovrinli giveaway o'tkazishi mumkin. Prize oldindan to'lanadi, ishtirok etish uchun a'zolar kanalni "boost" qiladi, g'oliblar esa ular orasidan tasodifiy tanlanadi. Katta giveaway uchun Stars'ni StarsJoy orqali Uzcard yoki Humo bilan olish mumkin: xalqaro karta kerak emas va har xaridda bonus Stars beriladi.</p>
           </section>
 
           <section>
@@ -178,8 +179,9 @@ const canonical = "https://starsjoy.uz/blog/telegram-stars-giveaway-otkazish";
 
           <section>
             <h2>Giveaway uchun katta miqdorda Stars'ni qayerdan arzon olish kerak?</h2>
-            <p>Bu — giveaway o'tkazishdagi eng katta xarajat bandi. Shaxsiy hisobga App Store yoki Google Play orqali Stars sotib olinsa, summaning taxminan <strong>30%i</strong> Apple/Google komissiyasiga ketadi, bundan tashqari bir martalik xarid miqdoriga cheklovlar bor — katta giveaway uchun bu qulay emas.</p>
-            <p>StarsJoy kabi mahalliy reseller orqali Stars <strong>240 so'm/star</strong> bo'yicha, cheklovsiz miqdorda va to'g'ridan-to'g'ri Uzcard yoki Humo kartasi bilan sotib olinadi — xorijiy karta yoki qo'shimcha komissiyasiz. Katta Stars pullarini arzon yig'ish bo'yicha to'liq qo'llanma: <a href="/blog/telegram-stars-koplab-arzon">ko'plab Stars'ni arzon sotib olish</a>.</p>
+            <p>Bu — giveaway o'tkazishdagi eng katta xarajat bandi. Shaxsiy hisobga App Store yoki Google Play orqali Stars sotib olish odatda <strong>xalqaro karta</strong> yoki App Store balansini talab qiladi, bundan tashqari bir martalik xarid miqdoriga cheklovlar bor — katta giveaway uchun bu qulay emas.</p>
+            <p>StarsJoy orqali Stars <strong>{STAR_PRICE} so'm/star</strong> bo'yicha, cheklovsiz miqdorda va to'g'ridan-to'g'ri Uzcard yoki Humo kartasi bilan sotib olinadi — xorijiy karta kerak emas. Har xaridda bonus Stars beriladi (bonus bilan 1 ⭐ taxminan {starPriceWithBonus()} so'm), Stars odatda ~10 soniyada avtomatik yetkaziladi. Katta Stars pullarini arzon yig'ish bo'yicha to'liq qo'llanma: <a href="/blog/telegram-stars-koplab-arzon">ko'plab Stars'ni arzon sotib olish</a>.</p>
+            <p><small>{PRICE_NOTE.uz}</small></p>
           </section>
 
           <section>
@@ -204,7 +206,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-stars-giveaway-otkazish";
               <li>🎁 <strong>Stars giveaway</strong> — kanal/guruh a'zolari orasida Stars sovrini taqsimlash;</li>
               <li>📊 Kanal <strong>50+ obunachi</strong>, guruh <strong>500+ a'zo</strong> bo'lishi kerak;</li>
               <li>🚀 Ishtirok etish uchun a'zolar kanalni <strong>boost</strong> qiladi, g'oliblar tasodifiy tanlanadi;</li>
-              <li>💰 Katta giveaway uchun Stars'ni <strong>StarsJoy</strong> orqali olish App Store/Google Play komissiyasidan tejaydi.</li>
+              <li>💰 Katta giveaway uchun Stars'ni <strong>StarsJoy</strong> orqali Uzcard/Humo bilan olish qulay, har xaridda bonus Stars beriladi.</li>
             </ul>
             <p>Kanal monetizatsiyasining boshqa yo'llari haqida — <a href="/blog/telegram-kanal-pullik-obuna-stars">kanalga pullik obuna</a> va <a href="/blog/telegram-ads-stars-bilan">Telegram Ads'ni Stars bilan to'lash</a> maqolalarini o'qing, yoki katta hajmda Stars kerak bo'lsa <a href="/biznes">biznes/API sahifasi</a>ga o'ting.</p>
           </section>

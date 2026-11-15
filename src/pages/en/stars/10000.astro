@@ -4,15 +4,16 @@ import NavbarEn from '../../../components/NavbarEn.astro';
 import FooterEn from '../../../components/FooterEn.astro';
 import VariantPage from '../../../components/VariantPage.astro';
 import { hreflangsFor } from '../../../lib/i18n';
+import { STAR_PRICE, starsPrice, fmt, PRICE_NOTE } from '../../../lib/prices';
 
 const canonical = "https://starsjoy.uz/en/stars/10000";
-const title = "Buy 10,000 Telegram Stars — 2,400,000 UZS | StarsJoy";
-const description = "10,000 Telegram Stars costs 2,400,000 UZS in Uzbekistan. The largest ready-made pack for businesses, agencies, and channel monetization. Pay with Uzcard/Click, delivered in about 10 seconds.";
+const title = `Buy 10,000 Telegram Stars — ${fmt(starsPrice(10000))} UZS | StarsJoy`;
+const description = `10,000 Telegram Stars costs ${fmt(starsPrice(10000))} UZS in Uzbekistan. The largest ready-made pack for businesses, agencies, and channel monetization. Pay with Uzcard/Click, delivered in about 10 seconds.`;
 
 const faqs = [
   {
     q: "Where can I buy 10,000 Telegram Stars at the best price?",
-    a: "Through @starsjoybot — enter 10000 as the amount and pay via Uzcard, Humo or Click. The price is 2,400,000 UZS, delivered to your balance in about 10 seconds."
+    a: `Through @starsjoybot — enter 10000 as the amount and pay via Uzcard, Humo or Click. The price is ${fmt(starsPrice(10000))} UZS, delivered to your balance in about 10 seconds.`
   },
   {
     q: "Who is the 10,000 Stars pack for?",
@@ -20,10 +21,10 @@ const faqs = [
   },
   {
     q: "What if I need more than 10,000 Stars?",
-    a: "You can enter any amount manually in the bot at the same 240 UZS/star rate. For recurring bulk orders, it's best to reach out directly through the bot."
+    a: `You can enter any amount manually in the bot at the same ${STAR_PRICE} UZS/star rate. For recurring bulk orders, it's best to reach out directly through the bot.`
   },
   {
-    q: "How do I pay a 2,400,000 UZS amount?",
+    q: `How do I pay a ${fmt(starsPrice(10000))} UZS amount?`,
     a: "Via Uzcard, Humo, Click or Payme. If your card has a daily or monthly transaction limit, you can split the payment or check the limit with your bank in advance."
   },
   {
@@ -32,7 +33,7 @@ const faqs = [
   },
   {
     q: "Are there special terms for large orders?",
-    a: "The standard rate is the same for every amount (240 UZS/star). For recurring large orders, contact support through the bot to discuss terms."
+    a: `The standard rate is the same for every amount (${STAR_PRICE} UZS/star). For recurring large orders, contact support through the bot to discuss terms.`
   },
   {
     q: "Do 10,000 Stars earn a bonus?",
@@ -80,13 +81,13 @@ const related = [
     currentLabel="10,000 ⭐"
     eyebrow="Telegram Stars — 10,000"
     h1="Buy 10,000 Telegram Stars"
-    quickAnswer="10,000 Telegram Stars costs 2,400,000 UZS, delivered via @starsjoybot in about 10 seconds."
-    heroNote="StarsJoy's largest ready-made pack — for business, agencies, and channel monetization."
+    quickAnswer={`10,000 Telegram Stars costs ${fmt(starsPrice(10000))} UZS, delivered via @starsjoybot in about 10 seconds.`}
+    heroNote={`StarsJoy's largest ready-made pack — for business, agencies, and channel monetization. ${PRICE_NOTE.en}`}
     siblingsTitle="Other amounts"
     siblings={siblings}
     priceLabel="Price"
-    priceValue="2,400,000 UZS"
-    priceSubtext="240 UZS/star"
+    priceValue={`${fmt(starsPrice(10000))} UZS`}
+    priceSubtext={`${STAR_PRICE} UZS/star`}
     bonusNote="+400 ⭐ bonus, details →"
     bonusHref="/en/bonus"
     ctaLabel="Buy 10,000 Stars"
@@ -100,11 +101,11 @@ const related = [
     relatedTitle="More about Telegram Stars"
     related={related}
     finalCtaTitle="Ready to buy 10,000 Stars?"
-    finalCtaText="2,400,000 UZS, pay with Uzcard/Click, delivered in about 10 seconds"
+    finalCtaText={`${fmt(starsPrice(10000))} UZS, pay with Uzcard/Click, delivered in about 10 seconds`}
     finalCtaLabel="Buy now"
     schemaName="Telegram Stars — 10,000"
     schemaDescription={description}
-    priceAmount="2400000"
+    priceAmount={String(starsPrice(10000))}
     breadcrumbSchema={[
       { name: "Home", item: "https://starsjoy.uz/en" },
       { name: "Telegram Stars", item: "https://starsjoy.uz/en/stars" },

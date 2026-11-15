@@ -7,6 +7,7 @@ import Reviews from '../../components/Reviews.astro';
 import FooterRu from '../../components/FooterRu.astro';
 import { getApprovedReviews, aggregateOf } from '../../lib/reviews';
 import { hreflangsFor } from '../../lib/i18n';
+import { PREMIUM_PRICE, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 // Qarang: src/pages/index.astro — bir xil AggregateRating signali, ru varianti.
 const agg = aggregateOf(await getApprovedReviews('premium'));
@@ -18,7 +19,7 @@ const faqs = [
   },
   {
     q: "Сколько стоит Telegram Premium?",
-    a: "Цена зависит от срока подписки: 3 месяца (172 000 сум), 6 месяцев (232 000 сум) или 12 месяцев (422 000 сум). Чем дольше период, тем выгоднее.",
+    a: `Цена зависит от срока подписки: 3 месяца (${fmtS(PREMIUM_PRICE[3])} сум), 6 месяцев (${fmtS(PREMIUM_PRICE[6])} сум) или 12 месяцев (${fmtS(PREMIUM_PRICE[12])} сум). Чем дольше период, тем выгоднее в пересчёте на месяц. ${PRICE_NOTE.ru}`,
   },
   {
     q: "Как отправить Telegram Gift другу?",
@@ -236,7 +237,7 @@ const faqs = [
       <div class="section-header fade-in">
         <span class="section-label">Услуги</span>
         <h2 class="section-title">Что вы хотите купить?</h2>
-        <p class="section-subtitle">Все премиум-услуги Telegram в одном месте — быстро и по лучшей цене</p>
+        <p class="section-subtitle">Все премиум-услуги Telegram в одном месте — быстро, по выгодной цене и с оплатой через Uzcard и Humo</p>
       </div>
       <div class="services-grid">
         <div class="service-card service-purple fade-in">
@@ -485,7 +486,7 @@ const faqs = [
     <div class="container">
       <div class="cta-box fade-in">
         <h2 class="cta-title">Начните прямо сейчас!</h2>
-        <p class="cta-desc">Telegram Stars, Premium и Gifts — быстро и по лучшей цене только в StarsJoy</p>
+        <p class="cta-desc">Telegram Stars, Premium и Gifts — быстро, надёжно, по выгодной цене и с поддержкой 24/7 в StarsJoy</p>
         <a href="https://telegram.me/starsjoybot" class="btn-white" target="_blank">
           &#11088; Перейти в бот
         </a>

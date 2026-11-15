@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, PRICES_DATE_UZ, starsPrice, starPriceWithBonus, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Stars'ni Uzcard bilan sotib olish (2026 narxlar, 10 soniyada) | StarsJoy Blog";
-const description = "Uzcard orqali Telegram Stars sotib olish — O'zbekistonda eng qulay yo'l. 1 Star = 240 so'm, 100 Stars = 24 000 so'm, Click yoki Payme orqali 10 soniyada. Bosqichma-bosqich qo'llanma, narx jadvali va xavfsizlik maslahatlari.";
+const description = `Uzcard orqali Telegram Stars sotib olish — O'zbekistonda eng qulay yo'l. 1 Star = ${STAR_PRICE} so'm, 100 Stars = ${fmtS(starsPrice(100))} so'm, Click yoki Payme orqali 10 soniyada. Bosqichma-bosqich qo'llanma, narx jadvali va xavfsizlik maslahatlari.`;
 const publishDate = "2026-05-12";
-const modifiedDate = "2026-05-12";
+const modifiedDate = "2026-11-15";
 const wordCount = 1820;
 const canonical = "https://starsjoy.uz/blog/telegram-stars-uzcard-bilan-sotib-olish";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -83,7 +84,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Uzcard orqali Telegram Stars sotib olish mumkinmi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ha. To'g'ridan-to'g'ri Telegram saytidan emas, balki mahalliy yetkazib beruvchi (masalan, @starsjoybot) orqali. Uzcard kartangiz bilan Click yoki Payme orqali so'mda to'laysiz, 10 soniyada Stars hisobingizga tushadi. 1 Star standart kurs bo'yicha 240 so'm, demak 100 Stars = 24 000 so'm."
+          "text": `Ha. To'g'ridan-to'g'ri Telegram saytidan emas, balki mahalliy yetkazib beruvchi (masalan, @starsjoybot) orqali. Uzcard kartangiz bilan Click yoki Payme orqali so'mda to'laysiz, 10 soniyada Stars hisobingizga tushadi. 1 Star standart kurs bo'yicha ${STAR_PRICE} so'm, demak 100 Stars = ${fmtS(starsPrice(100))} so'm.`
         }
       },
       {
@@ -131,7 +132,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Uzcard'da limit yetmasa nima qilish kerak?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Agar bir martalik to'lov limitiga tushib qolsangiz: (1) Click yoki Payme'da kunlik limitni vaqtincha oshiring (bu sozlamalardan amalga oshadi), yoki (2) buyurtmani 2 ta kichik to'lovga bo'lib amalga oshiring. Yirik buyurtmalarda (1000+ Stars) bank o'tkazmasi orqali to'lov ham mavjud — bu uchun @starsjoysupport bilan bog'lansangiz tafsilotlarni yuboradi."
+          "text": "Agar bir martalik to'lov limitiga tushib qolsangiz: (1) Click yoki Payme'da kunlik limitni vaqtincha oshiring (bu sozlamalardan amalga oshadi), yoki (2) buyurtmani 2 ta kichik to'lovga bo'lib amalga oshiring. Yirik buyurtmalarda (1000+ Stars) bank o'tkazmasi orqali to'lov ham mavjud — bu uchun @StarsjoySupport bilan bog'lansangiz tafsilotlarni yuboradi."
         }
       },
       {
@@ -201,7 +202,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Uzcard egasi uchun qisqa javob:</strong> Aloqabank, Anorbank, Davr Bank, Hamkorbank yoki Universalbank — bu kartalarning aksariyati Uzcard tizimida. Telegram saytidan to'g'ridan-to'g'ri Stars olib bo'lmaydi (xalqaro tizim kerak), lekin Uzcard'ning Click yoki Payme orqali to'lash imkoniyati 100% ishlaydi. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> dan miqdorni tanlang, Click yoki Payme'ga o'ting, Uzcard'ni tanlang va PIN bilan to'lang — <strong>10 soniyada</strong> Stars hisobingizda. Standart kurs <strong>1 Star = 240 so'm</strong>. Uzcard 2026'da Tez QR ekotizimiga qo'shilgan — QR-kod orqali to'lov ham mavjud.
+            <strong>Uzcard egasi uchun qisqa javob:</strong> Aloqabank, Anorbank, Davr Bank, Hamkorbank yoki Universalbank — bu kartalarning aksariyati Uzcard tizimida. Telegram saytidan to'g'ridan-to'g'ri Stars olib bo'lmaydi (xalqaro tizim kerak), lekin Uzcard'ning Click yoki Payme orqali to'lash imkoniyati 100% ishlaydi. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> dan miqdorni tanlang, Click yoki Payme'ga o'ting, Uzcard'ni tanlang va PIN bilan to'lang — <strong>10 soniyada</strong> Stars hisobingizda. Standart kurs <strong>1 Star = {STAR_PRICE} so'm</strong>. Uzcard 2026'da Tez QR ekotizimiga qo'shilgan — QR-kod orqali to'lov ham mavjud.
           </div>
 
           <p>Uzcard — O'zbekistondagi eng keng tarqalgan to'lov tizimi: 13+ million faol karta, 100% xususiy bank kartalari (Aloqabank, Anorbank, Davr Bank, Hamkorbank, Universalbank, Ipoteka-bank, Asia Alliance Bank), va kundalik xaridlar uchun standart. Demak Uzcard egasi kunlik to'lovni qanday qilishni biladi — Click va Payme ham xuddi shu mantiqda ishlaydi. Lekin Telegram Stars sotib olishda bitta kichik nyuans bor: Stars'ni Telegram'dan to'g'ridan-to'g'ri Uzcard bilan emas, mahalliy yetkazib beruvchi orqali olish kerak.</p>
@@ -215,7 +216,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Uzcard tizimi xususiy bank mijozlari uchun kunlik standart bo'lgani uchun, Click va Payme orqali to'lash texnikasi yaxshi tanish. Lekin Stars sotib olishda 3 ta nuans bor — bularni bilsangiz birinchi xarid muammosiz o'tadi.</p>
 
           <h3>1. Karta kunlik limiti</h3>
-          <p>Uzcard kartalarining ko'pchiligida internet to'lovi uchun standart kunlik limit <strong>5-10 mln so'm</strong> oralig'ida. Bu 1000 Stars (240 000 so'm) yoki 5000 Stars (1.2 mln so'm) uchun yetadi. Lekin agar siz katta paket (10 000+ Stars, 2.4 mln+ so'm) olmoqchi bo'lsangiz, bankingiz mobil ilovasida limitni ko'tarib qo'ying — odatda Aloqabank, Anorbank, Davr Bank ilovalarida "Internet limit" sozlamalari bor.</p>
+          <p>Uzcard kartalarining ko'pchiligida internet to'lovi uchun standart kunlik limit <strong>5-10 mln so'm</strong> oralig'ida. Bu 1000 Stars ({fmtS(starsPrice(1000))} so'm) yoki 5000 Stars ({starsPrice(5000) / 1e6} mln so'm) uchun yetadi. Lekin agar siz katta paket (10 000+ Stars, {starsPrice(10000) / 1e6} mln+ so'm) olmoqchi bo'lsangiz, bankingiz mobil ilovasida limitni ko'tarib qo'ying — odatda Aloqabank, Anorbank, Davr Bank ilovalarida "Internet limit" sozlamalari bor.</p>
 
           <h3>2. Click vs Payme — qaysisi qulayroq?</h3>
           <p>Uzcard ikkalasida ham 100% qabul qilinadi. Farq foydalanuvchi tajribasida:</p>
@@ -245,7 +246,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Stars paketlari va Uzcard'dagi 2026 narxlari</h2>
 
-          <p>Starsjoy mahalliy yetkazib beruvchi sifatida standart kurs <strong>1 Star = 240 so'm</strong> bilan ishlaydi. Bu Telegram'ning rasmiy ($0.013-0.016) kursiga so'mda taxminan mos keladi va Apple/Google in-app variantidan ancha arzon (chunki platforma 30% komissiyasi yo'q). Mana asosiy paketlar:</p>
+          <p>Starsjoy mahalliy yetkazib beruvchi sifatida standart kurs <strong>1 Star = {STAR_PRICE} so'm</strong> bilan ishlaydi. Narx Telegram ilovasidagiga yaqin (100 Stars ilovada 25 399 so'm, 04.11.2026), farqi esa qulaylikda: Uzcard bilan so'mda to'lov, Stars odatda ~10 soniyada avtomatik yetkaziladi va har xaridda bonus Stars beriladi (bonus bilan 1 ⭐ taxminan {starPriceWithBonus()} so'm). Mana asosiy paketlar:</p>
 
           <div class="post-table-wrap">
             <table class="post-table">
@@ -259,32 +260,32 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tbody>
                 <tr>
                   <td>50 Stars</td>
-                  <td>12 000 so'm</td>
+                  <td>{fmtS(starsPrice(50))} so'm</td>
                   <td>2-3 ta kichik (15-25) Gift</td>
                 </tr>
                 <tr>
                   <td>100 Stars</td>
-                  <td>24 000 so'm</td>
+                  <td>{fmtS(starsPrice(100))} so'm</td>
                   <td>Paid reactions, kichik bot to'lov</td>
                 </tr>
                 <tr>
                   <td>250 Stars</td>
-                  <td>60 000 so'm</td>
+                  <td>{fmtS(starsPrice(250))} so'm</td>
                   <td>O'rta hajmdagi Gift</td>
                 </tr>
                 <tr class="highlight-row">
                   <td>500 Stars</td>
-                  <td>120 000 so'm</td>
+                  <td>{fmtS(starsPrice(500))} so'm</td>
                   <td>Premium 1 oy gift uchun bonus</td>
                 </tr>
                 <tr>
                   <td>1000 Stars</td>
-                  <td>240 000 so'm</td>
+                  <td>{fmtS(starsPrice(1000))} so'm</td>
                   <td>Multi-use, eng populyar paket</td>
                 </tr>
                 <tr>
                   <td>2500 Stars</td>
-                  <td>600 000 so'm</td>
+                  <td>{fmtS(starsPrice(2500))} so'm</td>
                   <td>Bulk — kanal byudjeti</td>
                 </tr>
                 <tr>
@@ -296,7 +297,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </table>
           </div>
 
-          <p><em>Narxlar 2026-yil may holatiga to'g'ri. Yiriklarda (5000+) Starsjoy support bilan shaxsiy kurs muhokama qilinadi — narx pastroq bo'lishi mumkin.</em> <a href="/blog/telegram-stars-narxi">Telegram Stars narxi</a> umumiy paketlar bo'yicha batafsil maqolamiz ham bor.</p>
+          <p><small>{PRICE_NOTE.uz}</small></p>
+
+          <p><em>Narxlar {PRICES_DATE_UZ} holatiga. Yiriklarda (5000+) Starsjoy support bilan shaxsiy kurs muhokama qilinadi — narx pastroq bo'lishi mumkin.</em> <a href="/blog/telegram-stars-narxi">Telegram Stars narxi</a> umumiy paketlar bo'yicha batafsil maqolamiz ham bor.</p>
 
           <p class="natural-cta"><strong>Eslatma:</strong> Agar siz birinchi marta Stars sotib olayotgan bo'lsangiz, 50 yoki 100 Stars'dan boshlash mantiqliroq — bu jarayonni o'rganib olish uchun yetarli, narxi past, va kelajakdagi yirikroq buyurtmalarda support bilan ishlashga ko'nikasiz. 100 Stars'ni <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali to'g'ridan-to'g'ri bot menyusidan tanlash mumkin.</p>
 
@@ -371,8 +374,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <ul>
             <li>Rasmiy veb-sayt va Telegram kanal mavjud (StarsJoy uchun: <a href="https://starsjoy.uz">starsjoy.uz</a> va <a href="https://telegram.me/starsjoy" target="_blank" rel="noopener">@starsjoy</a>)</li>
             <li>To'lov rasmiy Click yoki Payme platforma orqali</li>
-            <li>Support kontakti aniq (<a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a>)</li>
-            <li>Narx bozorga mos (1 Star ≈ 240 so'm)</li>
+            <li>Support kontakti aniq (<a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a>)</li>
+            <li>Narx bozorga mos (1 Star ≈ {STAR_PRICE} so'm)</li>
             <li>Parol, SMS-kod yoki 2FA so'ralmaydi</li>
           </ul>
 
@@ -380,9 +383,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Xulosa</h2>
 
-          <p><strong>Uzcard bilan Telegram Stars sotib olish</strong> — bugun O'zbekistondagi eng keng tarqalgan yo'l. Jarayon oddiy va tezkor: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ga kiring, kerakli Stars miqdorini tanlang, Click yoki Payme orqali Uzcard bilan to'lang — <strong>10 soniyada</strong> Stars hisobingizda paydo bo'ladi. Standart kurs 1 Star = 240 so'm, yiriklarda shaxsiy taklif.</p>
+          <p><strong>Uzcard bilan Telegram Stars sotib olish</strong> — bugun O'zbekistondagi eng keng tarqalgan yo'l. Jarayon oddiy va tezkor: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ga kiring, kerakli Stars miqdorini tanlang, Click yoki Payme orqali Uzcard bilan to'lang — <strong>10 soniyada</strong> Stars hisobingizda paydo bo'ladi. Standart kurs 1 Star = {STAR_PRICE} so'm, yiriklarda shaxsiy taklif.</p>
 
-          <p>Asosiy qoidalar: ishonchli xizmatni tanlang (rasmiy kanal va support kontakti bilan), <strong>hech qachon parol bermang</strong>, narxni boshqa platformalar bilan solishtirib ko'ring (in-app sotib olish 25-40% qimmatroq). Stars kelajakdagi <a href="/blog/telegram-stars-bilan-nima-qilish-mumkin">9 ta yo'l</a> bilan ishlatiladi — Gift, Premium gift, paid post, paid reactions, Mini App va Telegram Ads.</p>
+          <p>Asosiy qoidalar: ishonchli xizmatni tanlang (rasmiy kanal va support kontakti bilan), <strong>hech qachon parol bermang</strong>, narxni boshqa platformalar bilan solishtirib ko'ring (Telegram ilovasida to'lov odatda xalqaro karta yoki App Store balansini talab qiladi). Stars kelajakdagi <a href="/blog/telegram-stars-bilan-nima-qilish-mumkin">9 ta yo'l</a> bilan ishlatiladi — Gift, Premium gift, paid post, paid reactions, Mini App va Telegram Ads.</p>
 
           <div class="end-cta">
             Uzcard bilan tezkor Stars: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali 10 soniyada
@@ -393,7 +396,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <div class="post-faq">
             <div class="post-faq-item">
               <h3>Uzcard orqali Telegram Stars sotib olish mumkinmi?</h3>
-              <p>Ha. To'g'ridan-to'g'ri Telegram saytidan emas, balki mahalliy yetkazib beruvchi (masalan, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>) orqali. Uzcard kartangiz bilan Click yoki Payme orqali so'mda to'laysiz, 10 soniyada Stars hisobingizga tushadi. 1 Star standart kurs bo'yicha 240 so'm, demak 100 Stars = 24 000 so'm.</p>
+              <p>Ha. To'g'ridan-to'g'ri Telegram saytidan emas, balki mahalliy yetkazib beruvchi (masalan, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>) orqali. Uzcard kartangiz bilan Click yoki Payme orqali so'mda to'laysiz, 10 soniyada Stars hisobingizga tushadi. 1 Star standart kurs bo'yicha {STAR_PRICE} so'm, demak 100 Stars = {fmtS(starsPrice(100))} so'm.</p>
             </div>
             <div class="post-faq-item">
               <h3>Nima uchun Uzcard bilan to'g'ridan-to'g'ri Telegram'dan Stars olib bo'lmaydi?</h3>
@@ -417,7 +420,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Uzcard'da limit yetmasa nima qilish kerak?</h3>
-              <p>Agar bir martalik to'lov limitiga tushib qolsangiz: (1) Click yoki Payme'da kunlik limitni vaqtincha oshiring (sozlamalardan), yoki (2) buyurtmani 2 ta kichik to'lovga bo'ling. Yirik buyurtmalarda (1000+ Stars) bank o'tkazmasi orqali to'lov ham mavjud — buning uchun <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> bilan bog'lansangiz tafsilotlarni yuboradi.</p>
+              <p>Agar bir martalik to'lov limitiga tushib qolsangiz: (1) Click yoki Payme'da kunlik limitni vaqtincha oshiring (sozlamalardan), yoki (2) buyurtmani 2 ta kichik to'lovga bo'ling. Yirik buyurtmalarda (1000+ Stars) bank o'tkazmasi orqali to'lov ham mavjud — buning uchun <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a> bilan bog'lansangiz tafsilotlarni yuboradi.</p>
             </div>
             <div class="post-faq-item">
               <h3>Stars'ni keyin pulga qaytarib aylantirish mumkinmi?</h3>

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, fmt, PRICE_NOTE } from '../lib/prices';
 
 const title = "Telegram Stars va Premium Narxlari 2026 — Bitta Sahifada | StarsJoy";
 const description = "Telegram Stars va Telegram Premium narxlarini bitta sahifada solishtiring: barcha paket va muddatlar uchun aniq narx so'mda, yashirin to'lovsiz. StarsJoy orqali xarid qiling.";
@@ -13,11 +14,11 @@ const faqs = [
   },
   {
     q: "Ko'rsatilgan narxga qo'shimcha komissiya qo'shiladimi?",
-    a: "Yo'q. Sahifada va botda ko'rsatilgan narx — yakuniy narx. Yashirin komissiya yoki qo'shimcha to'lov yo'q."
+    a: "Yashirin komissiya yo'q. Aniq yakuniy narx buyurtma paytida botda ko'rsatiladi va siz aynan shu summani to'laysiz."
   },
   {
     q: "Narxlar qachon yangilanadi?",
-    a: "Narxlar Telegram/Fragment kursi o'zgarganda yangilanadi. Bu sahifadagi va @starsjoybot dagi narxlar doimo bir xil — bot narxi eng dolzarb hisoblanadi."
+    a: "Narxlar Telegram kursi, soliq yoki to'lov tizimi komissiyalari o'zgarganda yangilanadi. Bu sahifadagi va @starsjoybot dagi narxlar doimo bir xil — bot narxi eng dolzarb hisoblanadi."
   },
   {
     q: "Stars yoki Premium — narxi jihatidan qaysi biri tejamliroq?",
@@ -43,13 +44,13 @@ const faqs = [
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Telegram Stars",
-    "description": "Telegram Stars narxlari — 240 so'm/star tarifida, 50 dan 5,000 tagacha paketlar.",
+    "description": `Telegram Stars narxlari — ${STAR_PRICE} so'm/star tarifida, 50 dan 10,000 tagacha paketlar.`,
     "brand": { "@type": "Brand", "name": "StarsJoy" },
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "UZS",
-      "lowPrice": "12000",
-      "highPrice": "2400000",
+      "lowPrice": String(starsPrice(50)),
+      "highPrice": String(starsPrice(10000)),
       "availability": "https://schema.org/InStock",
       "offerCount": "8"
     }
@@ -65,8 +66,8 @@ const faqs = [
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "UZS",
-      "lowPrice": "172000",
-      "highPrice": "422000",
+      "lowPrice": String(PREMIUM_PRICE[3]),
+      "highPrice": String(PREMIUM_PRICE[12]),
       "availability": "https://schema.org/InStock",
       "offerCount": "3"
     }
@@ -116,7 +117,7 @@ const faqs = [
       <div class="section-header fade-in">
         <span class="section-label">Telegram Stars</span>
         <h2 class="section-title">Telegram Stars narxlari</h2>
-        <p class="section-subtitle">Tarif: 240 so'm/star — barcha paketlar uchun bir xil, aniq narx</p>
+        <p class="section-subtitle">Tarif: {STAR_PRICE} so'm/star — barcha paketlar uchun bir xil, aniq narx</p>
       </div>
       <div class="pricing-table-wrap fade-in">
         <table class="pricing-table">
@@ -124,17 +125,18 @@ const faqs = [
             <tr><th>Stars</th><th>Narx</th></tr>
           </thead>
           <tbody>
-            <tr><td>50 ⭐</td><td>12,000 so'm</td></tr>
-            <tr><td><a href="/stars/100">100 ⭐</a></td><td>24,000 so'm</td></tr>
-            <tr><td>250 ⭐</td><td>60,000 so'm</td></tr>
-            <tr><td><a href="/stars/500-ta">500 ⭐</a></td><td>120,000 so'm</td></tr>
-            <tr class="pricing-highlight"><td><a href="/stars/1000">1,000 ⭐</a> <span class="pricing-badge">Mashhur</span></td><td>240,000 so'm</td></tr>
-            <tr><td>2,500 ⭐</td><td>600,000 so'm</td></tr>
-            <tr><td><a href="/stars/5000">5,000 ⭐</a></td><td>1,200,000 so'm</td></tr>
-            <tr><td><a href="/stars/10000">10,000 ⭐</a></td><td>2,400,000 so'm</td></tr>
+            <tr><td>50 ⭐</td><td>{fmt(starsPrice(50))} so'm</td></tr>
+            <tr><td><a href="/stars/100">100 ⭐</a></td><td>{fmt(starsPrice(100))} so'm</td></tr>
+            <tr><td>250 ⭐</td><td>{fmt(starsPrice(250))} so'm</td></tr>
+            <tr><td><a href="/stars/500-ta">500 ⭐</a></td><td>{fmt(starsPrice(500))} so'm</td></tr>
+            <tr class="pricing-highlight"><td><a href="/stars/1000">1,000 ⭐</a> <span class="pricing-badge">Mashhur</span></td><td>{fmt(starsPrice(1000))} so'm</td></tr>
+            <tr><td>2,500 ⭐</td><td>{fmt(starsPrice(2500))} so'm</td></tr>
+            <tr><td><a href="/stars/5000">5,000 ⭐</a></td><td>{fmt(starsPrice(5000))} so'm</td></tr>
+            <tr><td><a href="/stars/10000">10,000 ⭐</a></td><td>{fmt(starsPrice(10000))} so'm</td></tr>
           </tbody>
         </table>
       </div>
+      <p class="narx-links fade-in"><small>{PRICE_NOTE.uz}</small></p>
       <p class="narx-links fade-in">Har to'liq 50 Stars uchun +2 ⭐ bonus, ya'ni har 100 Stars uchun +4 ⭐ beriladi: <a href="/bonus">bonus shartlari</a>.</p>
       <p class="narx-links fade-in">
         Batafsil: <a href="/stars">Stars sotib olish sahifasi</a> ·
@@ -161,9 +163,9 @@ const faqs = [
             <tr><th>Muddat</th><th>Narx</th></tr>
           </thead>
           <tbody>
-            <tr><td><a href="/premium/3-oy">3 oylik</a></td><td>172,000 so'm</td></tr>
-            <tr><td><a href="/premium/6-oy">6 oylik</a></td><td>232,000 so'm</td></tr>
-            <tr class="pricing-highlight"><td><a href="/premium/12-oy">12 oylik</a> <span class="pricing-badge">Eng foydali</span></td><td>422,000 so'm</td></tr>
+            <tr><td><a href="/premium/3-oy">3 oylik</a></td><td>{fmt(PREMIUM_PRICE[3])} so'm</td></tr>
+            <tr><td><a href="/premium/6-oy">6 oylik</a></td><td>{fmt(PREMIUM_PRICE[6])} so'm</td></tr>
+            <tr class="pricing-highlight"><td><a href="/premium/12-oy">12 oylik</a> <span class="pricing-badge">Eng foydali</span></td><td>{fmt(PREMIUM_PRICE[12])} so'm</td></tr>
           </tbody>
         </table>
       </div>
@@ -193,7 +195,7 @@ const faqs = [
         </div>
         <div class="fact-card fade-in">
           <h3>Yashirin to'lovsiz</h3>
-          <p>Sahifada va botda ko'rsatilgan narx — yakuniy narx. Qo'shimcha komissiya yo'q.</p>
+          <p>Buyurtma paytida botda ko'rsatilgan narx — yakuniy narx. Yashirin komissiya yo'q.</p>
         </div>
         <div class="fact-card fade-in">
           <h3>10 soniyada yetkazish</h3>

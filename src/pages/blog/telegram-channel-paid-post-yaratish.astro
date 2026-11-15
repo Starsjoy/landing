@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, starsPrice, fmt, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram kanalda paid post yaratish: 2026 to'liq qo'llanma (Stars qabul qilish) | StarsJoy Blog";
 const description = "Telegram kanalda pulli post (paid media) qanday yaratiladi: 5 bosqichli amaliy qo'llanma, kerakli shartlar (1000+ obunachi), narx belgilash, Stars'ni TON yoki Telegram Ads'ga yechib olish va kontent yaratuvchi uchun maslahatlar.";
 const publishDate = "2026-05-09";
-const modifiedDate = "2026-05-09";
+const modifiedDate = "2026-11-15";
 const wordCount = 1920;
 const canonical = "https://starsjoy.uz/blog/telegram-channel-paid-post-yaratish";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -170,7 +171,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Obunachilarim Stars'ni qayerdan tezda olishi mumkin?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Obunachilar Stars'ni Telegram'ning rasmiy ichida (in-app purchase orqali Apple/Google Play yoki Fragment'da TON bilan) yoki O'zbekistondagi mahalliy yetkazib beruvchilar orqali (Click va Payme bilan to'lov) sotib olishlari mumkin. StarsJoy — Click/Payme/Uzcard/Humo orqali so'mda 10 soniya ichida Stars yetkazib beradi (1 Star = 240 so'm o'rtacha kurs)."
+          "text": "Obunachilar Stars'ni Telegram'ning rasmiy ichida (in-app purchase orqali Apple/Google Play yoki Fragment'da TON bilan) yoki O'zbekistondagi mahalliy yetkazib beruvchilar orqali (Click va Payme bilan to'lov) sotib olishlari mumkin. StarsJoy — Click/Payme/Uzcard/Humo orqali so'mda 10 soniya ichida Stars yetkazib beradi (1 Star = " + STAR_PRICE + " so'm o'rtacha kurs)."
         }
       }
     ]
@@ -267,15 +268,16 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Modal oynada Stars miqdorini kiriting. Tavsiya etilgan oraliqlar:</p>
 
           <ul>
-            <li><strong>10-50 Stars</strong> (~2,400-12,000 so'm) — eksklyuziv lifestyle/sahnaorti foto, qisqa video</li>
-            <li><strong>100-500 Stars</strong> (~24,000-120,000 so'm) — kurs darsi, batafsil tahlil, kuchli infografik</li>
-            <li><strong>1000+ Stars</strong> (~240,000 so'm dan boshlab) — to'liq qisqa kurs, professional diagnostika, eksklyuziv strategik kontent</li>
+            <li><strong>10-50 Stars</strong> (~{fmt(starsPrice(10))}-{fmt(starsPrice(50))} so'm) — eksklyuziv lifestyle/sahnaorti foto, qisqa video</li>
+            <li><strong>100-500 Stars</strong> (~{fmt(starsPrice(100))}-{fmt(starsPrice(500))} so'm) — kurs darsi, batafsil tahlil, kuchli infografik</li>
+            <li><strong>1000+ Stars</strong> (~{fmt(starsPrice(1000))} so'm dan boshlab) — to'liq qisqa kurs, professional diagnostika, eksklyuziv strategik kontent</li>
           </ul>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
           <h3>Bosqich 5 — Postni nashr qiling</h3>
           <p>Narx belgilangach <em>"Done"</em> yoki <em>"Post"</em> tugmasini bosing. Post kanalga chiqadi va obunachilar uni blur ostida ko'rishadi (narx + qisqacha tavsif bilan). Birinchi obunachi to'lov qilganida Stars darhol kanal hisobiga tushadi.</p>
 
-          <p class="natural-cta"><strong>Paid post'ni o'zingiz test qilmoqchimisiz?</strong> O'zingizning post'ingizni boshqa hisobdan ochib ko'rish uchun Stars kerak. Click yoki Payme orqali tezda Stars sotib olish mumkin — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>'da 10 soniyada keladi (1 Star = ~240 so'm). Test qilish kontent narxining auditoriyaga qanday ko'rinishini his qilish uchun foydali.</p>
+          <p class="natural-cta"><strong>Paid post'ni o'zingiz test qilmoqchimisiz?</strong> O'zingizning post'ingizni boshqa hisobdan ochib ko'rish uchun Stars kerak. Click yoki Payme orqali tezda Stars sotib olish mumkin — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>'da 10 soniyada keladi (1 Star = ~{STAR_PRICE} so'm). Test qilish kontent narxining auditoriyaga qanday ko'rinishini his qilish uchun foydali.</p>
 
           <h2>Daromad — Stars'ni qanday yechib olish?</h2>
 
@@ -377,7 +379,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Obunachilarim Stars'ni qayerdan tezda olishi mumkin?</h3>
-              <p>Telegram in-app (Apple/Google ~30% komissiya), Fragment (TON bilan), yoki mahalliy yetkazib beruvchi (Click/Payme bilan so'mda). O'zbekistonda mahalliy variant 10 soniyada keladi (1 Star = ~240 so'm).</p>
+              <p>Telegram in-app (Apple/Google ~30% komissiya), Fragment (TON bilan), yoki mahalliy yetkazib beruvchi (Click/Payme bilan so'mda). O'zbekistonda mahalliy variant 10 soniyada keladi (1 Star = ~{STAR_PRICE} so'm).</p>
             </div>
           </div>
 

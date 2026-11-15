@@ -1,5 +1,6 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { STAR_PRICE, starsPrice, fmt, PRICE_NOTE } from '../../../lib/prices';
 
 const faqs = [
   {
@@ -20,7 +21,7 @@ const faqs = [
   },
   {
     q: "What is the smallest amount of Stars I can buy?",
-    a: "50 Stars, which is 12,000 UZS at the flat rate of 240 UZS per star. Any amount up to 100,000 can be entered in the bot."
+    a: `50 Stars, which is ${fmt(starsPrice(50))} UZS at the flat rate of ${STAR_PRICE} UZS per star. Any amount up to 100,000 can be entered in the bot.`
   }
 ];
 ---
@@ -34,6 +35,7 @@ const faqs = [
   description="Telegram Stars are an internal currency, but what do you spend them on? Eight concrete uses — paid posts, bots, tips, gifts, ads — and the three things Stars cannot do that people assume they can."
   keywords="what can you do with telegram stars, telegram stars uses, how to spend telegram stars, telegram stars paid posts, telegram stars gifts"
   publishDate="2026-08-07"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-stars-bilan-nima-qilish-mumkin"
   ruHref="https://starsjoy.uz/ru/blog/telegram-stars-bilan-nima-qilish-mumkin"
   faqs={faqs}
@@ -93,13 +95,14 @@ const faqs = [
 
   <section>
     <h2>How much to buy</h2>
-    <p>The rate is flat at 240 UZS per star — there is no volume discount, so buying a large pack has no price advantage over several small ones. Buy what you need for what you are actually doing:</p>
+    <p>The rate is flat at {STAR_PRICE} UZS per star — there is no volume discount, so buying a large pack has no price advantage over several small ones. Buy what you need for what you are actually doing:</p>
     <ul>
-      <li><strong>50–100 Stars</strong> (12,000–24,000 UZS) — unlocking the occasional paid post or bot feature.</li>
-      <li><strong>500–1,000 Stars</strong> (120,000–240,000 UZS) — regular use, gifts, supporting creators.</li>
+      <li><strong>50–100 Stars</strong> ({fmt(starsPrice(50))}–{fmt(starsPrice(100))} UZS) — unlocking the occasional paid post or bot feature.</li>
+      <li><strong>500–1,000 Stars</strong> ({fmt(starsPrice(500))}–{fmt(starsPrice(1000))} UZS) — regular use, gifts, supporting creators.</li>
       <li><strong>2,500+</strong> — channel owners running giveaways or funding ads.</li>
     </ul>
     <p>Since Stars never expire, buying slightly more than you need costs you nothing but the timing. Full price table on the <a href="/en/stars">Telegram Stars page</a>.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>

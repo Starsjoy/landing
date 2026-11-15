@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE } from '../../../lib/prices';
 
 const title = "Starsjoy — это бот или Mini App? Как выглядит и в чём разница (2026) | Блог StarsJoy";
 const description = "Starsjoy — это Telegram Mini App (не обычный бот). Внутри приложения: Dashboard, карточки Stars/Premium/Gifts, Profile, History. Разница бот vs Mini App, что внутри Starsjoy, как открыть и техническая часть.";
 const publishDate = "2026-05-15";
-const modifiedDate = "2026-05-15";
+const modifiedDate = "2026-11-15";
 const wordCount = 1880;
 const canonical = "https://starsjoy.uz/ru/blog/starsjoy-mini-app-nima";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -79,8 +80,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
     "offers": {
       "@type": "Offer",
       "priceCurrency": "UZS",
-      "price": "240",
-      "description": "1 Star = 240 сум (курс reseller, на 2026 год)"
+      "price": String(STAR_PRICE),
+      "description": "1 Star = " + STAR_PRICE + " сум (курс reseller, на 2026 год)"
     },
     "provider": {
       "@type": "Organization",

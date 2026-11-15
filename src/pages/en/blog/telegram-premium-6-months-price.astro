@@ -1,25 +1,31 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { PREMIUM_PRICE, fmt, PRICE_NOTE } from '../../../lib/prices';
+
+const P3 = PREMIUM_PRICE[3], P6 = PREMIUM_PRICE[6], P12 = PREMIUM_PRICE[12];
+/** Oylik narx, 100 so'mgacha yaxlitlangan (~59,700). */
+const pm = (m: 3 | 6 | 12) => Math.round(PREMIUM_PRICE[m] / m / 100) * 100;
+const perDay6 = Math.round(P6 / 182.5 / 10) * 10;
 
 const faqs = [
   {
     q: "How much does Telegram Premium cost for 6 months?",
-    a: "At StarsJoy, 6 months of Telegram Premium cost 232,000 UZS — about 38,700 UZS per month. In the Telegram app the monthly subscription is $4.99, so roughly $30 for six months. On Fragment, 6 months cost roughly $16–20, paid in TON."
+    a: `At StarsJoy, 6 months of Telegram Premium cost ${fmt(P6)} UZS — about ${fmt(pm(6))} UZS per month. In the Telegram app the monthly subscription is $4.99, so roughly $30 for six months. On Fragment, 6 months cost roughly $16–20, paid in TON.`
   },
   {
     q: "What does the 6-month plan cost per month?",
-    a: "232,000 UZS divided by 6 is about 38,700 UZS per month, or roughly 1,270 UZS per day. The 3-month plan works out to about 57,300 UZS per month and the 12-month plan to about 35,200 UZS."
+    a: `${fmt(P6)} UZS divided by 6 is about ${fmt(pm(6))} UZS per month, or roughly ${fmt(perDay6)} UZS per day. The 3-month plan works out to about ${fmt(pm(3))} UZS per month and the 12-month plan to about ${fmt(pm(12))} UZS.`
   },
   {
     q: "How much cheaper is 6 months than 3 months?",
-    a: "Two 3-month plans cost 344,000 UZS, while one 6-month plan costs 232,000 UZS. That's a 112,000 UZS difference — about a third less for the same half year."
+    a: `Two 3-month plans cost ${fmt(2 * P3)} UZS, while one 6-month plan costs ${fmt(P6)} UZS. That's a ${fmt(2 * P3 - P6)} UZS difference — about a third less for the same half year.`
   },
   {
     q: "6 months or 12 months — which is better value?",
-    a: "Per month, 12 months is cheaper: 422,000 UZS, about 35,200 UZS per month. Two 6-month plans come to 464,000 UZS, a difference of 42,000 UZS per year. If you'd rather not pay for a full year upfront, 6 months is the easier choice."
+    a: `Per month, 12 months is cheaper: ${fmt(P12)} UZS, about ${fmt(pm(12))} UZS per month. Two 6-month plans come to ${fmt(2 * P6)} UZS, a difference of ${fmt(2 * P6 - P12)} UZS per year. If you'd rather not pay for a full year upfront, 6 months is the easier choice.`
   },
   {
-    q: "How do I pay 232,000 UZS?",
+    q: `How do I pay ${fmt(P6)} UZS?`,
     a: "By transfer to the card the bot shows you — from Payme, Click or any banking app. Uzcard and Humo cards work, and no international card is needed."
   },
   {
@@ -32,11 +38,11 @@ const faqs = [
   },
   {
     q: "Can I buy 6 months of Premium for someone else?",
-    a: "Yes. Enter their username in the order and Premium is activated directly on their account. The price is the same as buying for yourself — 232,000 UZS."
+    a: `Yes. Enter their username in the order and Premium is activated directly on their account. The price is the same as buying for yourself — ${fmt(P6)} UZS.`
   },
   {
     q: "What if Premium isn't activated?",
-    a: "If the payment went through but the order failed for a technical reason, you get a full refund. Send your payment receipt through @starsjoy_bot within 24 hours."
+    a: "If the payment went through but the order failed for a technical reason, you get a full refund. Send your payment receipt through @StarsjoySupport within 24 hours."
   }
 ];
 ---
@@ -44,18 +50,19 @@ const faqs = [
 <BlogPostEn
   slug="telegram-premium-6-months-price"
   title="Telegram Premium 6 Months Price in 2026 (UZS, App, Fragment)"
-  heading="Telegram Premium 6 months price in 2026 — 232,000 UZS"
+  heading={`Telegram Premium 6 months price in 2026 — ${fmt(P6)} UZS`}
   crumb="Premium 6 months price"
   tag="Premium"
-  description="Telegram Premium for 6 months costs 232,000 UZS (~38,700 per month). Compared with 3 and 12 months, the in-app and Fragment price, and how to pay."
+  description={`Telegram Premium for 6 months costs ${fmt(P6)} UZS (~${fmt(pm(6))} per month). Compared with 3 and 12 months, the in-app and Fragment price, and how to pay.`}
   keywords="telegram premium 6 months price, telegram premium 6 months cost, telegram premium half year price, telegram premium 6 months uzs, telegram premium price uzbekistan"
   publishDate="2026-10-07"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-premium-6-oylik-narxi"
   ruHref="https://starsjoy.uz/ru/blog/telegram-premium-6-oylik-narxi"
   faqs={faqs}
 >
   <section>
-    <p class="post-lead"><strong>Short answer:</strong> 6 months of Telegram Premium cost <strong>232,000 UZS</strong> at StarsJoy — about 38,700 UZS per month. Open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, choose 6 months under Premium, add the username, and transfer the sum to the card the bot shows you — via Payme, Click or any banking app. Premium is usually active in about <strong>10 seconds</strong>. No password or SMS code is ever needed.</p>
+    <p class="post-lead"><strong>Short answer:</strong> 6 months of Telegram Premium cost <strong>{fmt(P6)} UZS</strong> at StarsJoy — about {fmt(pm(6))} UZS per month. Open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, choose 6 months under Premium, add the username, and transfer the sum to the card the bot shows you — via Payme, Click or any banking app. Premium is usually active in about <strong>10 seconds</strong>. No password or SMS code is ever needed.</p>
   </section>
 
   <section>
@@ -70,19 +77,20 @@ const faqs = [
         <tr><th>Where</th><th>Price for 6 months</th><th>What you need</th></tr>
       </thead>
       <tbody>
-        <tr><td><strong>StarsJoy (@starsjoybot)</strong></td><td><strong>232,000 UZS</strong> — fixed, in som</td><td>Uzcard, Humo or any card; just a username</td></tr>
+        <tr><td><strong>StarsJoy (@starsjoybot)</strong></td><td><strong>{fmt(P6)} UZS</strong> — fixed, in som</td><td>Uzcard, Humo or any card; just a username</td></tr>
         <tr><td>Telegram app (App Store / Google Play)</td><td>$4.99 monthly subscription — about $30 for 6 months (≈ 353,000 UZS), varies by country</td><td>Usually an international Visa / Mastercard</td></tr>
         <tr><td>Fragment</td><td>about $16–20 (≈ 189,000–236,000 UZS) + cost of buying TON</td><td>A TON wallet and crypto</td></tr>
       </tbody>
     </table>
-    <p>To be upfront: on Fragment the dollar price can be close to StarsJoy's or slightly lower, but it only accepts crypto. Compared with the monthly subscription in the Telegram app, the 6-month plan at StarsJoy is noticeably cheaper — and it's paid in som with a local card.</p>
+    <p>To be upfront: on Fragment the dollar price can be close to StarsJoy's or slightly lower, but it only accepts crypto. Compared with the monthly subscription in the Telegram app, the 6-month plan at StarsJoy is noticeably cheaper — and it's paid in som with Uzcard or Humo.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>
     <h2>What does the 6-month plan cost per month?</h2>
     <p>The math is simple:</p>
-    <p><strong>232,000 ÷ 6 ≈ 38,700 UZS per month</strong> — roughly 1,270 UZS per day.</p>
-    <p>It's a single payment: you pay 232,000 UZS once and nothing more for six months. No commission or hidden fee is added — you transfer the amount you see in the bot. The price follows the rate at the time of the order, so check the amount in the bot before paying.</p>
+    <p><strong>{fmt(P6)} ÷ 6 ≈ {fmt(pm(6))} UZS per month</strong> — roughly {fmt(perDay6)} UZS per day.</p>
+    <p>It's a single payment: you pay {fmt(P6)} UZS once and nothing more for six months. No commission or hidden fee is added — you transfer the amount you see in the bot. The price follows the rate at the time of the order, so check the amount in the bot before paying.</p>
   </section>
 
   <section>
@@ -93,13 +101,13 @@ const faqs = [
         <tr><th>Plan</th><th>Price</th><th>Per month</th><th>A full year on this plan</th></tr>
       </thead>
       <tbody>
-        <tr><td><a href="/en/premium/3-months">3 months</a></td><td>172,000 UZS</td><td>~57,300 UZS</td><td>688,000 UZS (4 purchases)</td></tr>
-        <tr><td><a href="/en/premium/6-months"><strong>6 months</strong></a></td><td><strong>232,000 UZS</strong></td><td><strong>~38,700 UZS</strong></td><td><strong>464,000 UZS (2 purchases)</strong></td></tr>
-        <tr><td><a href="/en/premium/12-months">12 months</a></td><td>422,000 UZS</td><td>~35,200 UZS</td><td>422,000 UZS (1 purchase)</td></tr>
+        <tr><td><a href="/en/premium/3-months">3 months</a></td><td>{fmt(P3)} UZS</td><td>~{fmt(pm(3))} UZS</td><td>{fmt(4 * P3)} UZS (4 purchases)</td></tr>
+        <tr><td><a href="/en/premium/6-months"><strong>6 months</strong></a></td><td><strong>{fmt(P6)} UZS</strong></td><td><strong>~{fmt(pm(6))} UZS</strong></td><td><strong>{fmt(2 * P6)} UZS (2 purchases)</strong></td></tr>
+        <tr><td><a href="/en/premium/12-months">12 months</a></td><td>{fmt(P12)} UZS</td><td>~{fmt(pm(12))} UZS</td><td>{fmt(P12)} UZS (1 purchase)</td></tr>
       </tbody>
     </table>
-    <p><strong>6 months vs 3 months.</strong> Two 3-month plans cost 344,000 UZS; one 6-month plan costs 232,000 UZS. For the same half year that's a difference of <strong>112,000 UZS</strong>. If you're sure you'll use Premium for more than three months, the 3-month plan makes little sense.</p>
-    <p><strong>6 months vs 12 months.</strong> Here the gap is much smaller: two 6-month plans cost 464,000 UZS, one 12-month plan 422,000 UZS — 42,000 UZS per year. The yearly plan is cheaper, but it asks for almost twice as much money at once.</p>
+    <p><strong>6 months vs 3 months.</strong> Two 3-month plans cost {fmt(2 * P3)} UZS; one 6-month plan costs {fmt(P6)} UZS. For the same half year that's a difference of <strong>{fmt(2 * P3 - P6)} UZS</strong>. If you're sure you'll use Premium for more than three months, the 3-month plan makes little sense.</p>
+    <p><strong>6 months vs 12 months.</strong> Here the gap is much smaller: two 6-month plans cost {fmt(2 * P6)} UZS, one 12-month plan {fmt(P12)} UZS — {fmt(2 * P6 - P12)} UZS per year. The yearly plan is cheaper, but it asks for almost twice as much money at once.</p>
   </section>
 
   <section>
@@ -109,7 +117,7 @@ const faqs = [
   </section>
 
   <section>
-    <h2>How do I pay 232,000 UZS?</h2>
+    <h2>How do I pay {fmt(P6)} UZS?</h2>
     <p>At StarsJoy, payment is a transfer to the card the bot shows you, so you can make it from whichever app suits you:</p>
     <ul>
       <li><strong>Payme or Click</strong> — the fastest route if your card is already linked;</li>
@@ -124,7 +132,7 @@ const faqs = [
     <ol>
       <li><strong>Open the bot.</strong> Open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> in Telegram and choose Premium.</li>
       <li><strong>6 months and username.</strong> Pick the 6-month term and enter the Telegram username that should get Premium — yours or someone else's.</li>
-      <li><strong>Pay.</strong> Transfer 232,000 UZS to the card the bot shows, via Payme, Click or a banking app.</li>
+      <li><strong>Pay.</strong> Transfer {fmt(P6)} UZS to the card the bot shows, via Payme, Click or a banking app.</li>
       <li><strong>Receive.</strong> Once the payment is confirmed, Premium is usually active in about 10 seconds. Under the public offer, orders are fulfilled within 5 minutes.</li>
     </ol>
     <p>Buying for someone else? See <a href="/en/blog/gift-telegram-premium">how to gift Telegram Premium</a>. What you get: <a href="/en/blog/telegram-premium-features">Telegram Premium features</a>.</p>
@@ -134,7 +142,7 @@ const faqs = [
     <h2>Who is the 6-month plan for?</h2>
     <ul>
       <li><strong>Regular Premium users</strong> — cheaper than buying 3 months again and again, and nothing to renew for half a year;</li>
-      <li><strong>People who don't want to pay for a year at once</strong> — 232,000 UZS instead of 422,000;</li>
+      <li><strong>People who don't want to pay for a year at once</strong> — {fmt(P6)} UZS instead of {fmt(P12)};</li>
       <li><strong>Gift givers</strong> — more substantial than 3 months, cheaper than a year.</li>
     </ul>
     <p>If you're trying Premium for the first time and aren't sure you'll continue, <a href="/en/premium/3-months">3 months</a> is enough. If you know you'll use it all year, <a href="/en/premium/12-months">12 months</a> is the cheapest per month.</p>
@@ -152,7 +160,7 @@ const faqs = [
     <p>Under the StarsJoy public offer:</p>
     <ul>
       <li>If the payment went through but the order failed for a technical reason, you get a <strong>full refund</strong>;</li>
-      <li>To claim it, send your payment receipt through <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a> (support) <strong>within 24 hours</strong>;</li>
+      <li>To claim it, send your payment receipt through <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a> (support) <strong>within 24 hours</strong>;</li>
       <li>If a wrong username was entered and Premium was activated for someone else, the payment can't be refunded — so check the username twice before paying.</li>
     </ul>
     <p>More: <a href="/en/blog/is-starsjoy-legit">is StarsJoy legit</a>.</p>

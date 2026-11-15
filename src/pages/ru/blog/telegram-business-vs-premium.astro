@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Telegram Business vs Telegram Premium: отдельная подписка или одна? (2026, полная разница) | Блог StarsJoy";
 const description = "Telegram Business и Telegram Premium — это отдельные подписки? Ответ в 2026: нет, два режима в одной подписке. Купили Premium — функции Business открываются автоматически. Разница, кому нужно, будет ли отдельный тариф.";
 const publishDate = "2026-05-19";
-const modifiedDate = "2026-05-19";
+const modifiedDate = "2026-11-15";
 const wordCount = 1720;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-business-vs-premium";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -116,7 +117,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Сколько стоит Telegram Premium и где купить?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Международная цена: $4.99 в месяц или ~$35.99 в год (in-app Telegram). В Узбекистане через локального реселлер-бота в сумах: 1 мес ~57 000 сум, 3 мес ~146 000 сум, 12 мес ~422 000 сум (Uzcard, Humo, Click, Payme). Примерно 34 000–57 000 сум в месяц. Подробнее — в статье про сравнение пакетов Premium."
+          "text": "Международная цена: $4.99 в месяц или ~$35.99 в год (in-app Telegram). В Узбекистане через локального реселлер-бота в сумах: 1 мес ~60 000 сум, 3 мес ~" + fmtS(PREMIUM_PRICE[3]) + " сум, 12 мес ~" + fmtS(PREMIUM_PRICE[12]) + " сум (Uzcard, Humo, Click, Payme). Примерно 36 000–60 000 сум в месяц. Подробнее — в статье про сравнение пакетов Premium."
         }
       },
       {
@@ -173,8 +174,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> Telegram Business — это <strong>не отдельная подписка</strong>, а функции, встроенные в Telegram Premium. <strong>Купили Premium — функции Business (часы работы, локация, quick replies, greeting/away message, чатбот) открываются автоматически и бесплатно.</strong> Premium стоит ~$4.99 в месяц (через локального бота ~57 000 сум), годовая подписка ~$35.99 (~422 000 сум). В официальных <a href="https://telegram.org/tos/business" target="_blank" rel="noopener nofollow">Terms of Service</a> Telegram оставляет право в будущем выделить Business в отдельный тариф — но на май 2026 это ещё не сделано.
+            <strong>Краткий ответ:</strong> Telegram Business — это <strong>не отдельная подписка</strong>, а функции, встроенные в Telegram Premium. <strong>Купили Premium — функции Business (часы работы, локация, quick replies, greeting/away message, чатбот) открываются автоматически и бесплатно.</strong> Premium стоит ~$4.99 в месяц (через локального бота ~60 000 сум), годовая подписка ~$35.99 (~{fmtS(PREMIUM_PRICE[12])} сум). В официальных <a href="https://telegram.org/tos/business" target="_blank" rel="noopener nofollow">Terms of Service</a> Telegram оставляет право в будущем выделить Business в отдельный тариф — но на май 2026 это ещё не сделано.
           </div>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
           <p>Когда в Telegram слышат слово "Business", многие думают: "Это отдельная подписка от Premium? Нужно ли покупать обе? Сколько ещё платить?" На самом деле всё проще — но эта путаница распространена настолько, что даже сам Telegram в своём <a href="https://telegram.org/blog/telegram-business" target="_blank" rel="noopener nofollow">официальном анонсе</a> отдельно проговаривает этот момент.</p>
 
@@ -274,7 +276,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <ol>
             <li><strong>Telegram in-app</strong> — через App Store или Google Play. Для пользователей Узбекистана часто нужна международная карта, цена от $4.99/мес.</li>
-            <li><strong>Локальный реселлер-бот</strong> — Uzcard, Humo, Click, Payme в сумах. Цена часто выгоднее in-app (12 мес напрямую 422 000 сум). Активация за 10 секунд.</li>
+            <li><strong>Локальный реселлер-бот</strong> — Uzcard, Humo, Click, Payme в сумах. Цена часто выгоднее in-app, сразу в сумах, международная карта не нужна (12 мес — {fmtS(PREMIUM_PRICE[12])} сум). Активация за 10 секунд.</li>
             <li><strong>Через Stars</strong> — купить Telegram Stars, затем конвертировать их в Premium. Это дополнительный шаг — по цене и времени часто менее выгодно, чем локальный бот.</li>
           </ol>
 
@@ -329,7 +331,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Сколько стоит Premium и где купить?</h3>
-              <p>In-app $4.99/мес или $35.99/год. В Узбекистане через локального реселлер-бота в сумах — 1 мес ~57 000 сум, 12 мес ~422 000 сум. Через Uzcard, Humo, Click, Payme.</p>
+              <p>In-app $4.99/мес или $35.99/год. В Узбекистане через локального реселлер-бота в сумах — 1 мес ~60 000 сум, 12 мес ~{fmtS(PREMIUM_PRICE[12])} сум. Через Uzcard, Humo, Click, Payme.</p>
             </div>
             <div class="post-faq-item">
               <h3>Станет ли Business отдельной подпиской в будущем?</h3>
@@ -347,7 +349,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Для личного пользователя удобства Premium (4 ГБ файлы, voice-to-text, расширенные лимиты) достаточно. Для малого бизнеса, магазина, клиники, кафе или фрилансера дополнительное включение режима Business существенно повышает качество работы с новыми клиентами.</p>
 
-          <p>Самый удобный способ в Узбекистане — Premium через локального реселлер-бота в сумах (12 мес ~422 000 сум). В Terms of Service Telegram оставляет право в будущем выделить Business в отдельный тариф, но пока никакого официального решения не объявлено.</p>
+          <p>Самый удобный способ в Узбекистане — Premium через локального реселлер-бота в сумах (12 мес ~{fmtS(PREMIUM_PRICE[12])} сум). В Terms of Service Telegram оставляет право в будущем выделить Business в отдельный тариф, но пока никакого официального решения не объявлено.</p>
 
           <div class="end-cta">
             <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Подписка Premium + Business — @starsjoybot &rarr;</a>

@@ -3,26 +3,27 @@ import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
 import { hreflangsFor } from '../../../lib/i18n';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, premiumPerMonth, fmtS } from '../../../lib/prices';
 
 const posts = [
   {
     slug: "telegram-stars-100-tadan-kam",
     title: "Как купить меньше 100 или 50 звёзд Telegram? С картой Uzcard и Humo — StarsJoy",
-    excerpt: "В приложении Telegram минимальный пакет 100 звёзд. В StarsJoy 50 звёзд за 12 000 сум, а если нужно меньше, подарок конвертируется в звёзды: 13 звёзд за 5 000 сум. Какой способ дешевле, в таблице.",
+    excerpt: "В приложении Telegram минимальный пакет 100 звёзд. В StarsJoy 50 звёзд за " + fmtS(starsPrice(50)) + " сум, а если нужно меньше, подарок конвертируется в звёзды: 13 звёзд за 5 000 сум. Какой способ дешевле, в таблице.",
     date: "2026-11-05",
     tag: "Stars"
   },
   {
     slug: "telegram-stars-100-narxi",
-    title: "Цена 100 Telegram Stars в 2026 — 24 000 сум, оплата Uzcard и Humo",
-    excerpt: "100 Telegram Stars в StarsJoy стоят 24 000 сум (240 сум за звезду) — оплата Uzcard или Humo, зачисление за 10 секунд, бонус +4 ⭐. Сравнение с ценой в приложении и на что хватит 100 звёзд.",
+    title: "Цена 100 Telegram Stars в 2026 — " + fmtS(starsPrice(100)) + " сум, оплата Uzcard и Humo",
+    excerpt: "100 Telegram Stars в StarsJoy стоят " + fmtS(starsPrice(100)) + " сум (" + STAR_PRICE + " сум за звезду) — оплата Uzcard или Humo, зачисление за 10 секунд, бонус +4 ⭐. Сравнение с ценой в приложении и на что хватит 100 звёзд.",
     date: "2026-11-04",
     tag: "Stars"
   },
   {
     slug: "telegram-premium-eng-arzon",
     title: "Самый дешёвый Telegram Premium в 2026 — где и сколько? Оплата Uzcard и Humo",
-    excerpt: "Самый дешёвый Telegram Premium — 12 месяцев за 422 000 сум: ~35 200 в месяц, ~1 160 сум в день. Оплата Uzcard и Humo, на ~41% дешевле приложения. Чек-лист проверки дешёвых предложений.",
+    excerpt: "Самый дешёвый Telegram Premium — 12 месяцев за " + fmtS(PREMIUM_PRICE[12]) + " сум: ~" + fmtS(premiumPerMonth(12)) + " в месяц, ~" + fmtS(PREMIUM_PRICE[12] / 365) + " сум в день. Оплата Uzcard и Humo, на ~41% дешевле приложения. Чек-лист проверки дешёвых предложений.",
     date: "2026-11-04",
     tag: "Premium"
   },
@@ -35,8 +36,8 @@ const posts = [
   },
   {
     slug: "telegram-stars-500-narxi",
-    title: "Цена 500 Telegram Stars в 2026 — 120 000 сумов",
-    excerpt: "500 Telegram Stars в StarsJoy стоят 120 000 сумов (240 сум за звезду). Честное сравнение с ценой в приложении Telegram и на Fragment, на сколько подарков хватит 500 Stars и как получить их за 10 секунд.",
+    title: "Цена 500 Telegram Stars в 2026 — " + fmtS(starsPrice(500)) + " сумов",
+    excerpt: "500 Telegram Stars в StarsJoy стоят " + fmtS(starsPrice(500)) + " сумов (" + STAR_PRICE + " сум за звезду). Честное сравнение с ценой в приложении Telegram и на Fragment, на сколько подарков хватит 500 Stars и как получить их за 10 секунд.",
     date: "2026-10-10",
     tag: "Stars"
   },
@@ -50,28 +51,28 @@ const posts = [
   {
     slug: "telegram-stars-5000-narxi",
     title: "Цена 5000 Telegram Stars в 2026 — сколько сумов?",
-    excerpt: "5000 Telegram Stars в StarsJoy стоят 1 200 000 сумов (240 сум за звезду). Честное сравнение с ценой в приложении Telegram и на Fragment, на что хватит 5000 Stars и как получить их за 10 секунд.",
+    excerpt: "5000 Telegram Stars в StarsJoy стоят " + fmtS(starsPrice(5000)) + " сумов (" + STAR_PRICE + " сум за звезду). Честное сравнение с ценой в приложении Telegram и на Fragment, на что хватит 5000 Stars и как получить их за 10 секунд.",
     date: "2026-10-07",
     tag: "Stars"
   },
   {
     slug: "telegram-premium-6-oylik-narxi",
-    title: "Цена Telegram Premium на 6 месяцев в 2026 — 232 000 сумов",
-    excerpt: "Telegram Premium на 6 месяцев в StarsJoy стоит 232 000 сумов — около 38 700 сумов в месяц. Сравнение с тарифами на 3 и 12 месяцев, ценой в приложении Telegram и на Fragment, оплата и активация за 10 секунд.",
+    title: "Цена Telegram Premium на 6 месяцев в 2026 — " + fmtS(PREMIUM_PRICE[6]) + " сумов",
+    excerpt: "Telegram Premium на 6 месяцев в StarsJoy стоит " + fmtS(PREMIUM_PRICE[6]) + " сумов — около " + fmtS(premiumPerMonth(6)) + " сумов в месяц. Сравнение с тарифами на 3 и 12 месяцев, ценой в приложении Telegram и на Fragment, оплата и активация за 10 секунд.",
     date: "2026-10-07",
     tag: "Premium"
   },
   {
     slug: "telegram-stars-10000-narxi",
     title: "Цена 10 000 Telegram Stars в 2026 — сколько сумов?",
-    excerpt: "10 000 Telegram Stars в StarsJoy стоят 2 400 000 сумов (240 сум за звезду). Честное сравнение с ценой в приложении Telegram и на Fragment, как оплатить 2,4 млн сумов при дневном лимите карты и получить за 10 секунд.",
+    excerpt: "10 000 Telegram Stars в StarsJoy стоят " + fmtS(starsPrice(10000)) + " сумов (" + STAR_PRICE + " сум за звезду). Честное сравнение с ценой в приложении Telegram и на Fragment, как оплатить " + (starsPrice(10000)/1e6).toString().replace('.', ',') + " млн сумов при дневном лимите карты и получить за 10 секунд.",
     date: "2026-09-30",
     tag: "Stars"
   },
   {
     slug: "chet-elda-telegram-stars-premium-sotib-olish",
     title: "Могут ли узбеки за границей купить Telegram Stars или Premium? (2026)",
-    excerpt: "Узбеки в России, Турции, Корее или любой другой стране тоже могут купить Telegram Stars или Premium: как работает оплата через @starsjoysupport картой Uzcard/Humo/Visa с доставкой за 10 минут.",
+    excerpt: "Узбеки в России, Турции, Корее или любой другой стране тоже могут купить Telegram Stars или Premium: как работает оплата через @StarsjoySupport картой Uzcard/Humo/Visa с доставкой за 10 минут.",
     date: "2026-09-21",
     tag: "Stars"
   },
@@ -197,7 +198,7 @@ const posts = [
   {
     slug: "telegram-stars-eng-arzon-provayderlar",
     title: "Где купить Telegram Stars дешевле? Рейтинг провайдеров 2026",
-    excerpt: "Где дешевле всего купить Telegram Stars? App Store, официальный бот, Fragment и локальные боты (StarsJoy, Uzcard/Humo) — 4 способа сравнены по цене и удобству оплаты. App Store дороже всего из-за 30% комиссии, Fragment требует TON-кошелёк, а локальные боты дешевле и удобнее всего в сумах.",
+    excerpt: "Где дешевле всего купить Telegram Stars? App Store, официальный бот, Fragment и локальные боты (StarsJoy, Uzcard/Humo) — 4 способа сравнены по цене и удобству оплаты. App Store дороже всего из-за 30% комиссии, Fragment требует TON-кошелёк, а локальные боты недорогие и удобнее всего: оплата в сумах через Uzcard/Humo.",
     date: "2026-06-02",
     tag: "Stars"
   },
@@ -211,14 +212,14 @@ const posts = [
   {
     slug: "telegram-premium-3-oylik-sotib-olish",
     title: "Telegram Premium на 3 месяца 2026 — цена и самый простой способ купить",
-    excerpt: "3-месячный Telegram Premium стоит 172 000 сум — самая низкая входная цена, чтобы попробовать Premium. Активация через @starsjoybot за 10 секунд с Click или Payme. Автопродления нет — оплата разовая, контроль остаётся у вас. Кому подходит, шаги и что происходит после 3 месяцев.",
+    excerpt: "3-месячный Telegram Premium стоит " + fmtS(PREMIUM_PRICE[3]) + " сум — самая низкая входная цена, чтобы попробовать Premium. Активация через @starsjoybot за 10 секунд с Click или Payme. Автопродления нет — оплата разовая, контроль остаётся у вас. Кому подходит, шаги и что происходит после 3 месяцев.",
     date: "2026-05-24",
     tag: "Premium"
   },
   {
     slug: "telegram-premium-12-oylik-uzcard-humo-bilan",
     title: "Telegram Premium 12 месяцев через Uzcard и Humo: нюансы крупной оплаты (2026)",
-    excerpt: "Telegram Premium на 12 месяцев через Uzcard или Humo за 422 000 сум, активация за 10 секунд. 3 нюанса для владельца карты: суточный лимит (5–10 млн стандартно, настраивается), экономия с Click Premium / Payme Plus и отсутствие автосписания через 12 месяцев. Пошаговое руководство.",
+    excerpt: "Telegram Premium на 12 месяцев через Uzcard или Humo за " + fmtS(PREMIUM_PRICE[12]) + " сум, активация за 10 секунд. 3 нюанса для владельца карты: суточный лимит (5–10 млн стандартно, настраивается), экономия с Click Premium / Payme Plus и отсутствие автосписания через 12 месяцев. Пошаговое руководство.",
     date: "2026-05-21",
     tag: "Premium"
   },
@@ -232,7 +233,7 @@ const posts = [
   {
     slug: "telegram-premium-uzbekistan-eng-yaxshi-usullar",
     title: "Telegram Premium в Узбекистане: 3 лучших способа и цены на 3/6/12 месяцев (2026)",
-    excerpt: "3 лучших способа купить Telegram Premium в Узбекистане: @PremiumSendBot (premiumsend.uz, фокус на Premium), @uzgetsbot (uzgets.uz, самый дешёвый — 12 мес 408 000), @starsjoybot (starsjoy.uz, Premium + Stars + Gifts). Диапазон цен 168 000 — 425 000 сум, от 34 000 сум в месяц. Uzcard/Humo/Click/Payme, активация за 5-15 минут.",
+    excerpt: "3 лучших способа купить Telegram Premium в Узбекистане: @PremiumSendBot (premiumsend.uz, фокус на Premium), @uzgetsbot (uzgets.uz, самый дешёвый — 12 мес 408 000), @starsjoybot (starsjoy.uz, Premium + Stars + Gifts). Диапазон цен 168 000 — " + fmtS(PREMIUM_PRICE[12]) + " сум, от 34 000 сум в месяц. Uzcard/Humo/Click/Payme, активация за 5-15 минут.",
     date: "2026-05-17",
     tag: "Premium"
   },
@@ -252,22 +253,22 @@ const posts = [
   },
   {
     slug: "telegram-1000-stars-sotib-olish",
-    title: "Цена 1000 Telegram Stars в 2026 — 240 000 сум, оплата Uzcard и Humo",
-    excerpt: "1000 Telegram Stars в StarsJoy стоят 240 000 сум (240 сум за звезду) — оплата Uzcard или Humo, зачисление за 10 секунд, бонус +40 ⭐. Сравнение с ценой в приложении и на что хватит 1000 звёзд.",
+    title: "Цена 1000 Telegram Stars в 2026 — " + fmtS(starsPrice(1000)) + " сум, оплата Uzcard и Humo",
+    excerpt: "1000 Telegram Stars в StarsJoy стоят " + fmtS(starsPrice(1000)) + " сум (" + STAR_PRICE + " сум за звезду) — оплата Uzcard или Humo, зачисление за 10 секунд, бонус +40 ⭐. Сравнение с ценой в приложении и на что хватит 1000 звёзд.",
     date: "2026-05-14",
     tag: "Stars"
   },
   {
     slug: "telegram-stars-humo-bilan-sotib-olish",
     title: "Купить Telegram Stars через карту Humo (2026, зарплатной картой за 10 секунд)",
-    excerpt: "Покупка Telegram Stars через Humo (зарплатные карты Народного банка, Микрокредитбанка, Асака, Агробанка) — Click или Payme, 1 Star = 240 сум, новинка Tez QR 2026. Решения для лимитов зарплатной карты и советы по безопасности.",
+    excerpt: "Покупка Telegram Stars через Humo (зарплатные карты Народного банка, Микрокредитбанка, Асака, Агробанка) — Click или Payme, 1 Star = " + STAR_PRICE + " сум, новинка Tez QR 2026. Решения для лимитов зарплатной карты и советы по безопасности.",
     date: "2026-05-13",
     tag: "Stars"
   },
   {
     slug: "telegram-stars-uzcard-bilan-sotib-olish",
     title: "Купить Telegram Stars через Uzcard (цены 2026, за 10 секунд)",
-    excerpt: "Покупка Telegram Stars через Uzcard — самый удобный способ в Узбекистане. 1 Star = 240 сум, через Click или Payme за 10 секунд. Пошаговое руководство, таблица цен и советы по безопасности.",
+    excerpt: "Покупка Telegram Stars через Uzcard — самый удобный способ в Узбекистане. 1 Star = " + STAR_PRICE + " сум, через Click или Payme за 10 секунд. Пошаговое руководство, таблица цен и советы по безопасности.",
     date: "2026-05-12",
     tag: "Stars"
   },
@@ -399,8 +400,8 @@ const posts = [
   },
   {
     slug: "telegram-premium-12-oylik",
-    title: "Сколько стоит Telegram Premium на год (12 месяцев) в 2026 — 422 000 сум, оплата Uzcard и Humo",
-    excerpt: "Telegram Premium на 12 месяцев в StarsJoy — 422 000 сум: ~35 200 в месяц, ~1 160 сум в день. Оплата с Uzcard или Humo, активация за 10 секунд. На ~300 000 сум дешевле, чем в приложении.",
+    title: "Сколько стоит Telegram Premium на год (12 месяцев) в 2026 — " + fmtS(PREMIUM_PRICE[12]) + " сум, оплата Uzcard и Humo",
+    excerpt: "Telegram Premium на 12 месяцев в StarsJoy — " + fmtS(PREMIUM_PRICE[12]) + " сум: ~" + fmtS(premiumPerMonth(12)) + " в месяц, ~" + fmtS(PREMIUM_PRICE[12] / 365) + " сум в день. Оплата с Uzcard или Humo, активация за 10 секунд. На ~290 000 сум дешевле, чем в приложении.",
     date: "2026-04-17",
     tag: "Premium"
   },
@@ -421,7 +422,7 @@ const posts = [
   {
     slug: "telegram-premium-1-oylik",
     title: "1 месяц Telegram Premium в Узбекистане: покупка через Uzcard и Humo",
-    excerpt: "Можно ли купить Telegram Premium на 1 месяц? В Узбекистане через Uzcard и Humo — 57 000 сум через StarsJoy.",
+    excerpt: "Можно ли купить Telegram Premium на 1 месяц? В Узбекистане через Uzcard и Humo — через StarsJoy пакетом на 3 месяца, ~" + fmtS(premiumPerMonth(3)) + " сум в месяц.",
     date: "2026-04-07",
     tag: "Premium"
   },

@@ -6,6 +6,7 @@ import Reviews from '../../components/Reviews.astro';
 import FooterEn from '../../components/FooterEn.astro';
 import { getApprovedReviews, aggregateOf } from '../../lib/reviews';
 import { hreflangsFor } from '../../lib/i18n';
+import { STAR_PRICE, PREMIUM_PRICE, fmt, PRICE_NOTE } from '../../lib/prices';
 
 // Qarang: src/pages/index.astro — bir xil AggregateRating signali, en varianti.
 const agg = aggregateOf(await getApprovedReviews('premium'));
@@ -17,7 +18,7 @@ const faqs = [
   },
   {
     q: "How much does Telegram Premium cost?",
-    a: "The price depends on the term: 3 months (172,000 UZS), 6 months (232,000 UZS) or 12 months (422,000 UZS). The longer the term, the lower the effective monthly cost. There is no 1-month plan — Telegram’s Gift Premium mechanism starts at 3 months.",
+    a: `The price depends on the term: 3 months (${fmt(PREMIUM_PRICE[3])} UZS), 6 months (${fmt(PREMIUM_PRICE[6])} UZS) or 12 months (${fmt(PREMIUM_PRICE[12])} UZS). The longer the term, the lower the effective monthly cost. There is no 1-month plan — Telegram’s Gift Premium mechanism starts at 3 months. ${PRICE_NOTE.en}`,
   },
   {
     q: "How do I send a Telegram Gift to a friend?",
@@ -41,7 +42,7 @@ const faqs = [
 
 <Layout
   title="Buy Telegram Stars, Premium and Gifts in Uzbekistan — StarsJoy"
-  description="Buy Telegram Stars, Premium and Gifts in Uzbekistan — pay in Uzbek som with Uzcard or Humo, no Visa card needed. Stars 240 UZS each, Premium from 172,000 UZS. Delivered in about 10 seconds, 100% refund guarantee."
+  description={`Buy Telegram Stars, Premium and Gifts in Uzbekistan — pay in Uzbek som with Uzcard or Humo, no Visa card needed. Stars ${STAR_PRICE} UZS each, Premium from ${fmt(PREMIUM_PRICE[3])} UZS. Delivered in about 10 seconds, 100% refund guarantee.`}
   canonical="https://starsjoy.uz/en"
   keywords="buy telegram stars uzbekistan, buy telegram premium uzbekistan, telegram gifts, telegram stars uzcard, telegram premium humo, telegram stars to uzs, starsjoy"
   lang="en"

@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Сколько действуют Telegram Stars и не сгорают ли они? (2026) | Блог StarsJoy";
 const description = "Есть ли срок действия у Telegram Stars, сгорают ли Stars на балансе, правила refund и куда деваются Stars при удалении аккаунта — полное объяснение.";
 const publishDate = "2026-05-06";
-const modifiedDate = "2026-05-06";
+const modifiedDate = "2026-11-15";
 const wordCount = 1680;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-amal-muddati";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -240,7 +241,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li>Полученные вами Gifts пропадают (так как хранились на аккаунте)</li>
           </ul>
 
-          <p>Поэтому вместо хранения большого баланса Stars рекомендуется покупать нужное количество и сразу использовать. По курсу 240 сум/Star Stars быстро покупаются — 100 или 500 Stars при необходимости пополняются за 5 минут (<a href="/ru/blog/telegram-stars-tez-toldirish">Stars за 5 минут</a>).</p>
+          <p>Поэтому вместо хранения большого баланса Stars рекомендуется покупать нужное количество и сразу использовать. По курсу {STAR_PRICE} сум/Star Stars быстро покупаются — 100 или 500 Stars при необходимости пополняются за 5 минут (<a href="/ru/blog/telegram-stars-tez-toldirish">Stars за 5 минут</a>).</p>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
           <p class="natural-cta">Советы по защите аккаунта и от мошенников — в <a href="/ru/blog/telegram-stars-firibgarlik-himoya">руководстве по защите Stars</a>. Также полезно для предотвращения блокировки аккаунта.</p>
 

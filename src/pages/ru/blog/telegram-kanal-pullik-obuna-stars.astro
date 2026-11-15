@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Платная подписка на канал Telegram: как работает Stars (2026) | StarsJoy Blog";
 const description = "Как настроить ежемесячную платную подписку на канал Telegram через Stars и как на неё подписаться: цена, отмена, куда уходят Stars и отличие от paid post.";
@@ -28,7 +29,7 @@ const publishDate = "2026-09-09";
     "headline": "Платная подписка на канал Telegram: как работает Stars (2026)",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": "2026-11-15",
     "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
     "publisher": {
       "@type": "Organization",
@@ -80,7 +81,7 @@ const publishDate = "2026-09-09";
       {
         "@type": "Question",
         "name": "Какую цену подписки лучше установить?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Обычная практика — от 50 до 500 Stars/месяц (12 000–120 000 сум). Для небольшой аудитории или нового канала рекомендуется начать с низкой цены и постепенно повышать её по результатам." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Обычная практика — от 50 до 500 Stars/месяц (" + fmtS(starsPrice(50)) + "–" + fmtS(starsPrice(500)) + " сум). Для небольшой аудитории или нового канала рекомендуется начать с низкой цены и постепенно повышать её по результатам." }
       },
       {
         "@type": "Question",
@@ -119,7 +120,8 @@ const publishDate = "2026-09-09";
         <div class="post-content">
 
           <section>
-            <p class="post-lead"><strong>Короткий ответ:</strong> Владелец канала Telegram может установить <strong>ежемесячную цену в Stars</strong> и открывать эксклюзивный контент только платным подписчикам. Это отличается от <a href="/ru/blog/telegram-channel-paid-post-yaratish">paid post</a> — там разовая оплата, а подписка списывается автоматически каждый месяц. Обычный диапазон цены — 50–500 Stars/месяц (12 000–120 000 сум), Stars поступают на баланс канала на 100%.</p>
+            <p class="post-lead"><strong>Короткий ответ:</strong> Владелец канала Telegram может установить <strong>ежемесячную цену в Stars</strong> и открывать эксклюзивный контент только платным подписчикам. Это отличается от <a href="/ru/blog/telegram-channel-paid-post-yaratish">paid post</a> — там разовая оплата, а подписка списывается автоматически каждый месяц. Обычный диапазон цены — 50–500 Stars/месяц ({fmtS(starsPrice(50))}–{fmtS(starsPrice(500))} сум), Stars поступают на баланс канала на 100%.</p>
+            <p><small>{PRICE_NOTE.ru}</small></p>
           </section>
 
           <section>

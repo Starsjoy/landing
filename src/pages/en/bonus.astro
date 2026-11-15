@@ -1,5 +1,6 @@
 ---
 import BonusPage from '../../components/BonusPage.astro';
+import { STAR_PRICE, PRICES_DATE, starsPrice, starPriceWithBonus, fmt, PRICE_NOTE } from '../../lib/prices';
 
 const faqs = [
   {
@@ -20,7 +21,7 @@ const faqs = [
   },
   {
     q: "What does one Star cost with the bonus?",
-    a: "About 231 UZS once you use your bonus. The regular price is 240 UZS per Star, and the bonus gives you 4% extra Stars: 240 ÷ 1.04 ≈ 231."
+    a: `About ${starPriceWithBonus()} UZS once you use your bonus. The regular price is ${STAR_PRICE} UZS per Star, and the bonus gives you 4% extra Stars: ${STAR_PRICE} ÷ 1.04 ≈ ${starPriceWithBonus()}.`
   },
   {
     q: "How much bonus do I get for 70 Stars?",
@@ -55,16 +56,16 @@ const faqs = [
   ctaLabel="Buy Stars and earn a bonus"
   ctaSub="@starsjoybot, with Uzcard or Humo"
   updatedLabel="Updated"
-  updated="2026-10-31"
+  updated={PRICES_DATE}
   tableTitle="How much bonus does each Stars pack earn?"
   tableHead={["Stars", "Price", "Bonus"]}
   currency="UZS"
   thousandSep=","
-  tableNote="Prices as of 2026-10-31, at 240 UZS per Star. The bonus counts every full 50 Stars: 70 Stars earn +2 ⭐, and 150 Stars earn +6 ⭐."
+  tableNote={`Prices as of ${PRICES_DATE}, at ${STAR_PRICE} UZS per Star. The bonus counts every full 50 Stars: 70 Stars earn +2 ⭐, and 150 Stars earn +6 ⭐. ${PRICE_NOTE.en}`}
   faqTitle="Frequently asked questions"
   faqs={faqs}
   finalTitle="Earn your first bonus today"
-  finalText="100 Stars for 24,000 UZS plus +4 ⭐ bonus, with Uzcard or Humo."
+  finalText={`100 Stars for ${fmt(starsPrice(100))} UZS plus +4 ⭐ bonus, with Uzcard or Humo.`}
   finalCta="Open @starsjoybot"
 >
   <section>
@@ -87,8 +88,8 @@ const faqs = [
 
   <section>
     <h2>How much does the bonus lower the price of a Star?</h2>
-    <p>Once you use your bonus, one Star effectively costs about <strong>231 UZS</strong>. The regular price is 240 UZS, and the bonus adds 4% extra Stars to every purchase.</p>
-    <p>For example, 1,250 Stars cost 300,000 UZS and earn 50 ⭐ bonus. That equals 50 Stars worth 12,000 UZS.</p>
+    <p>Once you use your bonus, one Star effectively costs about <strong>{starPriceWithBonus()} UZS</strong>. The regular price is {STAR_PRICE} UZS, and the bonus adds 4% extra Stars to every purchase.</p>
+    <p>For example, 1,250 Stars cost {fmt(starsPrice(1250))} UZS and earn 50 ⭐ bonus. That equals 50 Stars worth {fmt(starsPrice(50))} UZS.</p>
   </section>
 
   <section>

@@ -2,11 +2,14 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
+const p3 = fmtS(PREMIUM_PRICE[3]), p6 = fmtS(PREMIUM_PRICE[6]), p12 = fmtS(PREMIUM_PRICE[12]);
+const m3 = fmtS(premiumPerMonth(3)), m6 = fmtS(premiumPerMonth(6)), m12 = fmtS(premiumPerMonth(12));
 
 const title = "Telegram Premium sovg'a qilish 2026 — do'stga Uzcard/Humo bilan | StarsJoy Blog";
 const description = "Telegram Premium'ni do'stingizga sovg'a qilmoqchimisiz? Rasmiy yo'lda o'zingiz Premium bo'lishingiz shart, StarsJoy orqali esa faqat username + Uzcard/Humo kifoya. Narxlar (3/6/12 oy), bosqichlar va qabul qiluvchi nima ko'rishi — 2026 qo'llanma.";
 const publishDate = "2026-06-13";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1730;
 const canonical = "https://starsjoy.uz/blog/telegram-premium-sovga-qilish";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -99,7 +102,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Telegram Premium sovg'asi qancha turadi (2026)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "StarsJoy orqali: 3 oylik — 172 000 so'm, 6 oylik — 232 000 so'm, 12 oylik — 422 000 so'm. Sovg'a narxi o'zingiz uchun sotib olish narxidan farq qilmaydi — qo'shimcha 'sovg'a yig'imi' yo'q."
+          "text": `StarsJoy orqali: 3 oylik — ${p3} so'm, 6 oylik — ${p6} so'm, 12 oylik — ${p12} so'm. Sovg'a narxi o'zingiz uchun sotib olish narxidan farq qilmaydi — qo'shimcha 'sovg'a yig'imi' yo'q.`
         }
       },
       {
@@ -194,7 +197,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Telegram Premium'ni do'stingizga sovg'a qilish — Telegram'ning <strong>rasmiy Gift Premium</strong> mexanizmi orqali ishlaydi. Telegram ichidagi yo'lda o'zingiz Premium bo'lishingiz shart, O'zbekistonda esa bu odatda Visa kartani ham talab qiladi. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali esa siz Premium bo'lmasangiz ham, faqat do'stingizning <strong>username'ini</strong> kiritib, Uzcard yoki Humo bilan sovg'a qila olasiz. Narxlar: 3 oylik 172 000 so'm, 6 oylik 232 000 so'm, 12 oylik 422 000 so'm. Parol yoki SMS-kod so'ralmaydi.
+            <strong>Qisqacha javob:</strong> Telegram Premium'ni do'stingizga sovg'a qilish — Telegram'ning <strong>rasmiy Gift Premium</strong> mexanizmi orqali ishlaydi. Telegram ichidagi yo'lda o'zingiz Premium bo'lishingiz shart, O'zbekistonda esa bu odatda Visa kartani ham talab qiladi. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali esa siz Premium bo'lmasangiz ham, faqat do'stingizning <strong>username'ini</strong> kiritib, Uzcard yoki Humo bilan sovg'a qila olasiz. Narxlar: 3 oylik {p3} so'm, 6 oylik {p6} so'm, 12 oylik {p12} so'm. Parol yoki SMS-kod so'ralmaydi.
           </div>
 
           <section>
@@ -259,21 +262,22 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <tbody>
               <tr>
                 <td>3 oylik</td>
-                <td>172 000 so'm</td>
-                <td>~57 333 so'm</td>
+                <td>{p3} so'm</td>
+                <td>~{m3} so'm</td>
               </tr>
               <tr>
                 <td>6 oylik</td>
-                <td>232 000 so'm</td>
-                <td>~38 667 so'm</td>
+                <td>{p6} so'm</td>
+                <td>~{m6} so'm</td>
               </tr>
               <tr>
                 <td>12 oylik</td>
-                <td>422 000 so'm</td>
-                <td>~35 167 so'm</td>
+                <td>{p12} so'm</td>
+                <td>~{m12} so'm</td>
               </tr>
             </tbody>
           </table>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
           <p>Sovg'a uchun eng ommabop tanlov — <strong>3 oylik</strong> (eng arzon kirish nuqtasi) yoki ta'sirli sovg'a sifatida <a href="/blog/telegram-premium-12-oylik">12 oylik</a> (oyiga eng arzon, bir yil davom etadi). Muddatlarni batafsil solishtirish uchun <a href="/blog/telegram-premium-paketlar-taqqoslash">paketlar taqqoslash</a> maqolamizga qarang.</p>
 
@@ -336,7 +340,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Telegram Premium sovg'asi qancha turadi (2026)?</h3>
-              <p>StarsJoy orqali: 3 oylik — 172 000 so'm, 6 oylik — 232 000 so'm, 12 oylik — 422 000 so'm. Qo'shimcha sovg'a yig'imi yo'q.</p>
+              <p>StarsJoy orqali: 3 oylik — {p3} so'm, 6 oylik — {p6} so'm, 12 oylik — {p12} so'm. Qo'shimcha sovg'a yig'imi yo'q.</p>
             </div>
             <div class="post-faq-item">
               <h3>Visa karta kerakmi?</h3>
@@ -352,7 +356,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Telegram Premium — har kuni foydalanadigan, eslab turiladigan zamonaviy sovg'a. Rasmiy yo'lda o'zingiz Premium bo'lishingiz va ko'pincha Visa kerak bo'ladi; O'zbekistonda esa eng oson yo'l — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali faqat do'stingizning username'ini kiritib, Uzcard yoki Humo bilan to'lash. 3 oylikdan 12 oylikgacha tanlang, bir necha daqiqada faollashadi.</p>
 
-          <p class="end-cta">Premium sovg'a qilishni boshlash: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> · Savollar uchun <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a></p>
+          <p class="end-cta">Premium sovg'a qilishni boshlash: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> · Savollar uchun <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a></p>
 
           <p>Shuni ham o'qing: <a href="/blog/telegram-premium-12-oylik">Telegram Premium 12 oylik</a> · <a href="/blog/telegram-premium-paketlar-taqqoslash">Premium paketlar taqqoslash</a> · <a href="/blog/telegram-premium-funksiyalari">Premium funksiyalari</a> · <a href="/blog/telegram-gift-collectible-upgrade">Collectible Gifts</a></p>
 

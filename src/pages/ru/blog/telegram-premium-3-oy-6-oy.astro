@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Telegram Premium на 3 и 6 месяцев: самый простой способ покупки (2026) | StarsJoy Blog";
 const description = "Как купить Telegram Premium на 3 или 6 месяцев в Узбекистане через Uzcard, Humo, Click и Payme — полное руководство с ценами и пошаговой инструкцией.";
 const publishDate = "2026-03-24";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1080;
 ---
 
@@ -89,7 +90,7 @@ const wordCount = 1080;
         "name": "Какие пакеты доступны через StarsJoy?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Пакеты на 3 месяца (172 000 сум), 6 месяцев (232 000 сум) и 12 месяцев (422 000 сум) доступны автоматически через Gift — оплата Uzcard/Humo. Пакет на 1 месяц в Telegram официально есть, но в Gift его нет (минимум 3 месяца) — его активирует только сам владелец аккаунта, своей международной картой через настройки Telegram."
+          "text": "Пакеты на 3 месяца (" + fmtS(PREMIUM_PRICE[3]) + " сум), 6 месяцев (" + fmtS(PREMIUM_PRICE[6]) + " сум) и 12 месяцев (" + fmtS(PREMIUM_PRICE[12]) + " сум) доступны автоматически через Gift — оплата Uzcard/Humo. Пакет на 1 месяц в Telegram официально есть, но в Gift его нет (минимум 3 месяца) — его активирует только сам владелец аккаунта, своей международной картой через настройки Telegram."
         }
       },
       {
@@ -189,13 +190,13 @@ const wordCount = 1080;
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> В Узбекистане Telegram Premium на 3 месяца (172 000 сум) и 6 месяцев (232 000 сум) покупают через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> картой Uzcard или Humo через Click/Payme — активация за 10 секунд. Международная карта, VPN, пароль или SMS не нужны: всё работает через официальный механизм Telegram Gift Premium. 6 месяцев примерно на 30% выгоднее в пересчёте на месяц. Все способы — в <a href="/ru/blog/telegram-premium-sotib-olish">гайде по покупке Premium</a>.
+            <strong>Краткий ответ:</strong> В Узбекистане Telegram Premium на 3 месяца ({fmtS(PREMIUM_PRICE[3])} сум) и 6 месяцев ({fmtS(PREMIUM_PRICE[6])} сум) покупают через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> картой Uzcard или Humo через Click/Payme — активация за 10 секунд. Международная карта, VPN, пароль или SMS не нужны: всё работает через официальный механизм Telegram Gift Premium. 6 месяцев примерно на 30% выгоднее в пересчёте на месяц. Все способы — в <a href="/ru/blog/telegram-premium-sotib-olish">гайде по покупке Premium</a>.
           </div>
 
           <section>
             <h2>Как купить Telegram Premium на 3 или 6 месяцев?</h2>
             <p><a href="/ru/premium/3-oy"><strong>→ 3 месяца</strong></a> или <a href="/ru/premium/6-oy"><strong>6 месяцев Premium — купить прямо сейчас</strong></a> — цена, FAQ и кнопка покупки на отдельной странице.</p>
-            <p><strong>Telegram Premium</strong> — это платная подписка Telegram с расширенными возможностями. В Узбекистане <strong>Telegram Premium на 3 и 6 месяцев</strong> можно купить через Uzcard, Humo, Click или Payme. Цены StarsJoy: 3 месяца — 172 000 сум, 6 месяцев — 232 000 сум, 12 месяцев — 422 000 сум.</p>
+            <p><strong>Telegram Premium</strong> — это платная подписка Telegram с расширенными возможностями. В Узбекистане <strong>Telegram Premium на 3 и 6 месяцев</strong> можно купить через Uzcard, Humo, Click или Payme. Цены StarsJoy: 3 месяца — {fmtS(PREMIUM_PRICE[3])} сум, 6 месяцев — {fmtS(PREMIUM_PRICE[6])} сум, 12 месяцев — {fmtS(PREMIUM_PRICE[12])} сум.</p>
 
             <p>3- и 6-месячные пакеты в Starsjoy <a href="/ru/blog/starsjoy-mini-app-nima">Mini App</a> можно сравнить рядом — в чате визуальное сравнение невозможно.</p>
 
@@ -221,30 +222,31 @@ const wordCount = 1080;
                 <tbody>
                   <tr>
                     <td>3 месяца</td>
-                    <td>172 000 сум</td>
-                    <td>~57 333 сум/мес</td>
+                    <td>{fmtS(PREMIUM_PRICE[3])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(3))} сум/мес</td>
                   </tr>
                   <tr>
                     <td>6 месяцев</td>
-                    <td>232 000 сум</td>
-                    <td>~38 667 сум/мес</td>
+                    <td>{fmtS(PREMIUM_PRICE[6])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(6))} сум/мес</td>
                   </tr>
                   <tr class="highlight-row">
                     <td>12 месяцев</td>
-                    <td>422 000 сум</td>
-                    <td>~35 167 сум/мес</td>
+                    <td>{fmtS(PREMIUM_PRICE[12])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(12))} сум/мес</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <p><small>{PRICE_NOTE.ru}</small></p>
 
             <h3>Цена Telegram Premium на 3 месяца</h3>
 
-            <p>3-месячный пакет — 172 000 сум (~57 333 сум/мес). Правильный старт для тех, кто хочет впервые попробовать Premium. За три месяца вы протестируете все возможности, а потом решите — продолжать или нет.</p>
+            <p>3-месячный пакет — {fmtS(PREMIUM_PRICE[3])} сум (~{fmtS(premiumPerMonth(3))} сум/мес). Правильный старт для тех, кто хочет впервые попробовать Premium. За три месяца вы протестируете все возможности, а потом решите — продолжать или нет.</p>
 
             <h3>Пакет на 6 месяцев</h3>
 
-            <p>6-месячный пакет — 232 000 сум (~38 667 сум/мес). Самый логичный выбор для постоянных пользователей. На 30% дешевле в пересчёте на месяц по сравнению с 3-месячным.</p>
+            <p>6-месячный пакет — {fmtS(PREMIUM_PRICE[6])} сум (~{fmtS(premiumPerMonth(6))} сум/мес). Самый логичный выбор для постоянных пользователей. На 30% дешевле в пересчёте на месяц по сравнению с 3-месячным.</p>
 
             <p>Полный разбор цены 6-месячного пакета — сравнение с приложением и Fragment, оплата и гарантии: <a href="/ru/blog/telegram-premium-6-oylik-narxi">цена Telegram Premium на 6 месяцев</a>.</p>
 
@@ -329,7 +331,7 @@ const wordCount = 1080;
               </div>
               <div class="post-faq-item">
                 <h3>Какие пакеты доступны через StarsJoy?</h3>
-                <p>3 месяца (172 000 сум), 6 месяцев (232 000 сум) и 12 месяцев (422 000 сум) доступны автоматически через Gift — оплата Uzcard/Humo. <a href="/ru/blog/telegram-premium-1-oylik">1 месяц Premium</a> в Telegram есть, но через Gift его нет — активирует сам пользователь, своей международной картой.</p>
+                <p>3 месяца ({fmtS(PREMIUM_PRICE[3])} сум), 6 месяцев ({fmtS(PREMIUM_PRICE[6])} сум) и 12 месяцев ({fmtS(PREMIUM_PRICE[12])} сум) доступны автоматически через Gift — оплата Uzcard/Humo. <a href="/ru/blog/telegram-premium-1-oylik">1 месяц Premium</a> в Telegram есть, но через Gift его нет — активирует сам пользователь, своей международной картой.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Когда активируется Premium?</h3>
@@ -362,9 +364,9 @@ const wordCount = 1080;
             <p>Коротко:</p>
 
             <ul>
-              <li>3 месяца (172 000 сум) — правильный старт для первого знакомства</li>
-              <li>6 месяцев (232 000 сум) — экономный выбор для постоянных пользователей</li>
-              <li>12 месяцев (422 000 сум) — максимальная экономия</li>
+              <li>3 месяца ({fmtS(PREMIUM_PRICE[3])} сум) — правильный старт для первого знакомства</li>
+              <li>6 месяцев ({fmtS(PREMIUM_PRICE[6])} сум) — экономный выбор для постоянных пользователей</li>
+              <li>12 месяцев ({fmtS(PREMIUM_PRICE[12])} сум) — максимальная экономия</li>
               <li>Gift — подарок другу или коллеге</li>
             </ul>
 

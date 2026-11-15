@@ -1,21 +1,22 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { STAR_PRICE, starsPrice, fmt, PRICE_NOTE } from '../../../lib/prices';
 
 const faqs = [
   {
     q: "How much do 5,000 Telegram Stars cost?",
-    a: "At StarsJoy, 5,000 Telegram Stars cost 1,200,000 UZS — a flat 240 UZS per Star. In the Telegram app (App Store / Google Play) it's roughly $100, and on Fragment roughly $75, paid in TON."
+    a: `At StarsJoy, 5,000 Telegram Stars cost ${fmt(starsPrice(5000))} UZS — a flat ${STAR_PRICE} UZS per Star. In the Telegram app (App Store / Google Play) it's roughly $100, and on Fragment roughly $75, paid in TON.`
   },
   {
     q: "Is there a discount for 5,000 Stars?",
-    a: "No. StarsJoy charges the same 240 UZS per Star for every amount, so 5,000 Stars is exactly five times the 1,000 pack: 1,200,000 UZS. There are no hidden fees either."
+    a: `No. StarsJoy charges the same ${STAR_PRICE} UZS per Star for every amount, so 5,000 Stars is exactly five times the 1,000 pack: ${fmt(starsPrice(5000))} UZS. There are no hidden fees either.`
   },
   {
     q: "What can 5,000 Stars buy?",
     a: "For example, 333 gifts at 15 Stars, 100 gifts at 50 Stars or 50 gifts at 100 Stars. Stars are also spent on paid posts, channel subscriptions, giveaways and Telegram Ads."
   },
   {
-    q: "How do I pay 1,200,000 UZS?",
+    q: `How do I pay ${fmt(starsPrice(5000))} UZS?`,
     a: "By transfer to the card the bot shows you — from Payme, Click or any banking app. If your daily limit isn't enough, pay from another card or app."
   },
   {
@@ -24,7 +25,7 @@ const faqs = [
   },
   {
     q: "Is it better to buy 5,000 at once or 1,000 five times?",
-    a: "The price is the same — 1,200,000 UZS either way. The only difference is convenience: buying 5,000 at once means one order and one payment."
+    a: `The price is the same — ${fmt(starsPrice(5000))} UZS either way. The only difference is convenience: buying 5,000 at once means one order and one payment.`
   },
   {
     q: "Do I need a password or SMS code to buy?",
@@ -32,7 +33,7 @@ const faqs = [
   },
   {
     q: "What if the Stars don't arrive?",
-    a: "If the payment went through but the order failed for a technical reason, you get a full refund. Send your payment receipt through @starsjoy_bot within 24 hours."
+    a: "If the payment went through but the order failed for a technical reason, you get a full refund. Send your payment receipt through @StarsjoySupport within 24 hours."
   }
 ];
 ---
@@ -43,19 +44,20 @@ const faqs = [
   heading="5,000 Telegram Stars price in 2026 — how much in UZS?"
   crumb="5,000 Stars price"
   tag="Stars"
-  description="5,000 Telegram Stars cost 1,200,000 UZS (240 UZS per Star). Compared with the in-app and Fragment price, what 5,000 Stars can buy, and how to pay."
+  description={`5,000 Telegram Stars cost ${fmt(starsPrice(5000))} UZS (${STAR_PRICE} UZS per Star). Compared with the in-app and Fragment price, what 5,000 Stars can buy, and how to pay.`}
   keywords="5000 telegram stars price, 5000 stars cost, 5000 telegram stars in uzs, how much is 5000 telegram stars, buy 5000 telegram stars uzbekistan"
   publishDate="2026-10-07"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-stars-5000-narxi"
   ruHref="https://starsjoy.uz/ru/blog/telegram-stars-5000-narxi"
   faqs={faqs}
 >
   <section>
-    <p class="post-lead"><strong>Short answer:</strong> 5,000 Telegram Stars cost <strong>1,200,000 UZS</strong> at StarsJoy (240 UZS per Star). Open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, enter 5000 as the amount, add the username, and transfer the sum to the card the bot shows you — via Payme, Click or any banking app. Stars usually arrive in about <strong>10 seconds</strong>. No password or SMS code is ever needed.</p>
+    <p class="post-lead"><strong>Short answer:</strong> 5,000 Telegram Stars cost <strong>{fmt(starsPrice(5000))} UZS</strong> at StarsJoy ({STAR_PRICE} UZS per Star). Open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>, enter 5000 as the amount, add the username, and transfer the sum to the card the bot shows you — via Payme, Click or any banking app. Stars usually arrive in about <strong>10 seconds</strong>. No password or SMS code is ever needed.</p>
   </section>
 
   <section>
-    <p>5,000 Stars isn't an everyday purchase: this amount is usually bought by channel owners, people who send a lot of gifts, and anyone who spends Stars regularly. So besides the exact price, one more question matters here: what do Stars bought for 1,200,000 UZS actually cover? Here are answers to both.</p>
+    <p>5,000 Stars isn't an everyday purchase: this amount is usually bought by channel owners, people who send a lot of gifts, and anyone who spends Stars regularly. So besides the exact price, one more question matters here: what do Stars bought for {fmt(starsPrice(5000))} UZS actually cover? Here are answers to both.</p>
   </section>
 
   <section>
@@ -66,18 +68,19 @@ const faqs = [
         <tr><th>Where</th><th>Price of 5,000 Stars</th><th>What you need</th></tr>
       </thead>
       <tbody>
-        <tr><td><strong>StarsJoy (@starsjoybot)</strong></td><td><strong>1,200,000 UZS</strong> — fixed, in som</td><td>Uzcard, Humo or any card; just a username</td></tr>
+        <tr><td><strong>StarsJoy (@starsjoybot)</strong></td><td><strong>{fmt(starsPrice(5000))} UZS</strong> — fixed, in som</td><td>Uzcard, Humo or any card; just a username</td></tr>
         <tr><td>Telegram app (App Store / Google Play)</td><td>about $100 (≈ 1.18M UZS), varies by country</td><td>Usually an international Visa / Mastercard</td></tr>
         <tr><td>Fragment</td><td>about $75 (≈ 0.88M UZS) + cost of buying TON</td><td>A TON wallet and crypto</td></tr>
       </tbody>
     </table>
-    <p>To be upfront: the StarsJoy price is close to the in-app price, and Fragment is cheaper in dollars. StarsJoy's advantage is elsewhere — a fixed price in som, payment with a local card, and no crypto or international card required.</p>
+    <p>To be upfront: the StarsJoy price is somewhat higher than the in-app dollar price, and Fragment is cheaper in dollars. StarsJoy's advantage is elsewhere — a fixed price in som, payment with Uzcard or Humo, no crypto or international card required, delivery in about 10 seconds and 24/7 support at @StarsjoySupport.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>
     <h2>How is the price calculated?</h2>
-    <p>StarsJoy uses one rate for every amount: <strong>240 UZS per Star</strong>. The math is simple:</p>
-    <p><strong>5,000 × 240 = 1,200,000 UZS.</strong></p>
+    <p>StarsJoy uses one rate for every amount: <strong>{STAR_PRICE} UZS per Star</strong>. The math is simple:</p>
+    <p><strong>5,000 × {STAR_PRICE} = {fmt(starsPrice(5000))} UZS.</strong></p>
     <p>A bigger pack gets neither a discount nor a markup. No commission or hidden fee is added — you pay the amount you see in the bot. The price follows the rate at the time of the order, so check the amount in the bot before paying.</p>
   </section>
 
@@ -112,14 +115,14 @@ const faqs = [
   </section>
 
   <section>
-    <h2>How do I pay 1,200,000 UZS?</h2>
+    <h2>How do I pay {fmt(starsPrice(5000))} UZS?</h2>
     <p>At StarsJoy, payment is a transfer to the card the bot shows you, so you can make it from whichever app suits you:</p>
     <ul>
       <li><strong>Payme or Click</strong> — the fastest route if your card is already linked;</li>
       <li><strong>Your banking app</strong> — from the bank that issued your Uzcard or Humo;</li>
       <li><strong>Another card</strong> — if one card doesn't have enough balance or limit.</li>
     </ul>
-    <p><strong>About limits.</strong> 1.2 million UZS fits within the daily transfer limit of most cards. But if you've already made large transfers that day, the limit may fall short — in that case, pay from another card or app. Send the money to the exact card in the order window and the exact amount shown; the system won't recognise a different amount.</p>
+    <p><strong>About limits.</strong> 1.27 million UZS fits within the daily transfer limit of most cards. But if you've already made large transfers that day, the limit may fall short — in that case, pay from another card or app. Send the money to the exact card in the order window and the exact amount shown; the system won't recognise a different amount.</p>
   </section>
 
   <section>
@@ -127,7 +130,7 @@ const faqs = [
     <ol>
       <li><strong>Open the bot.</strong> Open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> in Telegram and choose Stars.</li>
       <li><strong>Amount and username.</strong> Enter <strong>5000</strong> and the Telegram username that should receive the Stars — yours or someone else's.</li>
-      <li><strong>Pay.</strong> Transfer 1,200,000 UZS to the card the bot shows, via Payme, Click or a banking app.</li>
+      <li><strong>Pay.</strong> Transfer {fmt(starsPrice(5000))} UZS to the card the bot shows, via Payme, Click or a banking app.</li>
       <li><strong>Receive.</strong> Once the payment is confirmed, Stars usually arrive in about 10 seconds. Under the public offer, orders are fulfilled within 5 minutes.</li>
     </ol>
   </section>
@@ -140,12 +143,12 @@ const faqs = [
         <tr><th>Pack</th><th>Price</th><th>Best for</th></tr>
       </thead>
       <tbody>
-        <tr><td><a href="/en/stars/1000">1,000 ⭐</a></td><td>240,000 UZS</td><td>Personal use, a few gifts</td></tr>
-        <tr><td><a href="/en/stars/5000"><strong>5,000 ⭐</strong></a></td><td><strong>1,200,000 UZS</strong></td><td><strong>A channel, a giveaway, many gifts</strong></td></tr>
-        <tr><td><a href="/en/stars/10000">10,000 ⭐</a></td><td>2,400,000 UZS</td><td>An ad campaign, a large project</td></tr>
+        <tr><td><a href="/en/stars/1000">1,000 ⭐</a></td><td>{fmt(starsPrice(1000))} UZS</td><td>Personal use, a few gifts</td></tr>
+        <tr><td><a href="/en/stars/5000"><strong>5,000 ⭐</strong></a></td><td><strong>{fmt(starsPrice(5000))} UZS</strong></td><td><strong>A channel, a giveaway, many gifts</strong></td></tr>
+        <tr><td><a href="/en/stars/10000">10,000 ⭐</a></td><td>{fmt(starsPrice(10000))} UZS</td><td>An ad campaign, a large project</td></tr>
       </tbody>
     </table>
-    <p><strong>5,000 at once, or 1,000 five times?</strong> The total is the same — 1,200,000 UZS. The only difference is convenience: one order, one payment, one check. And the reverse holds too: if you don't yet know how much you'll need, starting with 1,000 and topping up as you go costs you nothing extra.</p>
+    <p><strong>5,000 at once, or 1,000 five times?</strong> The total is the same — {fmt(starsPrice(5000))} UZS. The only difference is convenience: one order, one payment, one check. And the reverse holds too: if you don't yet know how much you'll need, starting with 1,000 and topping up as you go costs you nothing extra.</p>
     <p>For larger amounts, see the <a href="/en/blog/10000-telegram-stars-price">10,000 Telegram Stars price</a>.</p>
   </section>
 
@@ -155,7 +158,7 @@ const faqs = [
     <p>Under the StarsJoy public offer:</p>
     <ul>
       <li>If the payment went through but the order failed for a technical reason, you get a <strong>full refund</strong>;</li>
-      <li>To claim it, send your payment receipt through <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a> (support) <strong>within 24 hours</strong>;</li>
+      <li>To claim it, send your payment receipt through <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a> (support) <strong>within 24 hours</strong>;</li>
       <li>If a wrong username was entered and the Stars went to someone else, the payment can't be refunded — so check the username twice before paying.</li>
     </ul>
     <p>More: <a href="/en/blog/is-starsjoy-legit">is StarsJoy legit</a>.</p>

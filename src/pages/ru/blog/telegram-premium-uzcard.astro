@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Как купить Telegram Premium через Uzcard в Узбекистане (2026) | StarsJoy Блог";
 const description = "Можно ли купить Telegram Premium через Uzcard? Пошаговая инструкция покупки Premium в Узбекистане через Uzcard и Humo — быстро и безопасно.";
 const publishDate = "2026-03-26";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1350;
 ---
 
@@ -257,22 +258,24 @@ const wordCount = 1350;
                 <tbody>
                   <tr>
                     <td>3 месяца</td>
-                    <td>172 000 сум</td>
-                    <td>~57 333 сум/мес</td>
+                    <td>{fmtS(PREMIUM_PRICE[3])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(3))} сум/мес</td>
                   </tr>
                   <tr>
                     <td>6 месяцев</td>
-                    <td>232 000 сум</td>
-                    <td>~38 667 сум/мес</td>
+                    <td>{fmtS(PREMIUM_PRICE[6])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(6))} сум/мес</td>
                   </tr>
                   <tr class="highlight-row">
                     <td>12 месяцев</td>
-                    <td>422 000 сум</td>
-                    <td>~35 167 сум/мес</td>
+                    <td>{fmtS(PREMIUM_PRICE[12])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(12))} сум/мес</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+
+            <p><small>{PRICE_NOTE.ru}</small></p>
 
             <p>Оплата картами Uzcard и Humo через Click или Payme. Сравнение с ценами на <a href="/ru/blog/telegram-stars-narxi">Telegram Stars</a> показывает, что Premium-подписка в пересчёте на месяц выходит выгоднее.</p>
 
@@ -282,7 +285,7 @@ const wordCount = 1350;
 
             <ul>
               <li>Если хотите попробовать впервые — <strong>3 месяца</strong> подойдёт. Недорого, минимальный риск, можно оценить Premium.</li>
-              <li>Для постоянного пользователя <strong>12 месяцев</strong> — самый выгодный вариант, ежемесячная цена самая низкая, экономия 20–30% в год.</li>
+              <li>Для постоянного пользователя <strong>12 месяцев</strong> — самый выгодный вариант, ежемесячная цена самая низкая, экономия ~40% по сравнению с пакетами на 3 месяца.</li>
               <li>Средний вариант — <strong>6 месяцев</strong>, хороший баланс. Большинство выбирает именно его.</li>
             </ul>
 
@@ -403,7 +406,7 @@ const wordCount = 1350;
               </div>
               <div class="post-faq-item">
                 <h3>Есть ли подписка на 1 месяц?</h3>
-                <p>Через Gift-механизм минимум 3 месяца. <a href="/ru/blog/telegram-premium-1-oylik">1-месячный Premium</a> в Telegram есть, но его активирует сам пользователь своей международной картой — специалист @starsjoysupport бесплатно научит пошагово.</p>
+                <p>Через Gift-механизм минимум 3 месяца. <a href="/ru/blog/telegram-premium-1-oylik">1-месячный Premium</a> в Telegram есть, но его активирует сам пользователь своей международной картой — специалист @StarsjoySupport бесплатно научит пошагово.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Можно ли купить Premium в подарок другу?</h3>

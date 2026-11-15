@@ -2,11 +2,14 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../../lib/prices';
+const p3 = fmtS(PREMIUM_PRICE[3]), p6 = fmtS(PREMIUM_PRICE[6]), p12 = fmtS(PREMIUM_PRICE[12]);
+const m3 = fmtS(premiumPerMonth(3)), m6 = fmtS(premiumPerMonth(6)), m12 = fmtS(premiumPerMonth(12));
 
 const title = "Самый быстрый и простой способ купить Telegram Premium (2026) | StarsJoy Блог";
 const description = "Как купить Telegram Premium в 2026 — самый быстрый способ в Узбекистане через Uzcard, Humo, Click и Payme. StarsJoy — цены, сравнение способов и инструкция.";
 const publishDate = "2026-03-31";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1230;
 ---
 
@@ -89,7 +92,7 @@ const wordCount = 1230;
         "name": "Сколько стоит Telegram Premium?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Через StarsJoy: 3 месяца — 172 000 сум, 6 месяцев — 232 000 сум, 12 месяцев — 422 000 сум."
+          "text": `Через StarsJoy: 3 месяца — ${p3} сум, 6 месяцев — ${p6} сум, 12 месяцев — ${p12} сум.`
         }
       },
       {
@@ -207,24 +210,25 @@ const wordCount = 1230;
                 <tbody>
                   <tr>
                     <td>3 месяца</td>
-                    <td>172 000 сум</td>
-                    <td>~57 333 сум/мес</td>
+                    <td>{p3} сум</td>
+                    <td>~{m3} сум/мес</td>
                   </tr>
                   <tr>
                     <td>6 месяцев</td>
-                    <td>232 000 сум</td>
-                    <td>~38 667 сум/мес</td>
+                    <td>{p6} сум</td>
+                    <td>~{m6} сум/мес</td>
                   </tr>
                   <tr class="highlight-row">
                     <td>12 месяцев</td>
-                    <td>422 000 сум</td>
-                    <td>~35 167 сум/мес</td>
+                    <td>{p12} сум</td>
+                    <td>~{m12} сум/мес</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <p><small>{PRICE_NOTE.ru}</small></p>
 
-            <p>Через бот автоматически можно купить минимум на 3 месяца (механизм Gift не поддерживает 1 месяц). <a href="/ru/blog/telegram-premium-1-oylik">Подписка на 1 месяц</a> в Telegram есть, но её активирует сам владелец аккаунта своей международной картой через настройки Telegram — специалист @starsjoysupport бесплатно научит пошагово. Подробнее о пакетах — в статье <a href="/ru/blog/telegram-premium-3-oy-6-oy">сравнение 3- и 6-месячных пакетов</a>.</p>
+            <p>Через бот автоматически можно купить минимум на 3 месяца (механизм Gift не поддерживает 1 месяц). <a href="/ru/blog/telegram-premium-1-oylik">Подписка на 1 месяц</a> в Telegram есть, но её активирует сам владелец аккаунта своей международной картой через настройки Telegram — специалист @StarsjoySupport бесплатно научит пошагово. Подробнее о пакетах — в статье <a href="/ru/blog/telegram-premium-3-oy-6-oy">сравнение 3- и 6-месячных пакетов</a>.</p>
           </section>
 
           <section>
@@ -312,7 +316,7 @@ const wordCount = 1230;
             <p>Telegram Premium не бывает бесплатным. Такие предложения в интернете — фишинг или мошенничество. Никогда не давайте пароль от аккаунта.</p>
 
             <h3>3. Поиск подписки на 1 месяц через бот</h3>
-            <p>Через @starsjoybot 1-месячной подписки нет — минимум 3 месяца (механизм Gift не поддерживает 1 месяц). <a href="/ru/blog/telegram-premium-1-oylik">1-месячный Premium</a> в Telegram есть, но его активирует сам пользователь своей международной картой через настройки Telegram — не знаете шаги, специалист @starsjoysupport бесплатно научит.</p>
+            <p>Через @starsjoybot 1-месячной подписки нет — минимум 3 месяца (механизм Gift не поддерживает 1 месяц). <a href="/ru/blog/telegram-premium-1-oylik">1-месячный Premium</a> в Telegram есть, но его активирует сам пользователь своей международной картой через настройки Telegram — не знаете шаги, специалист @StarsjoySupport бесплатно научит.</p>
 
             <h3>4. Перевод денег неизвестным ботам</h3>
             <p>Ботов, продающих Premium, много — не все надёжны. Перед оплатой проверьте: есть ли сайт, отзывы. <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> — Telegram-бот сервиса StarsJoy. StarsJoy — официальный сервис в Узбекистане по продаже Telegram Premium, Stars и Gifts (<a href="https://starsjoy.uz">starsjoy.uz</a>).</p>
@@ -347,11 +351,11 @@ const wordCount = 1230;
               </div>
               <div class="post-faq-item">
                 <h3>Сколько стоит Telegram Premium?</h3>
-                <p>Через StarsJoy: 3 месяца — 172 000 сум, 6 месяцев — 232 000 сум, 12 месяцев — 422 000 сум.</p>
+                <p>Через StarsJoy: 3 месяца — {p3} сум, 6 месяцев — {p6} сум, 12 месяцев — {p12} сум.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Есть ли подписка на 1 месяц?</h3>
-                <p>Через бот автоматически — нет (Gift минимум 3 месяца). <a href="/ru/blog/telegram-premium-1-oylik">1-месячный Premium</a> в Telegram есть, но его активирует сам пользователь своей международной картой — специалист @starsjoysupport бесплатно научит пошагово.</p>
+                <p>Через бот автоматически — нет (Gift минимум 3 месяца). <a href="/ru/blog/telegram-premium-1-oylik">1-месячный Premium</a> в Telegram есть, но его активирует сам пользователь своей международной картой — специалист @StarsjoySupport бесплатно научит пошагово.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Можно ли получить Telegram Premium бесплатно?</h3>

@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram sovg'asini Collectible (NFT)ga upgrade qilish: Stars narxi va mexanizmi (2026) | StarsJoy Blog";
 const description = "Telegram Gift'ni Collectible (NFT)ga qanday upgrade qilish: Stars qancha turadi, 20 000 dan tushuvchi narx mexanizmi, nodir traits va tartib raqami. Bosqichma-bosqich qo'llanma va O'zbekistonda Uzcard/Humo bilan Stars to'ldirish.";
 const publishDate = "2026-05-29";
-const modifiedDate = "2026-05-29";
+const modifiedDate = "2026-11-15";
 const wordCount = 1780;
 const canonical = "https://starsjoy.uz/blog/telegram-gift-collectible-upgrade";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -107,7 +108,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Upgrade uchun Stars yetmasa O'zbekistonda qanday to'ldirsam bo'ladi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Telegram'dan to'g'ridan-to'g'ri Uzcard yoki Humo bilan Stars olib bo'lmaydi (xalqaro to'lov tizimi kerak). Mahalliy yetkazib beruvchi @starsjoybot orqali Click yoki Payme bilan so'mda to'lab, 10 soniyada Stars hisobingizga to'ldirasiz. Standart kurs 1 Star = 240 so'm. So'ng Telegram ilovasida sovg'angizni upgrade qilasiz."
+          "text": "Telegram'dan to'g'ridan-to'g'ri Uzcard yoki Humo bilan Stars olib bo'lmaydi (xalqaro to'lov tizimi kerak). Mahalliy yetkazib beruvchi @starsjoybot orqali Click yoki Payme bilan so'mda to'lab, 10 soniyada Stars hisobingizga to'ldirasiz. Standart kurs 1 Star = " + STAR_PRICE + " so'm. So'ng Telegram ilovasida sovg'angizni upgrade qilasiz."
         }
       },
       {
@@ -193,7 +194,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Sovg'a egasi uchun qisqa javob:</strong> Sizda Telegram sovg'asi (Gift) bor va uni noyob <strong>Collectible (NFT)</strong>ga aylantirmoqchimisiz? Upgrade Telegram Stars talab qiladi. Oddiy sovg'alarda bu arzon — rasmiy ta'rifga ko'ra "kichik miqdordagi Stars" (blockchain to'lovi uchun), ko'pincha sovg'a beruvchi oldindan to'lagan bo'ladi. <strong>Cheklangan</strong> sovg'alarda esa narx <strong>20 000 Stars'dan boshlanib har soatda tushadi</strong> — erta to'lagan past (nodir) tartib raqamini oladi. Stars yetmasa, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard/Humo bilan 10 soniyada to'ldirasiz (1 Star = 240 so'm). Upgrade qaytarib bo'lmaydi — qaror aniq bo'lsin.
+            <strong>Sovg'a egasi uchun qisqa javob:</strong> Sizda Telegram sovg'asi (Gift) bor va uni noyob <strong>Collectible (NFT)</strong>ga aylantirmoqchimisiz? Upgrade Telegram Stars talab qiladi. Oddiy sovg'alarda bu arzon — rasmiy ta'rifga ko'ra "kichik miqdordagi Stars" (blockchain to'lovi uchun), ko'pincha sovg'a beruvchi oldindan to'lagan bo'ladi. <strong>Cheklangan</strong> sovg'alarda esa narx <strong>20 000 Stars'dan boshlanib har soatda tushadi</strong> — erta to'lagan past (nodir) tartib raqamini oladi. Stars yetmasa, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard/Humo bilan 10 soniyada to'ldirasiz (1 Star = {STAR_PRICE} so'm). Upgrade qaytarib bo'lmaydi — qaror aniq bo'lsin.
           </div>
 
           <p>2026-yilda Telegram sovg'alari oddiy emoji-stikerlardan haqiqiy raqamli aktivlarga aylandi. Endi har bir sovg'ani <strong>Collectible</strong>ga — ya'ni TON blockcheynidagi noyob NFT'ga — "upgrade" qilish mumkin. Upgrade'dan keyin sovg'a o'zining noyob ko'rinishini, traits'larini (xususiyatlarini) va tartib raqamini oladi, hamda uni profil status sifatida kiyish, boshqaga o'tkazish yoki sotish imkoni paydo bo'ladi.</p>
@@ -231,45 +232,46 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <thead>
                 <tr>
                   <th>Upgrade narxi (Stars)</th>
-                  <th>Taxminiy so'mda (1⭐=240)</th>
+                  <th>Taxminiy so'mda (1⭐={STAR_PRICE})</th>
                   <th>Nima anglatadi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr class="highlight-row">
                   <td>20 000 ⭐</td>
-                  <td>~4 800 000 so'm</td>
+                  <td>~{fmtS(starsPrice(20000))} so'm</td>
                   <td>Boshlang'ich — eng past (#) raqam</td>
                 </tr>
                 <tr>
                   <td>5 000 ⭐</td>
-                  <td>~1 200 000 so'm</td>
+                  <td>~{fmtS(starsPrice(5000))} so'm</td>
                   <td>Bir necha soat o'tgach</td>
                 </tr>
                 <tr>
                   <td>1 000 ⭐</td>
-                  <td>~240 000 so'm</td>
+                  <td>~{fmtS(starsPrice(1000))} so'm</td>
                   <td>O'rta bosqich</td>
                 </tr>
                 <tr>
                   <td>100 ⭐</td>
-                  <td>~24 000 so'm</td>
+                  <td>~{fmtS(starsPrice(100))} so'm</td>
                   <td>Kechroq — kattaroq (#) raqam</td>
                 </tr>
                 <tr>
                   <td>25 ⭐</td>
-                  <td>~6 000 so'm</td>
+                  <td>~{fmtS(starsPrice(25))} so'm</td>
                   <td>Eng arzon — eng katta raqam</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <p><em>To'liq pog'onalar: 20000 → 15000 → 10000 → 7500 → 5000 → 2500 → 2000 → 1500 → 1000 → 750 → 500 → 250 → 200 → 150 → 100 → 75 → 50 → 25. Narxlar 2026-yil holatiga to'g'ri; so'mdagi qiymat 1 Star = 240 so'm kursida taxminiy.</em></p>
+          <p><em>To'liq pog'onalar: 20000 → 15000 → 10000 → 7500 → 5000 → 2500 → 2000 → 1500 → 1000 → 750 → 500 → 250 → 200 → 150 → 100 → 75 → 50 → 25. Narxlar 2026-yil holatiga to'g'ri; so'mdagi qiymat 1 Star = {STAR_PRICE} so'm kursida taxminiy.</em></p>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
           <p>Bu mexanizmning mantig'i sodda: past tartib raqamlari (#1, #5 ...) kollektsionerlar uchun qadrli. Telegram ularni bekorga tarqatmaslik uchun narxni yuqoridan boshlaydi — kim nodir raqamni xohlasa, ko'proq to'laydi. Kutib tursangiz narx tushadi, lekin sizning raqamingiz kattaroq (kamroq nodir) bo'ladi. Demak bu — tezlik bilan nodir raqam o'rtasidagi muvozanat.</p>
 
-          <p class="natural-cta"><strong>Amaliy maslahat:</strong> agar maqsadingiz shunchaki sovg'ani Collectible qilish (raqam muhim emas) bo'lsa — shoshilmang, narx eng past pog'onaga (25-100 Stars, ya'ni 6 000-24 000 so'm) tushgach upgrade qiling. Bu juda arzon. Faqat tartib raqami siz uchun muhim bo'lsa, yuqoriroq narxda erta upgrade qilish kerak. Stars yetmay qolsa, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali bir necha daqiqada to'ldirib olasiz.</p>
+          <p class="natural-cta"><strong>Amaliy maslahat:</strong> agar maqsadingiz shunchaki sovg'ani Collectible qilish (raqam muhim emas) bo'lsa — shoshilmang, narx eng past pog'onaga (25-100 Stars, ya'ni {fmtS(starsPrice(25))}-{fmtS(starsPrice(100))} so'm) tushgach upgrade qiling. Bu juda arzon. Faqat tartib raqami siz uchun muhim bo'lsa, yuqoriroq narxda erta upgrade qilish kerak. Stars yetmay qolsa, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali bir necha daqiqada to'ldirib olasiz.</p>
 
           <h2>Bosqichma-bosqich: sovg'ani Collectible'ga upgrade qilish</h2>
 
@@ -299,9 +301,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Upgrade Stars talab qilgani uchun, balansingiz yetmasa avval to'ldirish kerak. Bu yerda muhim nuans bor: <strong>Telegram'dan to'g'ridan-to'g'ri Uzcard yoki Humo bilan Stars olib bo'lmaydi</strong> — Telegram'ning rasmiy kanallari (App Store, Google Play, Fragment) faqat xalqaro to'lov tizimini (Visa, Mastercard, TON) qabul qiladi. Uzcard va Humo mahalliy tizim.</p>
 
-          <p>Yechim — mahalliy yetkazib beruvchi orqali so'mda to'lash. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> Uzcard yoki Humo'dan Click/Payme orqali to'lovni qabul qiladi va Stars'ni Telegram'ning rasmiy mexanizmi orqali 10 soniyada hisobingizga yetkazadi. Standart kurs <strong>1 Star = 240 so'm</strong>. Karta turingizga qarab batafsil qo'llanmalar: <a href="/blog/telegram-stars-uzcard-bilan-sotib-olish">Uzcard bilan Stars</a> va <a href="/blog/telegram-stars-humo-bilan-sotib-olish">Humo bilan Stars</a>.</p>
+          <p>Yechim — mahalliy yetkazib beruvchi orqali so'mda to'lash. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> Uzcard yoki Humo'dan Click/Payme orqali to'lovni qabul qiladi va Stars'ni Telegram'ning rasmiy mexanizmi orqali 10 soniyada hisobingizga yetkazadi. Standart kurs <strong>1 Star = {STAR_PRICE} so'm</strong>. Karta turingizga qarab batafsil qo'llanmalar: <a href="/blog/telegram-stars-uzcard-bilan-sotib-olish">Uzcard bilan Stars</a> va <a href="/blog/telegram-stars-humo-bilan-sotib-olish">Humo bilan Stars</a>.</p>
 
-          <p>Misol uchun, agar siz sovg'ani arzon (eng past pog'ona) upgrade qilmoqchi bo'lsangiz, atigi 25-100 Stars (6 000-24 000 so'm) yetadi. Tartib raqami muhim bo'lib, masalan 1000 Stars'lik pog'onada upgrade qilmoqchi bo'lsangiz — bu 240 000 so'm. Bu summalarni botda bir necha daqiqada to'ldirib olasiz. Stars qancha turishi haqida umumiy ma'lumot — <a href="/blog/telegram-stars-narxi">Telegram Stars narxi</a> maqolasida.</p>
+          <p>Misol uchun, agar siz sovg'ani arzon (eng past pog'ona) upgrade qilmoqchi bo'lsangiz, atigi 25-100 Stars ({fmtS(starsPrice(25))}-{fmtS(starsPrice(100))} so'm) yetadi. Tartib raqami muhim bo'lib, masalan 1000 Stars'lik pog'onada upgrade qilmoqchi bo'lsangiz — bu {fmtS(starsPrice(1000))} so'm. Bu summalarni botda bir necha daqiqada to'ldirib olasiz. Stars qancha turishi haqida umumiy ma'lumot — <a href="/blog/telegram-stars-narxi">Telegram Stars narxi</a> maqolasida.</p>
 
           <h2>Upgrade'dan keyin: kiyish, o'tkazish va sotish</h2>
 
@@ -318,7 +320,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p><strong>Sovg'ani Collectible'ga upgrade qilish</strong> — uni TON blockcheynidagi noyob NFT'ga aylantirib, kiyish, o'tkazish va sotish imkonini beradi. Asosiy fakt: oddiy sovg'alarda upgrade <strong>arzon</strong> (kichik miqdordagi Stars, ko'pincha beruvchi tomonidan oldindan to'langan), faqat cheklangan sovg'alarda narx 20 000 Stars'dan tushib boradi va u past tartib raqamini olish uchun to'lanadi.</p>
 
-          <p>Maslahat: raqam muhim bo'lmasa, narx eng past pog'onaga tushgach (25-100 Stars ≈ 6 000-24 000 so'm) upgrade qiling — bu juda arzon. Upgrade qaytarib bo'lmasligini va yangi login'dan keyin 7 kun transfer bloklanishini unutmang. Stars yetmasa, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard/Humo bilan 10 soniyada to'ldirasiz.</p>
+          <p>Maslahat: raqam muhim bo'lmasa, narx eng past pog'onaga tushgach (25-100 Stars ≈ {fmtS(starsPrice(25))}-{fmtS(starsPrice(100))} so'm) upgrade qiling — bu juda arzon. Upgrade qaytarib bo'lmasligini va yangi login'dan keyin 7 kun transfer bloklanishini unutmang. Stars yetmasa, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard/Humo bilan 10 soniyada to'ldirasiz.</p>
 
           <div class="end-cta">
             Upgrade uchun Stars kerakmi? <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Uzcard/Humo bilan 10 soniyada
@@ -341,7 +343,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Upgrade uchun Stars yetmasa O'zbekistonda qanday to'ldirsam bo'ladi?</h3>
-              <p>Telegram'dan to'g'ridan-to'g'ri Uzcard/Humo bilan Stars olib bo'lmaydi (xalqaro tizim kerak). <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click yoki Payme bilan so'mda to'lab, 10 soniyada Stars to'ldirasiz (1 Star = 240 so'm). Batafsil: <a href="/blog/telegram-stars-uzcard-bilan-sotib-olish">Uzcard bilan Stars</a>.</p>
+              <p>Telegram'dan to'g'ridan-to'g'ri Uzcard/Humo bilan Stars olib bo'lmaydi (xalqaro tizim kerak). <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click yoki Payme bilan so'mda to'lab, 10 soniyada Stars to'ldirasiz (1 Star = {STAR_PRICE} so'm). Batafsil: <a href="/blog/telegram-stars-uzcard-bilan-sotib-olish">Uzcard bilan Stars</a>.</p>
             </div>
             <div class="post-faq-item">
               <h3>Upgrade'ni orqaga qaytarib oddiy sovg'aga aylantirsa bo'ladimi?</h3>

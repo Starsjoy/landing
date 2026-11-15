@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { starsPrice, fmt, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Starsni Fragmentdan tashqari qayerdan sotib olish mumkin? (O'zbekiston 2026) | StarsJoy Blog";
 const description = "Fragment ishlamayaptimi? O'zbekistonda Telegram Stars sotib olishning eng qulay muqobil yo'llari — Uzcard, Click, Humo orqali, narxlar taqqoslanishi va xavfsizlik.";
 const publishDate = "2026-03-19";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1300;
 ---
 
@@ -263,7 +264,7 @@ const wordCount = 1300;
                 <tbody>
                   <tr class="highlight-row">
                     <td>@starsjoybot</td>
-                    <td>12,000 so'm</td>
+                    <td>{fmt(starsPrice(50))} so'm</td>
                     <td>Uzcard / Click</td>
                     <td>1 daqiqa</td>
                   </tr>
@@ -294,6 +295,7 @@ const wordCount = 1300;
                 </tbody>
               </table>
             </div>
+            <p><small>{PRICE_NOTE.uz}</small></p>
 
             <h3>@starsjoybot</h3>
 

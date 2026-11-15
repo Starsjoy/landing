@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Stars'ni naqd pul bilan sotib olish (2026, terminal va bankomat orqali) | StarsJoy Blog";
 const description = "Telegram Stars'ni naqd pul bilan to'g'ridan-to'g'ri olib bo'lmaydi — yagona yo'l: avval Uzcard yoki Humo kartani naqd bilan to'ldirish (Paynet, bank kassasi, cash-in bankomat), keyin @starsjoybot orqali so'mda to'lash. 25 000+ Paynet shaxobchasi, 0-1% komissiya va to'liq vaqt jadvali.";
 const publishDate = "2026-05-16";
-const modifiedDate = "2026-05-16";
+const modifiedDate = "2026-11-15";
 const wordCount = 1820;
 const canonical = "https://starsjoy.uz/blog/telegram-stars-naqd-pul-bilan-sotib-olish";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -115,7 +116,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Paynet va bank kassasi — qaysi komissiya kichikroq?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Eng arzon (0% komissiya): bank kassasi (faqat ish vaqtida), o'z banki cash-in bankomati (24/7) yoki Paynet shaxobchasi do'konda operator orqali. AYoQSh kassasi 1% komissiya. Boshqa bankning cash-in bankomati 1-2%. Eng qimmat — Paynet avtomat bankomati/terminali (avtomat): 3%. Stars uchun kichik summalar (24 000 — 240 000 so'm) bo'lsa, komissiya farqi 250-7200 so'm — Paynet bankomatidan boshqa variant qulayroq."
+          "text": `Eng arzon (0% komissiya): bank kassasi (faqat ish vaqtida), o'z banki cash-in bankomati (24/7) yoki Paynet shaxobchasi do'konda operator orqali. AYoQSh kassasi 1% komissiya. Boshqa bankning cash-in bankomati 1-2%. Eng qimmat — Paynet avtomat bankomati/terminali (avtomat): 3%. Stars uchun kichik summalar (${fmtS(starsPrice(100))} — ${fmtS(starsPrice(1000))} so'm) bo'lsa, komissiya farqi ${fmtS(starsPrice(100) * 0.01)}-${fmtS(starsPrice(1000) * 0.03)} so'm — Paynet bankomatidan boshqa variant qulayroq.`
         }
       },
       {
@@ -128,10 +129,10 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       },
       {
         "@type": "Question",
-        "name": "Eng kichik naqd summa qancha — 50 Stars uchun 12 000 so'm bilan kelsam bo'ladimi?",
+        "name": `Eng kichik naqd summa qancha — 50 Stars uchun ${fmtS(starsPrice(50))} so'm bilan kelsam bo'ladimi?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ha, lekin kartani to'ldirish minimumini hisobga oling: ko'p terminallar 1 000 so'mdan boshlab qabul qiladi, Paynet 5 000 so'mdan, cash-in bankomat odatda 1 000 so'mdan. Demak, 12 000 so'm (50 Stars uchun) yetadi. Ko'p hollarda foydalanuvchilar 50 000 — 100 000 so'm to'ldirib, qolganini boshqa kun ishlatadi — chunki to'ldirilgan pul kartada qoladi va boshqa xaridlarda ham ishlatiladi. Eng past Stars paketi 50 ta = 12 000 so'm."
+          "text": `Ha, lekin kartani to'ldirish minimumini hisobga oling: ko'p terminallar 1 000 so'mdan boshlab qabul qiladi, Paynet 5 000 so'mdan, cash-in bankomat odatda 1 000 so'mdan. Demak, ${fmtS(starsPrice(50))} so'm (50 Stars uchun) yetadi. Ko'p hollarda foydalanuvchilar 50 000 — 100 000 so'm to'ldirib, qolganini boshqa kun ishlatadi — chunki to'ldirilgan pul kartada qoladi va boshqa xaridlarda ham ishlatiladi. Eng past Stars paketi 50 ta = ${fmtS(starsPrice(50))} so'm.`
         }
       },
       {
@@ -159,7 +160,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       { "@type": "HowToTool", "name": "Telegram akkaunt" }
     ],
     "step": [
-      { "@type": "HowToStep", "name": "Naqd pul miqdorini hisoblang", "text": "Qancha Stars olish kerakligini aniqlang va so'mda hisoblang (1 Star = 240 so'm). Masalan, 100 Stars = 24 000 so'm. Komissiya uchun 1-2% qo'shing." },
+      { "@type": "HowToStep", "name": "Naqd pul miqdorini hisoblang", "text": `Qancha Stars olish kerakligini aniqlang va so'mda hisoblang (1 Star = ${STAR_PRICE} so'm). Masalan, 100 Stars = ${fmtS(starsPrice(100))} so'm. Komissiya uchun 1-2% qo'shing.` },
       { "@type": "HowToStep", "name": "Eng yaqin to'ldirish nuqtasiga boring", "text": "3 ta variant: (1) Paynet shaxobchasi yoki AYoQSh kassasi (1% komissiya), (2) Bank kassasi (kartangiz banki — 0%), (3) Cash-in bankomat (Uzum/Kapitalbank — 0% o'z kartasiga). Eng tez va arzon — o'z bankingiz cash-in bankomati." },
       { "@type": "HowToStep", "name": "Kartangizni to'ldiring", "text": "Operator yoki bankomat sizdan karta raqamini so'raydi. Naqd pulni bering, kvitansiyani oling. Push-bildirishnoma yoki SMS orqali balans yangilanganligini tasdiqlang (1-2 daqiqa)." },
       { "@type": "HowToStep", "name": "Telegram'da @starsjoybot ni oching", "text": "Telegram'da @starsjoybot ni qidiring va /start tugmasini bosing. Menyudan 'Telegram Stars' va kerakli paketni tanlang." },
@@ -204,7 +205,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Telegram Stars'ni <strong>to'g'ridan-to'g'ri naqd pulga sotib olib bo'lmaydi</strong> — Telegram va barcha mahalliy yetkazib beruvchilar faqat karta orqali to'lovni qabul qiladi. Yagona to'g'ri yo'l: <strong>(1)</strong> naqd pulingiz bilan Uzcard yoki Humo kartangizni to'ldiring (eng arzon 0% komissiya bilan — Paynet shaxobchasi do'konda operator orqali, bank kassasi yoki o'z banki cash-in bankomati; Paynet bankomati/terminali 3% komissiya oladi), <strong>(2)</strong> keyin <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click yoki Payme'da to'lab Stars'ni 10 soniyada qabul qiling. Standart kurs <strong>1 Star = 240 so'm</strong>. Jami vaqt: <strong>5-10 daqiqa</strong>.
+            <strong>Qisqacha javob:</strong> Telegram Stars'ni <strong>to'g'ridan-to'g'ri naqd pulga sotib olib bo'lmaydi</strong> — Telegram va barcha mahalliy yetkazib beruvchilar faqat karta orqali to'lovni qabul qiladi. Yagona to'g'ri yo'l: <strong>(1)</strong> naqd pulingiz bilan Uzcard yoki Humo kartangizni to'ldiring (eng arzon 0% komissiya bilan — Paynet shaxobchasi do'konda operator orqali, bank kassasi yoki o'z banki cash-in bankomati; Paynet bankomati/terminali 3% komissiya oladi), <strong>(2)</strong> keyin <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click yoki Payme'da to'lab Stars'ni 10 soniyada qabul qiling. Standart kurs <strong>1 Star = {STAR_PRICE} so'm</strong>. Jami vaqt: <strong>5-10 daqiqa</strong>.
           </div>
 
           <p>Bu maqola sizda <strong>naqd pul bor, lekin karta yo'q yoki kartada balans yetmaydi</strong> degan holatga moslangan. O'zbekistonda hali ham maosh, bozor savdosi yoki shaxsiy o'tkazma orqali ko'p pul naqd shaklda yuradi. Lekin Telegram Stars — bu raqamli mahsulot, va dunyo bo'ylab hech bir rasmiy sotuv kanali naqd pulni qabul qilmaydi (na Telegram'ning Fragment'i, na App Store, na Google Play, na mahalliy yetkazib beruvchilar).</p>
@@ -267,7 +268,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li><strong>Qulaylik:</strong> rasmiy bank kvitansiyasi beriladi</li>
           </ul>
 
-          <p>Bu variant — agar siz baribir bankka kelgan bo'lsangiz yoki naqd summa katta (1-5 mln so'm) bo'lsa qulay. Kichik Stars buyurtmalari uchun (50-1000 Stars = 12 000 — 240 000 so'm) Paynet yoki bankomat tezroq.</p>
+          <p>Bu variant — agar siz baribir bankka kelgan bo'lsangiz yoki naqd summa katta (1-5 mln so'm) bo'lsa qulay. Kichik Stars buyurtmalari uchun (50-1000 Stars = {fmtS(starsPrice(50))} — {fmtS(starsPrice(1000))} so'm) Paynet yoki bankomat tezroq.</p>
 
           <h2>Qaysi yo'lni tanlash kerak — qisqa solishtirma</h2>
 
@@ -347,43 +348,44 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tbody>
                 <tr>
                   <td>50 Stars</td>
-                  <td>12 000 so'm</td>
-                  <td>~12 120 so'm</td>
+                  <td>{fmtS(starsPrice(50))} so'm</td>
+                  <td>~{fmtS(starsPrice(50) * 1.01)} so'm</td>
                 </tr>
                 <tr>
                   <td>100 Stars</td>
-                  <td>24 000 so'm</td>
-                  <td>~24 240 so'm</td>
+                  <td>{fmtS(starsPrice(100))} so'm</td>
+                  <td>~{fmtS(starsPrice(100) * 1.01)} so'm</td>
                 </tr>
                 <tr>
                   <td>250 Stars</td>
-                  <td>60 000 so'm</td>
-                  <td>~60 600 so'm</td>
+                  <td>{fmtS(starsPrice(250))} so'm</td>
+                  <td>~{fmtS(starsPrice(250) * 1.01)} so'm</td>
                 </tr>
                 <tr class="highlight-row">
                   <td>500 Stars</td>
-                  <td>120 000 so'm</td>
-                  <td>~121 200 so'm</td>
+                  <td>{fmtS(starsPrice(500))} so'm</td>
+                  <td>~{fmtS(starsPrice(500) * 1.01)} so'm</td>
                 </tr>
                 <tr>
                   <td>1000 Stars</td>
-                  <td>240 000 so'm</td>
-                  <td>~242 400 so'm</td>
+                  <td>{fmtS(starsPrice(1000))} so'm</td>
+                  <td>~{fmtS(starsPrice(1000) * 1.01)} so'm</td>
                 </tr>
                 <tr>
                   <td>2500 Stars</td>
-                  <td>600 000 so'm</td>
-                  <td>~606 000 so'm</td>
+                  <td>{fmtS(starsPrice(2500))} so'm</td>
+                  <td>~{fmtS(starsPrice(2500) * 1.01)} so'm</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           <p><em>O'z banki cash-in bankomati orqali to'ldirsangiz komissiya 0% — naqd summa Stars narxiga teng. Boshqa bankning bankomatida komissiya 1-2%.</em></p>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
           <p>Yiriqroq buyurtmalar (5000+ Stars) uchun naqd pul yo'l qulay emas — shaxsiy kurs va bank o'tkazmasi mantiqliroq. Bu haqda <a href="/blog/telegram-stars-koplab-arzon">ko'p miqdorda Stars sotib olish</a> maqolasida.</p>
 
-          <p class="natural-cta"><strong>Naqd pul foydalanuvchi uchun maslahat:</strong> birinchi marta naqd → karta → Stars yo'lini sinaganda 50 yoki 100 Stars'dan boshlang. Bu komissiya, vaqt va jarayonni o'rganib olish uchun arzon (12 000 — 24 000 so'm) va xavfsiz. Tajriba olgach, kerakli paketni <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali bemalol olishingiz mumkin.</p>
+          <p class="natural-cta"><strong>Naqd pul foydalanuvchi uchun maslahat:</strong> birinchi marta naqd → karta → Stars yo'lini sinaganda 50 yoki 100 Stars'dan boshlang. Bu komissiya, vaqt va jarayonni o'rganib olish uchun arzon ({fmtS(starsPrice(50))} — {fmtS(starsPrice(100))} so'm) va xavfsiz. Tajriba olgach, kerakli paketni <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali bemalol olishingiz mumkin.</p>
 
           <h2>Bosqichma-bosqich: naqd pul bilan Stars olish (to'liq oqim)</h2>
 
@@ -399,7 +401,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h3>Qadamba-qadam:</h3>
           <ol>
-            <li><strong>Naqd summani hisoblang.</strong> 1 Star = 240 so'm. Kerakli Stars'ni 240'ga ko'paytiring. Komissiya uchun 1-2% qo'shing.</li>
+            <li><strong>Naqd summani hisoblang.</strong> 1 Star = {STAR_PRICE} so'm. Kerakli Stars'ni {STAR_PRICE}'ga ko'paytiring. Komissiya uchun 1-2% qo'shing.</li>
             <li><strong>Eng yaqin to'ldirish nuqtasiga boring.</strong> Eng tez va arzon variant — o'z bankingizning cash-in bankomati (0% komissiya, 24/7). Topa olmasangiz — do'kondagi Paynet shaxobchasi (operator orqali, 0%). Paynet avtomat bankomati/terminali 3% oladi — undan qochishga harakat qiling.</li>
             <li><strong>Kartangizni to'ldiring.</strong> Bankomatda kartani solib, "Hisobni to'ldirish" tugmasini tanlang, naqdni mashina uyasiga soling, kvitansiyani oling. Paynet shaxobchasida — operatorga karta raqamini bering. Push-bildirishnoma kelishini kuting (1-2 daqiqa).</li>
             <li><strong>Telegram'da <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> ni oching.</strong> <code>/start</code> tugmasini bosing, menyudan "Telegram Stars" va kerakli paketni tanlang.</li>
@@ -453,7 +455,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Telegram Stars'ni <strong>to'g'ridan-to'g'ri naqd pulga sotib olib bo'lmaydi</strong> — bu butun dunyo bo'ylab amal qiluvchi standart, na Telegram'ning rasmiy Fragment'i, na mahalliy yetkazib beruvchilar naqdni qabul qilmaydi. Yagona to'g'ri va xavfsiz yo'l <strong>2 bosqichli:</strong> avval naqd pulingiz bilan Uzcard yoki Humo kartangizni to'ldirasiz (eng yaxshi 0% komissiya bilan — o'z bankingiz cash-in bankomati, bank kassasi yoki do'kondagi Paynet shaxobchasi operator orqali; Paynet avtomat bankomati/terminali esa 3% komissiya oladi, undan qochish kerak), keyin <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click yoki Payme'da to'lab Stars'ni 10 soniyada qabul qilasiz.</p>
 
-          <p>Jami vaqt <strong>5-10 daqiqa</strong>, standart kurs 1 Star = 240 so'm. Eng kichik buyurtma — 50 Stars (12 000 so'm). Kartangiz umuman yo'q bo'lsa, Uzum Bank, TBC, Hamkorbank yoki Anor bank online ariza orqali virtual karta darhol berishadi. Eng muhim qoida — naqdni faqat <strong>rasmiy nuqtalarga</strong> topshiring; tanish bo'lmagan vositachiga hech qachon naqd bermang.</p>
+          <p>Jami vaqt <strong>5-10 daqiqa</strong>, standart kurs 1 Star = {STAR_PRICE} so'm. Eng kichik buyurtma — 50 Stars ({fmtS(starsPrice(50))} so'm). Kartangiz umuman yo'q bo'lsa, Uzum Bank, TBC, Hamkorbank yoki Anor bank online ariza orqali virtual karta darhol berishadi. Eng muhim qoida — naqdni faqat <strong>rasmiy nuqtalarga</strong> topshiring; tanish bo'lmagan vositachiga hech qachon naqd bermang.</p>
 
           <div class="end-cta">
             Naqd pul qo'lda? Avval kartani to'ldiring, keyin <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali 10 soniyada Stars oling
@@ -487,8 +489,8 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <p>Ha — har bir to'ldirish usuli kvitansiya beradi. Paynet shaxobchasida operator qog'oz kvitansiya beradi (ba'zilarida Paynet ilovasida ham saqlanadi). Cash-in bankomat avtomatik qog'oz kvitansiya chiqaradi (ba'zilarida elektron variantni tanlash mumkin). Bank kassasida — rasmiy bank kvitansiyasi. Bu kvitansiyalar — sizning naqd → karta operatsiyangiz tasdig'i. Stars o'zi tushgach esa, bot ichida buyurtma raqami va to'lov tasdig'i ham saqlanadi.</p>
             </div>
             <div class="post-faq-item">
-              <h3>Eng kichik naqd summa qancha — 50 Stars uchun 12 000 so'm bilan kelsam bo'ladimi?</h3>
-              <p>Ha, lekin kartani to'ldirish minimumini hisobga oling: ko'p terminallar 1 000 so'mdan boshlab qabul qiladi, Paynet 5 000 so'mdan, cash-in bankomat odatda 1 000 so'mdan. Demak, 12 000 so'm (50 Stars uchun) yetadi. Ko'p hollarda foydalanuvchilar 50 000 — 100 000 so'm to'ldirib, qolganini boshqa kun ishlatadi — chunki to'ldirilgan pul kartada qoladi va boshqa xaridlarda ham ishlatiladi. Eng past Stars paketi 50 ta = 12 000 so'm.</p>
+              <h3>Eng kichik naqd summa qancha — 50 Stars uchun {fmtS(starsPrice(50))} so'm bilan kelsam bo'ladimi?</h3>
+              <p>Ha, lekin kartani to'ldirish minimumini hisobga oling: ko'p terminallar 1 000 so'mdan boshlab qabul qiladi, Paynet 5 000 so'mdan, cash-in bankomat odatda 1 000 so'mdan. Demak, {fmtS(starsPrice(50))} so'm (50 Stars uchun) yetadi. Ko'p hollarda foydalanuvchilar 50 000 — 100 000 so'm to'ldirib, qolganini boshqa kun ishlatadi — chunki to'ldirilgan pul kartada qoladi va boshqa xaridlarda ham ishlatiladi. Eng past Stars paketi 50 ta = {fmtS(starsPrice(50))} so'm.</p>
             </div>
             <div class="post-faq-item">
               <h3>Naqd pul bilan ishlash xavfsizmi?</h3>

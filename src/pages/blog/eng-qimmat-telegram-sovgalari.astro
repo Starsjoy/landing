@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Eng qimmat Telegram sovg'alari 2026: TOP-10 va rekord narxlar | StarsJoy Blog";
 const description = "Fragment'da qayd etilgan eng qimmat Telegram sovg'alari: TOP-10 kollektsiya, rekord sotuvlar, nodirlik mexanikasi va so'mdagi taxminiy qiymati (2026-yil avgust).";
 const publishDate = "2026-08-12";
-const modifiedDate = "2026-08-12";
+const modifiedDate = "2026-11-15";
 const wordCount = 1620;
 const canonical = "https://starsjoy.uz/blog/eng-qimmat-telegram-sovgalari";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -145,7 +146,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "O'zbekistondan qimmat collectible sovg'a sotib olsa bo'ladimi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ikkilamchi bozorda (Fragment va boshqa maydonlar) xarid GRAM hamyoni talab qiladi — Uzcard yoki Humo to'g'ridan-to'g'ri qabul qilinmaydi. Realroq yo'l: @starsjoybot orqali so'mda Stars yoki oddiy sovg'a olish (1 Star = 240 so'm, yetkazish odatda 10 soniya), so'ng sovg'ani Telegram ilovasida Collectible'ga upgrade qilish. Bunda nodir traits tushishi mumkin — lekin bu kafolat emas, tasodif."
+          "text": "Ikkilamchi bozorda (Fragment va boshqa maydonlar) xarid GRAM hamyoni talab qiladi — Uzcard yoki Humo to'g'ridan-to'g'ri qabul qilinmaydi. Realroq yo'l: @starsjoybot orqali so'mda Stars yoki oddiy sovg'a olish (1 Star = " + STAR_PRICE + " so'm, yetkazish odatda 10 soniya), so'ng sovg'ani Telegram ilovasida Collectible'ga upgrade qilish. Bunda nodir traits tushishi mumkin — lekin bu kafolat emas, tasodif."
         }
       },
       {
@@ -379,9 +380,10 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Realroq yo'l ikki bosqichli:</p>
           <ol>
-            <li><a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali so'mda <strong>Stars yoki oddiy sovg'a</strong> oling — Uzcard/Humo'dan Click yoki Payme bilan to'lov, 1 Star = 240 so'm, yetkazish odatda 10 soniya (yuklama yuqori bo'lganda biroz cho'zilishi mumkin).</li>
+            <li><a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali so'mda <strong>Stars yoki oddiy sovg'a</strong> oling — Uzcard/Humo'dan Click yoki Payme bilan to'lov, 1 Star = {STAR_PRICE} so'm, yetkazish odatda 10 soniya (yuklama yuqori bo'lganda biroz cho'zilishi mumkin).</li>
             <li>Telegram ilovasida sovg'ani <strong>Collectible'ga upgrade</strong> qiling. Traits tasodifiy tushadi — omadingiz kelsa, nodir kombinatsiya olasiz.</li>
           </ol>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
           <p class="natural-cta"><strong>Halol ogohlantirish:</strong> upgrade natijasi <strong>tasodif</strong>. Nodir trait tushishi kafolatlanmaydi va biz buni "pul ishlash usuli" sifatida tavsiya qilmaymiz. Sovg'ani avvalo sovg'a sifatida oling; qayta sotishdan foyda — kafolatlanmagan ehtimol. Qaysi sovg'a qancha turishi: <a href="/blog/telegram-gifts-narxi-royxati">Telegram Gifts narxi ro'yxati</a>, xarid tartibi: <a href="/blog/telegram-gifts-bot-orqali">Gifts'ni bot orqali olish</a>, mahsulot sahifasi: <a href="/gifts">Telegram Gifts</a>.</p>
 
@@ -428,7 +430,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>O'zbekistondan qimmat collectible sotib olsa bo'ladimi?</h3>
-              <p>Ikkilamchi bozorda xarid GRAM hamyoni talab qiladi — Uzcard/Humo to'g'ridan-to'g'ri qabul qilinmaydi. Realroq yo'l: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali so'mda Stars yoki oddiy sovg'a olish (1 Star = 240 so'm, odatda 10 soniya), so'ng Telegram ilovasida Collectible'ga upgrade qilish. Traits tasodifiy tushadi.</p>
+              <p>Ikkilamchi bozorda xarid GRAM hamyoni talab qiladi — Uzcard/Humo to'g'ridan-to'g'ri qabul qilinmaydi. Realroq yo'l: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali so'mda Stars yoki oddiy sovg'a olish (1 Star = {STAR_PRICE} so'm, odatda 10 soniya), so'ng Telegram ilovasida Collectible'ga upgrade qilish. Traits tasodifiy tushadi.</p>
             </div>
             <div class="post-faq-item">
               <h3>Qimmat sovg'a sotib olish investitsiya bo'la oladimi?</h3>

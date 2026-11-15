@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Vizasiz Telegram Premium sotib olish (2026): Uzcard, Humo va bot orqali | StarsJoy Blog";
 const description = "Telegram Premium'ni Visa kartasiz sotib olish mumkinmi? Uzcard, Humo, Click va bot orqali eng oson va xavfsiz usullar — O'zbekiston uchun to'liq qo'llanma.";
 const publishDate = "2026-03-23";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1150;
 ---
 
@@ -104,7 +105,7 @@ const wordCount = 1150;
         "name": "Telegram Premium narxi qancha?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "StarsJoy orqali 3 oylik — 172 000 so'm, 6 oylik — 232 000 so'm, 12 oylik — 422 000 so'm."
+          "text": `StarsJoy orqali 3 oylik — ${fmtS(PREMIUM_PRICE[3])} so'm, 6 oylik — ${fmtS(PREMIUM_PRICE[6])} so'm, 12 oylik — ${fmtS(PREMIUM_PRICE[12])} so'm.`
         }
       },
       {
@@ -291,22 +292,24 @@ const wordCount = 1150;
                 <tbody>
                   <tr>
                     <td>3 oy</td>
-                    <td>172 000 so'm</td>
-                    <td>~57 333 so'm/oy</td>
+                    <td>{fmtS(PREMIUM_PRICE[3])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(3))} so'm/oy</td>
                   </tr>
                   <tr>
                     <td>6 oy</td>
-                    <td>232 000 so'm</td>
-                    <td>~38 667 so'm/oy</td>
+                    <td>{fmtS(PREMIUM_PRICE[6])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(6))} so'm/oy</td>
                   </tr>
                   <tr class="highlight-row">
                     <td>12 oy</td>
-                    <td>422 000 so'm</td>
-                    <td>~35 167 so'm/oy</td>
+                    <td>{fmtS(PREMIUM_PRICE[12])} so'm</td>
+                    <td>~{fmtS(premiumPerMonth(12))} so'm/oy</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+
+            <p><small>{PRICE_NOTE.uz}</small></p>
 
             <p>Ko'rib turganingizdek, vositachi xizmatlar komissiya qo'shadi, lekin buning evaziga siz <strong>Visa kartasiz, so'mda</strong> to'laysiz. Farq odatda 10–20% atrofida — bu qulay to'lov uchun maqbul narx.</p>
 
@@ -392,7 +395,7 @@ const wordCount = 1150;
               </div>
               <div class="post-faq-item">
                 <h3>Telegram Premium narxi qancha?</h3>
-                <p>StarsJoy orqali 3 oylik — 172 000 so'm, 6 oylik — 232 000 so'm, 12 oylik — 422 000 so'm.</p>
+                <p>StarsJoy orqali 3 oylik — {fmtS(PREMIUM_PRICE[3])} so'm, 6 oylik — {fmtS(PREMIUM_PRICE[6])} so'm, 12 oylik — {fmtS(PREMIUM_PRICE[12])} so'm.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Eng qulay usul qaysi?</h3>

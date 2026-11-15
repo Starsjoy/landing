@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Бизнес продажи Stars, Premium и Gifts в Telegram: реселлерская модель 2026 — полный разбор | StarsJoy Бизнес";
 const description = "Как работает бизнес перепродажи Telegram Stars, Premium и Gifts: логика дохода, продукты, условия запуска в Узбекистане и white-label пакет Starsjoy Бизнес.";
 const publishDate = "2026-05-04";
-const modifiedDate = "2026-05-04";
+const modifiedDate = "2026-11-15";
 const wordCount = 1920;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-stars-premium-gifts-savdo-biznesi";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -44,7 +45,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       "url": "https://starsjoy.uz",
       "sameAs": [
         "https://telegram.me/starsjoy",
-        "https://telegram.me/starsjoy_bot"
+        "https://telegram.me/StarsjoySupport"
       ]
     },
     "publisher": {
@@ -83,7 +84,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       "@type": "Organization",
       "name": "StarsJoy Бизнес",
       "url": "https://starsjoy.uz",
-      "sameAs": ["https://telegram.me/starsjoy_bot"]
+      "sameAs": ["https://telegram.me/StarsjoySupport"]
     },
     "areaServed": { "@type": "Country", "name": "Uzbekistan" },
     "description": "Готовый white-label Telegram бот и Mini App для бизнеса перепродажи Stars, Premium и Gifts. Basic $500, Pro $800. Срок 7-14 дней, поддержка 12 месяцев."
@@ -212,17 +213,18 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               </tr>
             </thead>
             <tbody>
-              <tr><td>Stars</td><td>50–500 Stars (12k–120k сум)</td><td>Постоянная, ежедневная</td><td>~10–15%</td></tr>
+              <tr><td>Stars</td><td>50–500 Stars ({starsPrice(50)/1000}k–{starsPrice(500)/1000}k сум)</td><td>Постоянная, ежедневная</td><td>~10–15%</td></tr>
               <tr><td>Premium (3, 6, 12 мес)</td><td>1 мес от 50k, 12 мес от 400k сум</td><td>Постоянная, месячные циклы</td><td>~12–18%</td></tr>
               <tr><td>Gifts</td><td>15 Stars 4 500 сум – 5 000+ Stars 1 200 000+ сум</td><td>Сезонная (праздники)</td><td>~15–20%</td></tr>
             </tbody>
           </table>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
           <h3>1. Telegram Stars</h3>
-          <p>Stars — внутренняя валюта экосистемы Telegram. Клиенты покупают Stars для следующих целей: подписки на каналы (paid posts, paid reactions), оплата в Mini App, покупка Telegram Gifts и активация Telegram Premium. На май 2026 года 1 Star ≈ 240 сум по реселлерскому курсу — список цен в статье <a href="/ru/blog/telegram-stars-narxi">Цена Telegram Stars 2026</a>.</p>
+          <p>Stars — внутренняя валюта экосистемы Telegram. Клиенты покупают Stars для следующих целей: подписки на каналы (paid posts, paid reactions), оплата в Mini App, покупка Telegram Gifts и активация Telegram Premium. На ноябрь 2026 года 1 Star ≈ {STAR_PRICE} сум по реселлерскому курсу — список цен в статье <a href="/ru/blog/telegram-stars-narxi">Цена Telegram Stars 2026</a>.</p>
 
           <h3>2. Telegram Premium</h3>
-          <p>Premium — месячная или годовая подписка Telegram. Открывает 30+ функций: загрузка больших файлов, ускоренная загрузка, premium emoji, premium стикеры, анимированная аватарка и другие. Клиент обычно берёт 3, 6 или 12 месяцев. Цена 12-месячного Premium ~422 000 сум — это даёт AOV в 5–30 раз выше, чем один заказ Stars.</p>
+          <p>Premium — месячная или годовая подписка Telegram. Открывает 30+ функций: загрузка больших файлов, ускоренная загрузка, premium emoji, premium стикеры, анимированная аватарка и другие. Клиент обычно берёт 3, 6 или 12 месяцев. Цена 12-месячного Premium ~{fmtS(PREMIUM_PRICE[12])} сум — это даёт AOV в 5–30 раз выше, чем один заказ Stars.</p>
 
           <h3>3. Telegram Gifts</h3>
           <p>Gifts — анимированные цифровые подарки внутри Telegram. Пользователь покупает подарок за Stars и отправляет другу. Три категории: Regular (15–100 Stars), Limited (1 000–10 000 Stars) и Unique/NFT (5 000+ Stars). Спрос сезонный — в Новый год, 14 февраля и Международный женский день увеличивается в 3–4 раза. Подробности — <a href="/ru/blog/telegram-gifts-narxi-royxati">Цены Telegram Gifts 2026</a>.</p>
@@ -359,7 +361,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Устойчивость реселлерского бизнеса складывается из продажи всех трёх продуктов вместе (Stars, Premium, Gifts), строгого соблюдения правил Telegram и постоянного канала трафика.</p>
 
           <div class="end-cta">
-            <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">Консультация Starsjoy Бизнес — @starsjoy_bot &rarr;</a>
+            <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">Консультация Starsjoy Бизнес — @StarsjoySupport &rarr;</a>
           </div>
 
           <h2>Читайте также</h2>

@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Premium nima beradi: 30+ funksiya batafsil ro'yxati (2026) | StarsJoy Blog";
 const description = "Telegram Premium barcha funksiyalari — 4 GB fayl, premium emoji, animatsiyali profil, voice-to-text, 1 000 kanal va boshqa 30+ imkoniyat. Kim uchun foydali va arzonmi?";
 const publishDate = "2026-05-06";
-const modifiedDate = "2026-05-06";
+const modifiedDate = "2026-11-15";
 const wordCount = 1880;
 const canonical = "https://starsjoy.uz/blog/telegram-premium-funksiyalari";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -164,8 +165,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Telegram Premium <strong>30+ funksiyani ochadi</strong>: 4 GB fayl yuklash, faster download, premium emoji va stickerlar, animatsiyali profil rasmi, voice-to-text, 1 000 kanal limiti, 20 papka, 4 akkaunt bir ilovada, kengaytirilgan reactions, xabar tarjimasi va boshqalar. Foyda foydalanish stiliga bog'liq — katta fayllar va ko'p kanal bilan ishlovchilar uchun darhol qaytim, oddiy yozishuvchi uchun ortiqcha bo'lishi mumkin. Narxlar: 1 oy 57 000, 6 oy 232 000, 12 oy 422 000 so'm.
+            <strong>Qisqacha javob:</strong> Telegram Premium <strong>30+ funksiyani ochadi</strong>: 4 GB fayl yuklash, faster download, premium emoji va stickerlar, animatsiyali profil rasmi, voice-to-text, 1 000 kanal limiti, 20 papka, 4 akkaunt bir ilovada, kengaytirilgan reactions, xabar tarjimasi va boshqalar. Foyda foydalanish stiliga bog'liq — katta fayllar va ko'p kanal bilan ishlovchilar uchun darhol qaytim, oddiy yozishuvchi uchun ortiqcha bo'lishi mumkin. Narxlar: 1 oy 57 000, 6 oy {fmtS(PREMIUM_PRICE[6])}, 12 oy {fmtS(PREMIUM_PRICE[12])} so'm.
           </div>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
           <p>Telegram Premium 2022-yilda joriy etilgandan beri funksiyalar ro'yxati doimiy o'sib boradi. 2026-yilga kelib 30 dan ortiq xususiyat aktiv — bir qismi katta foydaga ega, bir qismi nicha foydalanuvchi uchun. Bu maqolada barcha funksiyalar to'liq ko'rib chiqiladi: nima qiladi, qanday ishlaydi, kim uchun foydali. Maqola Telegram'ning rasmiy <a href="https://telegram.org/premium" target="_blank" rel="noopener nofollow">Premium hujjatiga</a> asoslangan va 2026-yil mayidagi joriy holatga mos.</p>
 
@@ -349,7 +351,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li><strong>Signal</strong> — Premium yo'q, hammasi bepul, lekin funksionallik kichik (4 GB fayl yo'q, premium emoji yo'q)</li>
           </ul>
 
-          <p>Telegram Premium narxi (oyiga 35 167 so'm 12 oylikda) WhatsApp Business yoki Discord Nitro bilan solishtirsangiz o'rtacha — Telegram funksionalligi esa katta.</p>
+          <p>Telegram Premium narxi (oyiga 35 750 so'm 12 oylikda) WhatsApp Business yoki Discord Nitro bilan solishtirsangiz o'rtacha — Telegram funksionalligi esa katta.</p>
 
           <h2>Premium aktivlashtirish</h2>
 
@@ -399,7 +401,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Telegram Premium 30+ funksiya orqali Telegram tajribasini sezilarli darajada kengaytiradi: katta fayllar, vizual shaxsiylashtirish, kanal limit oshirish, multi-akkaunt va texnik imkoniyatlar. Foyda foydalanuvchining stiliga bog'liq — kontent yaratuvchi, biznes egasi va ko'p kanal kuzatuvchi uchun darhol qaytim, oddiy yozishuvchi uchun tanlovga bog'liq.</p>
 
-          <p>Eng tejamkor variant 12 oylik paket (422 000 so'm, oyiga ~35 167) — agar yiliga to'liq foydalansangiz. Sinab ko'rish uchun 1 oylik (57 000 so'm) yetadi. Premium aktivatsiya 10 soniya <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click/Payme/Uzcard/Humo bilan amalga oshiriladi.</p>
+          <p>Eng tejamkor variant 12 oylik paket ({fmtS(PREMIUM_PRICE[12])} so'm, oyiga ~35 750) — agar yiliga to'liq foydalansangiz. Sinab ko'rish uchun 1 oylik (57 000 so'm) yetadi. Premium aktivatsiya 10 soniya <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali Click/Payme/Uzcard/Humo bilan amalga oshiriladi.</p>
 
           <div class="end-cta">
             <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Premium aktivlashtirish — @starsjoybot &rarr;</a>

@@ -3,16 +3,18 @@ import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
 import VariantPage from '../../../components/VariantPage.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 import { hreflangsFor } from '../../../lib/i18n';
 
+const P = fmtS(starsPrice(1000));
 const canonical = "https://starsjoy.uz/ru/stars/1000";
-const title = "Купить 1000 Telegram Stars — 240 000 сум | StarsJoy";
-const description = "1000 Telegram Stars — 240 000 сум — самый популярный пакет StarsJoy. Оплата Uzcard, Humo или Click, доставка за 10 секунд.";
+const title = `Купить 1000 Telegram Stars — ${P} сум | StarsJoy`;
+const description = `1000 Telegram Stars — ${P} сум — самый популярный пакет StarsJoy. Оплата Uzcard, Humo или Click, доставка за 10 секунд.`;
 
 const faqs = [
   {
     q: "Где можно купить 1000 Telegram Stars?",
-    a: "Через @starsjoybot — введите количество 1000 и оплатите через Uzcard, Humo или Click. Цена 240 000 сум, поступление на баланс за 10 секунд."
+    a: `Через @starsjoybot — введите количество 1000 и оплатите через Uzcard, Humo или Click. Цена ${P} сум, поступление на баланс за 10 секунд.`
   },
   {
     q: "Почему 1000 Stars — самый популярный пакет?",
@@ -28,7 +30,7 @@ const faqs = [
   },
   {
     q: "Можно оплатить Uzcard или Humo?",
-    a: "Да, 240 000 сум полностью оплачиваются через Uzcard, Humo, Click или Payme — без зарубежной карты и конвертации валюты."
+    a: `Да, ${P} сум полностью оплачиваются через Uzcard, Humo, Click или Payme — без зарубежной карты и конвертации валюты.`
   },
   {
     q: "Можно ли вывести 1000 Stars?",
@@ -80,13 +82,14 @@ const related = [
     currentLabel="1000 ⭐"
     eyebrow="Telegram Stars — 1000 штук"
     h1="Купить 1000 Telegram Stars"
-    quickAnswer="1000 Telegram Stars — 240 000 сум, поступают на баланс через @starsjoybot за 10 секунд."
+    quickAnswer={`1000 Telegram Stars — ${P} сум, поступают на баланс через @starsjoybot за 10 секунд.`}
     heroNote="Самый популярный пакет StarsJoy — больше пробного количества, дешевле крупной оптовой покупки."
     siblingsTitle="Другие количества"
     siblings={siblings}
     priceLabel="Цена"
-    priceValue="240 000 сум"
-    priceSubtext="240 сум/звезда — популярный"
+    priceValue={`${P} сум`}
+    priceSubtext={`${STAR_PRICE} сум/звезда — популярный`}
+    priceNote={PRICE_NOTE.ru}
     bonusNote="+40 ⭐ бонуса, подробнее →"
     bonusHref="/ru/bonus"
     ctaLabel="Купить 1000 Stars"
@@ -100,11 +103,11 @@ const related = [
     relatedTitle="Дополнительно о Stars"
     related={related}
     finalCtaTitle="Готовы купить 1000 Stars?"
-    finalCtaText="240 000 сум, оплата Uzcard/Click, доставка за 10 секунд"
+    finalCtaText={`${P} сум, оплата Uzcard/Click, доставка за 10 секунд`}
     finalCtaLabel="Купить сейчас"
     schemaName="Telegram Stars — 1000 штук"
     schemaDescription={description}
-    priceAmount="240000"
+    priceAmount={String(starsPrice(1000))}
     breadcrumbSchema={[
       { name: "Главная", item: "https://starsjoy.uz/ru" },
       { name: "Telegram Stars", item: "https://starsjoy.uz/ru/stars" },

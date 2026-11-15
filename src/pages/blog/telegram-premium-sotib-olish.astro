@@ -2,11 +2,14 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
+const p3 = fmtS(PREMIUM_PRICE[3]), p6 = fmtS(PREMIUM_PRICE[6]), p12 = fmtS(PREMIUM_PRICE[12]);
+const m3 = fmtS(premiumPerMonth(3)), m6 = fmtS(premiumPerMonth(6)), m12 = fmtS(premiumPerMonth(12));
 
 const title = "Telegram Premium sotib olish uchun eng tez va oson yo'l (2026) | StarsJoy Blog";
 const description = "Telegram Premium sotib olish 2026 — O'zbekistonda Uzcard, Humo, Click va Payme orqali eng tez yo'l. StarsJoy orqali narxlar, usullar va bosqichma-bosqich qo'llanma.";
 const publishDate = "2026-03-31";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1250;
 ---
 
@@ -88,7 +91,7 @@ const wordCount = 1250;
         "name": "Telegram Premium narxi qancha?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "StarsJoy orqali: 3 oy — 172 000 so'm, 6 oy — 232 000 so'm, 12 oy — 422 000 so'm."
+          "text": `StarsJoy orqali: 3 oy — ${p3} so'm, 6 oy — ${p6} so'm, 12 oy — ${p12} so'm.`
         }
       },
       {
@@ -206,24 +209,25 @@ const wordCount = 1250;
                 <tbody>
                   <tr>
                     <td>3 oy</td>
-                    <td>172 000 so'm</td>
-                    <td>~57 333 so'm/oy</td>
+                    <td>{p3} so'm</td>
+                    <td>~{m3} so'm/oy</td>
                   </tr>
                   <tr>
                     <td>6 oy</td>
-                    <td>232 000 so'm</td>
-                    <td>~38 667 so'm/oy</td>
+                    <td>{p6} so'm</td>
+                    <td>~{m6} so'm/oy</td>
                   </tr>
                   <tr class="highlight-row">
                     <td>12 oy</td>
-                    <td>422 000 so'm</td>
-                    <td>~35 167 so'm/oy</td>
+                    <td>{p12} so'm</td>
+                    <td>~{m12} so'm/oy</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <p><small>{PRICE_NOTE.uz}</small></p>
 
-            <p>Bot orqali avtomatik sotib olinadigan minimal muddat — 3 oy (Gift mexanizmi 1 oyni qo'llab-quvvatlamaydi). <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a> Telegram'da bor, lekin uni faqat akkaunt egasi o'zi, xalqaro kartasi bilan Telegram ichidan yoqadi — @starsjoysupport mutaxassisi qadamlarni bepul o'rgatadi. Paketlar haqida batafsil — <a href="/blog/telegram-premium-3-oy-6-oy">3 oy va 6 oy paketlari taqqoslash</a> maqolasida.</p>
+            <p>Bot orqali avtomatik sotib olinadigan minimal muddat — 3 oy (Gift mexanizmi 1 oyni qo'llab-quvvatlamaydi). <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a> Telegram'da bor, lekin uni faqat akkaunt egasi o'zi, xalqaro kartasi bilan Telegram ichidan yoqadi — @StarsjoySupport mutaxassisi qadamlarni bepul o'rgatadi. Paketlar haqida batafsil — <a href="/blog/telegram-premium-3-oy-6-oy">3 oy va 6 oy paketlari taqqoslash</a> maqolasida.</p>
           </section>
 
           <section>
@@ -311,7 +315,7 @@ const wordCount = 1250;
             <p>Telegram Premium bepul bo'lmaydi. Internetdagi bunday takliflar — fishing yoki firibgarlik. Akkaunt parolini hech kimga bermang.</p>
 
             <h3>3. Bot orqali 1 oylik paket qidirish</h3>
-            <p>@starsjoybot orqali 1 oylik variant yo'q — minimal 3 oy (Gift funksiyasi 1 oyni qo'llab-quvvatlamaydi). <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a> Telegram'da bor, lekin uni faqat o'zingiz, xalqaro kartangiz bilan Telegram ichidan yoqasiz — qadamlarni bilmasangiz, @starsjoysupport mutaxassisi bepul o'rgatadi.</p>
+            <p>@starsjoybot orqali 1 oylik variant yo'q — minimal 3 oy (Gift funksiyasi 1 oyni qo'llab-quvvatlamaydi). <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a> Telegram'da bor, lekin uni faqat o'zingiz, xalqaro kartangiz bilan Telegram ichidan yoqasiz — qadamlarni bilmasangiz, @StarsjoySupport mutaxassisi bepul o'rgatadi.</p>
 
             <h3>4. Noma'lum botlarga pul o'tkazish</h3>
             <p>"Premium sotaman" degan ko'plab botlar bor, hammasi ishonchli emas. To'lashdan oldin xizmatni tekshiring — rasmiy sayt bormi, sharhlar bormi. <a href="https://telegram.me/starsjoybot" target="_blank">@starsjoybot</a> — StarsJoy xizmatining Telegram boti. StarsJoy O'zbekistonda Telegram Premium, Stars va Gifts sotuvchi rasmiy xizmat (<a href="https://starsjoy.uz">starsjoy.uz</a>).</p>
@@ -346,11 +350,11 @@ const wordCount = 1250;
               </div>
               <div class="post-faq-item">
                 <h3>Telegram Premium narxi qancha?</h3>
-                <p>StarsJoy orqali: 3 oy — 172 000 so'm, 6 oy — 232 000 so'm, 12 oy — 422 000 so'm.</p>
+                <p>StarsJoy orqali: 3 oy — {p3} so'm, 6 oy — {p6} so'm, 12 oy — {p12} so'm.</p>
               </div>
               <div class="post-faq-item">
                 <h3>1 oylik Telegram Premium bormi?</h3>
-                <p>Bot orqali avtomatik — yo'q (Gift mexanizmida minimal 3 oy). <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a> Telegram'da bor, lekin uni faqat o'zingiz, xalqaro kartangiz bilan Telegram ichidan yoqasiz — @starsjoysupport mutaxassisi qadamlarni bepul o'rgatadi.</p>
+                <p>Bot orqali avtomatik — yo'q (Gift mexanizmida minimal 3 oy). <a href="/blog/telegram-premium-1-oylik">1 oylik Premium</a> Telegram'da bor, lekin uni faqat o'zingiz, xalqaro kartangiz bilan Telegram ichidan yoqasiz — @StarsjoySupport mutaxassisi qadamlarni bepul o'rgatadi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Telegram Premium bepul olish mumkinmi?</h3>

@@ -3,16 +3,21 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import VariantPage from '../../components/VariantPage.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
 import { hreflangsFor } from '../../lib/i18n';
 
+const P3 = fmtS(PREMIUM_PRICE[3]), P6 = fmtS(PREMIUM_PRICE[6]), P12 = fmtS(PREMIUM_PRICE[12]);
+const pm = (m: 3 | 6 | 12) => fmtS(Math.round(premiumPerMonth(m) / 100) * 100);
+const M3 = pm(3), M6 = pm(6), M12 = pm(12);
+const SAVE = Math.round((1 - premiumPerMonth(12) / premiumPerMonth(3)) * 100);
 const canonical = "https://starsjoy.uz/premium/3-oy";
-const title = "Telegram Premium 3 oylik sotib olish — 172 000 so'm | StarsJoy";
-const description = "Telegram Premium 3 oylik obuna narxi — 172 000 so'm. Uzcard, Humo yoki Click orqali to'lang, 10 soniyada faollashadi. Premium'ni sinab ko'rish uchun eng qisqa va arzon kirish narxi.";
+const title = `Telegram Premium 3 oylik sotib olish — ${P3} so'm | StarsJoy`;
+const description = `Telegram Premium 3 oylik obuna narxi — ${P3} so'm. Uzcard, Humo yoki Click orqali to'lang, 10 soniyada faollashadi. Premium'ni sinab ko'rish uchun eng qisqa va arzon kirish narxi.`;
 
 const faqs = [
   {
     q: "Telegram Premium 3 oylikni qayerdan arzon narxda sotib olsam bo'ladi?",
-    a: "StarsJoy orqali — @starsjoybot'ga kirib 'Premium sotib olish' tugmasini bosing va 3 oylikni tanlang. Narxi 172 000 so'm, Uzcard, Humo yoki Click bilan to'lab, 10 soniyada akkauntingizga faollashtirasiz."
+    a: `StarsJoy orqali — @starsjoybot'ga kirib 'Premium sotib olish' tugmasini bosing va 3 oylikni tanlang. Narxi ${P3} so'm, Uzcard, Humo yoki Click bilan to'lab, 10 soniyada akkauntingizga faollashtirasiz.`
   },
   {
     q: "Nega 1 oylik Premium yo'q, faqat 3 oylikdan boshlanadi?",
@@ -28,7 +33,7 @@ const faqs = [
   },
   {
     q: "3 oylik va 12 oylikning narx farqi qancha?",
-    a: "3 oylik oyiga taxminan 57 300 so'mga to'g'ri keladi, 12 oylik esa oyiga ~35 200 so'm — ya'ni uzoq muddat tanlasangiz oyiga arzonroq, lekin bir martalik to'lov summasi kattaroq bo'ladi. Bir martalik kam summa bilan sinab ko'rish uchun 3 oylik qulayroq."
+    a: `3 oylik oyiga taxminan ${M3} so'mga to'g'ri keladi, 12 oylik esa oyiga ~${M12} so'm — ya'ni uzoq muddat tanlasangiz oyiga arzonroq, lekin bir martalik to'lov summasi kattaroq bo'ladi. Bir martalik kam summa bilan sinab ko'rish uchun 3 oylik qulayroq.`
   },
   {
     q: "To'lovni Uzcard yoki Humo bilan qilsam bo'ladimi?",
@@ -74,13 +79,14 @@ const related = [
     currentLabel="3 oylik"
     eyebrow="Telegram Premium — 3 oylik"
     h1="Telegram Premium 3 oylik sotib olish"
-    quickAnswer="Telegram Premium 3 oylik obuna narxi — 172 000 so'm, @starsjoybot orqali Uzcard/Humo/Click bilan 10 soniyada faollashadi."
+    quickAnswer={`Telegram Premium 3 oylik obuna narxi — ${P3} so'm, @starsjoybot orqali Uzcard/Humo/Click bilan 10 soniyada faollashadi.`}
     heroNote="Premium'ni birinchi marta sinab ko'rmoqchi bo'lganlar uchun eng qisqa va eng arzon kirish narxi."
     siblingsTitle="Boshqa muddatlar"
     siblings={siblings}
     priceLabel="Narx"
-    priceValue="172 000 so'm"
-    priceSubtext="~57 300 so'm/oy"
+    priceValue={`${P3} so'm`}
+    priceSubtext={`~${M3} so'm/oy`}
+    priceNote={PRICE_NOTE.uz}
     ctaLabel="3 oylik Premium sotib olish"
     ctaHref="https://telegram.me/starsjoybot"
     forWhomTitle="Kimga mos?"
@@ -92,11 +98,11 @@ const related = [
     relatedTitle="3 oylik Premium haqida qo'shimcha"
     related={related}
     finalCtaTitle="3 oylik Premium'ga tayyor bo'ling"
-    finalCtaText="172 000 so'm, Uzcard/Click orqali, 10 soniyada faollashadi"
+    finalCtaText={`${P3} so'm, Uzcard/Click orqali, 10 soniyada faollashadi`}
     finalCtaLabel="Hozir sotib olish"
     schemaName="Telegram Premium 3 oylik obuna"
     schemaDescription={description}
-    priceAmount="172000"
+    priceAmount={String(PREMIUM_PRICE[3])}
     breadcrumbSchema={[
       { name: "Bosh sahifa", item: "https://starsjoy.uz" },
       { name: "Telegram Premium", item: "https://starsjoy.uz/premium" },

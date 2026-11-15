@@ -4,15 +4,20 @@ import NavbarEn from '../../../components/NavbarEn.astro';
 import FooterEn from '../../../components/FooterEn.astro';
 import VariantPage from '../../../components/VariantPage.astro';
 import { hreflangsFor } from '../../../lib/i18n';
+import { PREMIUM_PRICE, premiumPerMonth, fmt, PRICE_NOTE } from '../../../lib/prices';
+
+/** Oylik narx, yuzlikkacha yaxlitlangan: 59667 → "59,700". */
+const pm = (m: 3 | 6 | 12) => fmt(Math.round(premiumPerMonth(m) / 100) * 100);
+const save12vs3 = Math.round((1 - PREMIUM_PRICE[12] / 12 / (PREMIUM_PRICE[3] / 3)) * 100);
 
 const canonical = "https://starsjoy.uz/en/premium/3-months";
-const title = "Buy Telegram Premium 3 Months — 172,000 UZS | StarsJoy";
-const description = "Telegram Premium for 3 months costs 172,000 UZS in Uzbekistan. Pay with Uzcard, Humo or Click — activated in about 10 seconds. The cheapest way to try Premium.";
+const title = `Buy Telegram Premium 3 Months — ${fmt(PREMIUM_PRICE[3])} UZS | StarsJoy`;
+const description = `Telegram Premium for 3 months costs ${fmt(PREMIUM_PRICE[3])} UZS in Uzbekistan. Pay with Uzcard, Humo or Click — activated in about 10 seconds. The cheapest way to try Premium.`;
 
 const faqs = [
   {
     q: "Where can I buy Telegram Premium for 3 months at a good price?",
-    a: "Through StarsJoy — open @starsjoybot, tap 'Buy Premium' and choose 3 months. The price is 172,000 UZS, paid via Uzcard, Humo or Click, activated in about 10 seconds."
+    a: `Through StarsJoy — open @starsjoybot, tap 'Buy Premium' and choose 3 months. The price is ${fmt(PREMIUM_PRICE[3])} UZS, paid via Uzcard, Humo or Click, activated in about 10 seconds.`
   },
   {
     q: "Why is there no 1-month plan, only starting from 3 months?",
@@ -28,7 +33,7 @@ const faqs = [
   },
   {
     q: "How much more expensive is the 3-month plan than the 12-month plan, per month?",
-    a: "The 3-month plan works out to about 57,300 UZS per month, versus roughly 35,200 UZS per month on the 12-month plan. Longer terms are cheaper per month, but the 3-month plan lets you try Premium for a smaller upfront amount."
+    a: `The 3-month plan works out to about ${pm(3)} UZS per month, versus roughly ${pm(12)} UZS per month on the 12-month plan. Longer terms are cheaper per month, but the 3-month plan lets you try Premium for a smaller upfront amount.`
   },
   {
     q: "Can I pay with Uzcard or Humo?",
@@ -74,13 +79,13 @@ const related = [
     currentLabel="3 months"
     eyebrow="Telegram Premium — 3 months"
     h1="Buy Telegram Premium for 3 Months"
-    quickAnswer="Telegram Premium for 3 months costs 172,000 UZS, activated via @starsjoybot in about 10 seconds (Uzcard/Humo/Click)."
-    heroNote="The cheapest way to try Premium if you've never used it before."
+    quickAnswer={`Telegram Premium for 3 months costs ${fmt(PREMIUM_PRICE[3])} UZS, activated via @starsjoybot in about 10 seconds (Uzcard/Humo/Click).`}
+    heroNote={`The cheapest way to try Premium if you've never used it before. ${PRICE_NOTE.en}`}
     siblingsTitle="Other terms"
     siblings={siblings}
     priceLabel="Price"
-    priceValue="172,000 UZS"
-    priceSubtext="~57,300 UZS/month"
+    priceValue={`${fmt(PREMIUM_PRICE[3])} UZS`}
+    priceSubtext={`~${pm(3)} UZS/month`}
     ctaLabel="Buy Premium — 3 months"
     ctaHref="https://telegram.me/starsjoybot"
     forWhomTitle="Who is this for?"
@@ -92,11 +97,11 @@ const related = [
     relatedTitle="More about Telegram Premium"
     related={related}
     finalCtaTitle="Ready for 3 months of Premium?"
-    finalCtaText="172,000 UZS, pay with Uzcard/Click, activated in about 10 seconds"
+    finalCtaText={`${fmt(PREMIUM_PRICE[3])} UZS, pay with Uzcard/Click, activated in about 10 seconds`}
     finalCtaLabel="Buy now"
     schemaName="Telegram Premium — 3-month subscription"
     schemaDescription={description}
-    priceAmount="172000"
+    priceAmount={String(PREMIUM_PRICE[3])}
     breadcrumbSchema={[
       { name: "Home", item: "https://starsjoy.uz/en" },
       { name: "Telegram Premium", item: "https://starsjoy.uz/en/premium" },

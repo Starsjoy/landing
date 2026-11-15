@@ -5,9 +5,13 @@ import FooterEn from '../../components/FooterEn.astro';
 import Reviews from '../../components/Reviews.astro';
 import { getApprovedReviews, aggregateOf } from '../../lib/reviews';
 import { hreflangsFor } from '../../lib/i18n';
+import { PREMIUM_PRICE, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Buy Telegram Premium in Uzbekistan — Pay with Uzcard or Humo | StarsJoy";
-const description = "Telegram Premium price in Uzbekistan: 3 months 172,000 UZS, 6 months 232,000 UZS, 12 months 422,000 UZS. Pay in Uzbek som with Uzcard, Humo or Click — no Visa or Mastercard needed. Delivered in about 10 seconds.";
+const fmt = (n: number) => n.toLocaleString('en-US');
+const description = `Telegram Premium price in Uzbekistan: 3 months ${fmt(PREMIUM_PRICE[3])} UZS, 6 months ${fmt(PREMIUM_PRICE[6])} UZS, 12 months ${fmt(PREMIUM_PRICE[12])} UZS. Pay in Uzbek som with Uzcard, Humo or Click — no Visa or Mastercard needed. Delivered in about 10 seconds.`;
+/** Oylik narx, yuzlikkacha yaxlitlangan. */
+const pm = (m: 3 | 6 | 12) => fmt(Math.round(PREMIUM_PRICE[m] / m / 100) * 100);
 
 const faqs = [
   {
@@ -16,7 +20,7 @@ const faqs = [
   },
   {
     q: "How much does Telegram Premium cost in Uzbekistan?",
-    a: "Through StarsJoy: 3 months — 172,000 UZS, 6 months — 232,000 UZS, 12 months — 422,000 UZS. The longer the term, the lower the effective monthly price: the 12-month plan works out to roughly 35,200 UZS per month versus about 57,300 UZS on the 3-month plan."
+    a: `Through StarsJoy: 3 months — ${fmt(PREMIUM_PRICE[3])} UZS, 6 months — ${fmt(PREMIUM_PRICE[6])} UZS, 12 months — ${fmt(PREMIUM_PRICE[12])} UZS. The longer the term, the lower the effective monthly price: the 12-month plan works out to roughly ${pm(12)} UZS per month versus about ${pm(3)} UZS on the 3-month plan.`
   },
   {
     q: "Is there a 1-month Telegram Premium plan?",
@@ -54,14 +58,13 @@ const faqs = [
 
 // Monthly price is derived from the published plan prices (rounded)
 const plans = [
-  { months: 3,  price: 172000, best: false, href: "/en/premium/3-months" },
-  { months: 6,  price: 232000, best: false, href: "/en/premium/6-months" },
-  { months: 12, price: 422000, best: true,  href: "/en/premium/12-months" },
+  { months: 3,  price: PREMIUM_PRICE[3],  best: false, href: "/en/premium/3-months" },
+  { months: 6,  price: PREMIUM_PRICE[6],  best: false, href: "/en/premium/6-months" },
+  { months: 12, price: PREMIUM_PRICE[12], best: true,  href: "/en/premium/12-months" },
 ];
-const fmt = (n: number) => n.toLocaleString('en-US');
 const perMonth = (p: { months: number; price: number }) =>
   fmt(Math.round(p.price / p.months / 100) * 100);
-const monthlySaving = fmt(Math.round((172000 / 3 - 422000 / 12) / 1000) * 1000);
+const monthlySaving = fmt(Math.round((PREMIUM_PRICE[3] / 3 - PREMIUM_PRICE[12] / 12) / 1000) * 1000);
 
 const reviews = await getApprovedReviews('premium');
 const agg = aggregateOf(reviews);
@@ -75,8 +78,8 @@ const productSchema: any = {
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "UZS",
-    "lowPrice": "172000",
-    "highPrice": "422000",
+    "lowPrice": String(PREMIUM_PRICE[3]),
+    "highPrice": String(PREMIUM_PRICE[12]),
     "availability": "https://schema.org/InStock",
     "offerCount": "3"
   }
@@ -215,6 +218,7 @@ if (agg.reviewCount > 0) {
         currency conversion. On the 12-month plan a month costs roughly {monthlySaving} UZS less than on
         the 3-month plan. There is no 1-month plan: Telegram's Gift Premium mechanism starts at 3 months.
       </p>
+      <p class="pricing-note fade-in">{PRICE_NOTE.en}</p>
       <div class="pricing-cta fade-in">
         <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">&#9889; Buy Telegram Premium</a>
       </div>

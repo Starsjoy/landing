@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Premium Click va Payme orqali (2026) | StarsJoy Blog";
-const description = "Telegram Premium'ni Click yoki Payme orqali olish: 3, 6, 12 oylik narxlar (172 000 so'mdan), o'tkazma komissiyasi, qadamlar va to'lov o'tmasa nima qilish.";
+const description = `Telegram Premium'ni Click yoki Payme orqali olish: 3, 6, 12 oylik narxlar (${fmtS(PREMIUM_PRICE[3])} so'mdan), o'tkazma komissiyasi, qadamlar va to'lov o'tmasa nima qilish.`;
 const publishDate = "2026-10-10";
-const modifiedDate = "2026-10-10";
+const modifiedDate = "2026-11-15";
 const wordCount = 1400;
 const canonical = "https://starsjoy.uz/blog/telegram-premium-click-payme";
 ---
@@ -98,12 +99,12 @@ const canonical = "https://starsjoy.uz/blog/telegram-premium-click-payme";
       {
         "@type": "Question",
         "name": "Click va Payme orqali Premium narxi qancha?",
-        "acceptedAnswer": { "@type": "Answer", "text": "StarsJoy'da 3 oylik 172 000 so'm, 6 oylik 232 000 so'm, 12 oylik 422 000 so'm. Qaysi ilovadan to'lashingiz Premium narxini o'zgartirmaydi." }
+        "acceptedAnswer": { "@type": "Answer", "text": `StarsJoy'da 3 oylik ${fmtS(PREMIUM_PRICE[3])} so'm, 6 oylik ${fmtS(PREMIUM_PRICE[6])} so'm, 12 oylik ${fmtS(PREMIUM_PRICE[12])} so'm. Qaysi ilovadan to'lashingiz Premium narxini o'zgartirmaydi.` }
       },
       {
         "@type": "Question",
         "name": "Click yoki Payme komissiya oladimi?",
-        "acceptedAnswer": { "@type": "Answer", "text": "StarsJoy komissiya qo'shmaydi. Lekin Click va Payme kartadan kartaga o'tkazma uchun odatda 1,1% atrofida komissiya oladi — 12 oylik paketda bu taxminan 4 600 so'm. Aniq summa o'tkazmani tasdiqlashdan oldin ilovada ko'rsatiladi." }
+        "acceptedAnswer": { "@type": "Answer", "text": "StarsJoy komissiya qo'shmaydi. Lekin Click va Payme kartadan kartaga o'tkazma uchun odatda 1,1% atrofida komissiya oladi — 12 oylik paketda bu taxminan 4 700 so'm. Aniq summa o'tkazmani tasdiqlashdan oldin ilovada ko'rsatiladi." }
       },
       {
         "@type": "Question",
@@ -123,7 +124,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-premium-click-payme";
       {
         "@type": "Question",
         "name": "Pul yechildi, lekin Premium yoqilmadi — nima qilaman?",
-        "acceptedAnswer": { "@type": "Answer", "text": "24 soat ichida @starsjoy_bot (qo'llab-quvvatlash) ga to'lov chekini yuboring. Buyurtma texnik sabab bilan bajarilmagan bo'lsa, pul to'liq qaytariladi." }
+        "acceptedAnswer": { "@type": "Answer", "text": "24 soat ichida @StarsjoySupport (qo'llab-quvvatlash) ga to'lov chekini yuboring. Buyurtma texnik sabab bilan bajarilmagan bo'lsa, pul to'liq qaytariladi." }
       },
       {
         "@type": "Question",
@@ -173,13 +174,13 @@ const canonical = "https://starsjoy.uz/blog/telegram-premium-click-payme";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Ha, Telegram Premium'ni Click yoki Payme orqali olish mumkin. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>'da muddatni tanlaysiz va username kiritasiz, bot karta raqami bilan summani ko'rsatadi — shu kartaga Click yoki Payme'dan o'tkazma qilasiz. Narxlar: 3 oy — <strong>172 000</strong>, 6 oy — <strong>232 000</strong>, 12 oy — <strong>422 000 so'm</strong>. Premium odatda <strong>10 soniyada</strong> faollashadi.
+            <strong>Qisqacha javob:</strong> Ha, Telegram Premium'ni Click yoki Payme orqali olish mumkin. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>'da muddatni tanlaysiz va username kiritasiz, bot karta raqami bilan summani ko'rsatadi — shu kartaga Click yoki Payme'dan o'tkazma qilasiz. Narxlar: 3 oy — <strong>{fmtS(PREMIUM_PRICE[3])}</strong>, 6 oy — <strong>{fmtS(PREMIUM_PRICE[6])}</strong>, 12 oy — <strong>{fmtS(PREMIUM_PRICE[12])} so'm</strong>. Premium odatda <strong>10 soniyada</strong> faollashadi.
           </div>
 
           <section>
             <h2>Asosiy raqamlar</h2>
             <ul>
-              <li><strong>Narxlar:</strong> 3 oy — 172 000, 6 oy — 232 000, 12 oy — 422 000 so'm;</li>
+              <li><strong>Narxlar:</strong> 3 oy — {fmtS(PREMIUM_PRICE[3])}, 6 oy — {fmtS(PREMIUM_PRICE[6])}, 12 oy — {fmtS(PREMIUM_PRICE[12])} so'm;</li>
               <li><strong>To'lov usuli:</strong> bot ko'rsatgan kartaga Click yoki Payme'dan o'tkazma;</li>
               <li><strong>Kartalar:</strong> Uzcard va Humo, xalqaro karta kerak emas;</li>
               <li><strong>Ilova komissiyasi:</strong> odatda 1,1% atrofida, StarsJoy'ning o'zi komissiya qo'shmaydi;</li>
@@ -219,12 +220,13 @@ const canonical = "https://starsjoy.uz/blog/telegram-premium-click-payme";
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td><a href="/premium/3-oy">3 oylik</a></td><td>172 000 so'm</td><td>~57 300 so'm</td><td>+ ~1 900 so'm</td></tr>
-                  <tr><td><a href="/premium/6-oy">6 oylik</a></td><td>232 000 so'm</td><td>~38 700 so'm</td><td>+ ~2 600 so'm</td></tr>
-                  <tr><td><a href="/premium/12-oy">12 oylik</a></td><td>422 000 so'm</td><td>~35 200 so'm</td><td>+ ~4 600 so'm</td></tr>
+                  <tr><td><a href="/premium/3-oy">3 oylik</a></td><td>{fmtS(PREMIUM_PRICE[3])} so'm</td><td>~59 700 so'm</td><td>+ ~2 000 so'm</td></tr>
+                  <tr><td><a href="/premium/6-oy">6 oylik</a></td><td>{fmtS(PREMIUM_PRICE[6])} so'm</td><td>~39 800 so'm</td><td>+ ~2 600 so'm</td></tr>
+                  <tr><td><a href="/premium/12-oy">12 oylik</a></td><td>{fmtS(PREMIUM_PRICE[12])} so'm</td><td>~35 800 so'm</td><td>+ ~4 700 so'm</td></tr>
                 </tbody>
               </table>
             </div>
+            <p><small>{PRICE_NOTE.uz}</small></p>
             <p>Narxlar buyurtma paytidagi tarif bo'yicha belgilanadi — to'lashdan oldin botdagi summaga qarang. Har bir paket bo'yicha batafsil hisob: <a href="/blog/telegram-premium-6-oylik-narxi">6 oylik Premium narxi</a>, <a href="/blog/telegram-premium-12-oylik">12 oylik Premium</a> va <a href="/blog/telegram-premium-3-oylik-sotib-olish">3 oylik Premium</a>.</p>
             <p><strong>Paketni tanladingizmi?</strong> <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot'ni oching</a> — buyurtma bering va Click yoki Payme'dan to'lang, Premium odatda 10 soniyada yoqiladi.</p>
           </section>
@@ -283,7 +285,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-premium-click-payme";
               <li><strong>Mablag' yetmayapti.</strong> Kartada Premium narxi va komissiya uchun yetarli pul borligini tekshiring.</li>
               <li><strong>Limit tugagan.</strong> Shu kuni yirik o'tkazmalar qilgan bo'lsangiz, kunlik limit yetmasligi mumkin. Boshqa karta yoki boshqa ilovadan to'lang. 12 oylik paket uchun bu haqda batafsil: <a href="/blog/telegram-premium-12-oylik-uzcard-humo-bilan">12 oylik Premium va karta limiti</a>.</li>
               <li><strong>Summa noto'g'ri yuborilgan.</strong> Botdagidan boshqa summani tizim tanimaydi. Bunday holatda chek bilan qo'llab-quvvatlashga yozing.</li>
-              <li><strong>Pul yechildi, Premium yoqilmadi.</strong> 24 soat ichida <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">@starsjoy_bot</a> ga to'lov chekini yuboring.</li>
+              <li><strong>Pul yechildi, Premium yoqilmadi.</strong> 24 soat ichida <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a> ga to'lov chekini yuboring.</li>
             </ul>
           </section>
 
@@ -297,7 +299,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-premium-click-payme";
             <p>StarsJoy ofertasiga ko'ra:</p>
             <ul>
               <li>To'lov o'tib, buyurtma texnik sabab bilan bajarilmasa — <strong>pul to'liq qaytariladi</strong>;</li>
-              <li>Buning uchun <strong>24 soat ichida</strong> @starsjoy_bot orqali to'lov chekini yuborasiz;</li>
+              <li>Buning uchun <strong>24 soat ichida</strong> @StarsjoySupport orqali to'lov chekini yuborasiz;</li>
               <li>Noto'g'ri username kiritilib, Premium boshqa odamda yoqilsa — pul qaytarilmaydi. Username'ni to'lashdan oldin ikki marta tekshiring.</li>
             </ul>
             <p>Bu bir martalik o'tkazma: avtomatik yangilanish yo'q va kartangizdan keyinchalik pul yechilmaydi. Batafsil: <a href="/blog/starsjoy-ishonchli-sharhlar-kafolat">StarsJoy ishonchlimi? Sharhlar va kafolat</a>.</p>
@@ -305,7 +307,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-premium-click-payme";
 
           <div class="cta-box">
             <h2>Premium'ni Click yoki Payme bilan oling</h2>
-            <p>172 000 so'mdan, Uzcard yoki Humo kartangiz bilan, odatda 10 soniyada faollashadi.</p>
+            <p>{fmtS(PREMIUM_PRICE[3])} so'mdan, Uzcard yoki Humo kartangiz bilan, odatda 10 soniyada faollashadi.</p>
             <a class="cta-btn" href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot'ni ochish</a>
             <p class="cta-sub"><a href="/premium/3-oy">3 oylik</a> · <a href="/premium/6-oy">6 oylik</a> · <a href="/premium/12-oy">12 oylik</a> · <a href="/premium">Barcha Premium tariflar</a></p>
           </div>
@@ -319,11 +321,11 @@ const canonical = "https://starsjoy.uz/blog/telegram-premium-click-payme";
               </div>
               <div class="post-faq-item">
                 <h3>Click va Payme orqali Premium narxi qancha?</h3>
-                <p>3 oylik 172 000 so'm, 6 oylik 232 000 so'm, 12 oylik 422 000 so'm. Qaysi ilovadan to'lashingiz narxni o'zgartirmaydi.</p>
+                <p>3 oylik {fmtS(PREMIUM_PRICE[3])} so'm, 6 oylik {fmtS(PREMIUM_PRICE[6])} so'm, 12 oylik {fmtS(PREMIUM_PRICE[12])} so'm. Qaysi ilovadan to'lashingiz narxni o'zgartirmaydi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Click yoki Payme komissiya oladimi?</h3>
-                <p>StarsJoy komissiya qo'shmaydi. Click va Payme kartadan kartaga o'tkazma uchun odatda 1,1% atrofida oladi — 12 oylikda taxminan 4 600 so'm. Aniq summa tasdiqlashdan oldin ko'rsatiladi.</p>
+                <p>StarsJoy komissiya qo'shmaydi. Click va Payme kartadan kartaga o'tkazma uchun odatda 1,1% atrofida oladi — 12 oylikda taxminan 4 700 so'm. Aniq summa tasdiqlashdan oldin ko'rsatiladi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Click yaxshimi yoki Payme?</h3>
@@ -339,7 +341,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-premium-click-payme";
               </div>
               <div class="post-faq-item">
                 <h3>Pul yechildi, lekin Premium yoqilmadi — nima qilaman?</h3>
-                <p>24 soat ichida @starsjoy_bot ga to'lov chekini yuboring. Buyurtma texnik sabab bilan bajarilmagan bo'lsa, pul to'liq qaytariladi.</p>
+                <p>24 soat ichida @StarsjoySupport ga to'lov chekini yuboring. Buyurtma texnik sabab bilan bajarilmagan bo'lsa, pul to'liq qaytariladi.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Click yoki Payme parolini kimgadir aytish kerakmi?</h3>

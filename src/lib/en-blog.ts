@@ -8,6 +8,11 @@
  *
  * Yangi inglizcha maqola qo'shilganda faqat shu massivga qator qo'shiladi.
  */
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, starPriceWithBonus, premiumPerMonth, fmt } from './prices';
+
+/** Premium 12 oy: kunlik narx, o'nlikkacha yaxlitlangan. */
+const premium12PerDay = Math.round(PREMIUM_PRICE[12] / 365 / 10) * 10;
+
 export interface EnPost {
   slug: string;
   title: string;
@@ -23,23 +28,23 @@ export const EN_POSTS: EnPost[] = [
     slug: 'buy-less-than-100-telegram-stars',
     title: 'How to Buy Fewer Than 100 or 50 Telegram Stars with Uzcard or Humo',
     excerpt:
-      "The Telegram app's smallest pack is 100 Stars. StarsJoy sells 50 Stars for 12,000 UZS, and for fewer you can convert a gift into Stars: 13 Stars for 5,000 UZS. A table shows which route is cheaper.",
+      `The Telegram app's smallest pack is 100 Stars. StarsJoy sells 50 Stars for ${fmt(starsPrice(50))} UZS, and for fewer you can convert a gift into Stars: 13 Stars for 5,000 UZS. A table shows which route is cheaper.`,
     date: '2026-11-05',
     tag: 'Stars',
   },
   {
     slug: '100-telegram-stars-price',
-    title: '100 Telegram Stars Price in 2026 — 24,000 UZS, Pay with Uzcard or Humo',
+    title: `100 Telegram Stars Price in 2026 — ${fmt(starsPrice(100))} UZS, Pay with Uzcard or Humo`,
     excerpt:
-      '100 Telegram Stars cost 24,000 UZS at StarsJoy (240 UZS per Star), paid with Uzcard or Humo and delivered in about 10 seconds, plus a +4 ⭐ bonus (~231 UZS per Star). About 5% cheaper than the in-app price in Uzbekistan (25,399 UZS) — and what 100 Stars buy.',
+      `100 Telegram Stars cost ${fmt(starsPrice(100))} UZS at StarsJoy (${STAR_PRICE} UZS per Star), paid with Uzcard or Humo and delivered in about 10 seconds, plus a +4 ⭐ bonus (~${starPriceWithBonus()} UZS per Star). Practically the same as the in-app price in Uzbekistan (25,399 UZS) — and what 100 Stars buy.`,
     date: '2026-11-04',
     tag: 'Stars',
   },
   {
     slug: '1000-telegram-stars-price',
-    title: '1000 Telegram Stars Price in 2026 — 240,000 UZS, Pay with Uzcard or Humo',
+    title: `1000 Telegram Stars Price in 2026 — ${fmt(starsPrice(1000))} UZS, Pay with Uzcard or Humo`,
     excerpt:
-      '1000 Telegram Stars cost 240,000 UZS at StarsJoy (240 UZS per Star), paid with Uzcard or Humo and delivered in about 10 seconds, plus a +40 ⭐ bonus (~231 UZS per Star). Compared with the in-app price in Uzbekistan (233,999 UZS) and what 1000 Stars buy.',
+      `1000 Telegram Stars cost ${fmt(starsPrice(1000))} UZS at StarsJoy (${STAR_PRICE} UZS per Star), paid with Uzcard or Humo and delivered in about 10 seconds, plus a +40 ⭐ bonus (~${starPriceWithBonus()} UZS per Star). Compared with the in-app price in Uzbekistan (233,999 UZS) and what 1000 Stars buy.`,
     date: '2026-11-04',
     tag: 'Stars',
   },
@@ -47,7 +52,7 @@ export const EN_POSTS: EnPost[] = [
     slug: 'cheapest-telegram-premium',
     title: 'Cheapest Telegram Premium in 2026 — Where and How Much? Pay with Uzcard or Humo',
     excerpt:
-      'The cheapest Telegram Premium is 12 months for 422,000 UZS (~35,200 per month, ~1,160 per day), paid with Uzcard or Humo — about 41% less than the app. Plus a checklist for cheap offers.',
+      `The cheapest Telegram Premium is 12 months for ${fmt(PREMIUM_PRICE[12])} UZS (~${fmt(premiumPerMonth(12))} per month, ~${fmt(premium12PerDay)} per day), paid with Uzcard or Humo — about ${Math.round((1 - PREMIUM_PRICE[12] / 713000) * 100)}% less than a year on the in-app monthly plan. Plus a checklist for cheap offers.`,
     date: '2026-11-04',
     tag: 'Premium',
   },
@@ -61,9 +66,9 @@ export const EN_POSTS: EnPost[] = [
   },
   {
     slug: 'telegram-premium-12-months-price',
-    title: 'Telegram Premium 12 Months Price in 2026 — 422,000 UZS, Pay with Uzcard or Humo',
+    title: `Telegram Premium 12 Months Price in 2026 — ${fmt(PREMIUM_PRICE[12])} UZS, Pay with Uzcard or Humo`,
     excerpt:
-      "Telegram Premium for 12 months costs 422,000 UZS at StarsJoy (about 35,200 UZS per month, 1,160 per day), paid with Uzcard or Humo — roughly 300,000 UZS less than a year in the app. Compared with 3 and 6 months.",
+      `Telegram Premium for 12 months costs ${fmt(PREMIUM_PRICE[12])} UZS at StarsJoy (about ${fmt(premiumPerMonth(12))} UZS per month, ${fmt(premium12PerDay)} per day), paid with Uzcard or Humo — roughly ${fmt(Math.round((722000 - PREMIUM_PRICE[12]) / 10000) * 10000)} UZS less than a year in the app. Compared with 3 and 6 months.`,
     date: '2026-10-19',
     tag: 'Premium',
   },
@@ -71,7 +76,7 @@ export const EN_POSTS: EnPost[] = [
     slug: '500-telegram-stars-price',
     title: '500 Telegram Stars Price in 2026 (UZS, App, Fragment)',
     excerpt:
-      "500 Telegram Stars cost 120,000 UZS at StarsJoy (240 UZS per Star): an honest comparison with the in-app and Fragment price, how many gifts 500 Stars buy, and delivery in about 10 seconds.",
+      `500 Telegram Stars cost ${fmt(starsPrice(500))} UZS at StarsJoy (${STAR_PRICE} UZS per Star): an honest comparison with the in-app and Fragment price, how many gifts 500 Stars buy, and delivery in about 10 seconds.`,
     date: '2026-10-10',
     tag: 'Stars',
   },
@@ -87,7 +92,7 @@ export const EN_POSTS: EnPost[] = [
     slug: '5000-telegram-stars-price',
     title: '5,000 Telegram Stars Price in 2026 (UZS, App, Fragment)',
     excerpt:
-      "5,000 Telegram Stars cost 1,200,000 UZS at StarsJoy (240 UZS per Star): an honest comparison with the in-app and Fragment price, what 5,000 Stars can actually buy, and delivery in about 10 seconds.",
+      `5,000 Telegram Stars cost ${fmt(starsPrice(5000))} UZS at StarsJoy (${STAR_PRICE} UZS per Star): an honest comparison with the in-app and Fragment price, what 5,000 Stars can actually buy, and delivery in about 10 seconds.`,
     date: '2026-10-07',
     tag: 'Stars',
   },
@@ -95,7 +100,7 @@ export const EN_POSTS: EnPost[] = [
     slug: 'telegram-premium-6-months-price',
     title: 'Telegram Premium 6 Months Price in 2026 (UZS, App, Fragment)',
     excerpt:
-      "Telegram Premium for 6 months costs 232,000 UZS at StarsJoy (about 38,700 UZS per month): compared with the 3- and 12-month plans, the in-app and Fragment price, and how to pay with a local card.",
+      `Telegram Premium for 6 months costs ${fmt(PREMIUM_PRICE[6])} UZS at StarsJoy (about ${fmt(Math.round(premiumPerMonth(6) / 100) * 100)} UZS per month): compared with the 3- and 12-month plans, the in-app and Fragment price, and how to pay with a local card.`,
     date: '2026-10-07',
     tag: 'Premium',
   },
@@ -103,7 +108,7 @@ export const EN_POSTS: EnPost[] = [
     slug: '10000-telegram-stars-price',
     title: '10,000 Telegram Stars Price in 2026 (UZS, App, Fragment)',
     excerpt:
-      "10,000 Telegram Stars cost 2,400,000 UZS at StarsJoy (240 UZS per Star): an honest comparison with the in-app and Fragment price, how to pay a large sum despite card limits, and delivery in about 10 seconds.",
+      `10,000 Telegram Stars cost ${fmt(starsPrice(10000))} UZS at StarsJoy (${STAR_PRICE} UZS per Star): an honest comparison with the in-app and Fragment price, how to pay a large sum despite card limits, and delivery in about 10 seconds.`,
     date: '2026-09-30',
     tag: 'Stars',
   },
@@ -111,7 +116,7 @@ export const EN_POSTS: EnPost[] = [
     slug: 'buy-telegram-stars-premium-from-abroad',
     title: 'Can Uzbeks Abroad Buy Telegram Stars or Premium? (2026)',
     excerpt:
-      "Uzbeks living in Russia, Turkey, Korea or any other country can still buy Telegram Stars or Premium: how paying through @starsjoysupport with an Uzcard, Humo or Visa card works, with delivery in about 10 minutes.",
+      "Uzbeks living in Russia, Turkey, Korea or any other country can still buy Telegram Stars or Premium: how paying through @StarsjoySupport with an Uzcard, Humo or Visa card works, with delivery in about 10 minutes.",
     date: '2026-09-21',
     tag: 'Stars',
   },

@@ -2,11 +2,14 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../../lib/prices';
+const p3 = fmtS(PREMIUM_PRICE[3]), p6 = fmtS(PREMIUM_PRICE[6]), p12 = fmtS(PREMIUM_PRICE[12]);
+const m3 = fmtS(premiumPerMonth(3)), m6 = fmtS(premiumPerMonth(6)), m12 = fmtS(premiumPerMonth(12));
 
 const title = "Закончился Telegram Premium: способы продления и что делать (2026) | Блог StarsJoy";
 const description = "Что происходит, когда заканчивается срок Telegram Premium, как проверить дату окончания и быстро продлить через Uzcard/Humo — полное руководство.";
 const publishDate = "2026-05-05";
-const modifiedDate = "2026-05-05";
+const modifiedDate = "2026-11-15";
 const wordCount = 1720;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-muddati-tugadi";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -204,7 +207,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> После окончания Telegram Premium <strong>аккаунт и сообщения сохраняются</strong> — отключаются только Premium-функции (большие файлы, premium emoji, анимированная аватарка и др.). Premium, купленный через локальный бот, <strong>не продлевается автоматически</strong> — продлевается вручную. Самый быстрый способ: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> через Click/Payme/Uzcard/Humo за 10 секунд. Цены: 1 мес 57 000, 3 мес 172 000, 6 мес 232 000, 12 мес 422 000 сум.
+            <strong>Краткий ответ:</strong> После окончания Telegram Premium <strong>аккаунт и сообщения сохраняются</strong> — отключаются только Premium-функции (большие файлы, premium emoji, анимированная аватарка и др.). Premium, купленный через локальный бот, <strong>не продлевается автоматически</strong> — продлевается вручную. Самый быстрый способ: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> через Click/Payme/Uzcard/Humo за 10 секунд. Цены: 1 мес 57 000, 3 мес {p3}, 6 мес {p6}, 12 мес {p12} сум.
           </div>
 
           <p>У вас закончился Telegram Premium или скоро закончится? Первый вопрос — что произойдёт и как продлить. В этой статье разбираются реальные последствия окончания Premium, как проверить срок и самые быстрые шаги продления. Статья написана для пользователя из Узбекистана: фокус на локальных ботах и платежах через Click/Payme/Uzcard/Humo.</p>
@@ -289,13 +292,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </thead>
             <tbody>
               <tr><td>1 месяц</td><td>57 000 сум</td><td>57 000 сум</td><td>Первая проба</td></tr>
-              <tr><td>3 месяца</td><td>172 000 сум</td><td>~57 333 сум</td><td>Краткосрочный фокус</td></tr>
-              <tr><td>6 месяцев</td><td>232 000 сум</td><td>~38 667 сум</td><td>Постоянный пользователь (популярнее всего)</td></tr>
-              <tr><td>12 месяцев</td><td>422 000 сум</td><td>~35 167 сум</td><td>Самый экономный (266 000 сум экономии в год vs 3-мес × 4)</td></tr>
+              <tr><td>3 месяца</td><td>{p3} сум</td><td>~{m3} сум</td><td>Краткосрочный фокус</td></tr>
+              <tr><td>6 месяцев</td><td>{p6} сум</td><td>~{m6} сум</td><td>Постоянный пользователь (популярнее всего)</td></tr>
+              <tr><td>12 месяцев</td><td>{p12} сум</td><td>~{m12} сум</td><td>Самый экономный (287 000 сум экономии в год vs 3-мес × 4)</td></tr>
             </tbody>
           </table>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
-          <p>Цена за единицу самая низкая в 12-месячном пакете (35 167 сум/мес), самая высокая в 1-месячном (57 000 сум/мес). Если планируете пользоваться весь год и бюджет позволяет — 12 месяцев логичнее. Если вы постоянный пользователь, но 422 000 сум сразу тяжело — 6 месяцев (232 000) оптимальное среднее решение.</p>
+          <p>Цена за единицу самая низкая в 12-месячном пакете (~{m12} сум/мес), самая высокая в 3-месячном (~{m3} сум/мес). Если планируете пользоваться весь год и бюджет позволяет — 12 месяцев логичнее. Если вы постоянный пользователь, но {p12} сум сразу тяжело — 6 месяцев ({p6}) оптимальное среднее решение.</p>
 
           <h2>Долгая пауза после окончания — есть ли потеря?</h2>
 
@@ -321,7 +325,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li>Откройте любой чат — видна ли кнопка voice-to-text?</li>
           </ol>
 
-          <p>Если всё в порядке, Premium активен. Если в течение 30 минут не активировался, напишите в <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a> — оператор быстро поможет.</p>
+          <p>Если всё в порядке, Premium активен. Если в течение 30 минут не активировался, напишите в <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a> — оператор быстро поможет.</p>
 
           <h2>Что делать заблаговременно?</h2>
 
@@ -368,7 +372,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Окончание срока Telegram Premium — не катастрофа: аккаунт и сообщения полностью сохраняются, отключаются только Premium-функции. После нового пакета все функции возвращаются сразу (анимированная аватарка, premium emoji, большие файлы и др.). Premium через локальный реселлер-бот не продлевается автоматически — продлевается вручную в конце срока, но это гарантирует отсутствие неожиданных платежей.</p>
 
-          <p>Самый быстрый способ продления — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> за 10 секунд. Оплата через Click, Payme, Uzcard или Humo, пакет активируется сразу. Для постоянного пользователя логичен 6-месячный (232 000) или 12-месячный (422 000) — цена за единицу значительно ниже, чем в 1-месячном.</p>
+          <p>Самый быстрый способ продления — <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> за 10 секунд. Оплата через Click, Payme, Uzcard или Humo, пакет активируется сразу. Для постоянного пользователя логичен 6-месячный ({p6}) или 12-месячный ({p12}) — цена за единицу значительно ниже, чем в 1-месячном.</p>
 
           <div class="end-cta">
             <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Продлить Premium — @starsjoybot &rarr;</a>

@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram'da Stars, Premium va Gifts savdo biznesi: 2026 reseller modeli to'liq tushuntirish | StarsJoy Biznes";
 const description = "Telegram Stars, Premium va Gifts qayta sotish (reseller) biznesi qanday ishlaydi: daromad mantig'i, mahsulotlar, O'zbekistonda boshlash shartlari va Starsjoy Biznes white-label paketi.";
 const publishDate = "2026-05-04";
-const modifiedDate = "2026-05-04";
+const modifiedDate = "2026-11-15";
 const wordCount = 1920;
 const canonical = "https://starsjoy.uz/blog/telegram-stars-premium-gifts-savdo-biznesi";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -43,7 +44,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       "url": "https://starsjoy.uz",
       "sameAs": [
         "https://telegram.me/starsjoy",
-        "https://telegram.me/starsjoy_bot"
+        "https://telegram.me/StarsjoySupport"
       ]
     },
     "publisher": {
@@ -82,7 +83,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       "@type": "Organization",
       "name": "StarsJoy Biznes",
       "url": "https://starsjoy.uz",
-      "sameAs": ["https://telegram.me/starsjoy_bot"]
+      "sameAs": ["https://telegram.me/StarsjoySupport"]
     },
     "areaServed": { "@type": "Country", "name": "Uzbekistan" },
     "description": "Tayyor white-label Telegram bot va Mini App — Stars, Premium, Gifts qayta sotish (reseller) biznesi uchun. Basic $500, Pro $800. 7-14 kun yetkazish, 12 oy support."
@@ -211,17 +212,18 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               </tr>
             </thead>
             <tbody>
-              <tr><td>Stars</td><td>50–500 Stars (12k–120k so'm)</td><td>Doimiy, har kuni</td><td>~10–15%</td></tr>
+              <tr><td>Stars</td><td>50–500 Stars ({starsPrice(50)/1000}k–{starsPrice(500)/1000}k so'm)</td><td>Doimiy, har kuni</td><td>~10–15%</td></tr>
               <tr><td>Premium (3, 6, 12 oy)</td><td>1 oy 50k+, 12 oy 400k+ so'm</td><td>Doimiy, oylik takrorlanish</td><td>~12–18%</td></tr>
               <tr><td>Gifts</td><td>15 Stars 4 500 so'm – 5 000+ Stars 1 200 000+ so'm</td><td>Mavsumiy (bayramlar)</td><td>~15–20%</td></tr>
             </tbody>
           </table>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
           <h3>1. Telegram Stars</h3>
-          <p>Stars — Telegram ekotizimining ichki valyutasi. Mijozlar Stars'ni quyidagi maqsadlar uchun oladi: kanal obunalari (paid posts, paid reactions), Mini App'larda to'lov, Telegram Gifts xarid qilish va Telegram Premium aktivatsiyasi. 2026-yil may holatida 1 Star ≈ 240 so'm reseller kursida — narxlar ro'yxati <a href="/blog/telegram-stars-narxi">Stars narxi 2026</a> maqolasida.</p>
+          <p>Stars — Telegram ekotizimining ichki valyutasi. Mijozlar Stars'ni quyidagi maqsadlar uchun oladi: kanal obunalari (paid posts, paid reactions), Mini App'larda to'lov, Telegram Gifts xarid qilish va Telegram Premium aktivatsiyasi. 2026-yil noyabr holatida 1 Star ≈ {STAR_PRICE} so'm reseller kursida — narxlar ro'yxati <a href="/blog/telegram-stars-narxi">Stars narxi 2026</a> maqolasida.</p>
 
           <h3>2. Telegram Premium</h3>
-          <p>Premium — Telegram'ning oylik yoki yillik obunasi. 30+ funksiyani ochadi: katta fayl yuklash, tezroq yuklab olish, premium emoji, premium stickerlar, animatsiyali profil rasmi va boshqalar. Mijoz odatda 3, 6 yoki 12 oylik paketni oladi. 12 oylik Premium narxi ~422 000 so'm — bu bir Stars buyurtmasiga nisbatan 5–30 baravar yuqori AOV beradi.</p>
+          <p>Premium — Telegram'ning oylik yoki yillik obunasi. 30+ funksiyani ochadi: katta fayl yuklash, tezroq yuklab olish, premium emoji, premium stickerlar, animatsiyali profil rasmi va boshqalar. Mijoz odatda 3, 6 yoki 12 oylik paketni oladi. 12 oylik Premium narxi ~{fmtS(PREMIUM_PRICE[12])} so'm — bu bir Stars buyurtmasiga nisbatan 5–30 baravar yuqori AOV beradi.</p>
 
           <h3>3. Telegram Gifts</h3>
           <p>Gifts — Telegram ichidagi animatsiyali raqamli sovg'alar. Foydalanuvchi Stars orqali sovg'a sotib oladi va do'stiga yuboradi. Uch kategoriya bor: Regular (15–100 Stars), Limited (1 000–10 000 Stars) va Unique/NFT (5 000+ Stars). Talab mavsumiy — Yangi yil, 14-fevral va ona kuni atrofida 3–4 baravar oshadi. Tafsilot — <a href="/blog/telegram-gifts-narxi-royxati">Telegram Gifts narxi 2026</a> maqolasida.</p>
@@ -358,7 +360,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Reseller biznesining barqarorligi uchchala mahsulotni (Stars, Premium, Gifts) birga sotishdan, Telegram qoidalariga qat'iy rioya qilishdan va doimiy trafik kanalini qurishdan kelib chiqadi.</p>
 
           <div class="end-cta">
-            <a href="https://telegram.me/starsjoy_bot" target="_blank" rel="noopener">Starsjoy Biznes konsultatsiyasi — @starsjoy_bot &rarr;</a>
+            <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">Starsjoy Biznes konsultatsiyasi — @StarsjoySupport &rarr;</a>
           </div>
 
           <h2>Shuni ham o'qing</h2>

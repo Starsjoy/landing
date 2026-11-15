@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Premium 12 oylik Uzcard va Humo bilan: yirik to'lov nuanslar (2026) | StarsJoy Blog";
-const description = "12 oylik Telegram Premium'ni Uzcard yoki Humo bilan 422 000 so'mga 10 soniyada. Karta limit, Click Premium / Payme Plus tejash, cashback va yiriklarda nimaga e'tibor berish kerakligi — bosqichma-bosqich qo'llanma.";
+const description = `12 oylik Telegram Premium'ni Uzcard yoki Humo bilan ${fmtS(PREMIUM_PRICE[12])} so'mga 10 soniyada. Karta limit, Click Premium / Payme Plus tejash, cashback va yiriklarda nimaga e'tibor berish kerakligi — bosqichma-bosqich qo'llanma.`;
 const publishDate = "2026-05-21";
-const modifiedDate = "2026-05-21";
+const modifiedDate = "2026-11-15";
 const wordCount = 1880;
 const canonical = "https://starsjoy.uz/blog/telegram-premium-12-oylik-uzcard-humo-bilan";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -16,7 +17,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
   title={title}
   description={description}
   canonical={canonical}
-  keywords="Telegram Premium 12 oylik Uzcard, Telegram Premium 12 oylik Humo, 12 oylik Premium Uzcard bilan, Telegram Premium yillik Uzcard, Premium 12 oy karta limit, Click Premium Telegram, Payme Plus Telegram Premium, Telegram Premium 422 000 som"
+  keywords={`Telegram Premium 12 oylik Uzcard, Telegram Premium 12 oylik Humo, 12 oylik Premium Uzcard bilan, Telegram Premium yillik Uzcard, Premium 12 oy karta limit, Click Premium Telegram, Payme Plus Telegram Premium, Telegram Premium ${fmtS(PREMIUM_PRICE[12])} som`}
   ogType="article"
   ogImage={ogImage}
   hreflangs={[
@@ -83,15 +84,15 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "12 oylik Telegram Premium'ni Uzcard yoki Humo bilan sotib olish mumkinmi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ha. To'g'ridan-to'g'ri Telegram saytidan emas, balki mahalliy yetkazib beruvchi @starsjoybot orqali. Uzcard yoki Humo kartangiz bilan Click yoki Payme orqali 422 000 so'mda to'laysiz, 10 soniyada Premium hisobingizda faollashadi. Visa yoki xalqaro karta umuman shart emas."
+          "text": "Ha. To'g'ridan-to'g'ri Telegram saytidan emas, balki mahalliy yetkazib beruvchi @starsjoybot orqali. Uzcard yoki Humo kartangiz bilan Click yoki Payme orqali " + fmtS(PREMIUM_PRICE[12]) + " so'mda to'laysiz, 10 soniyada Premium hisobingizda faollashadi. Visa yoki xalqaro karta umuman shart emas."
         }
       },
       {
         "@type": "Question",
-        "name": "Uzcard'da bir martalik 422 000 so'm to'lov uchun limit yetadimi?",
+        "name": "Uzcard'da bir martalik " + fmtS(PREMIUM_PRICE[12]) + " so'm to'lov uchun limit yetadimi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ko'pchilik bank Uzcard va Humo kartalarida standart kunlik to'lov limiti 5–10 mln so'm oralig'ida — 422 000 so'm undan ancha kichik va muammosiz o'tadi. Lekin agar siz limitni qo'lda 200 000 yoki 300 000 ga qisqartirgan bo'lsangiz, oldindan Click yoki Payme sozlamalaridan vaqtincha oshirib qo'yishingiz kerak. Cheklangan (identifikatsiyasiz) kartalarda esa kunlik 1 mln so'm — bu yerda ham 422 000 so'm sig'adi."
+          "text": "Ko'pchilik bank Uzcard va Humo kartalarida standart kunlik to'lov limiti 5–10 mln so'm oralig'ida — " + fmtS(PREMIUM_PRICE[12]) + " so'm undan ancha kichik va muammosiz o'tadi. Lekin agar siz limitni qo'lda 200 000 yoki 300 000 ga qisqartirgan bo'lsangiz, oldindan Click yoki Payme sozlamalaridan vaqtincha oshirib qo'yishingiz kerak. Cheklangan (identifikatsiyasiz) kartalarda esa kunlik 1 mln so'm — bu yerda ham " + fmtS(PREMIUM_PRICE[12]) + " so'm sig'adi."
         }
       },
       {
@@ -99,7 +100,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Click Premium yoki Payme Plus obunalarim 12 oylik Premium uchun tejash beradimi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bu obunalar to'g'ridan-to'g'ri Telegram Premium narxiga ta'sir qilmaydi — 422 000 so'm baribir bir xil. Lekin Click Premium foydalanuvchisi sifatida ba'zi to'lovlarga keshbek va kartalararo bepul o'tkazma limitiga ega bo'lasiz, Payme Plus esa bepul p2p o'tkazmalarni beradi — agar siz puldorni shaxsiy kartadan boshqa hisobga ko'chirib turishingiz kerak bo'lsa, shu joyda foydalisiz. Yiriklik nuqtai nazaridan asosiy tejash to'g'ridan paketda — 3 oylik × 4 ga nisbatan 266 000 so'm arzon."
+          "text": "Bu obunalar to'g'ridan-to'g'ri Telegram Premium narxiga ta'sir qilmaydi — " + fmtS(PREMIUM_PRICE[12]) + " so'm baribir bir xil. Lekin Click Premium foydalanuvchisi sifatida ba'zi to'lovlarga keshbek va kartalararo bepul o'tkazma limitiga ega bo'lasiz, Payme Plus esa bepul p2p o'tkazmalarni beradi — agar siz puldorni shaxsiy kartadan boshqa hisobga ko'chirib turishingiz kerak bo'lsa, shu joyda foydalisiz. Yiriklik nuqtai nazaridan asosiy tejash to'g'ridan paketda — 3 oylik × 4 ga nisbatan " + fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12]) + " so'm arzon."
         }
       },
       {
@@ -112,7 +113,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       },
       {
         "@type": "Question",
-        "name": "12 oy tugaganda 422 000 so'm avtomatik yana yechib olinadimi?",
+        "name": "12 oy tugaganda " + fmtS(PREMIUM_PRICE[12]) + " so'm avtomatik yana yechib olinadimi?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Yo'q. Bu Telegram'ning rasmiy Gift Premium mexanizmi orqali ishlaydi — bir martalik to'lov, kartangizga avtomatik obuna o'rnatilmaydi. 12 oy tugagandan keyin Premium oddiy rejimga qaytadi va kartangizdan ortiqcha pul yechilmaydi. Davomi kerak bo'lsa o'zingiz xohlagan vaqtda qaytadan bot orqali yangilashingiz mumkin."
@@ -123,15 +124,15 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Premium kartam komissiya yoki konvertatsiyasiz so'mda yechiladimi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ha. To'lov to'liq so'mda va mahalliy tizimda (Click yoki Payme) amalga oshadi — valyuta konvertatsiyasi yo'q, xalqaro tranzaktsiya komissiyasi yo'q. Kartangizdan aniq 422 000 so'm yechiladi. StarsJoy tomonidan qo'shimcha komissiya ham qo'shilmaydi."
+          "text": "Ha. To'lov to'liq so'mda va mahalliy tizimda (Click yoki Payme) amalga oshadi — valyuta konvertatsiyasi yo'q, xalqaro tranzaktsiya komissiyasi yo'q. Kartangizdan aniq " + fmtS(PREMIUM_PRICE[12]) + " so'm yechiladi. StarsJoy tomonidan qo'shimcha komissiya ham qo'shilmaydi."
         }
       },
       {
         "@type": "Question",
-        "name": "Bo'lib to'lash mumkinmi? 422 000 so'm bir paytda og'ir.",
+        "name": "Bo'lib to'lash mumkinmi? " + fmtS(PREMIUM_PRICE[12]) + " so'm bir paytda og'ir.",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "12 oylik Premium uchun to'g'ridan-to'g'ri bo'lib to'lash mexanizmi yo'q — chunki Telegram Gift mexanizmi yagona to'lovda ishlaydi. Lekin variantlar bor: (1) 6 oylik (232 000 so'm) dan boshlash, keyin yana 6 oylik olish; (2) Click yoki Payme'dagi bo'lib to'lash xizmati orqali kartaga vaqtinchalik kredit limit olish; (3) ish kartasi va shaxsiy kartani birga ishlatib, jami summani yig'ish. Ko'pchilik foydalanuvchi 1-variantni tanlaydi — risksiz va oddiy."
+          "text": "12 oylik Premium uchun to'g'ridan-to'g'ri bo'lib to'lash mexanizmi yo'q — chunki Telegram Gift mexanizmi yagona to'lovda ishlaydi. Lekin variantlar bor: (1) 6 oylik (" + fmtS(PREMIUM_PRICE[6]) + " so'm) dan boshlash, keyin yana 6 oylik olish; (2) Click yoki Payme'dagi bo'lib to'lash xizmati orqali kartaga vaqtinchalik kredit limit olish; (3) ish kartasi va shaxsiy kartani birga ishlatib, jami summani yig'ish. Ko'pchilik foydalanuvchi 1-variantni tanlaydi — risksiz va oddiy."
         }
       },
       {
@@ -157,9 +158,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       { "@type": "HowToTool", "name": "Click yoki Payme ilovasi (Uzcard/Humo ulangan)" }
     ],
     "step": [
-      { "@type": "HowToStep", "name": "Karta limitini tekshiring", "text": "Click yoki Payme ilovasini oching va kartangizdagi kunlik to'lov limitini ko'ring. Agar 422 000 so'mdan kam bo'lsa, sozlamalardan vaqtincha oshirib qo'ying." },
+      { "@type": "HowToStep", "name": "Karta limitini tekshiring", "text": "Click yoki Payme ilovasini oching va kartangizdagi kunlik to'lov limitini ko'ring. Agar " + fmtS(PREMIUM_PRICE[12]) + " so'mdan kam bo'lsa, sozlamalardan vaqtincha oshirib qo'ying." },
       { "@type": "HowToStep", "name": "Botni oching", "text": "Telegram'da @starsjoybot ni qidiring yoki telegram.me/starsjoybot havolasiga o'ting va /start tugmasini bosing." },
-      { "@type": "HowToStep", "name": "12 oylik paketni tanlang", "text": "Bot menyusidan 'Telegram Premium' bo'limini oching va 12 oylik paketni tanlang — narx 422 000 so'm." },
+      { "@type": "HowToStep", "name": "12 oylik paketni tanlang", "text": "Bot menyusidan 'Telegram Premium' bo'limini oching va 12 oylik paketni tanlang — narx " + fmtS(PREMIUM_PRICE[12]) + " so'm." },
       { "@type": "HowToStep", "name": "Username kiriting", "text": "Premium qaysi Telegram akkauntga tushishi kerakligini kiriting (o'zingizniki yoki sovg'a oluvchiniki — @username shaklida)." },
       { "@type": "HowToStep", "name": "Click yoki Payme'ni tanlang", "text": "To'lov turini tanlang. Ikkalasi ham Uzcard va Humo kartalari bilan ishlaydi. Bot to'lov havolasini chiqaradi." },
       { "@type": "HowToStep", "name": "Uzcard yoki Humo bilan to'lang", "text": "Havolani bosing — ilova ochiladi. Karta tanlangani tekshiring va To'lash tugmasini bosing. PIN-kod yoki SMS-tasdiqlash bilan to'lovni tugating." },
@@ -202,12 +203,12 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> 12 oylik Telegram Premium'ni Uzcard yoki Humo karta bilan <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali <strong>422 000 so'mga</strong> sotib olish mumkin — to'lov Click yoki Payme'da, 10 soniyada Premium faollashadi. Visa karta shart emas. Karta egasi uchun 3 ta nuans: <strong>(1)</strong> bir martalik 422 000 so'm to'lov, shuning uchun kartangizning kunlik limitini oldindan tekshiring; <strong>(2)</strong> oyiga ~35 167 so'm — 3 oylikka nisbatan yiliga 266 000 so'm tejash; <strong>(3)</strong> avtomatik obuna yo'q — 12 oydan keyin kartadan ortiqcha pul yechilmaydi.
+            <strong>Qisqacha javob:</strong> 12 oylik Telegram Premium'ni Uzcard yoki Humo karta bilan <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali <strong>{fmtS(PREMIUM_PRICE[12])} so'mga</strong> sotib olish mumkin — to'lov Click yoki Payme'da, 10 soniyada Premium faollashadi. Visa karta shart emas. Karta egasi uchun 3 ta nuans: <strong>(1)</strong> bir martalik {fmtS(PREMIUM_PRICE[12])} so'm to'lov, shuning uchun kartangizning kunlik limitini oldindan tekshiring; <strong>(2)</strong> oyiga ~{fmtS(premiumPerMonth(12))} so'm — 3 oylikka nisbatan yiliga {fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12])} so'm tejash; <strong>(3)</strong> avtomatik obuna yo'q — 12 oydan keyin kartadan ortiqcha pul yechilmaydi.
           </div>
 
           <p><a href="/premium/12-oy"><strong>→ 12 oylik Premium'ni hozir sotib olish</strong></a> — narxi, FAQ va bevosita xarid tugmasi bilan alohida sahifada.</p>
 
-          <p>O'zbekistondagi ko'pchilik Telegram Premium foydalanuvchi 3 yoki 6 oylik paketda yashaydi: har 3 oyda 172 000 so'm yoki har 6 oyda 232 000 so'm. Sababi — bir paytda yirik to'lov qilishni xohlamaslik. Lekin yiliga hisoblaganda 3 oylik × 4 = 688 000 so'm yoki 6 oylik × 2 = 464 000 so'm bo'lib chiqadi. 12 oylik paket esa <strong>422 000 so'm</strong> — yiliga eng arzon variant, va Uzcard yoki Humo kartangizdan bir martalik to'lov bilan amalga oshadi.</p>
+          <p>O'zbekistondagi ko'pchilik Telegram Premium foydalanuvchi 3 yoki 6 oylik paketda yashaydi: har 3 oyda {fmtS(PREMIUM_PRICE[3])} so'm yoki har 6 oyda {fmtS(PREMIUM_PRICE[6])} so'm. Sababi — bir paytda yirik to'lov qilishni xohlamaslik. Lekin yiliga hisoblaganda 3 oylik × 4 = {fmtS(PREMIUM_PRICE[3] * 4)} so'm yoki 6 oylik × 2 = {fmtS(PREMIUM_PRICE[6] * 2)} so'm bo'lib chiqadi. 12 oylik paket esa <strong>{fmtS(PREMIUM_PRICE[12])} so'm</strong> — yiliga eng arzon variant, va Uzcard yoki Humo kartangizdan bir martalik to'lov bilan amalga oshadi.</p>
 
           <p>Bu yirik to'lov bo'lgani sababli, karta egasi uchun bir nechta amaliy savol kelib chiqadi: <em>kunlik limit yetadimi? Click Premium yoki Payme Plus obunam tejash beradimi? Kartadan avtomatik yechilib turmaydimi? Maosh kartasiga to'g'ri keladimi?</em> Bu maqolada aynan Uzcard va Humo karta egasi nuqtai nazaridan 12 oylik Premium sotib olishni batafsil ko'rib chiqamiz: kunlik limit muammolari, Click va Payme'dagi sozlamalar, cashback va tejash variantlari, bo'lib to'lash alternativlari va xavfsizlik.</p>
 
@@ -223,7 +224,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>12 oylik Premium narxi va boshqa paketlar bilan taqqoslash</h2>
 
-          <p>12 oylik paketda asosiy savol — <em>boshqa paketlar bilan solishtirganda qancha tejash</em>. Mana 2026-yil may holatidagi narxlar:</p>
+          <p>12 oylik paketda asosiy savol — <em>boshqa paketlar bilan solishtirganda qancha tejash</em>. Mana 2026-yil noyabr holatidagi narxlar:</p>
 
           <div class="post-table-wrap">
             <table class="post-table">
@@ -238,39 +239,40 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tbody>
                 <tr>
                   <td>3 oylik</td>
-                  <td>172 000 so'm</td>
-                  <td>~57 333 so'm</td>
-                  <td>688 000 so'm (×4)</td>
+                  <td>{fmtS(PREMIUM_PRICE[3])} so'm</td>
+                  <td>~{fmtS(premiumPerMonth(3))} so'm</td>
+                  <td>{fmtS(PREMIUM_PRICE[3] * 4)} so'm (×4)</td>
                 </tr>
                 <tr>
                   <td>6 oylik</td>
-                  <td>232 000 so'm</td>
-                  <td>~38 667 so'm</td>
-                  <td>464 000 so'm (×2)</td>
+                  <td>{fmtS(PREMIUM_PRICE[6])} so'm</td>
+                  <td>~{fmtS(premiumPerMonth(6))} so'm</td>
+                  <td>{fmtS(PREMIUM_PRICE[6] * 2)} so'm (×2)</td>
                 </tr>
                 <tr class="highlight-row">
                   <td>12 oylik</td>
-                  <td>422 000 so'm</td>
-                  <td>~35 167 so'm</td>
-                  <td>422 000 so'm</td>
+                  <td>{fmtS(PREMIUM_PRICE[12])} so'm</td>
+                  <td>~{fmtS(premiumPerMonth(12))} so'm</td>
+                  <td>{fmtS(PREMIUM_PRICE[12])} so'm</td>
                 </tr>
               </tbody>
             </table>
           </div>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
-          <p><em>Narxlar 2026-yil may holatiga to'g'ri.</em> Kartadan chiqadigan eng katta summa — 422 000 so'm. Buni 3 oylik bilan solishtirsangiz, yiliga <strong>266 000 so'm tejash</strong>; 6 oylik bilan solishtirsangiz, yiliga <strong>42 000 so'm tejash</strong>. 6 oylikka nisbatan tejash kichik bo'lsa-da, asosiy yutuq — <strong>kartada bir marta 422 000 so'm</strong> yechiladi, keyin 12 oy davomida hech narsa esga olish kerak emas. <a href="/blog/telegram-premium-paketlar-taqqoslash">Premium paketlar taqqoslash</a> bo'yicha alohida batafsil maqola bor.</p>
+          <p><em>Narxlar 2026-yil noyabr holatiga to'g'ri.</em> Kartadan chiqadigan eng katta summa — {fmtS(PREMIUM_PRICE[12])} so'm. Buni 3 oylik bilan solishtirsangiz, yiliga <strong>{fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12])} so'm tejash</strong>; 6 oylik bilan solishtirsangiz, yiliga <strong>{fmtS(PREMIUM_PRICE[6] * 2 - PREMIUM_PRICE[12])} so'm tejash</strong>. 6 oylikka nisbatan tejash kichik bo'lsa-da, asosiy yutuq — <strong>kartada bir marta {fmtS(PREMIUM_PRICE[12])} so'm</strong> yechiladi, keyin 12 oy davomida hech narsa esga olish kerak emas. <a href="/blog/telegram-premium-paketlar-taqqoslash">Premium paketlar taqqoslash</a> bo'yicha alohida batafsil maqola bor.</p>
 
           <h2>Uzcard va Humo karta limit nuanslari (eng muhim qism)</h2>
 
-          <p>12 oylik paketda Uzcard yoki Humo karta egasi uchun yagona haqiqiy texnik to'siq — <strong>kunlik to'lov limiti</strong>. Standart fuqaroviy identifikatsiya o'tgan kartada bu odatda 5–10 mln so'm oralig'ida bo'ladi, ya'ni 422 000 so'm muammosiz o'tadi. Lekin bir nechta holatda limit muammo bo'lishi mumkin:</p>
+          <p>12 oylik paketda Uzcard yoki Humo karta egasi uchun yagona haqiqiy texnik to'siq — <strong>kunlik to'lov limiti</strong>. Standart fuqaroviy identifikatsiya o'tgan kartada bu odatda 5–10 mln so'm oralig'ida bo'ladi, ya'ni {fmtS(PREMIUM_PRICE[12])} so'm muammosiz o'tadi. Lekin bir nechta holatda limit muammo bo'lishi mumkin:</p>
 
           <h3>Holat 1: identifikatsiyasiz karta</h3>
-          <p>Agar siz kartani olganingizdan keyin shaxsni tasdiqlash jarayonidan o'tmagan bo'lsangiz (bu Click yoki Payme'da "passport ma'lumotini kiritish" bosqichi), kartangizning kunlik to'lov limiti 1 mln so'mga cheklangan bo'ladi. 422 000 so'm baribir sig'adi, lekin agar shu kun davomida yana boshqa yirik to'lovlar qilgan bo'lsangiz — limit yetmasligi mumkin.</p>
+          <p>Agar siz kartani olganingizdan keyin shaxsni tasdiqlash jarayonidan o'tmagan bo'lsangiz (bu Click yoki Payme'da "passport ma'lumotini kiritish" bosqichi), kartangizning kunlik to'lov limiti 1 mln so'mga cheklangan bo'ladi. {fmtS(PREMIUM_PRICE[12])} so'm baribir sig'adi, lekin agar shu kun davomida yana boshqa yirik to'lovlar qilgan bo'lsangiz — limit yetmasligi mumkin.</p>
 
           <p><strong>Yechim:</strong> Click yoki Payme app'ida "Sozlamalar → Mening kartam → Identifikatsiyani o'tish" bosqichini bajarish. 5–10 daqiqalik passport rasmi va selfie yuborish — keyin limit avtomatik 5–10 mln so'mga oshadi.</p>
 
           <h3>Holat 2: kartani o'zingiz limitlab qo'ygansiz</h3>
-          <p>Ko'pchilik foydalanuvchi xavfsizlik uchun kartaning kunlik limitini qo'lda 200 000 yoki 300 000 so'mga qisqartirib qo'yadi. 422 000 so'm to'lov bunday holatda rad etiladi. <strong>Yechim:</strong> to'lov qilishdan oldin Click yoki Payme app'ida limitni vaqtincha 500 000–1 000 000 so'mga oshirib qo'ying, to'lovdan keyin orqaga qaytaring.</p>
+          <p>Ko'pchilik foydalanuvchi xavfsizlik uchun kartaning kunlik limitini qo'lda 200 000 yoki 300 000 so'mga qisqartirib qo'yadi. {fmtS(PREMIUM_PRICE[12])} so'm to'lov bunday holatda rad etiladi. <strong>Yechim:</strong> to'lov qilishdan oldin Click yoki Payme app'ida limitni vaqtincha 500 000–1 000 000 so'mga oshirib qo'ying, to'lovdan keyin orqaga qaytaring.</p>
 
           <h3>Holat 3: maosh kartasida cheklov</h3>
           <p>Ba'zi maosh kartalarida (ayniqsa Humo) bank tomonidan oylik onlayn xarid limiti o'rnatilishi mumkin. Agar kartangizda shunday cheklov bor bo'lsa va siz oyning oxiriga kelib limitni to'ldirgan bo'lsangiz — to'lov amalga oshmaydi. <strong>Yechim:</strong> banka aloqaga chiqib limit oshirish yoki to'lovni keyingi oyga ko'chirib turing.</p>
@@ -282,7 +284,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <p>Texnik jihatdan ikkalasi ham bir xil — Uzcard va Humo kartalari ikkalasida ham ulanadi, to'lov 5–10 soniyada amalga oshadi, komissiya yo'q. Lekin 12 oylik kabi yirik to'lov uchun ba'zi farqlar bor:</p>
 
           <h3>Click qachon qulayroq?</h3>
-          <p>Agar sizda <strong>Click Premium</strong> obunasi bo'lsa, bu yirik to'lov sizga qo'shimcha keshbek olib kelmaydi — 422 000 so'm Telegram Premium uchun keshbek programmasi qamrab olmaydi. Lekin agar siz puldorni avval Click ichidagi boshqa kartalardan jamlab to'plagan bo'lsangiz, Click Premium foydalanuvchisi sifatida ushbu kartalararo o'tkazmalar 10 mln so'mgacha bepul amalga oshadi. Bu maosh kartangizdan shaxsiy kartaga puldorni o'tkazib, keyin Premium uchun to'lashda foydali.</p>
+          <p>Agar sizda <strong>Click Premium</strong> obunasi bo'lsa, bu yirik to'lov sizga qo'shimcha keshbek olib kelmaydi — {fmtS(PREMIUM_PRICE[12])} so'm Telegram Premium uchun keshbek programmasi qamrab olmaydi. Lekin agar siz puldorni avval Click ichidagi boshqa kartalardan jamlab to'plagan bo'lsangiz, Click Premium foydalanuvchisi sifatida ushbu kartalararo o'tkazmalar 10 mln so'mgacha bepul amalga oshadi. Bu maosh kartangizdan shaxsiy kartaga puldorni o'tkazib, keyin Premium uchun to'lashda foydali.</p>
 
           <h3>Payme qachon qulayroq?</h3>
           <p>Payme'da bir nechta karta ulangan bo'lsa, to'lov paytida tanlash imkoni bor — masalan, ish kartangiz bilan shaxsiy Uzcard'ni alohida ko'rasiz va aniqlangan kartani tanlaysiz. Bundan tashqari <strong>Payme Plus</strong> obunasi bilan bepul p2p o'tkazmalar 5 mln so'mga cho'ziladi — Click bilan o'xshash ishlatish stsenariyi. To'lov tarixi avtomatik saqlanadi, kelajakda buxgalteriya yuritish uchun qulay.</p>
@@ -297,17 +299,17 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <ul>
             <li>Telegram akkaunt (o'zingizniki yoki sovg'a olmoqchi bo'lganingizniki)</li>
             <li>Uzcard yoki Humo kartasi — Click yoki Payme ilovasiga ulangan</li>
-            <li>Kartangizda kamida 422 000 so'm va kunlik limit yetishi</li>
+            <li>Kartangizda kamida {fmtS(PREMIUM_PRICE[12])} so'm va kunlik limit yetishi</li>
             <li>Internet aloqa</li>
           </ul>
 
           <h3>Qadam-baqadam:</h3>
 
           <ol>
-            <li><strong>Karta limitini tekshiring.</strong> Click yoki Payme'ni oching → "Mening kartalarim" → kartangizni tanlang → "Limitlar" yoki "Sozlamalar" bo'limidan kunlik to'lov limitini ko'ring. Agar 422 000 so'mdan kam bo'lsa, vaqtincha 1 mln so'mga oshiring.</li>
+            <li><strong>Karta limitini tekshiring.</strong> Click yoki Payme'ni oching → "Mening kartalarim" → kartangizni tanlang → "Limitlar" yoki "Sozlamalar" bo'limidan kunlik to'lov limitini ko'ring. Agar {fmtS(PREMIUM_PRICE[12])} so'mdan kam bo'lsa, vaqtincha 1 mln so'mga oshiring.</li>
             <li><strong>Botni oching.</strong> Telegram'da <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener"><code>@starsjoybot</code></a> ni qidiring yoki to'g'ridan havoladan oching. <code>/start</code> tugmasini bosing.</li>
             <li><strong>Premium bo'limini tanlang.</strong> Bot menyusidan "Telegram Premium" tugmasini bosing.</li>
-            <li><strong>12 oylik paketni tanlang.</strong> Variantlar orasidan <strong>12 oy / 1 yil</strong> tugmasini bosing — narx 422 000 so'm ko'rinadi.</li>
+            <li><strong>12 oylik paketni tanlang.</strong> Variantlar orasidan <strong>12 oy / 1 yil</strong> tugmasini bosing — narx {fmtS(PREMIUM_PRICE[12])} so'm ko'rinadi.</li>
             <li><strong>Username kiriting.</strong> Premium qaysi akkauntga tushishi kerak — o'zingizniki yoki sovg'a oluvchiniki (@username). Bot tasdiqlash uchun so'raydi — diqqat bilan tekshirib bosing, chunki Gift Premium qaytarib olinmaydi.</li>
             <li><strong>To'lov turi: Click yoki Payme.</strong> Bot ikkala variantni ko'rsatadi. Tanlangach, bot to'lov havolasini chiqaradi.</li>
             <li><strong>Uzcard yoki Humo bilan to'lang.</strong> Havolani bosing — Click yoki Payme ilovasi ochiladi. Karta tanlangani tekshiring, "To'lash" tugmasini bosing va PIN yoki SMS-kod bilan tasdiqlang.</li>
@@ -319,12 +321,12 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>12 oylik paket kimga to'g'ri keladi va kimga to'g'ri kelmaydi</h2>
 
-          <p>12 oylik paket eng arzon oylik narxni beradi, lekin <strong>bir martalik 422 000 so'm</strong> kartangizdan yechiladi — bu hamma uchun mos kelmaydi. Mana qaror qilishga yordam beradigan profil:</p>
+          <p>12 oylik paket eng arzon oylik narxni beradi, lekin <strong>bir martalik {fmtS(PREMIUM_PRICE[12])} so'm</strong> kartangizdan yechiladi — bu hamma uchun mos kelmaydi. Mana qaror qilishga yordam beradigan profil:</p>
 
           <h3>To'g'ri keladi:</h3>
           <ul>
             <li><strong>Doimiy Telegram foydalanuvchi</strong> — har kuni Premium funksiyalarini ishlatadigan odam (katta fayl, transkripsiya, kengaytirilgan reaction)</li>
-            <li><strong>Maosh kartasi balansi yetadigan</strong> — 422 000 so'm bir paytda chiqarish byudjetni qiyinlashtirmaydigan</li>
+            <li><strong>Maosh kartasi balansi yetadigan</strong> — {fmtS(PREMIUM_PRICE[12])} so'm bir paytda chiqarish byudjetni qiyinlashtirmaydigan</li>
             <li><strong>Eslab turishni xohlamaydigan</strong> — har 3 yoki 6 oyda qayta sotib olishni eslab yurish istamaydigan</li>
             <li><strong>Sovg'a beruvchi</strong> — yaqin odamga to'liq bir yil Premium sovg'a qilmoqchi bo'lgan (<a href="/blog/telegram-business-vs-premium">Premium nima beradi</a>)</li>
             <li><strong>SMS-kod muammosi bor</strong> — <a href="/blog/telegram-sms-kod-kelmayapti">Telegram SMS kelmayapti</a> muammosini bir yilga to'liq hal qilmoqchi</li>
@@ -332,36 +334,36 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h3>To'g'ri kelmaydi:</h3>
           <ul>
-            <li><strong>Birinchi marta Premium sinab ko'rmoqchi</strong> — avval 3 oylik (172 000) bilan sinab ko'rib, keyin uzaytirgan ma'qul</li>
-            <li><strong>Kartada birdan 422 000 og'irlik qiladigan</strong> — 6 oylik (232 000) dan boshlash mantiqliroq</li>
+            <li><strong>Birinchi marta Premium sinab ko'rmoqchi</strong> — avval 3 oylik ({fmtS(PREMIUM_PRICE[3])}) bilan sinab ko'rib, keyin uzaytirgan ma'qul</li>
+            <li><strong>Kartada birdan {fmtS(PREMIUM_PRICE[12])} og'irlik qiladigan</strong> — 6 oylik ({fmtS(PREMIUM_PRICE[6])}) dan boshlash mantiqliroq</li>
             <li><strong>Telegram'dan kam foydalanuvchi</strong> — haftada bir-ikki marta kirib chiqadigan foydalanuvchi uchun yillik obuna ortiqcha</li>
             <li><strong>Akkauntini o'zgartirishni rejalashtirgan</strong> — agar yaqinda boshqa raqamga ko'chmoqchi bo'lsangiz, 12 oylik paket eski akkauntda qoladi</li>
           </ul>
 
-          <h2>Xavfsizlik: 422 000 so'm yirik to'lov uchun nimaga e'tibor berish</h2>
+          <h2>Xavfsizlik: {fmtS(PREMIUM_PRICE[12])} so'm yirik to'lov uchun nimaga e'tibor berish</h2>
 
           <p>12 oylik paket — eng yirik bir martalik to'lov. Shuning uchun firibgar xizmatlar ko'pincha aynan shu paketni "arzonroq" deb taklif qilib aldashga harakat qiladi. Quyidagi belgilar firibgarlik signalidir:</p>
 
           <ul>
             <li><strong>Telegram parolingiz so'ralgan</strong> — Gift Premium uchun parol kerak emas, faqat username</li>
             <li><strong>SMS-kod yoki 2FA so'ralgan</strong> — hech qachon bermang</li>
-            <li><strong>Narx 250 000 yoki 300 000 so'm "12 oylik" deb ko'rsatilgan</strong> — bu mumkin emas, Telegram'ning o'zi 12 oylik Premium uchun mahalliy yetkazib beruvchidan ~422 000 so'm atrofida narx qo'yadi</li>
+            <li><strong>Narx 250 000 yoki 300 000 so'm "12 oylik" deb ko'rsatilgan</strong> — bu mumkin emas, Telegram'ning o'zi 12 oylik Premium uchun mahalliy yetkazib beruvchidan ~{fmtS(PREMIUM_PRICE[12])} so'm atrofida narx qo'yadi</li>
             <li><strong>To'lov shaxsiy kartaga (Click/Payme rasmiy tizimi tashqarisida)</strong> — har doim rasmiy to'lov platformasi orqali</li>
             <li><strong>Sotuvchi @user1234 kabi tasodifiy username</strong> — rasmiy kanali va support kontakti yo'q xizmat</li>
           </ul>
 
-          <p>Ishonchli xizmat belgilari: rasmiy veb-sayt (<a href="https://starsjoy.uz">starsjoy.uz</a>), Telegram kanal (<a href="https://telegram.me/starsjoy" target="_blank" rel="noopener">@starsjoy</a>), support kontakti (<a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a>), Click va Payme rasmiy to'lov platformalari, ochiq narxlar, ko'p sharhlar. Batafsil — <a href="/blog/telegram-stars-firibgarlik-himoya">firibgarlikdan himoya</a> maqolasida.</p>
+          <p>Ishonchli xizmat belgilari: rasmiy veb-sayt (<a href="https://starsjoy.uz">starsjoy.uz</a>), Telegram kanal (<a href="https://telegram.me/starsjoy" target="_blank" rel="noopener">@starsjoy</a>), support kontakti (<a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a>), Click va Payme rasmiy to'lov platformalari, ochiq narxlar, ko'p sharhlar. Batafsil — <a href="/blog/telegram-stars-firibgarlik-himoya">firibgarlikdan himoya</a> maqolasida.</p>
 
           <h2>Xulosa</h2>
 
           <p>12 oylik Telegram Premium'ni Uzcard yoki Humo karta bilan O'zbekistondan sotib olish — texnik jihatdan oddiy, lekin yirik to'lov bo'lgani sababli karta tomondan oldindan tayyorgarlik kerak. Asosiy nuqtalar: <strong>(1)</strong> Click yoki Payme'da kunlik to'lov limitingizni tekshiring va kerak bo'lsa vaqtincha 1 mln so'mga oshiring; <strong>(2)</strong> <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> dan 12 oylik paketni tanlang, username kiriting; <strong>(3)</strong> Click yoki Payme orqali to'lang; <strong>(4)</strong> 10 soniyada Premium faol bo'ladi; <strong>(5)</strong> 12 oy tugagandan keyin kartadan avtomatik pul yechilmaydi.</p>
 
-          <p>Narx 422 000 so'm — bu yiliga eng arzon oylik narx (~35 167 so'm/oy), 3 oylik × 4 ga nisbatan 266 000 so'm tejash. Karta egasi uchun yagona texnik nuans — limit, va u ham 5 daqiqalik sozlama bilan hal bo'ladi.</p>
+          <p>Narx {fmtS(PREMIUM_PRICE[12])} so'm — bu yiliga eng arzon oylik narx (~{fmtS(premiumPerMonth(12))} so'm/oy), 3 oylik × 4 ga nisbatan {fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12])} so'm tejash. Karta egasi uchun yagona texnik nuans — limit, va u ham 5 daqiqalik sozlama bilan hal bo'ladi.</p>
 
           <p>Foydali maqolalar: <a href="/blog/telegram-premium-12-oylik">12 oylik Premium umumiy ma'lumot</a>, <a href="/blog/telegram-premium-paketlar-taqqoslash">paketlar taqqoslash</a>, <a href="/blog/telegram-stars-uzcard-bilan-sotib-olish">Stars Uzcard bilan</a>, <a href="/blog/telegram-stars-humo-bilan-sotib-olish">Stars Humo bilan</a> va <a href="/blog/telegram-premium-vizasiz">Vizasiz Premium</a>.</p>
 
           <div class="end-cta">
-            Uzcard yoki Humo bilan tezkor 12 oylik Premium: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali 422 000 so'mga
+            Uzcard yoki Humo bilan tezkor 12 oylik Premium: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali {fmtS(PREMIUM_PRICE[12])} so'mga
           </div>
 
           <h2>Ko'p beriladigan savollar</h2>
@@ -369,31 +371,31 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <div class="post-faq">
             <div class="post-faq-item">
               <h3>12 oylik Telegram Premium'ni Uzcard yoki Humo bilan sotib olish mumkinmi?</h3>
-              <p>Ha. To'g'ridan-to'g'ri Telegram saytidan emas, balki mahalliy yetkazib beruvchi <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali. Uzcard yoki Humo kartangiz bilan Click yoki Payme orqali 422 000 so'mda to'laysiz, 10 soniyada Premium hisobingizda faollashadi. Visa yoki xalqaro karta umuman shart emas.</p>
+              <p>Ha. To'g'ridan-to'g'ri Telegram saytidan emas, balki mahalliy yetkazib beruvchi <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali. Uzcard yoki Humo kartangiz bilan Click yoki Payme orqali {fmtS(PREMIUM_PRICE[12])} so'mda to'laysiz, 10 soniyada Premium hisobingizda faollashadi. Visa yoki xalqaro karta umuman shart emas.</p>
             </div>
             <div class="post-faq-item">
-              <h3>Uzcard'da bir martalik 422 000 so'm to'lov uchun limit yetadimi?</h3>
-              <p>Ko'pchilik bank Uzcard va Humo kartalarida standart kunlik to'lov limiti 5–10 mln so'm oralig'ida — 422 000 so'm undan ancha kichik va muammosiz o'tadi. Lekin agar siz limitni qo'lda 200 000 yoki 300 000 so'mga qisqartirgan bo'lsangiz, oldindan Click yoki Payme sozlamalaridan vaqtincha oshirib qo'yishingiz kerak. Cheklangan (identifikatsiyasiz) kartalarda esa kunlik 1 mln so'm — bu yerda ham 422 000 so'm sig'adi.</p>
+              <h3>Uzcard'da bir martalik {fmtS(PREMIUM_PRICE[12])} so'm to'lov uchun limit yetadimi?</h3>
+              <p>Ko'pchilik bank Uzcard va Humo kartalarida standart kunlik to'lov limiti 5–10 mln so'm oralig'ida — {fmtS(PREMIUM_PRICE[12])} so'm undan ancha kichik va muammosiz o'tadi. Lekin agar siz limitni qo'lda 200 000 yoki 300 000 so'mga qisqartirgan bo'lsangiz, oldindan Click yoki Payme sozlamalaridan vaqtincha oshirib qo'yishingiz kerak. Cheklangan (identifikatsiyasiz) kartalarda esa kunlik 1 mln so'm — bu yerda ham {fmtS(PREMIUM_PRICE[12])} so'm sig'adi.</p>
             </div>
             <div class="post-faq-item">
               <h3>Click Premium yoki Payme Plus obunalarim 12 oylik Premium uchun tejash beradimi?</h3>
-              <p>Bu obunalar to'g'ridan-to'g'ri Telegram Premium narxiga ta'sir qilmaydi — 422 000 so'm baribir bir xil. Lekin Click Premium foydalanuvchisi sifatida ba'zi to'lovlarga keshbek va kartalararo bepul o'tkazma limitiga ega bo'lasiz, Payme Plus esa bepul p2p o'tkazmalarni beradi — agar siz puldorni shaxsiy kartadan boshqa hisobga ko'chirib turishingiz kerak bo'lsa, shu joyda foydalisiz. Yiriklik nuqtai nazaridan asosiy tejash to'g'ridan paketda — 3 oylik × 4 ga nisbatan 266 000 so'm arzon.</p>
+              <p>Bu obunalar to'g'ridan-to'g'ri Telegram Premium narxiga ta'sir qilmaydi — {fmtS(PREMIUM_PRICE[12])} so'm baribir bir xil. Lekin Click Premium foydalanuvchisi sifatida ba'zi to'lovlarga keshbek va kartalararo bepul o'tkazma limitiga ega bo'lasiz, Payme Plus esa bepul p2p o'tkazmalarni beradi — agar siz puldorni shaxsiy kartadan boshqa hisobga ko'chirib turishingiz kerak bo'lsa, shu joyda foydalisiz. Yiriklik nuqtai nazaridan asosiy tejash to'g'ridan paketda — 3 oylik × 4 ga nisbatan {fmtS(PREMIUM_PRICE[3] * 4 - PREMIUM_PRICE[12])} so'm arzon.</p>
             </div>
             <div class="post-faq-item">
               <h3>Humo karta Click va Payme'da Uzcard bilan bir xil ishlaydi mi?</h3>
               <p>Ha, foydalanuvchi nuqtai nazaridan farq yo'q. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> Uzcard va Humo kartalarini Click yoki Payme orqali bir xil qabul qiladi. To'lov yo'li, tezligi va komissiyasi bir xil. Yagona kichik farq — ba'zi banklarda Humo kartasi maosh kartasi sifatida cheklangan limitda kelishi mumkin; bu holatda Click yoki Payme app'idan kunlik limitni vaqtincha oshirish kerak.</p>
             </div>
             <div class="post-faq-item">
-              <h3>12 oy tugaganda 422 000 so'm avtomatik yana yechib olinadimi?</h3>
+              <h3>12 oy tugaganda {fmtS(PREMIUM_PRICE[12])} so'm avtomatik yana yechib olinadimi?</h3>
               <p>Yo'q. Bu Telegram'ning rasmiy Gift Premium mexanizmi orqali ishlaydi — bir martalik to'lov, kartangizga avtomatik obuna o'rnatilmaydi. 12 oy tugagandan keyin Premium oddiy rejimga qaytadi va kartangizdan ortiqcha pul yechilmaydi. Davomi kerak bo'lsa o'zingiz xohlagan vaqtda qaytadan bot orqali yangilashingiz mumkin.</p>
             </div>
             <div class="post-faq-item">
               <h3>Premium kartam komissiya yoki konvertatsiyasiz so'mda yechiladimi?</h3>
-              <p>Ha. To'lov to'liq so'mda va mahalliy tizimda (Click yoki Payme) amalga oshadi — valyuta konvertatsiyasi yo'q, xalqaro tranzaktsiya komissiyasi yo'q. Kartangizdan aniq 422 000 so'm yechiladi. StarsJoy tomonidan qo'shimcha komissiya ham qo'shilmaydi.</p>
+              <p>Ha. To'lov to'liq so'mda va mahalliy tizimda (Click yoki Payme) amalga oshadi — valyuta konvertatsiyasi yo'q, xalqaro tranzaktsiya komissiyasi yo'q. Kartangizdan aniq {fmtS(PREMIUM_PRICE[12])} so'm yechiladi. StarsJoy tomonidan qo'shimcha komissiya ham qo'shilmaydi.</p>
             </div>
             <div class="post-faq-item">
-              <h3>Bo'lib to'lash mumkinmi? 422 000 so'm bir paytda og'ir.</h3>
-              <p>12 oylik Premium uchun to'g'ridan-to'g'ri bo'lib to'lash mexanizmi yo'q — chunki Telegram Gift mexanizmi yagona to'lovda ishlaydi. Lekin variantlar bor: (1) 6 oylik (232 000 so'm) dan boshlash, keyin yana 6 oylik olish; (2) Click yoki Payme'dagi bo'lib to'lash xizmati orqali kartaga vaqtinchalik kredit limit olish; (3) ish kartasi va shaxsiy kartani birga ishlatib, jami summani yig'ish. Ko'pchilik foydalanuvchi 1-variantni tanlaydi — risksiz va oddiy.</p>
+              <h3>Bo'lib to'lash mumkinmi? {fmtS(PREMIUM_PRICE[12])} so'm bir paytda og'ir.</h3>
+              <p>12 oylik Premium uchun to'g'ridan-to'g'ri bo'lib to'lash mexanizmi yo'q — chunki Telegram Gift mexanizmi yagona to'lovda ishlaydi. Lekin variantlar bor: (1) 6 oylik ({fmtS(PREMIUM_PRICE[6])} so'm) dan boshlash, keyin yana 6 oylik olish; (2) Click yoki Payme'dagi bo'lib to'lash xizmati orqali kartaga vaqtinchalik kredit limit olish; (3) ish kartasi va shaxsiy kartani birga ishlatib, jami summani yig'ish. Ko'pchilik foydalanuvchi 1-variantni tanlaydi — risksiz va oddiy.</p>
             </div>
             <div class="post-faq-item">
               <h3>Premium kim uchun olganimni Telegram boshqa odamga ko'rsatadimi?</h3>

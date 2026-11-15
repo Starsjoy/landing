@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Halloween Bear qayerdan olinadi? Uzcard, Humo bilan | StarsJoy Blog";
 const description = "Telegram'ning yangi Halloween Bear sovg'asi 50 Stars turadi. O'zbekistonda Uzcard va Humo bilan 13 000 so'mga oling: qayerda bor, qanday olinadi va qachongacha.";
 const publishDate = "2026-10-31";
-const modifiedDate = "2026-10-31";
+const modifiedDate = "2026-11-15";
 const wordCount = 1150;
 const canonical = "https://starsjoy.uz/blog/telegram-halloween-bear";
 const ogImage = "https://starsjoy.uz/images/telegram-halloween-bear-og.png";
@@ -22,7 +23,7 @@ const faqs = [
   },
   {
     q: "Halloween Bear O'zbekistonda necha so'm turadi?",
-    a: "StarsJoy Mini App'ida 13 000 so'm, gift to'g'ridan-to'g'ri yuboriladi. Alohida 50 Stars olib, uni Telegram'da o'zingiz yuborsangiz, 12 000 so'm chiqadi."
+    a: "StarsJoy Mini App'ida 13 000 so'm, gift to'g'ridan-to'g'ri yuboriladi. Alohida 50 Stars olib, uni Telegram'da o'zingiz yuborsangiz, " + fmtS(starsPrice(50)) + " so'm chiqadi."
   },
   {
     q: "Halloween Bear'ni o'zimga olsam bo'ladimi?",
@@ -283,12 +284,12 @@ const faqs = [
               <li>Katalogdan Halloween Bear'ni toping.</li>
               <li>Xabar qo'shing yoki ismingizni yashiring va 50 Stars bilan to'lang.</li>
             </ol>
-            <p>Stars yetmasa, <a href="/stars">StarsJoy'dan Uzcard va Humo bilan</a> oling. Eng kam miqdor 50 Stars, ya'ni 12 000 so'm. Balansni tekshirish: <a href="/blog/telegram-stars-hisobini-tekshirish">Stars hisobini ko'rish</a>.</p>
+            <p>Stars yetmasa, <a href="/stars">StarsJoy'dan Uzcard va Humo bilan</a> oling. Eng kam miqdor 50 Stars, ya'ni {fmtS(starsPrice(50))} so'm. Balansni tekshirish: <a href="/blog/telegram-stars-hisobini-tekshirish">Stars hisobini ko'rish</a>.</p>
           </section>
 
           <section>
             <h2>Qaysi yo'l arzon: Stars yoki tayyor gift?</h2>
-            <p>Bitta sovg'ada farq 1 000 so'm, o'zingiz yuborsangiz arzonroq. Tayyor gift esa bir necha qadamni qisqartiradi va Stars olishni talab qilmaydi. Bir nechta sovg'a yuborsangiz, <a href="/stars/100">100 Stars paketi</a> qulayroq.</p>
+            <p>Bitta sovg'ada farq {fmtS(13000 - starsPrice(50))} so'm, o'zingiz yuborsangiz arzonroq. Tayyor gift esa bir necha qadamni qisqartiradi va Stars olishni talab qilmaydi. Bir nechta sovg'a yuborsangiz, <a href="/stars/100">100 Stars paketi</a> qulayroq.</p>
             <div class="post-table-wrap">
               <table class="post-table">
                 <thead>
@@ -299,12 +300,13 @@ const faqs = [
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td>1 ta</td><td>13 000 so'm</td><td>12 000 so'm (50 Stars)</td></tr>
-                  <tr><td>3 ta</td><td>39 000 so'm</td><td>36 000 so'm (150 Stars)</td></tr>
-                  <tr><td>5 ta</td><td>65 000 so'm</td><td>60 000 so'm (250 Stars)</td></tr>
+                  <tr><td>1 ta</td><td>13 000 so'm</td><td>{fmtS(starsPrice(50))} so'm (50 Stars)</td></tr>
+                  <tr><td>3 ta</td><td>39 000 so'm</td><td>{fmtS(starsPrice(150))} so'm (150 Stars)</td></tr>
+                  <tr><td>5 ta</td><td>65 000 so'm</td><td>{fmtS(starsPrice(250))} so'm (250 Stars)</td></tr>
                 </tbody>
               </table>
             </div>
+            <p><small>{PRICE_NOTE.uz}</small></p>
             <p>Telegram ilovasida 50 Stars taxminan $1 turadi, lekin App Store yoki Google Play odatda xalqaro karta so'raydi. Umumiy narxlar: <a href="/blog/telegram-gifts-narxi-royxati">Telegram sovg'alari narxi</a>.</p>
           </section>
 

@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Telegram Halloween Bear: где купить за Uzcard и Humo | StarsJoy Блог";
 const description = "Новый подарок Telegram Halloween Bear стоит 50 Stars. В Узбекистане — за 13 000 сумов с Uzcard и Humo: где он есть, как купить и до какого срока.";
 const publishDate = "2026-10-31";
-const modifiedDate = "2026-10-31";
+const modifiedDate = "2026-11-15";
 const wordCount = 1280;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-halloween-bear";
 const ogImage = "https://starsjoy.uz/images/telegram-halloween-bear-og.png";
@@ -22,7 +23,7 @@ const faqs = [
   },
   {
     q: "Сколько стоит Halloween Bear в Узбекистане?",
-    a: "В Mini App StarsJoy — 13 000 сумов, подарок отправляется сразу получателю. Если купить 50 Stars отдельно и отправить подарок самому в Telegram, выйдет 12 000 сумов."
+    a: "В Mini App StarsJoy — 13 000 сумов, подарок отправляется сразу получателю. Если купить 50 Stars отдельно и отправить подарок самому в Telegram, выйдет " + fmtS(starsPrice(50)) + " сумов."
   },
   {
     q: "Можно ли купить Halloween Bear себе?",
@@ -284,12 +285,12 @@ const faqs = [
               <li>Найдите Halloween Bear в каталоге.</li>
               <li>Добавьте сообщение или скройте своё имя и оплатите 50 Stars.</li>
             </ol>
-            <p>Если Stars не хватает, <a href="/ru/stars">купите их в StarsJoy с Uzcard и Humo</a>. Минимум — 50 Stars, то есть 12 000 сумов. Как проверить баланс: <a href="/ru/blog/telegram-stars-hisobini-tekshirish">баланс Telegram Stars</a>.</p>
+            <p>Если Stars не хватает, <a href="/ru/stars">купите их в StarsJoy с Uzcard и Humo</a>. Минимум — 50 Stars, то есть {fmtS(starsPrice(50))} сумов. Как проверить баланс: <a href="/ru/blog/telegram-stars-hisobini-tekshirish">баланс Telegram Stars</a>.</p>
           </section>
 
           <section>
             <h2>Что дешевле: Stars или готовый подарок?</h2>
-            <p>На одном подарке разница составляет 1 000 сумов: отправить самому дешевле. Зато готовый подарок экономит несколько шагов и не требует покупки Stars. Если подарков несколько, удобнее <a href="/ru/stars/100">пакет 100 Stars</a>.</p>
+            <p>На одном подарке разница составляет {fmtS(13000 - starsPrice(50))} сумов: отправить самому дешевле. Зато готовый подарок экономит несколько шагов и не требует покупки Stars. Если подарков несколько, удобнее <a href="/ru/stars/100">пакет 100 Stars</a>.</p>
             <div class="post-table-wrap">
               <table class="post-table">
                 <thead>
@@ -300,12 +301,13 @@ const faqs = [
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td>1 шт.</td><td>13 000 сумов</td><td>12 000 сумов (50 Stars)</td></tr>
-                  <tr><td>3 шт.</td><td>39 000 сумов</td><td>36 000 сумов (150 Stars)</td></tr>
-                  <tr><td>5 шт.</td><td>65 000 сумов</td><td>60 000 сумов (250 Stars)</td></tr>
+                  <tr><td>1 шт.</td><td>13 000 сумов</td><td>{fmtS(starsPrice(50))} сумов (50 Stars)</td></tr>
+                  <tr><td>3 шт.</td><td>39 000 сумов</td><td>{fmtS(starsPrice(150))} сумов (150 Stars)</td></tr>
+                  <tr><td>5 шт.</td><td>65 000 сумов</td><td>{fmtS(starsPrice(250))} сумов (250 Stars)</td></tr>
                 </tbody>
               </table>
             </div>
+            <p><small>{PRICE_NOTE.ru}</small></p>
             <p>В приложении Telegram 50 Stars стоят примерно $1, но App Store или Google Play обычно требуют международную карту. Все цены: <a href="/ru/blog/telegram-gifts-narxi-royxati">цены на подарки Telegram</a>.</p>
           </section>
 

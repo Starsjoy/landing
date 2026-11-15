@@ -31,6 +31,8 @@ interface Props {
   keywords?: string;
   /** ISO sana, masalan "2026-08-07" */
   publishDate: string;
+  /** ISO sana — oxirgi mazmunli yangilanish (JSON-LD dateModified). Bo'lmasa publishDate. */
+  modifiedDate?: string;
   /** Sahifadagi H1 — odatda title'ning qisqaroq varianti */
   heading: string;
   /** Breadcrumb'dagi oxirgi bo'g'in */
@@ -48,7 +50,7 @@ interface Props {
 }
 
 const {
-  slug, title, description, keywords = '', publishDate,
+  slug, title, description, keywords = '', publishDate, modifiedDate,
   heading, crumb, tag = 'Guide', faqs = [], ogImage = 'https://starsjoy.uz/og-image.png', uzHref, ruHref, enHref, locale = 'en',
 } = Astro.props;
 
@@ -87,7 +89,7 @@ const hreflangs = [
     "headline": heading,
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": modifiedDate ?? publishDate,
     "inLanguage": locale === 'uz' ? 'uz-UZ' : locale === 'ru' ? 'ru-RU' : 'en-US',
     "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
     "publisher": {
@@ -136,7 +138,7 @@ const hreflangs = [
         <div class="post-tag">{tag}</div>
         <h1 class="post-title">{heading}</h1>
         <div class="post-meta">
-          <span class="post-date">{publishDate}</span>
+          <span class="post-date">{publishDate}{modifiedDate && modifiedDate !== publishDate && <> · Updated {modifiedDate}</>}</span>
           <span class="post-author">StarsJoy</span>
         </div>
       </div>

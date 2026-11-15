@@ -15,9 +15,42 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import * as PRICES from '../src/lib/prices.ts';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://starsjoy.uz';
+const { STAR_PRICE, PREMIUM_PRICE, starsPrice, starPriceWithBonus, premiumPerMonth, fmt, fmtS } = PRICES;
+
+// Sahifalardagi title/description template literal bo'lishi mumkin (narxlar src/lib/prices.ts dan):
+// `${fmtS(starsPrice(100))} so'm` → "25 400 so'm". Faqat prices.ts eksportlari ishlatiladi.
+// Sahifa frontmatter'idagi bir qatorli `const x = ...;` lar ham hisobga olinadi
+// (masalan `const perMonth = premiumPerMonth(12);`) — hisoblanmaganlari o'tkazib yuboriladi.
+function localScope(src) {
+  const scope = { ...PRICES };
+  const fm = src.startsWith('---') ? src.slice(3, src.indexOf('\n---', 3)) : src;
+  for (const m of fm.matchAll(/^\s*(?:export\s+)?const\s+([A-Za-z_$][\w$]*)\s*(?::[^=]+)?=\s*(.+?);\s*$/gm)) {
+    const [, name, expr] = m;
+    if (name === 'title' || name === 'description' || name in scope) continue;
+    try {
+      scope[name] = new Function(...Object.keys(scope), `return (${expr});`)(...Object.values(scope));
+    } catch {
+      /* import, komponent yoki murakkab ifoda — kerak emas */
+    }
+  }
+  return scope;
+}
+
+function evalTpl(str, src = '') {
+  if (!str || !str.includes('${')) return str;
+  const scope = localScope(src);
+  return str.replace(/\$\{([^}]+)\}/g, (_, expr) => {
+    try {
+      return String(new Function(...Object.keys(scope), `return (${expr});`)(...Object.values(scope)));
+    } catch (e) {
+      throw new Error(`Template ifodasi hisoblanmadi: \${${expr}} — ${e.message}`);
+    }
+  });
+}
 
 /* ── Maqolalarni mavzuga ajratish ────────────────────────────────────────── */
 // Tartib muhim: birinchi mos kelgan guruh yutadi.
@@ -157,8 +190,8 @@ function readMeta(dir, urlPrefix) {
     out.set(slug, {
       slug,
       url: SITE + urlPrefix + slug,
-      title: cleanTitle(title),
-      summary: shorten(description),
+      title: cleanTitle(evalTpl(title, src)),
+      summary: shorten(evalTpl(description, src)),
       publishDate,
     });
   }
@@ -195,7 +228,7 @@ function readEnPosts() {
     const slug = pick('slug');
     const title = pick('title');
     const excerpt = pick('excerpt');
-    if (slug && title && excerpt) out.push({ slug, title, excerpt: excerpt.replace(/\s+/g, ' ') });
+    if (slug && title && excerpt) out.push({ slug, title: evalTpl(title, src), excerpt: evalTpl(excerpt, src).replace(/\s+/g, ' ') });
   }
   if (!out.length) throw new Error('en-blog.ts dan birorta maqola o\'qilmadi — format o\'zgarganmi?');
   return out;
@@ -277,8 +310,8 @@ const HEAD = `# StarsJoy.uz
 StarsJoy sells Telegram Stars, Premium and Gifts to people in Uzbekistan, paid in Uzbek som (UZS) with local Uzcard and Humo cards. This matters because Telegram's own checkout — App Store, Google Play, Fragment or @PremiumBot — requires an international card or a TON crypto wallet, neither of which is realistic for most people in Uzbekistan. Delivery takes about 10 seconds and never requires a password, SMS code or account access — only a Telegram username.
 
 - Home — buy Telegram Stars, Premium and Gifts in Uzbekistan: ${SITE}/en
-- Buy Telegram Premium (prices, plans, payment): ${SITE}/en/premium — 3 months 172,000 UZS, 6 months 232,000 UZS, 12 months 422,000 UZS. No 1-month plan: Telegram's Gift Premium mechanism starts at 3 months.
-- Buy Telegram Stars (price table): ${SITE}/en/stars — flat rate of 240 UZS per star for every pack size, from 50 up to 100,000 Stars.
+- Buy Telegram Premium (prices, plans, payment): ${SITE}/en/premium — 3 months ${fmt(PREMIUM_PRICE[3])} UZS, 6 months ${fmt(PREMIUM_PRICE[6])} UZS, 12 months ${fmt(PREMIUM_PRICE[12])} UZS. No 1-month plan: Telegram's Gift Premium mechanism starts at 3 months.
+- Buy Telegram Stars (price table): ${SITE}/en/stars — flat rate of ${STAR_PRICE} UZS per star for every pack size, from 50 up to 100,000 Stars.
 - Telegram Gifts — send a gift or gift Premium: ${SITE}/en/gifts — the recipient pays nothing; a username is all that is needed.
 - How to buy — 9 steps with screenshots: ${SITE}/en/how-to-buy
 - StarsJoy bonus programme: ${SITE}/en/bonus — +2 ⭐ for every full 50 Stars (+4 ⭐ per 100 Stars, 4% back), +1 ⭐ per Premium month, redeemable for Stars in the @starsjoybot Mini App.
@@ -316,26 +349,22 @@ ${reviewLine ?? `- ${SITE}/sharhlar — mijozlar sharhlari sahifasi: har bir sha
 - Mijozlar sharhlari: ${SITE}/sharhlar (RU: ${SITE}/ru/sharhlar)
 - Biznes / API: ${SITE}/biznes (RU: ${SITE}/ru/biznes)
 - Bot (xarid shu yerda): https://telegram.me/starsjoybot
-- Qo'llab-quvvatlash: https://telegram.me/starsjoy_bot
+- Qo'llab-quvvatlash: https://telegram.me/StarsjoySupport
 - Telegram kanal: https://telegram.me/starsjoy
 
-## Mahsulotlar va narxlar (2026, UZS)
+## Mahsulotlar va narxlar (${PRICES.PRICES_DATE_UZ} holatiga, UZS)
+
+${PRICES.PRICE_NOTE.uz}
 
 ### Telegram Premium
-- 3 oylik: 172 000 so'm
-- 6 oylik: 232 000 so'm
-- 12 oylik: 422 000 so'm
+- 3 oylik: ${fmtS(PREMIUM_PRICE[3])} so'm
+- 6 oylik: ${fmtS(PREMIUM_PRICE[6])} so'm
+- 12 oylik: ${fmtS(PREMIUM_PRICE[12])} so'm
 
 ### Telegram Stars
-Tarif: 240 so'm/star (barcha miqdorlar uchun bir xil, chegirmasiz aniq narx).
-- 50 Stars — 12 000 so'm
-- 100 Stars — 24 000 so'm
-- 250 Stars — 60 000 so'm
-- 500 Stars — 120 000 so'm
-- 1 000 Stars — 240 000 so'm
-- 2 500 Stars — 600 000 so'm
-- 5 000 Stars — 1 200 000 so'm
-- Boshqa miqdor kerak bo'lsa, botda istalgan sonni kiritish mumkin — narx shu tarifga (240 so'm/star) mos hisoblanadi.
+Tarif: ${STAR_PRICE} so'm/star (barcha miqdorlar uchun bir xil, chegirmasiz aniq narx).
+${[50, 100, 250, 500, 1000, 2500, 5000].map((n) => `- ${fmtS(n)} Stars — ${fmtS(starsPrice(n))} so'm`).join('\n')}
+- Boshqa miqdor kerak bo'lsa, botda istalgan sonni kiritish mumkin — narx shu tarifga (${STAR_PRICE} so'm/star) mos hisoblanadi.
 
 ### Telegram Gifts (Premium sovg'a)
 - Narxi tegishli Premium tarifi bilan bir xil (3/6/12 oylik). Qabul qiluvchi hech qanday to'lovsiz foydalana boshlaydi, tabrik xabari bilan yuborish mumkin.
@@ -347,7 +376,7 @@ To'liq rasmli qo'llanma: ${SITE}/qollanma (RU: ${SITE}/ru/qollanma)
 3. Bosh ekrandan bo'limni tanlash: «Stars olish», «Premium olish» yoki «Gift olish».
 4. Qabul qiluvchining Telegram username'ini kiritish yoki o'ziga olish uchun «O'zim» tugmasini bosish.
 5. Stars miqdorini (50 dan 100 000 gacha) yoki Premium muddatini (3/6/12 oy) tanlash. Promokod bo'lsa, «Tekshirish» orqali qo'llash.
-6. Yakuniy summa ko'rsatilgan xarid tugmasini bosish (masalan «Stars olish - 12 000 so'm»).
+6. Yakuniy summa ko'rsatilgan xarid tugmasini bosish (masalan «Stars olish - ${fmtS(starsPrice(50))} so'm»).
 7. Ochilgan «To'lov ma'lumotlari» oynasidan karta raqamini nusxalash. Karta raqami vaqt o'tishi bilan o'zgarishi mumkin, shuning uchun oldin saqlangan raqamga emas, har doim buyurtma oynasida ko'rsatilgan raqamga pul yuborish kerak.
 8. Ko'rsatilgan kartaga aynan ko'rsatilgan summani o'tkazish. O'tkazmani istalgan ilovadan qilish mumkin — Click, Payme, Uzum yoki bankning o'z ilovasi, farqi yo'q; muhimi pul o'sha kartaga va aynan shu summada tushishi. Boshqa summa yuborilsa to'lov tizim tomonidan tanilmaydi. Oynada to'lov taymeri ishlaydi.
 9. Yashil «To'lov qildim» tugmasini bosish. Xizmat odatda 10 soniyada yetkaziladi.
@@ -363,7 +392,7 @@ Click, Uzcard, Humo kartalari orqali, to'liq so'mda (valyuta konvertatsiyasiz). 
 - Telegram parol, SMS kod yoki akkaunt ma'lumotlari hech qachon so'ralmaydi — faqat username kifoya.
 
 ## Bonus dasturi
-StarsJoy har to'liq 50 Stars xaridi uchun +2 ⭐, ya'ni har 100 Stars uchun +4 ⭐ bonus beradi (xaridning 4%, bonus ishlatilsa 1 star amalda taxminan 231 so'm). Premium: har oy uchun +1 ⭐. Gift: narxiga qarab +1, +2 yoki +3 ⭐. Bonus 5 daqiqada @starsjoybot Mini App balansiga yoziladi va 50 yoki 100 Stars'ga almashtiriladi. Batafsil: ${SITE}/bonus (RU: ${SITE}/ru/bonus, EN: ${SITE}/en/bonus)
+StarsJoy har to'liq 50 Stars xaridi uchun +2 ⭐, ya'ni har 100 Stars uchun +4 ⭐ bonus beradi (xaridning 4%, bonus ishlatilsa 1 star amalda taxminan ${starPriceWithBonus()} so'm). Premium: har oy uchun +1 ⭐. Gift: narxiga qarab +1, +2 yoki +3 ⭐. Bonus 5 daqiqada @starsjoybot Mini App balansiga yoziladi va 50 yoki 100 Stars'ga almashtiriladi. Batafsil: ${SITE}/bonus (RU: ${SITE}/ru/bonus, EN: ${SITE}/en/bonus)
 
 ## Referral dasturi
 Yangi do'stning birinchi xaridi uchun taklif qilgan foydalanuvchiga bonus yoziladi: Stars'da har to'liq 50 ta uchun +3 ⭐, Premium'da har oy uchun +1 ⭐. Gift xaridi uchun referal bonusi yo'q.

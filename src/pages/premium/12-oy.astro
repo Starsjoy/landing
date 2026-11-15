@@ -3,24 +3,29 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import VariantPage from '../../components/VariantPage.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../lib/prices';
 import { hreflangsFor } from '../../lib/i18n';
 
+const P3 = fmtS(PREMIUM_PRICE[3]), P6 = fmtS(PREMIUM_PRICE[6]), P12 = fmtS(PREMIUM_PRICE[12]);
+const pm = (m: 3 | 6 | 12) => fmtS(Math.round(premiumPerMonth(m) / 100) * 100);
+const M3 = pm(3), M6 = pm(6), M12 = pm(12);
+const SAVE = Math.round((1 - premiumPerMonth(12) / premiumPerMonth(3)) * 100);
 const canonical = "https://starsjoy.uz/premium/12-oy";
-const title = "Telegram Premium 12 oylik sotib olish — 422 000 so'm | StarsJoy";
-const description = "Telegram Premium 12 oylik (1 yillik) obuna narxi — 422 000 so'm, oyiga ~35 200 so'm — eng tejamkor tarif. Uzcard, Humo yoki Click orqali 10 soniyada faollashadi.";
+const title = `Telegram Premium 12 oylik sotib olish — ${P12} so'm | StarsJoy`;
+const description = `Telegram Premium 12 oylik (1 yillik) obuna narxi — ${P12} so'm, oyiga ~${M12} so'm — eng tejamkor tarif. Uzcard, Humo yoki Click orqali 10 soniyada faollashadi.`;
 
 const faqs = [
   {
     q: "Telegram Premium 1 yillikni (12 oylik) eng arzon qayerdan sotib olsam bo'ladi?",
-    a: "StarsJoy — @starsjoybot orqali. 422 000 so'mni Uzcard, Humo yoki Click bilan to'lab, 10 soniyada faollashtirasiz. Bu 12 oylik uchun eng past oylik narx (~35 200 so'm/oy)."
+    a: `StarsJoy — @starsjoybot orqali. ${P12} so'mni Uzcard, Humo yoki Click bilan to'lab, 10 soniyada faollashtirasiz. Bu 12 oylik uchun eng past oylik narx (~${M12} so'm/oy).`
   },
   {
     q: "12 oylik nechchi foiz tejamkor, 3 oylikka nisbatan?",
-    a: "3 oylikda 1 oy ~57 300 so'm, 12 oylikda ~35 200 so'm — ya'ni 12 oylikni tanlab, oyiga taxminan 38% tejaysiz. Bir yil davomida Premium ishlatishni rejalashtirgan bo'lsangiz, eng arzon yo'l shu."
+    a: `3 oylikda 1 oy ~${M3} so'm, 12 oylikda ~${M12} so'm — ya'ni 12 oylikni tanlab, oyiga taxminan ${SAVE}% tejaysiz. Bir yil davomida Premium ishlatishni rejalashtirgan bo'lsangiz, eng arzon yo'l shu.`
   },
   {
-    q: "12 oylik uchun katta summani (422 000 so'm) Uzcard/Humo bilan to'lashda e'tiborga olish kerak narsa bormi?",
-    a: "Ha — bank kartalarida kunlik/oylik tranzaksiya limiti bo'lishi mumkin. Agar bir martada 422 000 so'm o'tmasa, Click yoki Payme orqali to'lashni sinab ko'ring yoki bankingiz limitini oldindan tekshiring. Batafsil nuanslar 'Uzcard/Humo bilan 12 oylik' qo'llanmasida."
+    q: `12 oylik uchun katta summani (${P12} so'm) Uzcard/Humo bilan to'lashda e'tiborga olish kerak narsa bormi?`,
+    a: `Ha — bank kartalarida kunlik/oylik tranzaksiya limiti bo'lishi mumkin. Agar bir martada ${P12} so'm o'tmasa, Click yoki Payme orqali to'lashni sinab ko'ring yoki bankingiz limitini oldindan tekshiring. Batafsil nuanslar 'Uzcard/Humo bilan 12 oylik' qo'llanmasida.`
   },
   {
     q: "12 oy oldindan to'lab, keyin foydalanishni to'xtatsam pul qaytariladimi?",
@@ -32,7 +37,7 @@ const faqs = [
   },
   {
     q: "12 oylikni do'stimga sovg'a qilsam narxi o'zgaradimi?",
-    a: "Yo'q, sovg'a qilish narxi oddiy 12 oylik xariddagi bilan bir xil (422 000 so'm) — qabul qiluvchi hech qanday to'lov qilmaydi."
+    a: `Yo'q, sovg'a qilish narxi oddiy 12 oylik xariddagi bilan bir xil (${P12} so'm) — qabul qiluvchi hech qanday to'lov qilmaydi.`
   }
 ];
 
@@ -76,13 +81,14 @@ const related = [
     currentLabel="12 oylik"
     eyebrow="Telegram Premium — 12 oylik"
     h1="Telegram Premium 12 oylik (1 yillik) sotib olish"
-    quickAnswer="Telegram Premium 12 oylik obuna narxi — 422 000 so'm (oyiga ~35 200 so'm) — eng tejamkor tarif, @starsjoybot orqali 10 soniyada faollashadi."
-    heroNote="Premium'ni doimiy ishlatadiganlar uchun eng arzon oylik narx — 3 oylikka nisbatan ~38% tejov."
+    quickAnswer={`Telegram Premium 12 oylik obuna narxi — ${P12} so'm (oyiga ~${M12} so'm) — eng tejamkor tarif, @starsjoybot orqali 10 soniyada faollashadi.`}
+    heroNote={`Premium'ni doimiy ishlatadiganlar uchun eng arzon oylik narx — 3 oylikka nisbatan ~${SAVE}% tejov.`}
     siblingsTitle="Boshqa muddatlar"
     siblings={siblings}
     priceLabel="Narx"
-    priceValue="422 000 so'm"
-    priceSubtext="~35 200 so'm/oy — eng foydali"
+    priceValue={`${P12} so'm`}
+    priceSubtext={`~${M12} so'm/oy — eng foydali`}
+    priceNote={PRICE_NOTE.uz}
     ctaLabel="12 oylik Premium sotib olish"
     ctaHref="https://telegram.me/starsjoybot"
     forWhomTitle="Kimga mos?"
@@ -94,11 +100,11 @@ const related = [
     relatedTitle="12 oylik Premium haqida qo'shimcha"
     related={related}
     finalCtaTitle="12 oylik Premium'ga tayyor bo'ling"
-    finalCtaText="422 000 so'm, Uzcard/Click orqali, 10 soniyada faollashadi"
+    finalCtaText={`${P12} so'm, Uzcard/Click orqali, 10 soniyada faollashadi`}
     finalCtaLabel="Hozir sotib olish"
     schemaName="Telegram Premium 12 oylik obuna"
     schemaDescription={description}
-    priceAmount="422000"
+    priceAmount={String(PREMIUM_PRICE[12])}
     breadcrumbSchema={[
       { name: "Bosh sahifa", item: "https://starsjoy.uz" },
       { name: "Telegram Premium", item: "https://starsjoy.uz/premium" },

@@ -1,9 +1,10 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { STAR_PRICE, starsPrice, fmt } from '../../../lib/prices';
 
 const faqs = [
   { q: "Who can turn on Star Messages?", a: "In a private chat, only Telegram Premium users can turn it on. In a group, the owner or an admin enables \"Charge Stars for Messages\" under Permissions — Premium isn't required there." },
-  { q: "How many Stars can I charge per message?", a: "Anywhere from 1 to 10,000 Stars (roughly 240 to 2,400,000 UZS at 240 UZS/Star) — you set the price. Many people start low, around 5-20 Stars, and adjust from there." },
+  { q: "How many Stars can I charge per message?", a: `Anywhere from 1 to 10,000 Stars (roughly ${STAR_PRICE} to ${fmt(starsPrice(10000))} UZS at ${STAR_PRICE} UZS/Star) — you set the price. Many people start low, around 5-20 Stars, and adjust from there.` },
   { q: "What percentage of the Stars do I actually keep?", a: "85%. Telegram keeps the remaining 15% as commission — a different split from admin-to-audience tools like channel subscriptions, where the channel keeps 100%." },
   { q: "Can I refund a message after I've already read it?", a: "Yes. At any point after a message arrives, you can instantly refund the Stars to the sender with a single tap — useful if the message turns out to be spam." },
   { q: "Do my existing contacts have to pay to message me?", a: "No. This only applies to people outside your contact list. Friends, family and anyone already in your contacts message you for free as usual, and you can add specific people or group members to a free-to-message exception list." },
@@ -19,6 +20,7 @@ const faqs = [
   description="Telegram Premium users can charge 1-10,000 Stars for a message from someone outside their contacts: how to turn it on, what percentage you keep, and how to refund it."
   keywords="telegram star messages, get paid for telegram messages, charge stars for messages, telegram premium message price, telegram paid messages strangers"
   publishDate="2026-09-10"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-xabar-uchun-pul-olish"
   ruHref="https://starsjoy.uz/ru/blog/telegram-xabar-uchun-pul-olish"
   faqs={faqs}

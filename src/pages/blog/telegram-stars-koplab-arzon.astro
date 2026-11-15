@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Stars'ni ko'p miqdorda arzon olish (5000+, kanal va biznes uchun) | StarsJoy Blog";
 const description = "5000, 10 000 yoki 50 000 Stars'ni O'zbekistondan ko'p miqdorda olish: paid post va Telegram Ads uchun real narx, in-app va Fragment bilan taqqoslash, mahalliy yetkazib beruvchi orqali so'mda 10 soniyada — shaxsiy kurs bilan.";
 const publishDate = "2026-05-10";
-const modifiedDate = "2026-05-10";
+const modifiedDate = "2026-11-15";
 const wordCount = 1850;
 const canonical = "https://starsjoy.uz/blog/telegram-stars-koplab-arzon";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -83,7 +84,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "5000 yoki 10 000 Telegram Stars qancha turadi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Mahalliy yetkazib beruvchi (StarsJoy) orqali standart kurs bo'yicha 1 Star = 240 so'm. Demak 5000 Stars ≈ 1 200 000 so'm, 10 000 Stars ≈ 2 400 000 so'm. Apple yoki Google Play in-app sotib olishda Stars narxi 25-40% qimmatroq tushadi (platforma komissiyasi qo'shilishi sababli). Yiriklarda (10 000+) shaxsiy kurs muhokama qilinadi va narx pastroq bo'lishi mumkin."
+          "text": `Mahalliy yetkazib beruvchi (StarsJoy) orqali standart kurs bo'yicha 1 Star = ${STAR_PRICE} so'm. Demak 5000 Stars ≈ ${fmtS(starsPrice(5000))} so'm, 10 000 Stars ≈ ${fmtS(starsPrice(10000))} so'm. Telegram ilovasida (App Store/Google Play) narx bunga yaqin, lekin to'lov odatda xalqaro karta yoki App Store balansini talab qiladi. Yiriklarda (10 000+) shaxsiy kurs muhokama qilinadi va narx pastroq bo'lishi mumkin.`
         }
       },
       {
@@ -107,7 +108,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Bulk Stars uchun chegirma qancha bo'ladi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "5000 Stars dan boshlab shaxsiy kurs muhokama qilinadi — bu standart 240 so'm/Star kursidan past bo'lishi mumkin. Aniq foiz buyurtma hajmi va to'lov turiga bog'liq (Click/Payme/Uzcard/Humo). Shaxsiy chegirma uchun @starsjoybot orqali support'ga 'optom' so'rovi yuborish — 1-2 soat ichida shaxsiy taklif keladi."
+          "text": `5000 Stars dan boshlab shaxsiy kurs muhokama qilinadi — bu standart ${STAR_PRICE} so'm/Star kursidan past bo'lishi mumkin. Aniq foiz buyurtma hajmi va to'lov turiga bog'liq (Click/Payme/Uzcard/Humo). Shaxsiy chegirma uchun @starsjoybot orqali support'ga 'optom' so'rovi yuborish — 1-2 soat ichida shaxsiy taklif keladi.`
         }
       },
       {
@@ -115,7 +116,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Apple/Google bilan in-app olishdan farqi nima?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "iPhone yoki Android'dan to'g'ridan-to'g'ri in-app sotib olishda Apple yoki Google 30% gacha komissiya oladi va yakuniy narx Telegram'ning rasmiy ($0.013/Star) kursidan qimmatroq tushadi. Mahalliy yetkazib beruvchi orqali so'mda to'g'ridan-to'g'ri olish: ortiqcha komissiya yo'q, yetkazib berish 10 soniya. Bulk olishda farq sezilarli — 10 000 Stars'da 300 000-500 000 so'm farq bo'lishi mumkin."
+          "text": `iPhone yoki Android'dan in-app sotib olishda to'lov Apple yoki Google orqali o'tadi va odatda xalqaro karta yoki App Store balansi kerak bo'ladi. Mahalliy yetkazib beruvchi orqali so'mda olish: Uzcard/Humo bilan to'lov, Stars odatda ~10 soniyada yetkaziladi, har xaridda bonus Stars beriladi. Narxda katta farq yo'q: 1000 Stars ilovada 233 999 so'm (04.11.2026), StarsJoy'da ${fmtS(starsPrice(1000))} so'm.`
         }
       },
       {
@@ -172,7 +173,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> 5000, 10 000 yoki 50 000 Telegram Stars'ni O'zbekistondan ko'p miqdorda olish — eng tezkor va arzon yo'l mahalliy yetkazib beruvchi orqali so'mda. Standart kurs <strong>1 Star = 240 so'm</strong> (10 000 Stars ≈ 2 400 000 so'm), bulk buyurtmalarda shaxsiy kurs muhokama qilinadi. Apple/Google in-app variantida Stars 25-40% qimmatroq tushadi platforma komissiyasi sababli. Bulk Stars kimga kerak: kanal egasi (paid post test), biznes (Telegram Ads byudjeti), Mini App va kanal admin (Gift sovg'a).
+            <strong>Qisqacha javob:</strong> 5000, 10 000 yoki 50 000 Telegram Stars'ni O'zbekistondan ko'p miqdorda olish — tezkor, qulay va arzon yo'l mahalliy yetkazib beruvchi orqali so'mda. Standart kurs <strong>1 Star = {STAR_PRICE} so'm</strong> (10 000 Stars ≈ {fmtS(starsPrice(10000))} so'm), bulk buyurtmalarda shaxsiy kurs muhokama qilinadi. Apple/Google in-app variantida narx bunga yaqin, lekin odatda xalqaro karta yoki App Store balansi talab qilinadi. Bulk Stars kimga kerak: kanal egasi (paid post test), biznes (Telegram Ads byudjeti), Mini App va kanal admin (Gift sovg'a).
           </div>
 
           <p><a href="/stars/5000"><strong>→ 5000 ta</strong></a> yoki <a href="/stars/10000"><strong>10 000 ta Stars'ni hozir sotib olish</strong></a> — narxi, FAQ va bevosita xarid tugmasi bilan alohida sahifada.</p>
@@ -216,13 +217,13 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tbody>
                 <tr>
                   <td>iPhone in-app (Apple)</td>
-                  <td>~$96 (~1 200 000 so'm) + Apple komissiya</td>
+                  <td>Ilovadagi narx (masalan 1000 Stars — 233 999 so'm, 04.11.2026)</td>
                   <td>Darhol</td>
-                  <td>Tez, lekin platforma komissiyasi tufayli qimmat</td>
+                  <td>Tez, lekin xalqaro karta yoki App Store balansi kerak</td>
                 </tr>
                 <tr>
                   <td>Android in-app (Google)</td>
-                  <td>~$96 (~1 200 000 so'm) + Google komissiya</td>
+                  <td>Ilovadagi narx (iOS bilan bir xil darajada)</td>
                   <td>Darhol</td>
                   <td>iOS bilan deyarli bir xil</td>
                 </tr>
@@ -234,21 +235,22 @@ const ogImage = "https://starsjoy.uz/og-image.png";
                 </tr>
                 <tr>
                   <td>Mahalliy yetkazib beruvchi (so'mda)</td>
-                  <td>5000 × 240 = 1 200 000 so'm (bulk'da kamayadi)</td>
+                  <td>5000 × {STAR_PRICE} = {fmtS(starsPrice(5000))} so'm (bulk'da kamayadi)</td>
                   <td>10 soniya</td>
                   <td>Tez, so'mda, Click/Payme/Uzcard/Humo bilan to'lov</td>
                 </tr>
               </tbody>
             </table>
           </div>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
-          <p>Bulk holati uchun mantiqiy tanlov: <strong>mahalliy yetkazib beruvchi</strong> — chunki Apple/Google variantida har bir Star'ga qo'shimcha komissiya (umumiy buyurtmada katta summa) qo'shiladi, Fragment esa cryptocurrency wallet, KYC va kurs farqlari bilan murakkab. Mahalliy variantida shaxsiy kurs orqali real chegirma olish ham mumkin.</p>
+          <p>Bulk holati uchun mantiqiy tanlov: <strong>mahalliy yetkazib beruvchi</strong> — chunki Apple/Google variantida odatda xalqaro karta yoki App Store balansi kerak va katta summani Uzcard/Humo bilan to'lab bo'lmaydi, Fragment esa cryptocurrency wallet, KYC va kurs farqlari bilan murakkab. Mahalliy variantida shaxsiy kurs orqali real chegirma olish ham mumkin.</p>
 
-          <p class="natural-cta"><strong>Eslatma:</strong> Apple yoki Google'ning aniq komissiyasi yashirin va to'lov holatiga bog'liq, lekin bozorda 25-40% farq aytiladi. 10 000 Stars buyurtmada bu raqam 500 000-1 000 000 so'm tejashga teng. Mahalliy yetkazib beruvchi <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali bulk so'rov qilsangiz, shaxsiy taklif kelishi mumkin.</p>
+          <p class="natural-cta"><strong>Eslatma:</strong> Standart kursda StarsJoy Telegram ilovasidan arzon emas: 1000 Stars ilovada 233 999 so'm (04.11.2026), StarsJoy'da {fmtS(starsPrice(1000))} so'm. Farq qulaylikda: Uzcard/Humo bilan so'mda to'lov, Stars odatda ~10 soniyada avtomatik yetkaziladi, har xaridda bonus Stars beriladi va 24/7 support — @StarsjoySupport. Mahalliy yetkazib beruvchi <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali bulk so'rov qilsangiz, shaxsiy taklif kelishi mumkin.</p>
 
           <h2>Real narx hisobi: 1000 dan 50 000 Stars gacha</h2>
 
-          <p>Quyidagi taqqoslash standart Starsjoy kursi (1 Star = 240 so'm) bo'yicha. Yirik buyurtmalarda shaxsiy kurs ishlatiladi:</p>
+          <p>Quyidagi taqqoslash standart Starsjoy kursi (1 Star = {STAR_PRICE} so'm) bo'yicha. Yirik buyurtmalarda shaxsiy kurs ishlatiladi:</p>
 
           <div class="price-table-wrap">
             <table class="price-table">
@@ -256,46 +258,46 @@ const ogImage = "https://starsjoy.uz/og-image.png";
                 <tr>
                   <th>Stars miqdori</th>
                   <th>Standart narx (so'm)</th>
-                  <th>Apple/Google in-app (taxminiy)</th>
+                  <th>Telegram ilovasi (O'zbekiston, 04.11.2026)</th>
                   <th>Asosiy use case</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>1 000 Stars</td>
-                  <td>240 000 so'm</td>
-                  <td>~310 000 so'm</td>
+                  <td>{fmtS(starsPrice(1000))} so'm</td>
+                  <td>233 999 so'm</td>
                   <td>Boshlang'ich test, paid reactions, kichik gift</td>
                 </tr>
                 <tr>
                   <td>5 000 Stars</td>
-                  <td>1 200 000 so'm</td>
-                  <td>~1 550 000 so'm</td>
+                  <td>{fmtS(starsPrice(5000))} so'm</td>
+                  <td>—</td>
                   <td>Paid post test, Telegram Ads pilot</td>
                 </tr>
                 <tr>
                   <td>10 000 Stars</td>
-                  <td>2 400 000 so'm</td>
-                  <td>~3 100 000 so'm</td>
+                  <td>{fmtS(starsPrice(10000))} so'm</td>
+                  <td>—</td>
                   <td>O'rta Telegram Ads kampaniyasi, jamoa Gift</td>
                 </tr>
                 <tr>
                   <td>25 000 Stars</td>
-                  <td>6 000 000 so'm (shaxsiy kurs muhokama)</td>
-                  <td>~7 750 000 so'm</td>
+                  <td>{fmtS(starsPrice(25000))} so'm (shaxsiy kurs muhokama)</td>
+                  <td>—</td>
                   <td>Yirik reklama kampaniyasi (1 oylik)</td>
                 </tr>
                 <tr>
                   <td>50 000 Stars</td>
-                  <td>12 000 000 so'm (shaxsiy kurs muhokama)</td>
-                  <td>~15 500 000 so'm</td>
+                  <td>{fmtS(starsPrice(50000))} so'm (shaxsiy kurs muhokama)</td>
+                  <td>—</td>
                   <td>Korporativ reklama, ko'p oylik byudjet</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <p>10 000 Stars'dan boshlab shaxsiy kurs ishlaydi — buyurtma hajmiga qarab standart 240 so'm/Star kursidan past chegirma muhokama qilinadi. Bu raqamlar foiz emas, mutlaq summa shaklida (masalan: "10 000 Stars uchun 2 350 000 so'm" — 50 000 so'm tejov). Shaxsiy kurs muzokarasi 1-2 soatda support orqali olinadi.</p>
+          <p>10 000 Stars'dan boshlab shaxsiy kurs ishlaydi — buyurtma hajmiga qarab standart {STAR_PRICE} so'm/Star kursidan past chegirma muhokama qilinadi. Bu raqamlar foiz emas, mutlaq summa shaklida (masalan: "10 000 Stars uchun {fmtS(starsPrice(10000) - 50000)} so'm" — 50 000 so'm tejov). Shaxsiy kurs muzokarasi 1-2 soatda support orqali olinadi.</p>
 
           <h2>O'zbekistondan tezda bulk Stars qanday olinadi (3 qadam)</h2>
 
@@ -339,7 +341,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
           <div class="post-faq">
             <div class="post-faq-item">
               <h3>5000 yoki 10 000 Telegram Stars qancha turadi?</h3>
-              <p>Standart kurs: 1 Star = 240 so'm. 5000 Stars ≈ 1 200 000 so'm, 10 000 Stars ≈ 2 400 000 so'm. Apple/Google in-app variantida ~25-40% qimmatroq. Yiriklarda shaxsiy kurs ishlaydi.</p>
+              <p>Standart kurs: 1 Star = {STAR_PRICE} so'm. 5000 Stars ≈ {fmtS(starsPrice(5000))} so'm, 10 000 Stars ≈ {fmtS(starsPrice(10000))} so'm. Telegram ilovasida narx bunga yaqin, lekin to'lov odatda xalqaro karta yoki App Store balansini talab qiladi. Yiriklarda shaxsiy kurs ishlaydi.</p>
             </div>
             <div class="post-faq-item">
               <h3>Bulk Stars kimga kerak bo'ladi?</h3>
@@ -351,11 +353,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Bulk Stars uchun chegirma qancha?</h3>
-              <p>5000+ Stars buyurtmasida shaxsiy kurs muhokama qilinadi — standart 240 so'm/Star dan past bo'lishi mumkin. Aniq foiz hajm va to'lov turiga bog'liq, support'ga so'rov yuborib aniq taklif olinadi.</p>
+              <p>5000+ Stars buyurtmasida shaxsiy kurs muhokama qilinadi — standart {STAR_PRICE} so'm/Star dan past bo'lishi mumkin. Aniq foiz hajm va to'lov turiga bog'liq, support'ga so'rov yuborib aniq taklif olinadi.</p>
             </div>
             <div class="post-faq-item">
               <h3>Apple/Google in-app olishdan farqi nima?</h3>
-              <p>iPhone/Android in-app variantida platforma komissiyasi (~25-40%) qo'shilishi sababli yakuniy narx qimmat tushadi. 10 000 Stars buyurtmada farq 500 000-1 000 000 so'm bo'lishi mumkin.</p>
+              <p>iPhone/Android in-app variantida to'lov odatda xalqaro karta yoki App Store balansini talab qiladi. Narxda katta farq yo'q: 1000 Stars ilovada 233 999 so'm (04.11.2026), StarsJoy'da {fmtS(starsPrice(1000))} so'm. StarsJoy'da esa Uzcard/Humo bilan to'lov, ~10 soniyada yetkazish va har xaridda bonus Stars.</p>
             </div>
             <div class="post-faq-item">
               <h3>Olingan bulk Stars'ni keyin pulga aylantirib bo'ladimi?</h3>
@@ -369,7 +371,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <h2>Xulosa</h2>
 
-          <p>Telegram Stars'ni 5000+ birlikda ko'p miqdorda olish — kanal egalari, biznes, Mini App ishlab chiquvchilar va kanal admin'lar uchun real ehtiyoj. Eng arzon va tezkor yo'l O'zbekistondan — mahalliy yetkazib beruvchi orqali so'mda 10 soniyada (standart 1 Star = 240 so'm, bulk'da shaxsiy kurs). Apple/Google in-app variantida platforma komissiyasi sababli ~25-40% qimmat tushadi va Fragment cryptocurrency yo'li texnik jihatdan murakkab.</p>
+          <p>Telegram Stars'ni 5000+ birlikda ko'p miqdorda olish — kanal egalari, biznes, Mini App ishlab chiquvchilar va kanal admin'lar uchun real ehtiyoj. Qulay, tezkor va arzon yo'l O'zbekistondan — mahalliy yetkazib beruvchi orqali so'mda 10 soniyada (standart 1 Star = {STAR_PRICE} so'm, bulk'da shaxsiy kurs). Apple/Google in-app variantida narx yaqin, lekin odatda xalqaro karta yoki App Store balansi kerak, Fragment cryptocurrency yo'li texnik jihatdan murakkab.</p>
 
           <p>Bulk buyurtmadan oldin: aniq use case bo'lishi (paid post, Telegram Ads, Gift va h.k.), bo'lib-bo'lib olish variantini ko'rib chiqish va ishonchli yetkazib beruvchi tanlash — uchta asosiy ehtiyot chorasi. Yozma kelishuv va shaxsiy kurs muzokarasi ham yirik buyurtmalarda standart amaliyot.</p>
 

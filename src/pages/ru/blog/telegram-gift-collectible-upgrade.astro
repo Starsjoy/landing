@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Апгрейд подарка Telegram в Collectible (NFT): цена в Stars и механика (2026) | StarsJoy Blog";
 const description = "Как улучшить (upgrade) подарок Telegram в Collectible (NFT): сколько Stars это стоит, механика убывающей цены от 20 000, редкие traits и порядковый номер. Пошаговое руководство и пополнение Stars через Uzcard/Humo в Узбекистане.";
 const publishDate = "2026-05-29";
-const modifiedDate = "2026-05-29";
+const modifiedDate = "2026-11-15";
 const wordCount = 1780;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-gift-collectible-upgrade";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -107,7 +108,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Как пополнить Stars для апгрейда в Узбекистане?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Купить Stars напрямую через Uzcard или Humo в Telegram нельзя (нужна международная платёжная система). Через локального поставщика @starsjoybot вы оплачиваете в сумах через Click или Payme, и за 10 секунд Stars поступают на счёт. Стандартный курс 1 Star = 240 сум. Затем вы делаете апгрейд подарка в приложении Telegram."
+          "text": "Купить Stars напрямую через Uzcard или Humo в Telegram нельзя (нужна международная платёжная система). Через локального поставщика @starsjoybot вы оплачиваете в сумах через Click или Payme, и за 10 секунд Stars поступают на счёт. Стандартный курс 1 Star = " + STAR_PRICE + " сум. Затем вы делаете апгрейд подарка в приложении Telegram."
         }
       },
       {
@@ -193,7 +194,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Коротко для владельца подарка:</strong> У вас есть подарок Telegram (Gift) и вы хотите превратить его в уникальный <strong>Collectible (NFT)</strong>? Апгрейд требует Telegram Stars. Для обычных подарков это дёшево — по официальному описанию «небольшое количество Stars» (комиссия блокчейна), часто отправитель уже оплатил апгрейд. Для <strong>лимитированных</strong> подарков цена начинается с <strong>20 000 Stars и снижается каждый час</strong> — кто платит раньше, получает низкий (редкий) номер. Не хватает Stars — пополните через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> с Uzcard/Humo за 10 секунд (1 Star = 240 сум). Апгрейд необратим — решение должно быть осознанным.
+            <strong>Коротко для владельца подарка:</strong> У вас есть подарок Telegram (Gift) и вы хотите превратить его в уникальный <strong>Collectible (NFT)</strong>? Апгрейд требует Telegram Stars. Для обычных подарков это дёшево — по официальному описанию «небольшое количество Stars» (комиссия блокчейна), часто отправитель уже оплатил апгрейд. Для <strong>лимитированных</strong> подарков цена начинается с <strong>20 000 Stars и снижается каждый час</strong> — кто платит раньше, получает низкий (редкий) номер. Не хватает Stars — пополните через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> с Uzcard/Humo за 10 секунд (1 Star = {STAR_PRICE} сум). Апгрейд необратим — решение должно быть осознанным.
           </div>
 
           <p>В 2026 году подарки Telegram перестали быть просто эмодзи-стикерами и превратились в настоящие цифровые активы. Теперь любой подарок можно «улучшить» (upgrade) до <strong>Collectible</strong> — уникального NFT в блокчейне TON. После апгрейда подарок получает уникальный вид, traits (свойства) и порядковый номер, а его можно носить как статус профиля, передавать или продавать.</p>
@@ -231,45 +232,46 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <thead>
                 <tr>
                   <th>Цена апгрейда (Stars)</th>
-                  <th>Примерно в сумах (1⭐=240)</th>
+                  <th>Примерно в сумах (1⭐={STAR_PRICE})</th>
                   <th>Что означает</th>
                 </tr>
               </thead>
               <tbody>
                 <tr class="highlight-row">
                   <td>20 000 ⭐</td>
-                  <td>~4 800 000 сум</td>
+                  <td>~{fmtS(starsPrice(20000))} сум</td>
                   <td>Старт — самый низкий (#) номер</td>
                 </tr>
                 <tr>
                   <td>5 000 ⭐</td>
-                  <td>~1 200 000 сум</td>
+                  <td>~{fmtS(starsPrice(5000))} сум</td>
                   <td>Через несколько часов</td>
                 </tr>
                 <tr>
                   <td>1 000 ⭐</td>
-                  <td>~240 000 сум</td>
+                  <td>~{fmtS(starsPrice(1000))} сум</td>
                   <td>Средний этап</td>
                 </tr>
                 <tr>
                   <td>100 ⭐</td>
-                  <td>~24 000 сум</td>
+                  <td>~{fmtS(starsPrice(100))} сум</td>
                   <td>Позже — больший (#) номер</td>
                 </tr>
                 <tr>
                   <td>25 ⭐</td>
-                  <td>~6 000 сум</td>
+                  <td>~{fmtS(starsPrice(25))} сум</td>
                   <td>Самый дешёвый — самый большой номер</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <p><em>Полная лестница: 20000 → 15000 → 10000 → 7500 → 5000 → 2500 → 2000 → 1500 → 1000 → 750 → 500 → 250 → 200 → 150 → 100 → 75 → 50 → 25. Цены актуальны на 2026 год; стоимость в сумах ориентировочная по курсу 1 Star = 240 сум.</em></p>
+          <p><em>Полная лестница: 20000 → 15000 → 10000 → 7500 → 5000 → 2500 → 2000 → 1500 → 1000 → 750 → 500 → 250 → 200 → 150 → 100 → 75 → 50 → 25. Цены актуальны на 2026 год; стоимость в сумах ориентировочная по курсу 1 Star = {STAR_PRICE} сум.</em></p>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
           <p>Логика проста: низкие номера (#1, #5 ...) ценны для коллекционеров. Чтобы не раздавать их просто так, Telegram начинает цену высоко — кто хочет редкий номер, платит больше. Если подождать, цена снизится, но ваш номер будет больше (менее редким). То есть это баланс между скоростью и редкостью номера.</p>
 
-          <p class="natural-cta"><strong>Практический совет:</strong> если ваша цель — просто сделать подарок Collectible (номер не важен), не торопитесь и улучшайте, когда цена опустится до нижней ступени (25-100 Stars, то есть 6 000-24 000 сум). Это очень дёшево. Только если порядковый номер для вас важен, нужно делать апгрейд раньше по высокой цене. Не хватит Stars — пополните через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> за пару минут.</p>
+          <p class="natural-cta"><strong>Практический совет:</strong> если ваша цель — просто сделать подарок Collectible (номер не важен), не торопитесь и улучшайте, когда цена опустится до нижней ступени (25-100 Stars, то есть {fmtS(starsPrice(25))}-{fmtS(starsPrice(100))} сум). Это очень дёшево. Только если порядковый номер для вас важен, нужно делать апгрейд раньше по высокой цене. Не хватит Stars — пополните через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> за пару минут.</p>
 
           <h2>Пошагово: апгрейд подарка в Collectible</h2>
 
@@ -299,9 +301,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Поскольку апгрейд требует Stars, при нехватке баланса нужно сначала пополнить его. Важный нюанс: <strong>купить Stars напрямую через Uzcard или Humo в Telegram нельзя</strong> — официальные каналы Telegram (App Store, Google Play, Fragment) принимают только международные платёжные системы (Visa, Mastercard, TON). Uzcard и Humo — локальные системы.</p>
 
-          <p>Решение — оплата в сумах через локального поставщика. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> принимает оплату с Uzcard или Humo через Click/Payme и доставляет Stars через официальный механизм Telegram за 10 секунд. Стандартный курс <strong>1 Star = 240 сум</strong>. Подробные руководства по типу карты: <a href="/ru/blog/telegram-stars-uzcard-bilan-sotib-olish">Stars через Uzcard</a> и <a href="/ru/blog/telegram-stars-humo-bilan-sotib-olish">Stars через Humo</a>.</p>
+          <p>Решение — оплата в сумах через локального поставщика. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> принимает оплату с Uzcard или Humo через Click/Payme и доставляет Stars через официальный механизм Telegram за 10 секунд. Стандартный курс <strong>1 Star = {STAR_PRICE} сум</strong>. Подробные руководства по типу карты: <a href="/ru/blog/telegram-stars-uzcard-bilan-sotib-olish">Stars через Uzcard</a> и <a href="/ru/blog/telegram-stars-humo-bilan-sotib-olish">Stars через Humo</a>.</p>
 
-          <p>Например, чтобы улучшить подарок дёшево (нижняя ступень), хватит всего 25-100 Stars (6 000-24 000 сум). Если важен порядковый номер и вы хотите апгрейд на ступени, скажем, 1000 Stars — это 240 000 сум. Эти суммы пополняются в боте за пару минут. Общая информация о цене Stars — в статье <a href="/ru/blog/telegram-stars-narxi">Цена Telegram Stars</a>.</p>
+          <p>Например, чтобы улучшить подарок дёшево (нижняя ступень), хватит всего 25-100 Stars ({fmtS(starsPrice(25))}-{fmtS(starsPrice(100))} сум). Если важен порядковый номер и вы хотите апгрейд на ступени, скажем, 1000 Stars — это {fmtS(starsPrice(1000))} сум. Эти суммы пополняются в боте за пару минут. Общая информация о цене Stars — в статье <a href="/ru/blog/telegram-stars-narxi">Цена Telegram Stars</a>.</p>
 
           <h2>После апгрейда: носить, передать и продать</h2>
 
@@ -318,7 +320,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p><strong>Апгрейд подарка в Collectible</strong> превращает его в уникальный NFT в блокчейне TON и открывает возможность носить, передавать и продавать. Главный факт: для обычных подарков апгрейд <strong>дёшев</strong> (небольшое количество Stars, часто оплачено отправителем), и только для лимитированных подарков цена снижается с 20 000 Stars — она платится за получение низкого порядкового номера.</p>
 
-          <p>Совет: если номер не важен, делайте апгрейд, когда цена опустится до нижней ступени (25-100 Stars ≈ 6 000-24 000 сум) — это очень дёшево. Помните, что апгрейд необратим, а после нового входа передача блокируется на 7 дней. Не хватит Stars — пополните через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> с Uzcard/Humo за 10 секунд.</p>
+          <p>Совет: если номер не важен, делайте апгрейд, когда цена опустится до нижней ступени (25-100 Stars ≈ {fmtS(starsPrice(25))}-{fmtS(starsPrice(100))} сум) — это очень дёшево. Помните, что апгрейд необратим, а после нового входа передача блокируется на 7 дней. Не хватит Stars — пополните через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> с Uzcard/Humo за 10 секунд.</p>
 
           <div class="end-cta">
             Нужны Stars для апгрейда? <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> — с Uzcard/Humo за 10 секунд
@@ -341,7 +343,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Как пополнить Stars для апгрейда в Узбекистане?</h3>
-              <p>Купить Stars напрямую через Uzcard/Humo в Telegram нельзя (нужна международная система). Через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> вы платите в сумах через Click или Payme и за 10 секунд пополняете Stars (1 Star = 240 сум). Подробнее: <a href="/ru/blog/telegram-stars-uzcard-bilan-sotib-olish">Stars через Uzcard</a>.</p>
+              <p>Купить Stars напрямую через Uzcard/Humo в Telegram нельзя (нужна международная система). Через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> вы платите в сумах через Click или Payme и за 10 секунд пополняете Stars (1 Star = {STAR_PRICE} сум). Подробнее: <a href="/ru/blog/telegram-stars-uzcard-bilan-sotib-olish">Stars через Uzcard</a>.</p>
             </div>
             <div class="post-faq-item">
               <h3>Можно ли отменить апгрейд и вернуть обычный подарок?</h3>

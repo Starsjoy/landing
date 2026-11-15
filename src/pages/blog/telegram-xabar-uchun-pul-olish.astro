@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, starsPrice, fmtS } from '../../lib/prices';
 
 const title = "Telegramda xabar uchun qanday pul olish mumkin? (2026) | StarsJoy Blog";
 const description = "Telegram Premium'da notanish odamlardan kelgan xabar uchun 1–10 000 Stars narx belgilash mumkin: qanday yoqiladi, necha foizi tushadi va qachon qaytariladi.";
@@ -29,7 +30,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-xabar-uchun-pul-olish";
     "headline": "Telegramda xabar uchun qanday pul olish mumkin? (2026)",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": "2026-11-15",
     "inLanguage": "uz-UZ",
     "articleSection": "Stars",
     "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
@@ -80,7 +81,7 @@ const canonical = "https://starsjoy.uz/blog/telegram-xabar-uchun-pul-olish";
       {
         "@type": "Question",
         "name": "Xabar uchun qancha Stars so'rash mumkin?",
-        "acceptedAnswer": { "@type": "Answer", "text": "1 dan 10 000 Starsgacha (240 so'm/star kursida taxminan 240 so'mdan 2 400 000 so'mgacha) — narxni o'zingiz belgilaysiz. Ko'pchilik past narxdan (masalan 5-20 Stars) boshlashni tavsiya qiladi." }
+        "acceptedAnswer": { "@type": "Answer", "text": `1 dan 10 000 Starsgacha (${STAR_PRICE} so'm/star kursida taxminan ${STAR_PRICE} so'mdan ${fmtS(starsPrice(10000))} so'mgacha) — narxni o'zingiz belgilaysiz. Ko'pchilik past narxdan (masalan 5-20 Stars) boshlashni tavsiya qiladi.` }
       },
       {
         "@type": "Question",

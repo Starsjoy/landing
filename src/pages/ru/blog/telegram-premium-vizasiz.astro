@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Купить Telegram Premium без Visa (2026): через Uzcard, Humo и бот | StarsJoy Блог";
 const description = "Можно ли купить Telegram Premium без Visa? Самые простые способы через Uzcard, Humo, Click и бот — полное руководство для Узбекистана.";
 const publishDate = "2026-03-23";
-const modifiedDate = "2026-06-13";
+const modifiedDate = "2026-11-15";
 const wordCount = 1080;
 ---
 
@@ -105,7 +106,7 @@ const wordCount = 1080;
         "name": "Сколько стоит Telegram Premium?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "StarsJoy: 3 месяца — 172 000 сум, 6 месяцев — 232 000 сум, 12 месяцев — 422 000 сум."
+          "text": `StarsJoy: 3 месяца — ${fmtS(PREMIUM_PRICE[3])} сум, 6 месяцев — ${fmtS(PREMIUM_PRICE[6])} сум, 12 месяцев — ${fmtS(PREMIUM_PRICE[12])} сум.`
         }
       },
       {
@@ -292,22 +293,24 @@ const wordCount = 1080;
                 <tbody>
                   <tr>
                     <td>3 месяца</td>
-                    <td>172 000 сум</td>
-                    <td>~57 333 сум/мес</td>
+                    <td>{fmtS(PREMIUM_PRICE[3])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(3))} сум/мес</td>
                   </tr>
                   <tr>
                     <td>6 месяцев</td>
-                    <td>232 000 сум</td>
-                    <td>~38 667 сум/мес</td>
+                    <td>{fmtS(PREMIUM_PRICE[6])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(6))} сум/мес</td>
                   </tr>
                   <tr class="highlight-row">
                     <td>12 месяцев</td>
-                    <td>422 000 сум</td>
-                    <td>~35 167 сум/мес</td>
+                    <td>{fmtS(PREMIUM_PRICE[12])} сум</td>
+                    <td>~{fmtS(premiumPerMonth(12))} сум/мес</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+
+            <p><small>{PRICE_NOTE.ru}</small></p>
 
             <p>Чем дольше срок — тем дешевле в пересчёте на месяц. Оплата <strong>без Visa, в сумах</strong> через Uzcard или Humo.</p>
 
@@ -393,7 +396,7 @@ const wordCount = 1080;
               </div>
               <div class="post-faq-item">
                 <h3>Сколько стоит Telegram Premium?</h3>
-                <p>StarsJoy: 3 месяца — 172 000 сум, 6 месяцев — 232 000 сум, 12 месяцев — 422 000 сум.</p>
+                <p>StarsJoy: 3 месяца — {fmtS(PREMIUM_PRICE[3])} сум, 6 месяцев — {fmtS(PREMIUM_PRICE[6])} сум, 12 месяцев — {fmtS(PREMIUM_PRICE[12])} сум.</p>
               </div>
               <div class="post-faq-item">
                 <h3>Какой способ самый удобный?</h3>

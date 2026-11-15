@@ -3,16 +3,18 @@ import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
 import VariantPage from '../../../components/VariantPage.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../../lib/prices';
 import { hreflangsFor } from '../../../lib/i18n';
 
+const P = fmtS(starsPrice(5000));
 const canonical = "https://starsjoy.uz/ru/stars/5000";
-const title = "Купить 5000 Telegram Stars — 1 200 000 сум | StarsJoy";
-const description = "5000 Telegram Stars — 1 200 000 сум. Оптовый пакет для активных авторов контента и владельцев каналов. Оплата Uzcard/Click, доставка за 10 секунд.";
+const title = `Купить 5000 Telegram Stars — ${P} сум | StarsJoy`;
+const description = `5000 Telegram Stars — ${P} сум. Оптовый пакет для активных авторов контента и владельцев каналов. Оплата Uzcard/Click, доставка за 10 секунд.`;
 
 const faqs = [
   {
     q: "Где можно купить 5000 Telegram Stars оптом дешевле?",
-    a: "Через @starsjoybot — введите количество 5000 и оплатите через Uzcard, Humo или Click. Цена 1 200 000 сум, поступление на баланс за 10 секунд."
+    a: `Через @starsjoybot — введите количество 5000 и оплатите через Uzcard, Humo или Click. Цена ${P} сум, поступление на баланс за 10 секунд.`
   },
   {
     q: "Кому подходит пакет 5000 Stars?",
@@ -24,10 +26,10 @@ const faqs = [
   },
   {
     q: "Есть ли скидка на 5000 Stars?",
-    a: "У StarsJoy единый тариф для всех количеств (240 сум/звезда) — цена за звезду не меняется с ростом количества, растёт только итоговая сумма."
+    a: `У StarsJoy единый тариф для всех количеств (${STAR_PRICE} сум/звезда) — цена за звезду не меняется с ростом количества, растёт только итоговая сумма.`
   },
   {
-    q: "Как оплатить крупную сумму (1 200 000 сум)?",
+    q: `Как оплатить крупную сумму (${P} сум)?`,
     a: "Через Uzcard, Humo, Click или Payme. Если на карте есть дневной лимит, попробуйте оплату через приложение Click или Payme."
   },
   {
@@ -81,13 +83,14 @@ const related = [
     currentLabel="5000 ⭐"
     eyebrow="Telegram Stars — 5000 штук"
     h1="Купить 5000 Telegram Stars"
-    quickAnswer="5000 Telegram Stars — 1 200 000 сум, поступают на баланс через @starsjoybot за 10 секунд."
-    heroNote="Оптовый пакет для владельцев каналов и активных авторов контента — по единому тарифу 240 сум/звезда."
+    quickAnswer={`5000 Telegram Stars — ${P} сум, поступают на баланс через @starsjoybot за 10 секунд.`}
+    heroNote={`Оптовый пакет для владельцев каналов и активных авторов контента — по единому тарифу ${STAR_PRICE} сум/звезда.`}
     siblingsTitle="Другие количества"
     siblings={siblings}
     priceLabel="Цена"
-    priceValue="1 200 000 сум"
-    priceSubtext="240 сум/звезда"
+    priceValue={`${P} сум`}
+    priceSubtext={`${STAR_PRICE} сум/звезда`}
+    priceNote={PRICE_NOTE.ru}
     bonusNote="+200 ⭐ бонуса, подробнее →"
     bonusHref="/ru/bonus"
     ctaLabel="Купить 5000 Stars"
@@ -101,11 +104,11 @@ const related = [
     relatedTitle="Дополнительно о Stars"
     related={related}
     finalCtaTitle="Готовы купить 5000 Stars?"
-    finalCtaText="1 200 000 сум, оплата Uzcard/Click, доставка за 10 секунд"
+    finalCtaText={`${P} сум, оплата Uzcard/Click, доставка за 10 секунд`}
     finalCtaLabel="Купить сейчас"
     schemaName="Telegram Stars — 5000 штук"
     schemaDescription={description}
-    priceAmount="1200000"
+    priceAmount={String(starsPrice(5000))}
     breadcrumbSchema={[
       { name: "Главная", item: "https://starsjoy.uz/ru" },
       { name: "Telegram Stars", item: "https://starsjoy.uz/ru/stars" },

@@ -1,5 +1,10 @@
 ---
 import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { PREMIUM_PRICE, fmt, PRICE_NOTE } from '../../../lib/prices';
+
+const P3 = PREMIUM_PRICE[3], P6 = PREMIUM_PRICE[6], P12 = PREMIUM_PRICE[12];
+/** Oylik narx, 100 so'mgacha yaxlitlangan. */
+const pm = (m: 3 | 6 | 12) => Math.round(PREMIUM_PRICE[m] / m / 100) * 100;
 
 const faqs = [
   {
@@ -20,7 +25,7 @@ const faqs = [
   },
   {
     q: "Can I gift a 1-month subscription?",
-    a: "No. Telegram's Gift Premium mechanism starts at 3 months, so the shortest gift is a 3-month plan at 172,000 UZS. The 1-month subscription exists inside Telegram but only the account owner can enable it, with an international card."
+    a: `No. Telegram's Gift Premium mechanism starts at 3 months, so the shortest gift is a 3-month plan at ${fmt(P3)} UZS. The 1-month subscription exists inside Telegram but only the account owner can enable it, with an international card.`
   },
   {
     q: "Can I send it anonymously or with a message?",
@@ -38,12 +43,13 @@ const faqs = [
   description="Gifting Telegram Premium needs one thing: the recipient's username. What it costs, what they receive, why they pay nothing, and how to do it from Uzbekistan with an Uzcard or Humo card."
   keywords="gift telegram premium, send telegram premium to a friend, telegram premium gift uzbekistan, buy premium for someone else"
   publishDate="2026-08-07"
+  modifiedDate="2026-11-15"
   uzHref="https://starsjoy.uz/blog/telegram-premium-sovga-qilish"
   ruHref="https://starsjoy.uz/ru/blog/telegram-premium-sovga-qilish"
   faqs={faqs}
 >
   <section>
-    <p class="post-lead"><strong>Short answer:</strong> you need the recipient's Telegram <em>username</em> and nothing else. They pay nothing, confirm nothing and hand over no account details — Telegram delivers the subscription to them directly and notifies them itself. The price is the same as buying Premium for yourself: 172,000 UZS for 3 months, 232,000 for 6, 422,000 for 12.</p>
+    <p class="post-lead"><strong>Short answer:</strong> you need the recipient's Telegram <em>username</em> and nothing else. They pay nothing, confirm nothing and hand over no account details — Telegram delivers the subscription to them directly and notifies them itself. The price is the same as buying Premium for yourself: {fmt(P3)} UZS for 3 months, {fmt(P6)} for 6, {fmt(P12)} for 12.</p>
   </section>
 
   <section>
@@ -79,13 +85,14 @@ const faqs = [
           <tr><th>Term</th><th>Price</th><th>Per month</th><th>Good for</th></tr>
         </thead>
         <tbody>
-          <tr><td>3 months</td><td>172,000 UZS</td><td>~57,300 UZS</td><td>A birthday gift, or letting someone try it</td></tr>
-          <tr><td>6 months</td><td>232,000 UZS</td><td>~38,700 UZS</td><td>The balance point between price and length</td></tr>
-          <tr><td>12 months</td><td>422,000 UZS</td><td>~35,200 UZS</td><td>Best value — a year for barely more than six months</td></tr>
+          <tr><td>3 months</td><td>{fmt(P3)} UZS</td><td>~{fmt(pm(3))} UZS</td><td>A birthday gift, or letting someone try it</td></tr>
+          <tr><td>6 months</td><td>{fmt(P6)} UZS</td><td>~{fmt(pm(6))} UZS</td><td>The balance point between price and length</td></tr>
+          <tr><td>12 months</td><td>{fmt(P12)} UZS</td><td>~{fmt(pm(12))} UZS</td><td>Best value — a year for barely more than six months</td></tr>
         </tbody>
       </table>
     </div>
-    <p>The 12-month plan is only 82% more expensive than 6 months while lasting twice as long, which makes it the obvious choice if the gift is for someone who will keep using it.</p>
+    <p>The 12-month plan is only {Math.round((P12 / P6 - 1) * 100)}% more expensive than 6 months while lasting twice as long, which makes it the obvious choice if the gift is for someone who will keep using it.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
   </section>
 
   <section>

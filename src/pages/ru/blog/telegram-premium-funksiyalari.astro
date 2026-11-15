@@ -2,11 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { PREMIUM_PRICE, fmtS, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Что даёт Telegram Premium: 30+ функций (2026)";
 const description = "Полный список функций Telegram Premium 2026: 4 ГБ файлы, premium emoji, voice-to-text и ещё 30+ возможностей. Кому нужен Premium и стоит ли платить?";
 const publishDate = "2026-05-06";
-const modifiedDate = "2026-07-19";
+const modifiedDate = "2026-11-15";
 const wordCount = 1880;
 const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-funksiyalari";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -165,8 +166,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Краткий ответ">
-            <strong>Краткий ответ:</strong> Telegram Premium <strong>открывает 30+ функций</strong>: загрузку файлов до 4 ГБ, faster download, premium emoji и стикеры, анимированный профиль, voice-to-text, лимит 1 000 каналов, 20 папок, 4 аккаунта в одном приложении, расширенные reactions, перевод сообщений и др. Польза зависит от стиля использования — для тех, кто работает с большими файлами и многими каналами, отдача сразу; для простого общения может быть избыточно. Цены: 1 мес 57 000, 6 мес 232 000, 12 мес 422 000 сум.
+            <strong>Краткий ответ:</strong> Telegram Premium <strong>открывает 30+ функций</strong>: загрузку файлов до 4 ГБ, faster download, premium emoji и стикеры, анимированный профиль, voice-to-text, лимит 1 000 каналов, 20 папок, 4 аккаунта в одном приложении, расширенные reactions, перевод сообщений и др. Польза зависит от стиля использования — для тех, кто работает с большими файлами и многими каналами, отдача сразу; для простого общения может быть избыточно. Цены: 1 мес 57 000, 6 мес {fmtS(PREMIUM_PRICE[6])}, 12 мес {fmtS(PREMIUM_PRICE[12])} сум.
           </div>
+          <p><small>{PRICE_NOTE.ru}</small></p>
 
           <p>Telegram Premium запущен в 2022 году, и список функций постоянно растёт. К 2026 году активно более 30 возможностей — часть приносит большую пользу, часть — нишевая. В этой статье подробно разбираются все функции: что делает, как работает, кому полезно. Статья основана на официальной <a href="https://telegram.org/premium" target="_blank" rel="noopener nofollow">Premium-документации Telegram</a> и обновлена по состоянию на июль 2026 года.</p>
 
@@ -350,7 +352,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             <li><strong>Signal</strong> — Premium нет, всё бесплатно, но функционал меньше (нет 4 ГБ файла, premium emoji)</li>
           </ul>
 
-          <p>Цена Telegram Premium (в месяц 35 167 сум на 12-месячном) — средняя в сравнении с WhatsApp Business или Discord Nitro, при этом функционал Telegram больше.</p>
+          <p>Цена Telegram Premium (в месяц 35 750 сум на 12-месячном) — средняя в сравнении с WhatsApp Business или Discord Nitro, при этом функционал Telegram больше.</p>
 
           <h2>Активация Premium</h2>
 
@@ -400,7 +402,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Telegram Premium через 30+ функций существенно расширяет опыт использования Telegram: большие файлы, визуальная кастомизация, увеличение лимитов каналов, мульти-аккаунт и технические возможности. Польза зависит от стиля пользователя — для контент-мейкеров, бизнеса и тех, кто следит за многими каналами, отдача сразу; для простого общения — по выбору.</p>
 
-          <p>Самый экономный вариант — 12-месячный пакет (422 000 сум, в месяц ~35 167) — если используете весь год. Для пробы достаточно 1 месяца (57 000 сум). Активация Premium — 10 секунд через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> с Click/Payme/Uzcard/Humo.</p>
+          <p>Самый экономный вариант — 12-месячный пакет ({fmtS(PREMIUM_PRICE[12])} сум, в месяц ~35 750) — если используете весь год. Для пробы достаточно 1 месяца (57 000 сум). Активация Premium — 10 секунд через <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> с Click/Payme/Uzcard/Humo.</p>
 
           <div class="end-cta">
             <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Активировать Premium — @starsjoybot &rarr;</a>

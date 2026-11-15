@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, starPriceWithBonus, PRICE_NOTE } from '../../../lib/prices';
 
 const title = "Как провести giveaway со Stars в Telegram? (2026) | StarsJoy Blog";
 const description = "Шаги для розыгрыша с призами в Stars в канале или группе: кто может его запустить, как выбираются победители и где дешевле купить Stars для крупного giveaway.";
@@ -28,7 +29,7 @@ const publishDate = "2026-09-10";
     "headline": "Как провести giveaway со Stars в Telegram? (2026)",
     "description": description,
     "datePublished": publishDate,
-    "dateModified": publishDate,
+    "dateModified": "2026-11-15",
     "inLanguage": "ru-RU",
     "articleSection": "Бизнес",
     "author": { "@type": "Organization", "name": "StarsJoy", "url": "https://starsjoy.uz" },
@@ -94,7 +95,7 @@ const publishDate = "2026-09-10";
       {
         "@type": "Question",
         "name": "Где дешевле купить большое количество Stars для giveaway?",
-        "acceptedAnswer": { "@type": "Answer", "text": "При покупке Stars на личный счёт через App Store или Google Play около 30% суммы уходит Apple/Google, плюс есть ограничения на размер разовой покупки. Через местного реселлера вроде StarsJoy Stars покупаются по 240 сум/star, без ограничений по объёму и напрямую картой Uzcard или Humo." }
+        "acceptedAnswer": { "@type": "Answer", "text": `Покупка Stars на личный счёт через App Store или Google Play обычно требует международную карту, плюс есть ограничения на размер разовой покупки. Через StarsJoy Stars покупаются по ${STAR_PRICE} сум/star, без ограничений по объёму и напрямую картой Uzcard или Humo. За каждую покупку начисляются бонусные Stars, с бонусом 1 ⭐ обходится примерно в ${starPriceWithBonus()} сум.` }
       },
       {
         "@type": "Question",
@@ -128,7 +129,7 @@ const publishDate = "2026-09-10";
         <div class="post-content">
 
           <section>
-            <p class="post-lead"><strong>Короткий ответ:</strong> владелец канала минимум с <strong>50 подписчиками</strong> или группы минимум с <strong>500 участниками</strong> может провести giveaway с призом в Stars через раздел <strong>Statistics &gt; Boosts</strong>. Приз оплачивается заранее, для участия участники делают "boost" канала, а победители выбираются случайно среди них. Для крупного giveaway Stars выгоднее покупать через местного реселлера вроде StarsJoy — это позволяет избежать комиссии ~30% у App Store/Google Play.</p>
+            <p class="post-lead"><strong>Короткий ответ:</strong> владелец канала минимум с <strong>50 подписчиками</strong> или группы минимум с <strong>500 участниками</strong> может провести giveaway с призом в Stars через раздел <strong>Statistics &gt; Boosts</strong>. Приз оплачивается заранее, для участия участники делают "boost" канала, а победители выбираются случайно среди них. Для крупного giveaway Stars можно купить через StarsJoy картой Uzcard или Humo: международная карта не нужна, а за каждую покупку начисляются бонусные Stars.</p>
           </section>
 
           <section>
@@ -177,8 +178,9 @@ const publishDate = "2026-09-10";
 
           <section>
             <h2>Где дешевле купить большое количество Stars для giveaway?</h2>
-            <p>Это — самая большая статья расходов при организации giveaway. При покупке Stars на личный счёт через App Store или Google Play примерно <strong>30%</strong> суммы уходит в комиссию Apple/Google, к тому же есть ограничения на размер разовой покупки — это неудобно для крупного giveaway.</p>
-            <p>Через местного реселлера вроде StarsJoy Stars покупаются по <strong>240 сум/star</strong>, без ограничений по объёму и напрямую картой Uzcard или Humo — без зарубежной карты и дополнительных комиссий. Полное руководство по накоплению большого объёма Stars дёшево: <a href="/ru/blog/telegram-stars-koplab-arzon">купить много Stars дёшево</a>.</p>
+            <p>Это — самая большая статья расходов при организации giveaway. Покупка Stars на личный счёт через App Store или Google Play обычно требует <strong>международную карту</strong> или баланс App Store, к тому же есть ограничения на размер разовой покупки — это неудобно для крупного giveaway.</p>
+            <p>Через StarsJoy Stars покупаются по <strong>{STAR_PRICE} сум/star</strong>, без ограничений по объёму и напрямую картой Uzcard или Humo — зарубежная карта не нужна. За каждую покупку начисляются бонусные Stars (с бонусом 1 ⭐ примерно {starPriceWithBonus()} сум), Stars обычно приходят автоматически примерно за 10 секунд. Полное руководство по накоплению большого объёма Stars дёшево: <a href="/ru/blog/telegram-stars-koplab-arzon">купить много Stars дёшево</a>.</p>
+            <p><small>{PRICE_NOTE.ru}</small></p>
           </section>
 
           <section>
@@ -203,7 +205,7 @@ const publishDate = "2026-09-10";
               <li>🎁 <strong>Stars giveaway</strong> — распределение призовых Stars среди участников канала/группы;</li>
               <li>📊 Канал должен иметь <strong>50+ подписчиков</strong>, группа — <strong>500+ участников</strong>;</li>
               <li>🚀 Для участия делается <strong>boost</strong>, победители выбираются случайно;</li>
-              <li>💰 Для крупного giveaway Stars через <strong>StarsJoy</strong> дешевле, чем через App Store/Google Play.</li>
+              <li>💰 Для крупного giveaway Stars через <strong>StarsJoy</strong> удобно покупать картой Uzcard/Humo, за каждую покупку начисляются бонусные Stars.</li>
             </ul>
             <p>О других способах монетизации канала — читайте <a href="/ru/blog/telegram-kanal-pullik-obuna-stars">платная подписка на канал</a> и <a href="/ru/blog/telegram-ads-stars-bilan">оплата Telegram Ads звёздами</a>, а для крупных объёмов Stars — страница <a href="/ru/biznes">бизнес/API</a>.</p>
           </section>

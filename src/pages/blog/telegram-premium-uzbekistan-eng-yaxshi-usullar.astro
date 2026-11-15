@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICES_DATE_UZ, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Premium O'zbekistonda: eng yaxshi 3 usul va 3/6/12 oylik narxlar (2026) | StarsJoy Blog";
-const description = "Telegram Premium O'zbekistonda 2026 — eng yaxshi 3 usul (@PremiumSendBot, @uzgetsbot, @starsjoybot), 3/6/12 oylik aniq narxlar (168 000 — 425 000 so'm), Uzcard/Humo/Click/Payme to'lov, qaysi bot qaysi foydalanuvchiga mos — to'liq solishtirma.";
+const description = `Telegram Premium O'zbekistonda 2026 — eng yaxshi 3 usul (@PremiumSendBot, @uzgetsbot, @starsjoybot), 3/6/12 oylik aniq narxlar (168 000 — ${fmtS(PREMIUM_PRICE[12])} so'm), Uzcard/Humo/Click/Payme to'lov, qaysi bot qaysi foydalanuvchiga mos — to'liq solishtirma.`;
 const publishDate = "2026-05-17";
-const modifiedDate = "2026-05-17";
+const modifiedDate = "2026-11-15";
 const wordCount = 2080;
 const canonical = "https://starsjoy.uz/blog/telegram-premium-uzbekistan-eng-yaxshi-usullar";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -83,7 +84,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Telegram Premium O'zbekistonda qanday sotib olinadi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "O'zbekistonda Telegram Premium sotib olishning eng tez yo'li — mahalliy bot orqali. 3 ta ishonchli variant: @PremiumSendBot (Premium fokusi, premiumsend.uz), @uzgetsbot (tezkor xarid, uzgets.uz), @starsjoybot (Premium + Stars + Gifts hammasi joyda, starsjoy.uz). Hamma bot Uzcard, Humo, Click va Payme orqali so'mda to'lashga ruxsat beradi. Aktivatsiya vaqti 5-15 daqiqa. Narx oralig'i: 3 oy 168 000–175 000 so'm, 6 oy 228 000–235 000 so'm, 12 oy 408 000–425 000 so'm."
+          "text": `O'zbekistonda Telegram Premium sotib olishning eng tez yo'li — mahalliy bot orqali. 3 ta ishonchli variant: @PremiumSendBot (Premium fokusi, premiumsend.uz), @uzgetsbot (tezkor xarid, uzgets.uz), @starsjoybot (Premium + Stars + Gifts hammasi joyda, starsjoy.uz). Hamma bot Uzcard, Humo, Click va Payme orqali so'mda to'lashga ruxsat beradi. Aktivatsiya vaqti 5-15 daqiqa. Narx oralig'i: 3 oy 168 000–${fmtS(PREMIUM_PRICE[3])} so'm, 6 oy 228 000–${fmtS(PREMIUM_PRICE[6])} so'm, 12 oy 408 000–${fmtS(PREMIUM_PRICE[12])} so'm.`
         }
       },
       {
@@ -91,7 +92,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Telegram Premium 3, 6 va 12 oylik narxlari qancha?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Aniq narxlar har botda biroz farq qiladi (2026-yil may holatiga): @uzgetsbot — 3 oy 168 000, 6 oy 228 000, 12 oy 408 000 so'm (oyiga ~34 000); @starsjoybot — 3 oy 172 000, 6 oy 232 000, 12 oy 422 000 so'm (oyiga ~35 167); @PremiumSendBot — 3 oy 175 000, 6 oy 235 000, 12 oy 425 000 so'm (oyiga ~35 417). Eng arzon variant — @uzgetsbot 12 oylik (408 000 so'm). Har bir botda 12 oylik 3 oylikga nisbatan oyiga ~39% arzon."
+          "text": `Aniq narxlar har botda biroz farq qiladi (2026-yil may holatiga): @uzgetsbot — 3 oy 168 000, 6 oy 228 000, 12 oy 408 000 so'm (oyiga ~34 000); @starsjoybot — 3 oy ${fmtS(PREMIUM_PRICE[3])}, 6 oy ${fmtS(PREMIUM_PRICE[6])}, 12 oy ${fmtS(PREMIUM_PRICE[12])} so'm (oyiga ~${fmtS(premiumPerMonth(12))}); @PremiumSendBot — 3 oy 175 000, 6 oy 235 000, 12 oy 425 000 so'm (oyiga ~35 417). Eng arzon variant — @uzgetsbot 12 oylik (408 000 so'm). Har bir botda 12 oylik 3 oylikga nisbatan oyiga ~39–40% arzon.`
         }
       },
       {
@@ -131,7 +132,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "12 oylikni 3 oyliklarga bo'lib olsam farqi bormi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ha — farq sezilarli. 3 oylikni 4 marta olsangiz (4 × 172 000 = 688 000 so'm), 12 oylik (~422 000 so'm) ga nisbatan 266 000 so'mga ko'proq to'laysiz. Oyiga hisobida: 3 oylik ~57 333 so'm, 12 oylik ~35 167 so'm — oyiga 22 166 so'm tejam. Uzoq muddatga Premium kerak bo'lsa, 12 oylik mantiqliroq. Lekin agar Premium'ni birinchi marta sinab ko'rmoqchi yoki qisqa muddatli loyihaga kerak bo'lsa, 3 oylik orqali tajriba olish ham normal."
+          "text": `Ha — farq sezilarli. 3 oylikni 4 marta olsangiz (4 × ${fmtS(PREMIUM_PRICE[3])} = 716 000 so'm), 12 oylik (~${fmtS(PREMIUM_PRICE[12])} so'm) ga nisbatan 287 000 so'mga ko'proq to'laysiz. Oyiga hisobida: 3 oylik ~${fmtS(premiumPerMonth(3))} so'm, 12 oylik ~${fmtS(premiumPerMonth(12))} so'm — oyiga 23 917 so'm tejam. Uzoq muddatga Premium kerak bo'lsa, 12 oylik mantiqliroq. Lekin agar Premium'ni birinchi marta sinab ko'rmoqchi yoki qisqa muddatli loyihaga kerak bo'lsa, 3 oylik orqali tajriba olish ham normal.`
         }
       },
       {
@@ -173,7 +174,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
       { "@type": "HowToTool", "name": "Click yoki Payme ilovasi" }
     ],
     "step": [
-      { "@type": "HowToStep", "name": "Muddat tanlang", "text": "Qancha vaqtga Premium kerakligini hal qiling — 3, 6 yoki 12 oy. Eng arzon variant — 12 oylik (oyiga ~35 167 so'm). Premium'ni birinchi marta sinab ko'rsangiz — 3 oylik (172 000 so'm) tavsiya etiladi." },
+      { "@type": "HowToStep", "name": "Muddat tanlang", "text": `Qancha vaqtga Premium kerakligini hal qiling — 3, 6 yoki 12 oy. Eng arzon variant — 12 oylik (oyiga ~${fmtS(premiumPerMonth(12))} so'm). Premium'ni birinchi marta sinab ko'rsangiz — 3 oylik (${fmtS(PREMIUM_PRICE[3])} so'm) tavsiya etiladi.` },
       { "@type": "HowToStep", "name": "Bot tanlang", "text": "3 ta variant: @PremiumSendBot (Premium fokusi, batafsil paket interfeysi), @uzgetsbot (tezkor xarid + promo aksiyalar), @starsjoybot (Premium + Stars + Gifts hammasi joyda, Mini App). Maqola oxiridagi decision-helper jadvalga qarang." },
       { "@type": "HowToStep", "name": "Bot'ni Telegram'da oching", "text": "Telegram qidiruvda tanlangan bot nomini yozing va /start tugmasini bosing. Menyudan 'Telegram Premium' yoki 'Premium' bo'limini tanlang." },
       { "@type": "HowToStep", "name": "Paket va username tanlang", "text": "Tanlangan muddat (3, 6 yoki 12 oy) bo'yicha paketni belgilang. O'z Telegram username'ingizni yoki sovg'a qiluvchi odamning username'ini kiriting. Bot to'lov havolasini yuboradi." },
@@ -217,7 +218,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> O'zbekistonda Telegram Premium sotib olishning eng tez va ishonchli yo'li — <strong>mahalliy bot orqali</strong>. 3 ta yetakchi variant: <a href="https://telegram.me/PremiumSendBot" target="_blank" rel="noopener">@PremiumSendBot</a> (<a href="https://premiumsend.uz" target="_blank" rel="noopener">premiumsend.uz</a>, Premium fokusi), <a href="https://telegram.me/uzgetsbot" target="_blank" rel="noopener">@uzgetsbot</a> (<a href="https://uzgets.uz" target="_blank" rel="noopener">uzgets.uz</a>, tezkor + eng arzon) va <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> (<a href="https://starsjoy.uz" target="_blank" rel="noopener">starsjoy.uz</a>, Premium + Stars + Gifts birga). Narx oralig'i: <strong>3 oy 168 000–175 000 so'm, 6 oy 228 000–235 000 so'm, 12 oy 408 000–425 000 so'm</strong>. Eng arzon — @uzgetsbot 12 oylik (408 000 so'm, oyiga ~34 000 so'm). To'lov Uzcard, Humo, Click yoki Payme orqali, aktivatsiya 5-15 daqiqada.
+            <strong>Qisqacha javob:</strong> O'zbekistonda Telegram Premium sotib olishning eng tez va ishonchli yo'li — <strong>mahalliy bot orqali</strong>. 3 ta yetakchi variant: <a href="https://telegram.me/PremiumSendBot" target="_blank" rel="noopener">@PremiumSendBot</a> (<a href="https://premiumsend.uz" target="_blank" rel="noopener">premiumsend.uz</a>, Premium fokusi), <a href="https://telegram.me/uzgetsbot" target="_blank" rel="noopener">@uzgetsbot</a> (<a href="https://uzgets.uz" target="_blank" rel="noopener">uzgets.uz</a>, tezkor + eng arzon) va <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> (<a href="https://starsjoy.uz" target="_blank" rel="noopener">starsjoy.uz</a>, Premium + Stars + Gifts birga). Narx oralig'i: <strong>3 oy 168 000–{fmtS(PREMIUM_PRICE[3])} so'm, 6 oy 228 000–{fmtS(PREMIUM_PRICE[6])} so'm, 12 oy 408 000–{fmtS(PREMIUM_PRICE[12])} so'm</strong>. Eng arzon — @uzgetsbot 12 oylik (408 000 so'm, oyiga ~34 000 so'm). To'lov Uzcard, Humo, Click yoki Payme orqali, aktivatsiya 5-15 daqiqada.
           </div>
 
           <p>O'zbekistonda Telegram Premium'ni sotib olish — odatdagidek darhol amalga oshmaydigan bo'lib qoldi. Telegram'ning rasmiy <a href="/blog/telegram-premium-sotib-olish">@PremiumBot</a> ko'p hollarda Uzcard va Humo kartalarini qabul qilmaydi, App Store va Google Play esa mintaqaviy to'lov chegaralari bilan ishlaydi. Shu sababli foydalanuvchilarning aksariyati mahalliy bot orqali Premium oladi — bu yo'l so'mda to'lash, Click/Payme orqali tasdiqlash va 5-15 daqiqada Premium aktivatsiyasini ta'minlaydi.</p>
@@ -251,10 +252,10 @@ const ogImage = "https://starsjoy.uz/og-image.png";
                 </tr>
                 <tr>
                   <td><strong>@starsjoybot</strong><br /><a href="https://starsjoy.uz" target="_blank" rel="noopener">starsjoy.uz</a></td>
-                  <td>172 000 so'm</td>
-                  <td>232 000 so'm</td>
-                  <td>422 000 so'm</td>
-                  <td>~35 167 so'm</td>
+                  <td>{fmtS(PREMIUM_PRICE[3])} so'm</td>
+                  <td>{fmtS(PREMIUM_PRICE[6])} so'm</td>
+                  <td>{fmtS(PREMIUM_PRICE[12])} so'm</td>
+                  <td>~{fmtS(premiumPerMonth(12))} so'm</td>
                 </tr>
                 <tr>
                   <td><strong>@PremiumSendBot</strong><br /><a href="https://premiumsend.uz" target="_blank" rel="noopener">premiumsend.uz</a></td>
@@ -267,9 +268,11 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </table>
           </div>
 
-          <p><em>Narxlar 2026-yil may holatiga, har bir bot o'z rasmiy saytida belgilagan narxlar. Aniq joriy narx uchun saytlarni tekshiring — vaqti-vaqti bilan promo aksiyalar bo'ladi.</em></p>
+          <p><em>Narxlar 2026-yil may holatiga (@starsjoybot narxlari — {PRICES_DATE_UZ} holatiga), har bir bot o'z rasmiy saytida belgilagan narxlar. Aniq joriy narx uchun saytlarni tekshiring — vaqti-vaqti bilan promo aksiyalar bo'ladi.</em></p>
 
-          <p>Har bir bot uchun 12 oylik 3 oylikga nisbatan oyiga ~<strong>39% arzon</strong>, 6 oylikga nisbatan ~9% arzon. Eng past 12 oylik narx — @uzgetsbot'da (408 000 so'm), eng yuqori — @PremiumSendBot'da (425 000 so'm). Farq 17 000 so'm (yiliga taxminan 1 400 so'm/oyiga) — kichik, lekin uzoq muddatga sezilarli.</p>
+          <p><small>{PRICE_NOTE.uz}</small></p>
+
+          <p>Har bir bot uchun 12 oylik 3 oylikga nisbatan oyiga ~<strong>39–40% arzon</strong>, 6 oylikga nisbatan ~10% arzon. Eng past 12 oylik narx — @uzgetsbot'da (408 000 so'm), eng yuqori — @starsjoybot'da ({fmtS(PREMIUM_PRICE[12])} so'm). Farq 21 000 so'm (oyiga taxminan 1 750 so'm) — kichik, lekin uzoq muddatga sezilarli.</p>
 
           <p>1 oylik paket alohida sotilmaydi — Telegram'ning rasmiy <strong>Gift Premium</strong> tizimida 1 oy yo'q, faqat 3, 6 va 12 oy. Agar siz aniq 1 oylikga muhtoj bo'lsangiz, batafsil tahlilni <a href="/blog/telegram-premium-1-oylik">1 oylik Premium maqolasida</a> ko'rishingiz mumkin. Paketlar to'liq solishtirma uchun <a href="/blog/telegram-premium-paketlar-taqqoslash">1 vs 3 vs 6 vs 12 oy taqqoslash</a> maqolasi mavjud.</p>
 
@@ -353,7 +356,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p><strong>Kuchli tomonlari:</strong></p>
           <ul>
-            <li>Uchchala bot ichida eng past narx (12 oylikda 17 000 so'm tejam)</li>
+            <li>Uchchala bot ichida eng past narx (12 oylikda 21 000 so'mgacha tejam)</li>
             <li>Minimal qadamli xarid jarayoni — 3-4 ta tugma bilan to'lovga o'tasiz</li>
             <li>Aksariyat hollarda 5 daqiqadan kam vaqtda Premium yetkaziladi</li>
             <li>Premium bilan birga Stars (50–10 000) ham mavjud</li>
@@ -370,14 +373,14 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p><a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> — eng keng xizmat doirasiga ega bot. Premium bilan bir qatorda Telegram Stars (kanal boost, paid post, mini-app to'lovlari uchun), <a href="/blog/telegram-gifts-narxi-royxati">Telegram Gifts</a> (NFT va oddiy sovg'alar) va Mini App orqali ham xizmat ko'rsatadi.</p>
 
-          <p><strong>Aniq narxlar (starsjoy.uz):</strong> 3 oy — <strong>172 000 so'm</strong>, 6 oy — <strong>232 000 so'm</strong>, 12 oy — <strong>422 000 so'm</strong> (12 oylik oyiga ~35 167 so'm).</p>
+          <p><strong>Aniq narxlar (starsjoy.uz):</strong> 3 oy — <strong>{fmtS(PREMIUM_PRICE[3])} so'm</strong>, 6 oy — <strong>{fmtS(PREMIUM_PRICE[6])} so'm</strong>, 12 oy — <strong>{fmtS(PREMIUM_PRICE[12])} so'm</strong> (12 oylik oyiga ~{fmtS(premiumPerMonth(12))} so'm).</p>
 
           <p><strong>Kuchli tomonlari:</strong></p>
           <ul>
             <li>Bir bot — uchta mahsulot (Premium + Stars + Gifts), takroriy xaridlar uchun qulay</li>
             <li>To'lov: Click, Payme, Uzcard, Humo, Visa/Mastercard (xalqaro), bot ichidan</li>
             <li>Mini App orqali ham xarid mumkin (Telegram ichida ochiladi, qo'shimcha tugma kerak emas)</li>
-            <li>24/7 mijoz qo'llab-quvvatlash — <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@starsjoysupport</a></li>
+            <li>24/7 mijoz qo'llab-quvvatlash — <a href="https://telegram.me/starsjoysupport" target="_blank" rel="noopener">@StarsjoySupport</a></li>
             <li>Yuridik shaxslar uchun korporativ to'lov sxemasi mavjud</li>
             <li>Narx — diapazonning o'rta nuqtasi (eng past emas, eng yuqori ham emas)</li>
           </ul>
@@ -406,18 +409,18 @@ const ogImage = "https://starsjoy.uz/og-image.png";
               <tbody>
                 <tr>
                   <td>Premium'ni birinchi marta sinab ko'raman</td>
-                  <td>3 oylik (168 000–175 000 so'm)</td>
+                  <td>3 oylik (168 000–{fmtS(PREMIUM_PRICE[3])} so'm)</td>
                   <td>Eng past summa, 3 oyda funksiyalarni o'rganib olish vaqti</td>
                 </tr>
                 <tr>
                   <td>Qisqa muddatli loyiha (4-6 oy)</td>
-                  <td>6 oylik (228 000–235 000 so'm)</td>
+                  <td>6 oylik (228 000–{fmtS(PREMIUM_PRICE[6])} so'm)</td>
                   <td>3 oylikga nisbatan oyiga ~33% arzon</td>
                 </tr>
                 <tr class="highlight-row">
                   <td>Uzoq muddatga ishonchli Premium kerak</td>
-                  <td>12 oylik (408 000–425 000 so'm)</td>
-                  <td>Oyiga 34 000–35 417 so'm — eng tejamkor, ~39% arzon</td>
+                  <td>12 oylik (408 000–{fmtS(PREMIUM_PRICE[12])} so'm)</td>
+                  <td>Oyiga 34 000–{fmtS(premiumPerMonth(12))} so'm — eng tejamkor, ~39–40% arzon</td>
                 </tr>
                 <tr>
                   <td>Tug'ilgan kun yoki bayramga sovg'a</td>
@@ -433,9 +436,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </table>
           </div>
 
-          <p>Matematik tahlil (@uzgetsbot — eng past narx misolida): agar siz 3 oylikni har 3 oyda yangilab borsangiz, bir yilda 4 × 168 000 = <strong>672 000 so'm</strong> to'laysiz. 12 oylik esa 408 000 so'm — <strong>264 000 so'm tejam</strong> (yoki ~39% past). @starsjoybot misolida: 4 × 172 000 = 688 000 vs 422 000 → 266 000 so'm tejam. @PremiumSendBot: 4 × 175 000 = 700 000 vs 425 000 → 275 000 so'm tejam. Har qaysi botda 12 oylik 3 oylikga nisbatan ~39% past — uzoq muddatga 12 oylik mantiqliroq.</p>
+          <p>Matematik tahlil (@uzgetsbot — eng past narx misolida): agar siz 3 oylikni har 3 oyda yangilab borsangiz, bir yilda 4 × 168 000 = <strong>672 000 so'm</strong> to'laysiz. 12 oylik esa 408 000 so'm — <strong>264 000 so'm tejam</strong> (yoki ~39% past). @starsjoybot misolida: 4 × {fmtS(PREMIUM_PRICE[3])} = 716 000 vs {fmtS(PREMIUM_PRICE[12])} → 287 000 so'm tejam. @PremiumSendBot: 4 × 175 000 = 700 000 vs 425 000 → 275 000 so'm tejam. Har qaysi botda 12 oylik 3 oylikga nisbatan ~39–40% past — uzoq muddatga 12 oylik mantiqliroq.</p>
 
-          <p>Biroq 12 oylikni bir martalik to'lash 408 000–425 000 so'm — bu summa ba'zi foydalanuvchilar uchun katta. Bunday holda 6 oylik kompromiss varianti: 3 oylikga nisbatan oyiga arzon, lekin bir martalik to'lov yumshoqroq.</p>
+          <p>Biroq 12 oylikni bir martalik to'lash 408 000–{fmtS(PREMIUM_PRICE[12])} so'm — bu summa ba'zi foydalanuvchilar uchun katta. Bunday holda 6 oylik kompromiss varianti: 3 oylikga nisbatan oyiga arzon, lekin bir martalik to'lov yumshoqroq.</p>
 
           <h2>To'lov usullari: Uzcard, Humo, Click, Payme — qaysi qulayroq?</h2>
 
@@ -515,7 +518,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>O'zbekistonda Telegram Premium sotib olishning <strong>3 ta eng yaxshi va ishonchli usuli</strong> mahalliy botlar orqali ishlaydi. <a href="https://telegram.me/PremiumSendBot" target="_blank" rel="noopener">@PremiumSendBot</a> — agar sizga faqat Premium kerak bo'lsa va paketlarni batafsil ko'rib chiqmoqchi bo'lsangiz. <a href="https://telegram.me/uzgetsbot" target="_blank" rel="noopener">@uzgetsbot</a> — tezkor xarid va promo aksiyalar uchun. <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> — agar Premium bilan birga Stars yoki Gifts ham olmoqchi bo'lsangiz, Mini App orqali ham ishlaydi va eng keng to'lov usullarini qabul qiladi.</p>
 
-          <p>Aniq narxlar (har bot saytida belgilangan): @uzgetsbot — <strong>3 oy 168 000, 6 oy 228 000, 12 oy 408 000 so'm</strong> (eng arzon); @starsjoybot — <strong>172 000 / 232 000 / 422 000 so'm</strong>; @PremiumSendBot — <strong>175 000 / 235 000 / 425 000 so'm</strong>. Eng tejamkor variant — har bot uchun 12 oylik (oyiga 34 000–35 417 so'm, 3 oylikga nisbatan ~39% arzon). To'lov Uzcard, Humo, Click yoki Payme orqali, aktivatsiya 5-15 daqiqada. Uchchala bot ham Telegram'ning rasmiy <em>Gift Premium</em> mexanizmiga tayanadi — ya'ni hech qanday qoidabuzarlik yoki TOS chegirma yo'q, to'liq rasmiy yo'l.</p>
+          <p>Aniq narxlar (har bot saytida belgilangan): @uzgetsbot — <strong>3 oy 168 000, 6 oy 228 000, 12 oy 408 000 so'm</strong> (eng arzon); @starsjoybot — <strong>{fmtS(PREMIUM_PRICE[3])} / {fmtS(PREMIUM_PRICE[6])} / {fmtS(PREMIUM_PRICE[12])} so'm</strong>; @PremiumSendBot — <strong>175 000 / 235 000 / 425 000 so'm</strong>. Eng tejamkor variant — har bot uchun 12 oylik (oyiga 34 000–{fmtS(premiumPerMonth(12))} so'm, 3 oylikga nisbatan ~39–40% arzon). To'lov Uzcard, Humo, Click yoki Payme orqali, aktivatsiya 5-15 daqiqada. Uchchala bot ham Telegram'ning rasmiy <em>Gift Premium</em> mexanizmiga tayanadi — ya'ni hech qanday qoidabuzarlik yoki TOS chegirma yo'q, to'liq rasmiy yo'l.</p>
 
           <p>Birinchi marta sinab ko'rsangiz va eng past narx kerak bo'lsa — <a href="https://telegram.me/uzgetsbot" target="_blank" rel="noopener">@uzgetsbot</a> (3 oy 168 000 so'm). Yoki agar siz Premium bilan birga vaqti-vaqti bilan Stars yoki Gifts ham olasiz, <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> orqali hammasini bitta interfeysda boshqarish eng qulay. Premium fokuslangan batafsil interfeys va 1 oylik variant kerak bo'lsa — <a href="https://telegram.me/PremiumSendBot" target="_blank" rel="noopener">@PremiumSendBot</a>.</p>
 
@@ -532,7 +535,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Telegram Premium 3, 6 va 12 oylik narxlari qancha?</h3>
-              <p>Har bot o'z saytida belgilangan aniq narxlar (2026-yil may holatiga): <strong>@uzgetsbot</strong> (uzgets.uz) — 3 oy 168 000, 6 oy 228 000, 12 oy 408 000 so'm (oyiga ~34 000); <strong>@starsjoybot</strong> (starsjoy.uz) — 3 oy 172 000, 6 oy 232 000, 12 oy 422 000 so'm (oyiga ~35 167); <strong>@PremiumSendBot</strong> (premiumsend.uz) — 3 oy 175 000, 6 oy 235 000, 12 oy 425 000 so'm (oyiga ~35 417). Eng arzon — @uzgetsbot 12 oylik. Har bir botda 12 oylik 3 oylikga nisbatan oyiga ~39% arzon.</p>
+              <p>Har bot o'z saytida belgilangan aniq narxlar (2026-yil may holatiga): <strong>@uzgetsbot</strong> (uzgets.uz) — 3 oy 168 000, 6 oy 228 000, 12 oy 408 000 so'm (oyiga ~34 000); <strong>@starsjoybot</strong> (starsjoy.uz) — 3 oy {fmtS(PREMIUM_PRICE[3])}, 6 oy {fmtS(PREMIUM_PRICE[6])}, 12 oy {fmtS(PREMIUM_PRICE[12])} so'm (oyiga ~{fmtS(premiumPerMonth(12))}); <strong>@PremiumSendBot</strong> (premiumsend.uz) — 3 oy 175 000, 6 oy 235 000, 12 oy 425 000 so'm (oyiga ~35 417). Eng arzon — @uzgetsbot 12 oylik. Har bir botda 12 oylik 3 oylikga nisbatan oyiga ~39–40% arzon.</p>
             </div>
             <div class="post-faq-item">
               <h3>Nima uchun rasmiy @PremiumBot O'zbekistondan ishlamaydi?</h3>
@@ -552,7 +555,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>12 oylikni 3 oyliklarga bo'lib olsam farqi bormi?</h3>
-              <p>Ha — farq sezilarli. Misol uchun @starsjoybot'da: 3 oylikni 4 marta olsangiz (4 × 172 000 = <strong>688 000 so'm</strong>), 12 oylik (422 000 so'm) ga nisbatan <strong>266 000 so'mga ko'proq to'laysiz</strong>. @uzgetsbot'da farq 264 000 so'm (672 000 vs 408 000), @PremiumSendBot'da 275 000 so'm (700 000 vs 425 000). Har qaysi botda farq ~39% — oyiga 22 000+ so'm tejam. Uzoq muddatga Premium kerak bo'lsa, 12 oylik mantiqliroq. Batafsil — <a href="/blog/telegram-premium-3-oy-6-oy">3 oylik vs 6 oylik tahlilida</a>.</p>
+              <p>Ha — farq sezilarli. Misol uchun @starsjoybot'da: 3 oylikni 4 marta olsangiz (4 × {fmtS(PREMIUM_PRICE[3])} = <strong>716 000 so'm</strong>), 12 oylik ({fmtS(PREMIUM_PRICE[12])} so'm) ga nisbatan <strong>287 000 so'mga ko'proq to'laysiz</strong>. @uzgetsbot'da farq 264 000 so'm (672 000 vs 408 000), @PremiumSendBot'da 275 000 so'm (700 000 vs 425 000). Har qaysi botda farq ~39–40% — oyiga 22 000+ so'm tejam. Uzoq muddatga Premium kerak bo'lsa, 12 oylik mantiqliroq. Batafsil — <a href="/blog/telegram-premium-3-oy-6-oy">3 oylik vs 6 oylik tahlilida</a>.</p>
             </div>
             <div class="post-faq-item">
               <h3>Premium'ni boshqa odamga sovg'a qilish mumkinmi?</h3>

@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { PREMIUM_PRICE, fmtS, PRICE_NOTE } from '../../lib/prices';
 
 const title = "Telegram Business vs Telegram Premium: alohida obunami yoki bitta? (2026 to'liq farq) | StarsJoy Blog";
 const description = "Telegram Business va Telegram Premium — alohida obunami? 2026-da javob: yo'q, bitta obuna ichida ikkita rejim. Premium olsangiz Business funksiyalari avtomatik ochiladi. Farq, kim uchun kerak, kelajakda alohida tier bo'ladimi.";
 const publishDate = "2026-05-19";
-const modifiedDate = "2026-05-19";
+const modifiedDate = "2026-11-15";
 const wordCount = 1720;
 const canonical = "https://starsjoy.uz/blog/telegram-business-vs-premium";
 const ogImage = "https://starsjoy.uz/og-image.png";
@@ -115,7 +116,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         "name": "Telegram Premium narxi qancha va qayerdan olish mumkin?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Xalqaro narx: oyiga $4.99 yoki yillik ~$35.99 (Telegram in-app to'lov). O'zbekistonda mahalliy reseller bot orqali so'mda: 1 oy ~57 000 so'm, 3 oy ~146 000 so'm, 12 oy ~422 000 so'm (Uzcard, Humo, Click, Payme). Oyiga taxminan 34 000–57 000 so'm. Tafsilot — Premium paketlar taqqoslash maqolasida."
+          "text": "Xalqaro narx: oyiga $4.99 yoki yillik ~$35.99 (Telegram in-app to'lov). O'zbekistonda mahalliy reseller bot orqali so'mda: 1 oy ~60 000 so'm, 3 oy ~" + fmtS(PREMIUM_PRICE[3]) + " so'm, 12 oy ~" + fmtS(PREMIUM_PRICE[12]) + " so'm (Uzcard, Humo, Click, Payme). Oyiga taxminan 36 000–60 000 so'm. Tafsilot — Premium paketlar taqqoslash maqolasida."
         }
       },
       {
@@ -172,8 +173,9 @@ const ogImage = "https://starsjoy.uz/og-image.png";
         <div class="post-content">
 
           <div class="tldr-box" aria-label="Qisqacha javob">
-            <strong>Qisqacha javob:</strong> Telegram Business <strong>alohida obuna emas</strong> — u Telegram Premium tarkibida bundle qilingan. <strong>Premium obunani olgansiz — Business funksiyalari (ish vaqti, joylashuv, quick replies, greeting/away message, chatbot) avtomatik ochiladi va bepul ishlatasiz.</strong> Premium oyiga ~$4.99 (mahalliy bot orqali ~57 000 so'm), yillik 12 oy ~$35.99 (~422 000 so'm). Telegram'ning rasmiy <a href="https://telegram.org/tos/business" target="_blank" rel="noopener nofollow">Terms of Service</a> shartlarida kelajakda Business'ni alohida tier qilish huquqi saqlanadi — lekin 2026-yil may holatiga ko'ra hali alohida qilingan emas.
+            <strong>Qisqacha javob:</strong> Telegram Business <strong>alohida obuna emas</strong> — u Telegram Premium tarkibida bundle qilingan. <strong>Premium obunani olgansiz — Business funksiyalari (ish vaqti, joylashuv, quick replies, greeting/away message, chatbot) avtomatik ochiladi va bepul ishlatasiz.</strong> Premium oyiga ~$4.99 (mahalliy bot orqali ~60 000 so'm), yillik 12 oy ~$35.99 (~{fmtS(PREMIUM_PRICE[12])} so'm). Telegram'ning rasmiy <a href="https://telegram.org/tos/business" target="_blank" rel="noopener nofollow">Terms of Service</a> shartlarida kelajakda Business'ni alohida tier qilish huquqi saqlanadi — lekin 2026-yil may holatiga ko'ra hali alohida qilingan emas.
           </div>
+          <p><small>{PRICE_NOTE.uz}</small></p>
 
           <p>Telegram'da "Business" so'zini eshitganda ko'pchilik o'ylaydi: "Bu Premium'dan boshqa obunami? Ikkalasini ham olishim kerakmi? Yana qancha to'layman?" Aslida holat ancha sodda — lekin bu chalkashlik shu darajada keng tarqalganki, hatto Telegram o'zining <a href="https://telegram.org/blog/telegram-business" target="_blank" rel="noopener nofollow">rasmiy e'londa</a> ham bu narsani alohida tushuntirib o'tishga to'g'ri kelgan.</p>
 
@@ -273,7 +275,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <ol>
             <li><strong>Telegram in-app</strong> — App Store yoki Google Play orqali. O'zbekiston foydalanuvchilari uchun ko'pincha xalqaro karta kerak bo'ladi va narx $4.99/oy dan boshlanadi.</li>
-            <li><strong>Mahalliy reseller bot</strong> — Uzcard, Humo, Click, Payme bilan so'mda. Narxi ko'pincha in-app'dan arzon (12 oylik to'g'ridan-to'g'ri so'mda 422 000 so'm). Aktivatsiya 5-15 daqiqada.</li>
+            <li><strong>Mahalliy reseller bot</strong> — Uzcard, Humo, Click, Payme bilan so'mda. Narxi ko'pincha in-app'dan arzon, to'g'ridan-to'g'ri so'mda, xalqaro karta kerak emas (12 oylik {fmtS(PREMIUM_PRICE[12])} so'm). Aktivatsiya 5-15 daqiqada.</li>
             <li><strong>Stars orqali</strong> — Telegram Stars sotib olib, keyin Stars'dan Premium'ga aylantirish. Bu qo'shimcha qadam — narxi va vaqti bo'yicha ko'pincha mahalliy bot'dan unchalik foydali emas.</li>
           </ol>
 
@@ -328,7 +330,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
             </div>
             <div class="post-faq-item">
               <h3>Premium narxi qancha va qayerdan olish?</h3>
-              <p>In-app $4.99/oy yoki $35.99/yil. O'zbekistonda mahalliy reseller bot orqali so'mda — 1 oy ~57 000 so'm, 12 oy ~422 000 so'm. Uzcard, Humo, Click, Payme orqali.</p>
+              <p>In-app $4.99/oy yoki $35.99/yil. O'zbekistonda mahalliy reseller bot orqali so'mda — 1 oy ~60 000 so'm, 12 oy ~{fmtS(PREMIUM_PRICE[12])} so'm. Uzcard, Humo, Click, Payme orqali.</p>
             </div>
             <div class="post-faq-item">
               <h3>Kelajakda Business alohida obuna bo'ladimi?</h3>
@@ -346,7 +348,7 @@ const ogImage = "https://starsjoy.uz/og-image.png";
 
           <p>Shaxsiy foydalanuvchi uchun Premium qulayligi (4 GB fayl, voice-to-text, kengaytirilgan limitlar) yetarli. Kichik biznes, do'kon, klinika, kafedrasi yoki freelancer uchun esa Business rejimini qo'shimcha yoqish — yangi mijozlar bilan ishlash sifatini ancha oshiradi.</p>
 
-          <p>O'zbekistondagi eng qulay yo'l — mahalliy reseller bot orqali so'mda Premium olish (12 oy ~422 000 so'm). Telegram'ning rasmiy Terms of Service shartlarida kelajakda Business'ni alohida tier qilish huquqi saqlanadi, lekin hozircha hech qanday rasmiy qaror chiqmagan.</p>
+          <p>O'zbekistondagi eng qulay yo'l — mahalliy reseller bot orqali so'mda Premium olish (12 oy ~{fmtS(PREMIUM_PRICE[12])} so'm). Telegram'ning rasmiy Terms of Service shartlarida kelajakda Business'ni alohida tier qilish huquqi saqlanadi, lekin hozircha hech qanday rasmiy qaror chiqmagan.</p>
 
           <div class="end-cta">
             <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Premium + Business uchun obuna — @starsjoybot &rarr;</a>

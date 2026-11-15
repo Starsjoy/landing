@@ -3,16 +3,18 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import VariantPage from '../../components/VariantPage.astro';
+import { STAR_PRICE, starsPrice, fmtS, PRICE_NOTE } from '../../lib/prices';
 import { hreflangsFor } from '../../lib/i18n';
 
+const P = fmtS(starsPrice(100));
 const canonical = "https://starsjoy.uz/stars/100";
-const title = "100 ta Telegram Stars sotib olish — 24 000 so'm | StarsJoy";
-const description = "100 ta Telegram Stars narxi — 24 000 so'm. Birinchi marta stars sotib olayotganlar uchun eng mashhur sinov paketi. Uzcard/Click orqali 10 soniyada yetkaziladi.";
+const title = `100 ta Telegram Stars sotib olish — ${P} so'm | StarsJoy`;
+const description = `100 ta Telegram Stars narxi — ${P} so'm. Birinchi marta stars sotib olayotganlar uchun eng mashhur sinov paketi. Uzcard/Click orqali 10 soniyada yetkaziladi.`;
 
 const faqs = [
   {
     q: "100 ta Telegram Stars'ni qayerdan sotib olsam bo'ladi?",
-    a: "@starsjoybot orqali — botda miqdorni 100 deb kiriting va Uzcard, Humo yoki Click bilan to'lang. Narxi 24 000 so'm, 10 soniyada hisobingizga tushadi."
+    a: `@starsjoybot orqali — botda miqdorni 100 deb kiriting va Uzcard, Humo yoki Click bilan to'lang. Narxi ${P} so'm, 10 soniyada hisobingizga tushadi.`
   },
   {
     q: "100 ta Stars nimalarga yetadi?",
@@ -20,7 +22,7 @@ const faqs = [
   },
   {
     q: "Birinchi marta Stars sotib olsam, 100 tadan boshlash tavsiya qilinadimi?",
-    a: "Ha, agar Stars nima ekanini va jarayon qanday ishlashini birinchi bor sinab ko'rmoqchi bo'lsangiz, 100 ta (24 000 so'm) eng arzon va xavfsiz boshlanish nuqtasi. Jarayon yoqsa, keyinroq kattaroq paket olishingiz mumkin."
+    a: `Ha, agar Stars nima ekanini va jarayon qanday ishlashini birinchi bor sinab ko'rmoqchi bo'lsangiz, 100 ta (${P} so'm) kam xarajatli va xavfsiz boshlanish nuqtasi. Jarayon yoqsa, keyinroq kattaroq paket olishingiz mumkin.`
   },
   {
     q: "100 ta kabi kichik miqdor ham 10 soniyada keladimi?",
@@ -28,7 +30,7 @@ const faqs = [
   },
   {
     q: "100 ta Stars narxi boshqa paketlarga nisbatan qimmatroqmi?",
-    a: "Yo'q, StarsJoy'da barcha paketlar bir xil tarifda — 240 so'm/star. 100 ta ham, 5000 ta ham bir xil kursda hisoblanadi, faqat umumiy summa farq qiladi."
+    a: `Yo'q, StarsJoy'da barcha paketlar bir xil tarifda — ${STAR_PRICE} so'm/star. 100 ta ham, 5000 ta ham bir xil kursda hisoblanadi, faqat umumiy summa farq qiladi.`
   },
   {
     q: "100 ta Stars'ni sovg'a qilsam bo'ladimi?",
@@ -81,13 +83,14 @@ const related = [
     currentLabel="100 ⭐"
     eyebrow="Telegram Stars — 100 ta"
     h1="100 ta Telegram Stars sotib olish"
-    quickAnswer="100 ta Telegram Stars narxi — 24 000 so'm, @starsjoybot orqali 10 soniyada hisobingizga tushadi."
+    quickAnswer={`100 ta Telegram Stars narxi — ${P} so'm, @starsjoybot orqali 10 soniyada hisobingizga tushadi.`}
     heroNote="Birinchi marta Stars sotib olayotganlar uchun eng mashhur sinov paketi. Kamroq kerak bo'lsa — 50 tadan."
     siblingsTitle="Boshqa miqdorlar"
     siblings={siblings}
     priceLabel="Narx"
-    priceValue="24 000 so'm"
-    priceSubtext="240 so'm/star"
+    priceValue={`${P} so'm`}
+    priceSubtext={`${STAR_PRICE} so'm/star`}
+    priceNote={PRICE_NOTE.uz}
     bonusNote="+4 ⭐ bonus, batafsil →"
     bonusHref="/bonus"
     ctaLabel="100 ta Stars sotib olish"
@@ -101,11 +104,11 @@ const related = [
     relatedTitle="Stars haqida qo'shimcha"
     related={related}
     finalCtaTitle="100 ta Stars'ga tayyor bo'ling"
-    finalCtaText="24 000 so'm, Uzcard/Click orqali, 10 soniyada yetkaziladi"
+    finalCtaText={`${P} so'm, Uzcard/Click orqali, 10 soniyada yetkaziladi`}
     finalCtaLabel="Hozir sotib olish"
     schemaName="Telegram Stars — 100 ta"
     schemaDescription={description}
-    priceAmount="24000"
+    priceAmount={String(starsPrice(100))}
     breadcrumbSchema={[
       { name: "Bosh sahifa", item: "https://starsjoy.uz" },
       { name: "Telegram Stars", item: "https://starsjoy.uz/stars" },

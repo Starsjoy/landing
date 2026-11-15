@@ -3,23 +3,28 @@ import Layout from '../../../layouts/Layout.astro';
 import NavbarRu from '../../../components/NavbarRu.astro';
 import FooterRu from '../../../components/FooterRu.astro';
 import VariantPage from '../../../components/VariantPage.astro';
+import { PREMIUM_PRICE, premiumPerMonth, fmtS, PRICE_NOTE } from '../../../lib/prices';
 import { hreflangsFor } from '../../../lib/i18n';
 
+const P3 = fmtS(PREMIUM_PRICE[3]), P6 = fmtS(PREMIUM_PRICE[6]), P12 = fmtS(PREMIUM_PRICE[12]);
+const pm = (m: 3 | 6 | 12) => fmtS(Math.round(premiumPerMonth(m) / 100) * 100);
+const M3 = pm(3), M6 = pm(6), M12 = pm(12);
+const SAVE = Math.round((1 - premiumPerMonth(12) / premiumPerMonth(3)) * 100);
 const canonical = "https://starsjoy.uz/ru/premium/12-oy";
-const title = "Telegram Premium на 12 месяцев — 422 000 сум | StarsJoy";
-const description = "Telegram Premium на 12 месяцев (год) — 422 000 сум, около 35 200 сум/мес — самый выгодный тариф. Оплата Uzcard, Humo или Click, активация за 10 секунд.";
+const title = `Telegram Premium на 12 месяцев — ${P12} сум | StarsJoy`;
+const description = `Telegram Premium на 12 месяцев (год) — ${P12} сум, около ${M12} сум/мес — самый выгодный тариф. Оплата Uzcard, Humo или Click, активация за 10 секунд.`;
 
 const faqs = [
   {
     q: "Где можно купить Telegram Premium на 12 месяцев (год) дешевле всего?",
-    a: "StarsJoy — через @starsjoybot. Оплатите 422 000 сум картой Uzcard, Humo или через Click, активация за 10 секунд. Это самая низкая цена в пересчёте на месяц (~35 200 сум/мес)."
+    a: `StarsJoy — через @starsjoybot. Оплатите ${P12} сум картой Uzcard, Humo или через Click, активация за 10 секунд. Это самая низкая цена в пересчёте на месяц (~${M12} сум/мес).`
   },
   {
     q: "На сколько процентов 12 месяцев выгоднее 3 месяцев?",
-    a: "На 3-месячном тарифе месяц стоит ~57 300 сум, на 12-месячном — ~35 200 сум, то есть экономия в месяц около 38%. Если планируете пользоваться Premium весь год, это самый дешёвый вариант."
+    a: `На 3-месячном тарифе месяц стоит ~${M3} сум, на 12-месячном — ~${M12} сум, то есть экономия в месяц около ${SAVE}%. Если планируете пользоваться Premium весь год, это самый дешёвый вариант.`
   },
   {
-    q: "Есть ли нюансы при оплате крупной суммы (422 000 сум) картой Uzcard/Humo?",
+    q: `Есть ли нюансы при оплате крупной суммы (${P12} сум) картой Uzcard/Humo?`,
     a: "Да — у банковских карт бывает дневной/месячный лимит на транзакции. Если сумма не проходит одним платежом, попробуйте оплату через Click или Payme, либо заранее уточните лимит в банке."
   },
   {
@@ -32,7 +37,7 @@ const faqs = [
   },
   {
     q: "Если подарю подписку на 12 месяцев другу, цена изменится?",
-    a: "Нет, цена подарка такая же, как при обычной покупке (422 000 сум) — получатель ничего не оплачивает."
+    a: `Нет, цена подарка такая же, как при обычной покупке (${P12} сум) — получатель ничего не оплачивает.`
   }
 ];
 
@@ -77,13 +82,14 @@ const related = [
     currentLabel="12 месяцев"
     eyebrow="Telegram Premium — 12 месяцев"
     h1="Telegram Premium на 12 месяцев (год)"
-    quickAnswer="Telegram Premium на 12 месяцев — 422 000 сум (~35 200 сум/мес) — самый выгодный тариф, активация через @starsjoybot за 10 секунд."
-    heroNote="Для тех, кто пользуется Premium постоянно — самая низкая цена в пересчёте на месяц, экономия ~38% по сравнению с тарифом на 3 месяца."
+    quickAnswer={`Telegram Premium на 12 месяцев — ${P12} сум (~${M12} сум/мес) — самый выгодный тариф, активация через @starsjoybot за 10 секунд.`}
+    heroNote={`Для тех, кто пользуется Premium постоянно — самая низкая цена в пересчёте на месяц, экономия ~${SAVE}% по сравнению с тарифом на 3 месяца.`}
     siblingsTitle="Другие сроки"
     siblings={siblings}
     priceLabel="Цена"
-    priceValue="422 000 сум"
-    priceSubtext="~35 200 сум/мес — самый выгодный"
+    priceValue={`${P12} сум`}
+    priceSubtext={`~${M12} сум/мес — самый выгодный`}
+    priceNote={PRICE_NOTE.ru}
     ctaLabel="Купить Premium на 12 месяцев"
     ctaHref="https://telegram.me/starsjoybot"
     forWhomTitle="Кому подойдёт?"
@@ -95,11 +101,11 @@ const related = [
     relatedTitle="Дополнительно о Premium на 12 месяцев"
     related={related}
     finalCtaTitle="Готовы оформить Premium на 12 месяцев?"
-    finalCtaText="422 000 сум, оплата Uzcard/Click, активация за 10 секунд"
+    finalCtaText={`${P12} сум, оплата Uzcard/Click, активация за 10 секунд`}
     finalCtaLabel="Купить сейчас"
     schemaName="Telegram Premium — подписка на 12 месяцев"
     schemaDescription={description}
-    priceAmount="422000"
+    priceAmount={String(PREMIUM_PRICE[12])}
     breadcrumbSchema={[
       { name: "Главная", item: "https://starsjoy.uz/ru" },
       { name: "Telegram Premium", item: "https://starsjoy.uz/ru/premium" },
