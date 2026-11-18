@@ -44,7 +44,7 @@ export type State = {
 // ───────────────────────── matnlar ─────────────────────────
 const TXT = {
   uz: {
-    sum: "so'm", from: 'dan', game: "O'yin", games: "O'yinlar", chooseGame: "O'yinni tanlang", pack: 'Paket', choosePack: 'Paketni tanlang',
+    sum: "so'm", from: 'dan', fromP: "{p} so'mdan", game: "O'yin", games: "O'yinlar", chooseGame: "O'yinni tanlang", pack: 'Paket', choosePack: 'Paketni tanlang',
     account: 'Akkaunt', id: "O'yinchi ID", idPh: 'Player ID', zonePh: 'Zone ID', check: 'Tekshirish', checking: 'Tekshirilmoqda…',
     idWhere: 'ID qayerda?', needId: "ID'ni kiriting", needZone: "Zone ID'ni kiriting", notVerified: "Bu o'yinda nik ko'rinmaydi, ID'ni qayta tekshiring",
     found: 'Akkaunt topildi', confirm: 'Tasdiqlash', review: "Buyurtmani tekshiring", next: 'Davom etish', back: 'Orqaga', change: "O'zgartirish",
@@ -80,7 +80,7 @@ const TXT = {
     ] as [RegExp, string][],
   },
   ru: {
-    sum: 'сум', from: 'от', game: 'Игра', games: 'Игры', chooseGame: 'Выберите игру', pack: 'Пакет', choosePack: 'Выберите пакет',
+    sum: 'сум', from: 'от', fromP: 'от {p} сум', game: 'Игра', games: 'Игры', chooseGame: 'Выберите игру', pack: 'Пакет', choosePack: 'Выберите пакет',
     account: 'Аккаунт', id: 'ID игрока', idPh: 'Player ID', zonePh: 'Zone ID', check: 'Проверить', checking: 'Проверяем…',
     idWhere: 'Где найти ID?', needId: 'Введите ID', needZone: 'Введите Zone ID', notVerified: 'В этой игре ник не показывается, перепроверьте ID',
     found: 'Аккаунт найден', confirm: 'Подтвердить', review: 'Проверьте заказ', next: 'Далее', back: 'Назад', change: 'Изменить',
@@ -116,7 +116,7 @@ const TXT = {
     ] as [RegExp, string][],
   },
   en: {
-    sum: 'UZS', from: 'from', game: 'Game', games: 'Games', chooseGame: 'Choose a game', pack: 'Pack', choosePack: 'Choose a pack',
+    sum: 'UZS', from: 'from', fromP: 'from {p} UZS', game: 'Game', games: 'Games', chooseGame: 'Choose a game', pack: 'Pack', choosePack: 'Choose a pack',
     account: 'Account', id: 'Player ID', idPh: 'Player ID', zonePh: 'Zone ID', check: 'Check', checking: 'Checking…',
     idWhere: 'Where is my ID?', needId: 'Enter your ID', needZone: 'Enter your Zone ID', notVerified: 'This game does not show nicknames, double-check the ID',
     found: 'Account found', confirm: 'Confirm', review: 'Review your order', next: 'Continue', back: 'Back', change: 'Change',
@@ -187,6 +187,10 @@ export function groupItems(g: Game | undefined, parse: (n: string) => unknown) {
 // ───────────────────────── do'kon (controller) ─────────────────────────
 export type Renderer = {
   name: string;
+  /** qadamli variant: o'yin → 2, paket → 3 (yoki 4), ID → 4 */
+  stepped?: boolean;
+  /** qadam almashganda sahifani variant tepasiga surmaslik (oynali variantlar) */
+  noScroll?: boolean;
   /** butun ilova HTML'i */
   render: (s: State, ctx: Ctx) => string;
   /** render'dan keyin (masalan, tanlangan elementni ko'rinadigan joyga surish) */
@@ -343,6 +347,7 @@ export function mountDonat(root: HTMLElement, opts: { api: string; lang: Lang; c
   }
 
   function scrollToRoot() {
+    if (renderer.noScroll) return;
     const top = root.getBoundingClientRect().top + window.scrollY - 90;
     if (Math.abs(window.scrollY - top) > 40) window.scrollTo({ top, behavior: 'smooth' });
   }
@@ -359,11 +364,11 @@ export function mountDonat(root: HTMLElement, opts: { api: string; lang: Lang; c
     switch (act) {
       case 'game':
         if (v !== s.slug) Object.assign(s, { slug: v, itemId: '', pid: '', zone: '', nick: null, checkedFor: '', err: '', showAll: false, help: false });
-        s.sheet = ''; if (renderer.name === 'v1') s.step = 2;
-        render(); if (renderer.name === 'v1') scrollToRoot(); break;
+        s.sheet = ''; if (renderer.stepped) s.step = 2;
+        render(); if (renderer.stepped) scrollToRoot(); break;
       case 'item':
         s.itemId = v; s.err = '';
-        if (renderer.name === 'v1') { s.step = game()?.needs_player_id ? 3 : 4; render(); scrollToRoot(); } else render();
+        if (renderer.stepped) { s.step = game()?.needs_player_id ? 3 : 4; render(); scrollToRoot(); } else render();
         break;
       case 'step': set({ step: Number(v), err: '' }); scrollToRoot(); break;
       case 'next': {
@@ -373,6 +378,13 @@ export function mountDonat(root: HTMLElement, opts: { api: string; lang: Lang; c
         break;
       }
       case 'check': checkPlayer(true); break;
+      case 'qty': {
+        const list = game()?.items || [];
+        const i = list.findIndex((x) => x.id === s.itemId);
+        const n = list[Math.max(0, Math.min(list.length - 1, i + Number(v)))];
+        if (n) set({ itemId: n.id, err: '' });
+        break;
+      }
       case 'help': set({ help: !s.help }); break;
       case 'more': set({ showAll: !s.showAll }); break;
       case 'sheet': set({ sheet: (v as State['sheet']) }); break;
@@ -425,7 +437,7 @@ export function mountDonat(root: HTMLElement, opts: { api: string; lang: Lang; c
     setVariant(name: string) {
       if (!opts.renderers[name]) return;
       renderer = opts.renderers[name];
-      if (name === 'v1' && !s.order) s.step = s.itemId ? Math.max(1, s.step) : 1;
+      if (renderer.stepped && !s.order && s.step < 1) s.step = 1;
       render();
     },
   };
@@ -499,4 +511,12 @@ export function nickHtml(s: State, cls: string) {
   return `<div class="${cls} ${s.nick.kind}">${s.nick.kind === 'wait' ? '<span class="spin"></span>' : `<span class="ico">${ico}</span>`}<span>${esc(s.nick.text)}</span></div>`;
 }
 
+// Valyuta ikonkalari: rasmiy do'konlardan (Midasbuy, Codashop, Garena, Roblox) — webp/svg;
+// Standoff 2, Delta Force, Blood Strike — rasmiy rasm topilmadi, o'zimiz chizgan SVG
+const CUR_EXT: Record<string, string> = { 'pubg-mobile': 'webp', 'mobile-legends': 'webp', 'free-fire': 'webp', 'honor-of-kings': 'webp', 'arena-breakout': 'webp' };
+const CUR_SVG = ['standoff-2', 'roblox', 'delta-force', 'blood-strike'];
+export const curImg = (slug: string, cls = '') => {
+  const ext = CUR_EXT[slug] || (CUR_SVG.includes(slug) ? 'svg' : '');
+  return ext ? `<img class="${cls}" src="/images/donat/cur/${esc(slug)}.${ext}" alt="" width="40" height="40" loading="lazy" decoding="async">` : '';
+};
 export const gameImg = (slug: string, cls = '') => `<img class="${cls}" src="/images/donat/${esc(slug)}.png" alt="" width="64" height="64" loading="lazy" decoding="async">`;

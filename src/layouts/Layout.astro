@@ -10,6 +10,7 @@ interface Props {
   ogType?: string;
   ogImage?: string;
   hreflangs?: { lang: string; href: string }[];
+  bodyClass?: string;
 }
 
 const {
@@ -20,7 +21,8 @@ const {
   lang = "uz",
   ogType = "website",
   ogImage = "https://starsjoy.uz/og-image.png",
-  hreflangs = []
+  hreflangs = [],
+  bodyClass
 } = Astro.props;
 ---
 
@@ -78,7 +80,7 @@ const {
       })(window, document, "clarity", "script", "vqh0cthl6q");
     </script>
   </head>
-  <body>
+  <body class={bodyClass}>
     <slot />
     <StickyBuyBar />
     <script>

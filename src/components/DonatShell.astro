@@ -18,19 +18,21 @@ const loading = { uz: 'Yuklanmoqda…', ru: 'Загрузка…', en: 'Loading�
 <script type="application/json" id="dn-catalog" set:html={JSON.stringify(catalog)} />
 
 <script>
-  import { mountDonat, type Lang } from '../scripts/donat/core';
+  import { mountDonat, type Lang, type Renderer } from '../scripts/donat/core';
   import { v1 } from '../scripts/donat/v1';
 
   const root = document.getElementById('dn-root') as HTMLElement | null;
   if (root) {
+    const renderers: Record<string, Renderer> = { v1 };
     mountDonat(root, {
       api: root.dataset.api!,
       lang: (root.dataset.lang || 'uz') as Lang,
       catalog: JSON.parse(document.getElementById('dn-catalog')?.textContent || 'null'),
       initialGame: root.dataset.game || undefined,
-      renderers: { v1 },
+      renderers,
       variant: 'v1',
       support: 'https://t.me/StarsjoySupport',
     });
+    try { localStorage.removeItem('dn_ui'); } catch {}
   }
 </script>

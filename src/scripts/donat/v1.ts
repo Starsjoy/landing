@@ -2,10 +2,24 @@
  * A · Bosqichma-bosqich (wizard): har ekranda bitta savol.
  * 1 O'yin → 2 Paket → 3 Akkaunt → 4 Tasdiqlash → To'lov → Holat.
  */
-import { esc, fmt, gameImg, groupItems, itemLabel, nickHtml, payBlock, statusBlock, type Renderer } from './core';
+import { curImg, esc, fmt, gameImg, groupItems, itemLabel, nickHtml, payBlock, statusBlock, type Renderer } from './core';
 
 export const v1: Renderer = {
   name: 'v1',
+  stepped: true,
+  // Sig'magan o'yin nomi bir qatorda chapga uzluksiz suriladi (ikki nusxa — choksiz aylanish)
+  after(root) {
+    root.querySelectorAll<HTMLElement>('.w-game-t').forEach((box) => {
+      const inner = box.firstElementChild as HTMLElement | null;
+      if (!inner || box.classList.contains('is-mq')) return;
+      const w = inner.scrollWidth;
+      if (w - box.clientWidth <= 1) return;
+      const text = inner.textContent || '';
+      inner.innerHTML = `<span>${esc(text)}</span><span aria-hidden="true">${esc(text)}</span>`;
+      box.classList.add('is-mq');
+      box.style.setProperty('--mq-t', `${Math.max(5, (w + 24) / 22)}s`);
+    });
+  },
   render(s, c) {
     const { t } = c;
     if (s.order?.state === 'awaiting_payment') return `<div class="w-card">${payBlock(s, c, 'dp')}</div>`;
@@ -30,14 +44,16 @@ export const v1: Renderer = {
           ${(s.catalog?.games || []).map((x) => `
             <button type="button" class="w-game${x.slug === s.slug ? ' on' : ''}" data-act="game" data-v="${esc(x.slug)}">
               ${gameImg(x.slug, 'w-game-img')}
-              <span class="w-game-t">${esc(x.title)}</span>
-              <span class="w-game-p">${x.items.length ? `${fmt(c.minPrice(x))} ${esc(t.sum)} ${esc(t.from)}` : esc(t.unavailable)}</span>
+              <span class="w-game-t"><span class="w-mq">${esc(x.title)}</span></span>
+              <span class="w-game-p">${x.items.length ? esc(t.fromP.replace('{p}', fmt(c.minPrice(x)))) : esc(t.unavailable)}</span>
             </button>`).join('') || `<div class="w-muted">${esc(t.loading)}</div>`}
         </div>`;
     } else if (s.step === 2) {
       const { cur, other, popId } = groupItems(g, c.parse);
+      const curIds = new Set(cur.map((x) => x.id));
       const row = (it: { id: string; name: string; price: number }) => `
         <button type="button" class="w-item${it.id === s.itemId ? ' on' : ''}" data-act="item" data-v="${esc(it.id)}">
+          ${curIds.has(it.id) ? curImg(g.slug, 'w-item-ic') : gameImg(g.slug, 'w-item-ic is-game')}
           <span class="w-item-n">${itemLabel(it, c)}${it.id === popId ? `<i class="w-pop">${esc(t.popular)}</i>` : ''}</span>
           <span class="w-item-p">${fmt(it.price)} ${esc(t.sum)}</span>
           <span class="w-item-go">›</span>

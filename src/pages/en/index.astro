@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BonusBanner from '../../components/BonusBanner.astro';
+import HeroApp from '../../components/HeroApp.astro';
 import NavbarEn from '../../components/NavbarEn.astro';
 import Reviews from '../../components/Reviews.astro';
 import FooterEn from '../../components/FooterEn.astro';
@@ -103,130 +104,7 @@ const faqs = [
 
   <NavbarEn />
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="hero">
-    <div class="hero-container">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          Telegram Stars,<br>
-          Premium and Gifts<br>
-          <span class="hero-highlight">in 10 seconds!</span>
-        </h1>
-        <p class="hero-desc">
-          StarsJoy is a Telegram Mini App, not an ordinary bot. Buy Stars, get Premium or send Gifts to friends — all inside the app, paid in Uzbek som with a local card.
-        </p>
-        <div class="hero-buttons">
-          <a href="https://telegram.me/starsjoybot" class="btn-primary" target="_blank">
-            &#9889; Open the app
-          </a>
-          <a href="#services" class="btn-secondary">
-            Our services &#8595;
-          </a>
-        </div>
-        <a href="/en/bonus" class="hero-bonus-link">🎁 +4 ⭐ bonus for every 100 Stars &rarr;</a>
-      </div>
-
-      <div class="hero-visual">
-        <div class="logo-float" id="logoFloat">
-          <img src="/logo.png" alt="StarsJoy" class="float-logo" />
-        </div>
-
-        <div class="cube-stage">
-          <div class="cube" id="cube3d">
-            <!-- Front: Stars -->
-            <div class="cube-face face-front">
-              <div class="face-icon face-icon-star">
-                <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-                  <defs>
-                    <linearGradient id="csG1" x1="6" y1="6" x2="46" y2="46">
-                      <stop offset="0%" stop-color="#FFD60A"/>
-                      <stop offset="50%" stop-color="#FFAE00"/>
-                      <stop offset="100%" stop-color="#FF9500"/>
-                    </linearGradient>
-                  </defs>
-                  <path d="M26 4l6.2 12.5L45 18.8l-9.5 9.3 2.2 13.1L26 34.8l-11.7 6.4 2.2-13.1L7 18.8l12.8-2.3L26 4z" fill="url(#csG1)"/>
-                  <path d="M26 4l6.2 12.5L45 18.8l-9.5 9.3 2.2 13.1L26 34.8V4z" fill="#FFE066" opacity="0.35"/>
-                </svg>
-              </div>
-              <span class="face-title">Stars</span>
-              <span class="face-sub">Buy Stars</span>
-            </div>
-
-            <!-- Right: Premium -->
-            <div class="cube-face face-right">
-              <div class="face-icon face-icon-prem">
-                <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-                  <defs>
-                    <linearGradient id="csG2" x1="8" y1="6" x2="44" y2="46">
-                      <stop offset="0%" stop-color="#6B93FF"/>
-                      <stop offset="50%" stop-color="#976FFF"/>
-                      <stop offset="100%" stop-color="#E46ACE"/>
-                    </linearGradient>
-                  </defs>
-                  <path d="M26 5L9 21l17 26 17-26L26 5z" fill="url(#csG2)"/>
-                  <path d="M26 5l17 16L26 47V5z" fill="#A78BFA" opacity="0.3"/>
-                  <path d="M9 21L26 5v42L9 21z" fill="#fff" opacity="0.12"/>
-                  <path d="M15 21l11-11 11 11" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-                </svg>
-              </div>
-              <span class="face-title">Premium</span>
-              <span class="face-sub">Get Premium</span>
-            </div>
-
-            <!-- Back: Gifts -->
-            <div class="cube-face face-back">
-              <div class="face-icon face-icon-gift">
-                <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-                  <defs>
-                    <linearGradient id="csG3" x1="6" y1="10" x2="46" y2="48">
-                      <stop offset="0%" stop-color="#FF6B9D"/>
-                      <stop offset="50%" stop-color="#C850C0"/>
-                      <stop offset="100%" stop-color="#8B5CF6"/>
-                    </linearGradient>
-                  </defs>
-                  <rect x="8" y="22" width="36" height="24" rx="4" fill="url(#csG3)"/>
-                  <rect x="11" y="14" width="30" height="10" rx="4" fill="url(#csG3)" opacity="0.85"/>
-                  <rect x="23" y="14" width="6" height="32" rx="1.5" fill="#fff" opacity="0.3"/>
-                  <rect x="8" y="26" width="36" height="4" rx="1" fill="#fff" opacity="0.15"/>
-                  <path d="M26 14c-3-7-12-7-12 0s12 8 12 8 12-1 12-8-9-7-12 0z" fill="#fff" opacity="0.3"/>
-                </svg>
-              </div>
-              <span class="face-title">Gifts</span>
-              <span class="face-sub">Send a gift</span>
-            </div>
-
-            <!-- Left: Cashback -->
-            <div class="cube-face face-left">
-              <div class="face-icon face-icon-cash">
-                <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-                  <defs>
-                    <linearGradient id="csG4" x1="6" y1="6" x2="46" y2="46">
-                      <stop offset="0%" stop-color="#34D399"/>
-                      <stop offset="50%" stop-color="#10B981"/>
-                      <stop offset="100%" stop-color="#059669"/>
-                    </linearGradient>
-                  </defs>
-                  <circle cx="26" cy="26" r="20" fill="url(#csG4)"/>
-                  <path d="M26 14v24M32 20c0-3.3-2.7-6-6-6s-6 2.7-6 6c0 3.3 2.7 6 6 6s6 2.7 6 6c0 3.3-2.7 6-6 6s-6-2.7-6-6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                </svg>
-              </div>
-              <span class="face-title">Cashback</span>
-              <span class="face-sub">Referral bonus</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="cube-shadow" id="cubeShadow"></div>
-
-        <div class="dot d1" id="dot1"></div>
-        <div class="dot d2" id="dot2"></div>
-        <div class="dot d3" id="dot3"></div>
-        <div class="dot d4" id="dot4"></div>
-        <div class="dot d5" id="dot5"></div>
-        <div class="dot d6" id="dot6"></div>
-      </div>
-    </div>
-  </section>
+  <HeroApp lang="en" rating={agg} />
 
   <BonusBanner lang="en" />
 

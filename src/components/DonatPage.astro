@@ -1,4 +1,5 @@
 ---
+import '../styles/donat-dark.css';
 /**
  * Donat sahifasi (hub yoki bitta o'yin) — uz/ru/en uchun bitta shablon.
  * Narxlar SSR'da backend'dan olinadi (HTML'da bo'lsin — SEO), keyin brauzer yangilaydi.
@@ -106,6 +107,10 @@ const FAQ: Record<DonatLang, [string, string][]> = {
 };
 const faqs = FAQ[lang];
 
+// Dark tema: d1 (Mini App ranglari) asosiy. Lokalda ?theme=d2|d3 bilan boshqasini sinash mumkin
+const theme = (import.meta.env.DEV && Astro.url.searchParams.get('theme')) || 'd1';
+const cards = import.meta.env.DEV ? Astro.url.searchParams.get('cards') : null;
+const themeCls = (theme ? 'dk dk-' + theme : '') + (cards ? ' cv-' + cards : '') || undefined;
 const NavbarC = lang === 'ru' ? NavbarRu : lang === 'en' ? NavbarEn : Navbar;
 const FooterC = lang === 'ru' ? FooterRu : lang === 'en' ? FooterEn : Footer;
 
@@ -142,10 +147,11 @@ const ld: any[] = [
 ];
 ---
 
-<Layout title={seo.title} description={seo.desc} canonical={canonical} lang={lang} hreflangs={donatHreflangs(slug)}>
+<Layout title={seo.title} description={seo.desc} canonical={canonical} lang={lang} hreflangs={donatHreflangs(slug)} bodyClass={theme === 'd1' ? 'dk-page' : undefined}>
   <NavbarC />
   {ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}
 
+  <div class={themeCls}>
   <section class="dn-hero">
     <div class="container">
       <nav class="dn-crumbs" aria-label="breadcrumb">
@@ -212,6 +218,7 @@ const ld: any[] = [
     </div>
   </section>
 
+  </div>
   <FooterC />
 </Layout>
 
@@ -258,4 +265,6 @@ const ld: any[] = [
     .dn-grid3 { grid-template-columns: 1fr; }
     .dn-sec { padding: 44px 16px; }
   }
+  /* telefonda do'kon oynasi butun kenglikdan foydalansin — kartalar kattaroq */
+  @media (max-width: 600px) { .dn-hero { padding-left: 10px; padding-right: 10px; } .dn-hero .container { padding: 0; } .dn-crumbs, .dn-h1, .dn-lead { padding-left: 6px; padding-right: 6px; } .dn-chips { flex-wrap: nowrap; gap: 5px; } .dn-chips span { flex: 0 0 auto; padding: 5px 8px; font-size: min(.74rem, 2.65vw); white-space: nowrap; } }
 </style>
