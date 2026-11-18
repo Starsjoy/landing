@@ -31,6 +31,11 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/stars/1000': '/stars/1000',
   '/en/stars/5000': '/stars/5000',
   '/en/stars/10000': '/stars/10000',
+  // Donat (o'yin valyutasi) — slug uchala tilda bir xil
+  '/en/donat': '/donat',
+  '/en/donat/pubg-mobile': '/donat/pubg-mobile',
+  '/en/donat/free-fire': '/donat/free-fire',
+  '/en/donat/standoff-2': '/donat/standoff-2',
   // Blog maqolalari — EN slug o'zbekchadan farq qiladi, shuning uchun har biri
   // alohida yoziladi. Yozuv bo'lmasa NavbarEn dagi 🇺🇿 tugmasi o'quvchini
   // maqolaga emas, bosh sahifaga tashlaydi.

@@ -1,0 +1,247 @@
+---
+/**
+ * Donat sahifasi (hub yoki bitta o'yin) — uz/ru/en uchun bitta shablon.
+ * Narxlar SSR'da backend'dan olinadi (HTML'da bo'lsin — SEO), keyin brauzer yangilaydi.
+ */
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import NavbarRu from './NavbarRu.astro';
+import NavbarEn from './NavbarEn.astro';
+import Footer from './Footer.astro';
+import FooterRu from './FooterRu.astro';
+import FooterEn from './FooterEn.astro';
+import DonatApp from './DonatApp.astro';
+import {
+  fetchDonatCatalog, fmtSum, minPrice, GAME_SEO, DONAT_HUB_SEO, donatPath, donatHreflangs, type DonatLang,
+} from '../lib/donat';
+
+interface Props { lang: DonatLang; slug?: string }
+const { lang, slug } = Astro.props;
+
+const catalog = await fetchDonatCatalog();
+const seo = slug ? GAME_SEO[slug][lang] : DONAT_HUB_SEO[lang];
+const canonical = `https://starsjoy.uz${donatPath(lang, slug)}`;
+const games = catalog?.games ?? [];
+const shown = slug ? games.filter((g) => g.slug === slug) : games;
+
+const L = {
+  uz: {
+    home: 'Asosiy', hub: 'Donat', priceTitle: 'Narxlar', pack: 'Paket', price: 'Narx', from: 'dan',
+    howTitle: 'Qanday ishlaydi', other: "Boshqa o'yinlar",
+    steps: [
+      ["O'yin va paketni tanlang", "Narxlar so'mda, yashirin to'lov yo'q."],
+      ["ID'ni kiriting", "Nikingiz chiqadi, to'lashdan oldin akkaunt to'g'riligini ko'rasiz."],
+      ["Kartadan to'lang", "Uzcard yoki Humo kartadan ko'rsatilgan summani o'tkazing, donat avtomatik tushadi."],
+    ],
+    trust: [
+      ['Avtomatik yetkazish', "To'lov tasdiqlanishi bilan donat yuboriladi, kutish yo'q."],
+      ["Nik bilan tekshiruv", "Noto'g'ri akkauntga yuborilmasligi uchun nik oldindan ko'rsatiladi."],
+      ['Support', "Savol bo'lsa @StarsjoySupport ga yozing."],
+    ],
+    note: "Narxlar dollar kursi, soliq va to'lov tizimi komissiyalariga qarab o'zgarishi mumkin. Buyurtma ochilganda ko'rsatilgan summa amal qiladi.",
+    faq: 'Savollar',
+  },
+  ru: {
+    home: 'Главная', hub: 'Донат', priceTitle: 'Цены', pack: 'Пакет', price: 'Цена', from: 'от',
+    howTitle: 'Как это работает', other: 'Другие игры',
+    steps: [
+      ['Выберите игру и пакет', 'Цены в сумах, без скрытых платежей.'],
+      ['Введите ID', 'Появится ваш ник, вы увидите, что аккаунт верный, ещё до оплаты.'],
+      ['Оплатите картой', 'Переведите указанную сумму с Uzcard или Humo, донат придёт автоматически.'],
+    ],
+    trust: [
+      ['Автоматическая доставка', 'Донат отправляется сразу после подтверждения оплаты.'],
+      ['Проверка по нику', 'Ник показывается заранее, чтобы донат не ушёл на чужой аккаунт.'],
+      ['Поддержка', 'Вопросы — пишите в @StarsjoySupport.'],
+    ],
+    note: 'Цены могут меняться в зависимости от курса доллара, налогов и комиссий платёжных систем. Действует сумма, показанная при создании заказа.',
+    faq: 'Вопросы',
+  },
+  en: {
+    home: 'Home', hub: 'Top-up', priceTitle: 'Prices', pack: 'Pack', price: 'Price', from: 'from',
+    howTitle: 'How it works', other: 'Other games',
+    steps: [
+      ['Pick a game and pack', 'Prices in UZS, no hidden fees.'],
+      ['Enter your ID', 'Your nickname appears, so you see the account is right before paying.'],
+      ['Pay by card', 'Transfer the shown amount from Uzcard or Humo, the top-up arrives automatically.'],
+    ],
+    trust: [
+      ['Automatic delivery', 'The top-up is sent as soon as the payment is confirmed.'],
+      ['Nickname check', 'Your nickname is shown first, so the top-up never goes to a wrong account.'],
+      ['Support', 'Questions? Message @StarsjoySupport.'],
+    ],
+    note: 'Prices may change with the dollar rate, taxes and payment system fees. The amount shown when you open the order applies.',
+    faq: 'FAQ',
+  },
+}[lang];
+
+const FAQ: Record<DonatLang, [string, string][]> = {
+  uz: [
+    ["Donat qancha vaqtda tushadi?", "PUBG Mobile UC odatda 2–5 daqiqada, Free Fire olmos 1–3 daqiqada tushadi. Standoff 2 da to'lovdan keyin darhol aktivatsiya havolasi beriladi."],
+    ["Qaysi karta bilan to'lash mumkin?", "Uzcard va Humo kartalaridan, istalgan bank ilovasi orqali (Click, Payme, Uzum va boshqalar). Buyurtmada ko'rsatilgan summani aynan o'zgarishsiz o'tkazing."],
+    ["ID'ni xato kiritsam nima bo'ladi?", "To'lashdan oldin ID bo'yicha nikingiz ko'rsatiladi. Nik sizniki bo'lmasa to'lamang. Noto'g'ri ID'ga yuborilgan donatni o'yin ishlab chiqaruvchisi ham qaytara olmaydi."],
+    ["Free Fire'ning qaysi serveri ishlaydi?", "Free Fire MDH (CIS) mintaqasi akkauntlari uchun, O'zbekiston akkauntlari shu mintaqada."],
+    ["Standoff 2 Gold qanday tushadi?", "To'lovdan keyin shu sahifada aktivatsiya havolasi chiqadi. Uni ochib, ko'rsatilgan skinni o'yin bozoriga aytilgan narxda qo'yasiz va Gold akkauntingizga tushadi."],
+    ["To'lovdan keyin donat kelmasa-chi?", "Sahifadagi buyurtma holatini kuzating. Muammo bo'lsa buyurtma raqami bilan @StarsjoySupport ga yozing, biz hal qilamiz."],
+  ],
+  ru: [
+    ['Сколько ждать донат?', 'UC PUBG Mobile обычно приходят за 2–5 минут, алмазы Free Fire за 1–3 минуты. Для Standoff 2 ссылка активации выдаётся сразу после оплаты.'],
+    ['Какой картой можно оплатить?', 'Картами Uzcard и Humo через любое банковское приложение (Click, Payme, Uzum и др.). Переведите сумму из заказа без изменений.'],
+    ['Что будет, если ошибиться в ID?', 'Перед оплатой по ID показывается ваш ник. Если ник не ваш, не оплачивайте. Донат на неверный ID не может вернуть даже разработчик игры.'],
+    ['Для какого сервера Free Fire?', 'Для аккаунтов региона СНГ (CIS), аккаунты из Узбекистана относятся к нему.'],
+    ['Как приходит Gold в Standoff 2?', 'После оплаты на этой странице появится ссылка активации. Откройте её, выставите указанный скин на рынок по указанной цене, и Gold поступит на аккаунт.'],
+    ['Что делать, если донат не пришёл?', 'Следите за статусом заказа на странице. Если есть проблема, напишите номер заказа в @StarsjoySupport, мы решим.'],
+  ],
+  en: [
+    ['How fast is the top-up?', 'PUBG Mobile UC usually arrives in 2–5 minutes, Free Fire diamonds in 1–3 minutes. For Standoff 2 the activation link is given right after payment.'],
+    ['Which cards can I use?', 'Uzcard and Humo cards through any banking app (Click, Payme, Uzum and others). Transfer the exact amount shown in the order.'],
+    ['What if I enter a wrong ID?', 'Your nickname is shown for the ID before you pay. If it is not yours, do not pay. A top-up sent to a wrong ID cannot be reversed even by the game developer.'],
+    ['Which Free Fire server is supported?', 'Accounts in the CIS region; accounts from Uzbekistan belong to it.'],
+    ['How does Standoff 2 Gold arrive?', 'After payment an activation link appears on this page. Open it, list the shown skin on the in-game market at the given price, and the Gold lands on your account.'],
+    ['What if the top-up does not arrive?', 'Watch the order status on the page. If there is a problem, message @StarsjoySupport with the order number and we will fix it.'],
+  ],
+};
+const faqs = FAQ[lang];
+
+const NavbarC = lang === 'ru' ? NavbarRu : lang === 'en' ? NavbarEn : Navbar;
+const FooterC = lang === 'ru' ? FooterRu : lang === 'en' ? FooterEn : Footer;
+
+const ld: any[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: L.home, item: `https://starsjoy.uz${lang === 'uz' ? '' : `/${lang}`}` },
+      { '@type': 'ListItem', position: 2, name: L.hub, item: `https://starsjoy.uz${donatPath(lang)}` },
+      ...(slug ? [{ '@type': 'ListItem', position: 3, name: seo.h1, item: canonical }] : []),
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+  ...shown.filter((g) => g.items.length).map((g) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `${g.title} ${g.unit}`,
+    description: GAME_SEO[g.slug]?.[lang]?.desc || seo.desc,
+    brand: { '@type': 'Brand', name: 'StarsJoy' },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'UZS',
+      lowPrice: String(Math.min(...g.items.map((i) => i.price))),
+      highPrice: String(Math.max(...g.items.map((i) => i.price))),
+      offerCount: String(g.items.length),
+      availability: 'https://schema.org/InStock',
+    },
+  })),
+];
+---
+
+<Layout title={seo.title} description={seo.desc} canonical={canonical} lang={lang} hreflangs={donatHreflangs(slug)}>
+  <NavbarC />
+  {ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}
+
+  <section class="dn-hero">
+    <div class="container">
+      <nav class="dn-crumbs" aria-label="breadcrumb">
+        <a href={lang === 'uz' ? '/' : `/${lang}`}>{L.home}</a>
+        <span>›</span>
+        {slug ? <a href={donatPath(lang)}>{L.hub}</a> : <span>{L.hub}</span>}
+        {slug && <><span>›</span><span>{seo.h1}</span></>}
+      </nav>
+      <h1 class="dn-h1">{seo.h1}</h1>
+      <p class="dn-lead">{seo.lead}</p>
+      <DonatApp lang={lang} catalog={catalog} initialGame={slug} />
+    </div>
+  </section>
+
+  <section class="dn-sec">
+    <div class="container">
+      <h2 class="dn-h2">{L.howTitle}</h2>
+      <div class="dn-grid3">
+        {L.steps.map(([h, p], i) => (
+          <div class="dn-card"><div class="dn-num">{i + 1}</div><h3>{h}</h3><p>{p}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {shown.some((g) => g.items.length) && (
+    <section class="dn-sec dn-alt">
+      <div class="container">
+        <h2 class="dn-h2">{L.priceTitle}</h2>
+        {shown.filter((g) => g.items.length).map((g) => (
+          <div class="dn-table-wrap">
+            {!slug && <h3 class="dn-h3"><a href={donatPath(lang, g.slug)}>{g.title}</a> — {L.from} {fmtSum(minPrice(g))} so'm</h3>}
+            <table class="dn-table">
+              <thead><tr><th>{L.pack}</th><th>{L.price}</th></tr></thead>
+              <tbody>{g.items.map((it) => <tr><td>{it.name}</td><td>{fmtSum(it.price)} so'm</td></tr>)}</tbody>
+            </table>
+          </div>
+        ))}
+        <p class="dn-note">{L.note}</p>
+      </div>
+    </section>
+  )}
+
+  <section class="dn-sec">
+    <div class="container">
+      <div class="dn-grid3">
+        {L.trust.map(([h, p]) => <div class="dn-card"><h3>{h}</h3><p>{p}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="dn-sec dn-alt">
+    <div class="container dn-narrow">
+      <h2 class="dn-h2">{L.faq}</h2>
+      {faqs.map(([q, a]) => (
+        <details class="dn-faq"><summary>{q}</summary><p>{a}</p></details>
+      ))}
+      {slug && (
+        <p class="dn-others">{L.other}: {['pubg-mobile', 'free-fire', 'standoff-2'].filter((s) => s !== slug).map((s, i) => (
+          <>{i > 0 && ' · '}<a href={donatPath(lang, s)}>{GAME_SEO[s][lang].h1}</a></>
+        ))}</p>
+      )}
+    </div>
+  </section>
+
+  <FooterC />
+</Layout>
+
+<style>
+  .dn-hero { padding: 110px 16px 60px; background: linear-gradient(180deg, #F5F0FF 0%, #FFFFFF 100%); }
+  .dn-crumbs { display: flex; gap: 8px; font-size: .85rem; color: var(--text-muted); margin-bottom: 18px; flex-wrap: wrap; }
+  .dn-crumbs a { color: var(--primary); text-decoration: none; }
+  .dn-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; line-height: 1.15; text-align: center; margin-bottom: 10px; }
+  .dn-lead { text-align: center; color: var(--text-muted); max-width: 640px; margin: 0 auto 28px; }
+  .dn-sec { padding: 60px 16px; }
+  .dn-alt { background: var(--bg-alt); }
+  .dn-h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; text-align: center; margin-bottom: 28px; }
+  .dn-h3 { font-size: 1.1rem; font-weight: 800; margin: 24px 0 10px; }
+  .dn-h3 a { color: var(--primary); text-decoration: none; }
+  .dn-grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .dn-card { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 20px; }
+  .dn-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 6px; }
+  .dn-card p { color: var(--text-muted); font-size: .93rem; }
+  .dn-num { width: 34px; height: 34px; border-radius: 50%; background: var(--gradient); color: #fff; font-weight: 800; display: grid; place-items: center; margin-bottom: 10px; }
+  .dn-table-wrap { max-width: 640px; margin: 0 auto; }
+  .dn-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+  .dn-table th, .dn-table td { padding: 11px 16px; text-align: left; border-bottom: 1px solid var(--border-light); font-size: .95rem; }
+  .dn-table th { background: rgba(124,58,237,.06); font-weight: 800; }
+  .dn-table td:last-child, .dn-table th:last-child { text-align: right; font-weight: 700; }
+  .dn-note { max-width: 640px; margin: 14px auto 0; font-size: .82rem; color: var(--text-muted); text-align: center; }
+  .dn-narrow { max-width: 760px; }
+  .dn-faq { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; }
+  .dn-faq summary { font-weight: 700; cursor: pointer; }
+  .dn-faq p { margin-top: 8px; color: var(--text-muted); }
+  .dn-others { margin-top: 20px; text-align: center; }
+  .dn-others a { color: var(--primary); font-weight: 700; }
+  @media (max-width: 760px) {
+    .dn-hero { padding: 96px 16px 40px; }
+    .dn-grid3 { grid-template-columns: 1fr; }
+    .dn-sec { padding: 44px 16px; }
+  }
+</style>

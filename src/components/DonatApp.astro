@@ -1,0 +1,475 @@
+---
+/**
+ * Donat do'koni: o'yin → paket → ID (nik tekshiruvi) → to'lov (karta + noyob summa, 8 daqiqa) → holat.
+ * Narx va mavjudlik backend'dan (vitahealth.uz/api/donat/*) keladi; SSR katalog bo'lsa paketlar HTML'da chiqadi.
+ */
+import { DONAT_API, fmtSum, type DonatCatalog, type DonatLang } from '../lib/donat';
+
+interface Props {
+  lang: DonatLang;
+  catalog: DonatCatalog | null;
+  initialGame?: string;
+}
+const { lang, catalog, initialGame } = Astro.props;
+
+const T = {
+  uz: {
+    game: "O'yinni tanlang", pack: 'Paketni tanlang', id: "O'yinchi ID", check: 'Tekshirish', checking: 'Tekshirilmoqda…',
+    found: 'Akkaunt topildi', notVerified: "Bu o'yinda nik ko'rsatilmaydi, ID to'g'riligiga ishonch hosil qiling",
+    contact: "Telegram yoki telefon (ixtiyoriy)", contactHint: "Muammo bo'lsa siz bilan bog'lanamiz",
+    pay: "To'lash", soon: 'Donat tez orada ishga tushadi', unavailable: 'Vaqtincha mavjud emas', loading: 'Narxlar yuklanmoqda…',
+    agree: "Noto'g'ri ID'ga yuborilgan donat qaytarilmaydi. ID'ni va nikni tekshirib to'lang.",
+    payTitle: "To'lov", payExact: "Aynan shu summani o'tkazing", payCard: 'Karta raqami', copy: 'Nusxa', copied: 'Nusxalandi',
+    payLeft: 'Qolgan vaqt', payWait: "To'lovingizni kutyapmiz. Pul tushishi bilan sahifa o'zi yangilanadi.",
+    payNote: "Summani boshqacha yoki bo'lib o'tkazsangiz to'lov avtomatik tasdiqlanmaydi.",
+    delivering: "To'lov qabul qilindi. Donat yuborilyapti…", delivered: 'Tayyor! Donat yetkazildi',
+    deliveredGame: 'akkauntingizga tushdi', linkTitle: 'Aktivatsiya havolasi',
+    linkHint: "Havolani oching va ko'rsatmaga amal qiling: ko'rsatilgan skinni o'yin bozoriga aytilgan narxda qo'yasiz va Gold akkauntingizga tushadi. Havolani hech kimga bermang.",
+    open: 'Havolani ochish', problem: "To'lov qabul qilindi, lekin yetkazishda muammo bo'ldi. Biz uni hal qilyapmiz.",
+    support: "Support", expired: "To'lov vaqti tugadi. Pul o'tkazgan bo'lsangiz, supportga chek yuboring.",
+    again: 'Yangi buyurtma', order: 'Buyurtma', back: 'Orqaga', from: 'dan',
+    errNet: "Ulanishda xato. Internetni tekshirib qayta urinib ko'ring.",
+  },
+  ru: {
+    game: 'Выберите игру', pack: 'Выберите пакет', id: 'ID игрока', check: 'Проверить', checking: 'Проверяем…',
+    found: 'Аккаунт найден', notVerified: 'В этой игре ник не показывается, убедитесь, что ID верный',
+    contact: 'Telegram или телефон (необязательно)', contactHint: 'Свяжемся, если возникнет проблема',
+    pay: 'Оплатить', soon: 'Донат скоро заработает', unavailable: 'Временно недоступно', loading: 'Загружаем цены…',
+    agree: 'Донат, отправленный на неверный ID, не возвращается. Проверьте ID и ник перед оплатой.',
+    payTitle: 'Оплата', payExact: 'Переведите ровно эту сумму', payCard: 'Номер карты', copy: 'Копировать', copied: 'Скопировано',
+    payLeft: 'Осталось', payWait: 'Ждём оплату. Как только деньги поступят, страница обновится сама.',
+    payNote: 'Если перевести другую сумму или частями, оплата не подтвердится автоматически.',
+    delivering: 'Оплата получена. Отправляем донат…', delivered: 'Готово! Донат доставлен',
+    deliveredGame: 'зачислено на аккаунт', linkTitle: 'Ссылка активации',
+    linkHint: 'Откройте ссылку и следуйте инструкции: выставите указанный скин на рынок по указанной цене, и Gold поступит на аккаунт. Никому не передавайте ссылку.',
+    open: 'Открыть ссылку', problem: 'Оплата получена, но при доставке возникла проблема. Мы уже решаем её.',
+    support: 'Поддержка', expired: 'Время оплаты истекло. Если вы перевели деньги, отправьте чек в поддержку.',
+    again: 'Новый заказ', order: 'Заказ', back: 'Назад', from: 'от',
+    errNet: 'Ошибка соединения. Проверьте интернет и попробуйте снова.',
+  },
+  en: {
+    game: 'Choose a game', pack: 'Choose a pack', id: 'Player ID', check: 'Check', checking: 'Checking…',
+    found: 'Account found', notVerified: 'This game does not show nicknames, make sure the ID is correct',
+    contact: 'Telegram or phone (optional)', contactHint: 'We will contact you if something goes wrong',
+    pay: 'Pay', soon: 'Top-up is launching soon', unavailable: 'Temporarily unavailable', loading: 'Loading prices…',
+    agree: 'A top-up sent to a wrong ID cannot be refunded. Check the ID and nickname before paying.',
+    payTitle: 'Payment', payExact: 'Transfer exactly this amount', payCard: 'Card number', copy: 'Copy', copied: 'Copied',
+    payLeft: 'Time left', payWait: 'Waiting for your payment. The page updates by itself once the money arrives.',
+    payNote: 'If you send a different amount or split it, the payment will not be confirmed automatically.',
+    delivering: 'Payment received. Sending your top-up…', delivered: 'Done! Top-up delivered',
+    deliveredGame: 'added to your account', linkTitle: 'Activation link',
+    linkHint: 'Open the link and follow the steps: list the shown skin on the in-game market at the given price and the Gold lands on your account. Do not share the link.',
+    open: 'Open link', problem: 'Payment received, but delivery hit a problem. We are already fixing it.',
+    support: 'Support', expired: 'Payment time is over. If you already transferred money, send the receipt to support.',
+    again: 'New order', order: 'Order', back: 'Back', from: 'from',
+    errNet: 'Connection error. Check your internet and try again.',
+  },
+}[lang];
+
+const games = catalog?.games ?? [];
+const startSlug = initialGame && games.some((g) => g.slug === initialGame) ? initialGame : games[0]?.slug || initialGame || 'pubg-mobile';
+const startGame = games.find((g) => g.slug === startSlug);
+const enabled = Boolean(catalog?.enabled);
+const ICON_TEXT: Record<string, string> = { 'pubg-mobile': 'PUBG', 'free-fire': 'FF', 'standoff-2': 'SO2' };
+---
+
+<div
+  class="dn-app"
+  id="dn-app"
+  data-api={DONAT_API}
+  data-lang={lang}
+  data-game={startSlug}
+  data-enabled={enabled ? '1' : '0'}
+>
+  <script type="application/json" id="dn-i18n" set:html={JSON.stringify(T)} />
+  <script type="application/json" id="dn-catalog" set:html={JSON.stringify(catalog)} />
+
+  <div class="dn-step" id="dn-shop">
+    <div class="dn-label">{T.game}</div>
+    <div class="dn-games" id="dn-games" role="tablist">
+      {games.map((g) => (
+        <button type="button" class={`dn-game${g.slug === startSlug ? ' is-on' : ''}`} data-slug={g.slug} role="tab" aria-selected={g.slug === startSlug}>
+          <span class={`dn-game-ico ico-${g.slug}`} aria-hidden="true">{ICON_TEXT[g.slug] || g.title.slice(0, 2)}</span>
+          <span class="dn-game-name">{g.title}</span>
+          <span class="dn-game-unit">{g.unit}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="dn-label">{T.pack}</div>
+    <div class="dn-items" id="dn-items">
+      {startGame
+        ? startGame.items.map((it, i) => (
+            <button type="button" class={`dn-item${i === 0 ? ' is-on' : ''}`} data-id={it.id}>
+              <span class="dn-item-name">{it.name}</span>
+              <span class="dn-item-price">{fmtSum(it.price)} so'm</span>
+            </button>
+          ))
+        : <div class="dn-muted">{T.loading}</div>}
+    </div>
+
+    <div class="dn-idbox" id="dn-idbox" hidden={startGame ? !startGame.needs_player_id : false}>
+      <label class="dn-label" for="dn-player">{T.id}</label>
+      <div class="dn-idrow">
+        <input id="dn-player" class="dn-input" inputmode="numeric" autocomplete="off" maxlength="40" placeholder={startGame?.id_hint || ''} />
+        <button type="button" class="dn-btn-ghost" id="dn-check">{T.check}</button>
+      </div>
+      <div class="dn-nick" id="dn-nick" hidden></div>
+    </div>
+
+    <label class="dn-label" for="dn-contact">{T.contact}</label>
+    <input id="dn-contact" class="dn-input" maxlength="64" placeholder="@username / +998…" />
+    <div class="dn-hint">{T.contactHint}</div>
+
+    <p class="dn-agree">{T.agree}</p>
+    <button type="button" class="dn-pay" id="dn-pay" disabled={!enabled}>
+      {enabled ? `${T.pay}` : T.soon}
+    </button>
+    <div class="dn-err" id="dn-err" hidden></div>
+  </div>
+
+  <div class="dn-step" id="dn-payment" hidden>
+    <div class="dn-pay-head">
+      <span class="dn-pay-title">{T.payTitle}</span>
+      <span class="dn-timer" id="dn-timer">8:00</span>
+    </div>
+    <div class="dn-pay-what" id="dn-pay-what"></div>
+    <div class="dn-pay-box">
+      <div class="dn-pay-label">{T.payExact}</div>
+      <div class="dn-pay-row">
+        <b class="dn-amount" id="dn-amount">—</b>
+        <button type="button" class="dn-copy" data-copy="amount">{T.copy}</button>
+      </div>
+    </div>
+    <div class="dn-pay-box">
+      <div class="dn-pay-label">{T.payCard}</div>
+      <div class="dn-pay-row">
+        <b class="dn-card" id="dn-card">—</b>
+        <button type="button" class="dn-copy" data-copy="card">{T.copy}</button>
+      </div>
+      <div class="dn-card-name" id="dn-card-name"></div>
+    </div>
+    <p class="dn-wait"><span class="dn-spin" aria-hidden="true"></span>{T.payWait}</p>
+    <p class="dn-hint">{T.payNote}</p>
+  </div>
+
+  <div class="dn-step" id="dn-status" hidden>
+    <div class="dn-status-ico" id="dn-status-ico"></div>
+    <div class="dn-status-text" id="dn-status-text"></div>
+    <div class="dn-pay-what" id="dn-status-what"></div>
+    <div class="dn-linkbox" id="dn-linkbox" hidden>
+      <div class="dn-pay-label">{T.linkTitle}</div>
+      <a class="dn-pay" id="dn-link" href="#" target="_blank" rel="noopener noreferrer">{T.open}</a>
+      <p class="dn-hint">{T.linkHint}</p>
+    </div>
+    <div class="dn-status-actions">
+      <a class="dn-btn-ghost" id="dn-support" href="https://t.me/StarsjoySupport" target="_blank" rel="noopener" hidden>{T.support}: @StarsjoySupport</a>
+      <button type="button" class="dn-btn-ghost" id="dn-again">{T.again}</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  type Item = { id: string; name: string; price: number };
+  type Game = { slug: string; title: string; unit: string; kind: string; needs_player_id: boolean; id_hint: string | null; available: boolean; items: Item[] };
+
+  const root = document.getElementById('dn-app') as HTMLElement | null;
+  if (root) {
+    const API = root.dataset.api!;
+    const lang = root.dataset.lang || 'uz';
+    const T = JSON.parse(document.getElementById('dn-i18n')!.textContent || '{}');
+    let catalog = JSON.parse(document.getElementById('dn-catalog')!.textContent || 'null');
+    let enabled = root.dataset.enabled === '1';
+    let slug = root.dataset.game || '';
+    let itemId = '';
+    let checkedFor = '';
+    let pollTimer: number | undefined;
+    let tickTimer: number | undefined;
+    let current: any = null;
+
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const fmt = (n: number) => Number(n || 0).toLocaleString('ru-RU').replace(/,/g, ' ');
+    const game = (): Game | undefined => catalog?.games?.find((g: Game) => g.slug === slug);
+    const item = (): Item | undefined => game()?.items.find((i) => i.id === itemId);
+    const showErr = (msg: string) => { const e = $('dn-err'); e.textContent = msg; e.hidden = !msg; };
+    const store = {
+      get: () => { try { return localStorage.getItem('dn_order') || ''; } catch { return ''; } },
+      set: (v: string) => { try { v ? localStorage.setItem('dn_order', v) : localStorage.removeItem('dn_order'); } catch {} },
+    };
+
+    function renderGames() {
+      $('dn-games').querySelectorAll<HTMLButtonElement>('.dn-game').forEach((b) => {
+        const on = b.dataset.slug === slug;
+        b.classList.toggle('is-on', on);
+        b.setAttribute('aria-selected', String(on));
+      });
+    }
+
+    function renderItems() {
+      const g = game();
+      const box = $('dn-items');
+      if (!g) { box.innerHTML = `<div class="dn-muted">${T.loading}</div>`; return; }
+      if (!g.available || !g.items.length) { box.innerHTML = `<div class="dn-muted">${T.unavailable}</div>`; itemId = ''; renderPay(); return; }
+      if (!g.items.some((i) => i.id === itemId)) itemId = g.items[0].id;
+      box.innerHTML = '';
+      for (const it of g.items) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'dn-item' + (it.id === itemId ? ' is-on' : '');
+        b.dataset.id = it.id;
+        b.innerHTML = `<span class="dn-item-name"></span><span class="dn-item-price">${fmt(it.price)} so'm</span>`;
+        (b.firstChild as HTMLElement).textContent = it.name;
+        box.appendChild(b);
+      }
+      const idbox = $('dn-idbox');
+      idbox.hidden = !g.needs_player_id;
+      ($('dn-player') as HTMLInputElement).placeholder = g.id_hint || '';
+      renderPay();
+    }
+
+    function renderPay() {
+      const btn = $('dn-pay') as HTMLButtonElement;
+      const it = item();
+      if (!enabled) { btn.disabled = true; btn.textContent = T.soon; return; }
+      btn.disabled = !it;
+      btn.textContent = it ? `${T.pay} — ${fmt(it.price)} so'm` : T.pay;
+    }
+
+    function setNick(text: string, ok: boolean) {
+      const n = $('dn-nick');
+      n.hidden = !text;
+      n.className = 'dn-nick ' + (ok ? 'is-ok' : 'is-bad');
+      n.textContent = text;
+    }
+
+    async function api(path: string, body?: any) {
+      const r = await fetch(API + path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {});
+      const d = await r.json().catch(() => ({}));
+      return { ok: r.ok && d.success !== false, d };
+    }
+
+    async function checkPlayer(): Promise<boolean> {
+      const g = game();
+      if (!g?.needs_player_id) return true;
+      const pid = ($('dn-player') as HTMLInputElement).value.trim().replace(/\s+/g, '');
+      if (!pid) { setNick(T.id + '?', false); return false; }
+      if (checkedFor === `${slug}:${pid}`) return true;
+      const btn = $('dn-check') as HTMLButtonElement;
+      btn.disabled = true; btn.textContent = T.checking;
+      try {
+        const { ok, d } = await api('/api/donat/check-player', { game: slug, player_id: pid, item: item()?.name });
+        if (!ok) { setNick(d.error || T.errNet, false); checkedFor = ''; return false; }
+        setNick(d.player_name ? `✓ ${T.found}: ${d.player_name}` : T.notVerified, true);
+        checkedFor = `${slug}:${pid}`;
+        return true;
+      } catch { setNick(T.errNet, false); return false; }
+      finally { btn.disabled = false; btn.textContent = T.check; }
+    }
+
+    async function startOrder() {
+      showErr('');
+      const g = game(); const it = item();
+      if (!g || !it) return;
+      if (!(await checkPlayer())) return;
+      const btn = $('dn-pay') as HTMLButtonElement;
+      btn.disabled = true;
+      try {
+        const pid = ($('dn-player') as HTMLInputElement).value.trim().replace(/\s+/g, '');
+        const { ok, d } = await api('/api/donat/order', {
+          game: slug, item: it.id, player_id: g.needs_player_id ? pid : undefined,
+          contact: ($('dn-contact') as HTMLInputElement).value.trim(), site: location.hostname, lang,
+        });
+        if (!ok) { showErr(d.error || T.errNet); return; }
+        store.set(d.token);
+        history.replaceState(null, '', `${location.pathname}?order=${encodeURIComponent(d.token)}`);
+        showPayment({ ...d, game: g.title, item: it.name, player_id: g.needs_player_id ? pid : null, state: 'awaiting_payment' });
+        poll(d.token);
+      } catch { showErr(T.errNet); }
+      finally { renderPay(); }
+    }
+
+    function fillWhat(el: HTMLElement, o: any) {
+      el.textContent = '';
+      el.append(`${o.game || ''}: `);
+      const b = document.createElement('b');
+      b.textContent = o.item || '';
+      el.append(b);
+      const tail = `${o.player_id ? ` · ID ${o.player_id}` : ''}${o.player_name ? ` (${o.player_name})` : ''}${o.order_id ? ` · ${T.order} #${o.order_id}` : ''}`;
+      el.append(tail);
+    }
+
+    function showStep(id: 'dn-shop' | 'dn-payment' | 'dn-status') {
+      for (const s of ['dn-shop', 'dn-payment', 'dn-status']) $(s).hidden = s !== id;
+      root!.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function showPayment(o: any) {
+      current = { ...current, ...o };
+      if (o.card) {
+        $('dn-card').textContent = String(o.card.number || '').replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+        $('dn-card-name').textContent = [o.card.name, o.card.type].filter(Boolean).join(' · ');
+      }
+      $('dn-amount').textContent = `${fmt(o.amount)} so'm`;
+      fillWhat($('dn-pay-what'), current);
+      showStep('dn-payment');
+      clearInterval(tickTimer);
+      const end = new Date(o.expires_at).getTime();
+      const tick = () => {
+        const s = Math.max(0, Math.round((end - Date.now()) / 1000));
+        $('dn-timer').textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+        if (s <= 0) clearInterval(tickTimer);
+      };
+      tick(); tickTimer = window.setInterval(tick, 1000);
+    }
+
+    function showStatus(o: any) {
+      current = { ...current, ...o };
+      clearInterval(tickTimer);
+      const ico = $('dn-status-ico'); const txt = $('dn-status-text');
+      const map: Record<string, [string, string]> = {
+        delivering: ['⏳', T.delivering],
+        delivered: ['✅', o.link ? T.delivered : `${T.delivered}: ${o.item} ${T.deliveredGame}`],
+        problem: ['⚠️', T.problem],
+        expired: ['⌛', T.expired],
+      };
+      const [i, t] = map[o.state] || ['⏳', T.delivering];
+      ico.textContent = i; txt.textContent = t;
+      fillWhat($('dn-status-what'), current);
+      $('dn-linkbox').hidden = !o.link;
+      if (o.link) ($('dn-link') as HTMLAnchorElement).href = o.link;
+      $('dn-support').hidden = !(o.state === 'problem' || o.state === 'expired');
+      $('dn-again').hidden = o.state === 'delivering';
+      showStep('dn-status');
+    }
+
+    async function poll(token: string) {
+      clearTimeout(pollTimer);
+      try {
+        const r = await fetch(`${API}/api/donat/order/${encodeURIComponent(token)}`, { cache: 'no-store' });
+        if (r.status === 404) { store.set(''); return; }
+        const o = await r.json();
+        if (o.success) {
+          if (o.state === 'awaiting_payment') {
+            if ($('dn-payment').hidden) showPayment({ ...o, card: o.card || current?.card });
+          } else {
+            showStatus(o);
+            if (o.state === 'delivered' || o.state === 'expired') { if (o.state === 'expired') store.set(''); return; }
+          }
+        }
+      } catch { /* tarmoq — qayta urinamiz */ }
+      pollTimer = window.setTimeout(() => poll(token), current?.state === 'delivering' || !$('dn-status').hidden ? 5000 : 4000);
+    }
+
+    // Hodisalar
+    $('dn-games').addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLButtonElement>('.dn-game');
+      if (!b || b.dataset.slug === slug) return;
+      slug = b.dataset.slug!; checkedFor = ''; setNick('', true); showErr('');
+      renderGames(); renderItems();
+    });
+    $('dn-items').addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLButtonElement>('.dn-item');
+      if (!b) return;
+      itemId = b.dataset.id!;
+      $('dn-items').querySelectorAll('.dn-item').forEach((x) => x.classList.toggle('is-on', x === b));
+      renderPay();
+    });
+    $('dn-check').addEventListener('click', () => { checkedFor = ''; checkPlayer(); });
+    $('dn-player').addEventListener('input', () => { checkedFor = ''; setNick('', true); });
+    $('dn-pay').addEventListener('click', startOrder);
+    $('dn-again').addEventListener('click', () => {
+      clearTimeout(pollTimer); store.set(''); current = null;
+      history.replaceState(null, '', location.pathname);
+      showStep('dn-shop');
+    });
+    root.querySelectorAll<HTMLButtonElement>('.dn-copy').forEach((b) => b.addEventListener('click', async () => {
+      const v = b.dataset.copy === 'amount' ? String(current?.amount || '') : String(current?.card?.number || '').replace(/\D/g, '');
+      try { await navigator.clipboard.writeText(v); b.textContent = T.copied; setTimeout(() => (b.textContent = T.copy), 1500); } catch {}
+    }));
+
+    // Boshlash: katalogni yangilash + davom etayotgan buyurtma
+    (async () => {
+      try {
+        const r = await fetch(`${API}/api/donat/catalog`);
+        const d = await r.json();
+        if (d.success) { catalog = d; enabled = Boolean(d.enabled); if (!game() && d.games[0]) slug = d.games[0].slug; renderGames(); renderItems(); }
+      } catch { /* SSR katalog bilan qolamiz */ }
+    })();
+    if (!itemId) itemId = game()?.items[0]?.id || '';
+    renderPay();
+
+    const urlToken = new URLSearchParams(location.search).get('order');
+    const token = urlToken || store.get();
+    if (token) {
+      current = {};
+      poll(token);
+    }
+  }
+</script>
+
+<style>
+  .dn-app { background: #fff; border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow-md); padding: 24px; max-width: 720px; margin: 0 auto; }
+  .dn-step[hidden] { display: none; }
+  .dn-label { font-size: .8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .6px; margin: 18px 0 10px; display: block; }
+  .dn-label:first-child { margin-top: 0; }
+  .dn-games { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .dn-game { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 8px; border: 2px solid var(--border); border-radius: 16px; background: var(--bg-alt); cursor: pointer; font: inherit; color: var(--text); transition: border-color .15s, transform .15s; }
+  .dn-game:hover { transform: translateY(-1px); }
+  .dn-game.is-on { border-color: var(--primary); background: rgba(124,58,237,.06); }
+  .dn-game-ico { width: 44px; height: 44px; border-radius: 12px; background: var(--gradient); display: grid; place-items: center; color: #fff; font-weight: 900; font-size: .72rem; letter-spacing: .3px; }
+  .ico-pubg-mobile { background: linear-gradient(135deg,#F2A900,#B86B00); }
+  .ico-free-fire { background: linear-gradient(135deg,#FF6A00,#E0182D); }
+  .ico-standoff-2 { background: linear-gradient(135deg,#3B82F6,#1E3A8A); }
+  .dn-game-name { font-weight: 700; font-size: .95rem; text-align: center; line-height: 1.2; }
+  .dn-game-unit { font-size: .75rem; color: var(--text-muted); }
+  .dn-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .dn-item { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 14px; border: 2px solid var(--border); border-radius: 14px; background: #fff; cursor: pointer; font: inherit; color: var(--text); text-align: left; }
+  .dn-item.is-on { border-color: var(--primary); background: rgba(124,58,237,.05); }
+  .dn-item-name { font-weight: 700; font-size: .95rem; }
+  .dn-item-price { color: var(--primary); font-weight: 700; font-size: .9rem; }
+  .dn-muted { color: var(--text-muted); padding: 12px 0; }
+  .dn-idrow { display: flex; gap: 8px; }
+  .dn-input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 14px; font: inherit; font-size: 1rem; color: var(--text); background: #fff; outline: none; }
+  .dn-input:focus { border-color: var(--primary); }
+  .dn-btn-ghost { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border: 2px solid var(--border); border-radius: 14px; background: #fff; color: var(--text); font: inherit; font-weight: 700; cursor: pointer; white-space: nowrap; text-decoration: none; }
+  .dn-btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+  .dn-btn-ghost[hidden] { display: none; }
+  .dn-nick { margin-top: 8px; font-weight: 600; font-size: .92rem; }
+  .dn-nick.is-ok { color: #059669; }
+  .dn-nick.is-bad { color: #DC2626; }
+  .dn-hint { font-size: .82rem; color: var(--text-muted); margin-top: 6px; }
+  .dn-agree { font-size: .82rem; color: var(--text-muted); margin: 18px 0 12px; }
+  .dn-pay { display: flex; width: 100%; justify-content: center; padding: 16px; border: none; border-radius: 16px; background: var(--gradient); color: #fff; font: inherit; font-size: 1.05rem; font-weight: 800; cursor: pointer; text-decoration: none; }
+  .dn-pay:disabled { opacity: .5; cursor: not-allowed; }
+  .dn-err { margin-top: 10px; color: #DC2626; font-weight: 600; font-size: .92rem; }
+  .dn-err[hidden], .dn-nick[hidden] { display: none; }
+  .dn-pay-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .dn-pay-title { font-size: 1.3rem; font-weight: 800; }
+  .dn-timer { font-variant-numeric: tabular-nums; font-weight: 800; color: var(--primary); background: rgba(124,58,237,.08); padding: 6px 12px; border-radius: 10px; }
+  .dn-pay-what { color: var(--text-muted); font-size: .92rem; margin-bottom: 14px; }
+  .dn-pay-box { border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; margin-bottom: 10px; background: var(--bg-alt); }
+  .dn-pay-label { font-size: .78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+  .dn-pay-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .dn-amount { font-size: 1.6rem; font-weight: 900; color: var(--text); }
+  .dn-card { font-size: 1.25rem; font-weight: 800; letter-spacing: 1px; font-variant-numeric: tabular-nums; }
+  .dn-card-name { font-size: .85rem; color: var(--text-muted); margin-top: 4px; }
+  .dn-copy { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; font: inherit; font-weight: 700; font-size: .85rem; cursor: pointer; color: var(--primary); }
+  .dn-wait { display: flex; gap: 10px; align-items: center; font-weight: 600; margin-top: 14px; }
+  .dn-spin { width: 18px; height: 18px; border-radius: 50%; border: 3px solid rgba(124,58,237,.2); border-top-color: var(--primary); animation: dnspin 1s linear infinite; flex: none; }
+  @keyframes dnspin { to { transform: rotate(360deg); } }
+  .dn-status-ico { font-size: 2.6rem; text-align: center; }
+  .dn-status-text { text-align: center; font-size: 1.2rem; font-weight: 800; margin: 8px 0 6px; }
+  #dn-status .dn-pay-what { text-align: center; }
+  .dn-linkbox { border: 2px dashed var(--primary); border-radius: 16px; padding: 16px; margin: 14px 0; }
+  .dn-linkbox[hidden] { display: none; }
+  .dn-status-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+  @media (max-width: 560px) {
+    .dn-app { padding: 18px 14px; border-radius: 20px; }
+    .dn-games { gap: 8px; }
+    .dn-game { padding: 12px 4px; }
+    .dn-game-name { font-size: .82rem; }
+    .dn-items { grid-template-columns: repeat(2, 1fr); }
+    .dn-amount { font-size: 1.35rem; }
+    .dn-card { font-size: 1.05rem; }
+  }
+</style>
