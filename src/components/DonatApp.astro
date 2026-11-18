@@ -1,7 +1,8 @@
 ---
 /**
- * Donat do'koni: o'yin → paket → ID (nik tekshiruvi) → to'lov (karta + noyob summa, 8 daqiqa) → holat.
- * Narx va mavjudlik backend'dan (vitahealth.uz/api/donat/*) keladi; SSR katalog bo'lsa paketlar HTML'da chiqadi.
+ * Donat do'koni: 1 o'yin → 2 paket → 3 ID (nik tekshiruvi) → 4 to'lov (karta + noyob summa, 8 daqiqa) → holat.
+ * Narx va mavjudlik backend'dan (vitahealth.uz/api/donat/*); SSR katalog bo'lsa paketlar HTML'da chiqadi.
+ * Lokal dev'da brauzer so'rovlari /donat-api proksi orqali ketadi (astro.config → vite.server.proxy).
  */
 import { DONAT_API, fmtSum, type DonatCatalog, type DonatLang } from '../lib/donat';
 
@@ -11,160 +12,229 @@ interface Props {
   initialGame?: string;
 }
 const { lang, catalog, initialGame } = Astro.props;
+const API_BASE = import.meta.env.DEV ? '/donat-api' : DONAT_API;
 
 const T = {
   uz: {
-    game: "O'yinni tanlang", pack: 'Paketni tanlang', id: "O'yinchi ID", check: 'Tekshirish', checking: 'Tekshirilmoqda…',
-    found: 'Akkaunt topildi', notVerified: "Bu o'yinda nik ko'rsatilmaydi, ID to'g'riligiga ishonch hosil qiling",
-    contact: "Telegram yoki telefon (ixtiyoriy)", contactHint: "Muammo bo'lsa siz bilan bog'lanamiz",
-    pay: "To'lash", soon: 'Donat tez orada ishga tushadi', unavailable: 'Vaqtincha mavjud emas', loading: 'Narxlar yuklanmoqda…',
-    agree: "Noto'g'ri ID'ga yuborilgan donat qaytarilmaydi. ID'ni va nikni tekshirib to'lang.",
-    payTitle: "To'lov", payExact: "Aynan shu summani o'tkazing", payCard: 'Karta raqami', copy: 'Nusxa', copied: 'Nusxalandi',
-    payLeft: 'Qolgan vaqt', payWait: "To'lovingizni kutyapmiz. Pul tushishi bilan sahifa o'zi yangilanadi.",
-    payNote: "Summani boshqacha yoki bo'lib o'tkazsangiz to'lov avtomatik tasdiqlanmaydi.",
-    delivering: "To'lov qabul qilindi. Donat yuborilyapti…", delivered: 'Tayyor! Donat yetkazildi',
-    deliveredGame: 'akkauntingizga tushdi', linkTitle: 'Aktivatsiya havolasi',
-    linkHint: "Havolani oching va ko'rsatmaga amal qiling: ko'rsatilgan skinni o'yin bozoriga aytilgan narxda qo'yasiz va Gold akkauntingizga tushadi. Havolani hech kimga bermang.",
-    open: 'Havolani ochish', problem: "To'lov qabul qilindi, lekin yetkazishda muammo bo'ldi. Biz uni hal qilyapmiz.",
-    support: "Support", expired: "To'lov vaqti tugadi. Pul o'tkazgan bo'lsangiz, supportga chek yuboring.",
-    again: 'Yangi buyurtma', order: 'Buyurtma', back: 'Orqaga', from: 'dan',
-    errNet: "Ulanishda xato. Internetni tekshirib qayta urinib ko'ring.",
+    s1: "O'yinni tanlang", s2: 'Paketni tanlang', s3: "O'yinchi ID", s4: "Aloqa (ixtiyoriy)",
+    currency: 'Valyuta', passes: 'Obuna va passlar', popular: 'Ommabop',
+    idPh: 'Masalan: 51221257198', idWhere: 'ID qayerda?', check: 'Tekshirish', checking: 'Tekshirilmoqda…',
+    found: 'Akkaunt topildi', notVerified: "Bu o'yinda nik ko'rinmaydi, ID to'g'riligini tekshiring", needId: "ID'ni kiriting",
+    idHelp: {
+      'pubg-mobile': "O'yinga kiring → chap yuqoridagi avatarga bosing. Nik ostidagi raqam sizning Player ID'ingiz (odatda 10–11 raqam).",
+      'free-fire': "O'yinga kiring → chap yuqoridagi profil rasmiga bosing. Nik ostidagi raqam sizning UID'ingiz.",
+    } as Record<string, string>,
+    gift: "Standoff 2 uchun ID kerak emas: to'lovdan keyin aktivatsiya havolasi beriladi.",
+    contactPh: 'Telegram @username yoki telefon', contactHint: "Muammo bo'lsa siz bilan bog'lanamiz",
+    pay: "To'lash", pickPack: 'Paketni tanlang', enterId: "ID'ni kiriting", more: 'Yana {n} ta', less: 'Yig\'ish', selected: 'Tanlandi', soon: 'Tez orada', unavailable: 'Vaqtincha mavjud emas', loading: 'Narxlar yuklanmoqda…',
+    agree: "Noto'g'ri ID'ga yuborilgan donat qaytarilmaydi. To'lashdan oldin nikni tekshiring.",
+    payTitle: "To'lov", payLeft: 'qoldi', amount: "O'tkaziladigan summa", card: 'Karta', copy: 'Nusxa', copied: '✓ Nusxalandi',
+    howPay: ["Bank ilovangizni oching (Click, Payme, Uzum…)", "Shu kartaga o'tkazma qiling", "Summani aynan shunday yozing"],
+    payWait: "To'lovni kutyapmiz. Pul tushishi bilan avtomatik yuboramiz.",
+    payNote: "Boshqa summa yoki bo'lib o'tkazilsa, to'lov avtomatik tasdiqlanmaydi.",
+    cancel: 'Bekor qilish',
+    st: ["To'landi", 'Yuborilmoqda', 'Yetkazildi'],
+    delivering: "To'lov qabul qilindi! Donat yuborilyapti…", delivered: 'Donat yetkazildi!',
+    deliveredGame: 'akkauntingizga tushdi. Rahmat!', linkTitle: 'Aktivatsiya havolasi',
+    linkHint: "Havolani oching: ko'rsatilgan skinni o'yin bozoriga aytilgan narxda qo'yasiz va Gold akkauntingizga tushadi. Havolani hech kimga bermang.",
+    open: 'Havolani ochish', problem: "To'lov qabul qilindi, lekin yetkazishda muammo bo'ldi. Biz uni hal qilyapmiz, pulingiz kuymaydi.",
+    expired: "To'lov vaqti tugadi. Pul o'tkazgan bo'lsangiz, chekni supportga yuboring.",
+    support: 'Supportga yozish', again: 'Yana xarid qilish', order: 'Buyurtma',
+    errNet: "Ulanishda xato. Internetni tekshirib qayta urinib ko'ring.", sum: "so'm",
   },
   ru: {
-    game: 'Выберите игру', pack: 'Выберите пакет', id: 'ID игрока', check: 'Проверить', checking: 'Проверяем…',
-    found: 'Аккаунт найден', notVerified: 'В этой игре ник не показывается, убедитесь, что ID верный',
-    contact: 'Telegram или телефон (необязательно)', contactHint: 'Свяжемся, если возникнет проблема',
-    pay: 'Оплатить', soon: 'Донат скоро заработает', unavailable: 'Временно недоступно', loading: 'Загружаем цены…',
-    agree: 'Донат, отправленный на неверный ID, не возвращается. Проверьте ID и ник перед оплатой.',
-    payTitle: 'Оплата', payExact: 'Переведите ровно эту сумму', payCard: 'Номер карты', copy: 'Копировать', copied: 'Скопировано',
-    payLeft: 'Осталось', payWait: 'Ждём оплату. Как только деньги поступят, страница обновится сама.',
+    s1: 'Выберите игру', s2: 'Выберите пакет', s3: 'ID игрока', s4: 'Контакт (необязательно)',
+    currency: 'Валюта', passes: 'Подписки и пропуски', popular: 'Популярно',
+    idPh: 'Например: 51221257198', idWhere: 'Где найти ID?', check: 'Проверить', checking: 'Проверяем…',
+    found: 'Аккаунт найден', notVerified: 'В этой игре ник не показывается, проверьте ID', needId: 'Введите ID',
+    idHelp: {
+      'pubg-mobile': 'Зайдите в игру → нажмите на аватар слева вверху. Число под ником — ваш Player ID (обычно 10–11 цифр).',
+      'free-fire': 'Зайдите в игру → нажмите на аватар слева вверху. Число под ником — ваш UID.',
+    } as Record<string, string>,
+    gift: 'Для Standoff 2 ID не нужен: после оплаты вы получите ссылку активации.',
+    contactPh: 'Telegram @username или телефон', contactHint: 'Свяжемся, если возникнет проблема',
+    pay: 'Оплатить', pickPack: 'Выберите пакет', enterId: 'Введите ID', more: 'Ещё {n}', less: 'Свернуть', selected: 'Выбрано', soon: 'Скоро запуск', unavailable: 'Временно недоступно', loading: 'Загружаем цены…',
+    agree: 'Донат на неверный ID не возвращается. Проверьте ник перед оплатой.',
+    payTitle: 'Оплата', payLeft: 'осталось', amount: 'Сумма перевода', card: 'Карта', copy: 'Копировать', copied: '✓ Скопировано',
+    howPay: ['Откройте банковское приложение (Click, Payme, Uzum…)', 'Сделайте перевод на эту карту', 'Укажите сумму точно'],
+    payWait: 'Ждём оплату. Как только деньги поступят, отправим автоматически.',
     payNote: 'Если перевести другую сумму или частями, оплата не подтвердится автоматически.',
-    delivering: 'Оплата получена. Отправляем донат…', delivered: 'Готово! Донат доставлен',
-    deliveredGame: 'зачислено на аккаунт', linkTitle: 'Ссылка активации',
-    linkHint: 'Откройте ссылку и следуйте инструкции: выставите указанный скин на рынок по указанной цене, и Gold поступит на аккаунт. Никому не передавайте ссылку.',
-    open: 'Открыть ссылку', problem: 'Оплата получена, но при доставке возникла проблема. Мы уже решаем её.',
-    support: 'Поддержка', expired: 'Время оплаты истекло. Если вы перевели деньги, отправьте чек в поддержку.',
-    again: 'Новый заказ', order: 'Заказ', back: 'Назад', from: 'от',
-    errNet: 'Ошибка соединения. Проверьте интернет и попробуйте снова.',
+    cancel: 'Отменить',
+    st: ['Оплачено', 'Отправляем', 'Доставлено'],
+    delivering: 'Оплата получена! Отправляем донат…', delivered: 'Донат доставлен!',
+    deliveredGame: 'зачислено на аккаунт. Спасибо!', linkTitle: 'Ссылка активации',
+    linkHint: 'Откройте ссылку: выставите указанный скин на рынок по указанной цене, и Gold поступит на аккаунт. Никому не передавайте ссылку.',
+    open: 'Открыть ссылку', problem: 'Оплата получена, но при доставке возникла проблема. Мы уже решаем её, деньги не пропадут.',
+    expired: 'Время оплаты истекло. Если вы перевели деньги, отправьте чек в поддержку.',
+    support: 'Написать в поддержку', again: 'Купить ещё', order: 'Заказ',
+    errNet: 'Ошибка соединения. Проверьте интернет и попробуйте снова.', sum: 'сум',
   },
   en: {
-    game: 'Choose a game', pack: 'Choose a pack', id: 'Player ID', check: 'Check', checking: 'Checking…',
-    found: 'Account found', notVerified: 'This game does not show nicknames, make sure the ID is correct',
-    contact: 'Telegram or phone (optional)', contactHint: 'We will contact you if something goes wrong',
-    pay: 'Pay', soon: 'Top-up is launching soon', unavailable: 'Temporarily unavailable', loading: 'Loading prices…',
-    agree: 'A top-up sent to a wrong ID cannot be refunded. Check the ID and nickname before paying.',
-    payTitle: 'Payment', payExact: 'Transfer exactly this amount', payCard: 'Card number', copy: 'Copy', copied: 'Copied',
-    payLeft: 'Time left', payWait: 'Waiting for your payment. The page updates by itself once the money arrives.',
-    payNote: 'If you send a different amount or split it, the payment will not be confirmed automatically.',
-    delivering: 'Payment received. Sending your top-up…', delivered: 'Done! Top-up delivered',
-    deliveredGame: 'added to your account', linkTitle: 'Activation link',
-    linkHint: 'Open the link and follow the steps: list the shown skin on the in-game market at the given price and the Gold lands on your account. Do not share the link.',
-    open: 'Open link', problem: 'Payment received, but delivery hit a problem. We are already fixing it.',
-    support: 'Support', expired: 'Payment time is over. If you already transferred money, send the receipt to support.',
-    again: 'New order', order: 'Order', back: 'Back', from: 'from',
-    errNet: 'Connection error. Check your internet and try again.',
+    s1: 'Choose a game', s2: 'Choose a pack', s3: 'Player ID', s4: 'Contact (optional)',
+    currency: 'Currency', passes: 'Passes & subscriptions', popular: 'Popular',
+    idPh: 'e.g. 51221257198', idWhere: 'Where is my ID?', check: 'Check', checking: 'Checking…',
+    found: 'Account found', notVerified: 'This game does not show nicknames, double-check the ID', needId: 'Enter your ID',
+    idHelp: {
+      'pubg-mobile': 'Open the game → tap your avatar top-left. The number under your nickname is your Player ID (usually 10–11 digits).',
+      'free-fire': 'Open the game → tap your avatar top-left. The number under your nickname is your UID.',
+    } as Record<string, string>,
+    gift: 'No ID needed for Standoff 2: you get an activation link after payment.',
+    contactPh: 'Telegram @username or phone', contactHint: 'We will contact you if something goes wrong',
+    pay: 'Pay', pickPack: 'Choose a pack', enterId: 'Enter your ID', more: '{n} more', less: 'Show less', selected: 'Selected', soon: 'Launching soon', unavailable: 'Temporarily unavailable', loading: 'Loading prices…',
+    agree: 'A top-up sent to a wrong ID cannot be refunded. Check the nickname before paying.',
+    payTitle: 'Payment', payLeft: 'left', amount: 'Amount to transfer', card: 'Card', copy: 'Copy', copied: '✓ Copied',
+    howPay: ['Open your banking app (Click, Payme, Uzum…)', 'Transfer to this card', 'Enter the amount exactly'],
+    payWait: 'Waiting for your payment. We send the top-up automatically once it arrives.',
+    payNote: 'A different or split amount will not be confirmed automatically.',
+    cancel: 'Cancel',
+    st: ['Paid', 'Sending', 'Delivered'],
+    delivering: 'Payment received! Sending your top-up…', delivered: 'Top-up delivered!',
+    deliveredGame: 'added to your account. Thank you!', linkTitle: 'Activation link',
+    linkHint: 'Open the link: list the shown skin on the in-game market at the given price and the Gold lands on your account. Do not share the link.',
+    open: 'Open link', problem: 'Payment received, but delivery hit a problem. We are fixing it, your money is safe.',
+    expired: 'Payment time is over. If you already transferred money, send the receipt to support.',
+    support: 'Contact support', again: 'Buy again', order: 'Order',
+    errNet: 'Connection error. Check your internet and try again.', sum: 'UZS',
   },
 }[lang];
+
+const UNIT: Record<string, Record<DonatLang, string>> = {
+  UC: { uz: 'UC', ru: 'UC', en: 'UC' },
+  Diamonds: { uz: 'olmos', ru: 'алмазов', en: 'diamonds' },
+  Gold: { uz: 'Gold', ru: 'Gold', en: 'Gold' },
+};
+
+const SUB: Record<string, Record<DonatLang, string>> = {
+  'pubg-mobile': { uz: 'UC va Prime', ru: 'UC и Prime', en: 'UC & Prime' },
+  'free-fire': { uz: 'Olmos', ru: 'Алмазы', en: 'Diamonds' },
+  'standoff-2': { uz: 'Gold', ru: 'Gold', en: 'Gold' },
+};
 
 const games = catalog?.games ?? [];
 const startSlug = initialGame && games.some((g) => g.slug === initialGame) ? initialGame : games[0]?.slug || initialGame || 'pubg-mobile';
 const startGame = games.find((g) => g.slug === startSlug);
 const enabled = Boolean(catalog?.enabled);
-const ICON_TEXT: Record<string, string> = { 'pubg-mobile': 'PUBG', 'free-fire': 'FF', 'standoff-2': 'SO2' };
 ---
 
 <div
   class="dn-app"
   id="dn-app"
-  data-api={DONAT_API}
+  data-api={API_BASE}
   data-lang={lang}
   data-game={startSlug}
   data-enabled={enabled ? '1' : '0'}
 >
-  <script type="application/json" id="dn-i18n" set:html={JSON.stringify(T)} />
+  <script type="application/json" id="dn-i18n" set:html={JSON.stringify({ ...T, UNIT, SUB })} />
   <script type="application/json" id="dn-catalog" set:html={JSON.stringify(catalog)} />
 
+  <!-- ============ DO'KON ============ -->
   <div class="dn-step" id="dn-shop">
-    <div class="dn-label">{T.game}</div>
+    <div class="dn-sh is-done"><span class="dn-n">1</span>{T.s1}</div>
     <div class="dn-games" id="dn-games" role="tablist">
       {games.map((g) => (
-        <button type="button" class={`dn-game${g.slug === startSlug ? ' is-on' : ''}`} data-slug={g.slug} role="tab" aria-selected={g.slug === startSlug}>
-          <span class={`dn-game-ico ico-${g.slug}`} aria-hidden="true">{ICON_TEXT[g.slug] || g.title.slice(0, 2)}</span>
+        <button type="button" class={`dn-game g-${g.slug}${g.slug === startSlug ? ' is-on' : ''}`} data-slug={g.slug} role="tab" aria-selected={g.slug === startSlug}>
+          <img class="dn-game-art" src={`/images/donat/${g.slug}.png`} alt={g.title} width="64" height="64" loading="eager" decoding="async" />
           <span class="dn-game-name">{g.title}</span>
-          <span class="dn-game-unit">{g.unit}</span>
+          <span class="dn-game-sub">{SUB[g.slug]?.[lang] || g.unit}</span>
         </button>
       ))}
     </div>
 
-    <div class="dn-label">{T.pack}</div>
-    <div class="dn-items" id="dn-items">
-      {startGame
-        ? startGame.items.map((it, i) => (
+    <div class="dn-sh" id="dn-sh2"><span class="dn-n">2</span>{T.s2}</div>
+    <div id="dn-items">
+      {startGame ? (
+        <div class="dn-items">
+          {startGame.items.map((it, i) => (
             <button type="button" class={`dn-item${i === 0 ? ' is-on' : ''}`} data-id={it.id}>
               <span class="dn-item-name">{it.name}</span>
-              <span class="dn-item-price">{fmtSum(it.price)} so'm</span>
+              <span class="dn-item-price">{fmtSum(it.price)} {T.sum}</span>
             </button>
-          ))
-        : <div class="dn-muted">{T.loading}</div>}
+          ))}
+        </div>
+      ) : <div class="dn-muted">{T.loading}</div>}
     </div>
 
-    <div class="dn-idbox" id="dn-idbox" hidden={startGame ? !startGame.needs_player_id : false}>
-      <label class="dn-label" for="dn-player">{T.id}</label>
-      <div class="dn-idrow">
-        <input id="dn-player" class="dn-input" inputmode="numeric" autocomplete="off" maxlength="40" placeholder={startGame?.id_hint || ''} />
-        <button type="button" class="dn-btn-ghost" id="dn-check">{T.check}</button>
+    <div id="dn-idbox" hidden={startGame ? !startGame.needs_player_id : false}>
+      <div class="dn-sh" id="dn-sh3"><span class="dn-n">3</span>{T.s3}
+        <button type="button" class="dn-where" id="dn-where">{T.idWhere}</button>
+      </div>
+      <div class="dn-help" id="dn-help" hidden></div>
+      <div class="dn-idwrap">
+        <input id="dn-player" class="dn-input" inputmode="numeric" autocomplete="off" maxlength="40" placeholder={T.idPh} />
+        <button type="button" class="dn-check" id="dn-check">{T.check}</button>
       </div>
       <div class="dn-nick" id="dn-nick" hidden></div>
     </div>
+    <div class="dn-giftnote" id="dn-giftnote" hidden={startGame ? startGame.needs_player_id : true}>🔗 {T.gift}</div>
 
-    <label class="dn-label" for="dn-contact">{T.contact}</label>
-    <input id="dn-contact" class="dn-input" maxlength="64" placeholder="@username / +998…" />
-    <div class="dn-hint">{T.contactHint}</div>
+    <details class="dn-contact">
+      <summary>{T.s4}</summary>
+      <input id="dn-contact" class="dn-input" maxlength="64" placeholder={T.contactPh} />
+      <div class="dn-hint">{T.contactHint}</div>
+    </details>
 
-    <p class="dn-agree">{T.agree}</p>
-    <button type="button" class="dn-pay" id="dn-pay" disabled={!enabled}>
-      {enabled ? `${T.pay}` : T.soon}
-    </button>
+    <div class="dn-bar" id="dn-bar">
+      <div class="dn-bar-info">
+        <span class="dn-bar-v" id="dn-bar-v">—</span>
+        <span class="dn-bar-p" id="dn-bar-p"></span>
+      </div>
+      <button type="button" class="dn-pay" id="dn-pay" disabled={!enabled}>{enabled ? T.pay : T.soon}</button>
+    </div>
+    <p class="dn-agree">🛡️ {T.agree}</p>
     <div class="dn-err" id="dn-err" hidden></div>
   </div>
 
+  <!-- ============ TO'LOV ============ -->
   <div class="dn-step" id="dn-payment" hidden>
     <div class="dn-pay-head">
-      <span class="dn-pay-title">{T.payTitle}</span>
-      <span class="dn-timer" id="dn-timer">8:00</span>
+      <div>
+        <div class="dn-pay-title">{T.payTitle}</div>
+        <div class="dn-what" id="dn-pay-what"></div>
+      </div>
+      <div class="dn-timer"><b id="dn-timer">8:00</b><span>{T.payLeft}</span></div>
     </div>
-    <div class="dn-pay-what" id="dn-pay-what"></div>
-    <div class="dn-pay-box">
-      <div class="dn-pay-label">{T.payExact}</div>
-      <div class="dn-pay-row">
+    <div class="dn-progress"><span id="dn-progress"></span></div>
+
+    <div class="dn-amount-box">
+      <div class="dn-cap">{T.amount}</div>
+      <div class="dn-amount-row">
         <b class="dn-amount" id="dn-amount">—</b>
         <button type="button" class="dn-copy" data-copy="amount">{T.copy}</button>
       </div>
     </div>
-    <div class="dn-pay-box">
-      <div class="dn-pay-label">{T.payCard}</div>
-      <div class="dn-pay-row">
-        <b class="dn-card" id="dn-card">—</b>
-        <button type="button" class="dn-copy" data-copy="card">{T.copy}</button>
+
+    <div class="dn-bank">
+      <div class="dn-bank-top"><span>{T.card}</span><span class="dn-bank-brand" id="dn-card-brand"></span></div>
+      <div class="dn-bank-num" id="dn-card">—</div>
+      <div class="dn-bank-bottom">
+        <span id="dn-card-name"></span>
+        <button type="button" class="dn-copy dn-copy-w" data-copy="card">{T.copy}</button>
       </div>
-      <div class="dn-card-name" id="dn-card-name"></div>
     </div>
-    <p class="dn-wait"><span class="dn-spin" aria-hidden="true"></span>{T.payWait}</p>
+
+    <ol class="dn-howpay">{T.howPay.map((s) => <li>{s}</li>)}</ol>
+
+    <div class="dn-wait"><span class="dn-dots"><i></i><i></i><i></i></span>{T.payWait}</div>
     <p class="dn-hint">{T.payNote}</p>
+    <button type="button" class="dn-link-btn" id="dn-cancel">{T.cancel}</button>
   </div>
 
+  <!-- ============ HOLAT ============ -->
   <div class="dn-step" id="dn-status" hidden>
+    <ol class="dn-track" id="dn-track">
+      {T.st.map((s, i) => <li data-i={i}><span class="dn-dot"></span>{s}</li>)}
+    </ol>
     <div class="dn-status-ico" id="dn-status-ico"></div>
     <div class="dn-status-text" id="dn-status-text"></div>
-    <div class="dn-pay-what" id="dn-status-what"></div>
+    <div class="dn-what dn-center" id="dn-status-what"></div>
     <div class="dn-linkbox" id="dn-linkbox" hidden>
-      <div class="dn-pay-label">{T.linkTitle}</div>
-      <a class="dn-pay" id="dn-link" href="#" target="_blank" rel="noopener noreferrer">{T.open}</a>
+      <div class="dn-cap">🔗 {T.linkTitle}</div>
+      <a class="dn-pay dn-pay-full" id="dn-link" href="#" target="_blank" rel="noopener noreferrer">{T.open}</a>
       <p class="dn-hint">{T.linkHint}</p>
     </div>
     <div class="dn-status-actions">
-      <a class="dn-btn-ghost" id="dn-support" href="https://t.me/StarsjoySupport" target="_blank" rel="noopener" hidden>{T.support}: @StarsjoySupport</a>
-      <button type="button" class="dn-btn-ghost" id="dn-again">{T.again}</button>
+      <a class="dn-ghost" id="dn-support" href="https://t.me/StarsjoySupport" target="_blank" rel="noopener" hidden>💬 {T.support}</a>
+      <button type="button" class="dn-ghost" id="dn-again">{T.again}</button>
     </div>
   </div>
 </div>
@@ -176,26 +246,51 @@ const ICON_TEXT: Record<string, string> = { 'pubg-mobile': 'PUBG', 'free-fire': 
   const root = document.getElementById('dn-app') as HTMLElement | null;
   if (root) {
     const API = root.dataset.api!;
-    const lang = root.dataset.lang || 'uz';
+    const lang = (root.dataset.lang || 'uz') as 'uz' | 'ru' | 'en';
     const T = JSON.parse(document.getElementById('dn-i18n')!.textContent || '{}');
     let catalog = JSON.parse(document.getElementById('dn-catalog')!.textContent || 'null');
     let enabled = root.dataset.enabled === '1';
     let slug = root.dataset.game || '';
     let itemId = '';
     let checkedFor = '';
+    let checkTimer: number | undefined;
     let pollTimer: number | undefined;
     let tickTimer: number | undefined;
-    let current: any = null;
+    let current: any = {};
 
     const $ = (id: string) => document.getElementById(id) as HTMLElement;
     const fmt = (n: number) => Number(n || 0).toLocaleString('ru-RU').replace(/,/g, ' ');
     const game = (): Game | undefined => catalog?.games?.find((g: Game) => g.slug === slug);
     const item = (): Item | undefined => game()?.items.find((i) => i.id === itemId);
     const showErr = (msg: string) => { const e = $('dn-err'); e.textContent = msg; e.hidden = !msg; };
+    const pidValue = () => (document.getElementById('dn-player') as HTMLInputElement | null)?.value.trim().replace(/\s+/g, '') || '';
     const store = {
       get: () => { try { return localStorage.getItem('dn_order') || ''; } catch { return ''; } },
       set: (v: string) => { try { v ? localStorage.setItem('dn_order', v) : localStorage.removeItem('dn_order'); } catch {} },
     };
+
+    /** "60 UC" → {qty:"60", unit:"UC"}; "110 Diamonds" → olmos; boshqalari (Prime, Pass) → null */
+    function parseName(name: string) {
+      const m = String(name).match(/^([\d\s.,]+)\s+(UC|Diamonds|Gold)$/i);
+      if (!m) return null;
+      const u = Object.keys(T.UNIT).find((k) => k.toLowerCase() === m[2].toLowerCase()) || m[2];
+      return { qty: m[1].trim(), unit: T.UNIT[u]?.[lang] || m[2] };
+    }
+    const L10N: Record<string, [RegExp, string, string, string][]> = { x: [
+      [/^Prime \(1 Month\)$/i, 'Prime · 1 oy', 'Prime · 1 мес', 'Prime · 1 month'],
+      [/^Prime Plus \(1 Month\)$/i, 'Prime Plus · 1 oy', 'Prime Plus · 1 мес', 'Prime Plus · 1 month'],
+      [/^Weekly Membership$/i, "Haftalik a'zolik", 'Недельная подписка', 'Weekly membership'],
+      [/^Monthly Membership$/i, "Oylik a'zolik", 'Месячная подписка', 'Monthly membership'],
+      [/^Weekly Lite$/i, 'Haftalik Lite', 'Недельная Lite', 'Weekly Lite'],
+      [/^Newbie Bundle$/i, "Yangi o'yinchi to'plami", 'Набор новичка', 'Newbie bundle'],
+      [/^Evo Access (\d+)d$/i, 'Evo Access · $1 kun', 'Evo Access · $1 дн', 'Evo Access · $1 days'],
+      [/^Level Up Package (\d+)$/i, 'Level Up · $1-daraja', 'Level Up · $1 ур.', 'Level Up · level $1'],
+    ] };
+    function trName(name: string) {
+      for (const [re, uz, ru, en] of L10N.x) if (re.test(name)) return name.replace(re, lang === 'ru' ? ru : lang === 'en' ? en : uz);
+      return name;
+    }
+    const prettyName = (name: string) => { const p = parseName(name); return p ? `${p.qty} ${p.unit}` : trName(name); };
 
     function renderGames() {
       $('dn-games').querySelectorAll<HTMLButtonElement>('.dn-game').forEach((b) => {
@@ -205,41 +300,88 @@ const ICON_TEXT: Record<string, string> = { 'pubg-mobile': 'PUBG', 'free-fire': 
       });
     }
 
+    function itemButton(it: Item, popular: boolean) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'dn-item' + (it.id === itemId ? ' is-on' : '') + (popular ? ' is-pop' : '');
+      b.dataset.id = it.id;
+      const p = parseName(it.name);
+      if (popular) { const s = document.createElement('span'); s.className = 'dn-badge'; s.textContent = T.popular; b.append(s); }
+      const top = document.createElement('span'); top.className = 'dn-item-name';
+      if (p) { const q = document.createElement('b'); q.textContent = p.qty; const u = document.createElement('small'); u.textContent = p.unit; top.append(q, ' ', u); }
+      else top.textContent = trName(it.name);
+      const pr = document.createElement('span'); pr.className = 'dn-item-price'; pr.textContent = `${fmt(it.price)} ${T.sum}`;
+      b.append(top, pr);
+      return b;
+    }
+
     function renderItems() {
       const g = game();
       const box = $('dn-items');
-      if (!g) { box.innerHTML = `<div class="dn-muted">${T.loading}</div>`; return; }
-      if (!g.available || !g.items.length) { box.innerHTML = `<div class="dn-muted">${T.unavailable}</div>`; itemId = ''; renderPay(); return; }
-      if (!g.items.some((i) => i.id === itemId)) itemId = g.items[0].id;
       box.innerHTML = '';
-      for (const it of g.items) {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'dn-item' + (it.id === itemId ? ' is-on' : '');
-        b.dataset.id = it.id;
-        b.innerHTML = `<span class="dn-item-name"></span><span class="dn-item-price">${fmt(it.price)} so'm</span>`;
-        (b.firstChild as HTMLElement).textContent = it.name;
-        box.appendChild(b);
-      }
-      const idbox = $('dn-idbox');
-      idbox.hidden = !g.needs_player_id;
-      ($('dn-player') as HTMLInputElement).placeholder = g.id_hint || '';
-      renderPay();
+      if (!g) { box.innerHTML = `<div class="dn-muted">${T.loading}</div>`; return; }
+      if (!g.available || !g.items.length) { box.innerHTML = `<div class="dn-muted">${T.unavailable}</div>`; itemId = ''; renderBar(); return; }
+      const cur = g.items.filter((i) => parseName(i.name));
+      const other = g.items.filter((i) => !parseName(i.name));
+      const popId = (cur[1] || cur[0])?.id;
+      if (!g.items.some((i) => i.id === itemId)) itemId = popId || g.items[0].id; // ikkinchi valyuta paketi — odatda eng ko'p olinadigan
+      const group = (title: string | null, list: Item[]) => {
+        if (!list.length) return;
+        if (title) { const h = document.createElement('div'); h.className = 'dn-group'; h.textContent = title; box.append(h); }
+        const grid = document.createElement('div'); grid.className = 'dn-items';
+        list.forEach((it) => grid.append(itemButton(it, it.id === popId)));
+        box.append(grid);
+        const LIMIT = 4;
+        const selIdx = list.findIndex((x) => x.id === itemId);
+        if (title === T.passes && list.length > LIMIT + 1 && selIdx < LIMIT) {
+          const extra = Array.from(grid.children).slice(LIMIT) as HTMLElement[];
+          extra.forEach((el) => (el.hidden = true));
+          const more = document.createElement('button');
+          more.type = 'button'; more.className = 'dn-more';
+          more.textContent = T.more.replace('{n}', String(extra.length));
+          more.addEventListener('click', () => {
+            const open = extra[0].hidden;
+            extra.forEach((el) => (el.hidden = !open));
+            more.textContent = open ? T.less : T.more.replace('{n}', String(extra.length));
+          });
+          box.append(more);
+        }
+      };
+      group(other.length ? T.currency : null, cur);
+      group(cur.length ? T.passes : null, other);
+      $('dn-idbox').hidden = !g.needs_player_id;
+      $('dn-giftnote').hidden = g.needs_player_id;
+      const help = T.idHelp?.[g.slug];
+      $('dn-where').hidden = !help;
+      $('dn-help').textContent = help || '';
+      $('dn-help').hidden = true;
+      renderBar();
     }
 
-    function renderPay() {
+    function renderBar() {
       const btn = $('dn-pay') as HTMLButtonElement;
       const it = item();
+      $('dn-bar-v').textContent = it ? prettyName(it.name) : '—';
+      $('dn-bar-p').textContent = it ? `${fmt(it.price)} ${T.sum}` : '';
+      const g = game();
+      const needId = Boolean(g?.needs_player_id) && !pidValue();
+      $('dn-sh2').classList.toggle('is-done', Boolean(it));
+      $('dn-sh3').classList.toggle('is-done', Boolean(checkedFor));
       if (!enabled) { btn.disabled = true; btn.textContent = T.soon; return; }
-      btn.disabled = !it;
-      btn.textContent = it ? `${T.pay} — ${fmt(it.price)} so'm` : T.pay;
+      btn.disabled = false;
+      btn.dataset.next = !it ? 'pack' : needId ? 'id' : 'pay';
+      btn.textContent = !it ? T.pickPack : needId ? T.enterId : T.pay;
+      btn.classList.toggle('is-ready', Boolean(it) && !needId);
     }
 
-    function setNick(text: string, ok: boolean) {
+    function setNick(text: string, kind: 'ok' | 'bad' | 'wait' | '') {
       const n = $('dn-nick');
       n.hidden = !text;
-      n.className = 'dn-nick ' + (ok ? 'is-ok' : 'is-bad');
+      n.className = 'dn-nick' + (kind ? ` is-${kind}` : '');
       n.textContent = text;
+      $('dn-player').classList.toggle('is-ok', kind === 'ok');
+      $('dn-player').classList.toggle('is-bad', kind === 'bad');
+      renderBar();
     }
 
     async function api(path: string, body?: any) {
@@ -248,22 +390,25 @@ const ICON_TEXT: Record<string, string> = { 'pubg-mobile': 'PUBG', 'free-fire': 
       return { ok: r.ok && d.success !== false, d };
     }
 
+
     async function checkPlayer(): Promise<boolean> {
       const g = game();
       if (!g?.needs_player_id) return true;
-      const pid = ($('dn-player') as HTMLInputElement).value.trim().replace(/\s+/g, '');
-      if (!pid) { setNick(T.id + '?', false); return false; }
+      const pid = pidValue();
+      if (!pid) { setNick(T.needId, 'bad'); ($('dn-player') as HTMLInputElement).focus(); return false; }
       if (checkedFor === `${slug}:${pid}`) return true;
       const btn = $('dn-check') as HTMLButtonElement;
-      btn.disabled = true; btn.textContent = T.checking;
+      btn.disabled = true; setNick(T.checking, 'wait');
       try {
         const { ok, d } = await api('/api/donat/check-player', { game: slug, player_id: pid, item: item()?.name });
-        if (!ok) { setNick(d.error || T.errNet, false); checkedFor = ''; return false; }
-        setNick(d.player_name ? `✓ ${T.found}: ${d.player_name}` : T.notVerified, true);
+        if (pid !== pidValue()) return false;
+        if (!ok) { setNick(d.error || T.errNet, 'bad'); checkedFor = ''; return false; }
+        setNick(d.player_name ? `✓ ${d.player_name}` : T.notVerified, 'ok');
         checkedFor = `${slug}:${pid}`;
+        renderBar();
         return true;
-      } catch { setNick(T.errNet, false); return false; }
-      finally { btn.disabled = false; btn.textContent = T.check; }
+      } catch { setNick(T.errNet, 'bad'); return false; }
+      finally { btn.disabled = false; }
     }
 
     async function startOrder() {
@@ -272,69 +417,82 @@ const ICON_TEXT: Record<string, string> = { 'pubg-mobile': 'PUBG', 'free-fire': 
       if (!g || !it) return;
       if (!(await checkPlayer())) return;
       const btn = $('dn-pay') as HTMLButtonElement;
-      btn.disabled = true;
+      btn.disabled = true; btn.classList.add('is-busy');
       try {
-        const pid = ($('dn-player') as HTMLInputElement).value.trim().replace(/\s+/g, '');
         const { ok, d } = await api('/api/donat/order', {
-          game: slug, item: it.id, player_id: g.needs_player_id ? pid : undefined,
+          game: slug, item: it.id, player_id: g.needs_player_id ? pidValue() : undefined,
           contact: ($('dn-contact') as HTMLInputElement).value.trim(), site: location.hostname, lang,
         });
         if (!ok) { showErr(d.error || T.errNet); return; }
         store.set(d.token);
         history.replaceState(null, '', `${location.pathname}?order=${encodeURIComponent(d.token)}`);
-        showPayment({ ...d, game: g.title, item: it.name, player_id: g.needs_player_id ? pid : null, state: 'awaiting_payment' });
+        const nick = ($('dn-nick').textContent || '').replace(/^✓\s*/, '');
+        current = { ...d, game: g.title, item: it.name, player_id: g.needs_player_id ? pidValue() : null, player_name: checkedFor && nick !== T.notVerified ? nick : null, state: 'awaiting_payment' };
+        showPayment(current);
         poll(d.token);
       } catch { showErr(T.errNet); }
-      finally { renderPay(); }
+      finally { btn.classList.remove('is-busy'); renderBar(); }
     }
 
     function fillWhat(el: HTMLElement, o: any) {
       el.textContent = '';
-      el.append(`${o.game || ''}: `);
       const b = document.createElement('b');
-      b.textContent = o.item || '';
+      b.textContent = `${o.game || ''} · ${prettyName(o.item || '')}`;
       el.append(b);
-      const tail = `${o.player_id ? ` · ID ${o.player_id}` : ''}${o.player_name ? ` (${o.player_name})` : ''}${o.order_id ? ` · ${T.order} #${o.order_id}` : ''}`;
-      el.append(tail);
+      el.append(`${o.player_id ? ` · ID ${o.player_id}` : ''}${o.player_name ? ` (${o.player_name})` : ''}${o.order_id ? ` · ${T.order} #${o.order_id}` : ''}`);
     }
 
     function showStep(id: 'dn-shop' | 'dn-payment' | 'dn-status') {
       for (const s of ['dn-shop', 'dn-payment', 'dn-status']) $(s).hidden = s !== id;
-      root!.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const top = root!.getBoundingClientRect().top + window.scrollY - 90;
+      if (Math.abs(window.scrollY - top) > 40) window.scrollTo({ top, behavior: 'smooth' });
     }
 
     function showPayment(o: any) {
-      current = { ...current, ...o };
       if (o.card) {
-        $('dn-card').textContent = String(o.card.number || '').replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
-        $('dn-card-name').textContent = [o.card.name, o.card.type].filter(Boolean).join(' · ');
+        const digits = String(o.card.number || '').replace(/[^\d*]/g, '');
+        $('dn-card').textContent = digits.replace(/(.{4})(?=.)/g, '$1 ');
+        $('dn-card-name').textContent = o.card.name || '';
+        $('dn-card-brand').textContent = String(o.card.brand || o.card.type || '').toUpperCase();
       }
-      $('dn-amount').textContent = `${fmt(o.amount)} so'm`;
-      fillWhat($('dn-pay-what'), current);
+      $('dn-amount').textContent = `${fmt(o.amount)} ${T.sum}`;
+      fillWhat($('dn-pay-what'), o);
       showStep('dn-payment');
       clearInterval(tickTimer);
       const end = new Date(o.expires_at).getTime();
+      const total = 8 * 60 * 1000;
       const tick = () => {
-        const s = Math.max(0, Math.round((end - Date.now()) / 1000));
+        const ms = Math.max(0, end - Date.now());
+        const s = Math.round(ms / 1000);
         $('dn-timer').textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+        $('dn-progress').style.width = `${Math.min(100, (ms / total) * 100)}%`;
+        root!.classList.toggle('is-late', s < 90);
         if (s <= 0) clearInterval(tickTimer);
       };
       tick(); tickTimer = window.setInterval(tick, 1000);
     }
 
     function showStatus(o: any) {
-      current = { ...current, ...o };
       clearInterval(tickTimer);
-      const ico = $('dn-status-ico'); const txt = $('dn-status-text');
+      const step = o.state === 'delivered' ? 2 : o.state === 'delivering' || o.state === 'problem' ? 1 : -1;
+      $('dn-track').hidden = o.state === 'expired';
+      $('dn-track').querySelectorAll('li').forEach((li) => {
+        const i = Number((li as HTMLElement).dataset.i);
+        li.classList.toggle('done', i < step || (o.state === 'delivered' && i <= step));
+        li.classList.toggle('now', i === step && o.state !== 'delivered');
+        li.classList.toggle('bad', i === step && o.state === 'problem');
+      });
       const map: Record<string, [string, string]> = {
-        delivering: ['⏳', T.delivering],
-        delivered: ['✅', o.link ? T.delivered : `${T.delivered}: ${o.item} ${T.deliveredGame}`],
-        problem: ['⚠️', T.problem],
+        delivering: ['🚀', T.delivering],
+        delivered: ['🎉', o.link ? T.delivered : `${prettyName(o.item)} ${T.deliveredGame}`],
+        problem: ['🛠️', T.problem],
         expired: ['⌛', T.expired],
       };
-      const [i, t] = map[o.state] || ['⏳', T.delivering];
-      ico.textContent = i; txt.textContent = t;
-      fillWhat($('dn-status-what'), current);
+      const [i, t] = map[o.state] || ['🚀', T.delivering];
+      $('dn-status-ico').textContent = i;
+      $('dn-status-text').textContent = t;
+      root!.classList.toggle('is-done', o.state === 'delivered');
+      fillWhat($('dn-status-what'), o);
       $('dn-linkbox').hidden = !o.link;
       if (o.link) ($('dn-link') as HTMLAnchorElement).href = o.link;
       $('dn-support').hidden = !(o.state === 'problem' || o.state === 'expired');
@@ -346,25 +504,34 @@ const ICON_TEXT: Record<string, string> = { 'pubg-mobile': 'PUBG', 'free-fire': 
       clearTimeout(pollTimer);
       try {
         const r = await fetch(`${API}/api/donat/order/${encodeURIComponent(token)}`, { cache: 'no-store' });
-        if (r.status === 404) { store.set(''); return; }
+        if (r.status === 404) { store.set(''); history.replaceState(null, '', location.pathname); return; }
         const o = await r.json();
         if (o.success) {
+          current = { ...current, ...o, card: o.card || current.card };
           if (o.state === 'awaiting_payment') {
-            if ($('dn-payment').hidden) showPayment({ ...o, card: o.card || current?.card });
+            if ($('dn-payment').hidden) showPayment(current);
           } else {
-            showStatus(o);
-            if (o.state === 'delivered' || o.state === 'expired') { if (o.state === 'expired') store.set(''); return; }
+            showStatus(current);
+            if (o.state === 'delivered' || o.state === 'expired') { store.set(''); return; }
           }
         }
       } catch { /* tarmoq — qayta urinamiz */ }
-      pollTimer = window.setTimeout(() => poll(token), current?.state === 'delivering' || !$('dn-status').hidden ? 5000 : 4000);
+      pollTimer = window.setTimeout(() => poll(token), 4000);
     }
 
-    // Hodisalar
+    function reset() {
+      clearTimeout(pollTimer); clearInterval(tickTimer); store.set(''); current = {};
+      root!.classList.remove('is-done', 'is-late');
+      history.replaceState(null, '', location.pathname);
+      showStep('dn-shop');
+    }
+
+    // ---------- hodisalar ----------
     $('dn-games').addEventListener('click', (e) => {
       const b = (e.target as HTMLElement).closest<HTMLButtonElement>('.dn-game');
       if (!b || b.dataset.slug === slug) return;
-      slug = b.dataset.slug!; checkedFor = ''; setNick('', true); showErr('');
+      slug = b.dataset.slug!; itemId = ''; checkedFor = ''; setNick('', ''); showErr('');
+      ($('dn-player') as HTMLInputElement).value = '';
       renderGames(); renderItems();
     });
     $('dn-items').addEventListener('click', (e) => {
@@ -372,22 +539,32 @@ const ICON_TEXT: Record<string, string> = { 'pubg-mobile': 'PUBG', 'free-fire': 
       if (!b) return;
       itemId = b.dataset.id!;
       $('dn-items').querySelectorAll('.dn-item').forEach((x) => x.classList.toggle('is-on', x === b));
-      renderPay();
+      renderBar();
     });
+    $('dn-where').addEventListener('click', () => { $('dn-help').hidden = !$('dn-help').hidden; });
     $('dn-check').addEventListener('click', () => { checkedFor = ''; checkPlayer(); });
-    $('dn-player').addEventListener('input', () => { checkedFor = ''; setNick('', true); });
-    $('dn-pay').addEventListener('click', startOrder);
-    $('dn-again').addEventListener('click', () => {
-      clearTimeout(pollTimer); store.set(''); current = null;
-      history.replaceState(null, '', location.pathname);
-      showStep('dn-shop');
+    $('dn-player').addEventListener('input', () => {
+      checkedFor = ''; setNick('', '');
+      clearTimeout(checkTimer);
+      if (pidValue().length >= 6) checkTimer = window.setTimeout(checkPlayer, 900); // yozib bo'lgach o'zi tekshiradi
     });
+    $('dn-player').addEventListener('keydown', (e) => { if ((e as KeyboardEvent).key === 'Enter') { checkedFor = ''; checkPlayer(); } });
+    $('dn-pay').addEventListener('click', () => {
+      const next = ($('dn-pay') as HTMLButtonElement).dataset.next;
+      if (next === 'pack') { $('dn-items').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+      if (next === 'id') { const inp = $('dn-player') as HTMLInputElement; inp.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(() => inp.focus(), 350); setNick(T.needId, 'bad'); return; }
+      startOrder();
+    });
+    $('dn-again').addEventListener('click', reset);
+    $('dn-cancel').addEventListener('click', reset);
     root.querySelectorAll<HTMLButtonElement>('.dn-copy').forEach((b) => b.addEventListener('click', async () => {
       const v = b.dataset.copy === 'amount' ? String(current?.amount || '') : String(current?.card?.number || '').replace(/\D/g, '');
-      try { await navigator.clipboard.writeText(v); b.textContent = T.copied; setTimeout(() => (b.textContent = T.copy), 1500); } catch {}
+      const label = b.textContent;
+      try { await navigator.clipboard.writeText(v); b.textContent = T.copied; b.classList.add('is-ok'); setTimeout(() => { b.textContent = label; b.classList.remove('is-ok'); }, 1600); } catch {}
     }));
 
-    // Boshlash: katalogni yangilash + davom etayotgan buyurtma
+    // ---------- boshlash ----------
+    renderItems();
     (async () => {
       try {
         const r = await fetch(`${API}/api/donat/catalog`);
@@ -395,81 +572,159 @@ const ICON_TEXT: Record<string, string> = { 'pubg-mobile': 'PUBG', 'free-fire': 
         if (d.success) { catalog = d; enabled = Boolean(d.enabled); if (!game() && d.games[0]) slug = d.games[0].slug; renderGames(); renderItems(); }
       } catch { /* SSR katalog bilan qolamiz */ }
     })();
-    if (!itemId) itemId = game()?.items[0]?.id || '';
-    renderPay();
 
-    const urlToken = new URLSearchParams(location.search).get('order');
-    const token = urlToken || store.get();
-    if (token) {
-      current = {};
-      poll(token);
-    }
+    const token = new URLSearchParams(location.search).get('order') || store.get();
+    if (token) poll(token);
   }
 </script>
 
-<style>
-  .dn-app { background: #fff; border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow-md); padding: 24px; max-width: 720px; margin: 0 auto; }
-  .dn-step[hidden] { display: none; }
-  .dn-label { font-size: .8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .6px; margin: 18px 0 10px; display: block; }
-  .dn-label:first-child { margin-top: 0; }
-  .dn-games { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .dn-game { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 8px; border: 2px solid var(--border); border-radius: 16px; background: var(--bg-alt); cursor: pointer; font: inherit; color: var(--text); transition: border-color .15s, transform .15s; }
-  .dn-game:hover { transform: translateY(-1px); }
-  .dn-game.is-on { border-color: var(--primary); background: rgba(124,58,237,.06); }
-  .dn-game-ico { width: 44px; height: 44px; border-radius: 12px; background: var(--gradient); display: grid; place-items: center; color: #fff; font-weight: 900; font-size: .72rem; letter-spacing: .3px; }
-  .ico-pubg-mobile { background: linear-gradient(135deg,#F2A900,#B86B00); }
-  .ico-free-fire { background: linear-gradient(135deg,#FF6A00,#E0182D); }
-  .ico-standoff-2 { background: linear-gradient(135deg,#3B82F6,#1E3A8A); }
-  .dn-game-name { font-weight: 700; font-size: .95rem; text-align: center; line-height: 1.2; }
-  .dn-game-unit { font-size: .75rem; color: var(--text-muted); }
-  .dn-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-  .dn-item { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 14px; border: 2px solid var(--border); border-radius: 14px; background: #fff; cursor: pointer; font: inherit; color: var(--text); text-align: left; }
-  .dn-item.is-on { border-color: var(--primary); background: rgba(124,58,237,.05); }
-  .dn-item-name { font-weight: 700; font-size: .95rem; }
-  .dn-item-price { color: var(--primary); font-weight: 700; font-size: .9rem; }
+<style is:global>
+  /* global: paketlar brauzerda yaratiladi (Astro scoped stil ularga tushmaydi); hamma klass dn- bilan */
+  .dn-app { position: relative; background: #fff; border: 1px solid var(--border); border-radius: 28px; box-shadow: 0 24px 60px rgba(76, 29, 149, .12); padding: 26px; max-width: 760px; margin: 0 auto; }
+  .dn-app [hidden] { display: none !important; }
+
+  .dn-sh { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.02rem; margin: 26px 0 12px; color: var(--text); }
+  .dn-step > .dn-sh:first-child { margin-top: 0; }
+  .dn-n { width: 26px; height: 26px; border-radius: 50%; background: var(--gradient); color: #fff; font-size: .8rem; display: grid; place-items: center; flex: none; }
+  .dn-sh.is-done .dn-n { background: #10B981; font-size: 0; }
+  .dn-sh.is-done .dn-n::after { content: '✓'; font-size: .8rem; font-weight: 900; }
+  .dn-more { display: block; width: 100%; margin-top: 10px; padding: 11px; border: 2px dashed var(--border); border-radius: 14px; background: #fff; color: var(--primary); font: inherit; font-weight: 800; cursor: pointer; }
+  .dn-more:hover { border-color: var(--primary); }
+  .dn-pay.is-ready { box-shadow: 0 8px 22px rgba(124, 58, 237, .45); }
+  .dn-where { margin-left: auto; border: none; background: none; color: var(--primary); font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; padding: 4px; }
+  .dn-help { background: #F5F3FF; border-radius: 14px; padding: 12px 14px; font-size: .9rem; color: var(--text); margin-bottom: 10px; line-height: 1.5; }
+
+  .dn-games { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .dn-game { --c1: #7C3AED; --c2: #2563EB; position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px 8px 14px; border: 2px solid transparent; border-radius: 20px; background: #F7F6FB; cursor: pointer; font: inherit; color: var(--text); transition: transform .15s, box-shadow .15s, border-color .15s; }
+  .dn-game:hover { transform: translateY(-2px); }
+  .dn-game.is-on { border-color: var(--c1); background: #fff; box-shadow: 0 10px 26px rgba(26, 16, 53, .12); }
+  .dn-game.is-on::after { content: '✓'; position: absolute; top: 8px; right: 10px; width: 20px; height: 20px; border-radius: 50%; background: var(--c1); color: #fff; font-size: .7rem; font-weight: 900; display: grid; place-items: center; }
+  .g-pubg-mobile { --c1: #E0A100; --c2: #8A5A00; }
+  .g-free-fire { --c1: #FF5A1F; --c2: #C8102E; }
+  .g-standoff-2 { --c1: #3B82F6; --c2: #1E3A8A; }
+  .dn-game-art { width: 64px; height: 64px; border-radius: 18px; object-fit: cover; display: block; box-shadow: 0 8px 18px rgba(26, 16, 53, .22); }
+  .dn-game-name { font-weight: 800; font-size: .98rem; text-align: center; line-height: 1.2; }
+  .dn-game-sub { font-size: .78rem; color: var(--text-muted); }
+
+  .dn-group { font-size: .78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: .6px; margin: 16px 0 10px; }
+  .dn-group:first-child { margin-top: 0; }
+  .dn-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+  .dn-item { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 8px; min-height: 84px; padding: 14px; border: 2px solid var(--border); border-radius: 16px; background: #fff; cursor: pointer; font: inherit; color: var(--text); text-align: left; transition: border-color .15s, transform .15s, box-shadow .15s; }
+  .dn-item:hover { transform: translateY(-1px); border-color: #CFC4F5; }
+  .dn-item.is-on { border-color: var(--primary); background: linear-gradient(180deg, #FAF7FF, #fff); box-shadow: 0 8px 22px rgba(124, 58, 237, .16); }
+  .dn-item-name { font-weight: 700; font-size: .95rem; line-height: 1.25; }
+  .dn-item-name b { font-size: 1.35rem; font-weight: 900; letter-spacing: -.3px; }
+  .dn-item-name small { font-size: .82rem; font-weight: 700; color: var(--text-muted); }
+  .dn-item-price { white-space: nowrap; font-weight: 800; font-size: .9rem; color: var(--primary); background: rgba(124, 58, 237, .08); padding: 3px 9px; border-radius: 999px; }
+  .dn-badge { position: absolute; top: -9px; right: 10px; background: linear-gradient(135deg, #F59E0B, #EF4444); color: #fff; font-size: .66rem; font-weight: 800; padding: 3px 8px; border-radius: 999px; letter-spacing: .3px; }
   .dn-muted { color: var(--text-muted); padding: 12px 0; }
-  .dn-idrow { display: flex; gap: 8px; }
-  .dn-input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 14px; font: inherit; font-size: 1rem; color: var(--text); background: #fff; outline: none; }
-  .dn-input:focus { border-color: var(--primary); }
-  .dn-btn-ghost { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border: 2px solid var(--border); border-radius: 14px; background: #fff; color: var(--text); font: inherit; font-weight: 700; cursor: pointer; white-space: nowrap; text-decoration: none; }
-  .dn-btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
-  .dn-btn-ghost[hidden] { display: none; }
-  .dn-nick { margin-top: 8px; font-weight: 600; font-size: .92rem; }
-  .dn-nick.is-ok { color: #059669; }
-  .dn-nick.is-bad { color: #DC2626; }
+
+  .dn-idwrap { position: relative; }
+  .dn-input { width: 100%; padding: 15px 16px; border: 2px solid var(--border); border-radius: 16px; font: inherit; font-size: 1.02rem; color: var(--text); background: #fff; outline: none; transition: border-color .15s, box-shadow .15s; }
+  .dn-idwrap .dn-input { padding-right: 130px; letter-spacing: .4px; }
+  .dn-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(124, 58, 237, .12); }
+  .dn-input.is-ok { border-color: #10B981; }
+  .dn-input.is-bad { border-color: #EF4444; }
+  .dn-check { position: absolute; right: 6px; top: 6px; bottom: 6px; padding: 0 16px; border: none; border-radius: 12px; background: #F1EDFE; color: var(--primary); font: inherit; font-weight: 800; cursor: pointer; }
+  .dn-check:disabled { opacity: .6; }
+  .dn-nick { margin-top: 10px; font-weight: 700; font-size: .95rem; padding: 10px 14px; border-radius: 12px; }
+  .dn-nick.is-ok { color: #047857; background: #ECFDF5; }
+  .dn-nick.is-bad { color: #B91C1C; background: #FEF2F2; }
+  .dn-nick.is-wait { color: var(--text-muted); background: #F7F6FB; }
+  .dn-giftnote { margin-top: 18px; background: #EFF6FF; color: #1E40AF; border-radius: 14px; padding: 12px 14px; font-size: .92rem; font-weight: 600; }
+
+  .dn-contact { margin-top: 18px; }
+  .dn-contact summary { cursor: pointer; font-weight: 700; color: var(--text-muted); font-size: .92rem; list-style: none; }
+  .dn-contact summary::-webkit-details-marker { display: none; }
+  .dn-contact summary::before { content: '+ '; color: var(--primary); font-weight: 900; }
+  .dn-contact[open] summary::before { content: '− '; }
+  .dn-contact .dn-input { margin-top: 10px; }
   .dn-hint { font-size: .82rem; color: var(--text-muted); margin-top: 6px; }
-  .dn-agree { font-size: .82rem; color: var(--text-muted); margin: 18px 0 12px; }
-  .dn-pay { display: flex; width: 100%; justify-content: center; padding: 16px; border: none; border-radius: 16px; background: var(--gradient); color: #fff; font: inherit; font-size: 1.05rem; font-weight: 800; cursor: pointer; text-decoration: none; }
-  .dn-pay:disabled { opacity: .5; cursor: not-allowed; }
-  .dn-err { margin-top: 10px; color: #DC2626; font-weight: 600; font-size: .92rem; }
-  .dn-err[hidden], .dn-nick[hidden] { display: none; }
-  .dn-pay-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .dn-pay-title { font-size: 1.3rem; font-weight: 800; }
-  .dn-timer { font-variant-numeric: tabular-nums; font-weight: 800; color: var(--primary); background: rgba(124,58,237,.08); padding: 6px 12px; border-radius: 10px; }
-  .dn-pay-what { color: var(--text-muted); font-size: .92rem; margin-bottom: 14px; }
-  .dn-pay-box { border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; margin-bottom: 10px; background: var(--bg-alt); }
-  .dn-pay-label { font-size: .78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
-  .dn-pay-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-  .dn-amount { font-size: 1.6rem; font-weight: 900; color: var(--text); }
-  .dn-card { font-size: 1.25rem; font-weight: 800; letter-spacing: 1px; font-variant-numeric: tabular-nums; }
-  .dn-card-name { font-size: .85rem; color: var(--text-muted); margin-top: 4px; }
-  .dn-copy { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; font: inherit; font-weight: 700; font-size: .85rem; cursor: pointer; color: var(--primary); }
-  .dn-wait { display: flex; gap: 10px; align-items: center; font-weight: 600; margin-top: 14px; }
-  .dn-spin { width: 18px; height: 18px; border-radius: 50%; border: 3px solid rgba(124,58,237,.2); border-top-color: var(--primary); animation: dnspin 1s linear infinite; flex: none; }
-  @keyframes dnspin { to { transform: rotate(360deg); } }
-  .dn-status-ico { font-size: 2.6rem; text-align: center; }
-  .dn-status-text { text-align: center; font-size: 1.2rem; font-weight: 800; margin: 8px 0 6px; }
-  #dn-status .dn-pay-what { text-align: center; }
-  .dn-linkbox { border: 2px dashed var(--primary); border-radius: 16px; padding: 16px; margin: 14px 0; }
-  .dn-linkbox[hidden] { display: none; }
-  .dn-status-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
-  @media (max-width: 560px) {
-    .dn-app { padding: 18px 14px; border-radius: 20px; }
+
+  .dn-bar { display: flex; align-items: center; gap: 14px; margin-top: 22px; padding: 12px 12px 12px 18px; border-radius: 20px; background: #1A1035; color: #fff; }
+  .dn-bar-info { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+  .dn-bar-v { font-weight: 700; font-size: .88rem; opacity: .8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dn-bar-p { font-weight: 900; font-size: 1.15rem; white-space: nowrap; }
+  .dn-pay { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border: none; border-radius: 14px; background: var(--gradient); color: #fff; font: inherit; font-size: 1.02rem; font-weight: 800; cursor: pointer; text-decoration: none; white-space: nowrap; transition: transform .15s, opacity .15s; }
+  .dn-pay:hover:not(:disabled) { transform: translateY(-1px); }
+  .dn-pay:disabled { opacity: .55; cursor: not-allowed; }
+  .dn-pay.is-busy { opacity: .7; pointer-events: none; }
+  .dn-pay-full { display: flex; width: 100%; margin: 6px 0; }
+  .dn-agree { font-size: .82rem; color: var(--text-muted); margin: 12px 4px 0; }
+  .dn-err { margin-top: 12px; color: #B91C1C; background: #FEF2F2; border-radius: 12px; padding: 10px 14px; font-weight: 700; font-size: .92rem; }
+
+  .dn-pay-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .dn-pay-title { font-size: 1.4rem; font-weight: 900; }
+  .dn-what { color: var(--text-muted); font-size: .9rem; margin-top: 2px; }
+  .dn-what b { color: var(--text); }
+  .dn-center { text-align: center; }
+  .dn-timer { display: flex; flex-direction: column; align-items: center; background: #F5F3FF; border-radius: 14px; padding: 6px 12px; min-width: 76px; }
+  .dn-timer b { font-size: 1.25rem; font-variant-numeric: tabular-nums; color: var(--primary); }
+  .dn-timer span { font-size: .7rem; color: var(--text-muted); font-weight: 700; }
+  .is-late .dn-timer b { color: #DC2626; }
+  .dn-progress { height: 6px; border-radius: 6px; background: #EEEAF8; margin: 14px 0 18px; overflow: hidden; }
+  .dn-progress span { display: block; height: 100%; width: 100%; background: var(--gradient); border-radius: 6px; transition: width 1s linear; }
+  .is-late .dn-progress span { background: linear-gradient(90deg, #F59E0B, #EF4444); }
+  .dn-cap { font-size: .75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 6px; }
+  .dn-amount-box { border: 2px solid var(--primary); border-radius: 18px; padding: 14px 16px; background: linear-gradient(180deg, #FAF7FF, #fff); }
+  .dn-amount-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .dn-amount { font-size: 2rem; font-weight: 900; letter-spacing: -.5px; }
+  .dn-copy { padding: 9px 14px; border-radius: 12px; border: none; background: #EDE9FE; color: var(--primary); font: inherit; font-weight: 800; font-size: .88rem; cursor: pointer; white-space: nowrap; }
+  .dn-copy.is-ok { background: #D1FAE5; color: #047857; }
+  .dn-bank { margin-top: 12px; border-radius: 20px; padding: 18px 20px; color: #fff; background: linear-gradient(135deg, #1A1035 0%, #3B1F8C 55%, #2563EB 100%); box-shadow: 0 14px 30px rgba(37, 25, 105, .3); }
+  .dn-bank-top { display: flex; justify-content: space-between; font-size: .78rem; font-weight: 700; opacity: .85; text-transform: uppercase; letter-spacing: .8px; }
+  .dn-bank-brand { font-weight: 900; }
+  .dn-bank-num { font-size: 1.45rem; font-weight: 800; letter-spacing: 2px; margin: 18px 0 14px; font-variant-numeric: tabular-nums; }
+  .dn-bank-bottom { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-weight: 700; font-size: .92rem; }
+  .dn-copy-w { background: rgba(255, 255, 255, .16); color: #fff; }
+  .dn-howpay { margin: 16px 0 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 8px; }
+  .dn-howpay li { counter-increment: s; display: flex; gap: 10px; align-items: center; font-size: .92rem; }
+  .dn-howpay li::before { content: counter(s); width: 22px; height: 22px; border-radius: 50%; background: #EDE9FE; color: var(--primary); font-weight: 900; font-size: .75rem; display: grid; place-items: center; flex: none; }
+  .dn-wait { display: flex; gap: 12px; align-items: center; font-weight: 700; margin-top: 18px; padding: 12px 14px; border-radius: 14px; background: #F7F6FB; }
+  .dn-dots { display: inline-flex; gap: 4px; }
+  .dn-dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); animation: dnb 1.2s infinite ease-in-out; }
+  .dn-dots i:nth-child(2) { animation-delay: .15s; }
+  .dn-dots i:nth-child(3) { animation-delay: .3s; }
+  @keyframes dnb { 0%, 80%, 100% { opacity: .25; transform: scale(.8); } 40% { opacity: 1; transform: scale(1); } }
+  .dn-link-btn { display: block; margin: 14px auto 0; border: none; background: none; color: var(--text-muted); font: inherit; font-weight: 700; cursor: pointer; text-decoration: underline; }
+
+  .dn-track { display: flex; justify-content: space-between; list-style: none; padding: 0; margin: 4px 0 22px; position: relative; }
+  .dn-track::before { content: ''; position: absolute; left: 16%; right: 16%; top: 11px; height: 3px; background: #EEEAF8; }
+  .dn-track li { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: .8rem; font-weight: 700; color: var(--text-muted); text-align: center; }
+  .dn-dot { width: 24px; height: 24px; border-radius: 50%; background: #EEEAF8; border: 3px solid #fff; box-shadow: 0 0 0 2px #EEEAF8; z-index: 1; }
+  .dn-track li.done { color: #047857; }
+  .dn-track li.done .dn-dot { background: #10B981; box-shadow: 0 0 0 2px #10B981; }
+  .dn-track li.now { color: var(--primary); }
+  .dn-track li.now .dn-dot { background: var(--primary); box-shadow: 0 0 0 2px var(--primary), 0 0 0 7px rgba(124, 58, 237, .15); animation: dnp 1.4s infinite; }
+  .dn-track li.bad .dn-dot { background: #F59E0B; box-shadow: 0 0 0 2px #F59E0B; animation: none; }
+  @keyframes dnp { 50% { box-shadow: 0 0 0 2px var(--primary), 0 0 0 11px rgba(124, 58, 237, .06); } }
+  .dn-status-ico { font-size: 3rem; text-align: center; line-height: 1; }
+  .is-done .dn-status-ico { animation: dnpop .5s ease-out; }
+  @keyframes dnpop { 0% { transform: scale(.4); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
+  .dn-status-text { text-align: center; font-size: 1.25rem; font-weight: 900; margin: 12px 0 6px; }
+  .dn-linkbox { border: 2px dashed var(--primary); border-radius: 18px; padding: 16px; margin: 18px 0 6px; background: #FAF7FF; }
+  .dn-status-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+  .dn-ghost { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border: 2px solid var(--border); border-radius: 14px; background: #fff; color: var(--text); font: inherit; font-weight: 800; cursor: pointer; text-decoration: none; }
+  .dn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+  @media (max-width: 600px) {
+    .dn-app { padding: 18px 14px 16px; border-radius: 22px; }
     .dn-games { gap: 8px; }
-    .dn-game { padding: 12px 4px; }
-    .dn-game-name { font-size: .82rem; }
-    .dn-items { grid-template-columns: repeat(2, 1fr); }
-    .dn-amount { font-size: 1.35rem; }
-    .dn-card { font-size: 1.05rem; }
+    .dn-game { padding: 12px 4px 10px; border-radius: 16px; }
+    .dn-game-art { width: 52px; height: 52px; border-radius: 14px; }
+    .dn-game-name { font-size: .84rem; }
+    .dn-game-sub { font-size: .7rem; }
+    .dn-items { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .dn-game-name { word-break: break-word; }
+    .dn-item { min-height: 76px; padding: 12px; }
+    .dn-item-name b { font-size: 1.2rem; }
+    .dn-amount { font-size: 1.6rem; }
+    .dn-bank-num { font-size: 1.15rem; letter-spacing: 1.2px; }
+    /* telefonda pastki panel ekran pastida yopishib turadi */
+    .dn-bar { position: sticky; bottom: 10px; z-index: 30; gap: 10px; padding: 10px 10px 10px 14px; box-shadow: 0 12px 30px rgba(26, 16, 53, .35); }
+    .dn-bar .dn-pay { flex: 0 1 auto; max-width: 55%; white-space: normal; text-align: center; line-height: 1.2; padding: 13px 16px; }
+    .dn-bar-p { font-size: 1.05rem; }
+    .dn-item-price { font-size: .82rem; padding: 3px 8px; }
+    #dn-shop { padding-bottom: 4px; }
   }
 </style>

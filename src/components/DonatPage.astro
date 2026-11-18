@@ -26,6 +26,7 @@ const shown = slug ? games.filter((g) => g.slug === slug) : games;
 
 const L = {
   uz: {
+    chips: ['⚡ 1–5 daqiqada', '🔒 Nik bilan tekshiruv', '💳 Uzcard va Humo'],
     home: 'Asosiy', hub: 'Donat', priceTitle: 'Narxlar', pack: 'Paket', price: 'Narx', from: 'dan',
     howTitle: 'Qanday ishlaydi', other: "Boshqa o'yinlar",
     steps: [
@@ -42,6 +43,7 @@ const L = {
     faq: 'Savollar',
   },
   ru: {
+    chips: ['⚡ За 1–5 минут', '🔒 Проверка по нику', '💳 Uzcard и Humo'],
     home: 'Главная', hub: 'Донат', priceTitle: 'Цены', pack: 'Пакет', price: 'Цена', from: 'от',
     howTitle: 'Как это работает', other: 'Другие игры',
     steps: [
@@ -58,6 +60,7 @@ const L = {
     faq: 'Вопросы',
   },
   en: {
+    chips: ['⚡ In 1–5 minutes', '🔒 Nickname check', '💳 Uzcard & Humo'],
     home: 'Home', hub: 'Top-up', priceTitle: 'Prices', pack: 'Pack', price: 'Price', from: 'from',
     howTitle: 'How it works', other: 'Other games',
     steps: [
@@ -153,6 +156,7 @@ const ld: any[] = [
       </nav>
       <h1 class="dn-h1">{seo.h1}</h1>
       <p class="dn-lead">{seo.lead}</p>
+      <div class="dn-chips">{L.chips.map((c) => <span>{c}</span>)}</div>
       <DonatApp lang={lang} catalog={catalog} initialGame={slug} />
     </div>
   </section>
@@ -211,12 +215,19 @@ const ld: any[] = [
   <FooterC />
 </Layout>
 
+<style is:global>
+  /* Donat sahifasida o'z pastki to'lov paneli bor — umumiy "Nima xarid qilmoqchisiz?" paneli to'sib qo'ymasin */
+  .sj-buybar { display: none !important; }
+</style>
+
 <style>
   .dn-hero { padding: 110px 16px 60px; background: linear-gradient(180deg, #F5F0FF 0%, #FFFFFF 100%); }
   .dn-crumbs { display: flex; gap: 8px; font-size: .85rem; color: var(--text-muted); margin-bottom: 18px; flex-wrap: wrap; }
   .dn-crumbs a { color: var(--primary); text-decoration: none; }
   .dn-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; line-height: 1.15; text-align: center; margin-bottom: 10px; }
-  .dn-lead { text-align: center; color: var(--text-muted); max-width: 640px; margin: 0 auto 28px; }
+  .dn-lead { text-align: center; color: var(--text-muted); max-width: 620px; margin: 0 auto 16px; }
+  .dn-chips { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 0 auto 26px; }
+  .dn-chips span { background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 7px 14px; font-size: .85rem; font-weight: 700; color: var(--text); box-shadow: var(--shadow-sm); }
   .dn-sec { padding: 60px 16px; }
   .dn-alt { background: var(--bg-alt); }
   .dn-h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; text-align: center; margin-bottom: 28px; }
@@ -240,7 +251,10 @@ const ld: any[] = [
   .dn-others { margin-top: 20px; text-align: center; }
   .dn-others a { color: var(--primary); font-weight: 700; }
   @media (max-width: 760px) {
-    .dn-hero { padding: 96px 16px 40px; }
+    .dn-hero { padding: 92px 0 36px; }
+    .dn-hero .container { padding: 0 10px; }
+    .dn-crumbs { padding: 0 6px; }
+    .dn-chips span { font-size: .78rem; padding: 6px 11px; }
     .dn-grid3 { grid-template-columns: 1fr; }
     .dn-sec { padding: 44px 16px; }
   }

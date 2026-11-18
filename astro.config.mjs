@@ -9,6 +9,16 @@ export default defineConfig({
   adapter: vercel(),
   vite: {
     server: {
+      // Faqat lokal dev: /donat sahifasi brauzerdan backend'ga shu proksi orqali murojaat qiladi
+      // (vitahealth.uz CORS'i localhost'ni qabul qilmaydi). Production'da ishlatilmaydi.
+      proxy: {
+        '/donat-api': {
+          target: 'https://vitahealth.uz',
+          changeOrigin: true,
+          rewrite: (p) => p.replace(/^\/donat-api/, ''),
+          configure: (proxy) => proxy.on('proxyReq', (req) => req.removeHeader('origin')),
+        },
+      },
       watch: {
         ignored: ['**/.vercel/**', '**/frontend/**', '**/backend/**'],
       },
