@@ -10,7 +10,7 @@ import NavbarEn from './NavbarEn.astro';
 import Footer from './Footer.astro';
 import FooterRu from './FooterRu.astro';
 import FooterEn from './FooterEn.astro';
-import DonatApp from './DonatApp.astro';
+import DonatShell from './DonatShell.astro';
 import {
   fetchDonatCatalog, fmtSum, minPrice, GAME_SEO, DONAT_HUB_SEO, DONAT_SLUGS, donatPath, donatHreflangs, type DonatLang,
 } from '../lib/donat';
@@ -157,7 +157,7 @@ const ld: any[] = [
       <h1 class="dn-h1">{seo.h1}</h1>
       <p class="dn-lead">{seo.lead}</p>
       <div class="dn-chips">{L.chips.map((c) => <span>{c}</span>)}</div>
-      <DonatApp lang={lang} catalog={catalog} initialGame={slug} />
+      <DonatShell lang={lang} catalog={catalog} initialGame={slug} />
     </div>
   </section>
 
