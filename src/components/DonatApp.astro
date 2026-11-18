@@ -25,6 +25,15 @@ const T = {
       'free-fire': "O'yinga kiring → chap yuqoridagi profil rasmiga bosing. Nik ostidagi raqam sizning UID'ingiz.",
     } as Record<string, string>,
     gift: "Standoff 2 uchun ID kerak emas: to'lovdan keyin aktivatsiya havolasi beriladi.",
+    zone: "Zone ID",
+    zonePh: "Zone",
+    needZone: "Zone ID'ni kiriting",
+    giftCode: "Roblox uchun ID kerak emas: to'lovdan keyin Robux kodi beriladi, uni roblox.com/redeem sahifasida kiritasiz.",
+    codeTitle: "Robux kodi",
+    codeHint: "Kodni roblox.com/redeem sahifasida kiriting: Robux akkauntingizga tushadi. Kodni hech kimga bermang.",
+    redeem: "roblox.com/redeem ochish",
+    genericHelp: "O'yinda profilingizni oching: ID odatda nik ostida yoki sozlamalarda ko'rsatiladi.",
+    mlbbHelp: "O'yinda chap yuqoridagi avatarga bosing. ID va qavs ichidagi Zone ID ko'rinadi, masalan 12345678 (1234). Ikkalasini ham kiriting.",
     contactPh: 'Telegram @username yoki telefon', contactHint: "Muammo bo'lsa siz bilan bog'lanamiz",
     pay: "To'lash", pickPack: 'Paketni tanlang', enterId: "ID'ni kiriting", more: 'Yana {n} ta', less: 'Yig\'ish', selected: 'Tanlandi', soon: 'Tez orada', unavailable: 'Vaqtincha mavjud emas', loading: 'Narxlar yuklanmoqda…',
     agree: "Noto'g'ri ID'ga yuborilgan donat qaytarilmaydi. To'lashdan oldin nikni tekshiring.",
@@ -52,6 +61,15 @@ const T = {
       'free-fire': 'Зайдите в игру → нажмите на аватар слева вверху. Число под ником — ваш UID.',
     } as Record<string, string>,
     gift: 'Для Standoff 2 ID не нужен: после оплаты вы получите ссылку активации.',
+    zone: "Zone ID",
+    zonePh: "Zone",
+    needZone: "Введите Zone ID",
+    giftCode: "Для Roblox ID не нужен: после оплаты вы получите код Robux и активируете его на roblox.com/redeem.",
+    codeTitle: "Код Robux",
+    codeHint: "Введите код на roblox.com/redeem: Robux поступят на аккаунт. Никому не передавайте код.",
+    redeem: "Открыть roblox.com/redeem",
+    genericHelp: "Откройте профиль в игре: ID обычно указан под ником или в настройках.",
+    mlbbHelp: "Нажмите на аватар слева вверху. Будут видны ID и Zone ID в скобках, например 12345678 (1234). Введите оба.",
     contactPh: 'Telegram @username или телефон', contactHint: 'Свяжемся, если возникнет проблема',
     pay: 'Оплатить', pickPack: 'Выберите пакет', enterId: 'Введите ID', more: 'Ещё {n}', less: 'Свернуть', selected: 'Выбрано', soon: 'Скоро запуск', unavailable: 'Временно недоступно', loading: 'Загружаем цены…',
     agree: 'Донат на неверный ID не возвращается. Проверьте ник перед оплатой.',
@@ -79,6 +97,15 @@ const T = {
       'free-fire': 'Open the game → tap your avatar top-left. The number under your nickname is your UID.',
     } as Record<string, string>,
     gift: 'No ID needed for Standoff 2: you get an activation link after payment.',
+    zone: "Zone ID",
+    zonePh: "Zone",
+    needZone: "Enter your Zone ID",
+    giftCode: "No ID needed for Roblox: you get a Robux code after payment and redeem it at roblox.com/redeem.",
+    codeTitle: "Robux code",
+    codeHint: "Redeem the code at roblox.com/redeem and the Robux lands on your account. Do not share the code.",
+    redeem: "Open roblox.com/redeem",
+    genericHelp: "Open your in-game profile: the ID is usually under your nickname or in settings.",
+    mlbbHelp: "Tap your avatar top-left. You will see your ID and Zone ID in brackets, e.g. 12345678 (1234). Enter both.",
     contactPh: 'Telegram @username or phone', contactHint: 'We will contact you if something goes wrong',
     pay: 'Pay', pickPack: 'Choose a pack', enterId: 'Enter your ID', more: '{n} more', less: 'Show less', selected: 'Selected', soon: 'Launching soon', unavailable: 'Temporarily unavailable', loading: 'Loading prices…',
     agree: 'A top-up sent to a wrong ID cannot be refunded. Check the nickname before paying.',
@@ -102,12 +129,23 @@ const UNIT: Record<string, Record<DonatLang, string>> = {
   UC: { uz: 'UC', ru: 'UC', en: 'UC' },
   Diamonds: { uz: 'olmos', ru: 'алмазов', en: 'diamonds' },
   Gold: { uz: 'Gold', ru: 'Gold', en: 'Gold' },
+  'Delta Coins': { uz: 'Delta Coins', ru: 'Delta Coins', en: 'Delta Coins' },
+  BC: { uz: 'BC', ru: 'BC', en: 'BC' },
+  Tokens: { uz: 'token', ru: 'токенов', en: 'tokens' },
+  Bonds: { uz: 'Bonds', ru: 'Bonds', en: 'Bonds' },
+  Robux: { uz: 'Robux', ru: 'Robux', en: 'Robux' },
 };
 
 const SUB: Record<string, Record<DonatLang, string>> = {
   'pubg-mobile': { uz: 'UC va Prime', ru: 'UC и Prime', en: 'UC & Prime' },
   'free-fire': { uz: 'Olmos', ru: 'Алмазы', en: 'Diamonds' },
   'standoff-2': { uz: 'Gold', ru: 'Gold', en: 'Gold' },
+  'mobile-legends': { uz: 'Olmos', ru: 'Алмазы', en: 'Diamonds' },
+  roblox: { uz: 'Robux kodi', ru: 'Код Robux', en: 'Robux code' },
+  'delta-force': { uz: 'Delta Coins', ru: 'Delta Coins', en: 'Delta Coins' },
+  'blood-strike': { uz: 'BC', ru: 'BC', en: 'BC' },
+  'honor-of-kings': { uz: 'Token', ru: 'Токены', en: 'Tokens' },
+  'arena-breakout': { uz: 'Bonds', ru: 'Bonds', en: 'Bonds' },
 };
 
 const games = catalog?.games ?? [];
@@ -159,13 +197,16 @@ const enabled = Boolean(catalog?.enabled);
         <button type="button" class="dn-where" id="dn-where">{T.idWhere}</button>
       </div>
       <div class="dn-help" id="dn-help" hidden></div>
-      <div class="dn-idwrap">
-        <input id="dn-player" class="dn-input" inputmode="numeric" autocomplete="off" maxlength="40" placeholder={T.idPh} />
-        <button type="button" class="dn-check" id="dn-check">{T.check}</button>
+      <div class="dn-idrow" id="dn-idrow">
+        <div class="dn-idwrap">
+          <input id="dn-player" class="dn-input" inputmode="numeric" autocomplete="off" maxlength="40" placeholder={T.idPh} />
+          <button type="button" class="dn-check" id="dn-check">{T.check}</button>
+        </div>
+        <input id="dn-server" class="dn-input dn-zone" inputmode="numeric" autocomplete="off" maxlength="8" placeholder={T.zonePh} aria-label={T.zone} hidden />
       </div>
       <div class="dn-nick" id="dn-nick" hidden></div>
     </div>
-    <div class="dn-giftnote" id="dn-giftnote" hidden={startGame ? startGame.needs_player_id : true}>🔗 {T.gift}</div>
+    <div class="dn-giftnote" id="dn-giftnote" hidden={startGame ? startGame.needs_player_id : true}>🔗 <span id="dn-giftnote-t">{T.gift}</span></div>
 
     <details class="dn-contact">
       <summary>{T.s4}</summary>
@@ -227,6 +268,12 @@ const enabled = Boolean(catalog?.enabled);
     <div class="dn-status-ico" id="dn-status-ico"></div>
     <div class="dn-status-text" id="dn-status-text"></div>
     <div class="dn-what dn-center" id="dn-status-what"></div>
+    <div class="dn-linkbox" id="dn-codebox" hidden>
+      <div class="dn-cap">🎟️ {T.codeTitle}</div>
+      <div class="dn-code-row"><code class="dn-code" id="dn-code"></code><button type="button" class="dn-copy" id="dn-code-copy">{T.copy}</button></div>
+      <a class="dn-ghost dn-pay-full" href="https://www.roblox.com/redeem" target="_blank" rel="noopener noreferrer">{T.redeem}</a>
+      <p class="dn-hint">{T.codeHint}</p>
+    </div>
     <div class="dn-linkbox" id="dn-linkbox" hidden>
       <div class="dn-cap">🔗 {T.linkTitle}</div>
       <a class="dn-pay dn-pay-full" id="dn-link" href="#" target="_blank" rel="noopener noreferrer">{T.open}</a>
@@ -264,6 +311,8 @@ const enabled = Boolean(catalog?.enabled);
     const item = (): Item | undefined => game()?.items.find((i) => i.id === itemId);
     const showErr = (msg: string) => { const e = $('dn-err'); e.textContent = msg; e.hidden = !msg; };
     const pidValue = () => (document.getElementById('dn-player') as HTMLInputElement | null)?.value.trim().replace(/\s+/g, '') || '';
+    const zoneValue = () => (document.getElementById('dn-server') as HTMLInputElement | null)?.value.trim().replace(/[\s()]/g, '') || '';
+    const needsZone = () => Boolean((game() as any)?.needs_server);
     const store = {
       get: () => { try { return localStorage.getItem('dn_order') || ''; } catch { return ''; } },
       set: (v: string) => { try { v ? localStorage.setItem('dn_order', v) : localStorage.removeItem('dn_order'); } catch {} },
@@ -271,7 +320,7 @@ const enabled = Boolean(catalog?.enabled);
 
     /** "60 UC" → {qty:"60", unit:"UC"}; "110 Diamonds" → olmos; boshqalari (Prime, Pass) → null */
     function parseName(name: string) {
-      const m = String(name).match(/^([\d\s.,]+)\s+(UC|Diamonds|Gold)$/i);
+      const m = String(name).match(/^([\d\s.,+]+)\s+(UC|Diamonds|Gold|Delta Coins|BC|Tokens|Bonds|Robux)$/i);
       if (!m) return null;
       const u = Object.keys(T.UNIT).find((k) => k.toLowerCase() === m[2].toLowerCase()) || m[2];
       return { qty: m[1].trim(), unit: T.UNIT[u]?.[lang] || m[2] };
@@ -285,6 +334,7 @@ const enabled = Boolean(catalog?.enabled);
       [/^Newbie Bundle$/i, "Yangi o'yinchi to'plami", 'Набор новичка', 'Newbie bundle'],
       [/^Evo Access (\d+)d$/i, 'Evo Access · $1 kun', 'Evo Access · $1 дн', 'Evo Access · $1 days'],
       [/^Level Up Package (\d+)$/i, 'Level Up · $1-daraja', 'Level Up · $1 ур.', 'Level Up · level $1'],
+      [/^(\d+) \+ \d+ Diamonds \(First Top-Up Bonus\)$/i, "$1 olmos ×2 · 1-xarid bonusi", '$1 алмазов ×2 · бонус 1-й покупки', '$1 diamonds ×2 · first top-up'],
     ] };
     function trName(name: string) {
       for (const [re, uz, ru, en] of L10N.x) if (re.test(name)) return name.replace(re, lang === 'ru' ? ru : lang === 'en' ? en : uz);
@@ -351,7 +401,10 @@ const enabled = Boolean(catalog?.enabled);
       group(cur.length ? T.passes : null, other);
       $('dn-idbox').hidden = !g.needs_player_id;
       $('dn-giftnote').hidden = g.needs_player_id;
-      const help = T.idHelp?.[g.slug];
+      const help = T.idHelp?.[g.slug] || (g.slug === 'mobile-legends' ? T.mlbbHelp : g.needs_player_id ? T.genericHelp : '');
+      ($('dn-server') as HTMLInputElement).hidden = !(g as any).needs_server;
+      $('dn-idrow').classList.toggle('has-zone', Boolean((g as any).needs_server));
+      $('dn-giftnote-t').textContent = (g as any).secret_kind === 'code' ? T.giftCode : T.gift;
       $('dn-where').hidden = !help;
       $('dn-help').textContent = help || '';
       $('dn-help').hidden = true;
@@ -396,15 +449,17 @@ const enabled = Boolean(catalog?.enabled);
       if (!g?.needs_player_id) return true;
       const pid = pidValue();
       if (!pid) { setNick(T.needId, 'bad'); ($('dn-player') as HTMLInputElement).focus(); return false; }
-      if (checkedFor === `${slug}:${pid}`) return true;
+      const zone = needsZone() ? zoneValue() : '';
+      if (needsZone() && !/^\d{1,8}$/.test(zone)) { setNick(T.needZone, 'bad'); ($('dn-server') as HTMLInputElement).focus(); return false; }
+      if (checkedFor === `${slug}:${pid}:${zone}`) return true;
       const btn = $('dn-check') as HTMLButtonElement;
       btn.disabled = true; setNick(T.checking, 'wait');
       try {
-        const { ok, d } = await api('/api/donat/check-player', { game: slug, player_id: pid, item: item()?.name });
-        if (pid !== pidValue()) return false;
+        const { ok, d } = await api('/api/donat/check-player', { game: slug, player_id: pid, server_id: zone || undefined, item: item()?.name });
+        if (pid !== pidValue() || zone !== (needsZone() ? zoneValue() : '')) return false;
         if (!ok) { setNick(d.error || T.errNet, 'bad'); checkedFor = ''; return false; }
         setNick(d.player_name ? `✓ ${d.player_name}` : T.notVerified, 'ok');
-        checkedFor = `${slug}:${pid}`;
+        checkedFor = `${slug}:${pid}:${zone}`;
         renderBar();
         return true;
       } catch { setNick(T.errNet, 'bad'); return false; }
@@ -420,14 +475,14 @@ const enabled = Boolean(catalog?.enabled);
       btn.disabled = true; btn.classList.add('is-busy');
       try {
         const { ok, d } = await api('/api/donat/order', {
-          game: slug, item: it.id, player_id: g.needs_player_id ? pidValue() : undefined,
+          game: slug, item: it.id, player_id: g.needs_player_id ? pidValue() : undefined, server_id: needsZone() ? zoneValue() : undefined,
           contact: ($('dn-contact') as HTMLInputElement).value.trim(), site: location.hostname, lang,
         });
         if (!ok) { showErr(d.error || T.errNet); return; }
         store.set(d.token);
         history.replaceState(null, '', `${location.pathname}?order=${encodeURIComponent(d.token)}`);
         const nick = ($('dn-nick').textContent || '').replace(/^✓\s*/, '');
-        current = { ...d, game: g.title, item: it.name, player_id: g.needs_player_id ? pidValue() : null, player_name: checkedFor && nick !== T.notVerified ? nick : null, state: 'awaiting_payment' };
+        current = { ...d, game: g.title, item: it.name, player_id: g.needs_player_id ? pidValue() : null, server_id: needsZone() ? zoneValue() : null, player_name: checkedFor && nick !== T.notVerified ? nick : null, state: 'awaiting_payment' };
         showPayment(current);
         poll(d.token);
       } catch { showErr(T.errNet); }
@@ -439,7 +494,7 @@ const enabled = Boolean(catalog?.enabled);
       const b = document.createElement('b');
       b.textContent = `${o.game || ''} · ${prettyName(o.item || '')}`;
       el.append(b);
-      el.append(`${o.player_id ? ` · ID ${o.player_id}` : ''}${o.player_name ? ` (${o.player_name})` : ''}${o.order_id ? ` · ${T.order} #${o.order_id}` : ''}`);
+      el.append(`${o.player_id ? ` · ID ${o.player_id}${o.server_id ? ` (${o.server_id})` : ''}` : ''}${o.player_name ? ` (${o.player_name})` : ''}${o.order_id ? ` · ${T.order} #${o.order_id}` : ''}`);
     }
 
     function showStep(id: 'dn-shop' | 'dn-payment' | 'dn-status') {
@@ -493,8 +548,11 @@ const enabled = Boolean(catalog?.enabled);
       $('dn-status-text').textContent = t;
       root!.classList.toggle('is-done', o.state === 'delivered');
       fillWhat($('dn-status-what'), o);
-      $('dn-linkbox').hidden = !o.link;
-      if (o.link) ($('dn-link') as HTMLAnchorElement).href = o.link;
+      const isCode = o.secret_kind === 'code';
+      $('dn-linkbox').hidden = !o.link || isCode;
+      $('dn-codebox').hidden = !o.link || !isCode;
+      if (o.link && !isCode && /^https?:\/\//i.test(o.link)) ($('dn-link') as HTMLAnchorElement).href = o.link;
+      if (o.link && isCode) $('dn-code').textContent = o.link;
       $('dn-support').hidden = !(o.state === 'problem' || o.state === 'expired');
       $('dn-again').hidden = o.state === 'delivering';
       showStep('dn-status');
@@ -532,6 +590,7 @@ const enabled = Boolean(catalog?.enabled);
       if (!b || b.dataset.slug === slug) return;
       slug = b.dataset.slug!; itemId = ''; checkedFor = ''; setNick('', ''); showErr('');
       ($('dn-player') as HTMLInputElement).value = '';
+      ($('dn-server') as HTMLInputElement).value = '';
       renderGames(); renderItems();
     });
     $('dn-items').addEventListener('click', (e) => {
@@ -546,7 +605,12 @@ const enabled = Boolean(catalog?.enabled);
     $('dn-player').addEventListener('input', () => {
       checkedFor = ''; setNick('', '');
       clearTimeout(checkTimer);
-      if (pidValue().length >= 6) checkTimer = window.setTimeout(checkPlayer, 900); // yozib bo'lgach o'zi tekshiradi
+      if (pidValue().length >= 6 && (!needsZone() || zoneValue())) checkTimer = window.setTimeout(checkPlayer, 900); // yozib bo'lgach o'zi tekshiradi
+    });
+    $('dn-server').addEventListener('input', () => {
+      checkedFor = ''; setNick('', '');
+      clearTimeout(checkTimer);
+      if (pidValue().length >= 6 && zoneValue().length >= 1) checkTimer = window.setTimeout(checkPlayer, 900);
     });
     $('dn-player').addEventListener('keydown', (e) => { if ((e as KeyboardEvent).key === 'Enter') { checkedFor = ''; checkPlayer(); } });
     $('dn-pay').addEventListener('click', () => {
@@ -557,6 +621,9 @@ const enabled = Boolean(catalog?.enabled);
     });
     $('dn-again').addEventListener('click', reset);
     $('dn-cancel').addEventListener('click', reset);
+    $('dn-code-copy').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText($('dn-code').textContent || ''); $('dn-code-copy').textContent = T.copied; setTimeout(() => ($('dn-code-copy').textContent = T.copy), 1600); } catch {}
+    });
     root.querySelectorAll<HTMLButtonElement>('.dn-copy').forEach((b) => b.addEventListener('click', async () => {
       const v = b.dataset.copy === 'amount' ? String(current?.amount || '') : String(current?.card?.number || '').replace(/\D/g, '');
       const label = b.textContent;
@@ -620,6 +687,11 @@ const enabled = Boolean(catalog?.enabled);
   .dn-muted { color: var(--text-muted); padding: 12px 0; }
 
   .dn-idwrap { position: relative; }
+  .dn-idrow.has-zone { display: grid; grid-template-columns: 1fr 104px; gap: 8px; }
+  .dn-zone { text-align: center; letter-spacing: .4px; }
+  .dn-code-row { display: flex; align-items: center; gap: 10px; margin: 6px 0 12px; }
+  .dn-code { flex: 1; font-family: ui-monospace, Menlo, monospace; font-size: 1.15rem; font-weight: 800; letter-spacing: 1px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; word-break: break-all; }
+  .dn-games { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .dn-input { width: 100%; padding: 15px 16px; border: 2px solid var(--border); border-radius: 16px; font: inherit; font-size: 1.02rem; color: var(--text); background: #fff; outline: none; transition: border-color .15s, box-shadow .15s; }
   .dn-idwrap .dn-input { padding-right: 130px; letter-spacing: .4px; }
   .dn-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(124, 58, 237, .12); }
@@ -720,6 +792,9 @@ const enabled = Boolean(catalog?.enabled);
     .dn-item-name b { font-size: 1.2rem; }
     .dn-amount { font-size: 1.6rem; }
     .dn-bank-num { font-size: 1.15rem; letter-spacing: 1.2px; }
+    .dn-idrow.has-zone { grid-template-columns: 1fr 84px; gap: 6px; }
+    .dn-idrow.has-zone .dn-idwrap .dn-input { padding-right: 104px; }
+    .dn-idrow.has-zone .dn-check { padding: 0 10px; font-size: .85rem; }
     /* telefonda pastki panel ekran pastida yopishib turadi */
     .dn-bar { position: sticky; bottom: 10px; z-index: 30; gap: 10px; padding: 10px 10px 10px 14px; box-shadow: 0 12px 30px rgba(26, 16, 53, .35); }
     .dn-bar .dn-pay { flex: 0 1 auto; max-width: 55%; white-space: normal; text-align: center; line-height: 1.2; padding: 13px 16px; }

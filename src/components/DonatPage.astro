@@ -12,7 +12,7 @@ import FooterRu from './FooterRu.astro';
 import FooterEn from './FooterEn.astro';
 import DonatApp from './DonatApp.astro';
 import {
-  fetchDonatCatalog, fmtSum, minPrice, GAME_SEO, DONAT_HUB_SEO, donatPath, donatHreflangs, type DonatLang,
+  fetchDonatCatalog, fmtSum, minPrice, GAME_SEO, DONAT_HUB_SEO, DONAT_SLUGS, donatPath, donatHreflangs, type DonatLang,
 } from '../lib/donat';
 
 interface Props { lang: DonatLang; slug?: string }
@@ -205,7 +205,7 @@ const ld: any[] = [
         <details class="dn-faq"><summary>{q}</summary><p>{a}</p></details>
       ))}
       {slug && (
-        <p class="dn-others">{L.other}: {['pubg-mobile', 'free-fire', 'standoff-2'].filter((s) => s !== slug).map((s, i) => (
+        <p class="dn-others">{L.other}: {DONAT_SLUGS.filter((s) => s !== slug).map((s, i) => (
           <>{i > 0 && ' · '}<a href={donatPath(lang, s)}>{GAME_SEO[s][lang].h1}</a></>
         ))}</p>
       )}

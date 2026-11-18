@@ -36,6 +36,12 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/donat/pubg-mobile': '/donat/pubg-mobile',
   '/en/donat/free-fire': '/donat/free-fire',
   '/en/donat/standoff-2': '/donat/standoff-2',
+  '/en/donat/mobile-legends': '/donat/mobile-legends',
+  '/en/donat/roblox': '/donat/roblox',
+  '/en/donat/delta-force': '/donat/delta-force',
+  '/en/donat/blood-strike': '/donat/blood-strike',
+  '/en/donat/honor-of-kings': '/donat/honor-of-kings',
+  '/en/donat/arena-breakout': '/donat/arena-breakout',
   // Blog maqolalari — EN slug o'zbekchadan farq qiladi, shuning uchun har biri
   // alohida yoziladi. Yozuv bo'lmasa NavbarEn dagi 🇺🇿 tugmasi o'quvchini
   // maqolaga emas, bosh sahifaga tashlaydi.

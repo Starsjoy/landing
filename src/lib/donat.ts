@@ -105,21 +105,62 @@ export const GAME_SEO: Record<string, Record<DonatLang, { title: string; h1: str
   },
 };
 
+/** Yangi o'yinlar uchun SEO matnlari bir xil qolipdan: o'yin nomi, valyuta, yetkazish usuli */
+type GameWords = { name: string; cur: Record<DonatLang, string>; packs: string; how: 'id' | 'zone' | 'code' };
+const NEW_GAMES: Record<string, GameWords> = {
+  'mobile-legends': { name: 'Mobile Legends', cur: { uz: 'olmos', ru: 'алмазы', en: 'diamonds' }, packs: '14, 70, 140, 355, 716, 1446, 2976, Weekly Pass', how: 'zone' },
+  roblox: { name: 'Roblox', cur: { uz: 'Robux', ru: 'Robux', en: 'Robux' }, packs: '50, 100, 800, 1000, 2000, 4500, 10000 Robux', how: 'code' },
+  'delta-force': { name: 'Delta Force', cur: { uz: 'Delta Coins', ru: 'Delta Coins', en: 'Delta Coins' }, packs: '60, 320, 750, 1480, 3950, 8100', how: 'id' },
+  'blood-strike': { name: 'Blood Strike', cur: { uz: 'BC (Gold)', ru: 'BC (Gold)', en: 'BC (Gold)' }, packs: '105, 320, 540, 1100, 2260, 5800 BC, Strike Pass', how: 'id' },
+  'honor-of-kings': { name: 'Honor of Kings', cur: { uz: 'token', ru: 'токены', en: 'tokens' }, packs: '80, 240, 400, 830, 2508, 8360, Weekly Card', how: 'id' },
+  'arena-breakout': { name: 'Arena Breakout', cur: { uz: 'Bonds', ru: 'Bonds', en: 'Bonds' }, packs: '66, 335, 675, 1690, 3400, 6820 Bonds', how: 'id' },
+};
+for (const [slug, w] of Object.entries(NEW_GAMES)) {
+  const idUz = w.how === 'zone' ? "ID va Zone ID'ni kiriting, nikingizni ko'ring, " : w.how === 'code' ? '' : "Player ID'ni kiriting, nikingizni ko'ring, ";
+  const idRu = w.how === 'zone' ? 'Введите ID и Zone ID, проверьте ник, ' : w.how === 'code' ? '' : 'Введите Player ID, проверьте ник, ';
+  const idEn = w.how === 'zone' ? 'Enter your ID and Zone ID, check your nickname, ' : w.how === 'code' ? '' : 'Enter your Player ID, check your nickname, ';
+  const endUz = w.how === 'code' ? "To'lovdan keyin Robux kodi shu sahifada chiqadi, uni roblox.com/redeem da kiritasiz." : 'Donat akkauntingizga avtomatik tushadi.';
+  const endRu = w.how === 'code' ? 'После оплаты код Robux появится на этой странице, активируйте его на roblox.com/redeem.' : 'Донат поступит на аккаунт автоматически.';
+  const endEn = w.how === 'code' ? 'After payment the Robux code appears on this page, redeem it at roblox.com/redeem.' : 'The top-up lands on your account automatically.';
+  GAME_SEO[slug] = {
+    uz: {
+      title: `${w.name} ${w.cur.uz} sotib olish — Uzcard va Humo bilan | StarsJoy`,
+      h1: `${w.name} ${w.cur.uz} sotib olish`,
+      desc: `${w.name} ${w.cur.uz} sotib olish: ${w.packs}. Uzcard va Humo bilan to'lov, ${w.how === 'code' ? 'kod darhol beriladi' : 'akkauntga avtomatik yetkazish'}.`,
+      lead: `${idUz}${idUz ? 'paketni' : 'Paketni'} tanlang va kartadan to'lang. ${endUz}`,
+    },
+    ru: {
+      title: `Купить ${w.cur.ru} ${w.name} в Узбекистане — Uzcard и Humo | StarsJoy`,
+      h1: `Купить ${w.cur.ru} ${w.name}`,
+      desc: `${w.cur.ru[0].toUpperCase() + w.cur.ru.slice(1)} ${w.name}: ${w.packs}. Оплата Uzcard или Humo, ${w.how === 'code' ? 'код сразу после оплаты' : 'автоматическое зачисление'}.`,
+      lead: `${idRu}${idRu ? 'выберите' : 'Выберите'} пакет и оплатите картой. ${endRu}`,
+    },
+    en: {
+      title: `Buy ${w.name} ${w.cur.en} in Uzbekistan — Uzcard & Humo | StarsJoy`,
+      h1: `Buy ${w.name} ${w.cur.en}`,
+      desc: `${w.name} ${w.cur.en}: ${w.packs}. Pay with Uzcard or Humo, ${w.how === 'code' ? 'code right after payment' : 'automatic delivery'}.`,
+      lead: `${idEn}${idEn ? 'pick' : 'Pick'} a pack and pay by card. ${endEn}`,
+    },
+  };
+}
+
+export const DONAT_SLUGS = ['pubg-mobile', 'free-fire', 'mobile-legends', 'standoff-2', 'roblox', 'delta-force', 'blood-strike', 'honor-of-kings', 'arena-breakout'];
+
 export const DONAT_HUB_SEO: Record<DonatLang, { title: string; h1: string; desc: string; lead: string }> = {
   uz: {
-    title: "O'yinlarga donat — PUBG UC, Free Fire, Standoff 2 | StarsJoy",
+    title: "O'yinlarga donat — PUBG UC, Free Fire, Mobile Legends, Roblox | StarsJoy",
     h1: "O'yinlarga donat",
-    desc: "PUBG Mobile UC, Free Fire olmos va Standoff 2 Gold sotib olish. Uzcard va Humo bilan to'lov, akkauntga avtomatik yetkazish, StarsJoy kafolati.",
+    desc: "PUBG Mobile UC, Free Fire va Mobile Legends olmos, Roblox Robux, Standoff 2 Gold va boshqa o'yinlar. Uzcard va Humo bilan to'lov, akkauntga avtomatik yetkazish.",
     lead: "O'yinni tanlang, ID'ni kiriting va kartadan to'lang. Donat akkauntingizga avtomatik tushadi.",
   },
   ru: {
-    title: 'Донат в игры — UC PUBG, алмазы Free Fire, Gold Standoff 2 | StarsJoy',
+    title: 'Донат в игры — UC PUBG, Free Fire, Mobile Legends, Roblox | StarsJoy',
     h1: 'Донат в игры',
     desc: 'Купить UC PUBG Mobile, алмазы Free Fire и Gold Standoff 2. Оплата Uzcard и Humo, автоматическое зачисление, гарантия StarsJoy.',
     lead: 'Выберите игру, введите ID и оплатите картой. Донат поступит на аккаунт автоматически.',
   },
   en: {
-    title: 'Game Top-Up — PUBG UC, Free Fire, Standoff 2 | StarsJoy',
+    title: 'Game Top-Up — PUBG UC, Free Fire, Mobile Legends, Roblox | StarsJoy',
     h1: 'Game top-up',
     desc: 'Buy PUBG Mobile UC, Free Fire diamonds and Standoff 2 Gold. Pay with Uzcard or Humo, automatic delivery, StarsJoy guarantee.',
     lead: 'Pick a game, enter your ID and pay by card. The top-up lands on your account automatically.',
