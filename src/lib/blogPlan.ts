@@ -31,12 +31,13 @@ export const PROJECTS = {
   premiumsend: { name: 'PremiumSend', domain: 'https://premiumsend.uz', blogPath: '/maqolalar' },
 } as const;
 export type Project = keyof typeof PROJECTS;
+export const CODES: Record<string, string> = { starsjoy: 'STJ', uzgets: 'UZG', premium24: 'P24', premiumsend: 'PRS' };
 export const GROUPS = ['sotib', 'tanlov', 'muammo', 'malumot'] as const;
 export type Group = (typeof GROUPS)[number];
 export const STATUSES = ['reja', 'yozilmoqda', 'chop', 'toxtatildi'] as const;
 
 export type PlanItem = {
-  id: number; project: Project; grp: Group; title: string; keyword: string;
+  id: number; num: number | null; project: Project; grp: Group; title: string; keyword: string;
   slug_uz: string | null; slug_ru: string | null; slug_en: string | null;
   money_page: string; status: string; score: number | null;
   clicks: number; buy_clicks: number; note: string; published: string | null; source: string;
@@ -67,6 +68,8 @@ export function ensureBlogPlan() {
       )`;
     await sql`CREATE UNIQUE INDEX IF NOT EXISTS idx_blog_plan_slug ON blog_plan(project, slug_uz) WHERE slug_uz IS NOT NULL`;
     await sql`CREATE INDEX IF NOT EXISTS idx_blog_plan_project ON blog_plan(project)`;
+    // Doimiy raqam: STJ-1, P24-3 ... (loyiha ichida, bir marta beriladi, o'zgarmaydi)
+    await sql`ALTER TABLE blog_plan ADD COLUMN IF NOT EXISTS num INTEGER`;
     const [{ n }] = await sql`SELECT count(*)::int AS n FROM blog_plan`;
     if (n === 0) {
       // Boshlang'ich ma'lumot: 2026-11-21 holati (GSC 90 kun: klik va xarid niyatidagi klik)
@@ -78,6 +81,12 @@ export function ensureBlogPlan() {
           ON CONFLICT DO NOTHING`;
       }
     }
+    // Raqamsizlarga raqam: avval chiqqanlar (sana bo'yicha), keyin rejadagilar
+    await sql`
+      WITH m AS (SELECT project, COALESCE(MAX(num), 0) AS mx FROM blog_plan GROUP BY project),
+           r AS (SELECT id, project, row_number() OVER (PARTITION BY project ORDER BY (status <> 'chop'), published NULLS LAST, id) AS rn
+                   FROM blog_plan WHERE num IS NULL)
+      UPDATE blog_plan b SET num = m.mx + r.rn FROM r JOIN m USING (project) WHERE b.id = r.id`;
   })().catch((e) => { ready = null; throw e; });
   return ready;
 }
@@ -86,7 +95,7 @@ export async function listPlan(project: Project): Promise<PlanItem[]> {
   await ensureBlogPlan();
   const sql = getSQL();
   return (await sql`
-    SELECT id, project, grp, title, keyword, slug_uz, slug_ru, slug_en, money_page, status, score,
+    SELECT id, num, project, grp, title, keyword, slug_uz, slug_ru, slug_en, money_page, status, score,
            clicks, buy_clicks, note, to_char(published, 'YYYY-MM-DD') AS published, source
       FROM blog_plan WHERE project = ${project}
      ORDER BY (status = 'chop'), score DESC NULLS LAST, buy_clicks DESC, clicks DESC, id`) as unknown as PlanItem[];
@@ -159,9 +168,9 @@ const GROUP_NAME: Record<Group, string> = { sotib: 'Sotib olish', tanlov: 'Narx 
 export type CheckResult = {
   ok: boolean;
   errors: string[];
-  duplicates: { id: number; title: string; status: string; slug_uz: string | null; why: string }[];
+  duplicates: { id: number; code: string; title: string; status: string; slug_uz: string | null; why: string }[];
   warnings: string[];
-  similar: { id: number; title: string; status: string }[];
+  similar: { id: number; code: string; title: string; status: string }[];
   suggestedGroup: Group;
 };
 
@@ -183,7 +192,7 @@ export async function checkCandidate(project: Project, c: { grp: string; title: 
   for (const it of items) {
     const itSlug = it.slug_uz || it.slug_ru || '';
     if (slug && (itSlug === slug || it.slug_ru === slug || (itSlug.split('-').length >= 4 && slug.startsWith(itSlug + '-')))) {
-      res.duplicates.push({ id: it.id, title: it.title, status: it.status, slug_uz: it.slug_uz, why: 'slug bir xil' });
+      res.duplicates.push({ id: it.id, code: `${CODES[project]}-${it.num}`, title: it.title, status: it.status, slug_uz: it.slug_uz, why: 'slug bir xil' });
       continue;
     }
     const other = tokens(`${it.title} ${it.keyword} ${(it.slug_uz || it.slug_ru || it.slug_en || '').replace(/-/g, ' ')}`);
@@ -194,9 +203,9 @@ export async function checkCandidate(project: Project, c: { grp: string; title: 
     // Asosiy so'rovning barcha so'zlari boshqa maqolada bor (raqamlar ham bir xil) → o'sha so'rovni u allaqachon oladi
     const kwCovered = kwTok.size >= 2 && [...kwTok].some((x) => !GENERIC.has(x)) && [...kwTok].every((x) => other.has(x));
     if (sameNums && ((s.inter >= 3 && (s.jac >= 0.6 || s.cont >= 0.85)) || kwCovered)) {
-      res.duplicates.push({ id: it.id, title: it.title, status: it.status, slug_uz: it.slug_uz, why: kwCovered ? "asosiy so'rov shu maqolada" : `bir xil niyat (${Math.round(s.jac * 100)}% mos)` });
+      res.duplicates.push({ id: it.id, code: `${CODES[project]}-${it.num}`, title: it.title, status: it.status, slug_uz: it.slug_uz, why: kwCovered ? "asosiy so'rov shu maqolada" : `bir xil niyat (${Math.round(s.jac * 100)}% mos)` });
     } else if (s.inter >= 2 && (s.jac >= 0.4 || s.cont >= 0.7)) {
-      res.similar.push({ id: it.id, title: it.title, status: it.status });
+      res.similar.push({ id: it.id, code: `${CODES[project]}-${it.num}`, title: it.title, status: it.status });
     }
   }
   if (res.similar.length) res.warnings.push(`O'xshash ${res.similar.length} ta maqola bor: yangi maqola boshqa savolga javob berishi va ularga havola qilishi kerak.`);
@@ -243,10 +252,11 @@ export async function addItem(project: Project, c: { grp: Group; title: string; 
   const sql = getSQL();
   const slug = slugify(c.slug_uz || c.title);
   const [row] = await sql`
-    INSERT INTO blog_plan (project, grp, title, keyword, slug_uz, money_page, status, note, source)
-    VALUES (${project}, ${c.grp}, ${c.title.trim()}, ${c.keyword.trim()}, ${slug || null}, ${c.money_page.trim()}, 'reja', ${(c.note || '').trim()}, 'admin')
-    RETURNING id`;
-  return row.id as number;
+    INSERT INTO blog_plan (project, grp, title, keyword, slug_uz, money_page, status, note, source, num)
+    VALUES (${project}, ${c.grp}, ${c.title.trim()}, ${c.keyword.trim()}, ${slug || null}, ${c.money_page.trim()}, 'reja', ${(c.note || '').trim()}, 'admin',
+            (SELECT COALESCE(MAX(num), 0) + 1 FROM blog_plan WHERE project = ${project}))
+    RETURNING id, num`;
+  return { id: row.id as number, code: `${CODES[project]}-${row.num}` };
 }
 
 export async function updateItem(id: number, patch: { status?: string; grp?: string }) {
@@ -307,8 +317,9 @@ export async function syncFromSitemap(project: Project, force = false) {
     const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
     const t = h1 || html.match(/<title>([^<]+)<\/title>/i)?.[1]?.split('|')[0].trim() || s.replace(/-/g, ' ');
     await sql`
-      INSERT INTO blog_plan (project, grp, title, slug_uz, status, published, source)
-      VALUES (${project}, ${detectGroup(`${t} ${s}`)}, ${t.slice(0, 200)}, ${s}, 'chop', CURRENT_DATE, 'sitemap')
+      INSERT INTO blog_plan (project, grp, title, slug_uz, status, published, source, num)
+      VALUES (${project}, ${detectGroup(`${t} ${s}`)}, ${t.slice(0, 200)}, ${s}, 'chop', CURRENT_DATE, 'sitemap',
+              (SELECT COALESCE(MAX(num), 0) + 1 FROM blog_plan WHERE project = ${project}))
       ON CONFLICT DO NOTHING`;
     added++;
   }

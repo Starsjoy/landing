@@ -3,7 +3,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { verifyOwnerToken } from '../../lib/analytics';
 import {
-  PROJECTS, ensureBlogPlan, listPlan, checkCandidate, addItem, updateItem, deleteItem, syncFromSitemap,
+  PROJECTS, CODES, ensureBlogPlan, listPlan, checkCandidate, addItem, updateItem, deleteItem, syncFromSitemap,
   type Project, type Group,
 } from '../../lib/blogPlan';
 
@@ -28,7 +28,7 @@ export const GET: APIRoute = async ({ url, cookies }) => {
     console.error('blog-plan sync:', (e as Error).message);
   }
   const items = await listPlan(project);
-  return json({ project, projects: Object.fromEntries(Object.entries(PROJECTS).map(([k, v]) => [k, v.name])), items, sync });
+  return json({ project, code: CODES[project], projects: Object.fromEntries(Object.entries(PROJECTS).map(([k, v]) => [k, v.name])), items, sync });
 };
 
 // POST { action: 'check' | 'add', project, grp, title, keyword, slug_uz, money_page, note, force }
@@ -61,8 +61,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     if (b.action === 'check' || !check.ok || (check.warnings.length && b.force !== true)) {
       return json({ ok: false, added: false, check });
     }
-    const id = await addItem(b.project, { ...cand, grp: cand.grp as Group });
-    return json({ ok: true, added: true, id, check });
+    const r = await addItem(b.project, { ...cand, grp: cand.grp as Group });
+    return json({ ok: true, added: true, id: r.id, code: r.code, check });
   }
   return json({ error: 'action' }, 400);
 };

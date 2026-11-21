@@ -524,7 +524,7 @@ if (authenticated && !dbReady) {
                     <button data-bp-status="plan" onclick="bpSetStatus('plan')">Rejada</button>
                     <button data-bp-status="chop" onclick="bpSetStatus('chop')">Chiqqan</button>
                   </div>
-                  <input class="bp-search" id="bpSearch" type="search" placeholder="Qidirish" oninput="bpRender()">
+                  <input class="bp-search" id="bpSearch" type="search" placeholder="Qidirish yoki STJ-12" oninput="bpRender()">
                 </div>
               </div>
 
@@ -1366,6 +1366,7 @@ if (authenticated && !dbReady) {
     .bp-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
     .bp-card.is-stop { opacity: .55; }
     .bp-card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .bp-code { font-size: 0.95rem; font-weight: 800; color: var(--text-0); letter-spacing: 0.3px; font-variant-numeric: tabular-nums; }
     .bp-badge { font-size: 0.78rem; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-pill); }
     .bp-badge.chop { background: var(--green-bg); color: var(--green); }
     .bp-badge.reja { background: var(--orange-bg); color: var(--orange); }
@@ -2601,6 +2602,8 @@ if (authenticated && !dbReady) {
         { k: 'muammo', name: 'Muammo va yordam', d: 'Kelmadi, yoqilmadi, muddati tugadi, pul qaytarish' },
         { k: 'malumot', name: "Ma'lumot va ishonch", d: 'Nima bu, imkoniyatlar, xavfsizlik' }
       ];
+      var BP_CODE = { starsjoy: 'STJ', uzgets: 'UZG', premium24: 'P24', premiumsend: 'PRS' };
+      function bpCode(i) { return BP_CODE[bpProject] + '-' + (i.num == null ? '?' : i.num); }
       var BP_PROJ = { starsjoy: 'StarsJoy', uzgets: 'UzGets', premium24: 'Premium24', premiumsend: 'PremiumSend' };
       var BP_DOMAINS = { starsjoy: 'https://starsjoy.uz/blog/', uzgets: 'https://uzgets.uz/blog/', premium24: 'https://premium24.uz/blog/', premiumsend: 'https://premiumsend.uz/maqolalar/' };
       var BP_ST = { reja: 'Rejada', yozilmoqda: 'Yozilmoqda', chop: 'Chiqqan', toxtatildi: "To'xtatilgan" };
@@ -2647,7 +2650,7 @@ if (authenticated && !dbReady) {
         var base = BP_DOMAINS[bpProject];
         var t = bpEsc(i.title);
         if (i.status === 'chop' && i.slug_uz) t = '<a href="' + base + encodeURIComponent(i.slug_uz) + '" target="_blank" rel="noopener">' + t + '</a>';
-        var top = '<div class="bp-card-top"><span class="bp-badge ' + i.status + '">' + BP_ST[i.status] + '</span>'
+        var top = '<div class="bp-card-top"><span class="bp-code">' + bpCode(i) + '</span><span class="bp-badge ' + i.status + '">' + BP_ST[i.status] + '</span><span class="bp-spacer"></span>'
           + (i.score != null ? '<span class="bp-score">Ball: ' + i.score + '</span>' : (i.published && i.status === 'chop' ? '<span class="bp-score">' + bpEsc(i.published) + '</span>' : '')) + '</div>';
         var nums = '';
         if (i.status === 'chop') {
@@ -2660,7 +2663,8 @@ if (authenticated && !dbReady) {
         if (i.money_page) rows.push('<div><i>Sotadigan sahifa:</i> ' + bpEsc(i.money_page) + '</div>');
         var langs = [i.slug_uz && 'uz', i.slug_ru && 'ru', i.slug_en && 'en'].filter(Boolean).join(', ');
         if (i.status === 'chop' && langs) rows.push('<div><i>Tillar:</i> ' + langs + '</div>');
-        if (i.note && i.status !== 'chop') rows.push('<div><i>Izoh:</i> ' + bpEsc(i.note.length > 160 ? i.note.slice(0, 160) + '...' : i.note) + '</div>');
+        var note = (i.note || '').replace(/[`*]/g, '').replace(/⚠️\s*/g, '');
+        if (note && i.status !== 'chop') rows.push('<div><i>Izoh:</i> ' + bpEsc(note.length > 160 ? note.slice(0, 160) + '...' : note) + '</div>');
         var foot = '<div class="bp-card-foot"><select title="Holat" onchange="bpUpdate(' + i.id + ',{status:this.value})">'
           + Object.keys(BP_ST).map(function (s) { return '<option value="' + s + '"' + (s === i.status ? ' selected' : '') + '>' + BP_ST[s] + '</option>'; }).join('')
           + '</select><select title="Guruh" onchange="bpUpdate(' + i.id + ',{grp:this.value})">'
@@ -2681,7 +2685,7 @@ if (authenticated && !dbReady) {
         var list = all.filter(function (i) {
           if (bpStatus === 'chop' && i.status !== 'chop') return false;
           if (bpStatus === 'plan' && i.status === 'chop') return false;
-          if (q && (i.title + ' ' + (i.keyword || '') + ' ' + (i.slug_uz || '')).toLowerCase().indexOf(q) < 0) return false;
+          if (q && (bpCode(i) + ' ' + i.title + ' ' + (i.keyword || '') + ' ' + (i.slug_uz || '')).toLowerCase().indexOf(q) < 0) return false;
           return true;
         });
         document.getElementById('bpGroups').innerHTML = [{ k: 'all', name: 'Hammasi' }].concat(BP_GROUPS).map(function (g) {
@@ -2731,11 +2735,11 @@ if (authenticated && !dbReady) {
         var GN = {}; BP_GROUPS.forEach(function (g) { GN[g.k] = g.name; });
         var li = function (arr) { return '<ul>' + arr.join('') + '</ul>'; };
         var h = '<div class="bp-check">';
-        if (added) h += '<div class="bp-msg ok"><b>Rejaga qo\'shildi</b></div>';
-        if (c.duplicates.length) h += '<div class="bp-msg err"><b>Bu loyihada shunday maqola bor, qo\'shilmaydi</b>' + li(c.duplicates.map(function (d) { return '<li>' + bpEsc(d.title) + ' (' + BP_ST[d.status].toLowerCase() + ')</li>'; })) + '</div>';
+        if (added) h += '<div class="bp-msg ok"><b>Rejaga qo\'shildi' + (added !== true ? ': ' + bpEsc(added) : '') + '</b></div>';
+        if (c.duplicates.length) h += '<div class="bp-msg err"><b>Bu loyihada shunday maqola bor, qo\'shilmaydi</b>' + li(c.duplicates.map(function (d) { return '<li><b style="display:inline">' + bpEsc(d.code) + '</b> ' + bpEsc(d.title) + ' (' + BP_ST[d.status].toLowerCase() + ')</li>'; })) + '</div>';
         if (c.errors.length) h += '<div class="bp-msg err"><b>Tuzatish kerak</b>' + li(c.errors.map(function (e) { return '<li>' + bpEsc(e) + '</li>'; })) + '</div>';
         if (c.warnings.length) h += '<div class="bp-msg warn"><b>E\'tibor bering</b>' + li(c.warnings.map(function (w) { return '<li>' + bpEsc(w) + '</li>'; })) + '</div>';
-        if (c.similar.length) h += '<div class="bp-msg info"><b>O\'xshash maqolalar (havola qilish mumkin)</b>' + li(c.similar.slice(0, 5).map(function (s) { return '<li>' + bpEsc(s.title) + '</li>'; })) + '</div>';
+        if (c.similar.length) h += '<div class="bp-msg info"><b>O\'xshash maqolalar (havola qilish mumkin)</b>' + li(c.similar.slice(0, 5).map(function (s) { return '<li><b style="display:inline">' + bpEsc(s.code) + '</b> ' + bpEsc(s.title) + '</li>'; })) + '</div>';
         if (!added && c.ok && !c.warnings.length) h += '<div class="bp-msg ok"><b>Hammasi joyida</b>Dublikat yo\'q, sarlavha tabiiy. Mos guruh: ' + GN[c.suggestedGroup] + '</div>';
         h += '</div>';
         document.getElementById('bpCheckBox').innerHTML = h;
@@ -2751,7 +2755,7 @@ if (authenticated && !dbReady) {
         var res = await fetch('/api/blog-plan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bpPayload('add', force)) });
         if (!res.ok) { alert('Xatolik (' + res.status + ')'); return false; }
         var j = await res.json();
-        bpShowCheck(j.check, j.added);
+        bpShowCheck(j.check, j.added ? (j.code || true) : false);
         if (j.added) {
           ['bpTitle', 'bpKeyword', 'bpMoney', 'bpSlug', 'bpNote'].forEach(function (id) { document.getElementById(id).value = ''; });
           bpLoad(false);
