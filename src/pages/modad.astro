@@ -456,63 +456,79 @@ if (authenticated && !dbReady) {
 
           <!-- Reja: maqolalar rejasi (4 loyiha, 4 guruh) -->
           <div id="section-blogplan" class="section-content" hidden>
-            <div class="panel">
-              <div class="panel-header bp-head">
-                <h2>Maqolalar rejasi</h2>
-                <div class="row-filters" id="bpProjects">
-                  <button class="rf-btn active" data-bp-project="starsjoy" onclick="bpSetProject('starsjoy')">StarsJoy</button>
-                  <button class="rf-btn" data-bp-project="uzgets" onclick="bpSetProject('uzgets')">UzGets</button>
-                  <button class="rf-btn" data-bp-project="premium24" onclick="bpSetProject('premium24')">Premium24</button>
-                  <button class="rf-btn" data-bp-project="premiumsend" onclick="bpSetProject('premiumsend')">PremiumSend</button>
+            <div class="bp-page">
+              <div class="bp-top">
+                <div>
+                  <h1 class="bp-h1">Maqolalar rejasi</h1>
+                  <p class="bp-sub">Har bir loyihaning chiqqan va rejadagi maqolalari, xaridor yo'li bo'yicha to'rt guruhda.</p>
                 </div>
-              </div>
-              <div class="bp-bar">
-                <div class="row-filters" id="bpStatus">
-                  <button class="rf-btn active" data-bp-status="all" onclick="bpSetStatus('all')">Hammasi</button>
-                  <button class="rf-btn" data-bp-status="plan" onclick="bpSetStatus('plan')">Rejada</button>
-                  <button class="rf-btn" data-bp-status="chop" onclick="bpSetStatus('chop')">Chop etilgan</button>
+                <div class="bp-top-actions">
+                  <button class="bp-btn" onclick="bpLoad(true)">Saytdan yangilash</button>
+                  <button class="bp-btn bp-btn-primary" onclick="bpToggleForm()">Maqola qo'shish</button>
                 </div>
-                <span class="bp-summary" id="bpSummary"></span>
-                <span class="bp-spacer"></span>
-                <button class="bp-btn" onclick="bpLoad(true)">Saytdan yangilash</button>
-                <button class="bp-btn bp-btn-primary" onclick="bpToggleForm()">+ Maqola qo'shish</button>
               </div>
 
+              <div class="bp-tabs" id="bpProjects">
+                <button class="bp-tab active" data-bp-project="starsjoy" onclick="bpSetProject('starsjoy')">StarsJoy</button>
+                <button class="bp-tab" data-bp-project="uzgets" onclick="bpSetProject('uzgets')">UzGets</button>
+                <button class="bp-tab" data-bp-project="premium24" onclick="bpSetProject('premium24')">Premium24</button>
+                <button class="bp-tab" data-bp-project="premiumsend" onclick="bpSetProject('premiumsend')">PremiumSend</button>
+              </div>
+
+              <div class="bp-stats" id="bpStats"></div>
+
               <form class="bp-form" id="bpForm" hidden onsubmit="return bpSubmit(event, false)">
+                <h2 class="bp-form-title">Yangi maqola <span id="bpFormProject"></span></h2>
+                <p class="bp-form-hint">Shu loyihada bir xil maqola bo'lsa, qo'shilmaydi. Boshqa loyihada bo'lishi mumkin.</p>
                 <div class="bp-form-grid">
-                  <label>Guruh
-                    <select id="bpGrp">
-                      <option value="sotib">💰 Sotib olish</option>
-                      <option value="tanlov">⚖️ Narx va tanlov</option>
-                      <option value="muammo">🛠 Muammo va yordam</option>
-                      <option value="malumot">📘 Ma'lumot va ishonch</option>
-                    </select>
-                  </label>
-                  <label class="bp-wide">Sarlavha (H1, xaridor savoli)
+                  <label class="bp-wide">Sarlavha
                     <input id="bpTitle" maxlength="200" placeholder="Telegram Premium 3 oy yoki 12 oy: qaysi biri foydali?" required>
+                    <small>Xaridor Google'ga yozadigan savol shaklida</small>
                   </label>
                   <label>Asosiy so'rov
                     <input id="bpKeyword" maxlength="150" placeholder="telegram premium qaysi muddat" required>
                   </label>
-                  <label>Pul sahifasi
+                  <label>Guruh
+                    <select id="bpGrp">
+                      <option value="sotib">Sotib olish</option>
+                      <option value="tanlov">Narx va tanlov</option>
+                      <option value="muammo">Muammo va yordam</option>
+                      <option value="malumot">Ma'lumot va ishonch</option>
+                    </select>
+                  </label>
+                  <label>Qaysi sahifaga sotadi
                     <input id="bpMoney" maxlength="120" placeholder="/premium/12-oy" required>
                   </label>
-                  <label>Slug (ixtiyoriy)
-                    <input id="bpSlug" maxlength="90" placeholder="sarlavhadan avtomatik">
+                  <label>Slug
+                    <input id="bpSlug" maxlength="90" placeholder="bo'sh qolsa, sarlavhadan olinadi">
                   </label>
-                  <label class="bp-wide">Izoh (dublikatdan farqi, noyob hisob)
-                    <input id="bpNote" maxlength="500">
+                  <label class="bp-wide">Izoh
+                    <input id="bpNote" maxlength="500" placeholder="Boshqa maqolalardan nimasi bilan farq qiladi">
                   </label>
-                </div>
-                <div class="bp-form-actions">
-                  <button type="button" class="bp-btn" onclick="bpCheck()">Tekshirish</button>
-                  <button type="submit" class="bp-btn bp-btn-primary">Qo'shish</button>
-                  <button type="button" class="bp-btn" id="bpForce" hidden onclick="bpSubmit(null, true)">Ogohlantirishga qaramay qo'shish</button>
                 </div>
                 <div id="bpCheckBox"></div>
+                <div class="bp-form-actions">
+                  <button type="button" class="bp-btn" onclick="bpToggleForm()">Bekor qilish</button>
+                  <span class="bp-spacer"></span>
+                  <button type="button" class="bp-btn" onclick="bpCheck()">Tekshirish</button>
+                  <button type="button" class="bp-btn bp-btn-warn" id="bpForce" hidden onclick="bpSubmit(null, true)">Baribir qo'shish</button>
+                  <button type="submit" class="bp-btn bp-btn-primary">Qo'shish</button>
+                </div>
               </form>
 
-              <div class="bp-grid" id="bpGrid"><div class="bp-empty">Yuklanmoqda...</div></div>
+              <div class="bp-toolbar">
+                <div class="bp-chips" id="bpGroups"></div>
+                <div class="bp-toolbar-right">
+                  <div class="bp-seg" id="bpStatus">
+                    <button class="active" data-bp-status="all" onclick="bpSetStatus('all')">Hammasi</button>
+                    <button data-bp-status="plan" onclick="bpSetStatus('plan')">Rejada</button>
+                    <button data-bp-status="chop" onclick="bpSetStatus('chop')">Chiqqan</button>
+                  </div>
+                  <input class="bp-search" id="bpSearch" type="search" placeholder="Qidirish" oninput="bpRender()">
+                </div>
+              </div>
+
+              <div id="bpGrid"><div class="bp-empty">Yuklanmoqda...</div></div>
             </div>
           </div>
 
@@ -1282,60 +1298,133 @@ if (authenticated && !dbReady) {
     .rf-btn:hover:not(.active) { color: var(--text-1); }
 
     /* ───── REJA: maqolalar rejasi ───── */
-    .bp-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    .bp-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 0 20px 14px; }
-    .bp-summary { font-size: 0.75rem; color: var(--text-3); }
-    .bp-spacer { flex: 1; }
+    .bp-page { max-width: 1400px; }
+    .bp-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+    .bp-h1 { font-size: 1.5rem; font-weight: 700; color: var(--text-0); letter-spacing: -0.3px; margin: 0; }
+    .bp-sub { margin: 6px 0 0; font-size: 0.95rem; color: var(--text-2); }
+    .bp-top-actions { display: flex; gap: 10px; }
     .bp-btn {
-      padding: 6px 12px; border: 1px solid var(--border-light); border-radius: 6px; background: transparent;
-      color: var(--text-2); font-size: 0.75rem; font-weight: 600; font-family: inherit; cursor: pointer;
+      padding: 10px 16px; border: 1px solid var(--border-light); border-radius: var(--radius-sm); background: var(--bg-2);
+      color: var(--text-1); font-size: 0.9rem; font-weight: 600; font-family: inherit; cursor: pointer; transition: border-color .15s;
     }
-    .bp-btn:hover { color: var(--text-1); border-color: var(--text-3); }
+    .bp-btn:hover { border-color: var(--text-3); }
     .bp-btn-primary { background: var(--accent); color: var(--bg-0); border-color: var(--accent); }
-    .bp-btn-primary:hover { color: var(--bg-0); opacity: 0.9; }
-    .bp-form { margin: 0 20px 16px; padding: 14px; border: 1px solid var(--border-light); border-radius: var(--radius-sm); background: var(--bg-3); }
-    .bp-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-    .bp-form label { display: flex; flex-direction: column; gap: 4px; font-size: 0.7rem; color: var(--text-3); font-weight: 600; }
-    .bp-form .bp-wide { grid-column: span 2; }
-    .bp-form input, .bp-form select {
-      padding: 8px 10px; border-radius: 6px; border: 1px solid var(--border-light); background: var(--bg-2);
-      color: var(--text-1); font-size: 0.8rem; font-family: inherit; min-width: 0;
+    .bp-btn-primary:hover { opacity: .9; border-color: var(--accent); }
+    .bp-btn-warn { color: var(--orange); border-color: var(--orange); background: transparent; }
+    .bp-spacer { flex: 1; }
+
+    .bp-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 20px; overflow-x: auto; }
+    .bp-tab {
+      padding: 12px 18px; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px;
+      color: var(--text-3); font-size: 1rem; font-weight: 600; font-family: inherit; cursor: pointer; white-space: nowrap;
     }
-    .bp-form-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-    .bp-check { margin-top: 12px; font-size: 0.78rem; line-height: 1.5; }
-    .bp-check ul { margin: 4px 0 8px 18px; }
-    .bp-err { color: var(--red); }
-    .bp-warn { color: var(--orange); }
-    .bp-okmsg { color: var(--green); }
-    .bp-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0 20px 20px; }
-    .bp-col { border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg-1, transparent); min-width: 0; }
-    .bp-col-head { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 0.8rem; font-weight: 700; color: var(--text-1); display: flex; justify-content: space-between; gap: 6px; }
-    .bp-col-head small { color: var(--text-3); font-weight: 600; }
-    .bp-col-desc { padding: 6px 12px 0; font-size: 0.68rem; color: var(--text-3); }
-    .bp-list { padding: 6px; display: flex; flex-direction: column; gap: 6px; max-height: 70vh; overflow-y: auto; }
-    .bp-item { padding: 8px 9px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg-2); }
-    .bp-item.is-plan { border-color: var(--orange-bg); box-shadow: inset 3px 0 0 var(--orange); }
-    .bp-item.is-wip { box-shadow: inset 3px 0 0 var(--blue); }
-    .bp-item.is-stop { opacity: 0.55; }
-    .bp-title { font-size: 0.78rem; color: var(--text-1); line-height: 1.35; word-break: break-word; }
-    .bp-title a { color: inherit; text-decoration: none; }
-    .bp-title a:hover { text-decoration: underline; }
-    .bp-meta { margin-top: 4px; font-size: 0.66rem; color: var(--text-3); display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
-    .bp-tag { padding: 1px 6px; border-radius: var(--radius-pill); background: var(--bg-3); color: var(--text-2); font-weight: 600; }
-    .bp-tag.sale { background: var(--green-bg); color: var(--green); }
-    .bp-tag.plan { background: var(--orange-bg); color: var(--orange); }
-    .bp-actions { margin-top: 6px; display: flex; gap: 6px; }
-    .bp-actions select { padding: 2px 4px; font-size: 0.66rem; background: var(--bg-3); color: var(--text-2); border: 1px solid var(--border-light); border-radius: 4px; font-family: inherit; }
-    .bp-actions button { padding: 2px 6px; font-size: 0.66rem; background: transparent; color: var(--text-3); border: 1px solid var(--border-light); border-radius: 4px; cursor: pointer; font-family: inherit; }
-    .bp-empty { padding: 20px; color: var(--text-3); font-size: 0.8rem; }
-    @media (max-width: 1100px) { .bp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .bp-tab:hover { color: var(--text-1); }
+    .bp-tab.active { color: var(--text-0); border-bottom-color: var(--text-0); }
+
+    .bp-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 20px; }
+    .bp-stat { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+    .bp-stat-num { font-size: 1.75rem; font-weight: 700; color: var(--text-0); line-height: 1.1; }
+    .bp-stat-label { margin-top: 6px; font-size: 0.85rem; color: var(--text-2); }
+
+    .bp-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+    .bp-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .bp-chip {
+      padding: 8px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border-light); background: transparent;
+      color: var(--text-2); font-size: 0.88rem; font-weight: 600; font-family: inherit; cursor: pointer;
+    }
+    .bp-chip span { color: var(--text-3); font-weight: 500; margin-left: 4px; }
+    .bp-chip.active { background: var(--text-0); color: var(--bg-0); border-color: var(--text-0); }
+    .bp-chip.active span { color: var(--bg-0); opacity: .7; }
+    .bp-toolbar-right { display: flex; gap: 10px; align-items: center; }
+    .bp-seg { display: flex; background: var(--bg-3); border-radius: var(--radius-sm); padding: 3px; }
+    .bp-seg button {
+      padding: 7px 12px; border: none; border-radius: 6px; background: transparent; color: var(--text-2);
+      font-size: 0.85rem; font-weight: 600; font-family: inherit; cursor: pointer;
+    }
+    .bp-seg button.active { background: var(--bg-1); color: var(--text-0); }
+    .bp-search {
+      padding: 9px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); background: var(--bg-2);
+      color: var(--text-1); font-size: 0.9rem; font-family: inherit; width: 200px;
+    }
+
+    .bp-group { margin-bottom: 28px; }
+    .bp-group-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+    .bp-group-head h3 { margin: 0; font-size: 1.15rem; font-weight: 700; color: var(--text-0); }
+    .bp-group-head .bp-count { font-size: 0.9rem; color: var(--text-3); }
+    .bp-group-desc { margin: 0 0 12px; font-size: 0.9rem; color: var(--text-3); }
+    .bp-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; align-self: center; }
+    .g-sotib .bp-dot, .bp-card.g-sotib::before { background: var(--green); }
+    .g-tanlov .bp-dot, .bp-card.g-tanlov::before { background: var(--blue); }
+    .g-muammo .bp-dot, .bp-card.g-muammo::before { background: var(--orange); }
+    .g-malumot .bp-dot, .bp-card.g-malumot::before { background: var(--text-3); }
+
+    .bp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+    .bp-card {
+      position: relative; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 18px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden;
+    }
+    .bp-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
+    .bp-card.is-stop { opacity: .55; }
+    .bp-card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .bp-badge { font-size: 0.78rem; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-pill); }
+    .bp-badge.chop { background: var(--green-bg); color: var(--green); }
+    .bp-badge.reja { background: var(--orange-bg); color: var(--orange); }
+    .bp-badge.yozilmoqda { background: rgba(59, 130, 246, .14); color: var(--blue); }
+    .bp-badge.toxtatildi { background: var(--bg-3); color: var(--text-3); }
+    .bp-score { font-size: 0.82rem; color: var(--text-2); font-weight: 600; }
+    .bp-card-title { font-size: 1.02rem; font-weight: 600; line-height: 1.4; color: var(--text-0); word-break: break-word; }
+    .bp-card-title a { color: inherit; text-decoration: none; }
+    .bp-card-title a:hover { text-decoration: underline; }
+    .bp-nums { display: flex; gap: 22px; }
+    .bp-num b { display: block; font-size: 1.25rem; font-weight: 700; color: var(--text-0); line-height: 1.1; }
+    .bp-num.sale b { color: var(--green); }
+    .bp-num span { font-size: 0.8rem; color: var(--text-3); }
+    .bp-rows { display: grid; gap: 3px; font-size: 0.86rem; color: var(--text-2); }
+    .bp-rows i { font-style: normal; color: var(--text-3); }
+    .bp-card-foot { display: flex; gap: 8px; align-items: center; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .bp-card-foot select {
+      padding: 6px 8px; font-size: 0.82rem; background: var(--bg-3); color: var(--text-1); border: 1px solid var(--border-light);
+      border-radius: 6px; font-family: inherit;
+    }
+    .bp-del { margin-left: auto; background: none; border: none; color: var(--text-3); font-size: 0.82rem; cursor: pointer; font-family: inherit; }
+    .bp-del:hover { color: var(--red); }
+    .bp-empty { padding: 24px 4px; color: var(--text-3); font-size: 0.95rem; }
+
+    .bp-form { background: var(--bg-2); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; }
+    .bp-form-title { margin: 0; font-size: 1.15rem; font-weight: 700; color: var(--text-0); }
+    .bp-form-title span { color: var(--text-3); font-weight: 600; }
+    .bp-form-hint { margin: 4px 0 16px; font-size: 0.9rem; color: var(--text-3); }
+    .bp-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .bp-form label { display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem; color: var(--text-1); font-weight: 600; }
+    .bp-form label small { font-weight: 400; color: var(--text-3); font-size: 0.8rem; }
+    .bp-form .bp-wide { grid-column: 1 / -1; }
+    .bp-form input, .bp-form select {
+      padding: 11px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); background: var(--bg-1);
+      color: var(--text-0); font-size: 0.95rem; font-family: inherit; min-width: 0;
+    }
+    .bp-form input:focus, .bp-form select:focus { outline: none; border-color: var(--text-3); }
+    .bp-form-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; align-items: center; }
+    .bp-check { margin-top: 16px; display: grid; gap: 10px; }
+    .bp-msg { border-radius: var(--radius-sm); padding: 12px 14px; font-size: 0.9rem; line-height: 1.5; }
+    .bp-msg b { display: block; margin-bottom: 4px; }
+    .bp-msg ul { margin: 0; padding-left: 18px; }
+    .bp-msg.err { background: rgba(239, 68, 68, .1); color: var(--red); }
+    .bp-msg.warn { background: var(--orange-bg); color: var(--orange); }
+    .bp-msg.ok { background: var(--green-bg); color: var(--green); }
+    .bp-msg.info { background: var(--bg-3); color: var(--text-2); }
+
+    @media (max-width: 900px) { .bp-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 640px) {
-      .bp-grid { grid-template-columns: 1fr; padding: 0 12px 16px; }
-      .bp-bar { padding: 0 12px 12px; }
-      .bp-form { margin: 0 12px 12px; }
+      .bp-h1 { font-size: 1.3rem; }
+      .bp-top-actions { width: 100%; }
+      .bp-top-actions .bp-btn { flex: 1; }
       .bp-form-grid { grid-template-columns: 1fr; }
-      .bp-form .bp-wide { grid-column: auto; }
-      .bp-list { max-height: none; }
+      .bp-cards { grid-template-columns: 1fr; }
+      .bp-toolbar-right { width: 100%; }
+      .bp-search { flex: 1; width: auto; min-width: 0; }
+      .bp-seg { flex: none; }
+      .bp-chips { flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 2px; }
+      .bp-chip { white-space: nowrap; }
     }
 
     /* ───── COUNTRY CHART ───── */
@@ -2507,20 +2596,22 @@ if (authenticated && !dbReady) {
 
       // ───── REJA: maqolalar rejasi ─────
       var BP_GROUPS = [
-        { k: 'sotib', name: '💰 Sotib olish', d: "Qanday va qayerdan olinadi, to'lov usullari" },
-        { k: 'tanlov', name: '⚖️ Narx va tanlov', d: 'Narx, paket, solishtirish, arziydimi' },
-        { k: 'muammo', name: '🛠 Muammo va yordam', d: 'Kelmadi, faollashmadi, muddati tugadi' },
-        { k: 'malumot', name: "📘 Ma'lumot va ishonch", d: 'Nima, imkoniyatlar, xavfsizlik' }
+        { k: 'sotib', name: 'Sotib olish', d: "Qanday va qayerdan olinadi, to'lov usullari" },
+        { k: 'tanlov', name: 'Narx va tanlov', d: 'Narx, paket, solishtirish, arziydimi' },
+        { k: 'muammo', name: 'Muammo va yordam', d: 'Kelmadi, yoqilmadi, muddati tugadi, pul qaytarish' },
+        { k: 'malumot', name: "Ma'lumot va ishonch", d: 'Nima bu, imkoniyatlar, xavfsizlik' }
       ];
+      var BP_PROJ = { starsjoy: 'StarsJoy', uzgets: 'UzGets', premium24: 'Premium24', premiumsend: 'PremiumSend' };
       var BP_DOMAINS = { starsjoy: 'https://starsjoy.uz/blog/', uzgets: 'https://uzgets.uz/blog/', premium24: 'https://premium24.uz/blog/', premiumsend: 'https://premiumsend.uz/maqolalar/' };
-      var BP_ST = { reja: 'Rejada', yozilmoqda: 'Yozilmoqda', chop: 'Chop etilgan', toxtatildi: "To'xtatildi" };
-      var bpProject = 'starsjoy', bpStatus = 'all', bpItems = [];
+      var BP_ST = { reja: 'Rejada', yozilmoqda: 'Yozilmoqda', chop: 'Chiqqan', toxtatildi: "To'xtatilgan" };
+      var bpProject = 'starsjoy', bpStatus = 'all', bpGroup = 'all', bpItems = [];
       function bpEsc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
       function bpNum(n) { return Number(n || 0).toLocaleString('ru-RU').replace(/,/g, ' '); }
       function bpSetProject(p) {
         bpProject = p;
         document.querySelectorAll('[data-bp-project]').forEach(function (b) { b.classList.toggle('active', b.dataset.bpProject === p); });
         document.getElementById('bpCheckBox').innerHTML = '';
+        document.getElementById('bpFormProject').textContent = '· ' + BP_PROJ[p];
         bpLoad(false);
       }
       function bpSetStatus(s) {
@@ -2528,71 +2619,97 @@ if (authenticated && !dbReady) {
         document.querySelectorAll('[data-bp-status]').forEach(function (b) { b.classList.toggle('active', b.dataset.bpStatus === s); });
         bpRender();
       }
+      function bpSetGroup(g) { bpGroup = g; bpRender(); }
       function bpToggleForm() {
         var f = document.getElementById('bpForm');
         f.hidden = !f.hidden;
-        if (!f.hidden) document.getElementById('bpTitle').focus();
+        document.getElementById('bpFormProject').textContent = '· ' + BP_PROJ[bpProject];
+        if (!f.hidden) { f.scrollIntoView({ behavior: 'smooth', block: 'start' }); document.getElementById('bpTitle').focus(); }
       }
       async function bpLoad(sync) {
         var grid = document.getElementById('bpGrid');
         grid.innerHTML = '<div class="bp-empty">Yuklanmoqda...</div>';
         try {
           var res = await fetch('/api/blog-plan?project=' + bpProject + (sync ? '&sync=1' : ''));
-          if (!res.ok) { grid.innerHTML = '<div class="bp-empty bp-err">Xatolik: ' + res.status + '</div>'; return; }
+          if (!res.ok) { grid.innerHTML = '<div class="bp-msg err">Yuklab bo\'lmadi (' + res.status + ')</div>'; return; }
           var j = await res.json();
           if (j.project !== bpProject) return;
           bpItems = j.items || [];
           bpRender();
           if (sync && j.sync && !j.sync.skipped) {
-            document.getElementById('bpSummary').textContent += ' · saytdan: ' + j.sync.added + ' yangi, ' + j.sync.published + ' chop etildi';
+            alert('Saytdan tekshirildi: ' + j.sync.added + ' ta yangi maqola qo\'shildi, ' + j.sync.published + ' tasi chiqqan deb belgilandi.');
           }
         } catch (e) {
-          grid.innerHTML = '<div class="bp-empty bp-err">Tarmoq xatosi</div>';
+          grid.innerHTML = '<div class="bp-msg err">Internet bilan muammo</div>';
         }
+      }
+      function bpCard(i) {
+        var base = BP_DOMAINS[bpProject];
+        var t = bpEsc(i.title);
+        if (i.status === 'chop' && i.slug_uz) t = '<a href="' + base + encodeURIComponent(i.slug_uz) + '" target="_blank" rel="noopener">' + t + '</a>';
+        var top = '<div class="bp-card-top"><span class="bp-badge ' + i.status + '">' + BP_ST[i.status] + '</span>'
+          + (i.score != null ? '<span class="bp-score">Ball: ' + i.score + '</span>' : (i.published && i.status === 'chop' ? '<span class="bp-score">' + bpEsc(i.published) + '</span>' : '')) + '</div>';
+        var nums = '';
+        if (i.status === 'chop') {
+          nums = '<div class="bp-nums" title="Google qidiruvi, oxirgi 90 kun">'
+            + '<div class="bp-num sale"><b>' + bpNum(i.buy_clicks) + '</b><span>xarid so\'rovidan</span></div>'
+            + '<div class="bp-num"><b>' + bpNum(i.clicks) + '</b><span>jami kirish</span></div></div>';
+        }
+        var rows = [];
+        if (i.keyword) rows.push('<div><i>So\'rov:</i> ' + bpEsc(i.keyword) + '</div>');
+        if (i.money_page) rows.push('<div><i>Sotadigan sahifa:</i> ' + bpEsc(i.money_page) + '</div>');
+        var langs = [i.slug_uz && 'uz', i.slug_ru && 'ru', i.slug_en && 'en'].filter(Boolean).join(', ');
+        if (i.status === 'chop' && langs) rows.push('<div><i>Tillar:</i> ' + langs + '</div>');
+        if (i.note && i.status !== 'chop') rows.push('<div><i>Izoh:</i> ' + bpEsc(i.note.length > 160 ? i.note.slice(0, 160) + '...' : i.note) + '</div>');
+        var foot = '<div class="bp-card-foot"><select title="Holat" onchange="bpUpdate(' + i.id + ',{status:this.value})">'
+          + Object.keys(BP_ST).map(function (s) { return '<option value="' + s + '"' + (s === i.status ? ' selected' : '') + '>' + BP_ST[s] + '</option>'; }).join('')
+          + '</select><select title="Guruh" onchange="bpUpdate(' + i.id + ',{grp:this.value})">'
+          + BP_GROUPS.map(function (x) { return '<option value="' + x.k + '"' + (x.k === i.grp ? ' selected' : '') + '>' + x.name + '</option>'; }).join('')
+          + '</select>' + (i.status !== 'chop' ? '<button class="bp-del" onclick="bpDelete(' + i.id + ')">O\'chirish</button>' : '') + '</div>';
+        return '<div class="bp-card g-' + i.grp + (i.status === 'toxtatildi' ? ' is-stop' : '') + '">' + top
+          + '<div class="bp-card-title">' + t + '</div>' + nums + (rows.length ? '<div class="bp-rows">' + rows.join('') + '</div>' : '') + foot + '</div>';
       }
       function bpRender() {
         var all = bpItems;
-        var plan = all.filter(function (i) { return i.status !== 'chop'; }).length;
-        document.getElementById('bpSummary').textContent = 'Jami ' + all.length + ' · chop etilgan ' + (all.length - plan) + ' · rejada ' + plan;
+        var chop = all.filter(function (i) { return i.status === 'chop'; });
+        var buy = chop.reduce(function (a, i) { return a + (i.buy_clicks || 0); }, 0);
+        document.getElementById('bpStats').innerHTML = [
+          [all.length, 'Jami maqola'], [chop.length, 'Chiqqan'], [all.length - chop.length, 'Rejada'], [bpNum(buy), "Xarid so'rovidan kirish (90 kun)"]
+        ].map(function (x) { return '<div class="bp-stat"><div class="bp-stat-num">' + x[0] + '</div><div class="bp-stat-label">' + x[1] + '</div></div>'; }).join('');
+
+        var q = (document.getElementById('bpSearch').value || '').trim().toLowerCase();
         var list = all.filter(function (i) {
-          return bpStatus === 'all' || (bpStatus === 'chop' ? i.status === 'chop' : i.status !== 'chop');
+          if (bpStatus === 'chop' && i.status !== 'chop') return false;
+          if (bpStatus === 'plan' && i.status === 'chop') return false;
+          if (q && (i.title + ' ' + (i.keyword || '') + ' ' + (i.slug_uz || '')).toLowerCase().indexOf(q) < 0) return false;
+          return true;
         });
-        var base = BP_DOMAINS[bpProject];
-        document.getElementById('bpGrid').innerHTML = BP_GROUPS.map(function (g) {
-          var its = list.filter(function (i) { return i.grp === g.k; });
-          var nPlan = its.filter(function (i) { return i.status !== 'chop'; }).length;
-          var body = its.length ? its.map(function (i) {
-            var cls = i.status === 'reja' ? 'is-plan' : i.status === 'yozilmoqda' ? 'is-wip' : i.status === 'toxtatildi' ? 'is-stop' : '';
-            var t = bpEsc(i.title);
-            if (i.status === 'chop' && i.slug_uz) t = '<a href="' + base + encodeURIComponent(i.slug_uz) + '" target="_blank" rel="noopener">' + t + '</a>';
-            var meta = [];
-            if (i.status !== 'chop') meta.push('<span class="bp-tag plan">' + BP_ST[i.status] + '</span>');
-            if (i.score != null) meta.push('<span class="bp-tag">ball ' + i.score + '</span>');
-            if (i.buy_clicks > 0) meta.push('<span class="bp-tag sale" title="90 kun: xarid niyatidagi so\'rovlardan klik">' + bpNum(i.buy_clicks) + ' xarid klik</span>');
-            if (i.clicks > 0) meta.push('<span title="Search Console, 90 kun (uz+ru+en)">' + bpNum(i.clicks) + ' klik</span>');
-            if (i.keyword) meta.push('<span>🔎 ' + bpEsc(i.keyword) + '</span>');
-            if (i.money_page) meta.push('<span>→ ' + bpEsc(i.money_page) + '</span>');
-            var langs = [i.slug_uz && 'uz', i.slug_ru && 'ru', i.slug_en && 'en'].filter(Boolean).join('+');
-            if (i.status === 'chop' && langs) meta.push('<span>' + langs + '</span>');
-            if (i.published && i.status === 'chop') meta.push('<span>' + bpEsc(i.published) + '</span>');
-            var act = '<div class="bp-actions"><select onchange="bpUpdate(' + i.id + ',{status:this.value})">'
-              + Object.keys(BP_ST).map(function (s) { return '<option value="' + s + '"' + (s === i.status ? ' selected' : '') + '>' + BP_ST[s] + '</option>'; }).join('')
-              + '</select><select onchange="bpUpdate(' + i.id + ',{grp:this.value})">'
-              + BP_GROUPS.map(function (x) { return '<option value="' + x.k + '"' + (x.k === i.grp ? ' selected' : '') + '>' + x.name + '</option>'; }).join('')
-              + '</select>' + (i.status !== 'chop' ? '<button onclick="bpDelete(' + i.id + ')">O\'chirish</button>' : '') + '</div>';
-            return '<div class="bp-item ' + cls + '" title="' + bpEsc(i.note || '') + '"><div class="bp-title">' + t + '</div><div class="bp-meta">' + meta.join('') + '</div>' + act + '</div>';
-          }).join('') : '<div class="bp-empty">Yo\'q</div>';
-          return '<div class="bp-col"><div class="bp-col-head">' + g.name + '<small>' + its.length + (nPlan ? ' · ' + nPlan + ' rejada' : '') + '</small></div>'
-            + '<div class="bp-col-desc">' + g.d + '</div><div class="bp-list">' + body + '</div></div>';
+        document.getElementById('bpGroups').innerHTML = [{ k: 'all', name: 'Hammasi' }].concat(BP_GROUPS).map(function (g) {
+          var n = g.k === 'all' ? list.length : list.filter(function (i) { return i.grp === g.k; }).length;
+          return '<button class="bp-chip' + (bpGroup === g.k ? ' active' : '') + '" onclick="bpSetGroup(\'' + g.k + '\')">' + g.name + '<span>' + n + '</span></button>';
         }).join('');
+
+        var html = BP_GROUPS.filter(function (g) { return bpGroup === 'all' || bpGroup === g.k; }).map(function (g) {
+          var its = list.filter(function (i) { return i.grp === g.k; }).sort(function (x, y) {
+            var px = x.status === 'chop' ? 1 : 0, py = y.status === 'chop' ? 1 : 0;
+            if (px !== py) return px - py;
+            return ((y.score || 0) - (x.score || 0)) || ((y.buy_clicks || 0) - (x.buy_clicks || 0)) || ((y.clicks || 0) - (x.clicks || 0));
+          });
+          var nPlan = its.filter(function (i) { return i.status !== 'chop'; }).length;
+          return '<section class="bp-group g-' + g.k + '"><div class="bp-group-head"><span class="bp-dot"></span><h3>' + g.name + '</h3>'
+            + '<span class="bp-count">' + its.length + ' ta' + (nPlan ? ', ' + nPlan + ' tasi rejada' : '') + '</span></div>'
+            + '<p class="bp-group-desc">' + g.d + '</p>'
+            + (its.length ? '<div class="bp-cards">' + its.map(bpCard).join('') + '</div>' : '<div class="bp-empty">Bu guruhda maqola yo\'q</div>') + '</section>';
+        }).join('');
+        document.getElementById('bpGrid').innerHTML = html;
       }
       async function bpUpdate(id, patch) {
         try {
           var res = await fetch('/api/blog-plan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ action: 'update', id: id }, patch)) });
-          if (!res.ok) { alert('Xatolik: ' + res.status); return; }
+          if (!res.ok) { alert("Saqlanmadi (" + res.status + ")"); return; }
           bpItems.forEach(function (i) { if (i.id === id) Object.assign(i, patch); });
           bpRender();
-        } catch (e) { alert('Tarmoq xatosi'); }
+        } catch (e) { alert('Internet bilan muammo'); }
       }
       async function bpDelete(id) {
         if (!confirm("Bu maqolani rejadan o'chirasizmi?")) return;
@@ -2612,26 +2729,27 @@ if (authenticated && !dbReady) {
       }
       function bpShowCheck(c, added) {
         var GN = {}; BP_GROUPS.forEach(function (g) { GN[g.k] = g.name; });
+        var li = function (arr) { return '<ul>' + arr.join('') + '</ul>'; };
         var h = '<div class="bp-check">';
-        if (added) h += '<div class="bp-okmsg">✅ Rejaga qo\'shildi.</div>';
-        if (c.errors.length) h += '<div class="bp-err"><b>Xato:</b><ul>' + c.errors.map(function (e) { return '<li>' + bpEsc(e) + '</li>'; }).join('') + '</ul></div>';
-        if (c.duplicates.length) h += '<div class="bp-err"><b>Dublikat (shu loyihada bor), qo\'shilmaydi:</b><ul>' + c.duplicates.map(function (d) { return '<li>' + bpEsc(d.title) + ' <i>(' + BP_ST[d.status] + ', ' + bpEsc(d.why) + ')</i></li>'; }).join('') + '</ul></div>';
-        if (c.warnings.length) h += '<div class="bp-warn"><b>Ogohlantirish:</b><ul>' + c.warnings.map(function (w) { return '<li>' + bpEsc(w) + '</li>'; }).join('') + '</ul></div>';
-        if (c.similar.length) h += '<div style="color:var(--text-3)">O\'xshashlar: ' + c.similar.slice(0, 5).map(function (s) { return bpEsc(s.title); }).join(' · ') + '</div>';
-        if (!added && c.ok && !c.warnings.length) h += '<div class="bp-okmsg">✅ Dublikat yo\'q, sotuv niyati tabiiy. Guruh: ' + GN[c.suggestedGroup] + '</div>';
+        if (added) h += '<div class="bp-msg ok"><b>Rejaga qo\'shildi</b></div>';
+        if (c.duplicates.length) h += '<div class="bp-msg err"><b>Bu loyihada shunday maqola bor, qo\'shilmaydi</b>' + li(c.duplicates.map(function (d) { return '<li>' + bpEsc(d.title) + ' (' + BP_ST[d.status].toLowerCase() + ')</li>'; })) + '</div>';
+        if (c.errors.length) h += '<div class="bp-msg err"><b>Tuzatish kerak</b>' + li(c.errors.map(function (e) { return '<li>' + bpEsc(e) + '</li>'; })) + '</div>';
+        if (c.warnings.length) h += '<div class="bp-msg warn"><b>E\'tibor bering</b>' + li(c.warnings.map(function (w) { return '<li>' + bpEsc(w) + '</li>'; })) + '</div>';
+        if (c.similar.length) h += '<div class="bp-msg info"><b>O\'xshash maqolalar (havola qilish mumkin)</b>' + li(c.similar.slice(0, 5).map(function (s) { return '<li>' + bpEsc(s.title) + '</li>'; })) + '</div>';
+        if (!added && c.ok && !c.warnings.length) h += '<div class="bp-msg ok"><b>Hammasi joyida</b>Dublikat yo\'q, sarlavha tabiiy. Mos guruh: ' + GN[c.suggestedGroup] + '</div>';
         h += '</div>';
         document.getElementById('bpCheckBox').innerHTML = h;
         document.getElementById('bpForce').hidden = !(c.ok && c.warnings.length && !added);
       }
       async function bpCheck() {
         var res = await fetch('/api/blog-plan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bpPayload('check')) });
-        if (!res.ok) { alert('Xatolik: ' + res.status); return; }
+        if (!res.ok) { alert('Xatolik (' + res.status + ')'); return; }
         bpShowCheck((await res.json()).check, false);
       }
       async function bpSubmit(ev, force) {
         if (ev) ev.preventDefault();
         var res = await fetch('/api/blog-plan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bpPayload('add', force)) });
-        if (!res.ok) { alert('Xatolik: ' + res.status); return false; }
+        if (!res.ok) { alert('Xatolik (' + res.status + ')'); return false; }
         var j = await res.json();
         bpShowCheck(j.check, j.added);
         if (j.added) {
