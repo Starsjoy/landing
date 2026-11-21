@@ -1,0 +1,157 @@
+---
+import BlogPostEn from '../../../layouts/BlogPostEn.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, premiumPerMonth, fmt, PRICE_NOTE, PRICES_DATE_UZ } from '../../../lib/prices';
+
+// Premium gift paid in Stars on Telegram: 3 months 1000, 6 months 1500, 12 months 2500 Stars (since 11.8, 2025)
+const STARS_FOR = { 3: 1000, 6: 1500, 12: 2500 } as const;
+const viaStars = (m: 3 | 6 | 12) => starsPrice(STARS_FOR[m]);
+const extra = (m: 3 | 6 | 12) => viaStars(m) - PREMIUM_PRICE[m];
+const APP_1000 = 233999; // Telegram app, Uzbekistan, 04.11.2026
+
+const faqs = [
+  {
+    q: "Can you pay for Telegram Premium with Stars?",
+    a: "Yes, as a gift. Since 2025 Telegram lets you gift Premium to another person and pay with Stars. Telegram's developer documentation describes Stars payment only for gifts; buying Premium for yourself with Stars is not described there."
+  },
+  {
+    q: "How many Stars does Telegram Premium cost?",
+    a: "Telegram's price: 3 months for 1,000 Stars, 6 months for 1,500 Stars, 12 months for 2,500 Stars."
+  },
+  {
+    q: "Is it cheaper to pay with Stars or in UZS?",
+    a: `In UZS. At StarsJoy prices 2,500 Stars cost ${fmt(viaStars(12))} UZS, while 12 months of Premium cost ${fmt(PREMIUM_PRICE[12])} UZS, a difference of ${fmt(extra(12))} UZS. For 3 months the difference is ${fmt(extra(3))} UZS, for 6 months ${fmt(extra(6))} UZS.`
+  },
+  {
+    q: "When does gifting Premium with Stars make sense?",
+    a: "When the Stars are already on your balance (gifted to you, won in a giveaway, left over) and you do not plan to spend them on anything else. Buying Stars just to pay for Premium costs more than paying in UZS."
+  },
+  {
+    q: "Can I gift Premium to someone who already has it?",
+    a: "Telegram's documentation describes the gift for a user without Premium. If their subscription is still active, ask when it ends first."
+  },
+  {
+    q: "Can I pay for Premium with Stars at StarsJoy?",
+    a: `No. At StarsJoy, Premium is paid in UZS from an Uzcard or Humo card via Payme, Click or a banking app: 3 months ${fmt(PREMIUM_PRICE[3])}, 6 months ${fmt(PREMIUM_PRICE[6])}, 12 months ${fmt(PREMIUM_PRICE[12])} UZS.`
+  },
+  {
+    q: "Can I cash out Stars and buy Premium with the money?",
+    a: "A regular user cannot withdraw purchased Stars to a card. Withdrawals apply only to Stars earned by channel and bot owners, under separate conditions."
+  },
+  {
+    q: "Do I need a password or SMS code?",
+    a: "No. At StarsJoy, Premium is activated with a Telegram username only. A password, SMS code or two-step password is never asked for."
+  }
+];
+---
+
+<BlogPostEn
+  slug="pay-telegram-premium-with-stars"
+  title="Can You Pay for Telegram Premium with Stars? Uzcard, Humo"
+  heading="Can you pay for Telegram Premium with Stars? How many Stars it takes and what is cheaper with Uzcard or Humo"
+  crumb="Premium with Stars"
+  tag="Premium"
+  description={`Telegram Premium can be gifted with Stars: 3 months for 1,000, a year for 2,500 Stars. Buying it in UZS with Uzcard or Humo saves up to ${fmt(extra(12))} UZS.`}
+  keywords="pay telegram premium with stars, buy telegram premium with stars, how many stars for telegram premium, gift premium with stars, 2500 stars premium, 1000 stars premium, telegram premium uzcard, telegram premium humo"
+  publishDate="2026-11-21"
+  modifiedDate="2026-11-21"
+  uzHref="https://starsjoy.uz/blog/telegram-premium-stars-bilan"
+  ruHref="https://starsjoy.uz/ru/blog/telegram-premium-stars-bilan"
+  faqs={faqs}
+>
+  <section>
+    <p class="post-lead"><strong>Short answer:</strong> yes, Telegram Premium can be <strong>gifted with Stars</strong>: 3 months for 1,000, 6 months for 1,500 and 12 months for 2,500 Stars. In UZS, though, that is the expensive route. At <strong>StarsJoy</strong> (<a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>) 12 months of Premium cost <strong>{fmt(PREMIUM_PRICE[12])} UZS</strong>, while 2,500 Stars cost {fmt(viaStars(12))} UZS. You pay with <strong>Uzcard or Humo</strong> and only need a username.</p>
+  </section>
+
+  <section>
+    <p>If Stars have piled up on your balance, or you want to give a friend Premium, the natural question is whether you can pay for Premium with Stars and whether it is cheaper. Telegram added this option in 2025, but the conditions and the price are not what most people expect. Below we explain Telegram's rule from official sources, put the price of each plan in Stars and in UZS side by side, and say which route fits which case. StarsJoy prices are as of {PRICES_DATE_UZ}; the Premium price in Stars comes from Telegram (version 11.8, 2025).</p>
+  </section>
+
+  <section>
+    <h2>Can you pay for Telegram Premium with Stars?</h2>
+    <p>Yes, but <strong>as a gift</strong>. Since version 11.8 you can open another person's profile, choose a Premium gift and pay for it with Stars. Telegram's developer documentation describes Stars payment specifically for a Premium <strong>gift</strong>.</p>
+    <p>Buying Premium for yourself with Stars is not described in the official documentation. If you need Premium on your own account, you can buy it in UZS or have someone gift it to you. Telegram also describes the gift as meant for a user without Premium, so check whether the person's subscription is still active before gifting.</p>
+  </section>
+
+  <section>
+    <h2>How many Stars does Premium cost, and what is that in UZS?</h2>
+    <p>Telegram's price: <strong>3 months for 1,000 Stars, 6 months for 1,500, 12 months for 2,500 Stars</strong>. Stars also cost money, so we convert them to UZS and compare with the Premium price:</p>
+    <table>
+      <thead>
+        <tr><th>Plan</th><th>With Stars</th><th>Those Stars at StarsJoy</th><th>Premium at StarsJoy</th><th>Difference</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>3 months</td><td>1,000 ⭐</td><td>{fmt(viaStars(3))} UZS</td><td><strong>{fmt(PREMIUM_PRICE[3])} UZS</strong></td><td>{fmt(extra(3))} UZS</td></tr>
+        <tr><td>6 months</td><td>1,500 ⭐</td><td>{fmt(viaStars(6))} UZS</td><td><strong>{fmt(PREMIUM_PRICE[6])} UZS</strong></td><td>{fmt(extra(6))} UZS</td></tr>
+        <tr><td>12 months</td><td>2,500 ⭐</td><td>{fmt(viaStars(12))} UZS</td><td><strong>{fmt(PREMIUM_PRICE[12])} UZS</strong></td><td>{fmt(extra(12))} UZS</td></tr>
+      </tbody>
+    </table>
+    <p>So buying Stars <strong>just for Premium</strong> always costs more: over a year you overpay {fmt(extra(12))} UZS compared with buying Premium directly. The math does not change inside the Telegram app either: there 1,000 Stars cost {fmt(APP_1000)} UZS, so 2,500 Stars come to roughly {fmt(Math.round(APP_1000 * 2.5 / 1000) * 1000)} UZS, and an international card is usually required.</p>
+    <p><small>{PRICE_NOTE.en}</small></p>
+  </section>
+
+  <section>
+    <h2>When does gifting Premium with Stars make sense?</h2>
+    <p>The Stars route makes sense in one case: <strong>the Stars are already on your balance</strong> and you do not plan to spend them on anything else. For example:</p>
+    <ul>
+      <li>friends gifted you Stars, or you won them in a giveaway;</li>
+      <li>you converted gifts into Stars and a balance built up;</li>
+      <li>you want to hand a friend Premium through Telegram's own gift window, with a nice message.</li>
+    </ul>
+    <p>If you have no Stars and plan to buy them just for Premium, stop there: Premium in UZS is cheaper. Other ways to spend Stars: <a href="/en/blog/what-you-can-do-with-telegram-stars">what you can do with Telegram Stars</a>.</p>
+  </section>
+
+  <section>
+    <h2>How to gift Premium with Stars</h2>
+    <ol>
+      <li><strong>Open the profile.</strong> In Telegram, open the profile of the person you want to gift and tap the Gift button. Update the app first if it is old.</li>
+      <li><strong>Pick Premium and a plan.</strong> In the gift window choose Premium and 3, 6 or 12 months, then choose Stars as the payment method.</li>
+      <li><strong>Confirm.</strong> If you have enough Stars, confirm the payment and the recipient gets a gift message. Under Telegram's rules, purchases made with Stars are not refunded, so double-check the recipient.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>How to buy Premium in UZS</h2>
+    <p>At StarsJoy you buy Premium for yourself or for someone else the same way, no Stars needed:</p>
+    <ol>
+      <li>open <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> and choose Premium;</li>
+      <li>pick a plan: <a href="/en/premium/3-months">3 months, {fmt(PREMIUM_PRICE[3])}</a>, <a href="/en/premium/6-months">6 months, {fmt(PREMIUM_PRICE[6])}</a> or <a href="/en/premium/12-months">12 months, {fmt(PREMIUM_PRICE[12])} UZS</a>;</li>
+      <li>enter the username of the account that should get Premium;</li>
+      <li>transfer exactly the amount shown to the card the bot gives you, from an Uzcard or Humo card via Payme, Click or a banking app.</li>
+    </ol>
+    <p>Per month, the yearly plan is the best value: about {fmt(premiumPerMonth(12))} UZS a month. How to gift Premium to a friend: <a href="/en/blog/gift-telegram-premium">gifting Telegram Premium</a>.</p>
+  </section>
+
+  <section>
+    <h2>Can you cash out Stars and buy Premium with the money?</h2>
+    <p>Not as a regular user. Purchased Stars cannot be withdrawn back to a card. Withdrawals apply only to Stars <strong>earned</strong> by channel and bot owners, under separate conditions. More: <a href="/en/blog/cash-out-telegram-stars">cashing out Telegram Stars</a>.</p>
+  </section>
+
+  <section>
+    <h2>Is it safe, and what if something goes wrong?</h2>
+    <p>At StarsJoy, Premium is activated with a Telegram <strong>username</strong> only. The bot never asks for a password, SMS code or two-step password. If the payment went through but the order failed for a technical reason, you get a full refund: send the receipt to <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a> within 24 hours. If a wrong username was entered and Premium was activated on someone else's account, the money is not refunded.</p>
+  </section>
+
+  <section>
+    <h2>Buy Premium in UZS</h2>
+    <p>12 months for {fmt(PREMIUM_PRICE[12])} UZS, 3 months for {fmt(PREMIUM_PRICE[3])} UZS. Uzcard or Humo, only your username needed: <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener"><strong>open @starsjoybot</strong></a>.</p>
+  </section>
+
+  <section>
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="https://core.telegram.org/api/premium" target="_blank" rel="noopener">Telegram API: Premium and gifting it with Stars</a></li>
+      <li><a href="https://telegram.org/faq_premium" target="_blank" rel="noopener">Telegram Premium FAQ</a></li>
+      <li><a href="https://t.me/FAQTelegram/4139" target="_blank" rel="noopener">Telegram Info: version 11.8, Premium price in Stars</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/en/premium">All Telegram Premium plans</a></li>
+      <li><a href="/en/blog/telegram-stars-or-premium">Telegram Stars or Premium: which do you need</a></li>
+      <li><a href="/en/blog/telegram-premium-12-months-price">Telegram Premium 12 months price</a></li>
+      <li><a href="/en/blog/1000-telegram-stars-price">1000 Telegram Stars price</a></li>
+    </ul>
+  </section>
+</BlogPostEn>

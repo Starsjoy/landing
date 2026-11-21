@@ -1,0 +1,533 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, premiumPerMonth, fmtS, PRICES_DATE_UZ, PRICE_NOTE } from '../../lib/prices';
+
+// Telegram'da Premium sovg'asi Stars bilan: 3 oy 1000, 6 oy 1500, 12 oy 2500 Stars (Telegram 11.8 dan, 2025)
+const STARS_FOR = { 3: 1000, 6: 1500, 12: 2500 } as const;
+const viaStars = (m: 3 | 6 | 12) => starsPrice(STARS_FOR[m]);
+const extra = (m: 3 | 6 | 12) => viaStars(m) - PREMIUM_PRICE[m];
+const APP_1000 = 233999; // Telegram ilovasi, O'zbekiston, 04.11.2026
+
+const title = "Premium'ni Stars bilan olish mumkinmi? Uzcard, Humo | StarsJoy Blog";
+const description = `Premium'ni Stars bilan sovg'a qilsa bo'ladi: 3 oy 1000, 12 oy 2500 Stars. Lekin Uzcard va Humo bilan so'mda olish ${fmtS(starsPrice(2500) - PREMIUM_PRICE[12])} so'mgacha arzon. Hisob va qadamlar.`;
+const publishDate = "2026-11-21";
+const modifiedDate = "2026-11-21";
+const wordCount = 1350;
+const canonical = "https://starsjoy.uz/blog/telegram-premium-stars-bilan";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="premium stars bilan, telegram premium stars bilan olish, premium uchun necha stars, stars bilan premium sovg'a qilish, 2500 stars premium, 1000 stars premium, telegram premium uzcard, telegram premium humo"
+  ogType="article"
+  ogImage={ogImage}
+  hreflangs={[
+    { lang: "uz", href: canonical },
+    { lang: "ru", href: "https://starsjoy.uz/ru/blog/telegram-premium-stars-bilan" },
+    { lang: "en", href: "https://starsjoy.uz/en/blog/pay-telegram-premium-with-stars" }
+  ]}
+>
+  <Navbar />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Telegram Premium'ni Stars bilan olish mumkinmi? Qancha Stars kerak va Uzcard, Humo bilan qaysi yo'l arzon",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "uz-UZ",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "premium stars bilan, premium uchun necha stars, stars bilan premium sovg'a qilish, Uzcard, Humo, StarsJoy",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": ["https://telegram.me/starsjoy", "https://telegram.me/starsjoybot"]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png" }
+    },
+    "mainEntityOfPage": canonical,
+    "citation": [
+      "https://core.telegram.org/api/premium",
+      "https://telegram.org/faq_premium",
+      "https://t.me/FAQTelegram/4139"
+    ],
+    "image": { "@type": "ImageObject", "url": ogImage, "width": 1200, "height": 630 }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Bosh sahifa", "item": "https://starsjoy.uz" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://starsjoy.uz/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Premium Stars bilan", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Telegram Premium 12 oy",
+    "description": "12 oylik Telegram Premium: @starsjoybot orqali Uzcard yoki Humo bilan, faqat username kerak.",
+    "brand": { "@type": "Brand", "name": "StarsJoy" },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://starsjoy.uz/premium/12-oy",
+      "price": `${PREMIUM_PRICE[12]}`,
+      "priceCurrency": "UZS",
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "StarsJoy" }
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Telegram Premium'ni Stars bilan olsa bo'ladimi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ha, lekin sovg'a sifatida. Telegram 2025 yildan boshqa odamning profilidan Premium'ni Stars bilan to'lab sovg'a qilishga ruxsat beradi. Telegram API hujjatida Stars bilan to'lov faqat sovg'a uchun yozilgan, o'zingizga Stars bilan Premium olish tartibi ko'rsatilmagan." } },
+      { "@type": "Question", "name": "Premium uchun necha Stars kerak?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Telegram narxi: 3 oy 1000 Stars, 6 oy 1500 Stars, 12 oy 2500 Stars." } },
+      { "@type": "Question", "name": "Stars bilan olish arzonmi yoki so'mda?",
+        "acceptedAnswer": { "@type": "Answer", "text": `So'mda arzon. StarsJoy narxida 2500 Stars ${fmtS(viaStars(12))} so'm turadi, 12 oylik Premium esa ${fmtS(PREMIUM_PRICE[12])} so'm, farq ${fmtS(extra(12))} so'm. 3 oyda farq ${fmtS(extra(3))}, 6 oyda ${fmtS(extra(6))} so'm.` } },
+      { "@type": "Question", "name": "Qachon Stars bilan sovg'a qilish ma'qul?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Balansingizda allaqachon Stars bo'lsa (sovg'a, giveaway yoki kanal orqali kelgan) va ularni boshqa ishga ishlatmoqchi bo'lmasangiz. Premium uchun Stars'ni maxsus sotib olish so'mda to'lashdan qimmatga tushadi." } },
+      { "@type": "Question", "name": "Premium'i bor odamga Stars bilan sovg'a qilsa bo'ladimi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Telegram hujjatida sovg'a Premium'i yo'q foydalanuvchiga beriladi deb yozilgan. Premium hali faol bo'lsa, avval muddati qachon tugashini so'rang." } },
+      { "@type": "Question", "name": "StarsJoy'da Premium'ni Stars bilan to'lasa bo'ladimi?",
+        "acceptedAnswer": { "@type": "Answer", "text": `Yo'q, StarsJoy'da Premium so'mda to'lanadi: Uzcard yoki Humo kartadan Payme, Click yoki bank ilovasi orqali. 3 oy ${fmtS(PREMIUM_PRICE[3])}, 6 oy ${fmtS(PREMIUM_PRICE[6])}, 12 oy ${fmtS(PREMIUM_PRICE[12])} so'm.` } },
+      { "@type": "Question", "name": "Stars'ni pulga aylantirib Premium olsa bo'ladimi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oddiy foydalanuvchi Stars'ni kartaga chiqara olmaydi. Pulga chiqarish faqat kanal va bot egalarining ishlab topgan Stars'iga tegishli va alohida shartlarga ega." } },
+      { "@type": "Question", "name": "Parol yoki SMS kod kerakmi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yo'q. StarsJoy'da Premium faqat Telegram username orqali yoqiladi. Parol, SMS kod yoki ikki bosqichli parol hech qachon so'ralmaydi." } }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".tldr-box", ".post-faq"] }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/">Bosh sahifa</a>
+          <span>/</span>
+          <a href="/blog">Blog</a>
+          <span>/</span>
+          <span>Premium Stars bilan</span>
+        </nav>
+        <div class="post-tag">Premium</div>
+        <h1 class="post-title">Telegram Premium'ni Stars bilan olish mumkinmi? Qancha Stars kerak va Uzcard, Humo bilan qaysi yo'l arzon</h1>
+        <div class="post-meta">
+          <span class="post-date">Yangilangan: {modifiedDate}</span>
+          <span class="post-author">StarsJoy Blog</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Qisqacha javob">
+            <strong>Qisqacha javob:</strong> ha, Telegram Premium'ni Stars bilan <strong>sovg'a qilish</strong> mumkin: 3 oy 1000, 6 oy 1500, 12 oy 2500 Stars. Lekin so'mda hisoblasak, bu qimmat yo'l. <strong>StarsJoy</strong>'da (<a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>) 12 oylik Premium <strong>{fmtS(PREMIUM_PRICE[12])} so'm</strong>, 2500 Stars esa {fmtS(viaStars(12))} so'm. <strong>Uzcard yoki Humo</strong> bilan to'laysiz, faqat username kerak.
+          </div>
+
+          <div class="price-facts" aria-label="Narx faktlari">
+            <div><span>Premium 3 oy</span><strong>{fmtS(PREMIUM_PRICE[3])} so'm</strong></div>
+            <div><span>Premium 12 oy</span><strong>{fmtS(PREMIUM_PRICE[12])} so'm</strong></div>
+            <div><span>12 oy Stars bilan</span><strong>2500 ⭐ ({fmtS(viaStars(12))} so'm)</strong></div>
+            <div><span>Farq 12 oyda</span><strong>{fmtS(extra(12))} so'm</strong></div>
+          </div>
+          <p class="price-note">StarsJoy narxlari {PRICES_DATE_UZ} holatiga: Premium 3 oy {fmtS(PREMIUM_PRICE[3])}, 6 oy {fmtS(PREMIUM_PRICE[6])}, 12 oy {fmtS(PREMIUM_PRICE[12])} so'm, 1 Star {STAR_PRICE} so'm. Premium'ning Stars'dagi narxi Telegram'dan (11.8 versiyasi, 2025). {PRICE_NOTE.uz}</p>
+
+          <section>
+            <p>Balansida Stars yig'ilib qolgan yoki do'stiga Premium sovg'a qilmoqchi bo'lgan odam tabiiy ravishda so'raydi: Premium'ni Stars bilan to'lasa bo'ladimi va bu arzonroqmi? Telegram 2025 yilda shunday imkoniyat qo'shdi, ammo uning shartlari va narxi ko'pchilik o'ylagandek emas.</p>
+            <p>Quyida Telegram qoidasini rasmiy manbalar asosida tushuntiramiz, har bir muddat uchun Stars va so'mdagi narxni yonma yon qo'yamiz va qaysi holatda qaysi yo'l foydali ekanini aytamiz.</p>
+          </section>
+
+          <section>
+            <h2>Telegram Premium'ni Stars bilan olsa bo'ladimi?</h2>
+            <p>Ha, lekin <strong>sovg'a sifatida</strong>. Telegram ilovasining 11.8 versiyasidan boshlab boshqa odamning profilini ochib, Premium'ni sovg'a qilish va uni Stars bilan to'lash mumkin. Telegram'ning dasturchilar uchun hujjatida Stars bilan to'lov aynan Premium <strong>sovg'asi</strong> uchun yozilgan.</p>
+            <p>O'zingizga Stars bilan Premium olish tartibi rasmiy hujjatda ko'rsatilmagan. Amalda o'zingizga Premium kerak bo'lsa, uni so'mda olish yoki kimdir sizga sovg'a qilishi qoladi. Bundan tashqari, Telegram sovg'ani Premium'i yo'q foydalanuvchiga berilishini yozadi, shuning uchun Premium'i hali faol odamga sovg'a qilishdan oldin muddatini so'rang.</p>
+          </section>
+
+          <section>
+            <h2>Premium uchun necha Stars kerak va bu so'mda qancha?</h2>
+            <p>Telegram narxi: <strong>3 oy 1000 Stars, 6 oy 1500 Stars, 12 oy 2500 Stars</strong>. Stars'ni ham pulga olasiz, shuning uchun ularni so'mga aylantirib, Premium'ning so'mdagi narxi bilan solishtiramiz:</p>
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead>
+                  <tr><th>Muddat</th><th>Stars bilan</th><th>Shu Stars StarsJoy'da</th><th>Premium StarsJoy'da</th><th>Farq</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>3 oy</td><td>1000 ⭐</td><td>{fmtS(viaStars(3))} so'm</td><td class="good">{fmtS(PREMIUM_PRICE[3])} so'm</td><td>{fmtS(extra(3))} so'm</td></tr>
+                  <tr><td>6 oy</td><td>1500 ⭐</td><td>{fmtS(viaStars(6))} so'm</td><td class="good">{fmtS(PREMIUM_PRICE[6])} so'm</td><td>{fmtS(extra(6))} so'm</td></tr>
+                  <tr class="highlight-row"><td>12 oy</td><td>2500 ⭐</td><td>{fmtS(viaStars(12))} so'm</td><td>{fmtS(PREMIUM_PRICE[12])} so'm</td><td>{fmtS(extra(12))} so'm</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Ya'ni Premium uchun Stars'ni <strong>maxsus sotib olish</strong> har doim qimmatga tushadi: 12 oyda Premium'ni to'g'ridan-to'g'ri olgandan {fmtS(extra(12))} so'm ko'p to'laysiz. Telegram ilovasining o'zida Stars olsangiz ham hisob o'zgarmaydi: ilovada 1000 Stars {fmtS(APP_1000)} so'm, 2500 Stars shu narxda taxminan {fmtS(Math.round(APP_1000 * 2.5 / 1000) * 1000)} so'm bo'ladi va odatda xalqaro karta talab qilinadi.</p>
+            <p>Premium muddatlarining o'zaro farqi haqida: <a href="/blog/telegram-premium-paketlar-taqqoslash">1, 3, 6 va 12 oylik paketlar taqqoslash</a>.</p>
+          </section>
+
+          <section>
+            <h2>Qachon Stars bilan sovg'a qilish ma'qul?</h2>
+            <p>Stars yo'li faqat bitta holatda mantiqli: <strong>balansingizda Stars allaqachon bor</strong> va ularni boshqa ishga sarflamoqchi emassiz. Masalan:</p>
+            <ul>
+              <li>do'stlaringiz sizga Stars sovg'a qilgan yoki giveaway'da yutgansiz;</li>
+              <li>sovg'alarni Stars'ga aylantirib, balans yig'ilib qolgan;</li>
+              <li>do'stingizga Premium'ni Telegram'ning o'z sovg'a oynasi orqali, chiroyli xabar bilan yubormoqchisiz.</li>
+            </ul>
+            <p>Agar Stars yo'q bo'lsa va ularni aynan Premium uchun sotib olmoqchi bo'lsangiz, to'xtang: Premium'ni so'mda olish arzon. Stars balansini boshqa narsalarga ishlatish yo'llari: <a href="/blog/telegram-stars-bilan-nima-qilish-mumkin">Stars bilan nima qilish mumkin</a>.</p>
+          </section>
+
+          <section>
+            <h2>Stars bilan Premium qanday sovg'a qilinadi?</h2>
+            <h3>1-qadam: Profilni oching</h3>
+            <p>Telegram'da sovg'a qilmoqchi bo'lgan odamning profilini oching va sovg'a (Gift) tugmasini bosing. Ilova eski bo'lsa, avval uni yangilang.</p>
+            <h3>2-qadam: Premium va muddatni tanlang</h3>
+            <p>Sovg'alar oynasida Premium bo'limini tanlang va 3, 6 yoki 12 oyni belgilang. To'lov usulida Stars bilan to'lash variantini tanlang.</p>
+            <h3>3-qadam: Tasdiqlang</h3>
+            <p>Balansingizda yetarli Stars bo'lsa, to'lovni tasdiqlaysiz va qabul qiluvchiga sovg'a haqida xabar boradi. Stars bilan qilingan xaridlar Telegram qoidasiga ko'ra qaytarilmaydi, shuning uchun qabul qiluvchini yaxshilab tekshiring.</p>
+          </section>
+
+          <section>
+            <h2>So'mda Premium qanday olinadi?</h2>
+            <p>StarsJoy'da Premium o'zingizga ham, boshqa odamga ham bir xil yo'l bilan olinadi, Stars kerak emas:</p>
+            <ol>
+              <li><a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>'ni oching va Premium bo'limini tanlang;</li>
+              <li>muddatni belgilang: <a href="/premium/3-oy">3 oy {fmtS(PREMIUM_PRICE[3])}</a>, <a href="/premium/6-oy">6 oy {fmtS(PREMIUM_PRICE[6])}</a> yoki <a href="/premium/12-oy">12 oy {fmtS(PREMIUM_PRICE[12])} so'm</a>;</li>
+              <li>Premium yoqiladigan akkauntning username'ini yozing;</li>
+              <li>bot ko'rsatgan kartaga aynan ko'rsatilgan summani Uzcard yoki Humo kartadan Payme, Click yoki bank ilovasi orqali o'tkazing.</li>
+            </ol>
+            <p>Oylik hisobda eng foydalisi 12 oylik: oyiga taxminan {fmtS(premiumPerMonth(12))} so'm. Do'stga sovg'a qilish tartibi alohida maqolada: <a href="/blog/telegram-premium-sovga-qilish">Telegram Premium sovg'a qilish</a>.</p>
+          </section>
+
+          <section>
+            <h2>Stars'ni pulga aylantirib Premium olsa bo'ladimi?</h2>
+            <p>Oddiy foydalanuvchi uchun yo'q. Sotib olingan Stars'ni kartaga qaytarib chiqarib bo'lmaydi. Pulga chiqarish faqat kanal va bot egalari <strong>ishlab topgan</strong> Stars'iga tegishli va alohida shartlari bor. Batafsil: <a href="/blog/telegram-stars-kartaga-chiqarish">Stars'ni kartaga chiqarish</a>.</p>
+          </section>
+
+          <section>
+            <h2>Xavfsizlik va kafolat</h2>
+            <p>StarsJoy'da Premium faqat <strong>Telegram username</strong> orqali yoqiladi. Bot hech qachon parol, SMS kod yoki ikki bosqichli parol so'ramaydi. So'rashsa, bu <a href="/blog/telegram-stars-firibgarlik-himoya">firibgarlik belgisi</a>.</p>
+            <ul>
+              <li>To'lov o'tib, buyurtma texnik sabab bilan bajarilmasa, <strong>pul to'liq qaytariladi</strong>;</li>
+              <li>buning uchun <strong>24 soat ichida</strong> <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a> ga to'lov chekini yuborasiz;</li>
+              <li>noto'g'ri username kiritilib, Premium boshqa akkauntga yoqilsa, pul qaytarilmaydi.</li>
+            </ul>
+          </section>
+
+          <div class="cta-box">
+            <h2>Premium'ni so'mda oling</h2>
+            <p>12 oy {fmtS(PREMIUM_PRICE[12])} so'm, 3 oy {fmtS(PREMIUM_PRICE[3])} so'm. Uzcard yoki Humo bilan, faqat username.</p>
+            <a class="cta-btn" href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot'ni ochish</a>
+            <p class="cta-sub"><a href="/premium/12-oy">12 oylik Premium</a> · <a href="/premium">Barcha paketlar</a></p>
+          </div>
+
+          <section>
+            <h2>Xulosa</h2>
+            <p>Telegram Premium'ni Stars bilan olish mumkin, lekin faqat sovg'a sifatida va 3 oy uchun 1000, 12 oy uchun 2500 Stars turadi. Balansingizda Stars bor bo'lsa, bu ularni ishlatishning yaxshi yo'li. Stars'ni maxsus Premium uchun olsangiz, 12 oyda {fmtS(extra(12))} so'm ko'p to'laysiz. Arzon yo'l oddiy: Premium'ni StarsJoy'da so'mda, Uzcard yoki Humo bilan olish.</p>
+            <p class="end-cta">Premium uchun → <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a></p>
+            <p>Foydali maqolalar: <a href="/blog/telegram-stars-yoki-premium">Stars yoki Premium: qaysi biri kerak</a>, <a href="/blog/telegram-premium-12-oylik">12 oylik Premium narxi</a>, <a href="/blog/telegram-premium-uzcard">Premium'ni Uzcard bilan olish</a>, <a href="/blog/telegram-1000-stars-sotib-olish">1000 Stars narxi</a>.</p>
+          </section>
+
+          <section>
+            <h2>Ko'p beriladigan savollar</h2>
+            <div class="post-faq">
+              <div class="post-faq-item"><h3>Telegram Premium'ni Stars bilan olsa bo'ladimi?</h3><p>Ha, sovg'a sifatida. Telegram 2025 yildan boshqa odamga Premium'ni Stars bilan to'lab sovg'a qilishga ruxsat beradi. O'zingizga Stars bilan olish tartibi rasmiy hujjatda yo'q.</p></div>
+              <div class="post-faq-item"><h3>Premium uchun necha Stars kerak?</h3><p>3 oy 1000, 6 oy 1500, 12 oy 2500 Stars.</p></div>
+              <div class="post-faq-item"><h3>Stars bilan olish arzonmi yoki so'mda?</h3><p>So'mda arzon. 2500 Stars StarsJoy'da {fmtS(viaStars(12))} so'm, 12 oylik Premium {fmtS(PREMIUM_PRICE[12])} so'm. Farq {fmtS(extra(12))} so'm.</p></div>
+              <div class="post-faq-item"><h3>Qachon Stars bilan sovg'a qilish ma'qul?</h3><p>Balansingizda Stars allaqachon bo'lsa va ularni boshqa ishga ishlatmasangiz. Premium uchun Stars'ni maxsus olish qimmat.</p></div>
+              <div class="post-faq-item"><h3>Premium'i bor odamga Stars bilan sovg'a qilsa bo'ladimi?</h3><p>Telegram hujjatida sovg'a Premium'i yo'q foydalanuvchiga beriladi. Premium faol bo'lsa, muddati qachon tugashini so'rang.</p></div>
+              <div class="post-faq-item"><h3>StarsJoy'da Premium'ni Stars bilan to'lasa bo'ladimi?</h3><p>Yo'q, so'mda: Uzcard yoki Humo kartadan Payme, Click yoki bank ilovasi orqali.</p></div>
+              <div class="post-faq-item"><h3>Stars'ni pulga aylantirib Premium olsa bo'ladimi?</h3><p>Oddiy foydalanuvchi sotib olgan Stars'ni kartaga chiqara olmaydi. Bu faqat kanal va bot egalarining ishlab topgan Stars'iga tegishli.</p></div>
+              <div class="post-faq-item"><h3>Parol yoki SMS kod kerakmi?</h3><p>Yo'q. Faqat Telegram username. Parol yoki kod so'ragan "sotuvchi" firibgar.</p></div>
+            </div>
+          </section>
+
+          <section>
+            <h2>Manbalar</h2>
+            <ul>
+              <li><a href="https://core.telegram.org/api/premium" target="_blank" rel="noopener">Telegram API: Premium va uni Stars bilan sovg'a qilish</a></li>
+              <li><a href="https://telegram.org/faq_premium" target="_blank" rel="noopener">Telegram Premium FAQ</a></li>
+              <li><a href="https://t.me/FAQTelegram/4139" target="_blank" rel="noopener">Telegram Info: 11.8 versiyasi, Premium'ning Stars'dagi narxi</a></li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 760px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .post-body {
+    padding: 60px 24px;
+  }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 28px 0 12px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 14px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .price-facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 0 0 8px;
+  }
+  .price-facts div {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .price-facts span { display: block; font-size: 0.8rem; color: var(--text-muted); }
+  .price-facts strong { display: block; font-size: 1.02rem; color: var(--primary); margin-top: 2px; }
+  .post-content .price-note { font-size: 0.85rem; margin-bottom: 28px; }
+
+  .cta-box {
+    background: linear-gradient(135deg, #7C3AED, #5B21B6);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin: 36px 0;
+    text-align: center;
+  }
+  .post-content .cta-box h2 { color: #fff; margin: 0 0 8px; }
+  .post-content .cta-box p { color: rgba(255, 255, 255, 0.85); margin-bottom: 18px; }
+  .post-content .cta-box .cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: #5B21B6;
+    font-weight: 800;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+  }
+  .post-content .cta-box .cta-btn:hover { text-decoration: none; opacity: 0.92; }
+  .post-content .cta-box .cta-sub { margin: 16px 0 0; font-size: 0.9rem; }
+  .post-content .cta-box .cta-sub a { color: #fff; text-decoration: underline; }
+
+  .natural-cta {
+    background: rgba(124, 58, 237, 0.04);
+    border-left: 3px solid var(--primary);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 18px 0;
+    font-size: 0.95rem;
+  }
+
+  .end-cta {
+    text-align: center;
+    padding: 14px;
+    background: rgba(124, 58, 237, 0.06);
+    border-radius: 10px;
+    font-weight: 600;
+    margin: 20px 0;
+  }
+
+  .post-table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+  }
+
+  .post-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .post-table th {
+    background: rgba(124, 58, 237, 0.06);
+    color: var(--text);
+    font-weight: 700;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+  }
+
+  .post-table td {
+    padding: 12px 18px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+  }
+
+  .post-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .post-table .highlight-row {
+    background: rgba(124, 58, 237, 0.04);
+  }
+
+  .post-table td.good { color: var(--primary); font-weight: 700; }
+
+  .post-table .highlight-row td {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .post-faq {
+    margin: 24px 0;
+  }
+
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+
+  .post-faq-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+
+  .post-faq-item p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.6rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.05rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .post-table th { padding: 10px 12px; font-size: 0.85rem; }
+    .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
+    .price-facts { grid-template-columns: repeat(2, 1fr); }
+    .cta-box { padding: 24px 18px; }
+  }
+</style>

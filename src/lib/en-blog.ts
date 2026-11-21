@@ -25,6 +25,14 @@ export interface EnPost {
 // Eng yangisi birinchi
 export const EN_POSTS: EnPost[] = [
   {
+    slug: 'pay-telegram-premium-with-stars',
+    title: 'Can You Pay for Telegram Premium with Stars? Uzcard, Humo',
+    excerpt:
+      `Premium can be gifted with Stars: 3 months for 1,000, a year for 2,500 Stars. In UZS, 12 months of Premium cost ${fmt(PREMIUM_PRICE[12])} UZS, while 2,500 Stars cost ${fmt(starsPrice(2500))} UZS. Which route fits when.`,
+    date: '2026-11-21',
+    tag: 'Premium',
+  },
+  {
     slug: 'buy-less-than-100-telegram-stars',
     title: 'How to Buy Fewer Than 100 or 50 Telegram Stars with Uzcard or Humo',
     excerpt:

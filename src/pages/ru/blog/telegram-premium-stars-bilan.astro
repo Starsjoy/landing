@@ -1,0 +1,534 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NavbarRu from '../../../components/NavbarRu.astro';
+import FooterRu from '../../../components/FooterRu.astro';
+import { STAR_PRICE, PREMIUM_PRICE, starsPrice, premiumPerMonth, fmtS, PRICES_DATE_UZ, PRICE_NOTE } from '../../../lib/prices';
+
+// Подарок Premium за звёзды в Telegram: 3 мес 1000, 6 мес 1500, 12 мес 2500 Stars (с версии 11.8, 2025)
+const STARS_FOR = { 3: 1000, 6: 1500, 12: 2500 } as const;
+const viaStars = (m: 3 | 6 | 12) => starsPrice(STARS_FOR[m]);
+const extra = (m: 3 | 6 | 12) => viaStars(m) - PREMIUM_PRICE[m];
+const APP_1000 = 233999; // приложение Telegram, Узбекистан, 04.11.2026
+
+const title = "Можно ли купить Premium за звёзды? Uzcard, Humo | StarsJoy Blog";
+const description = `Telegram Premium можно подарить за звёзды: 3 месяца 1000, год 2500 Stars. В сумах выгоднее купить Premium напрямую с Uzcard и Humo, экономия до ${fmtS(starsPrice(2500) - PREMIUM_PRICE[12])} сум.`;
+const publishDate = "2026-11-21";
+const modifiedDate = "2026-11-21";
+const wordCount = 1300;
+const canonical = "https://starsjoy.uz/ru/blog/telegram-premium-stars-bilan";
+const ogImage = "https://starsjoy.uz/og-image.png";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords="premium за звезды, купить telegram premium за звезды, сколько звезд стоит премиум, подарить премиум за звезды, 2500 звезд премиум, 1000 звезд премиум, telegram premium uzcard, telegram premium humo"
+  ogType="article"
+  ogImage={ogImage}
+  lang="ru"
+  hreflangs={[
+    { lang: "uz", href: "https://starsjoy.uz/blog/telegram-premium-stars-bilan" },
+    { lang: "ru", href: canonical },
+    { lang: "en", href: "https://starsjoy.uz/en/blog/pay-telegram-premium-with-stars" }
+  ]}
+>
+  <NavbarRu />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Можно ли купить Telegram Premium за звёзды? Сколько нужно Stars и что дешевле с Uzcard и Humo",
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": modifiedDate,
+    "inLanguage": "ru-RU",
+    "wordCount": wordCount,
+    "articleSection": "Premium",
+    "keywords": "premium за звезды, сколько звезд стоит премиум, подарить премиум за звезды, Uzcard, Humo, StarsJoy",
+    "author": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "sameAs": ["https://telegram.me/starsjoy", "https://telegram.me/starsjoybot"]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StarsJoy",
+      "url": "https://starsjoy.uz",
+      "logo": { "@type": "ImageObject", "url": "https://starsjoy.uz/logo.png" }
+    },
+    "mainEntityOfPage": canonical,
+    "citation": [
+      "https://core.telegram.org/api/premium",
+      "https://telegram.org/faq_premium",
+      "https://t.me/FAQTelegram/4139"
+    ],
+    "image": { "@type": "ImageObject", "url": ogImage, "width": 1200, "height": 630 }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://starsjoy.uz/ru" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://starsjoy.uz/ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Premium за звёзды", "item": canonical }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Telegram Premium на 12 месяцев",
+    "description": "Telegram Premium на 12 месяцев через @starsjoybot: оплата Uzcard или Humo, нужен только username.",
+    "brand": { "@type": "Brand", "name": "StarsJoy" },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://starsjoy.uz/ru/premium/12-oy",
+      "price": `${PREMIUM_PRICE[12]}`,
+      "priceCurrency": "UZS",
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "StarsJoy" }
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Можно ли купить Telegram Premium за звёзды?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Да, но в виде подарка. С 2025 года Telegram позволяет подарить Premium другому человеку и оплатить его звёздами. В документации Telegram оплата звёздами описана только для подарка, покупка Premium себе за звёзды там не описана." } },
+      { "@type": "Question", "name": "Сколько звёзд стоит Premium?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Цена в Telegram: 3 месяца 1000 звёзд, 6 месяцев 1500, 12 месяцев 2500 звёзд." } },
+      { "@type": "Question", "name": "Что дешевле: звёздами или в сумах?",
+        "acceptedAnswer": { "@type": "Answer", "text": `В сумах. По цене StarsJoy 2500 звёзд стоят ${fmtS(viaStars(12))} сум, а Premium на 12 месяцев ${fmtS(PREMIUM_PRICE[12])} сум, разница ${fmtS(extra(12))} сум. На 3 месяца разница ${fmtS(extra(3))}, на 6 месяцев ${fmtS(extra(6))} сум.` } },
+      { "@type": "Question", "name": "Когда выгодно дарить Premium за звёзды?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Когда звёзды уже лежат на балансе (подарили, выиграли в розыгрыше, накопились) и вы не планируете тратить их на другое. Покупать звёзды специально ради Premium дороже, чем платить в сумах." } },
+      { "@type": "Question", "name": "Можно ли подарить Premium тому, у кого он уже есть?",
+        "acceptedAnswer": { "@type": "Answer", "text": "В документации Telegram подарок описан для пользователя без Premium. Если подписка ещё активна, сначала узнайте, когда она закончится." } },
+      { "@type": "Question", "name": "Можно ли в StarsJoy оплатить Premium звёздами?",
+        "acceptedAnswer": { "@type": "Answer", "text": `Нет, в StarsJoy Premium оплачивается в сумах: с карты Uzcard или Humo через Payme, Click или банковское приложение. 3 месяца ${fmtS(PREMIUM_PRICE[3])}, 6 месяцев ${fmtS(PREMIUM_PRICE[6])}, 12 месяцев ${fmtS(PREMIUM_PRICE[12])} сум.` } },
+      { "@type": "Question", "name": "Можно ли вывести звёзды в деньги и купить Premium?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Обычный пользователь не может вывести купленные звёзды на карту. Вывод доступен только для заработанных звёзд владельцев каналов и ботов и на отдельных условиях." } },
+      { "@type": "Question", "name": "Нужен ли пароль или код из SMS?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Нет. В StarsJoy Premium подключается только по username. Пароль, код из SMS или облачный пароль никогда не запрашиваются." } }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": canonical,
+    "name": title,
+    "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".tldr-box", ".post-faq"] }
+  })} />
+
+  <article class="blog-post">
+    <header class="post-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ru">Главная</a>
+          <span>/</span>
+          <a href="/ru/blog">Блог</a>
+          <span>/</span>
+          <span>Premium за звёзды</span>
+        </nav>
+        <div class="post-tag">Premium</div>
+        <h1 class="post-title">Можно ли купить Telegram Premium за звёзды? Сколько нужно Stars и что дешевле с Uzcard и Humo</h1>
+        <div class="post-meta">
+          <span class="post-date">Обновлено: {modifiedDate}</span>
+          <span class="post-author">StarsJoy Blog</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="container">
+        <div class="post-content">
+
+          <div class="tldr-box" aria-label="Короткий ответ">
+            <strong>Короткий ответ:</strong> да, Telegram Premium можно <strong>подарить за звёзды</strong>: 3 месяца 1000, 6 месяцев 1500, 12 месяцев 2500 Stars. Но в сумах это дорогой путь. В <strong>StarsJoy</strong> (<a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a>) Premium на 12 месяцев стоит <strong>{fmtS(PREMIUM_PRICE[12])} сум</strong>, а 2500 звёзд {fmtS(viaStars(12))} сум. Оплата картой <strong>Uzcard или Humo</strong>, нужен только username.
+          </div>
+
+          <div class="price-facts" aria-label="Цены">
+            <div><span>Premium 3 месяца</span><strong>{fmtS(PREMIUM_PRICE[3])} сум</strong></div>
+            <div><span>Premium 12 месяцев</span><strong>{fmtS(PREMIUM_PRICE[12])} сум</strong></div>
+            <div><span>12 месяцев за звёзды</span><strong>2500 ⭐ ({fmtS(viaStars(12))} сум)</strong></div>
+            <div><span>Разница за год</span><strong>{fmtS(extra(12))} сум</strong></div>
+          </div>
+          <p class="price-note">Цены StarsJoy на {PRICES_DATE_UZ}: Premium 3 месяца {fmtS(PREMIUM_PRICE[3])}, 6 месяцев {fmtS(PREMIUM_PRICE[6])}, 12 месяцев {fmtS(PREMIUM_PRICE[12])} сум, 1 звезда {STAR_PRICE} сум. Цена Premium в звёздах указана по данным Telegram (версия 11.8, 2025). {PRICE_NOTE.ru}</p>
+
+          <section>
+            <p>Если на балансе накопились звёзды или хочется подарить другу Premium, логичный вопрос: можно ли заплатить за Premium звёздами и выйдет ли дешевле? В 2025 году Telegram добавил такую возможность, но условия и цена не такие, как многие ожидают.</p>
+            <p>Ниже объясняем правило Telegram по официальным источникам, ставим рядом цену каждого срока в звёздах и в сумах и говорим, в каком случае какой путь выгоднее.</p>
+          </section>
+
+          <section>
+            <h2>Можно ли купить Telegram Premium за звёзды?</h2>
+            <p>Да, но <strong>в виде подарка</strong>. Начиная с версии 11.8 в профиле другого человека можно выбрать подарок Premium и оплатить его звёздами. В документации Telegram для разработчиков оплата звёздами описана именно для <strong>подарка</strong> Premium.</p>
+            <p>Покупка Premium себе за звёзды в официальной документации не описана. Если Premium нужен вам самим, остаётся купить его в сумах или получить в подарок. Кроме того, Telegram пишет, что подарок предназначен пользователю без Premium, поэтому перед подарком уточните, не активна ли у человека подписка.</p>
+          </section>
+
+          <section>
+            <h2>Сколько звёзд стоит Premium и сколько это в сумах?</h2>
+            <p>Цена в Telegram: <strong>3 месяца 1000 звёзд, 6 месяцев 1500, 12 месяцев 2500 звёзд</strong>. Звёзды тоже покупаются за деньги, поэтому переводим их в сумы и сравниваем с ценой Premium:</p>
+            <div class="post-table-wrap">
+              <table class="post-table">
+                <thead>
+                  <tr><th>Срок</th><th>За звёзды</th><th>Эти звёзды в StarsJoy</th><th>Premium в StarsJoy</th><th>Разница</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>3 месяца</td><td>1000 ⭐</td><td>{fmtS(viaStars(3))} сум</td><td class="good">{fmtS(PREMIUM_PRICE[3])} сум</td><td>{fmtS(extra(3))} сум</td></tr>
+                  <tr><td>6 месяцев</td><td>1500 ⭐</td><td>{fmtS(viaStars(6))} сум</td><td class="good">{fmtS(PREMIUM_PRICE[6])} сум</td><td>{fmtS(extra(6))} сум</td></tr>
+                  <tr class="highlight-row"><td>12 месяцев</td><td>2500 ⭐</td><td>{fmtS(viaStars(12))} сум</td><td>{fmtS(PREMIUM_PRICE[12])} сум</td><td>{fmtS(extra(12))} сум</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>То есть покупать звёзды <strong>специально ради Premium</strong> всегда дороже: за год вы переплатите {fmtS(extra(12))} сум по сравнению с прямой покупкой. Через само приложение Telegram расчёт не меняется: там 1000 звёзд стоят {fmtS(APP_1000)} сум, 2500 звёзд по этой цене примерно {fmtS(Math.round(APP_1000 * 2.5 / 1000) * 1000)} сум, и обычно нужна международная карта.</p>
+            <p>Чем отличаются сроки Premium между собой: <a href="/ru/blog/telegram-premium-paketlar-taqqoslash">сравнение пакетов на 1, 3, 6 и 12 месяцев</a>.</p>
+          </section>
+
+          <section>
+            <h2>Когда выгодно дарить Premium за звёзды?</h2>
+            <p>Путь через звёзды имеет смысл в одном случае: <strong>звёзды уже есть на балансе</strong> и тратить их на другое вы не собираетесь. Например:</p>
+            <ul>
+              <li>друзья подарили вам звёзды или вы выиграли их в розыгрыше;</li>
+              <li>вы конвертировали подарки в звёзды и набрался баланс;</li>
+              <li>хочется вручить другу Premium через окно подарков Telegram, с красивым сообщением.</li>
+            </ul>
+            <p>Если звёзд нет и вы собираетесь купить их именно ради Premium, остановитесь: Premium в сумах дешевле. Куда ещё потратить звёзды: <a href="/ru/blog/telegram-stars-bilan-nima-qilish-mumkin">что можно делать со звёздами</a>.</p>
+          </section>
+
+          <section>
+            <h2>Как подарить Premium за звёзды?</h2>
+            <h3>Шаг 1. Откройте профиль</h3>
+            <p>В Telegram откройте профиль человека, которому хотите сделать подарок, и нажмите кнопку подарка (Gift). Если приложение старое, сначала обновите его.</p>
+            <h3>Шаг 2. Выберите Premium и срок</h3>
+            <p>В окне подарков выберите Premium и срок 3, 6 или 12 месяцев. В способе оплаты выберите звёзды.</p>
+            <h3>Шаг 3. Подтвердите</h3>
+            <p>Если звёзд на балансе хватает, подтвердите оплату, и получателю придёт сообщение о подарке. Покупки за звёзды по правилам Telegram не возвращаются, поэтому внимательно проверьте получателя.</p>
+          </section>
+
+          <section>
+            <h2>Как купить Premium в сумах?</h2>
+            <p>В StarsJoy Premium себе и другому человеку покупается одинаково, звёзды не нужны:</p>
+            <ol>
+              <li>откройте <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a> и выберите раздел Premium;</li>
+              <li>выберите срок: <a href="/ru/premium/3-oy">3 месяца {fmtS(PREMIUM_PRICE[3])}</a>, <a href="/ru/premium/6-oy">6 месяцев {fmtS(PREMIUM_PRICE[6])}</a> или <a href="/ru/premium/12-oy">12 месяцев {fmtS(PREMIUM_PRICE[12])} сум</a>;</li>
+              <li>укажите username аккаунта, на который нужно подключить Premium;</li>
+              <li>переведите на карту, которую покажет бот, ровно указанную сумму с карты Uzcard или Humo через Payme, Click или банковское приложение.</li>
+            </ol>
+            <p>В пересчёте на месяц выгоднее всего годовой пакет: около {fmtS(premiumPerMonth(12))} сум в месяц. Как подарить Premium другу: <a href="/ru/blog/telegram-premium-sovga-qilish">подарок Telegram Premium</a>.</p>
+          </section>
+
+          <section>
+            <h2>Можно ли вывести звёзды в деньги и купить Premium?</h2>
+            <p>Обычному пользователю нет. Купленные звёзды нельзя вывести обратно на карту. Вывод доступен только для звёзд, которые <strong>заработали</strong> владельцы каналов и ботов, и на отдельных условиях. Подробнее: <a href="/ru/blog/telegram-stars-kartaga-chiqarish">вывод звёзд на карту</a>.</p>
+          </section>
+
+          <section>
+            <h2>Безопасность и гарантия</h2>
+            <p>В StarsJoy Premium подключается только по <strong>username в Telegram</strong>. Бот никогда не спрашивает пароль, код из SMS или облачный пароль. Если спрашивают, это <a href="/ru/blog/telegram-stars-firibgarlik-himoya">признак мошенничества</a>.</p>
+            <ul>
+              <li>если оплата прошла, а заказ не выполнен по технической причине, <strong>деньги возвращаются полностью</strong>;</li>
+              <li>для этого <strong>в течение 24 часов</strong> отправьте чек в <a href="https://telegram.me/StarsjoySupport" target="_blank" rel="noopener">@StarsjoySupport</a>;</li>
+              <li>если указан неверный username и Premium подключился на чужой аккаунт, деньги не возвращаются.</li>
+            </ul>
+          </section>
+
+          <div class="cta-box">
+            <h2>Купите Premium в сумах</h2>
+            <p>12 месяцев {fmtS(PREMIUM_PRICE[12])} сум, 3 месяца {fmtS(PREMIUM_PRICE[3])} сум. С Uzcard или Humo, нужен только username.</p>
+            <a class="cta-btn" href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">Открыть @starsjoybot</a>
+            <p class="cta-sub"><a href="/ru/premium/12-oy">Premium на 12 месяцев</a> · <a href="/ru/premium">Все пакеты</a></p>
+          </div>
+
+          <section>
+            <h2>Итог</h2>
+            <p>Telegram Premium можно получить за звёзды, но только в виде подарка, и стоит он 1000 звёзд за 3 месяца и 2500 за год. Если звёзды уже есть, это хороший способ их потратить. Если покупать звёзды специально ради Premium, за год переплата составит {fmtS(extra(12))} сум. Дешевле всего купить Premium в StarsJoy в сумах, с карты Uzcard или Humo.</p>
+            <p class="end-cta">За Premium → <a href="https://telegram.me/starsjoybot" target="_blank" rel="noopener">@starsjoybot</a></p>
+            <p>Полезные статьи: <a href="/ru/blog/telegram-stars-yoki-premium">Stars или Premium: что выбрать</a>, <a href="/ru/blog/telegram-premium-12-oylik">цена Premium на 12 месяцев</a>, <a href="/ru/blog/telegram-premium-uzcard">Premium с Uzcard</a>, <a href="/ru/blog/telegram-1000-stars-sotib-olish">цена 1000 звёзд</a>.</p>
+          </section>
+
+          <section>
+            <h2>Частые вопросы</h2>
+            <div class="post-faq">
+              <div class="post-faq-item"><h3>Можно ли купить Telegram Premium за звёзды?</h3><p>Да, в виде подарка. С 2025 года Telegram позволяет подарить Premium другому человеку за звёзды. Покупка себе за звёзды в официальной документации не описана.</p></div>
+              <div class="post-faq-item"><h3>Сколько звёзд стоит Premium?</h3><p>3 месяца 1000, 6 месяцев 1500, 12 месяцев 2500 звёзд.</p></div>
+              <div class="post-faq-item"><h3>Что дешевле: звёздами или в сумах?</h3><p>В сумах. 2500 звёзд в StarsJoy стоят {fmtS(viaStars(12))} сум, Premium на год {fmtS(PREMIUM_PRICE[12])} сум. Разница {fmtS(extra(12))} сум.</p></div>
+              <div class="post-faq-item"><h3>Когда выгодно дарить Premium за звёзды?</h3><p>Когда звёзды уже на балансе и тратить их на другое вы не планируете. Покупать звёзды ради Premium дорого.</p></div>
+              <div class="post-faq-item"><h3>Можно ли подарить Premium тому, у кого он уже есть?</h3><p>В документации Telegram подарок описан для пользователя без Premium. Если подписка активна, узнайте, когда она закончится.</p></div>
+              <div class="post-faq-item"><h3>Можно ли в StarsJoy оплатить Premium звёздами?</h3><p>Нет, в сумах: с карты Uzcard или Humo через Payme, Click или банковское приложение.</p></div>
+              <div class="post-faq-item"><h3>Можно ли вывести звёзды в деньги и купить Premium?</h3><p>Обычный пользователь не может вывести купленные звёзды на карту. Это доступно только для заработанных звёзд владельцев каналов и ботов.</p></div>
+              <div class="post-faq-item"><h3>Нужен ли пароль или код из SMS?</h3><p>Нет. Только username в Telegram. Если «продавец» просит пароль или код, это мошенник.</p></div>
+            </div>
+          </section>
+
+          <section>
+            <h2>Источники</h2>
+            <ul>
+              <li><a href="https://core.telegram.org/api/premium" target="_blank" rel="noopener">Telegram API: Premium и подарок за звёзды</a></li>
+              <li><a href="https://telegram.org/faq_premium" target="_blank" rel="noopener">Telegram Premium FAQ</a></li>
+              <li><a href="https://t.me/FAQTelegram/4139" target="_blank" rel="noopener">Telegram Info: версия 11.8, цена Premium в звёздах</a></li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterRu />
+</Layout>
+
+<style>
+  .post-hero {
+    padding: 120px 24px 48px;
+    background: #F8F6FF;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--primary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    max-width: 760px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .post-body {
+    padding: 60px 24px;
+  }
+
+  .post-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-content section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .tldr-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 8px 0 28px;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .tldr-box a { color: var(--primary); text-decoration: none; }
+  .tldr-box a:hover { text-decoration: underline; }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 28px 0 12px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+
+  .post-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .post-content a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .post-content a:hover { text-decoration: underline; }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 24px;
+    margin-bottom: 14px;
+  }
+
+  .post-content li {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .price-facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 0 0 8px;
+  }
+  .price-facts div {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .price-facts span { display: block; font-size: 0.8rem; color: var(--text-muted); }
+  .price-facts strong { display: block; font-size: 1.02rem; color: var(--primary); margin-top: 2px; }
+  .post-content .price-note { font-size: 0.85rem; margin-bottom: 28px; }
+
+  .cta-box {
+    background: linear-gradient(135deg, #7C3AED, #5B21B6);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin: 36px 0;
+    text-align: center;
+  }
+  .post-content .cta-box h2 { color: #fff; margin: 0 0 8px; }
+  .post-content .cta-box p { color: rgba(255, 255, 255, 0.85); margin-bottom: 18px; }
+  .post-content .cta-box .cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: #5B21B6;
+    font-weight: 800;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+  }
+  .post-content .cta-box .cta-btn:hover { text-decoration: none; opacity: 0.92; }
+  .post-content .cta-box .cta-sub { margin: 16px 0 0; font-size: 0.9rem; }
+  .post-content .cta-box .cta-sub a { color: #fff; text-decoration: underline; }
+
+  .natural-cta {
+    background: rgba(124, 58, 237, 0.04);
+    border-left: 3px solid var(--primary);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 18px 0;
+    font-size: 0.95rem;
+  }
+
+  .end-cta {
+    text-align: center;
+    padding: 14px;
+    background: rgba(124, 58, 237, 0.06);
+    border-radius: 10px;
+    font-weight: 600;
+    margin: 20px 0;
+  }
+
+  .post-table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+  }
+
+  .post-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .post-table th {
+    background: rgba(124, 58, 237, 0.06);
+    color: var(--text);
+    font-weight: 700;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+  }
+
+  .post-table td {
+    padding: 12px 18px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+  }
+
+  .post-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .post-table .highlight-row {
+    background: rgba(124, 58, 237, 0.04);
+  }
+
+  .post-table td.good { color: var(--primary); font-weight: 700; }
+
+  .post-table .highlight-row td {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .post-faq {
+    margin: 24px 0;
+  }
+
+  .post-faq-item {
+    background: #F8F6FF;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+
+  .post-faq-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+
+  .post-faq-item p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 100px 16px 36px; }
+    .post-title { font-size: 1.6rem; }
+    .post-body { padding: 40px 16px; }
+    .post-content h2 { font-size: 1.25rem; margin-top: 36px; }
+    .post-content h3 { font-size: 1.05rem; }
+    .post-content p { font-size: 0.95rem; }
+    .post-content li { font-size: 0.95rem; }
+    .post-faq-item { padding: 20px; }
+    .breadcrumb { font-size: 0.8rem; }
+    .post-table th { padding: 10px 12px; font-size: 0.85rem; }
+    .post-table td { padding: 10px 12px; font-size: 0.85rem; }
+    .tldr-box { padding: 14px 16px; font-size: 0.9rem; }
+    .price-facts { grid-template-columns: repeat(2, 1fr); }
+    .cta-box { padding: 24px 18px; }
+  }
+</style>
