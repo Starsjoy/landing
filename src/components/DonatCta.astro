@@ -1,0 +1,73 @@
+---
+/**
+ * Donat marketing bloki: starsjoy.uz/donat sahifalari endi faqat ma'lumot va narx beradi,
+ * xarid esa donat.starsjoy.uz da (ilova bilan bir xil dizayn). Bu blok o'sha yerga olib boradi.
+ */
+import { fmtSum, minPrice, type DonatCatalog, type DonatLang } from '../lib/donat';
+
+interface Props { lang: DonatLang; catalog: DonatCatalog | null; slug?: string }
+const { lang, catalog, slug } = Astro.props;
+
+const SHOP = 'https://donat.starsjoy.uz';
+const shopUrl = (s?: string) => (s ? `${SHOP}/?game=${encodeURIComponent(s)}` : `${SHOP}/`);
+
+const L = {
+  uz: { cta: 'Donat qilish', from: 'dan', sum: "so'm", note: "Xarid donat.starsjoy.uz saytida: Uzcard yoki Humo bilan, faqat o'yin ID kerak.", all: "Barcha o'yinlar" },
+  ru: { cta: 'Пополнить', from: 'от', sum: 'сум', note: 'Покупка на сайте donat.starsjoy.uz: с Uzcard или Humo, нужен только ID в игре.', all: 'Все игры' },
+  en: { cta: 'Top up now', from: 'from', sum: 'UZS', note: 'Checkout on donat.starsjoy.uz: Uzcard or Humo, only your in-game ID is needed.', all: 'All games' },
+}[lang];
+
+const games = (catalog?.games || []).filter((g) => g.items.length);
+const one = slug ? games.find((g) => g.slug === slug) : null;
+const priceFrom = (p: number) => (lang === 'uz' ? `${fmtSum(p)} ${L.sum}${L.from}` : `${L.from} ${fmtSum(p)} ${L.sum}`);
+---
+
+<div class="dc-wrap">
+  {slug ? (
+    <a class="dc-one" href={shopUrl(slug)}>
+      <img src={`/images/donat/${slug}.png`} alt={one?.title || slug} width="96" height="96" loading="eager" />
+      <div class="dc-one-txt">
+        <strong>{one?.title || slug}</strong>
+        {one && <span>{priceFrom(minPrice(one))}</span>}
+      </div>
+      <span class="dc-btn">{L.cta}</span>
+    </a>
+  ) : (
+    <>
+      <div class="dc-grid">
+        {games.map((g) => (
+          <a class="dc-card" href={shopUrl(g.slug)}>
+            <img src={`/images/donat/${g.slug}.png`} alt={g.title} width="72" height="72" loading="lazy" />
+            <strong>{g.title}</strong>
+            <span>{priceFrom(minPrice(g))}</span>
+          </a>
+        ))}
+      </div>
+      <a class="dc-btn dc-btn-wide" href={shopUrl()}>{L.cta}</a>
+    </>
+  )}
+  <p class="dc-note">{L.note}</p>
+</div>
+
+<style>
+  .dc-wrap { max-width: 720px; margin: 24px auto 0; }
+  .dc-one { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; padding: 16px; text-decoration: none; color: inherit; }
+  .dc-one img { width: 72px; height: 72px; border-radius: 16px; object-fit: cover; flex: none; }
+  .dc-one-txt { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+  .dc-one-txt strong { font-size: 1.1rem; font-weight: 800; }
+  .dc-one-txt span { color: rgba(255,255,255,.65); font-size: .92rem; }
+  .dc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .dc-card { display: flex; flex-direction: column; align-items: center; gap: 6px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 14px 10px; text-decoration: none; color: inherit; text-align: center; transition: transform .15s, background .15s; }
+  .dc-card:hover { transform: translateY(-2px); background: rgba(255,255,255,.1); }
+  .dc-card img { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; }
+  .dc-card strong { font-size: .95rem; font-weight: 800; }
+  .dc-card span { font-size: .82rem; color: rgba(255,255,255,.65); }
+  .dc-btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 22px; border-radius: 14px; background: var(--gradient); color: #fff; font-weight: 800; text-decoration: none; white-space: nowrap; flex: none; }
+  .dc-btn-wide { display: flex; margin: 16px auto 0; max-width: 360px; }
+  .dc-note { text-align: center; color: rgba(255,255,255,.6); font-size: .85rem; margin: 12px auto 0; }
+  @media (max-width: 600px) {
+    .dc-grid { grid-template-columns: repeat(2, 1fr); }
+    .dc-one { flex-wrap: wrap; }
+    .dc-one .dc-btn { width: 100%; }
+  }
+</style>
