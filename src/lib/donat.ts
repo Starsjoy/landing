@@ -83,26 +83,6 @@ export const GAME_SEO: Record<string, Record<DonatLang, { title: string; h1: str
       lead: 'Enter your UID, check your nickname, pick a pack and pay by card. Diamonds land on your account automatically, usually in 1–3 minutes.',
     },
   },
-  'standoff-2': {
-    uz: {
-      title: "Standoff 2 Gold sotib olish — Uzcard va Humo bilan | StarsJoy",
-      h1: 'Standoff 2 Gold sotib olish',
-      desc: "Standoff 2 Gold sotib olish: 100 dan 10 000 Gold gacha. Uzcard va Humo bilan to'lov, to'lovdan keyin aktivatsiya havolasi darhol beriladi.",
-      lead: "Paketni tanlang va kartadan to'lang. To'lovdan keyin shu sahifada aktivatsiya havolasi chiqadi: uni ochib ko'rsatmaga amal qilasiz va Gold akkauntingizga tushadi.",
-    },
-    ru: {
-      title: 'Купить Gold Standoff 2 в Узбекистане — Uzcard и Humo | StarsJoy',
-      h1: 'Купить Gold для Standoff 2',
-      desc: 'Gold Standoff 2: от 100 до 10 000 Gold. Оплата Uzcard или Humo, ссылка активации сразу после оплаты.',
-      lead: 'Выберите пакет и оплатите картой. После оплаты на этой странице появится ссылка активации: откройте её, следуйте инструкции, и Gold поступит на аккаунт.',
-    },
-    en: {
-      title: 'Buy Standoff 2 Gold in Uzbekistan — Uzcard & Humo | StarsJoy',
-      h1: 'Buy Standoff 2 Gold',
-      desc: 'Standoff 2 Gold from 100 to 10,000 Gold. Pay with Uzcard or Humo, activation link right after payment.',
-      lead: 'Pick a pack and pay by card. After payment an activation link appears on this page: open it, follow the steps and the Gold lands on your account.',
-    },
-  },
 };
 
 /** Yangi o'yinlar uchun SEO matnlari bir xil qolipdan: o'yin nomi, valyuta, yetkazish usuli */
@@ -144,25 +124,25 @@ for (const [slug, w] of Object.entries(NEW_GAMES)) {
   };
 }
 
-export const DONAT_SLUGS = ['pubg-mobile', 'free-fire', 'mobile-legends', 'standoff-2', 'roblox', 'delta-force', 'blood-strike', 'honor-of-kings', 'arena-breakout'];
+export const DONAT_SLUGS = ['pubg-mobile', 'free-fire', 'mobile-legends', 'roblox', 'delta-force', 'blood-strike', 'honor-of-kings', 'arena-breakout'];
 
 export const DONAT_HUB_SEO: Record<DonatLang, { title: string; h1: string; desc: string; lead: string }> = {
   uz: {
     title: "O'yinlarga donat — PUBG UC, Free Fire, Mobile Legends, Roblox | StarsJoy",
     h1: "O'yinlarga donat",
-    desc: "PUBG Mobile UC, Free Fire va Mobile Legends olmos, Roblox Robux, Standoff 2 Gold va boshqa o'yinlar. Uzcard va Humo bilan to'lov, akkauntga avtomatik yetkazish.",
+    desc: "PUBG Mobile UC, Free Fire va Mobile Legends olmos, Roblox Robux va boshqa o'yinlar. Uzcard va Humo bilan to'lov, akkauntga avtomatik yetkazish.",
     lead: "O'yinni tanlang, ID'ni kiriting va kartadan to'lang. Donat akkauntingizga avtomatik tushadi.",
   },
   ru: {
     title: 'Донат в игры — UC PUBG, Free Fire, Mobile Legends, Roblox | StarsJoy',
     h1: 'Донат в игры',
-    desc: 'Купить UC PUBG Mobile, алмазы Free Fire и Gold Standoff 2. Оплата Uzcard и Humo, автоматическое зачисление, гарантия StarsJoy.',
+    desc: 'Купить UC PUBG Mobile, алмазы Free Fire и Mobile Legends. Оплата Uzcard и Humo, автоматическое зачисление, гарантия StarsJoy.',
     lead: 'Выберите игру, введите ID и оплатите картой. Донат поступит на аккаунт автоматически.',
   },
   en: {
     title: 'Game Top-Up — PUBG UC, Free Fire, Mobile Legends, Roblox | StarsJoy',
     h1: 'Game top-up',
-    desc: 'Buy PUBG Mobile UC, Free Fire diamonds and Standoff 2 Gold. Pay with Uzcard or Humo, automatic delivery, StarsJoy guarantee.',
+    desc: 'Buy PUBG Mobile UC, Free Fire and Mobile Legends diamonds. Pay with Uzcard or Humo, automatic delivery, StarsJoy guarantee.',
     lead: 'Pick a game, enter your ID and pay by card. The top-up lands on your account automatically.',
   },
 };

@@ -35,7 +35,6 @@ export const EN_TO_UZ: Record<string, string> = {
   '/en/donat': '/donat',
   '/en/donat/pubg-mobile': '/donat/pubg-mobile',
   '/en/donat/free-fire': '/donat/free-fire',
-  '/en/donat/standoff-2': '/donat/standoff-2',
   '/en/donat/mobile-legends': '/donat/mobile-legends',
   '/en/donat/roblox': '/donat/roblox',
   '/en/donat/delta-force': '/donat/delta-force',

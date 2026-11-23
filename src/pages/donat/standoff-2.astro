@@ -1,5 +1,5 @@
 ---
-import DonatPage from '../../components/DonatPage.astro';
+// 24.11: Standoff 2 sotilmaydi (provayder rad etyapti), sahifa donat bosh sahifasiga ko'chirildi
+export const prerender = false;
+return Astro.redirect('/donat', 301);
 ---
-
-<DonatPage lang="uz" slug="standoff-2" />

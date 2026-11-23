@@ -36,6 +36,7 @@ export default defineConfig({
     filter: (page) =>
       !page.includes('/modad') &&
       !page.includes('/donat-preview') &&
+      !page.includes('/donat/standoff-2') &&
       new URL(page).pathname !== '/test' &&
       !page.includes('/api/') &&
       !page.includes('/admin'),
