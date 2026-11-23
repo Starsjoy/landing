@@ -170,10 +170,37 @@ function bonusSourceFromHeader(text: string): 'starsjoy' | 'premium24' | 'uzgets
   return null;
 }
 
+function parseDonatMessage(text: string) {
+  // 🎮 Yangi donat sotildi!
+  // 📦 Order: #22883 · StarsJoy · donat.starsjoy.uz
+  // 🕹 Free Fire: 110
+  // 👤 10474250092 · Nik
+  // 💰 Summa: 12,150 so'm
+  // ✅ Status: Yetkazildi
+  const orderMatch = text.match(/#(\d+)/);
+  const itemMatch = text.match(/🕹\s*([^\n]+)/);
+  const priceMatch = text.match(/💰\s*Summa:\s*([\d\s,.]+)\s*so['']m/i);
+  const statusMatch = text.match(/✅\s*Status:\s*(.+)/);
+  if (!priceMatch) return null;
+  return {
+    orderNumber: orderMatch?.[1] || '',
+    type: 'donat' as const,
+    username: '', // o'yinchi ID Telegram username emas — top xaridorlarga aralashmasin
+    amount: itemMatch?.[1]?.trim() || '',
+    price: parseInt(priceMatch[1].replace(/[\s,.]/g, ''), 10),
+    transactionId: '',
+    status: statusMatch?.[1]?.trim() || 'Yetkazildi',
+  };
+}
+
 function parseOrderMessage(text: string, isPremium112: boolean = false) {
   // Premium 1/12 kanal — boshqa format (no emojis)
   if (isPremium112) {
     return parsePremium112Message(text);
+  }
+  // Donat: 🎮 Yangi donat sotildi! (Stars/Gift tekshiruvidan oldin)
+  if (text.includes('donat sotildi')) {
+    return parseDonatMessage(text);
   }
   // Stars: 🌟 Yangi Stars sotildi!  yoki  ✨ STARS YUBORILDI
   if (text.includes('Stars sotildi') || text.includes('STARS YUBORILDI') || text.includes('🌟') || text.includes('✨')) {

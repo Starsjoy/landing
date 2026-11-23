@@ -3413,6 +3413,8 @@ if (authenticated && !dbReady) {
         if (type === 'premium24_stars') return { pill: 'pill-uzgets_stars', label: 'P24 Stars' };
         if (type === 'premium24_premium') return { pill: 'pill-uzgets_premium', label: 'P24 Premium' };
         if (type === 'premium24_gift') return { pill: 'pill-uzgets_stars', label: 'P24 Gift' };
+        if (type === 'donat') return { pill: 'pill-gift', label: 'Donat' };
+        if (type === 'uzgets_donat') return { pill: 'pill-uzgets_stars', label: 'UZ Donat' };
         return { pill: 'pill-premium', label: 'Premium' };
       }
 
@@ -3692,10 +3694,11 @@ if (authenticated && !dbReady) {
         var p3 = (o.uz3Count || 0) * 15000;
         var p6 = (o.uz6Count || 0) * 25000;
         var p12 = (o.uz12Count || 0) * 35000;
+        var donat = Math.round((o.uzDonatRevenue || 0) * 0.12); // UZ Donat: sotuvning 12% i
         return {
           ov: o,
-          starsProfit: starsProfit, p3: p3, p6: p6, p12: p12,
-          total: starsProfit + p3 + p6 + p12,
+          starsProfit: starsProfit, p3: p3, p6: p6, p12: p12, donat: donat,
+          total: starsProfit + p3 + p6 + p12 + donat,
           revenue: o.totalRevenue || 0,
           orders: o.totalOrders || 0,
         };
@@ -3734,6 +3737,7 @@ if (authenticated && !dbReady) {
         var starsProfit = Math.round(ov.starsRevenue * 0.12);
         var giftProfit = Math.round(ov.giftRevenue * 0.12);
         var premiumProfit = Math.round(ov.premiumRevenue * 0.10);
+        var donatProfit = Math.round((ov.donatRevenue || 0) * 0.12); // Donat: sotuvning 12% i
         var psProfit = Math.round(ov.psRevenue * 0.10);
         // Premium Send Stars: narxning 1/3 qismi jami foyda (50 stars/15 000 so'm → 5 000 so'm),
         // bu foyda Fayzulloh va Abdulloh o'rtasida 50/50 (1/6 dan) bo'linadi.
@@ -3742,7 +3746,7 @@ if (authenticated && !dbReady) {
         var psStarsAbdullohShare = psStarsTotal - psStarsOwnerShare;
         var psProfitTotal = psProfit + psStarsOwnerShare; // Premium Send'dan owner'ga tegishli jami (komissiya + stars ulushi)
         var bonusCost = ov.bonusCost || 0;
-        var starsjoyProfit = starsProfit + giftProfit + premiumProfit;
+        var starsjoyProfit = starsProfit + giftProfit + premiumProfit + donatProfit;
         // 'uzgets' ko'rinishida ma'lumot orders ichida, 'all' da esa alohida so'rovdan
         var uz = calcUzgets(currentSource === 'uzgets' ? ov : uzgetsOv);
         var p24Profit = ov.p24Profit || 0;
@@ -3834,7 +3838,8 @@ if (authenticated && !dbReady) {
         var sjRows = `
             <div class="pb-row"><span class="pb-dot" style="background:#facc15"></span><span class="pb-name">Stars</span><span class="pb-revenue">${fmtMoney(ov.starsRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(starsProfit)} so'm (12%)</span></div>
             <div class="pb-row"><span class="pb-dot" style="background:#34d399"></span><span class="pb-name">Gift</span><span class="pb-revenue">${fmtMoney(ov.giftRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(giftProfit)} so'm (12%)</span></div>
-            <div class="pb-row"><span class="pb-dot" style="background:#c084fc"></span><span class="pb-name">Premium</span><span class="pb-revenue">${fmtMoney(ov.premiumRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(premiumProfit)} so'm (10%)</span></div>`;
+            <div class="pb-row"><span class="pb-dot" style="background:#c084fc"></span><span class="pb-name">Premium</span><span class="pb-revenue">${fmtMoney(ov.premiumRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(premiumProfit)} so'm (10%)</span></div>
+            <div class="pb-row"><span class="pb-dot" style="background:#fb923c"></span><span class="pb-name">Donat</span><span class="pb-revenue">${fmtMoney(ov.donatRevenue || 0)} so'm · ${ov.donatCount || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(donatProfit)} so'm (12%)</span></div>`;
         var psRows = `
             <div class="pb-row"><span class="pb-dot" style="background:#60a5fa"></span><span class="pb-name">PS Premium</span><span class="pb-revenue">${fmtMoney(ov.psRevenue)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(psProfit)} so'm (10%)</span></div>
             <div class="pb-row"><span class="pb-dot" style="background:#f472b6"></span><span class="pb-name">PS Stars</span><span class="pb-revenue">${fmtMoney(ov.psStarsRevenue || 0)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(psStarsTotal)} so'm (1/3)</span></div>
@@ -3845,7 +3850,8 @@ if (authenticated && !dbReady) {
             <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#22d3ee"></span><span class="pb-name">UZ Stars</span><span class="pb-revenue">${fmtMoney(uz.ov.uzStarsRevenue || 0)} so'm</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.starsProfit)} so'm (10%)</span></div>
             <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 3 oy</span><span class="pb-revenue">${uz.ov.uz3Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.p3)} so'm (15 000 × ta)</span></div>
             <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 6 oy</span><span class="pb-revenue">${uz.ov.uz6Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.p6)} so'm (25 000 × ta)</span></div>
-            <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 12 oy</span><span class="pb-revenue">${uz.ov.uz12Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.p12)} so'm (35 000 × ta)</span></div>`;
+            <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#2dd4bf"></span><span class="pb-name">UZ Premium 12 oy</span><span class="pb-revenue">${uz.ov.uz12Count || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.p12)} so'm (35 000 × ta)</span></div>
+            <div class="pb-row${uzCls}"><span class="pb-dot" style="background:#fb923c"></span><span class="pb-name">UZ Donat</span><span class="pb-revenue">${fmtMoney(uz.ov.uzDonatRevenue || 0)} so'm · ${uz.ov.uzDonatCount || 0} ta</span><span class="pb-arrow">&rarr;</span><span class="pb-profit">${fmtMoney(uz.donat)} so'm (12%)</span></div>`;
 
         var p24Row = function(name, count, profit) {
           return `
@@ -5101,8 +5107,9 @@ if (authenticated && !dbReady) {
         var starsProfit = Math.round((ov.starsRevenue || 0) * 0.12);
         var giftProfit = Math.round((ov.giftRevenue || 0) * 0.12);
         var premiumProfit = Math.round((ov.premiumRevenue || 0) * 0.10);
+        var donatProfit = Math.round((ov.donatRevenue || 0) * 0.12);
         var psProfit = Math.round((ov.psRevenue || 0) * 0.10) + Math.round((ov.psStarsRevenue || 0) / 6);
-        var starsjoyProfit = starsProfit + giftProfit + premiumProfit - (ov.bonusCost || 0);
+        var starsjoyProfit = starsProfit + giftProfit + premiumProfit + donatProfit - (ov.bonusCost || 0);
         if (currentSource === 'starsjoy') return starsjoyProfit;
         if (currentSource === 'premium_send') return psProfit - (ov.bonusCost || 0);
         if (currentSource === 'premium24') return (ov.p24Profit || 0) - (ov.bonusCost || 0);

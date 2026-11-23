@@ -1449,12 +1449,12 @@ export async function deleteOrder(id: number) {
 // source: 'starsjoy' = stars,gift,premium | 'premium_send' | 'premium_1_12' | 'uzgets' | 'all'
 // 'uzgets' alohida silos — 'all' filteriga qo'shilmaydi (foyda va maosh hisobiga ham ta'sir qilmaydi)
 function sourceFilter(source: string): string[] {
-  if (source === 'starsjoy') return ['stars', 'gift', 'premium'];
+  if (source === 'starsjoy') return ['stars', 'gift', 'premium', 'donat'];
   if (source === 'premium_send') return ['premium_send', 'premium_send_stars'];
   if (source === 'premium_1_12') return ['premium_1_12'];
-  if (source === 'uzgets') return ['uzgets_stars', 'uzgets_premium'];
+  if (source === 'uzgets') return ['uzgets_stars', 'uzgets_premium', 'uzgets_donat'];
   if (source === 'premium24') return ['premium24_stars', 'premium24_premium', 'premium24_gift'];
-  return ['stars', 'gift', 'premium', 'premium_send', 'premium_send_stars', 'premium_1_12']; // all (uzgets'siz)
+  return ['stars', 'gift', 'premium', 'donat', 'premium_send', 'premium_send_stars', 'premium_1_12']; // all (uzgets'siz)
 }
 
 // 'uzgets' manbasi uchun qator shartini quradi: uzgets_stars/uzgets_premium har doim,
@@ -1529,7 +1529,11 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy') as uz_6_count,
       COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '6 oy'), 0) as uz_6_revenue,
       COUNT(*) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy') as uz_12_count,
-      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy'), 0) as uz_12_revenue
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_premium' AND amount = '12 oy'), 0) as uz_12_revenue,
+      COUNT(*) FILTER (WHERE type = 'donat') as donat_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'donat'), 0) as donat_revenue,
+      COUNT(*) FILTER (WHERE type = 'uzgets_donat') as uz_donat_count,
+      COALESCE(SUM(price) FILTER (WHERE type = 'uzgets_donat'), 0) as uz_donat_revenue
     FROM orders WHERE timestamp >= ${since} AND timestamp <= ${until} AND ${rowCond}
   `;
 
@@ -1697,6 +1701,11 @@ export async function getOrderStats(period: string, from?: string, to?: string, 
       uz6Revenue: +overview.uz_6_revenue,
       uz12Count: +overview.uz_12_count,
       uz12Revenue: +overview.uz_12_revenue,
+      // Donat (o'yin to'lovlari): foyda sotuvning 12% i
+      donatCount: +overview.donat_count,
+      donatRevenue: +overview.donat_revenue,
+      uzDonatCount: +overview.uz_donat_count,
+      uzDonatRevenue: +overview.uz_donat_revenue,
     },
     recent: recent.map(r => ({
       id: +r.id,
